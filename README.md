@@ -73,97 +73,59 @@ Also, link your `js` file. We already know how to do it :wink:.
 
 Take a look at the `js` starter file. You already have a section for the logic and one section for the HTML/CSS interactions.
 
-##### Game Logic
+### The Game
 
 - First things first: we need somewhere to get the info about our tiles. We are providing the images for your game in the `img` directory. Use the proper element in your `memory.js` file to fill up the required info.
 
-```javascript=
-  this.Cards = [];
+```javascript
+this.Cards = [];
+```
+- Create a method to shuffle the cards, so every time you create a new game, the order or the card changes. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle).
+
+```javascript
+MemoryGame.prototype._shuffleCard = function() {
+};
+```
+- When the tiles are rendered, the user will select a card and the whole logic of the game will be executed. Remember you will need the information of the picked element.
+
+```javascript
+MemoryGame.prototype.selectCard = function(card) 
+};
 ```
 
-- Create a method to shuffle the cards, so every time you create a new game, the order or the card changes. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). Be sure you understand it.
 
+- As Memory doesn't have a 'Game Over', we just need a 'Win' function.
 
-MemoryGame.prototype.selectCard = function(card) {
-
-  if (this.picked_cards.length === 0) {
-    this.picked_cards.push(card);
-  }
-  else if (this.picked_cards.length == 1) {
-    $('.front,.back').addClass('blocked');
-    this.pairs_clicked++;
-    this.picked_cards.push(card);
-
-    if (this.picked_cards[0].id == this.picked_cards[1].id) {
-      this.picked_cards = [];
-      this.pairs_guessed++;
-      $('.front,.back').removeClass('blocked');
-    } else {
-      this.pairsClicked++;
-      var self = this;
-      setTimeout(function () {
-        self.picked_cards[0].style.background = '#456783';
-        self.picked_cards[1].style.background = '#456783';
-        self.picked_cards = [];
-        $('.front,.back').removeClass('blocked');
-      }, 1000);
-    }
-  }
-
-};
-
+```javascript
 MemoryGame.prototype.finished = function() {
-  return (this.pairs_guessed == '12');
 };
-
-//******************************************************************
-// HTML/CSS Interactions
-//******************************************************************
-
-var memoryGame;
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-    var html = '';
-
-    memoryGame.Cards.forEach(function(pic, index) {
-      html += '<div class= "card" id="card_' + pic.name + '">';
-      html += '<div class="back"';
-      html += '    name="img/' + pic.name + '"';
-      html += '    id="'       + pic.img +  '">';
-      html += '</div>';
-      html += '<div class="front" ';
-      html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-      html += '    id="'       + pic.img +  '">';
-      html += '</div>';
-      html += '</div>';
-    });
-
-    // Add all the div's to the HTML
-    document.getElementById('memory_board').innerHTML = html;
-    // Bind the click event of each element to a function
-
-    $('.back').on('click', function(){
-      memoryGame.selectCard(this);
-      this.style.background = 'url(img/' + this.id + ') no-repeat';
-      document.getElementById('pairs_clicked').innerHTML = memoryGame.pairs_clicked;
-      document.getElementById('pairs_guessed').innerHTML = memoryGame.pairs_guessed;
-      if (memoryGame.finished()) {alert("You wooon!!!");}
-    });
-});
-
 ```
 
+### HTML/CSS Interactions
 
+Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
 
-- Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
+- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `document.ready` method. Use jQuery to change the elements dynamically.
 
+```javascript
+$(document).ready(function(){
+});
+```
 
+- The other important interaction is the click listener. Remember to add the listeners when the document is loaded.
 
-
+```javascript
+$('.back').on('click', function(){
+});
+```
 
 ## Summary
 
+In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm and got 
 
 ## Extra Resources
+
+- [jQuery](https://jquery.com/)
+- [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
 
 
