@@ -11,9 +11,10 @@ body > h1 {
 
 #memory_board {
   background-color: white;
-  height: 533px;
-  width: 800px;
+  height: 550px;
+  width: 790px;
   margin: 0 auto;
+  padding: 10px;
   border: 4px solid black;
   border-radius: 10%;
 }
