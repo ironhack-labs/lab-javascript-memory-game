@@ -18,9 +18,14 @@ h1 {
 }
 
 #memory-board > div {
-  position: relative;
-  top: 5%;
-  }
+  position: fixed;
+  width: 800px;
+  height: 600px;
+  transform: translateY(7.5%);
+}
+
+#memory-board > div:first-child {
+}
 
 .card, .back {
   background-color: #456783;

@@ -30,13 +30,13 @@ MemoryGame.prototype.shuffleCard = function() {
 };
 
 MemoryGame.prototype.makeGrid = function() {
-  var html = "";
+  var html = "<div>";
   this.shuffleCards.forEach(function(card,index){
     html += "<img class='card' id=" + card.name + " src='" + card.url + "'>";
   })
+  html += "</div>";
   console.log(html);
-  $(".back").remove();
-  $("#memory-board > div").prepend(html);
+  $("#memory-board").prepend(html);
 
 }
 
@@ -55,8 +55,15 @@ MemoryGame.prototype.finished = function() {
 
 
 $(document).ready(function(){
+
+var gameStarted = 0;
+
   $('.back').on('click', function(){
-    game.shuffleCard(this.Cards);
-    game.makeGrid();
+    if (gameStarted === 0) {
+      game.shuffleCard(this.Cards);
+      game.makeGrid();
+    }
+    gameStarted = 1;
+    ($(this).css("opacity","0"));
   });
 });
