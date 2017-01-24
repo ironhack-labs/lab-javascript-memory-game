@@ -1,6 +1,31 @@
+body {
+  background-image: url('./img/jloa.jpg');
+  background-size: cover;
+}
+
+body > h1 {
+  text-align: center;
+  color: darkblue;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
 #memory_board {
+  background-color: white;
+  height: 533px;
+  width: 800px;
+  margin: 0 auto;
+  border: 4px solid black;
+  border-radius: 10%;
+}
+
+.card-row {
 
 }
+
+.card-col {
+
+}
+
 .pic {
   background-color: #456783;
 	width:71px;
