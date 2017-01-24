@@ -1,7 +1,28 @@
-#memory_board {
-
+html, body {
+  height: 100%;
 }
-.pic {
+
+h1 {
+  position: relative;
+  left: 25%;
+}
+
+#memory-board {
+  position: relative;
+  left: 10%;
+  width: 800px;
+  height: 600px;
+  background-color: lightgrey;
+  border-radius: 5em;
+  padding: 60px;
+}
+
+#memory-board > div {
+  position: relative;
+  top: 5%;
+  }
+
+.card, .back {
   background-color: #456783;
 	width:71px;
 	height:71px;
