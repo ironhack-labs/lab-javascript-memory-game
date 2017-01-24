@@ -1,4 +1,14 @@
+body{
+  background-image: url("img/background_1024.jpg");
+}
 #memory_board {
+  background-color:#F2F2F2;
+  margin-top: 5%;
+  margin-left: 25%;
+  padding: 100px;
+  width: 800px;
+  height: 530px;
+  border-radius: 10%;
 
 }
 .pic {
@@ -8,5 +18,20 @@
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
+}
+.pic:hover {
+  box-shadow: 0 2px #69071b;
+}
+.active #n-0{
+  background-image: url("./img/batman.jpg");
+}
+.active #n-1{
+  background-image: url("./img/superman.jpg");
+}
+.active #n-2{
+  background-image: url("./img/batman.jpg");
+}
+.active #n-3{
+  background-image: url("./img/superman.jpg");
 }
