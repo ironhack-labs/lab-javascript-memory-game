@@ -3,12 +3,18 @@
 //******************************************************************
 
 function MemoryGame() {
-  this.Cards = [{name: "aquaman", url: "img/aquaman.jpg"}, {name: "batman", url:"img/batman.jpg"},
-  {name: "captain-america", url: "img/captain-america.jpg"}, {name: "fantastic-four", url: "img/fantastic-four.jpg"},
-  {name: "flash", url: "img/flash.jpg"}, {name: "green-arrow", url: "img/green-arrow.jpg"},
-  {name: "green-lantern", url: "img/green-lantern.jpg"}, {name: "ironman", url: "img/ironman.jpg"} ,
-  {name: "spiderman", url: "img/spiderman.jpg"}, {name: "superman", url: "img/superman.jpg"},
-  {name: "the-avengers", url: "img/the-avengers.jpg"}, {name: "thor", url: "img/thor.jpg"}];
+  this.Cards = [{name: "aquaman", url: "img/aquaman.jpg"},
+                {name: "batman", url:"img/batman.jpg"},
+                {name: "captain-america", url: "img/captain-america.jpg"},
+                {name: "fantastic-four", url: "img/fantastic-four.jpg"},
+                {name: "flash", url: "img/flash.jpg"},
+                {name: "green-arrow", url: "img/green-arrow.jpg"},
+                {name: "green-lantern", url: "img/green-lantern.jpg"},
+                {name: "ironman", url: "img/ironman.jpg"} ,
+                {name: "spiderman", url: "img/spiderman.jpg"},
+                {name: "superman", url: "img/superman.jpg"},
+                {name: "the-avengers", url: "img/the-avengers.jpg"},
+                {name: "thor", url: "img/thor.jpg"}];
 }
 
 MemoryGame.prototype.shuffleCard = function() {
@@ -50,7 +56,7 @@ var game = new MemoryGame();
 
 $(document).ready(function(){
 
-var gameStarted = 0, matchedCards=[], secondCard = false;
+var gameStarted = 0, matchedCards=[], secondCard = false, numberOfMatches = 0;
 
   $('.back').on('click', function(){
     if (gameStarted === 0) {
@@ -58,12 +64,11 @@ var gameStarted = 0, matchedCards=[], secondCard = false;
       game.makeGrid();
     }
 
-    gameStarted = 1, numberOfMatches = 0;
+    gameStarted = 1;
 
     $(this).css("opacity","0");
 
     if (secondCard === true){
-      console.log($(this));
       matchedCards.push($(this));
       secondCard = false;
 
@@ -83,21 +88,11 @@ var gameStarted = 0, matchedCards=[], secondCard = false;
             alert("You won da game m8");
           }
         },1000);
-
-
-
-
     }
     else {
-      console.log($(this));
       matchedCards.push($(this));
       secondCard = true;
     }
-
-    console.log(secondCard, matchedCards);
-
-
-
 
   });
 });
