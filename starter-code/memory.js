@@ -52,7 +52,6 @@ function MemoryGame (){
   };
 
   this.isWin = function(){
-    this.pairsMatched++;
     return (this.pairsMatched === this.cards.length) ? true : false;
   };
 
@@ -63,6 +62,7 @@ function MemoryGame (){
     this.secondCard = this.grid[x];
     if (!this.secondCard.isShowing){
       this.cardFlips++;
+      updateClickCount(this.cardFlips);
       this.secondCard.isShowing = true;
       showMe(this.secondCard.childNumber, this.secondCard.card.name);
       if (!this.onSecondPlay){
@@ -72,6 +72,8 @@ function MemoryGame (){
         if (this.secondCard.card.id === this.firstCard.card.id){
           // MATCH!
           console.log("MATCH!");
+          this.pairsMatched++;
+          updateMatchesCount(this.pairsMatched);
           if(this.isWin()){
             console.log("YOU WIN!");  // game is done.
           }
@@ -97,7 +99,9 @@ function MemoryGame (){
     return cards[Math.floor(Math.random() * cards.length)];
   }
 
-
+  // creating a new game...
+  unShowAll();
+  
   // lets fill the play grid
   var seen = [], i = 0, j = 0;
   for (i = 0; i < this.cards.length; ++i){
@@ -146,6 +150,18 @@ var unShowBoth = function (){
   semaphore = false;
 };
 
+var unShowAll = function(){
+  $('.pic').attr('src', '');
+};
+
+var updateClickCount = function (clicks){
+  $('#click-count').text(String(clicks));
+};
+
+var updateMatchesCount = function (matches){
+  $('#match-count').text(String(matches));
+};
+
 $(document).ready(function(){
   //set listeners
   $("#memory_board").on('click', function(){
@@ -163,12 +179,10 @@ $(document).ready(function(){
     console.log("you chose " + myGridItem.card.name);
 
     myGame.play(cssIDInt);
-    /*
-    if (myGridItem.isShowing){
-      $('#' + cssID).attr('src', './img/' + myGridItem.card.name + ".jpg");
-    } else {
-      $('#' + cssID).attr('src', '');
+    if (myGame.isWin()){
+      alert("YOU WIN!!!");
+      myGame = null;
     }
-    */
+
   });
 });

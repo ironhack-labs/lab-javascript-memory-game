@@ -19,6 +19,18 @@ body > h1 {
   border-radius: 10%;
 }
 
+#info-panel {
+  background-color: white;
+  height: 80px;
+  width: 140px;
+  border: 1px solid black;
+  border-radius: 10%;
+  margin-right: 2px;
+  margin-top: 30px;
+  float: right;
+  text-align: center;
+}
+
 .card-row {
 
 }
