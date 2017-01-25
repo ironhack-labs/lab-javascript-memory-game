@@ -20,16 +20,6 @@
   background-image: none !important;
 }
 
-.red-button {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  background: red;
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-}
-
 .pic.stay-flipped {
   background-color: transparent;
 }
