@@ -3,10 +3,47 @@
 }
 .pic {
   background-color: #456783;
+  background-image: none;
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.bg {
+
+}
+
+#memory_board {
+  width: 62.5%;
+  background-color: white;
+  height: 530px;
+  border-radius: 20px;
+  margin: 45px 0px 0px 70px;
+  float: left;
+  opacity: 0.95;
+}
+
+body {
+  background-image: url("img/bg.jpeg");
+  background-image: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.results {
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  float: right;
+  width: 180px;
+  height: 100px;
+  background-color: white;
+  opacity: 0.95;
+  border-radius: 20px;
+  margin: 45px 20px 0px 0px;
+  padding: 20px;
 }
