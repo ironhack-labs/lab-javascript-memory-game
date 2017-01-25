@@ -1,10 +1,62 @@
-#memory_board {
 
+html {
+  background-image: url("http://wallpapercave.com/wp/Z2tEz9n.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
+.hidden {
+  display: none;
+}
+
+.image {
+  position: relative;
+  width: 95px;
+  height: 95px;
+}
+
+#memory_board{
+  position: fixed;
+  background-color: hsla(120, 100%, 100%, 0);
+  width: 80%;
+  height: 90%;
+  height: 550px;
+  left: 10%;
+  top: 5%;
+  padding: 0 0 5% 0;
+}
+
+.title {
+  position: relative;
+  background-color: hsla(120, 100%, 100%, 0);
+  text-align: center;
+  font-size: 36px;
+  color: #456783;
+  border-radius: 10px;
+  width: 50%;
+  height: 50px;
+  margin: 0 25%;
+  font-weight: bold;
+}
+
+#gameBoard {
+  position: relative;
+  border-radius: 65px;
+  background-color: hsla(120, 0%, 80%, 1);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 68px 60px;
+}
+
 .pic {
   background-color: #456783;
-	width:71px;
-	height:71px;
+	width:95px;
+	height:95px;
 	float:left;
 	margin:10px;
 	padding:20px;
