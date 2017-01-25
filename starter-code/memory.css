@@ -25,6 +25,11 @@ h1 {
 }
 
 #memory-board > div:first-child {
+  /*z-index: 2;*/
+}
+
+.transparent {
+  opacity: 0;
 }
 
 .card, .back {

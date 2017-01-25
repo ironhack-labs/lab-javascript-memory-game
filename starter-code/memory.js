@@ -35,7 +35,6 @@ MemoryGame.prototype.makeGrid = function() {
     html += "<img class='card' id=" + card.name + " src='" + card.url + "'>";
   })
   html += "</div>";
-  console.log(html);
   $("#memory-board").prepend(html);
 
 }
@@ -56,14 +55,47 @@ MemoryGame.prototype.finished = function() {
 
 $(document).ready(function(){
 
-var gameStarted = 0;
+var gameStarted = 0, matchedCards=[], secondCard = false;
 
   $('.back').on('click', function(){
     if (gameStarted === 0) {
       game.shuffleCard(this.Cards);
       game.makeGrid();
     }
+
     gameStarted = 1;
-    ($(this).css("opacity","0"));
+
+    $(this).css("opacity","0");
+
+    if (secondCard === true){
+      console.log($(this));
+      matchedCards.push($(this));
+      secondCard = false;
+
+
+        setTimeout(function(){
+          if (matchedCards[0][0].id !== matchedCards[1][0].id) {
+            matchedCards[0].css("opacity", "1");
+            matchedCards[1].css("opacity", "1");
+          }
+
+          matchedCards = [];
+        },2000);
+
+
+
+
+    }
+    else {
+      console.log($(this));
+      matchedCards.push($(this));
+      secondCard = true;
+    }
+
+    console.log(secondCard, matchedCards);
+
+
+
+
   });
 });
