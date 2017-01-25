@@ -1,0 +1,153 @@
+.container-fluid {
+  padding: 0;
+
+}
+.header{
+  /*height: 200px;*/
+  /*background-color: blue;*/
+}
+.row {
+  position: relative;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.col-sm-4 {
+}
+
+.col-sm-8 {
+  padding-top: 19px;
+
+}
+
+.nav {
+  color: red;
+}
+
+.nav navpills {
+  color: #777;
+}
+
+.site-title {
+  font-weight: bold;
+}
+
+.container-fluid slider{
+  margin: 0;
+  width: 100vh;
+  margin-bottom: 100px;
+}
+
+.item {
+  height: 360px;
+}
+
+.col-sm-12 {
+  /*position: relative;*/
+  background-color: green;
+  border: 1px solid black;
+}
+.carousel-img{
+  height: 100%;
+  width: auto;
+}
+
+.carousel-slide {
+  width: 100vh;
+  position: relative;
+  margin: 0px;
+
+
+}
+.main-text {
+  position: absolute;
+  left: 240px;
+  top: 120px;
+  z-index: 999;
+  color: white;
+  text-align: center;
+}
+
+.para {
+  position: absolute;
+  font-size: 26px;
+  width: 500px;
+  left: 260px;
+  top: 200px;
+  z-index: 999;
+  color: white;
+  text-align: center;
+}
+
+.read-more {
+  width: 140px;
+  height: auto;
+  font-size: 20px;
+  border: 2px solid white;
+  position: absolute;
+  color: white;
+  left: 410px;
+  top: 320px;
+  z-index: 999;
+  padding: 1px 5px 0px 5px;
+}
+
+.list {
+  float: left;
+  color: red;
+  margin: 15px 0px;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+
+}
+
+.container-fluid content{
+  float: left;
+  background-color: #ed564b;
+  width: 100vh;
+  height: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-top:5px;
+  border-bottom: 5px;
+  border: 1px solid black;
+}
+
+.row content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-top:5px;
+  border-bottom: 5px;
+  background: #ed564b;
+  text-align: center;
+}
+
+.col-sm-4.webdesign{
+  position: relative;
+  padding: 15px;
+  float: left;
+  width: 150px;
+  color: white;
+  background: #ed564b;
+  text-align: center;
+}
+
+.col-sm-4.webdevelopment{
+  position: relative;
+  padding: 150px;
+  float: left;
+  width: 100px;
+  color: white;
+  text-align: center;
+}
+
+.col-sm-4.userinterface {
+  position: relative;
+  padding: 150px;
+  float: left;
+  width: 150px;
+  color: white;
+  text-align: center;
+}
