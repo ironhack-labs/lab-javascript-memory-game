@@ -1,7 +1,9 @@
 #memory_board {
 
 }
+.back{
 
+}
 .pic {
   background-color: #456783;
 	width:71px;
@@ -10,11 +12,12 @@
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+
 }
 #board{
   width: 850px;
   height: 550px;
-  background-color: rgb(0, 0, 0);
+  background-color:black;
   opacity: 0.8;
   margin-left:10%;
   padding-top: 20px;
