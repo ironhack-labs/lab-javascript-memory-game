@@ -1,12 +1,29 @@
-#memory_board {
 
+body{
+  background-image: url(./img/background.jpg);
+  background-size: cover;
 }
+
+.table-game{
+  background-color: #a7a7a7;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.row-cards{
+  text-align: center;
+  margin: 0 auto;
+}
+
 .pic {
+  background-image: none;
   background-color: #456783;
-	width:71px;
-	height:71px;
+  background-size: cover;
+	width:100px;
+	height:100px;
 	float:left;
-	margin:10px;
-	padding:20px;
+	margin:20px;
+	padding:30px;
 	font-size:64px;
 }
