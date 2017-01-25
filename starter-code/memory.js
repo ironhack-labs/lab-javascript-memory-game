@@ -2,6 +2,9 @@
 // Game Logic
 //******************************************************************
 
+var myGame = null;
+var semaphore = false;
+
 function MemoryGame (){
   this.cards = [
     { id: 0,
@@ -35,6 +38,7 @@ function MemoryGame (){
   this.pairsMatched = 0;
   this.onSecondPlay = false;
   this.firstCard = null;
+  this.secondCard = null;
   this.cardFlips = 0;
 
   this.printGrid = function(){
@@ -56,29 +60,36 @@ function MemoryGame (){
   // flipped over. Also, not allow someone to click on a third card while
   // this delay is in effect.
   this.play = function(x){
-    var currentCard = this.grid[x];
-    if (!currentCard.isShowing){
+    this.secondCard = this.grid[x];
+    if (!this.secondCard.isShowing){
       this.cardFlips++;
-      currentCard.isShowing = true;
+      this.secondCard.isShowing = true;
+      showMe(this.secondCard.childNumber, this.secondCard.card.name);
       if (!this.onSecondPlay){
-        this.firstCard = currentCard;
+        this.firstCard = this.secondCard;
         this.onSecondPlay = true;
       } else {
-        if (currentCard.card.id === this.firstCard.card.id){
+        if (this.secondCard.card.id === this.firstCard.card.id){
           // MATCH!
           console.log("MATCH!");
-          if(this.isWin()) console.log("YOU WIN!");  // game is done.
+          if(this.isWin()){
+            console.log("YOU WIN!");  // game is done.
+          }
         } else {
+          semaphore = true;
           // No Match...
           console.log("sorry. no match...");
-          currentCard.isShowing = false;
+          this.secondCard.isShowing = false;
+          //unShowMe(currentCard.childNumber);
           this.firstCard.isShowing = false;
-          unShowMe(this.firstCard.childNumber);
+          //unShowMe(this.firstCard.childNumber);
+          var timeoutId = window.setTimeout (unShowBoth, 1000);
         }
         this.onSecondPlay = false;
       }
     }
     // else do nothing because user shows a showing card.
+    // semaphore = false;
   };
 
   // returns id of random card from deck
@@ -114,7 +125,13 @@ function MemoryGame (){
 // HTML/CSS Interactions
 //******************************************************************
 
-var myGame = null;
+function showMe(id, name){
+  var cssID = String(id).length < 2 ?
+    'card-0' + String(id) : 'card-' + String(id);
+  console.log('stringID in showMe = ' + cssID);
+  $('#' + cssID).attr('src', './img/' + name + '.jpg');
+
+}
 
 function unShowMe(id){
   var cssID = String(id).length < 2 ?
@@ -123,6 +140,12 @@ function unShowMe(id){
   $('#' + cssID).attr('src', '');
 }
 
+var unShowBoth = function (){
+  unShowMe(myGame.firstCard.childNumber);
+  unShowMe(myGame.secondCard.childNumber);
+  semaphore = false;
+};
+
 $(document).ready(function(){
   //set listeners
   $("#memory_board").on('click', function(){
@@ -130,24 +153,22 @@ $(document).ready(function(){
   });
 
   $(".pic").on('click', function(){
+    if (semaphore) return;
     myGame = (myGame === null) ? new MemoryGame() : myGame;
     var cssID = $(this).attr('id');          //ex: "card-02"
     var cssIDString = cssID.slice(-2);          //ex: "02"
     var cssIDInt = parseInt(cssIDString);       //ex: 2
     var myGridItem = myGame.grid[cssIDInt];
 
-
-    console.log("My cssID is " + cssID);
-    console.log("My cssIDString is " + cssIDString);
-    console.log("My cssIDInt is " + cssIDInt);
-    console.log(myGridItem);
     console.log("you chose " + myGridItem.card.name);
 
     myGame.play(cssIDInt);
+    /*
     if (myGridItem.isShowing){
       $('#' + cssID).attr('src', './img/' + myGridItem.card.name + ".jpg");
     } else {
       $('#' + cssID).attr('src', '');
     }
+    */
   });
 });
