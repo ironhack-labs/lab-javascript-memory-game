@@ -1,4 +1,15 @@
+body{
+  background-image: url(img/background.jpg);
+  background-size: cover;
+}
+
 #memory_board {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  margin: 0 auto;
+  width: 1200px;
+  height: 1200px;
 
 }
 .pic {
