@@ -1,7 +1,42 @@
 #memory_board {
-
+  width: auto;
 }
+
+.image-background {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  z-index: 0;
+  filter: opacity(0.7);
+}
+
+h1 {
+  position:relative;
+  z-index: 999;
+  text-align: center;
+  color: purple;
+  top: 50px;
+  font-size: 3em;
+  z-index: 999;
+}
+
+.game-table {
+  background: #f0f5f5;
+  width: 65%;
+  height: auto;
+  left: 12%;
+  top: 20%;
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right:10px;
+  padding-bottom: 30px;
+  margin: 10px;
+  border-radius: 25px;
+  position: absolute;
+}
+
 .pic {
+  text-align: center;
   background-color: #456783;
 	width:71px;
 	height:71px;
