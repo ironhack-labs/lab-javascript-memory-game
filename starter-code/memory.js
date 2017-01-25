@@ -26,13 +26,15 @@ MemoryGame.prototype.shuffleCard = function() {
       array[i] = array[j]
       array[j] = temp
     }
-  this.shuffleCards = array;
+  this.shuffledCards = array;
 };
 
 MemoryGame.prototype.makeGrid = function() {
   var html = "<div>";
-  this.shuffleCards.forEach(function(card,index){
+  this.shuffledCards.forEach(function(card,index){
     html += "<img class='card' id=" + card.name + " src='" + card.url + "'>";
+    var divNum = ".back:nth-child(" + (index + 1) + ")";
+    $(divNum).attr("id",card.name);
   })
   html += "</div>";
   $("#memory-board").prepend(html);
@@ -40,13 +42,6 @@ MemoryGame.prototype.makeGrid = function() {
 }
 
 var game = new MemoryGame();
-
-
-MemoryGame.prototype.selectCard = function(card){
-};
-
-MemoryGame.prototype.finished = function() {
-};
 
 //******************************************************************
 // HTML/CSS Interactions
@@ -63,7 +58,7 @@ var gameStarted = 0, matchedCards=[], secondCard = false;
       game.makeGrid();
     }
 
-    gameStarted = 1;
+    gameStarted = 1, numberOfMatches = 0;
 
     $(this).css("opacity","0");
 
@@ -78,9 +73,16 @@ var gameStarted = 0, matchedCards=[], secondCard = false;
             matchedCards[0].css("opacity", "1");
             matchedCards[1].css("opacity", "1");
           }
+          else {
+            numberOfMatches += 1;
+          }
 
           matchedCards = [];
-        },2000);
+
+          if (numberOfMatches === 12) {
+            alert("You won da game m8");
+          }
+        },1000);
 
 
 
