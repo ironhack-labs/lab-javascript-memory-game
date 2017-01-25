@@ -47,3 +47,7 @@ body {
   margin: 45px 20px 0px 0px;
   padding: 20px;
 }
+
+.winner {
+  pointer-events: none;
+}

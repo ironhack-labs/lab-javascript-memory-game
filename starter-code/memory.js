@@ -121,13 +121,14 @@ $(document).ready(function(){
 
   $('.pic').on('click', function(){
     clickCounter++;
-    console.log($('#click').text("Clicks: "+clickCounter));
+
     var superHero = $(this).attr('name');
     $(this).addClass("clicked");
     $(this).css("background-image", "url('img/"+superHero+".jpg')");
 
     if (clickCounter % 2 === 0) {
       checkIfPair(lastSuperHero, superHero);
+      console.log($('#click').text("Intentos: "+clickCounter/2));
     } else {
       lastSuperHero = superHero;
     }
