@@ -1,6 +1,28 @@
+body {
+  background-image: url("img/iron-man-armadura.jpg");
+  }
+
 #memory_board {
+    background-color: black;
+    border: solid 1px gold;
+    width: 800px;
+    height: 600px;
+    padding: 20px;
+    margin: 0px auto;
+}
+
+#memory_board > div {
+      background: url("img/aquaman.jpg") no-repeat;    /*testing background with aquaman*/
+      border: solid 1px silver;
+      width: 70px;
+      height: 70px;
+      padding: 20px;
+
+  }
 
 }
+
+
 .pic {
   background-color: #456783;
 	width:71px;
