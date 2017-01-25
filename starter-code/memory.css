@@ -10,3 +10,57 @@
 	padding:20px;
 	font-size:64px;
 }
+
+body {
+  background-image: url("img/background.jpg");
+
+}
+
+h1 {
+  color: white;
+  font-size: 60px;
+  text-shadow: 5px 2px black;
+  background-color: rgba(0,0,0,0.5);
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 50px;
+  vertical-align: middle;
+}
+
+.container-custom{
+  background-color: #DDDDDD;
+  border-radius: 60px;
+  margin-top: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.row-custom{
+  width: 80%;
+  margin-left: 15%;
+  margin-top: 10px;
+}
+
+.test {
+  background-color: blue;
+  width: 111px;
+  height: 111px;
+}
+
+.div-custom{
+  background-color: #456784;
+  width: 111px;
+  height: 111px;
+  margin: 10px;
+  padding: 0px;
+}
+
+.img-custom{
+  width: 111px;
+  height: 111px;
+  display: block;
+}
+
+.img-hide{
+  display:none;
+}
