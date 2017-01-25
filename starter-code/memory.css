@@ -1,6 +1,44 @@
+body {
+  background-image: url('./img/jloa.jpg');
+  background-size: cover;
+}
+
+body > h1 {
+  text-align: center;
+  color: darkblue;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
 #memory_board {
+  background-color: white;
+  height: 550px;
+  width: 790px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 4px solid black;
+  border-radius: 10%;
+}
+
+#info-panel {
+  background-color: white;
+  height: 80px;
+  width: 140px;
+  border: 1px solid black;
+  border-radius: 10%;
+  margin-right: 2px;
+  margin-top: 30px;
+  float: right;
+  text-align: center;
+}
+
+.card-row {
 
 }
+
+.card-col {
+
+}
+
 .pic {
   background-color: #456783;
 	width:71px;
