@@ -1,6 +1,10 @@
 #memory_board {
 
 }
+
+.container{
+  width: 800px;
+}
 .pic {
   background-color: #456783;
 	width:71px;
@@ -9,4 +13,11 @@
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+
+}
+
+img {
+  position: relative;
+  top:-17px;
+  left:-17px;
 }
