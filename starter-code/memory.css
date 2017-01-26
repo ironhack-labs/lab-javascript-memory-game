@@ -1,5 +1,14 @@
-#memory_board {
+* {
+  text-align: center;
+  color: white;
+}
 
+#memory_board {
+  position: absolute;
+  background-image: url("http://hallofheroesmuseum.com/wp-content/uploads/2013/09/villains-2.jpg");
+  width: 1200px;
+  height: 1000px;
+  repeat: none;
 }
 .pic {
   background-color: #456783;
@@ -10,3 +19,44 @@
 	padding:20px;
 	font-size:64px;
 }
+
+#container {
+position: absolute;
+padding: 20px;
+background-color: white;
+box-sizing: content-box;
+margin: 10%;
+}
+
+.row {
+
+}
+
+ .col-md-2 {
+  background-color: blue;
+  margin: 10px;
+  position: relative;
+  width: 75px;
+  height: 75px;
+
+
+}
+
+/*.rowTop {
+ /*float: left;*/
+/*}
+
+/*.rowSec {
+
+}*/
+
+/*.cards {
+  background-color: blue;
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  height: 20px;
+  width: 20px;*/
+/*}
+
+/**/
