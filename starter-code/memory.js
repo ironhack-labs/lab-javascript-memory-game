@@ -2,85 +2,105 @@
 // Game Logic
 // ******************************************************************
 
-var MemoryGame = function(){
-this.Cards = [{
-    name:"aquaman",
-    image:"./img/aquaman.jpg"
-  },{
-    name:"batman",
-    image:"./img/batman.jpg"
-  },{
-    name:"captainAmerica",
-    image:"./img/captain-america.jpg"
-  },{
-    name:"fantasticFour",
-    image:"./img/fantastic-four.jpg"
-  },{
-    name:"flash",
-    image:"./img/flash.jpg"
-  },{
-    name:"greenArrow",
-    image:"./img/green-arrow.jpg"
-  },{
-    name:"greenLantern",
-    image:"./img/green-lantern.jpg"
-  },{
-    name:"ironman",
-    image:"./img/ironman.jpg"
-  },{
-    name:"spiderman",
-    image:"./img/spiderman.jpg"
-  },{
-    name:"superman",
-    image:"./img/superman.jpg"
-  },{
-    name:"theAvengers",
-    image:"./img/the-avengers.jpg"
-  },{
-    name:"thor",
-    image:"./img/thor.jpg"
-  }];
+function MemoryGame (cards){
+this.Cards = cards;
+this.clickAttemps = 0;
+this.couples = 0;
+this.randomCards(cards);
+this.newPanel();
+this.discover();
+}
+
+MemoryGame.prototype.randomCards = function(array) {
+var createArrayCards = array.concat(array);
+this.Cards = _.shuffle(createArrayCards);
 };
 
-MemoryGame.prototype._shuffleCard = function(array) {
-var randomCards = array.concat(array);
-return _.shuffle(randomCards);
+MemoryGame.prototype.selectCard = function(nameOfCard1,nameOfCard2){
+    that = this;
+    if(nameOfCard1 === nameOfCard2){
+      this.couples ++;
+      this.hit(nameOfCard1);
+    }else{
+      setTimeout(function(){that.cover();},1000);
+    }
 };
 
-MemoryGame.prototype.selectCard = function(card,array){
-  $(card).css('background-image','url('+array.image+')');
+MemoryGame.prototype.finished = function(){
+    alert("YOU ARE AWEOSME");
 
-};
-
-MemoryGame.prototype.finished = function() {
 };
 
 
 //******************************************************************
 // HTML/CSS Interactions
 //******************************************************************
+var heroCards = [{
+  name:"aquaman"
+},{
+  name:"batman"
+},{
+  name:"captain-america"
+},{
+  name:"fantastic-four"
+},{
+  name:"flash"
+},{
+  name:"green-arrow"
+},{
+  name:"green-lantern"
+},{
+  name:"ironman"
+},{
+  name:"spiderman"
+},{
+  name:"superman"
+},{
+  name:"the-avengers"
+},{
+  name:"thor"
+}];
 $(document).ready(function(){
-  var newGame = new MemoryGame();
-  var newPosition = newGame._shuffleCard(newGame.Cards);
-  var elements = document.getElementsByClassName("pic");
-  putCards(newPosition,elements);
 
-  function putCards(arrayPositions,arrayElements){
-    for (var i = 0; i < arrayPositions.length; i++) {
-      // $(elements[i]).attr("background-image", array[i].image);
-      $(arrayElements[i]).on("click", newGame.selectCard(arrayElements[i],arrayPositions[i]),false);
-      // $(elements[i]).css('background-image','url('+array[i].image+')');
-      // elements[i].setAttribute("background-image", array[i].image);
-      //elements[i].addEventListener("click", newGame.selectCard(elements[i]),false);
-
+MemoryGame.prototype.newPanel = function(){
+  for (var i = 0; i < this.Cards.length; i++){
+      $('.row-cards').append($('<div>')
+        .addClass('pic')
+        .attr('data-name', this.Cards[i].name)
+      );
     }
-  }
+};
 
-// $(".row-cards").on("click", "div", function() {
-//   $(this).parent('div').on(eventName, eventHandler);}
+MemoryGame.prototype.discover = function(){
+  var nameOfCard2;
+  that = this;
+  $('.pic').on('click', function(){
+    var nameOfCard1 = $(this).attr('data-name');
+    that.clickAttemps += 1;
 
+    $(this).addClass('clicked');
+    $(this).css("background-image", "url('img/"+nameOfCard1+".jpg')");
+    if (that.clickAttemps%2 === 0) {
+      that.selectCard(nameOfCard1,nameOfCard2);
+    }else{
+      nameOfCard2 = nameOfCard1;
+    }
+  });
+};
 
+MemoryGame.prototype.cover = function (){
+    $('.clicked').css('background-image', 'none');
+    $('.clicked').removeClass('clicked');
+};
 
+MemoryGame.prototype.hit = function (nameOfCard1){
+    $('data-'+nameOfCard1).css("background-image", "url('img/"+nameOfCard1+".jpg')");
+    // $('.hit').attr('data-role',true);
+    $('.pic').removeClass('clicked');
+    if (this.couples === (this.Cards.length/2)) {
+        this.finished();}
+};
 
+var newGame = new MemoryGame(heroCards);
 
 });

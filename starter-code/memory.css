@@ -2,28 +2,41 @@
 body{
   background-image: url(./img/background.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.table-game{
-  background-color: #a7a7a7;
-  border-radius: 20px;
-  text-align: center;
+h1{
+  font-family: 'Chewy', cursive;
   margin: 0 auto;
+  text-align: center;
+  color: #a6273a;
+  font-size: 4rem;
 }
 
 .row-cards{
+  width: 816px;
+  height: 630px;
+  background-color: #FFF;
+  border-radius: 20px;
+  border: 5px solid #4439a1;
   text-align: center;
   margin: 0 auto;
+  padding: 10px;
+  opacity: 0.9;
 }
 
 .pic {
   background-image: none;
   background-color: #456783;
   background-size: cover;
-	width:100px;
-	height:100px;
+	width:70px;
+	height:70px;
 	float:left;
-	margin:20px;
-	padding:30px;
+	margin:10px;
+	padding:20px;
 	font-size:64px;
+  border: 3px solid #4439a1;
+  border-radius: 10px;
+  display: inline-block;
+  text-align: center;
 }
