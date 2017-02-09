@@ -1,12 +1,38 @@
-#memory_board {
-
+body {
+  background-color:rgb(127, 246, 239);
 }
+
+h1 {
+  height: auto;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 5%;
+  width: 30%;
+}
+
+#memory_board {
+  background-color: rgb(203, 199, 202);
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 80%;
+  left: 0;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  top: 15%;
+  width: 80%;
+}
+
 .pic {
   background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
+	width: 11vw;
+	height: 16.75vh;
+	/*float:left;*/
+	margin:14px;
 	padding:20px;
 	font-size:64px;
 }
