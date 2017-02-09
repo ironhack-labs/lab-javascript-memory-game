@@ -1,12 +1,55 @@
-#memory_board {
+body{
+  font-family: Helvetica;
+  color: #eee;
+  background-image: url("img/background.jpg");
+  background-size:60% auto;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
 
 }
-.pic {
-  background-color: #456783;
+
+h2{
+  font-weight: lighter;
+    text-align: center;
+    padding-top: 10%;
+    color: #eee;
+    position: fixed;
+    left:50%;
+    top:10%;
+}
+#memory-board {
+  width: 580px;
+  height: auto;
+  margin: 0 auto;
+  background-color: #eee;
+  border-radius: 61px;
+  padding: 42px;
+  overflow: auto;
+}
+/*.container-fluid {
+  height:10%;
+  width:auto;
+}*/
+
+.card {
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
-	padding:20px;
 	font-size:64px;
+  transition: opacity 1s;
+}
+.disabled{
+  opacity: 0.5;
+}
+.back{
+  opacity: 0;
+}
+.back img{
+  width:71px;
+	height:71px;
+}
+.front{
+  background-color: #3a6186;
 }
