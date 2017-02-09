@@ -1,12 +1,41 @@
-#memory_board {
-
+body{
+  font-family: Helvetica;
+  background: linear-gradient(to left, #3a6186 , #89253e);
+  color: #fff;
 }
-.pic {
-  background-color: #456783;
+h1,h3{
+  text-align: center;
+}
+h3{
+  font-weight: lighter;
+}
+#memory-board {
+  width: 546px;
+  margin: 0 auto;
+  background-color: #eee;
+  border-radius: 15px;
+  padding: 30px;
+  overflow: auto;
+}
+
+.card {
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
-	padding:20px;
 	font-size:64px;
+  transition: opacity 1s;
+}
+.disabled{
+  opacity: 0.5;
+}
+.back{
+  opacity: 0;
+}
+.back img{
+  width:71px;
+	height:71px;
+}
+.front{
+  background-color: #3a6186;
 }
