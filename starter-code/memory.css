@@ -1,5 +1,9 @@
 #memory_board {
+}
 
+body {
+  background-image: url(http://cdn6.bigcommerce.com/s-rv5ea8/products/3745/images/7032/60589A620715__28593.1461638743.1280.1280.jpg?c=2);
+  background-size: cover;
 }
 .pic {
   background-color: #456783;
@@ -9,4 +13,21 @@
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.board {
+width: 100%;
+background-color:#4ba3d9;
+margin-top: 40px;
+border-radius: 40px;
+padding: 40px;
+border: 3px solid black;
+}
+
+.col-sm-2{
+margin: 10px 0;
+}
+
+.imgFlip {
+display: none;
 }
