@@ -1,10 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-       <title>Superhero Memory Game</title>
-       <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
-    </head>
-    <body>
-        <div id="memory_board"></div>
-    </body>
+<head>
+  <title>Superhero Memory Game</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="memory.min.css" media="screen">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <script src="memory.js"></script>
+</head>
+<body>
+  <div class="container" id="memory_board">
+    <div class="row">
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="1-1">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="1-2">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="1-3">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="1-4">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="1-5">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="1-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="2-1">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="2-2">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="2-3">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="2-4">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="2-5">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="2-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="3-1">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="3-2">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="3-3">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="3-4">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="3-5">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="3-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="4-1">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="4-2">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="4-3">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="4-4">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="4-5">
+      </div>
+      <div class="col-xs-2">
+        <img class="pic" src="img/riddler.jpg" alt="4-6">
+      </div>
+    </div>
+  </div>
+</body>
 </html>
