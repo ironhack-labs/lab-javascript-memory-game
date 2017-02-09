@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
   var board = $('#memory-board');//Playing area
   var cards = $('.card');//All cards
 
