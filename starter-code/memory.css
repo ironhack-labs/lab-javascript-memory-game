@@ -1,4 +1,13 @@
+body {
+  background: url("./img/marvel.jpg");
+}
+
 #memory_board {
+  padding: 40px;
+  margin: 45px;
+  border-radius: 15px;
+  border: 30px solid grey;
+  background-color: #fff;
 
 }
 .pic {
@@ -9,4 +18,12 @@
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.col {
+  background-color: #ccc;
+  width: 71px;
+  height: 71px;
+  margin: 10px;
+  padding: 20px;
 }
