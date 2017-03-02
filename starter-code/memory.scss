@@ -1,0 +1,84 @@
+body{
+  background-image: url("img/superheroes.jpg");
+  background-size: cover;
+}
+
+.header{
+  text-align: center;
+  h1{
+    font-weight: bolder;
+    font-size: 50px;
+    color: #436684;
+  }
+}
+
+.container{
+  ul{
+    padding-left: 90px;
+  }
+}
+
+.card{
+  background-color: #436684;
+  height: 100px;
+  position: static;
+}
+
+#memory_board{
+  border-radius: 80px;
+  width: 80%;
+  background-color: #DDDDDD;
+}
+
+.pic {
+  background-color: #456783;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+
+li{
+  color: transparent;
+  font-size: 0.1px;
+}
+
+.clicked{
+  padding-left: 50px;
+  color: #436684;
+  font-size: 30px;
+}
+.guessed{
+  padding-left: 50px;
+  color: #436684;
+  font-size: 30px;
+}
+
+.aquaman{
+  background-image: url(img/aquaman.jpg);
+}
+.batman{
+  background-image: url(img/batman.jpg);
+}.captainamerica{
+  background-image: url(img/captain-america.jpg);
+}.fantasticfour{
+  background-image: url(img/fantastic-four.jpg);
+}.flash{
+  background-image: url(img/flash.jpg);
+}.greenarrow{
+  background-image: url(img/green-arrow.jpg);
+}.greenlantern{
+  background-image: url(img/green-lantern.jpg);
+}.ironman{
+  background-image: url(img/ironman.jpg);
+}.spiderman{
+  background-image: url(img/spiderman.jpg);
+}.superman{
+  background-image: url(img/superman.jpg);
+}.theavengers{
+  background-image: url(img/the-avengers.jpg);
+}.thor{
+  background-image: url(img/thor.jpg);
+}
