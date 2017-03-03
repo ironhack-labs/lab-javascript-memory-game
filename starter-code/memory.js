@@ -82,7 +82,7 @@ var wrong = 0;
           alert('YOU WIN!!!!!!!!');
         }
       } else {
-        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 500);
+        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 700);
         cards = [];
         wrong ++;
         pairsGuessed = $('#clicked').text(wrong);
