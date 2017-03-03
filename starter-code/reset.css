@@ -1,0 +1,358 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+->
+          <div class="row offer">
+            <div class="col-xs-4 webdes">
+              <label for="" class="glyphicon glyphicon-glass glass"></label>
+              <h3 class="headeroffer"> Web design</h3>
+              <p class="textwithlogo"> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum vehicula erat non congue cursus. Aenean auctor nulla quis augue dictum, sed sagittis odio varius</p>
+           </div>
+            <div class="col-xs-4 webdev">
+              <label for="" class="glyphicon glyphicon-star star"></label>
+              <h3 class="headeroffer">  Web development</h3>
+              <p class="textwithlogo"> Duis tempus leo vitae ipsum viverra, blandit condimentum sapien porttitor. Duis porttitor sed metus eget mollis. Curabitur bibendum imperdiet tortor, ut pulvinar purus elementum nspendisse at erat luctus. </p>
+          </div>
+            <div class="col-xs-4 userinter">
+              <label for="" class="glyphicon glyphicon-heart heart"></label>
+              <h3 class="headeroffer"> User interface</h3>
+              <p class="textwithlogo"> Cras aliquet venenatis porttitor. Donec rutrum sapien et sapien dignissim, eu dapibus mi molestie. Suspendisse dictum convallis quam et sodales. Praesent non enim et magna congue gravida.  </p>
+            </div>
+          </div>
+          <!-- ================================+++++ Latest Project++++====================================================== -->
+          <div class="row latestproject">
+            <h3 class="headerforlatestprojects">LATEST PROJECTS</h3>
+            <p class="subtextforlatestprojects">Few of the latest portfolio items </p>
+          </div>
+          <hr>
+
+          <div class="row projects">
+            <div class="col-xs-3">
+              <img src="./img/project-1.jpg" alt="" class="img-responsive">
+              <a href="http://demo.fabthemes.com/revera/2013/08/19/nunc-libero-elit-iaculis-nec-augue-non/"> Nunc libero elit, iaculis nec augue non</a>
+            </div>
+            <div class="col-xs-3">
+              <img src="./img/project-2.jpg" alt="" class="img-responsive">
+              <a href="http://demo.fabthemes.com/revera/2013/08/19/phasellus-aliquet-iaculis-neque-accumsan-aliquam/"> Phasellus aliquet iaculis neque accumsan aliquam</a>
+            </div>
+            <div class="col-xs-3">
+              <img src="./img/project-3.jpg" alt="" class="img-responsive">
+              <a href="http://demo.fabthemes.com/revera/2013/08/19/vivamus-blandit-ipsum-sed-arcu-euismod/"> Vivamus blandit ipsum sed arcu euismod</a>
+            </div>
+            <div class="col-xs-3">
+              <img src="./img/project-4.jpg" alt="" class="img-responsive">
+              <a href="http://demo.fabthemes.com/revera/2013/08/19/curabitur-auctor-dolor-risus-vitae-pellentesque-arcu-consequat/"> Curabitur auctor dolor risus, vitae pellentesque arcu consequat</a>
+            </div>
+
+          </div>
+          <!-- ================================+++++ Latest Articles++++====================================================== -->
+          <!-- ================================+++++
+          I AM USING THE SAME NAMES SO IT CHANGES EXACTLY HOW IT CHANGE IN THE THE CODE ABOVE
+          AND UI DONT HAVE TO RE TYPEIT
+          ++++====================================================== -->
+
+          <div class="row latestproject">
+            <h3 class="headerforlatestprojects">LATEST ARTICLES</h3>
+            <p class="subtextforlatestprojects">Latest POST FROM THE BLOG</p>
+          </div>
+          <hr>
+
+
+          <div class="row articles projects">
+            <div class="col-xs-3">
+              <img src="./img/slider1.jpg" alt="" class="img-responsive"><br>
+              <a class="space" href="http://demo.fabthemes.com/revera/2013/08/19/etiam-mauris-tortor-pharetra-quis-lobortis-in-pharetra-in-diam/" class="articlespicomment"> Etiam mauris tortor, pharetra quis lobortis in, pharetra in diam</a><br>
+              <br><span class="posted space">Posted on <a href="http://demo.fabthemes.com/revera/2013/08/19/etiam-mauris-tortor-pharetra-quis-lobortis-in-pharetra-in-diam/" title="5:33 am" rel="bookmark"><time class="entry-date published" datetime="2013-08-19T05:33:33+00:00">August 19, 2013</time></a></span><br>
+              <br><p class="articlesparagraph">Duis tempus leo vitae ipsum viverra, blandit condimentum sapien porttitor. Duis porttitor sed metus eget mollis. Curabitur bibendum imperdiet tortor, ut pulvinar purus elementum nec. Suspendisse at erat luctus; hendrerit sapien sed, consectetur erat. Maecenas dignissim suscipit orci at molestie. Aenean fringilla dolor vitae lacus lacinia eleifend. Suspendisse et libero nunc. Etiam mauris tortor, pharetra […]</p>
+            </div>
+            <div class="col-xs-3">
+              <img src="./img/flower slide1.jpg" alt="" class="img-responsive"><br>
+              <a class=" space" href="http://demo.fabthemes.com/revera/2013/08/19/etiam-mauris-tortor-pharetra-quis-lobortis-in-pharetra-in-diam/" class="articlespicomment"> Etiam mauris tortor, pharetra quis lobortis in, pharetra in diam</a> <br>
+              <br><span class="posted space">Posted on <a href="http://demo.fabthemes.com/revera/2013/08/19/falauris-sollicitudin-quis-dolor-venenatis-facilisis/" title="5:32 am" rel="bookmark"><time class="entry-date published" datetime="2013-08-19T05:32:21+00:00">August 19, 2013</time></a></span><br>
+              <br><p class="articlesparagraph">Donec sed dolor eu augue dignissim pellentesque. Fusce semper tortor ornare, luctus sem in, dictum leo. Ut at congue quam! Maecenas luctus interdum odio, eget volutpat velit hendrerit eu? Suspendisse at magna ut sem blandit hendrerit non ut magna. Cras quis porta dolor. Aliquam erat volutpat. Phasellus fringilla feugiat libero nec volutpat. Maecenas fermentum bibendum […]</p>            </div>
+            <div class="col-xs-3">
+              <img src="./img/campersnslide1.jpg" alt="" class="img-responsive "><br>
+              <a class="space" href="http://demo.fabthemes.com/revera/2013/08/19/suspendisse-ornare-felis-feugiat-suscipit-pharetra/" class="articlespicomment"> Suspendisse ornare, felis feugiat suscipit pharetra</a> <br>
+              <br><span class="posted space">Posted on <a href="http://demo.fabthemes.com/revera/2013/08/19/suspendisse-ornare-felis-feugiat-suscipit-pharetra/" title="5:30 am" rel="bookmark"><time class="entry-date published" datetime="2013-08-19T05:30:37+00:00">August 19, 2013</time></a></span><br>
+              <br><p class="articlesparagraph">Quisque sit amet sagittis justo. Suspendisse ornare, felis feugiat suscipit pharetra, lorem est viverra odio; tristique tristique diam tellus id tellus. In consectetur aliquet tristique. Curabitur imperdiet leo in nisl consectetur mattis. Quisque bibendum, mauris vitae suscipit ornare; est nibh elementum mauris, eu malesuada nunc magna at justo. Proin blandit id tellus non pellentesque. Mauris […]</p>
+            </div>
+            <div class="col-xs-3">
+              <img src="./img/puppyrunning.jpg" alt="" class="img-responsive"><br>
+              <a class="space" href="http://demo.fabthemes.com/revera/2013/08/19/festibulum-purus-odio-ornare-non-posuere/" class="articlespicomment"> Festibulum purus odio, ornare non posuere</a><br>
+              <br><span class=" posted space">Posted on <a href="http://demo.fabthemes.com/revera/2013/08/19/festibulum-purus-odio-ornare-non-posuere/" title="5:30 am" rel="bookmark"><time class="entry-date published" datetime="2013-08-19T05:30:01+00:00">August 19, 2013</time></a></span><br>
+              <br><p class="articlesparagraph">Aenean quis rhoncus nisl, eget sollicitudin ipsum. Curabitur a elementum purus. Quisque vitae dui at arcu porttitor laoreet ac vitae nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisi. Nulla egestas at nunc at volutpat. Nullam sodales at diam vel tempor. Sed pretium, leo vel pellentesque dictum, ligula […]</p>
+            </div>
+          </div>
+        </div>
+          <hr class="tofooter">
+
+          <!-- ================================+++++FOoter of the page++++====================================================== -->
+                <div class="container-fluid takingpaddingoff">
+                    <footer>
+                      <div class="row projects">
+                        <div class="col-xs-3">
+                          <h4 class="headingfooter">REVERA</h4>
+                          <p>Duis tempus leo vitae ipsum viverra, blandit condimentum sapien porttitor. Duis porttitor sed metus eget mollis. Curabitur bibendum imperdiet tortor, ut pulvinar purus elementum nec. Suspendisse at erat luctus; hendrerit sapien sed, consectetur erat. Maecenas dignissim suscipit orci at molestie. Aenean fringilla dolor vitae lacus lacinia eleifend. Suspendisse et libero nunc. Etiam mauris tortor, pharetra […]</p>                        </div>
+                        <div class="col-xs-3">
+                          <h4 class="headingfooter">META</h4>
+                          <nav>
+                            <a href="http://demo.fabthemes.com/revera/wp-login.php" class="navfooterancher">Log in</a><br><hr class="line">
+                            <a href="http://demo.fabthemes.com/revera/feed/" class="navfooterancher">Entries <abbr title="Really Simple Syndication">RSS</abbr></a><br><hr class="line">
+                            <a href="http://demo.fabthemes.com/revera/comments/feed/" class="navfooterancher">Comments <abbr title="Really Simple Syndication">RSS</abbr></a><br><hr class="line">
+                            <a href="https://wordpress.org/" class="navfooterancher" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a> <br><hr class="line">
+                          </nav>
+                        </div>
+                        <div class="col-xs-3">
+                          <h4 class="headingfooter">Archives</h4>
+                          <a href="http://demo.fabthemes.com/revera/2013/08/" class="navfooterancher">August 2013</a><hr class="line">
+                        </div>
+                        <div class="col-xs-3">
+                          <h4 class="headingfooter">Recent Posts</h4>
+                          <ul>
+                            <li><a class="navfooterancher" href="http://demo.fabthemes.com/revera/2013/08/19/etiam-mauris-tortor-pharetra-quis-lobortis-in-pharetra-in-diam/">Etiam mauris tortor, pharetra quis lobortis in, pharetra in diam</a></li><hr class="line">
+                            <li><a class="navfooterancher" href="http://demo.fabthemes.com/revera/2013/08/19/nunc-libero-elit-iaculis-nec-augue-non/">Nunc libero elit, iaculis nec augue non</a></li><hr class="line">
+                            <li><a class="navfooterancher" href="http://demo.fabthemes.com/revera/2013/08/19/falauris-sollicitudin-quis-dolor-venenatis-facilisis/">Falauris sollicitudin quis dolor venenatis facilisis</a></li><hr class="line">
+                            <li><a class="navfooterancher" href="http://demo.fabthemes.com/revera/2013/08/19/phasellus-aliquet-iaculis-neque-accumsan-aliquam/">Phasellus aliquet iaculis neque accumsan aliquam</a></li><hr class="line">
+                            <li><a class="navfooterancher" href="http://demo.fabthemes.com/revera/2013/08/19/vivamus-blandit-ipsum-sed-arcu-euismod/">Vivamus blandit ipsum sed arcu euismod</a></li><hr class="line">
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="copiright col-12">
+  				              Copyright © 2017 <a href="http://demo.fabthemes.com/revera" title="revera">Clone</a> - Just another Clone site.<br>
+  				             | <a href="http://topwpthemes.com/Revera/">Ivan Theme</a>
+  		              	</div>
+
+                  </footer>
+              </div>
+
+
+
+
+
+
+
+							/*=============-===============-=============-================
+							=============-===============-=============-================
+							/////////////////----Below the slider---- \\\\\\\\\\\\\\\\\\\\\
+							=============-===============-=============-================
+							=============-===============-=============-================ */
+							 .offer{
+							  position: relative;
+							  height: 300px;
+							  background-color: #ed564b;
+							  text-align: center;
+							  padding: 40px 40px;
+							}
+							.heart, .star, .glass{
+							  padding: 16px;
+							  border-radius: 30px;
+							  border: 4px solid white;
+							  font-size: 20px;
+							  color: white;
+							}
+							.headeroffer{
+							  color: white;
+
+							}
+							.textwithlogo{
+							  color: white;
+							  text-align: center;
+							  font-size: 15px;
+
+							}
+							/*=============-===============-=============-================
+							=============-===============-=============-================
+							/////////////////----Latest PROJECTS AND ARTICLES---- \\\\\\\\\\\\\\\\\\\\\
+							=============-===============-=============-================
+							=============-===============-=============-================ */
+							.headerforlatestprojects{
+							margin: 45px;
+							margin-bottom: 5px;
+							font-weight: bold;
+							}
+							.subtextforlatestprojects{
+							  margin: 0px 45px;
+							  color: #b0b0b0;
+							  text-transform: uppercase;
+							  font-size: 13px;
+
+							}
+							hr{
+							border: 1px solid #dfdfdf;;
+							height: 1px;
+							margin: 15px 28px;
+							}
+
+							.projects{
+							  margin-left: 16px;
+							  margin-right: 16px;
+							}
+
+							.posted {
+							  font-weight:600;
+							  font-size: 15px !important;
+
+
+							}
+							.articlespicsomment{
+							  font-weight:600;
+							}
+							h3{
+							  font-size: 20px;
+							  margin-bottom: 20px;
+
+							}
+							.article{
+							  padding-bottom: 50px !important;
+							}
+							.space {
+							  font-weight:600;
+							  font-size: 15px !important;
+							}
+							.space a {
+							  font-weight:600;
+							  font-size: 15px !important;
+							  color: #ed564b;
+							}
+							.tofooter{
+							  border: 1px solid #ed564b;
+							  height: 1px;
+							  margin: 0px;
+							  padding: 0px;
+
+							}
+							.articlesparagraph{
+							  color: black;
+							}
+
+							/*=============-===============-=============-================
+							=============-===============-=============-================
+							/////////////////----FOOTER---- \\\\\\\\\\\\\\\\\\\\\
+							=============-===============-=============-================
+							=============-===============-=============-================ */
+							footer{
+							  background-color: #3b3b3b;
+
+							}
+							p, .navfooterancher{
+							  color: white;
+							  font-size: 100%
+							}
+							h4{
+							  color: white;
+							}
+							.navfooterancher:hover{
+							  font-weight: 600;
+							  color: white;
+
+							}
+
+							.line{
+							  border: 1px dotted #626262;
+
+							  margin: 5px 0px;
+							}
+
+							.takingpaddingoff{
+							  padding: 0px;
+							}
+							.copiright{
+							  background-color: black;
+							  color: white;
+							  padding: 25px;
+							}
+							.copiright a {
+							  color: white
+							}
+							/*=======================================================*/
+							* Dropdown Button */
+							.dropbtn {
+							    background-color: white;
+							    color: white;
+							    padding: 16px;
+							    font-size: 16px;
+							    border: none;
+							    cursor: pointer;
+							}
+
+							/* Dropdown button on hover & focus */
+							.dropbtn:hover, .dropbtn:focus {
+							    background-color: white;
+							}
+
+							/* The container <div> - needed to position the dropdown content */
+							.dropdown {
+							    position: relative;
+							    display: inline-block;
+							}
+
+							/* Dropdown Content (Hidden by Default) */
+							.dropdown-content {
+							    display: none;
+							    position: absolute;
+							    background-color: #f9f9f9;
+							    min-width: 160px;
+							    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+							    z-index: 1;
+							}
+
+							/* Links inside the dropdown */
+							.dropdown-content a {
+							    color: black;
+							    padding: 12px 16px;
+							    text-decoration: none;
+							    display: block;
+							}
+
+							/* Change color of dropdown links on hover */
+							.dropdown-content a:hover {background-color: #f1f1f1}
+
+							/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+							.show {display:block;}
