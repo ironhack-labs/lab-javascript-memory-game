@@ -70,7 +70,6 @@ var wrong = 0;
     $(this).children('img').removeClass('displaynone');
     cards.push($(this).children('img'));
     if(cards.length === 2) {
-      console.log(cards);
       if(cards[0].attr('src') === cards[1].attr('src')) {
         matchedCards.push(cards[0], cards[1]);
         for(i = 0; i < matchedCards.length; i++) {
@@ -83,7 +82,7 @@ var wrong = 0;
           alert('YOU WIN!!!!!!!!');
         }
       } else {
-        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 700);
+        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 500);
         cards = [];
         wrong ++;
         pairsGuessed = $('#clicked').text(wrong);
