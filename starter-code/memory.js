@@ -44,18 +44,54 @@ MemoryGame.prototype._shuffleCard = function() {
   return;
 };
 
-
-
-
-
-
-
 var memoryGame;
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+  memoryGame._shuffleCard();
 
+  var imgUrl = function (indexOfPic) {
+      return memoryGame.Cards[indexOfPic].img;
+  };
+//assign shuffled cards to each pic div
+  var picClass = $('.pic');
+  $('.pic').each( function (i) {
+    $(this).prepend($('<img>',{class:'moveimg', src:'img/' + imgUrl(i)}));
+  });
 
+var cards = [];
+var matchedCards = [];
+var pairsGuessed = $('#guessed').text();
+var pairsClicked = $('#clicked').text();
+var right = 0;
+var wrong = 0;
+//Display img only on click
+  $('.pic img').addClass('displaynone');
+  $('.pic').on('click', function() {
+    $(this).children('img').removeClass('displaynone');
+    cards.push($(this).children('img'));
 
-
+    if(cards.length === 2) {
+      console.log(cards);
+      if(cards[0].attr('src') === cards[1].attr('src')) {
+        console.log('we match');
+        matchedCards.push(cards[0], cards[1]);
+        for(i = 0; i < matchedCards.length; i++) {
+          matchedCards[i].addClass('matched');
+        }
+        cards = [];
+        right ++;
+        pairsGuessed = $('#guessed').text(right);
+        if(right === 12) {
+          alert('YOU WIN!!!!!!!!');
+        }
+      } else {
+        console.log('poop');
+        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 700);
+        cards = [];
+        wrong ++;
+        pairsGuessed = $('#clicked').text(wrong);
+      }
+    }
+  });
 
 });

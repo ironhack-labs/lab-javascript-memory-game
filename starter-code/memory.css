@@ -1,12 +1,80 @@
-#memory_board {
-
+body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: url(img/superherobg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
+h1 {
+  font-family: Verdana;
+  color: #3cba54;
+  font-size: 56px;
+  text-align: center;
+  text-shadow: -2px 3px 6px black;
+}
+
+h2, span {
+  font-size: 18px;
+  font-family: Verdana;
+  color: black;
+  text-align: center;
+  display: inline;
+  padding-left: 12px;
+  font-weight: bold;
+}
+
+.stats {
+  text-align: center;
+}
+
+#memory_board {
+  background-color: #eee;
+  margin: auto;
+  margin-top: 3em;
+  height: 550px;
+  width: 760px;
+  clear: both;
+  border-radius: 10px;
+}
+
 .pic {
   background-color: #456783;
-	width:71px;
-	height:71px;
+	width:60px;
+	height:60px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.center {
+  width: 95%;
+  margin: auto;
+  clear: both;
+  padding-top: 32px;
+}
+.row {
+  clear: both;
+}
+
+.moveimg {
+  margin: -20px;
+  width: 100px;
+}
+
+.displaynone {
+  display: none;
+}
+
+.displayblock {
+  display: block!important;
+}
+
+.clicked {
+  transform: rotate(7deg);
+  display: inline;
 }
