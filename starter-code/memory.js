@@ -69,11 +69,9 @@ var wrong = 0;
   $('.pic').on('click', function() {
     $(this).children('img').removeClass('displaynone');
     cards.push($(this).children('img'));
-
     if(cards.length === 2) {
       console.log(cards);
       if(cards[0].attr('src') === cards[1].attr('src')) {
-        console.log('we match');
         matchedCards.push(cards[0], cards[1]);
         for(i = 0; i < matchedCards.length; i++) {
           matchedCards[i].addClass('matched');
@@ -85,7 +83,6 @@ var wrong = 0;
           alert('YOU WIN!!!!!!!!');
         }
       } else {
-        console.log('poop');
         setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 700);
         cards = [];
         wrong ++;
