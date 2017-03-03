@@ -1,12 +1,38 @@
-#memory_board {
-
+body {
+  background-image: url("http://orig01.deviantart.net/d6dd/f/2015/047/8/2/marvel_villains_by_patrickbrown-d8i8p2o.jpg");
 }
+
+.roWay {
+    /*width: 80%;*/
+    margin-top: 2em;
+}
+
+.mainLevel {
+    background-color: rgba(157, 151, 151, 0.62);
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    box-shadow: 3px 3px 21px;
+    width: 59em !important;
+    margin: 2em auto;
+        margin-top: 12%;
+}
+
+.gameData {
+    background-color: rgba(76, 175, 80, 0.61);
+    width: 56%;
+    height: 13em;
+    position: fixed;
+    left: 22%;
+    top: 54em;
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    box-shadow: 3px 3px 21px;
+}
+
 .pic {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+    background-image: url(https://s-media-cache-ak0.pinimg.com/736x/96/fb/f7/96fbf705132092f9f900c42368caa071.jpg);
+    background-size: cover;
+    width: 111px;
+    height: 110px;
+    float: left;
+    margin: 10px;
+    font-size: 64px;
 }
