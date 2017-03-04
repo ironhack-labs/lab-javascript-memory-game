@@ -1,29 +1,87 @@
 body {
+
   background: url("./img/marvel.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-style:none;
+
+}
+
+img {
+  border:0;
 }
 
 #memory_board {
-  padding: 40px;
+  width: 850px;
+  padding: 10px;
   margin: 45px;
   border-radius: 15px;
-  border: 30px solid grey;
-  background-color: #fff;
+  border: 15px solid grey;
+  background: black;
 
 }
-.pic {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+
+.hidden {
+  display: none;
+}
+
+.row-1 {
+  max-height: 150px;
 }
 
 .col {
-  background-color: #ccc;
-  width: 71px;
-  height: 71px;
-  margin: 10px;
-  padding: 20px;
+  background: url('./img/logo-sm.jpg');
+  background-color: black;
+  width: 112px;
+  height: 112px;
+  margin: 12px;
+  padding: 0px;
+
 }
+
+.hidebg {
+  background: black;
+}
+
+.col:hover {
+  box-shadow: 0px 2px 0px 0 yellow;
+}
+
+/*.pic {
+  display: block;
+
+-webkit-animation: fadeInFromNone 3s ease-out;
+-moz-animation: fadeInFromNone 3s ease-out;
+-o-animation: fadeInFromNone 3s ease-out;
+animation: fadeInFromNone 3s ease-out;
+}
+
+@-webkit-keyframes fadeInFromNone {
+0% {
+    display: none;
+    opacity: 0;
+}
+
+1% {
+    display: block;
+    opacity: 0;
+}
+
+100% {
+    display: block;
+    opacity: 1;
+}
+}
+
+@-moz-keyframes fadeInFromNone {
+0% {
+    display: none;
+    opacity: 0;
+}
+
+1% {
+    display: block;
+    opacity: 0;
+}
+
+}*/
