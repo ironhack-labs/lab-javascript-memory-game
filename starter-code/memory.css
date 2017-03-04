@@ -3,21 +3,41 @@ body {
   background: url("./img/marvel.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  border-style:none;
 
 }
 
-img {
-  border:0;
+#title {
+  margin-left: 15px;
+  text-align: center;
+  color: #000;
+  size: 28px;
+  position: absolute;
+  background: #fff;
+  opacity: 0.8;
+  font-weight: bolder;
+}
+
+.spacer {
+  height: 10px;
+  size: 28px;
+}
+
+.score {
+  width: 215px;
+  padding: 20px;
+  color: #fff;
+  display: table-cell;
+  background: black;
+
 }
 
 #memory_board {
   width: 850px;
-  padding: 10px;
+  padding: -1px;
   margin: 45px;
   border-radius: 15px;
-  border: 15px solid grey;
-  background: black;
+  border: 15px solid #808080;
+  background: #000;
 
 }
 
@@ -31,7 +51,7 @@ img {
 
 .col {
   background: url('./img/logo-sm.jpg');
-  background-color: black;
+  background-color: #000;
   width: 112px;
   height: 112px;
   margin: 12px;
@@ -40,11 +60,11 @@ img {
 }
 
 .hidebg {
-  background: black;
+  background: #000;
 }
 
 .col:hover {
-  box-shadow: 0px 2px 0px 0 yellow;
+  box-shadow: 0px 2px 0px 0 #FFFF00;
 }
 
 /*.pic {

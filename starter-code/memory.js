@@ -61,13 +61,19 @@ $(document).ready(function() {
   var clickedSrc = "";
   var currentClass = "";
   var lastSrc = "";
+  var cardsclicked = 0;
+  var cardsRemain = 0;
+
   var clearCards = function() {
+    if ($(currentClass).hasClass("clicked")){
     console.log("no match...CLEAR");
     setTimeout(function(){ //hides the img after 3 seconds, have to add some conditionals
       imgTag.toggleClass(); //runs toggle and adds hidden class after three seconds of being clicked
       $(currentClass).toggleClass('hidebg'); //selects the currenet div clicked and adds/toggles the pic class
-    },3000); //closes the timeout function
+      $(currentClass).removeClass("clicked");
+    },1000); //closes the timeout function
   }
+}
 
   $('.col').each(function(){ //an each loop that will iterate through each box/column
     var currentImg = $(this).children("img"); //selects the img tag in each box/column
@@ -75,64 +81,93 @@ $(document).ready(function() {
     idx+=1; //increases the index value so that you can continue iterating through the loop
 
   }); //close the each loop
+  $(".col").one('click', function() {
+    $(".spacer").animate ({height: '120px'})
+    $("#title").animate ({
+      left: '25%',
+      fontSize: '50px',
+      background: '#000',
+      color: '#fff',
+      opacity: '0.5',
+      height: '55px',
+      width: '850px',
+
+    }); //closes the animate function
+
+  }); //closes the click once function
 
   $(".col").on('click', function(){ //when you click box/column do the following:
+
+    cardsclicked +=1;
+    $("#cardsclicked").text(cardsclicked);
+
     currentClass = $(this); //selects the current classes clicked for use later
     imgTag = $(this).children('img'); //selects the img tag for this clicked div/box/column
     clickedSrc = $(imgTag).attr("src"); //add a class called clicked, so that I can later refer to the clicked classes
 
     $(this).toggleClass('clicked hidebg'); //selects the currenet div clicked and adds/toggles the "clicked" class which hides bg and lets you track
     imgTag.toggleClass(); //toggles the the hidden class on/off on the current selected img
-    console.log("You clicked a card"); //so that I know that the clicks are working
-    clearCards = clearCards;
 
-    if (lastSrc === clickedSrc) {
+
+    if (lastSrc === clickedSrc && $(currentClass).hasClass("clicked")) {
       countChocula +=1;
       console.log("found a pair");
-    } else{
+      $("#pairs").text(countChocula);
+    } else {
         clearCards();
       }
     lastSrc = clickedSrc;
 
-    //$(currentClass).hasClass("clicked") &&
-    // checkEm(); //runs a function that cheks for pairs and clears those cards that aren't
-  });
+    var remaincount = 12 - countChocula;
 
-
-  // var checkEm = function() {
-  // $(".clicked").each(function(){
-  //
-  // });
-  //   //
-  //   // }
-  // }
-      //
-
-    // var currentClass = $(this).attr('class');
-
-    // var currentDiv = $(this).toggleClass('pic');
-    // var currentImg = $(this).children("img");
-    // var insertImg = $(currentImg).prop('src', memoryGame.Cards[idx].img);
-
-   //
-  //   if ($(this).hasClass("clicked")) {
-  //     console.log("Got em");
-   //
-   //
-  //   } else if (idx <= 23) {
-  //    $(this).addClass(`clicked ${idx}`);
-  //    insertImg = insertImg;
-  //    clickedArray.push(insertImg);
-  //    console.log(clickedArray);
-  //    idx+=1;
-  //    console.log(idx);
-  //  } else if (idx > 23) {
-  //    console.log("no more cards bro");
-  //    idx=0;
-  //  }
-  //   // $(currentImg).prop('src', memoryGame.Cards[idx].img);
-
-
-
+    $('#remain').text(remaincount);
+    if (countChocula >= 12) {
+      $('memory_board').html (
+        '<video width="900" autoplay loop poster="./img/marvel.jpg">' +
+        '<source src="https://i.imgur.com/NKJljnz.mp4" type="video/mp4"></source>' +
+        '</video>')
+      }
 
 });
+
+
+// video.appendTo($('#gallery'));
+
+
+
+
+//$(currentClass).hasClass("clicked") &&
+// checkEm(); //runs a function that cheks for pairs and clears those cards that aren't
+
+// var checkEm = function() {
+// $(".clicked").each(function(){
+//
+// });
+//   //
+//   // }
+// }
+    //
+
+  // var currentClass = $(this).attr('class');
+
+  // var currentDiv = $(this).toggleClass('pic');
+  // var currentImg = $(this).children("img");
+  // var insertImg = $(currentImg).prop('src', memoryGame.Cards[idx].img);
+
+ //
+//   if ($(this).hasClass("clicked")) {
+//     console.log("Got em");
+ //
+ //
+//   } else if (idx <= 23) {
+//    $(this).addClass(`clicked ${idx}`);
+//    insertImg = insertImg;
+//    clickedArray.push(insertImg);
+//    console.log(clickedArray);
+//    idx+=1;
+//    console.log(idx);
+//  } else if (idx > 23) {
+//    console.log("no more cards bro");
+//    idx=0;
+//  }
+//   // $(currentImg).prop('src', memoryGame.Cards[idx].img);
