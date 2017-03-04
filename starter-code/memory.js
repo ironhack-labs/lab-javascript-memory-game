@@ -35,9 +35,9 @@ MemoryGame.prototype._shuffleCard = function() {
   var counter = this.Cards.length;
 
   while (counter > 0) {
-    index = Math.floor(Math.random() * counter);
+    var index = Math.floor(Math.random() * counter);
     counter--;
-    temp = this.Cards[counter];
+    var temp = this.Cards[counter];
     this.Cards[counter] = this.Cards[index];
     this.Cards[index] = temp;
   }
@@ -56,26 +56,27 @@ $(document).ready(function(){
   var pairsTried = 0;
   var pairAmount = $('.pic').length / 2;
 
-  memoryGame._shuffleCard();
-
-
   $('.pic').click(function(e){
 
     var curInd = $('.pic').index(e.currentTarget);
     var curImg = memoryGame.Cards[curInd].img;
     console.log(curImg);
 
-
     $(e.currentTarget).addClass('flipped');
 
+    // if only one card is clicked
     if ($('.flipped').length % 2 !== 0 ) {
       $(e.currentTarget).css('background-image', 'url(img/' + curImg + ')');
+      $(e.currentTarget).addClass('found');
       imgArray.push(curImg);
       pairArray.push(e.currentTarget);
+
       console.log(imgArray);
 
+      // if the second card is clicked
     } else {
       $(e.currentTarget).css('background-image', 'url(img/' + curImg + ')');
+      $(e.currentTarget).addClass('found');
       imgArray.push(curImg);
       pairArray.push(e.currentTarget);
       console.log(imgArray);
@@ -83,23 +84,24 @@ $(document).ready(function(){
       pairsTried += 1;
       $('#pairs-tried').html("Pairs tried: " + pairsTried);
 
+      // if pair is found
       if (imgArray[0] === imgArray[1]) {
         pairsFound += 1;
         $('#pairs-found').html("Pairs found: " + pairsFound);
-        for (i = 0; i < pairArray.length; i++) {
-          $(pairArray[i]).addClass('found');
-          console.log(pairArray[x]);
-        }
         imgArray = [];
         pairArray = [];
+
         if (pairsFound === pairAmount) {
           alert("YOU WON! It took you " + pairsTried + " tries.");
-        }
+        } // this 'if' statment is by itself, the else below if part of the above 'if' statement
 
+        // if pair is not found
       } else {
         setTimeout(function(){
+
           for (x = 0; x < pairArray.length; x++) {
             $(pairArray[x]).css('background-image', '');
+            $(pairArray[x]).removeClass('found');
             $(pairArray[x]).removeClass('flipped');
           }
           imgArray = [];
