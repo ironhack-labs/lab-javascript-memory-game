@@ -1,6 +1,133 @@
-#memory_board {
-
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
 }
+
+.board {
+  border: 2px solid transparent;
+}
+
+.blocked {
+  pointer-events: none;
+}
+
+.score, .winner, .looser {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #00D1AE;
+  color: #111;
+  border: 3px solid #00D1AE;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 150px;
+  width: 200px;
+}
+
+.score {
+  text-align: center;
+}
+
+.winner {
+  display: none;
+  padding: 15px;
+  color: #f00;
+  text-align: center;
+}
+
+.looser {
+  display: none;
+  padding: 15px;
+  color: #fff;
+  text-align: center;
+}
+
+.glyphicon {
+  padding-left: 10px;
+}
+
+.pos-1, .pos-2, .pos-3, .pos-4, .pos-5, .pos-6, 
+.pos-7, .pos-8, .pos-9, .pos-10, .pos-11, .pos-12,
+.pos-13, .pos-14, .pos-15, .pos-16, .pos-17, .pos-18,
+.pos-19, .pos-20, .pos-21, .pos-22, .pos-23, .pos-24 {
+  border: 0 solid transparent;
+}
+
+body {
+  background-image: url("img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 30px;
+}
+
+.header {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#game-title {
+  font-size: 52px;
+}
+
+#game-score {
+  text-transform: uppercase;
+}
+
+.board {
+  background-color: #C1CFD3;
+  width: 795px;
+  height: 550px;
+  margin: 0 auto;
+  border-radius: 5%;
+}
+
+.lane {
+  position: relative;
+  width: 795px;
+  height: 80px;
+  margin-top: 45px;
+}
+
+.card {
+  position: absolute;
+  background-color: #456783;
+  width: 80px;
+  height: 80px;
+}
+
+#card {
+  position: absolute;
+  background-color: #456783;
+  width: 80px;
+  height: 80px;
+}
+
+.pos-1, .pos-7, .pos-13, .pos-19 {
+  margin-left: 45px;
+}
+
+.pos-2, .pos-8, .pos-14, .pos-20 {
+  margin-left: 170px;
+}
+
+.pos-3, .pos-9, .pos-15, .pos-21 {
+  margin-left: 295px;
+}
+
+.pos-4, .pos-10, .pos-16, .pos-22 {
+  margin-left: 420px;
+}
+
+.pos-5, .pos-11, .pos-17, .pos-23 {
+  margin-left: 545px;
+}
+
+.pos-6, .pos-12, .pos-18, .pos-24 {
+  margin-left: 670px;
+}
+
 .pic {
   background-color: #456783;
 	width:71px;
@@ -10,3 +137,4 @@
 	padding:20px;
 	font-size:64px;
 }
+
