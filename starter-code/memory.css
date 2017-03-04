@@ -74,7 +74,6 @@ h2, span {
   display: block!important;
 }
 
-.clicked {
-  transform: rotate(7deg);
-  display: inline;
+.blocked {
+  pointer-events: none;
 }

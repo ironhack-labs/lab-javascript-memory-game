@@ -45,6 +45,7 @@ MemoryGame.prototype._shuffleCard = function() {
 };
 
 var memoryGame;
+
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   memoryGame._shuffleCard();
@@ -64,16 +65,18 @@ var pairsGuessed = $('#guessed').text();
 var pairsClicked = $('#clicked').text();
 var right = 0;
 var wrong = 0;
+
 //Display img only on click
   $('.pic img').addClass('displaynone');
   $('.pic').on('click', function() {
     $(this).children('img').removeClass('displaynone');
     cards.push($(this).children('img'));
+
     if(cards.length === 2) {
       if(cards[0].attr('src') === cards[1].attr('src')) {
         matchedCards.push(cards[0], cards[1]);
         for(i = 0; i < matchedCards.length; i++) {
-          matchedCards[i].addClass('matched');
+          matchedCards[i].addClass('matched blocked');
         }
         cards = [];
         right ++;
@@ -82,12 +85,13 @@ var wrong = 0;
           alert('YOU WIN!!!!!!!!');
         }
       } else {
-        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 700);
+        setTimeout(function(){ $('.pic img').not('.matched').addClass('displaynone'); }, 850);
+        $('.pic').addClass('blocked');
+        setTimeout(function(){ $('.pic').removeClass('blocked'); }, 850);
         cards = [];
         wrong ++;
         pairsGuessed = $('#clicked').text(wrong);
       }
     }
   });
-
 });
