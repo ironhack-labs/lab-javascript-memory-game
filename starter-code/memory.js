@@ -71,7 +71,7 @@ var wrong = 0;
   $('.pic').on('click', function() {
     $(this).children('img').removeClass('displaynone');
     cards.push($(this).children('img'));
-
+    $(this).addClass('blocked');
     if(cards.length === 2) {
       if(cards[0].attr('src') === cards[1].attr('src')) {
         matchedCards.push(cards[0], cards[1]);
