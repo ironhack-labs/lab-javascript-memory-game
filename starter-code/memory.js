@@ -73,7 +73,7 @@ $(document).ready(function() {
       $(currentClass).removeClass("clicked");
     },1000); //closes the timeout function
   }
-}
+};
 
   $('.col').each(function(){ //an each loop that will iterate through each box/column
     var currentImg = $(this).children("img"); //selects the img tag in each box/column
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
   }); //close the each loop
   $(".col").one('click', function() {
-    $(".spacer").animate ({height: '120px'})
+    $(".spacer").animate ({height: '120px'});
     $("#title").animate ({
       left: '25%',
       fontSize: '50px',
@@ -119,17 +119,19 @@ $(document).ready(function() {
     lastSrc = clickedSrc;
 
     var remaincount = 12 - countChocula;
-
     $('#remain').text(remaincount);
+
+
     if (countChocula >= 12) {
-      $('memory_board').html (
+      countChocula = 0;
+      $('memory_board').text (
         '<video width="900" autoplay loop poster="./img/marvel.jpg">' +
         '<source src="https://i.imgur.com/NKJljnz.mp4" type="video/mp4"></source>' +
-        '</video>')
+        '</video>');
       }
-
 });
 
+});
 
 // video.appendTo($('#gallery'));
 

@@ -3,6 +3,7 @@ body {
   background: url("./img/marvel.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  font: "Trebuchet MS", Helvetica, sans-serif;
 
 }
 
@@ -10,22 +11,32 @@ body {
   margin-left: 15px;
   text-align: center;
   color: #000;
-  size: 28px;
+  font-size: 28px;
   position: absolute;
   background: #fff;
   opacity: 0.8;
   font-weight: bolder;
 }
 
+.scorespacer {
+  height: 70px;
+  margin-top: 10px;
+  width: 300px;
+}
+
 .spacer {
   height: 10px;
-  size: 28px;
+  font-size: 28px;
 }
 
 .score {
-  width: 215px;
+  width: 300px;
+  font-size: 24px;
   padding: 20px;
   color: #fff;
+  position: fixed;
+  right: 0px;
+  top: auto;
   display: table-cell;
   background: black;
 
