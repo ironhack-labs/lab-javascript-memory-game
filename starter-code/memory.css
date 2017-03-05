@@ -4,6 +4,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   font: "Trebuchet MS", Helvetica, sans-serif;
+  box-sizing: border-box;
 
 }
 
@@ -18,23 +19,31 @@ body {
 }
 
 #title {
+  top: 15px;
+  padding: 15px;
   margin-left: 15px;
+  line-height: 35px;
   text-align: center;
-  color: #000;
+  color: #fff;
   font-size: 28px;
   position: absolute;
-  background: #fff;
+  background: #000;
   opacity: 0.8;
   font-weight: bolder;
 }
 
 .scorespacer {
-  height: 70px;
+  height: 0px;
   margin-top: 10px;
-  width: 300px;
+  /*width: 300px;*/
+}
+
+.widthLimiter {
+  max-width: 1900px;
 }
 
 .spacer {
+  max-width: 1900px;
   height: 10px;
   font-size: 28px;
 }
@@ -45,11 +54,15 @@ body {
   padding: 20px;
   color: #fff;
   position: fixed;
-  right: 0px;
+  right: 15px;
   top: auto;
   display: table-cell;
   background: black;
 
+}
+
+#scoresss {
+  opacity: 0.05;
 }
 
 #memory_board {

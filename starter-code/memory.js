@@ -121,12 +121,14 @@ $(document).ready(function() {
 
   $(".col").one('click', function() {
     $(".spacer").animate ({height: '120px'});
+    $("#scoresss").animate({opacity: '0.9'});
+    $(".scorespacer").animate({height: '100px'});
     $("#title").animate ({
       left: '25%',
       fontSize: '50px',
-      background: '#000',
+      background: 'black',
       color: '#fff',
-      opacity: '0.5',
+      opacity: '0.8',
       height: '55px',
       width: '850px',
 

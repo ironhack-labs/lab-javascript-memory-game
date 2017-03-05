@@ -33,7 +33,7 @@ The starter-code provides every resource you need to style your game. Please, pu
 
 ## Introduction
 
-Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles. 
+Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles.
 
 The game consists of an even number of tiles with images on one side and a generic back. Each image appears on precisely two tiles.
 
@@ -69,7 +69,7 @@ For this exercise, it won't be necessary to create several files.
 </html>
 ```
 
-Take a look above. We are not adding a **Start** button. If you think about it, we don't need it. We can render the tiles and create a listener to begin the game when the user clicks on an element. 
+Take a look above. We are not adding a **Start** button. If you think about it, we don't need it. We can render the tiles and create a listener to begin the game when the user clicks on an element.
 
 ### Add your jQuery library
 
@@ -110,7 +110,7 @@ MemoryGame.prototype._shuffleCard = function() {
 - When the tiles are rendered, the user will select a card and the whole logic of the game will be executed. Remember you will need the information of the picked element.
 
 ```javascript
-MemoryGame.prototype.selectCard = function(card) 
+MemoryGame.prototype.selectCard = function(card)
 };
 ```
 
@@ -142,11 +142,9 @@ $('.back').on('click', function(){
 
 ## Summary
 
-In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm and got 
+In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm and got
 
 ## Extra Resources
-
+- [v0.9 Animation Demo](https://i.gyazo.com/6738afec4be329462fba7241d7e2b3e3.mp4)
 - [jQuery](https://jquery.com/)
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
-
-
