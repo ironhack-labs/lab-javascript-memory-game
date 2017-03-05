@@ -29,10 +29,11 @@ var MemoryGame = function() {
   		{ name: "thor",            img: "./img/thor.jpg" },
   	];
   this.picked_cards  = [];
-  this.pairs_clicked = 0;
-  this.pairs_guessed = 0;
+  this.selectedPairs_clicked = 0;
+  this.selectedPairs_guessed = 0;
   this._shuffleCard();
 };
+
 // this function just takes the array of cards above and shuffles them into a random order
 MemoryGame.prototype._shuffleCard = function() {
   var counter = this.Cards.length;
@@ -47,33 +48,43 @@ MemoryGame.prototype._shuffleCard = function() {
   return;
 };
 
+//---------------------------------------------------------------------------
+//a cheap way to access/initialize variables
+
+var idx = 0; //setting an index to use throughout the function
+var countChocula = 0; //he's really good at counting
+var imgTag = "";
+var clickedSrc = "";
+var currentDiv = "";
+var lastDiv = [];
+var cardsclicked = 0;
+var cardsRemain = 0;
+var selectedPairs = [];
+
+//-------------------------------------------------------------------------------
+//this function lets me create some logic for the cards that don't match
+//first thing it does is log...so that you know the card is about to be cleared
+
+var clearCards = function() {
+    console.log("CARD WILL BE CLEARED");
+    $(".col").toggleClass("blocked"); //then it blockes the user from clicking anything until timeout.
+    setTimeout(function(){ //hides the img after 1 second, also removes the blocked class
+      imgTag.toggleClass(); //runs toggle and adds hidden class after three seconds of being clicked
+      $(currentDiv).toggleClass('hidebg'); //selects the currenet div clicked and adds/toggles the img visibility
+      // $(currentDiv).removeClass("clicked"); //for ever item that is defined as clicked, removes this class
+      $(".col").toggleClass("blocked"); //removes the click block
+  },1000); //closes the timeout function
+};
+
+
+
 //******************************************************************
 // HTML/CSS Interactions
 //******************************************************************
 var memoryGame;
 $(document).ready(function() {
   memoryGame = new MemoryGame();
-
-  var idx = 0; //setting an index to use throughout the function
-  var countChocula = 0; //he's really good at counting
-  //a cheap way to access this global variable in another function
-  var imgTag = "";
-  var clickedSrc = "";
-  var currentClass = "";
-  var lastSrc = "";
-  var cardsclicked = 0;
-  var cardsRemain = 0;
-
-  var clearCards = function() {
-    if ($(currentClass).hasClass("clicked")){
-    console.log("no match...CLEAR");
-    setTimeout(function(){ //hides the img after 3 seconds, have to add some conditionals
-      imgTag.toggleClass(); //runs toggle and adds hidden class after three seconds of being clicked
-      $(currentClass).toggleClass('hidebg'); //selects the currenet div clicked and adds/toggles the pic class
-      $(currentClass).removeClass("clicked");
-    },1000); //closes the timeout function
-  }
-};
+//-------------------------------------------------------------------------------
 
   $('.col').each(function(){ //an each loop that will iterate through each box/column
     var currentImg = $(this).children("img"); //selects the img tag in each box/column
@@ -81,6 +92,28 @@ $(document).ready(function() {
     idx+=1; //increases the index value so that you can continue iterating through the loop
 
   }); //close the each loop
+
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+  $(".col").on('click', function(){ //when you click box/column do the following:
+
+    cardsclicked +=1; //first thing we are going to do is count the cards clicked....every single one...for stats?
+    $("#cardsclicked").text(cardsclicked);
+
+    currentDiv = $(this); //selects the current divs clicked for use in other functions
+    imgTag = $(this).children('img'); //selects the img tag for this clicked div/box/column
+    clickedSrc = $(imgTag).attr("src");  //stores the value of the img src on click.
+    selectedPairs.unshift(clickedSrc);
+
+    $(this).toggleClass('hidebg'); //selects the currenet div clicked and adds/toggles the "clicked" class which hides bg and lets you track
+    imgTag.toggleClass(); //toggles the the hidden class on/off on the current selected img
+    $(currentDiv).addClass("clicked");
+    //then comes....
+    allthelogic();
+});
+
+//-------------------------------------------------------------------------------
+
   $(".col").one('click', function() {
     $(".spacer").animate ({height: '120px'});
     $("#title").animate ({
@@ -96,50 +129,63 @@ $(document).ready(function() {
 
   }); //closes the click once function
 
-  $(".col").on('click', function(){ //when you click box/column do the following:
-
-    cardsclicked +=1;
-    $("#cardsclicked").text(cardsclicked);
-
-    currentClass = $(this); //selects the current classes clicked for use later
-    imgTag = $(this).children('img'); //selects the img tag for this clicked div/box/column
-    clickedSrc = $(imgTag).attr("src"); //add a class called clicked, so that I can later refer to the clicked classes
-
-    $(this).toggleClass('clicked hidebg'); //selects the currenet div clicked and adds/toggles the "clicked" class which hides bg and lets you track
-    imgTag.toggleClass(); //toggles the the hidden class on/off on the current selected img
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 
-    if (lastSrc === clickedSrc && $(currentClass).hasClass("clicked")) {
-      countChocula +=1;
+var allthelogic = function() {
+
+// selectedPairs[0] == selectedPairs[1] &&
+  if (7 == 11) {
+    selectedPairs[0] = "evaluated";
+    console.log("you clicked the same card twice!!");
+    clearCards();
+
+  } else if (selectedPairs[0] == selectedPairs[1]) {
+
+      countChocula +=0.5; //this is a hack because I didn't want to change scoreboard Logic
       console.log("found a pair");
-      $("#pairs").text(countChocula);
-    } else {
-        clearCards();
-      }
-    lastSrc = clickedSrc;
+      $(currentDiv).toggleClass("blocked");
+      $(currentDiv).toggleClass("clicked");
+    } //closes this else if statement for checking our pairs
+      //when you find a pair in the game one of the cards hide, and you have to click on it again
+      //because of this unintended side effect the counter counts an extra pair... so 0.5 because two clicks equals 1 pair
+      //temp solution while I find out some other way to count selectedPairs
+    else {
+    clearCards();
+  } //closes whole if statement
 
-    var remaincount = 12 - countChocula;
-    $('#remain').text(remaincount);
+  var remaincount = 12 - countChocula;
+  $('#remain').text(remaincount);
+  $("#pairs").text(countChocula);
 
 
-    if (countChocula >= 12) {
-      countChocula = 0;
-      $('memory_board').text (
-        '<video width="900" autoplay loop poster="./img/marvel.jpg">' +
-        '<source src="https://i.imgur.com/NKJljnz.mp4" type="video/mp4"></source>' +
-        '</video>');
-      }
+if (countChocula >= 12) {
+  countChocula = 0;
+  setTimeout(function(){
+    $("video").toggleClass("hidden");
+    $("#win").toggleClass("hidden");
+  },3000);
+  $("#win").toggleClass("hidden");
+
+  }
+};
+
+
+
 });
-
-});
-
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 // video.appendTo($('#gallery'));
 
 
 
 
-//$(currentClass).hasClass("clicked") &&
-// checkEm(); //runs a function that cheks for pairs and clears those cards that aren't
+//$(currentDiv).hasClass("clicked") &&
+// checkEm(); //runs a function that cheks for selectedPairs and clears those cards that aren't
 
 // var checkEm = function() {
 // $(".clicked").each(function(){
@@ -150,7 +196,7 @@ $(document).ready(function() {
 // }
     //
 
-  // var currentClass = $(this).attr('class');
+  // var currentDiv = $(this).attr('class');
 
   // var currentDiv = $(this).toggleClass('pic');
   // var currentImg = $(this).children("img");

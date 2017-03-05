@@ -7,6 +7,16 @@ body {
 
 }
 
+::selection {
+  color: none;
+  opacity: 1;
+}
+
+/*Took this idea from Nick :)*/
+.blocked {
+  pointer-events: none;
+}
+
 #title {
   margin-left: 15px;
   text-align: center;
@@ -77,6 +87,16 @@ body {
 .col:hover {
   box-shadow: 0px 2px 0px 0 #FFFF00;
 }
+
+#win {
+  margin: 25%;
+  float: left;
+  font-size: 200px;
+  size: 200px;
+  color: #fff;
+  text-align: center;
+}
+
 
 /*.pic {
   display: block;
