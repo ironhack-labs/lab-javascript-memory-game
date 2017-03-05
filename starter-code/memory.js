@@ -60,6 +60,8 @@ var lastDiv = [];
 var cardsclicked = 0;
 var cardsRemain = 0;
 var selectedPairs = [];
+var imgIDs = [];
+var idNum = 0;
 
 //-------------------------------------------------------------------------------
 //this function lets me create some logic for the cards that don't match
@@ -102,13 +104,16 @@ $(document).ready(function() {
 
     currentDiv = $(this); //selects the current divs clicked for use in other functions
     imgTag = $(this).children('img'); //selects the img tag for this clicked div/box/column
-    clickedSrc = $(imgTag).attr("src");  //stores the value of the img src on click.
-    selectedPairs.unshift(clickedSrc);
+    clickedSrc = $(imgTag).prop("src");  //stores the value of the img src on click.
+
 
     $(this).toggleClass('hidebg'); //selects the currenet div clicked and adds/toggles the "clicked" class which hides bg and lets you track
     imgTag.toggleClass(); //toggles the the hidden class on/off on the current selected img
-    $(currentDiv).addClass("clicked");
+    imgTag.prop("id", idNum);
+    idNum+=1;
     //then comes....
+    imgIDs.unshift(imgTag);
+    selectedPairs.unshift(clickedSrc);
     allthelogic();
 });
 
@@ -137,8 +142,7 @@ $(document).ready(function() {
 var allthelogic = function() {
 
 // selectedPairs[0] == selectedPairs[1] &&
-  if (7 == 11) {
-    selectedPairs[0] = "evaluated";
+  if ( $(imgIDs[0]).prop("id") == ($(imgIDs[1]).prop("id")) ) {
     console.log("you clicked the same card twice!!");
     clearCards();
 
