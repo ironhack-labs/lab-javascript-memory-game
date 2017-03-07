@@ -1,12 +1,41 @@
-#memory_board {
-
+body {
+    background-image: url("img/BackGroundPix.jpg");
+    background-size: cover;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Anton', sans-serif;
 }
-.pic {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+
+h1 {
+    color: #bf4040;
+    font-size: 50px;
+    text-align: center;
+}
+
+#stats {
+    text-align: left;
+    border-radius: 8px;
+    background-color: #bf4040;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    width: 200px;
+}
+
+#memory_board {
+    background-color: #dddddd;
+    width: 800px;
+    height: 540px;
+    padding: 70px;
+    margin: 0px auto;
+    border-radius: 84px;
+}
+
+.pic .back {
+    background-color: #456783;
+    width: 71px;
+    height: 71px;
+    float: left;
+    margin: 10px;
+    padding: 20px;
+    font-size: 64px;
 }
