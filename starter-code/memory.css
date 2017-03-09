@@ -12,20 +12,14 @@ font-family: 'Lato', sans-serif !Important;
   background-image: url("http://orig01.deviantart.net/d6dd/f/2015/047/8/2/marvel_villains_by_patrickbrown-d8i8p2o.jpg");
 }
 
-.header {
-    position: absolute;
-    top: 1em;
-    left: 21%;
+.header > h1 {
     color: white;
     text-shadow: #74cd1e -4px 2px 23px;
-}
-.headMain {
-  text-transform: uppercase;
-}
-
-.roWay {
-    /*width: 80%;*/
-    margin-top: 2em;
+    text-align: center;
+    padding-top: 1em;
+    text-transform: uppercase;
+    font-size: 27px;
+    letter-spacing: 2px;
 }
 
 .mainLevel {
@@ -34,7 +28,8 @@ font-family: 'Lato', sans-serif !Important;
     box-shadow: 3px 3px 21px;
     width: 59em !important;
     margin: 2em auto;
-    margin-top: 10%;
+    margin-top: 6%;
+    padding: 15px 0px;
 }
 
 .gameData {
@@ -57,4 +52,19 @@ font-family: 'Lato', sans-serif !Important;
     margin: 10px;
     font-size: 64px;
     background-color: grey;
+}
+#hd1 {
+    text-align: center;
+    font-size: 160%;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    padding-left: 2em;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 15px;
+    text-transform: uppercase;
 }

@@ -115,11 +115,7 @@ var card2 = theGame.pickedCards[1];
 // ------- FUNCTION  WIN WIN WIN WIN  A R E A
 
 
-MemoryGame.prototype.finished = function() {
-  if (this.pairsGuessed >= 12) {
-  alert("You are done");
-}
-};
+
 
 // ------- FUNCTION  WIN WIN WIN WIN  A R E A  ENDS
 // ---------------_> USER UNIVERSE  <--------------------
@@ -132,29 +128,50 @@ for (var i = 0; i < theGame.Cards.length; i++) {
 
 
 
-
-// TESTING AREA
-
-// $('.pic > img').hide();
-
+//Cards
 var count = 0;
 var firstImage;
 var secondImage;
+
+
+//Intents
+var intentsCount = 0 ;
+var intents = $('#intents').text(intentsCount);
+
+// Fliped cards
+var sumFliped = 0 ;
+var flipedCards = $('#fliped').text(sumFliped);
 
 
 $('.pic').on('click',function(e) {
 
   count++;
   if (count === 1) {
+    //Intents
+    intentsCount++;
+    $(this).intents = $('#intents').text(intentsCount);
+
+
     theGame.pickedCards.push($(this).children().attr('src'));
     firstImage = $(this).children().disableSelection().toggle();
     // firstImage.css('cursor', 'none');
   }
 
   if (count === 2 && $(this).children() != theGame.pickedCards[0]) {
+    //Intents
+    intentsCount++;
+    $(this).intents = $('#intents').text(intentsCount);
+
+
     theGame.pickedCards.push($(this).children().attr('src'));
     secondImage = $(this).children().toggle();
+
      if (theGame.pickedCards[0] === theGame.pickedCards[1]) {
+       // Fliped cards
+       sumFliped += 2;
+       $(this).flipedCards = $('#fliped').text(sumFliped);
+
+
        $(this).children().show();
        count = 0;
        theGame.pickedCards = [];
@@ -172,6 +189,12 @@ $('.pic').on('click',function(e) {
    } else {
     console.log('something is wrong');
   }
+
+  if ($("#fliped").text() >= 24) {
+    setTimeout(function(){  alert("Victory");}, 2000);
+  }
+
+
 
 
   // if (count === 2 && theGame.pickedCards[0].toString() === theGame.pickedCards[1].toString()) {
