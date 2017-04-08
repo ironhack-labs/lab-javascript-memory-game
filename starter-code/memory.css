@@ -1,6 +1,38 @@
-#memory_board {
-
+body {
+  background-image: url(img/super-background.jpg);
+  background-size: 100%;
+  font-family: arial;
 }
+
+h1 {
+  margin: 10px auto;
+  font-weight: bold;
+  font-size: 50px;
+  color: #355263;
+  text-align: center;
+}
+
+#pairs-found {
+  float: right;
+  margin: 25px 300px 5px auto;
+}
+
+#pairs-tried {
+  float: right;
+  clear: right;
+  margin: 0 300px 25px auto;
+}
+
+#memory_board {
+  width: 800px;
+  height: 525px;
+  background-color: #DDD;
+  margin: 50px auto 0;
+  border-radius: 75px;
+  padding: 50px;
+  clear: right;
+}
+
 .pic {
   background-color: #456783;
 	width:71px;
@@ -9,4 +41,8 @@
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.found {
+  pointer-events: none;
 }
