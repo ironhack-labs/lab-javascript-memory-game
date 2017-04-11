@@ -58,7 +58,7 @@ function startGame(){
   $(".pic").toggle();
 }
 
-function showMe(){
+function showMe(game){
   $(".tile").click(function(){
       if(!$(this).hasClass("winrar")){
         if($(".active").length < 2){
@@ -68,11 +68,11 @@ function showMe(){
         }
       }
       if($(".active").length == 2){
-
+        game.pairs_guessed += 1;
         var timer = setTimeout(function(){
           checkCouple();
         }, 400);
-        checkWin();
+        checkWin(game);
       }
   });
 
@@ -94,9 +94,10 @@ function checkCouple(){
 }
 }
 
-function checkWin(){
+function checkWin(game){
   if($(".winrar").length == ($(".pic").length) -2) {
     $("#memory_board").toggle();
+    $("#score").append("<h2>Final score " + game.pairs_guessed);
     $("#win").toggle();
   }
 
@@ -118,7 +119,7 @@ $(document).ready(function(){
   var start = setTimeout(function(){
     startGame();
     //this stays also inside the timeout because otherwise we would be able toggle the tiles before the start of the game
-    showMe();
+    showMe(memory);
   }, 2500);
 
 
