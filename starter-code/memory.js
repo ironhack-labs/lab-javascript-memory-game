@@ -30,7 +30,7 @@ var MemoryGame = function() {
   this.pairs_guessed = 0
   this._shuffleCard()
 }
-// this function just takes the array of cards above and shuffles them into a random order
+
 MemoryGame.prototype._shuffleCard = function() {
   var counter = this.Cards.length
 
