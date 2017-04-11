@@ -45,16 +45,82 @@ MemoryGame.prototype._shuffleCard = function() {
 };
 
 
+function appendImages(game){
+  var test = $(".pic");
+
+  for(var i=0; i < game.Cards.length; i++){
+      $(test[i]).attr("src", "img/" + game.Cards[i].img);
+      $(test[i]).attr("name", game.Cards[i].name);
+  }
+}
+
+function startGame(){
+  $(".pic").toggle();
+}
+
+function showMe(game){
+  $(".tile").click(function(){
+      if(!$(this).hasClass("winrar")){
+        if($(".active").length < 2){
+          console.log($(".active").length);
+          $(this).children().toggle();
+          $(this).toggleClass("active");
+        }
+      }
+      if($(".active").length == 2){
+        game.pairs_guessed += 1;
+        var timer = setTimeout(function(){
+          checkCouple();
+        }, 400);
+        checkWin(game);
+      }
+  });
+
+}
+
+function checkCouple(){
+  var check1 = $(".active")[0];
+  var check2 = $(".active")[1];
+  check1 = $(check1).children()[0];
+  check2 = $(check2).children()[0];
+  if ( ($(check1).attr('name')) == ($(check2).attr('name')) ) {
+    $(".active").addClass("winrar");
+    $(".tile.active").css("background-color", "rgba(60, 255, 69, 0.8)");
+    $(".active").removeClass("active");
+} else {
+
+  $(".active").children().toggle();
+  $(".active").removeClass("active");
+}
+}
+
+function checkWin(game){
+  if($(".winrar").length == ($(".pic").length) -2) {
+    $("#memory_board").toggle();
+    $("#score").append("<h2>Final score " + game.pairs_guessed);
+    $("#win").toggle();
+  }
 
 
+}
 
+function playAgain(){
+  $("#play-again").click(function(){
+    location.reload();
+  });
+}
 
-
-var memoryGame;
 $(document).ready(function(){
-  memoryGame = new MemoryGame();
+  playAgain();
+  var memory = new MemoryGame();
 
-
+  appendImages(memory);
+  //showing the cards at the start of the game
+  var start = setTimeout(function(){
+    startGame();
+    //this stays also inside the timeout because otherwise we would be able toggle the tiles before the start of the game
+    showMe(memory);
+  }, 2500);
 
 
 
