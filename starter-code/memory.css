@@ -1,12 +1,31 @@
 #memory_board {
-
+    margin-top: 20%;
+    background-color: grey;
 }
+
+.col-md-3{
+  box-sizing: border-box;
+}
+
 .pic {
+  /*display: none;*/
   background-color: #456783;
-	width:71px;
+	width:80px;
 	height:71px;
 	float:left;
 	margin:10px;
-	padding:20px;
-	font-size:64px;
+}
+
+.pic-reversed{
+  /*display: none;*/
+  background-color: #456783;
+	width:80px;
+	height:71px;
+	float:left;
+	margin:10px;;
+}
+
+.pic-reversed img{
+  width: inherit;
+  height: inherit;
 }
