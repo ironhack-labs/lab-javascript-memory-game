@@ -1,12 +1,70 @@
-#memory_board {
-
+@import url(http://fonts.googleapis.com/css?family=Lato:900);
+*, *:before, *:after{
+  box-sizing:border-box;
 }
+
+.ocult {
+  display: none;
+}
+
+body {
+font-family: 'Lato', sans-serif !Important;
+  background-image: url("http://orig01.deviantart.net/d6dd/f/2015/047/8/2/marvel_villains_by_patrickbrown-d8i8p2o.jpg");
+}
+
+.header > h1 {
+    color: white;
+    text-shadow: #74cd1e -4px 2px 23px;
+    text-align: center;
+    padding-top: 1em;
+    text-transform: uppercase;
+    font-size: 27px;
+    letter-spacing: 2px;
+}
+
+.mainLevel {
+    background-color: rgba(157, 151, 151, 0.62);
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    box-shadow: 3px 3px 21px;
+    width: 59em !important;
+    margin: 2em auto;
+    margin-top: 6%;
+    padding: 15px 0px;
+}
+
+.gameData {
+    background-color: rgba(76, 175, 80, 0.61);
+    width: 56%;
+    height: 13em;
+    position: fixed;
+    left: 22%;
+    top: 54em;
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    box-shadow: 3px 3px 21px;
+}
+
 .pic {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+  background-image: url(https://s-media-cache-ak0.pinimg.com/736x/96/fb/f7/96fbf705132092f9f900c42368caa071.jpg);
+  background-size: cover;
+    width: 111px;
+    height: 110px;
+    float: left;
+    margin: 10px;
+    font-size: 64px;
+    background-color: grey;
+}
+#hd1 {
+    text-align: center;
+    font-size: 160%;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    padding-left: 2em;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 15px;
+    text-transform: uppercase;
 }
