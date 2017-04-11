@@ -1,12 +1,39 @@
-#memory_board {
-
+body {
+    background-image: url("./img/26c9a3c3340da4caa79a4b0e9e96d78a.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+    width: auto;
+    text-align: center;
 }
-.pic {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+
+h1 {
+    font-size: 60px;
+    color: #fff;
+    margin: 50px 0px;
+    text-emphasis-color: white;
+    border: 1px solid white;
+}
+
+.theDivWithCards {
+    height: auto;
+    width: auto;
+    background-color: #ddd;
+    border-radius: 30px;
+    margin: auto 50px;
+    padding: 70px;
+}
+
+.div-cards {
+    background-color: #456783;
+    width: 81px;
+    height: 81px;
+    float: left;
+    margin: 10px;
+}
+
+img {
+    width: 81px;
+    height: 81px;
+    margin: 0px;
 }
