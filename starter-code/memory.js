@@ -44,18 +44,43 @@ MemoryGame.prototype._shuffleCard = function() {
   return;
 };
 
+MemoryGame.prototype.selectCard = function(card) {
+	
+}
 
+MemoryGame.prototype.finished = function() {
 
-
-
+};
 
 
 var memoryGame;
+
+
+// jQuery code:
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+	//console.log(memoryGame);
+	
+	var pickedBox = $('.pic').click(function(event){
+		var cardId = $(this).attr('id');
 
+		//console.log(cardId);
 
+		//selectCard(memoryGame.Cards[cardId-1]);
+		
+		//console.log(memoryGame.Cards[0].name);
+	});
 
+// adding the images to the grid
+memoryGame.Cards.forEach(function(card, index) {
+	$('#'+(index+1)).html(`<img src='./img/${card.img}'>`);
+});
 
+$('.pic').click(function(){
+		//var cardId = $(this).attr('id');
+		//console.log(cardId);
+		$(this).children().toggle();
+	});
 
 });
+
