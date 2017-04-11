@@ -1,7 +1,7 @@
 ////////////////////////////////////gameLogic//////////////////////////////
 
 var MemoryGame = function() {
-  console.log("initObj");
+  
   // this.Cards = [
   // 		{ name: "aquaman",         img: "aquaman.jpg" },
   // 		{ name: "batman",          img: "batman.jpg" },
@@ -132,7 +132,6 @@ MemoryGame.prototype.finished = function(){
 var memoryGame;
 
 $(document).ready(function(){
-  //console.log("initDocument");
 
   memoryGame = new MemoryGame();
   $('#win-text').css('display','none');
@@ -147,9 +146,7 @@ $(document).ready(function(){
       {
         memoryGame.selectCard(tempId-1);
         $(this).css('display','none');
-        //console.log("this",this);
         var temp = "#card" + tempId + "-reversed";
-        //console.log("temp",temp);
         $(temp).css('display','block');
 
         if(memoryGame.finished())
@@ -170,18 +167,14 @@ $(document).ready(function(){
       if(memoryGame.Cards[tempId-1].guess === false)
       {
         memoryGame.resetClicked(tempId-1);
-        //memoryGame.selectCard(tempId-1);
         $(this).css('display','none');
-        //console.log("this",this);
         var temp = "#card" + tempId;
-        //console.log("temp",temp);
         $(temp).css('display','block');
 
       }
     }
   });
 
-  //console.log(memoryGame.Cards.length);
   for(var i=0; i<memoryGame.Cards.length; i++)
   {
     var temp = "#card"+(i+1).toString();
