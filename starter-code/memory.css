@@ -1,12 +1,65 @@
+body {
+  background: url("img/background.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  box-sizing: border-box;
+}
+
+#title {
+  margin: 1% 50%;
+}
+
 #memory_board {
+  margin-top: 5%;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 860px;
+  padding: 20px;
+  border: 4px solid black;
+  border-radius: 10px;
 
 }
+
+#play-again {
+
+}
+
+#win {
+  margin-top: 5%;
+  background-color: rgba(60, 255, 69, 0.8);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  text-align: center;
+  display: none;
+
+}
+
+#win div {
+  margin: 5px;
+}
+
+
+.winrar {
+
+}
+
 .pic {
-  background-color: #456783;
 	width:71px;
 	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+
+}
+
+.col-xs-2 {
+  display:flex;
+}
+.tile{
+  display: flex;
+  background-color: #a0a0a0;
+  border: 1px solid black;
+
+  justify-content: center;
+  width: 145px;
+  height: 75px;
 }
