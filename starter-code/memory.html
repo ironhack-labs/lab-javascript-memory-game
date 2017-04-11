@@ -3,8 +3,56 @@
     <head>
        <title>Superhero Memory Game</title>
        <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
+         <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+       <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     </head>
     <body>
-        <div id="memory_board"></div>
+
+      <h1>Superhero Memory Game</h1>
+
+
+      <div id="memory_board">
+        <div class="row">
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+        </div>
+        <div class="row">
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+        </div>
+        <div class="row">
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+        </div>
+        <div class="row">
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+          <div class=" pic"></div>
+        </div>                        
+      </div>
+    </div>
+    <div class="row">
+    <h1> Pairs guessed <span id="pairs-guessed">0</span></h1>
+    <h1> Pairs clicked <span id="pairs-clicked">0</span></h1>
+    </div>
+    <script src="memory.js"></script>
     </body>
 </html>

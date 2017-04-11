@@ -1,4 +1,6 @@
 #memory_board {
+  
+  
 
 }
 .pic {
@@ -7,6 +9,35 @@
 	height:71px;
 	float:left;
 	margin:10px;
-	padding:20px;
+  border:1px solid black;
 	font-size:64px;
 }
+.row {
+  clear:both;
+}
+img {
+  width: 71px;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+
+/*Use this file to add your styles -there are some cool img in the images path*/
+/*body {
+ font-size: 20px;
+}
+
+.col-centered{
+    float: none;
+}
+
+.container {
+  margin-top:2%; 
+  width:50%;
+  background-color: grey;
+}
+.container-table {
+    display: table;
+}
+*/
