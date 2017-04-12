@@ -10,8 +10,18 @@ body {
 
 .overlay {
   position: absolute;
-background-color: rgba(0,0,0,0.5); /*dim the background*/
-z-index: 10;
+  margin-top: 320px;
+  background-color: white;
+  min-height: 225px;
+  min-width: 350px;
+  color: black;
+  z-index: 10;
+  padding-top: 35px;
+  font-size: 50px;
+  font-weight: bold;
+  border-radius: 20px;
+  text-align: center;
+  border: 3px solid black;
 }
 
 .container-fluid {
@@ -19,178 +29,9 @@ z-index: 10;
   justify-content: center;
 }
 
-.pic1 {
-  background-size: contain;
-  background-image: url('./img/aquaman.jpg');
-  width:71px;
-  height:71px;
-  z-index: 1;
-}
-
-.pic2 {
-  background-size: contain;
-  background-image: url('./img/batman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic3 {
-  background-size: contain;
-  background-image: url('./img/captain-america.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic4 {
-  background-size: contain;
-  background-image: url('./img/fantastic-four.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic5 {
-  background-size: contain;
-  background-image: url('./img/flash.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic6 {
-  background-size: contain;
-  background-image: url('./img/green-arrow.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic7 {
-  background-size: contain;
-  background-image: url('./img/green-lantern.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic8 {
-  background-size: contain;
-  background-image: url('./img/ironman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic9 {
-  background-size: contain;
-  background-image: url('./img/spiderman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic10 {
-  background-size: contain;
-  background-image: url('./img/superman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic11 {
-  background-size: contain;
-  background-image: url('./img/the-avengers.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic12 {
-  background-size: contain;
-  background-image: url('./img/thor.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic13 {
-  background-size: contain;
-  background-image: url('./img/aquaman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic14 {
-  background-size: contain;
-  background-image: url('./img/batman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic15 {
-  background-size: contain;
-  background-image: url('./img/captain-america.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic16 {
-  background-size: contain;
-  background-image: url('./img/fantastic-four.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic17 {
-  background-size: contain;
-  background-image: url('./img/flash.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic18 {
-  background-size: contain;
-  background-image: url('./img/green-arrow.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic19 {
-  background-size: contain;
-  background-image: url('./img/green-lantern.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic20 {
-  background-size: contain;
-  background-image: url('./img/ironman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic21 {
-  background-size: contain;
-  background-image: url('./img/spiderman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic22 {
-  background-size: contain;
-  background-image: url('./img/superman.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic23 {
-  background-size: contain;
-  background-image: url('./img/the-avengers.jpg');
-  width:71px;
-  height:71px;
-}
-
-.pic24 {
-  background-size: contain;
-  background-image: url('./img/thor.jpg');
-  width:71px;
-  height:71px;
-}
-
 .container {
   margin: 0 auto;
-  margin-top: 175px;
+  margin-top: 40px;
   border-radius: 15px;
   min-height:400px;
   max-width:700px;
@@ -210,10 +51,12 @@ img {
 	width:71px;
 	height:71px;
 	float:left;
-	margin:10px;
-	padding:20px;
+	/*margin:10px;*/
+	/*padding:20px;*/
 	font-size:64px;
   z-index = 1;
+  display: flex;
+  justify-content: center;
 }
 
 .col-sm-2 {
@@ -226,7 +69,12 @@ img {
   padding:0;
 }
 
+.gamePic {
+  margin-left: -15px;
+  margin-top: -38px;
+  height:98%;
 
+}
 
 .row {
   min-height: 71px;
@@ -239,4 +87,13 @@ img {
 .col-centered {
     display:inline-block;
     float:none;
+}
+
+.title {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+  -webkit-text-stroke: 2px black;
 }

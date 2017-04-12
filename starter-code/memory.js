@@ -48,124 +48,107 @@ MemoryGame.prototype._shuffleCard = function() {
   return;
 };
 
-function doUrlLoop() {
+// Function to create correct url for each image, which is then added to the div using function addImagesToHtml
+function doImgLoop() {
   var tmpArray = [];
   var tmp;
   for (var i=0; i<24; i++) {
     tmp = memoryGame.Cards[i].img;
     tmp = String(tmp);
-    console.log(tmp);
-    tmp = "url('./img/" + tmp + "')";
+    // console.log(tmp);
+    tmp = "<img class=\"gamePic\" src=\"" + "./img/" + tmp + "\" alt=\"\">";
+    // console.log(tmp);
     tmpArray[i] = tmp;
     // console.log(tmp);
   }
   return tmpArray;
 }
 
-function updateCssLoop(textArray) {
+// Function to add the Images to the different divs
+function addImagesToHtml(textArray) {
   var tmpClassHolder;
-  for (var x=0; x<24; x++) {
-    tmpClassHolder = "pic";
-    tmpClassHolder = tmpClassHolder + (x + 1);
-    $('.' + tmpClassHolder).css('background-image',textArray[x]);
-    $('.' + tmpClassHolder).attr('id','\'' + memoryGame.Cards[x].name + '\'');
-  }
+  var x=0;
+  $(".pic").each(function(){
+      $(this).prepend(textArray[x]);
+      x++;
+  });
 }
 
 function updateRandomPictures() {
   var textArray = [];
-  textArray = doUrlLoop();
-  updateCssLoop(textArray);
+  textArray = doImgLoop();
+  addImagesToHtml(textArray);
 }
 
 function showPicturesShortly() {
-  $("#overlay").hide();
-  setTimeout(function(){
-    $("#overlay").show();
-}, 2000);
 
+    $(".pic").each(function(){
+        $(".gamePic").show();
+    });
+  clearTimeout();
+  setTimeout(function(){
+    $(".pic").each(function(){
+        $(".gamePic").hide();
+    });
+  }, 3500);
 }
 
-function eventListener() {
-  var name1, name2;
-  var choices = [];
-  var clickCount = 0;
-  $('#overlay').click(function (e) {
-      if (clickCount < 2) {
-    if (e.target.id.match('pic')) {
-        var entry = $(e.target);
-        console.log(entry);
-        entry.css('opacity','0');
-        choices[clickCount] = entry;
-        console.log("clickCount: " + clickCount);
-        clickCount++;
-
-      }
-    }
-
-    console.log("test");
-    var choice1 = choices[0];
-    var choice2 = choices[1];
-    console.log(choice1);
-    var id1overlay;
-    id1overlay = choice1.attr('id');
-    name1 = $('.' + id1overlay).attr('id');
-    var id2overlay;
-    id2overlay = choice2.attr('id');
-    name2 = $('.' + id2overlay).attr('id');
-    // console.log("id",id1overlay);
-    // console.log("id",id2overlay);
-
-    // name1 = $('.' + id1overlay).attr('id');
-    // name2 = $('.' + id2overlay).attr('id');
-    // console.log("name", name1);
-    // console.log("name", name2);
-    if (name1 != name2 && name2 !== null && name1 !== null) {
-      setTimeout(function(){
-        choice1.css('opacity','1');
-        choice2.css('opacity','1');
-        clickCount = 0;
-        name1=null;
-        name2=null;
-      }, 2500);
-
-
-      eventListener();
-    } else {
-
-      var imageLink = $('.'+id1overlay).css('background-image');
-      choice1.css('background-image',imageLink);
-      choice1.css('background-size','contain');
-      choice2.css('background-image',imageLink);
-      choice2.css('background-size','contain');
-      name1=null;
-      name2=null;
-      clickCount = 0;
-      eventListener();
-      // console.log(imageLink);
-      // choice1.css('background-image','\'' + m);
-      // choice2.css('disabled','true');
-    }
-
-  //  if (choice1.attr('id') != choice2.attr('')) {
-
-  //  }
-
+function hidePictures() {
+  $(".pic").each(function(){
+      $(".gamePic").hide();
   });
 }
 
-function playRules(choices) {
+function eventListener(globalCounter) {
+  var name1, name2;
+  var choices = [];
+  var clickCount = 0;
+  $('#memory_board').click(function (e) {
+    console.log(e);
+      if (clickCount < 2) {
+    if (e.target.id.match('pic')) {
+        $(e.target).children().show();
+        choices[clickCount] = $(e.target).children();
+        // console.log(choices[clickCount]);
+        clickCount++;
+      }
+      if (choices[0].attr('src') === choices[1].attr('src')) {
+        // console.log('success');
+        //animate:
+        choices[0].fadeIn(100).delay(200).fadeOut(100).delay(200).fadeIn(100).delay(200).fadeOut(100).delay(200).fadeIn(100);
+        choices[1].fadeIn(100).delay(200).fadeOut(100).delay(200).fadeIn(100).delay(200).fadeOut(100).delay(200).fadeIn(100);
+        choices[0].parents().addClass("complete");
+        choices[1].parents().addClass("complete");
+        // checkCompletion();
+        globalCounter += 2; // Counter to keep track of how many completed
+        if (globalCounter == 24) { // If counter == to 24 then game complete
+          $("#overlay").show();
+          $("#overlay").delay(200).fadeOut(100).delay(200).fadeIn(100).delay(200).fadeOut(100).delay(200).fadeIn(100);
+          $('#restart').click(function (e) {
+            location.reload(true);
+        }); } else {
+          eventListener();
+        }
+      } else {
+        setTimeout(function(){
+          choices[0].hide();
+          choices[1].hide();
+          eventListener();
+        }, 1500);
+
+      }
+    }
+  });
 }
+
 
 var memoryGame;
 $(document).ready(function(){
+  var globalCounter = 0;
+  $("#overlay").hide();
   memoryGame = new MemoryGame();
-  $("#overlay").css('background','transparent');
-  // console.log(memoryGame.Cards[0]);
-  updateRandomPictures();
-  showPicturesShortly();
-  eventListener();
-
-
-
+  updateRandomPictures(); // calls function where images are placed on the board in the order that were shuffled
+  hidePictures(); // calls function to start the game with pictures hidden
+  showPicturesShortly(); // calls function to briefly show the pictures before the game starts
+  eventListener(globalCounter); // listens to key clicking on images, and checks the matching of all the images
 });
