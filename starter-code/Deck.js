@@ -44,6 +44,15 @@ MemoryGame.prototype._shuffleCard = function() {
   return
 }
 
+MemoryGame.prototype.pushCardIntoPickedCards = function(card) {
+  return this.picked_cards.push(card)
+}
 MemoryGame.prototype.compareCards = function(card1, card2) {
-  return card1.name === card2.name
+  return card1 === card2
+}
+
+MemoryGame.prototype.checkPickedCardsSize = function() {
+  if (memorygame.picked_cards.length == 2) {
+    console.log('Toma pipiiiii!')
+  }
 }

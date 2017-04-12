@@ -9,10 +9,16 @@ $(document).ready(function(){
 
   for( var i=0; i<deck.length; i++) {
 
-    var container = $('<div></div>').text(deck[i].name)
-    container.on('click', function() {
-      console.log(this.innerHTML)
+    var card = $('<div></div>').text(deck[i].name)
+
+    card.on('click', function() {
+      var textoCarta = this.innerHTML
+      memorygame.pushCardIntoPickedCards(textoCarta)
+      memorygame.checkPickedCardsSize()
+
     })
-    board.append(container)
+
+    board.append(card)
   }
+
 })
