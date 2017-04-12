@@ -68,19 +68,19 @@ function checkCard(id) {
 	if (memoryGame.picked_cards.length === 2) {
 		if (memoryGame.picked_cards[0].slice(0, 1) === memoryGame.picked_cards[1].slice(0, 1)) {
 			memoryGame.picked_cards = [];
+			memoryGame.pairs_guessed++;
 		}
 		else {
 			timeout = setTimeout(function () {
 				$("#" + id).children().toggle();
 				$("#" + memoryGame.picked_cards[0]).children().toggle();
-				memoryGame.pairs_guessed++;
 				memoryGame.picked_cards = [];
 				clearTimeout(setTimeout);
 			}, 450);
 		}
 	}
-	else if (memoryGame.pairs_guessed = 12) {
-		starGame();
+	else if (memoryGame.pairs_guessed == 11) {
+		startGame();
 	}
 }
 
