@@ -30,5 +30,5 @@ h1{
 
 body{
 	background-image: url("img/wallup-55018.jpg");
-	background-size: cover;
+	background-size: contain;
 }
