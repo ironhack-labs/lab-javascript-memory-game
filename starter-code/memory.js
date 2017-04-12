@@ -46,6 +46,12 @@ MemoryGame.prototype._shuffleCard = function () {
 
 var memoryGame;
 $(document).ready(function () {
+
+	startGame();
+
+});
+
+function startGame() {
 	memoryGame = new MemoryGame();
 	memoryGame._shuffleCard();
 
@@ -56,30 +62,30 @@ $(document).ready(function () {
 
 	$("img").toggle();
 
-	function checkCard(id) {
-		if (memoryGame.picked_cards.length === 2) {
-			if (memoryGame.picked_cards[0].slice(0, 1) === memoryGame.picked_cards[1].slice(0, 1)) {
-				memoryGame.picked_cards = [];
-			}
-			else {
-				timeout = setTimeout(function () {
-					$("#" + id).children().toggle();
-					$("#" + memoryGame.picked_cards[0]).children().toggle();
-					memoryGame.pairs_guessed++;
-					memoryGame.picked_cards = [];
-					clearTimeout(setTimeout);
-				}, 450);
-			}
+}
+
+function checkCard(id) {
+	if (memoryGame.picked_cards.length === 2) {
+		if (memoryGame.picked_cards[0].slice(0, 1) === memoryGame.picked_cards[1].slice(0, 1)) {
+			memoryGame.picked_cards = [];
 		}
-		else if (this.pairs_guessed = 24){
-			
+		else {
+			timeout = setTimeout(function () {
+				$("#" + id).children().toggle();
+				$("#" + memoryGame.picked_cards[0]).children().toggle();
+				memoryGame.pairs_guessed++;
+				memoryGame.picked_cards = [];
+				clearTimeout(setTimeout);
+			}, 450);
 		}
 	}
+	else if (memoryGame.pairs_guessed = 12) {
+		starGame();
+	}
+}
 
-	$(".col").on("click", function () {
-		$(this).children().toggle();
-		memoryGame.picked_cards.push(this.id);
-		checkCard(this.id);
-	});
-
+$(".col").on("click", function () {
+	$(this).children().toggle();
+	memoryGame.picked_cards.push(this.id);
+	checkCard(this.id);
 });

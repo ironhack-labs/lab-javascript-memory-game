@@ -13,7 +13,7 @@ h1{
 .col{
 	margin: 2%;
 	border-style: solid;
-	width:111px;
+	width: auto;
 	height:117px;
 	background: rbga(51, 51, 51, 1);
 }
