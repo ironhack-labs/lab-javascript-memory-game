@@ -26,8 +26,8 @@ var MemoryGame = function() {
   		{ name: "thor",            img: "thor.jpg" },
   	]
   this.picked_cards  = []
-  this.pairs_clicked = 0
-  this.pairs_guessed = 0
+  // this.pairs_clicked = 0
+  // this.pairs_guessed = 0
   this._shuffleCard()
 }
 
@@ -47,12 +47,13 @@ MemoryGame.prototype._shuffleCard = function() {
 MemoryGame.prototype.pushCardIntoPickedCards = function(card) {
   return this.picked_cards.push(card)
 }
+
 MemoryGame.prototype.compareCards = function(card1, card2) {
-  return card1 === card2
+  return card1 == card2
 }
 
 MemoryGame.prototype.checkPickedCardsSize = function() {
-  if (memorygame.picked_cards.length == 2) {
-    console.log('Toma pipiiiii!')
+  if (this.picked_cards.length == 2) {
+    return true
   }
 }
