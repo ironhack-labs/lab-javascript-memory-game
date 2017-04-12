@@ -45,9 +45,7 @@ MemoryGame.prototype._shuffleCard = function () {
 
 var memoryGame;
 $(document).ready(function () {
-
 	startGame();
-
 });
 
 function startGame() {
@@ -88,4 +86,3 @@ $(".col").on("click", function () {
 	memoryGame.picked_cards.push(this.id);
 	checkCard(this.id);
 });
-
