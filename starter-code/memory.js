@@ -65,9 +65,12 @@ function startGame() {
 
 function checkCard(id) {
 	if (memoryGame.picked_cards.length === 2) {
-		if (memoryGame.picked_cards[0].slice(0, 1) === memoryGame.picked_cards[1].slice(0, 1)) {
+		if (memoryGame.picked_cards[0].replace(/[0-9]/g, '') === memoryGame.picked_cards[1].replace(/[0-9]/g, '')) {
 			memoryGame.picked_cards = [];
 			memoryGame.pairs_guessed++;
+			if (memoryGame.pairs_guessed == 12) {
+				startGame();
+			}
 		}
 		else {
 			timeout = setTimeout(function () {
@@ -78,9 +81,6 @@ function checkCard(id) {
 			}, 450);
 		}
 	}
-	else if (memoryGame.pairs_guessed == 11) {
-		startGame();
-	}
 }
 
 $(".col").on("click", function () {
@@ -88,3 +88,4 @@ $(".col").on("click", function () {
 	memoryGame.picked_cards.push(this.id);
 	checkCard(this.id);
 });
+
