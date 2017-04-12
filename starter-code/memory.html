@@ -2,9 +2,26 @@
 <html>
     <head>
        <title>Superhero Memory Game</title>
+       <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
        <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
+       <script src="lib/jquery-3.2.1/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+       <script src="memory.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
-        <div id="memory_board"></div>
+        <div class="wrapper">
+            <div class="panel panel-primary" id="panel1">
+              <div class="panel-heading">
+                <h3 class="panel-title">Superhero Memory Game</h3>
+              </div>
+              <div class="panel-body">
+                  
+              </div>
+            </div>
+        </div>
+        <div class="stats">
+            <h4>Stats</h4>
+            <h4>Clicked Pairs: <span id="clicked-pairs">0</span></h4>
+            <h4>Guessed Pairs: <span id="guessed-pairs">0</span></h4>
+        </div>
     </body>
 </html>
