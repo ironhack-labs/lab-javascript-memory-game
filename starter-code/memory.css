@@ -1,5 +1,10 @@
-#memory_board {
-
+#memory_board>div {
+  padding: 10px;
+  margin: 10px;
+  background-color: aliceblue;
+  border: 1px solid black;
+  width: 25vw;
+  display: inline-block;
 }
 .pic {
   background-color: #456783;
