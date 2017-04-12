@@ -1,12 +1,99 @@
 #memory_board {
 
 }
+
+body {
+  background-image: url("./img/background.jpg");
+  background-size: cover;
+
+}
+
+.overlay {
+  position: absolute;
+  margin-top: 320px;
+  background-color: white;
+  min-height: 225px;
+  min-width: 350px;
+  color: black;
+  z-index: 10;
+  padding-top: 35px;
+  font-size: 50px;
+  font-weight: bold;
+  border-radius: 20px;
+  text-align: center;
+  border: 3px solid black;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 15px;
+  min-height:400px;
+  max-width:700px;
+  background-color: rgba(0,0,0,0.8);
+  align-content: center;
+  text-align: center;
+  color: white;
+}
+
+img {
+  height: 71px;
+  padding: 0;
+}
+
 .pic {
-  background-color: #456783;
+  background-color: white;
 	width:71px;
 	height:71px;
 	float:left;
-	margin:10px;
-	padding:20px;
+	/*margin:10px;*/
+	/*padding:20px;*/
 	font-size:64px;
+  z-index = 1;
+  display: flex;
+  justify-content: center;
+}
+
+.col-sm-2 {
+  color: white;
+  max-width: 71px;
+  max-height: 71px;
+  border: 2px solid white;
+  margin: 22px;
+  background-color: white;
+  padding:0;
+}
+
+.gamePic {
+  margin-left: -15px;
+  margin-top: -38px;
+  height:98%;
+
+}
+
+.row {
+  min-height: 71px;
+  height: 71px;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+}
+
+.title {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+  -webkit-text-stroke: 2px black;
 }
