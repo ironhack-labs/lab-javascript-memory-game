@@ -15,7 +15,7 @@ h1{
 	border-style: solid;
 	width:111px;
 	height:117px;
-	background: grey;
+	background: rbga(51, 51, 51, 1);
 }
 
 .pic {
