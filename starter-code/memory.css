@@ -1,3 +1,8 @@
+@font-face {
+        font-family: spiderman;
+        src: url("font/The Amazing Spider-Man.ttf");
+}
+
 #memory_board {
 	width: 90%;
 	height: auto;
@@ -6,6 +11,8 @@
 }
 
 h1{
+	font-family: spiderman;
+	font-size: 350%;
 	margin-top: 2%;
 	text-align: center;
 }
