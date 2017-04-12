@@ -45,31 +45,50 @@ MemoryGame.prototype._shuffleCard = function() {
 };
 
 MemoryGame.prototype.selectCard = function(card) {
-	
+  this.picked_cards.push(card);
+  if(this.picked_cards.length===2) {
+    if(this.picked_cards[0]===this.picked_cards[1]) {
+      this.pairs_guessed++;
+			saveCards(this.picked_cards);
+			this.picked_cards=[];
+		} else	{
+			this.pairs_clicked++
+			hideCards(this.picked_cards);
+			this.picked_cards=[];
+		}
+		updateScore(this.pairs_guessed, this.pairs_clicked);
+	}
+};
+
+function saveCards(cards) {
+	$(".pic").find('img[src$="img/'+cards[0].img+'"]').each(function(){
+		$(this).parent().unbind("click");
+	});
+}
+
+function hideCards(cards) {
+	var cardsImg = [cards[0], cards[1]];
+	setTimeout(function(){
+		cardsImg.forEach(function(el){
+			$(".pic").find('img[src$="img/'+el+'"]').hide();
+		})
+	}, 1000)
+}
+
+function updateScore(cardsGuessed, cardsClicked="-") {
+	$("#pairs-guessed").text(cardsGuessed);
+	$("#pairs-clicked").text(cardsClicked);
 }
 
 MemoryGame.prototype.finished = function() {
 
 };
 
-
 var memoryGame;
-
 
 // jQuery code:
 $(document).ready(function(){
   memoryGame = new MemoryGame();
-	//console.log(memoryGame);
-	
-	var pickedBox = $('.pic').click(function(event){
-		var cardId = $(this).attr('id');
-
-		//console.log(cardId);
-
-		//selectCard(memoryGame.Cards[cardId-1]);
-		
-		//console.log(memoryGame.Cards[0].name);
-	});
 
 // adding the images to the grid
 memoryGame.Cards.forEach(function(card, index) {
@@ -77,10 +96,9 @@ memoryGame.Cards.forEach(function(card, index) {
 });
 
 $('.pic').click(function(){
-		//var cardId = $(this).attr('id');
-		//console.log(cardId);
 		$(this).children().toggle();
+    //received the image file name which we can use to compare the images
+    var card = $(this).children().attr('src').slice(6);
+    memoryGame.selectCard(card);
 	});
-
 });
-
