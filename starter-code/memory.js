@@ -1,3 +1,6 @@
+
+
+
 var MemoryGame = function() {
   this.Cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
@@ -44,18 +47,91 @@ MemoryGame.prototype._shuffleCard = function() {
   return;
 };
 
+MemoryGame.prototype.selectCard = function(card) {
+	this.picked_cards.push(card);
+	if(this.picked_cards.length===2) {
+		if(this.picked_cards[0].name===this.picked_cards[1].name) {
+			this.pairs_guessed++;
+			if(this.pairs_guessed===12) {
+				showRestart();
+			} else {
+				saveCards(this.picked_cards); //unbind click
+				this.picked_cards=[];
+			}
+		} else	{
+			this.pairs_clicked++
+			hideCards(this.picked_cards);
+			this.picked_cards=[];
+		}
+		updateScore(this.pairs_guessed, this.pairs_clicked);
+	}
+};
+
+MemoryGame.prototype.restartGame = function(card) {
+	this._shuffleCard();
+	this.pairs_clicked=this.pairs_guessed=0;
+	this.picked_cards=[];
+}
+
+function restartGame() {
+	memoryGame.restartGame();
+	updateScore(memoryGame.pairs_guessed,memoryGame.pairs_clicked);
+	$(".pic img").hide();
+	
+}
+
+function showRestart() {
+	$(".btn").show();
+	bindClick();
+}
+
+function saveCards(cards) {
+	$(".pic").find('img[src$="img/'+cards[0].img+'"]').each(function(){
+		$(this).parent().unbind("click");
+	});
+}
+
+function hideCards(cards) {
+	var cardsImg = [cards[0].img, cards[1].img];
+	setTimeout(function(){
+
+		cardsImg.forEach(function(el){
+			$(".pic").find('img[src$="img/'+el+'"]').hide();
+		})
+	}, 1000)
+
+}
+
+function updateScore(cardsGuessed, cardsClicked="-") {
+	$("#pairs-guessed").text(cardsGuessed);
+	$("#pairs-clicked").text(cardsClicked);
+
+}
 
 
+function bindClick() {
+	$(".pic").click(function(){
 
+		var col = $(this).parent().children().index($(this));
+		var row = $(".row").index($(this).parent());
+		
+		var cardIndex = row*6 + col;
 
+		$(this).html("<img src='img/"+memoryGame.Cards[cardIndex].img+"'>")
+		memoryGame.selectCard(memoryGame.Cards[cardIndex]);
 
+	});
+
+}
 
 var memoryGame;
+
 $(document).ready(function(){
   memoryGame = new MemoryGame();
-
-
-
-
-
+	$(".btn").hide();
+	$(".btn").click(function() {
+		$(this).hide();
+		restartGame();
+	});
+  bindClick()
 });
