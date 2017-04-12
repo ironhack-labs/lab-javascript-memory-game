@@ -57,12 +57,8 @@ $(document).ready(function(){
             memoryGame: new MemoryGame(), 
             card2Index: []
         };
-   
-    console.log(Global.memoryGame.Cards);
     
     $(".panel-body").append(createCards(Global.memoryGame.Cards));
-    
-    console.log(createCards(Global.memoryGame.Cards));
     
     onCardClick(".card", clickHandler.bind({self:this}, Global));
 });
@@ -70,11 +66,9 @@ $(document).ready(function(){
 function clickHandler(globalVarsObj){
     var cardSelector = $(event.currentTarget);
     
-    console.log(cardSelector.attr("disable"));
     if (cardSelector.attr("disable") == "false"){
         cardSelector.attr("disable", "true");
         globalVarsObj.clickCounter++;
-        console.log(globalVarsObj.clickCounter);
         cardSelector.addClass("flipped");
         globalVarsObj.card2Index.push(cardSelector.attr("index"));
     }
@@ -86,25 +80,17 @@ function clickHandler(globalVarsObj){
 }
 
 function processGameIteration(globalVarsObj){
-    console.log("I have one Pair");
-    
     var index1 = globalVarsObj.card2Index[0];
     var index2 = globalVarsObj.card2Index[1];
     var cardObj1 = globalVarsObj.memoryGame.Cards[index1];
     var cardObj2 = globalVarsObj.memoryGame.Cards[index2];
     
-    console.log(cardObj1);
-    console.log(cardObj2);
-    
     globalVarsObj.memoryGame.pairs_clicked++;
     
     if (globalVarsObj.memoryGame.matchCards(cardObj1, cardObj2)){
-        console.log("Son Iguales");
         globalVarsObj.memoryGame.pairs_guessed++;
         globalVarsObj.card2Index = [];
     } else {
-        console.log("Son Diferentes");
-        
         globalVarsObj.card2Index = [];
         setTimeout(function(){
             $("."+index1).removeClass("flipped");
