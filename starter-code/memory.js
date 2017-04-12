@@ -26,7 +26,6 @@ var MemoryGame = function () {
 		{ name: "thor", img: "thor.jpg" },
 	];
 	this.picked_cards = [];
-	this.pairs_clicked = 0;
 	this.pairs_guessed = 0;
 	this._shuffleCard();
 };
