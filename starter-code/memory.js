@@ -57,7 +57,7 @@ function startGame() {
 		$($(".col")[i]).attr("id", memoryGame.Cards[i].name + [i]);
 	}
 
-	$("img").toggle();
+	setTimeout(function(){$("img").toggle();},3000);
 
 }
 
