@@ -1,6 +1,23 @@
 #memory_board {
-
+	width: 90%;
+	height: auto;
+	margin-left: 4%;
+	margin-right: 4%;
 }
+
+h1{
+	margin-top: 2%;
+	text-align: center;
+}
+
+.col{
+	margin: 2%;
+	border-style: solid;
+	width:111px;
+	height:117px;
+	background: grey;
+}
+
 .pic {
   background-color: #456783;
 	width:71px;
@@ -9,4 +26,9 @@
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+body{
+	background-image: url("img/wallup-55018.jpg");
+	background-size: cover;
 }
