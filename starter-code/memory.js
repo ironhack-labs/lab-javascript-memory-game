@@ -100,6 +100,7 @@ function hidePictures() {
 }
 
 function eventListener(globalCounter) {
+  globalCounter = parseInt(globalCounter);
   var name1, name2;
   var choices = [];
   var clickCount = 0;
@@ -121,19 +122,21 @@ function eventListener(globalCounter) {
         choices[1].parents().addClass("complete");
         // checkCompletion();
         globalCounter += 2; // Counter to keep track of how many completed
-        if (globalCounter == 24) { // If counter == to 24 then game complete
+        globalCounter = parseInt(globalCounter);
+        console.log(globalCounter);
+        if (globalCounter === 24) { // If counter == to 24 then game complete
           $("#overlay").show();
           $("#overlay").delay(200).fadeOut(100).delay(200).fadeIn(100).delay(200).fadeOut(100).delay(200).fadeIn(100);
           $('#restart').click(function (e) {
             location.reload(true);
         }); } else {
-          eventListener();
+          eventListener(globalCounter);
         }
       } else {
         setTimeout(function(){
           choices[0].hide();
           choices[1].hide();
-          eventListener();
+          eventListener(globalCounter);
         }, 1500);
 
       }
