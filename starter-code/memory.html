@@ -3,8 +3,152 @@
     <head>
        <title>Superhero Memory Game</title>
        <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
+       <link href="reset.css" type="text/css" rel="stylesheet">
+
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
-        <div id="memory_board"></div>
+      <div class="container-fluid">
+
+        <div class="container" id="memory_board">
+
+          <div class="row row-centered">
+
+            <div class="col-sm-2 text-center col-centered pic1" id="1" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic2" id="2" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic3" id="3" tyle="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic4" id="4" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic5" id="5" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic6" id="6" style="color:white; font-weight:bold;">
+            </div>
+          </div>
+
+          <div class="row row-centered">
+            <div class="col-sm-2 text-center col-centered pic7" id="7" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic8" id="8" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic9" id="9" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic10" id="10" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic11" id="11" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic12" id="12" style="color:white; font-weight:bold;">
+            </div>
+          </div>
+
+
+          <div class="row row-centered">
+            <div class="col-sm-2 text-center col-centered pic13" id="13" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic14" id="14" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic15" id="15" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic16" id="16" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic17" id="17" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic18" id="18" style="color:white; font-weight:bold;">
+            </div>
+          </div>
+
+
+          <div class="row row-centered">
+            <div class="col-sm-2 text-center col-centered pic19" id="19" tyle="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic20" id="20" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic21" id="21" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic22" id="22" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic23" id="23" style="color:white; font-weight:bold;">
+            </div>
+            <div class="col-sm-2 text-center col-centered pic24" id="24" style="color:white; font-weight:bold;">
+            </div>
+          </div>
+
+
+
+      </div>
+      <div class="container overlay" id="overlay">
+        <div class="row row-centered">
+
+          <div class="col-sm-2 text-center col-centered pic" id="pic1" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic2" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic3" tyle="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic4" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic5" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic6" style="color:white; font-weight:bold;">
+          </div>
+        </div>
+
+        <div class="row row-centered">
+          <div class="col-sm-2 text-center col-centered pic" id="pic7" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic8" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic9" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic10" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic11" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic12" style="color:white; font-weight:bold;">
+          </div>
+        </div>
+
+
+        <div class="row row-centered">
+          <div class="col-sm-2 text-center col-centered pic" id="pic13" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic14" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic15" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic16" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic17" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic18" style="color:white; font-weight:bold;">
+          </div>
+        </div>
+
+
+        <div class="row row-centered">
+          <div class="col-sm-2 text-center col-centered pic" id="pic19" tyle="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic20" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic21" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic22" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic23" style="color:white; font-weight:bold;">
+          </div>
+          <div class="col-sm-2 text-center col-centered pic" id="pic24" style="color:white; font-weight:bold;">
+          </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="memory.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
