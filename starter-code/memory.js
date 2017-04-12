@@ -75,7 +75,7 @@ function clickHandler(globalVarsObj){
         cardSelector.attr("disable", "true");
         globalVarsObj.clickCounter++;
         console.log(globalVarsObj.clickCounter);
-        cardSelector.css("background-image",'url("img/'+ $(event.currentTarget).attr("img-data") +'")');
+        cardSelector.addClass("flipped");
         globalVarsObj.card2Index.push(cardSelector.attr("index"));
     }
     
@@ -107,9 +107,9 @@ function processGameIteration(globalVarsObj){
         
         globalVarsObj.card2Index = [];
         setTimeout(function(){
-            $("."+index1).css("background-image",'url("img/cardBack.svg")');
+            $("."+index1).removeClass("flipped");
             $("."+index1).attr("disable","false");
-            $("."+index2).css("background-image",'url("img/cardBack.svg")');
+            $("."+index2).removeClass("flipped");
             $("."+index2).attr("disable","false");
         }, 1000);
     }
@@ -137,6 +137,8 @@ function createCards(cardsArr){
 function createHTMLCard(cardObj, index){
     var divColumn = $("<div>");
     var divCard = $("<div>");
+    var divCardF = $("<div>");
+    var divCardB = $("<div>");
     
     divColumn.addClass("card-holder");
     
@@ -146,6 +148,14 @@ function createHTMLCard(cardObj, index){
     divCard.attr("img-data", cardObj.img);
     divCard.attr("index", index);
     divCard.attr("disable", "false");
+    
+    divCardF.addClass("card-front");
+    
+    divCardB.addClass("card-back");
+    divCardB.css("background-image", 'url("img/'+ cardObj.img +'")');
+    
+    divCard.append(divCardF);
+    divCard.append(divCardB);
     
     divColumn.append(divCard);
     

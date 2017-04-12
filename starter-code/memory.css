@@ -9,7 +9,7 @@ body {
 
 .wrapper {
     margin: 0 auto;
-    width: 720px;
+    width: 770px;
 }
 
 #panel1 {
@@ -23,8 +23,11 @@ body {
 .card-holder {
     float: left;
     height: 160px;
-    width: 16.6%;
-    padding: 5px;
+    width: 15.3%;
+    margin: 5px;
+    
+    perspective: 800px;
+    box-sizing: border-box;
 }
 
 .card {
@@ -32,6 +35,23 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
+    
+    position: absolute;    
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.card div {
+    
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-front {
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -40,6 +60,24 @@ body {
     background-position: center;
     border: solid 2px #FFFFFF;
     background-color: #FFFFFF;
+}
+
+.card-back {
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: blue;
+    background-size: cover;
+    background-position: center;
+    border: solid 2px #FFFFFF;
+    background-color: #FFFFFF;
+    
+    transform: rotateY( 180deg );
+}
+
+.card.flipped {
+    
+    transform: rotateY( 180deg );
 }
 
 .stats {
@@ -51,7 +89,7 @@ body {
     background-color: #265A88;
     color: #FFFFFF;
     text-align: center;
-     border-radius: 8px;
+    border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
 }
