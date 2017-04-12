@@ -10,3 +10,10 @@
 	padding:20px;
 	font-size:64px;
 }
+
+#board {
+  width: 800px;
+  height: 600px;
+  display: inline-block;
+  background-color: grey;
+}
