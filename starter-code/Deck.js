@@ -1,5 +1,5 @@
 var MemoryGame = function() {
-  this.Cards = [
+  this.cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
   		{ name: "batman",          img: "batman.jpg" },
   		{ name: "captain america", img: "captain-america.jpg" },
@@ -32,23 +32,18 @@ var MemoryGame = function() {
 }
 
 MemoryGame.prototype._shuffleCard = function() {
-  var counter = this.Cards.length
+  var counter = this.cards.length
 
   while (counter > 0) {
     index = Math.floor(Math.random() * counter)
     counter--
-    temp = this.Cards[counter]
-    this.Cards[counter] = this.Cards[index]
-    this.Cards[index] = temp
+    temp = this.cards[counter]
+    this.cards[counter] = this.cards[index]
+    this.cards[index] = temp
   }
   return
 }
 
 MemoryGame.prototype.compareCards = function(card1, card2) {
-  var result = false
-  if (card1.name === card2.name) {
-    result = true
-  }
-  return result
+  return card1.name === card2.name
 }
-
