@@ -81,8 +81,8 @@ function restartGame() {
 }
 
 function showRestart() {
-
 	$(".btn").show();
+	bindClick();
 }
 
 function saveCards(cards) {
@@ -108,18 +108,8 @@ function updateScore(cardsGuessed, cardsClicked="-") {
 
 }
 
-var memoryGame;
 
-
-
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-	$(".btn").hide();
- $(".btn").click(function() {
-	 $(this).hide();
-	 restartGame();
- });
-
+function bindClick() {
 	$(".pic").click(function(){
 
 		var col = $(this).parent().children().index($(this));
@@ -131,5 +121,17 @@ $(document).ready(function(){
 		memoryGame.selectCard(memoryGame.Cards[cardIndex]);
 
 	});
-});
 
+}
+
+var memoryGame;
+
+$(document).ready(function(){
+  memoryGame = new MemoryGame();
+	$(".btn").hide();
+	$(".btn").click(function() {
+		$(this).hide();
+		restartGame();
+	});
+  bindClick()
+});
