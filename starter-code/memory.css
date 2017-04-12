@@ -20,7 +20,14 @@ img {
   padding: 0px;
   margin: 0px;
 }
-
+.btn {
+   border:1px solid black;
+   width:71px;
+	 height:30px;
+   margin:10px;
+   padding: 5px;
+ 
+}
 
 
 /*Use this file to add your styles -there are some cool img in the images path*/

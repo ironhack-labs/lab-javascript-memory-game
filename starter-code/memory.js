@@ -52,8 +52,12 @@ MemoryGame.prototype.selectCard = function(card) {
 	if(this.picked_cards.length===2) {
 		if(this.picked_cards[0].name===this.picked_cards[1].name) {
 			this.pairs_guessed++;
-			saveCards(this.picked_cards); //unbind click
-			this.picked_cards=[];
+			if(this.pairs_guessed===12) {
+				showRestart();
+			} else {
+				saveCards(this.picked_cards); //unbind click
+				this.picked_cards=[];
+			}
 		} else	{
 			this.pairs_clicked++
 			hideCards(this.picked_cards);
@@ -63,6 +67,23 @@ MemoryGame.prototype.selectCard = function(card) {
 	}
 };
 
+MemoryGame.prototype.restartGame = function(card) {
+	this._shuffleCard();
+	this.pairs_clicked=this.pairs_guessed=0;
+	this.picked_cards=[];
+}
+
+function restartGame() {
+	memoryGame.restartGame();
+	updateScore(memoryGame.pairs_guessed,memoryGame.pairs_clicked);
+	$(".pic img").hide();
+	
+}
+
+function showRestart() {
+
+	$(".btn").show();
+}
 
 function saveCards(cards) {
 	$(".pic").find('img[src$="img/'+cards[0].img+'"]').each(function(){
@@ -93,6 +114,11 @@ var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+	$(".btn").hide();
+ $(".btn").click(function() {
+	 $(this).hide();
+	 restartGame();
+ });
 
 	$(".pic").click(function(){
 
