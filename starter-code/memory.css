@@ -1,12 +1,32 @@
 #memory_board {
-
+  margin: 80px auto auto 80px;
+  width: 800px;
+  height: auto;
 }
+
+h1 {
+  margin: 20px;
+}
+
 .pic {
   background-color: #456783;
-	width:71px;
+	width: 71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.win {
+  width: 400px;
+  height: 200px;
+  background-color: #AC58FA;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  padding: 100px;
+  font-size: 80px;
+  text-align: center;
+  display: none;
 }

@@ -29,6 +29,7 @@ var MemoryGame = function() {
   this.pairs_clicked = 0;
   this.pairs_guessed = 0;
   this._shuffleCard();
+  //this.paintCards();
 };
 // this function just takes the array of cards above and shuffles them into a random order
 MemoryGame.prototype._shuffleCard = function() {
@@ -44,18 +45,22 @@ MemoryGame.prototype._shuffleCard = function() {
   return;
 };
 
+MemoryGame.prototype.compareCards = function(card1, card2) {
+  this.pairs_clicked++;
+  if (card1===card2){
+    this.pairs_guessed++;
+    return true;
+  } else {
+    return false;
+  }
+};
+
+MemoryGame.prototype.selectCard = function(e) {
+  $(e.currentTarget).css("background-image", "url(./img/"+$(e.currentTarget).attr("imagen")+")");
+  return $(e.currentTarget).attr("name");
+};
 
 
-
-
-
-
-var memoryGame;
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-
-
-
-
-
-});
+MemoryGame.prototype.finished = function() {
+  $(".win").show();
+};
