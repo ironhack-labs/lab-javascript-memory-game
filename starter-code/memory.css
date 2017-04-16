@@ -1,12 +1,27 @@
-#memory_board {
-
+body{
+    background-image: url("img/original.jpg");
 }
 .pic {
   background-color: #456783;
-	width:71px;
-	height:71px;
+	width:150px;
+	height:150px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+
+.row{
+  position: relative;
+  width: 1100px;
+  left :150px;
+
+}
+.jumbotron{
+  position: relative;
+  padding-left:30px;
+  width: 250px;
+  height: 250px;
+  left: 500px;
+  top: 155px;
 }
