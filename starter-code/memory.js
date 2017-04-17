@@ -1,3 +1,6 @@
+// //******************************************************************
+// // Game Logic
+// //******************************************************************
 var MemoryGame = function() {
   this.Cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
@@ -25,37 +28,36 @@ var MemoryGame = function() {
   		{ name: "the avengers",    img: "the-avengers.jpg" },
   		{ name: "thor",            img: "thor.jpg" },
   	];
-  this.picked_cards  = [];
-  this.pairs_clicked = 0;
-  this.pairs_guessed = 0;
-  this._shuffleCard();
-};
-// this function just takes the array of cards above and shuffles them into a random order
-MemoryGame.prototype._shuffleCard = function() {
-  var counter = this.Cards.length;
-
-  while (counter > 0) {
-    index = Math.floor(Math.random() * counter);
-    counter--;
-    temp = this.Cards[counter];
-    this.Cards[counter] = this.Cards[index];
-    this.Cards[index] = temp;
-  }
-  return;
+    this.selectedCards = [];
+    this.pairsClicked = 0;
+    this.correctPairs = 0;
 };
 
-
-
-
-
-
+// //******************************************************************
+// // HTML/CSS Interactions
+// //******************************************************************
 
 var memoryGame;
+
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+  var html = '';
 
+  memoryGame.cards.forEach(function(pic, index) {
+    var sanitizedName = pic.name.split(' ').join('_');
 
+    html += '<div class= "card" id="card_' + sanitizedName + '">';
+    html += '<div class="back"';
+    html += '    name="img/' + pic.name + '"';
+    html += '    id="'       + pic.img +  '">';
+    html += '</div>';
+    html += '<div class="front" ';
+    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += '    id="'       + pic.img +  '">';
+    html += '</div>';
+    html += '</div>';
+  });
 
-
-
-});
+  // Add all the divs to the HTML
+  document.getElementById('memory_board').innerHTML = html;
+};
