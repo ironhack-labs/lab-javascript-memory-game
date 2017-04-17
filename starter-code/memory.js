@@ -2,7 +2,7 @@
 // // Game Logic
 // //******************************************************************
 var MemoryGame = function() {
-  this.cards = [
+  this.Cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
   		{ name: "batman",          img: "batman.jpg" },
   		{ name: "captain america", img: "captain-america.jpg" },
@@ -28,7 +28,6 @@ var MemoryGame = function() {
   		{ name: "the avengers",    img: "the-avengers.jpg" },
   		{ name: "thor",            img: "thor.jpg" },
   	];
-
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
@@ -61,4 +60,4 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
-});
+};
