@@ -2,7 +2,7 @@
 // // Game Logic
 // //******************************************************************
 var MemoryGame = function() {
-  this.Cards = [
+  this.cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
   		{ name: "batman",          img: "batman.jpg" },
   		{ name: "captain america", img: "captain-america.jpg" },
@@ -60,4 +60,4 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
-};
+});
