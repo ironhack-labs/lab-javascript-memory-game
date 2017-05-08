@@ -63,7 +63,7 @@ In addition, **include the stylesheet in your HTML**.
 
 - At the bottom of your `body` element, add the CDN for your jQuery library:
 
-```htmlmixed
+```html
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 ```
@@ -73,7 +73,7 @@ Also, link the included `memory.js` file. We already know how to do it :wink:.
 
 - In the `header` section, remember to add the link to your CSS file.
 
-```htmlmixed
+```html
 <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
 ```
 
