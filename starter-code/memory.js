@@ -50,19 +50,36 @@ MemoryGame.prototype._shuffleCards = function() {
 // Method for selecting a card
 MemoryGame.prototype.selectCard = function(card) {
 
-  // If it is the first card, just add it to the array
-	if (this.selectedCards.length === 0) {
-		this.selectedCards.push(card);
+  // First add the card to the selectedCards
+	this.selectedCards.push(card);
 
-  // If it is the second card, check if it matches the first one (if so update the correctPairs value
-  // empty the array and update pairsClicked
-	} else {
-		if (this.selectedCards[0] === card)	{
+  // If it is the second card
+	if (this.selectedCards.length === 2) {
+
+
+    // Save the first and second cards to use them in the HTML&CSS interactions
+		var firstCard = this.selectedCards[0].id;
+		var secondCard = this.selectedCards[1].id;
+
+    // If the second card matches the first one update the correctPairs value
+		if (firstCard === secondCard)	{
 			this.correctPairs++;
 		}
+
+    // Empty the array and update pairsClicked
 		this.pairsClicked++;
 		this.selectedCards = [];
+
+		return [ firstCard, secondCard ];
 	}
+};
+
+// Method for finishing the game, returns true when all the cards have been matched correctly
+MemoryGame.prototype.finished = function() {
+	if (this.correctPairs === 12) {
+		return true;
+	}
+	return false;
 };
 
 // //******************************************************************
@@ -73,6 +90,11 @@ var memoryGame;
 
 $(document).ready(function() {
 	memoryGame = new MemoryGame();
+
+  // Shuffle the cards
+	memoryGame._shuffleCards();
+
+  // Create html
 	var html = "";
 
 	memoryGame.cards.forEach(function(pic, index) {
@@ -93,44 +115,47 @@ $(document).ready(function() {
   // Add all the divs to the HTML
 	document.getElementById("memory_board").innerHTML = html;
 
-  // Shuffle the cards
-	memoryGame._shuffleCards();
 
   // Wait for a click on a card
-  // It is done in such a way that the event would propagate to any .card that has .back class
-  // even if it didn't have this class when the DOM was loaded. This behaviour is not needed
-  // and in fact it will be blocked with the turnCard function, but I wanted to try
-	$(".card").on("click", ".back", function() {
-		memoryGame.selectCard(this);
+	$(".back").on("click", function() {
 		turnCard(this);
-		blockCard(this);
+		var playingCards = memoryGame.selectCard(this);
+
+    // If there are two cards selected
 		if (memoryGame.selectedCards.length === 0) {
 
-			setTimeout(function() {
-				turnCard($(".blocked.back"));
-				$(".blocked").toggleClass("blocked");
-				printPairs();
-			}, 1000);
+      // If they two cards match remove the front class so they will not turn again
+			if (playingCards[0] === playingCards[1]) {
+				$(".front.back").toggleClass("front");
+
+      // If the cards don't match, block all the cards during 0.5 seconds so you have time to see both cards
+			} else {
+				$(".card").children().toggleClass("blocked");
+				setTimeout(function() {
+					turnCard($(".front.back"));
+					$(".card").children().toggleClass("blocked");
+				}, 500);
+			}
+		}
+		printPairs();
+
+    // If the game is finished, alert that you have win, and ask to refresh the page
+		if (memoryGame.finished()) {
+			alert("You won! You tried " + memoryGame.pairsClicked + " times and you got all " +
+      memoryGame.correctPairs + " correct! RELOAD THE PAGE TO PLAY AGAIN");
 		}
 	});
 
 	function turnCard(card) {
 
-    // Change classes from front to back and viceversa, so the card is turned
+    // Toggles the back class from the card. The initial back will be empty and the initial front
+    // will have back and front classes. This front back classes will be used to turn the cards back
+    // again if they don't match
 		$(card).toggleClass("back");
-		$(card).toggleClass("front");
 		$(card).siblings().toggleClass("back");
-		$(card).siblings().toggleClass("front");
 	}
 
 });
-
-function blockCard(card) {
-
-  // Blocks the siblings of the card, so it will not trigger an event if clicked again
-	$(card).toggleClass("blocked");
-	$(card).siblings().toggleClass("blocked");
-}
 
 function printPairs() {
 	$("#pairs_clicked").html(memoryGame.pairsClicked);
