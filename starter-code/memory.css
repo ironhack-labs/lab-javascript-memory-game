@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  /*background: url(img/background.jpg) no-repeat;*/
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -28,7 +28,17 @@ html {
 .card .back.blocked {
   pointer-events: none;
 }
+.visible {
+  width: 71px;
+  height: 71px;
+  float: left;
+  padding: 20px;
+  margin: 10px;
 
+}
+.hide {
+  display: none;
+}
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
@@ -66,4 +76,7 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+.pointerDisabled {
+  pointer-events: none;
 }
