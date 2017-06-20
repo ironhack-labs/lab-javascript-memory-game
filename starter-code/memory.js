@@ -113,9 +113,19 @@ MemoryGame.prototype.randomHeroes = function() {
   }
   return this.card;
 };
-MemoryGame.prototype.selectCard = function(card){
-  this.selectCard = card;
+
+MemoryGame.prototype.compareCards = function(){
+  if (this.selectedCards[0] == this.selectedCards[1]){
+    console.log('Zon iguale, primo');
+  } else {
+    console.log('Ni de flai');
+  }
 };
+
+MemoryGame.prototype.cleanSelectedCards = function() {
+  this.selectedCards = [];
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -143,5 +153,16 @@ $(document).ready(function() {
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  document.getElementById('memory_board').innerHTML = html;
 
+  $('.card').click(function(){
+    var cardName = $(this).attr('id');
+    newGame.selectedCards.push(cardName);
+    if (newGame.selectedCards.length == 2){
+      console.log(newGame.selectedCards[0] + " - " + newGame.selectedCards[1]); // Este mamon se queda
+      newGame.compareCards();
+      newGame.cleanSelectedCards();
+    }
+    console.log(newGame.selectedCards);
+  });
 });
