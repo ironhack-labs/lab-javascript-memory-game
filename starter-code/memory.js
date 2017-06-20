@@ -33,15 +33,43 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+// Baraja cartas
+MemoryGame.prototype.shuffleCards = function () {
+  var resultado = _.shuffle(this.cards);
+  this.cards = resultado;
+};
+
+// Selecciona cartas
+MemoryGame.prototype.selectCard = function(cards) {
+ //console.log(cards);
+};
+
+// Compara cartas
+MemoryGame.prototype.compareCards = function(){
+  if (this.selectedCards[0] == this.selectCard[1]){
+    console.log('Son iguales');
+  } else {
+    console.log('No son iguales');
+  }
+};
+
+
+MemoryGame.prototype.newSelectedCards = function(){
+  this.selectedCards = [];
+};
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
-
 var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
+
+  memoryGame.shuffleCards();
+  //console.log(memoryGame.cards);
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -60,4 +88,22 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $('.card').click(function() {
+    var card =  $(this).attr('id');
+    memoryGame.selectedCards.push(card);
+    if (memoryGame.selectedCards.length == 2) {
+      console.log(memoryGame.selectedCards[0] + " / " + memoryGame.selectedCards[1]);
+      memoryGame.compareCards();
+      memoryGame.newSelectedCards();
+    }
+    console.log(memoryGame.selectedCards);
+  });
+
+//Boca abajo
+  /*function abajoCard(card) {
+    $(card).children('div.back').css('display', 'none');
+    $(card).children('div.front').addClass('back');
+    console.log(abajoCard);
+  }*/
 });
