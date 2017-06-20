@@ -1,36 +1,135 @@
 // //******************************************************************
 // // Game Logic
 // //******************************************************************
+var remainTime = 2;
 var MemoryGame = function() {
-  this.cards = [
-  		{ name: "aquaman",         img: "aquaman.jpg" },
-  		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain america", img: "captain-america.jpg" },
-  		{ name: "fantastic four",  img: "fantastic-four.jpg" },
-  		{ name: "flash",           img: "flash.jpg" },
-      { name: "green arrow",     img: "green-arrow.jpg" },
-  		{ name: "green lantern",   img: "green-lantern.jpg" },
-  		{ name: "ironman",         img: "ironman.jpg" },
-  		{ name: "spiderman",       img: "spiderman.jpg" },
-  		{ name: "superman",        img: "superman.jpg" },
-  		{ name: "the avengers",    img: "the-avengers.jpg" },
-  		{ name: "thor",            img: "thor.jpg" },
-      { name: "aquaman",         img: "aquaman.jpg" },
-  		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four",  img: "fantastic-four.jpg" },
-  		{ name: "flash",           img: "flash.jpg" },
-  		{ name: "green arrow",     img: "green-arrow.jpg" },
-  		{ name: "green lantern",   img: "green-lantern.jpg" },
-  		{ name: "ironman",         img: "ironman.jpg" },
-  		{ name: "spiderman",       img: "spiderman.jpg" },
-  		{ name: "superman",        img: "superman.jpg" },
-  		{ name: "the avengers",    img: "the-avengers.jpg" },
-  		{ name: "thor",            img: "thor.jpg" },
-  	];
-    this.selectedCards = [];
-    this.pairsClicked = 0;
-    this.correctPairs = 0;
+  this.cards = [{
+      name: "aquaman",
+      img: "aquaman.jpg"
+    },
+    {
+      name: "batman",
+      img: "batman.jpg"
+    },
+    {
+      name: "captain america",
+      img: "captain-america.jpg"
+    },
+    {
+      name: "fantastic four",
+      img: "fantastic-four.jpg"
+    },
+    {
+      name: "flash",
+      img: "flash.jpg"
+    },
+    {
+      name: "green arrow",
+      img: "green-arrow.jpg"
+    },
+    {
+      name: "green lantern",
+      img: "green-lantern.jpg"
+    },
+    {
+      name: "ironman",
+      img: "ironman.jpg"
+    },
+    {
+      name: "spiderman",
+      img: "spiderman.jpg"
+    },
+    {
+      name: "superman",
+      img: "superman.jpg"
+    },
+    {
+      name: "the avengers",
+      img: "the-avengers.jpg"
+    },
+    {
+      name: "thor",
+      img: "thor.jpg"
+    },
+    {
+      name: "aquaman",
+      img: "aquaman.jpg"
+    },
+    {
+      name: "batman",
+      img: "batman.jpg"
+    },
+    {
+      name: "captain america",
+      img: "captain-america.jpg"
+    },
+    {
+      name: "fantastic four",
+      img: "fantastic-four.jpg"
+    },
+    {
+      name: "flash",
+      img: "flash.jpg"
+    },
+    {
+      name: "green arrow",
+      img: "green-arrow.jpg"
+    },
+    {
+      name: "green lantern",
+      img: "green-lantern.jpg"
+    },
+    {
+      name: "ironman",
+      img: "ironman.jpg"
+    },
+    {
+      name: "spiderman",
+      img: "spiderman.jpg"
+    },
+    {
+      name: "superman",
+      img: "superman.jpg"
+    },
+    {
+      name: "the avengers",
+      img: "the-avengers.jpg"
+    },
+    {
+      name: "thor",
+      img: "thor.jpg"
+    },
+  ];
+  this.selectedCards = [];
+  this.pairsClicked = 0;
+  this.correctPairs = 0;
+};
+
+MemoryGame.prototype.randomHeroes = function() {
+  for (var i = this.cards.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var aux = this.cards[i];
+    this.cards[i] = this.cards[j];
+    this.cards[j] = aux;
+  }
+  return this.card;
+};
+
+MemoryGame.prototype.compareCards = function() {
+  if (this.selectedCards[0] == this.selectedCards[1]) {
+    console.log('Zon iguale, primo');
+    this.correctPairs++;
+  } else {
+    console.log('Ni de flai');
+  }
+};
+
+MemoryGame.prototype.cleanSelectedCards = function() {
+  this.selectedCards = [];
+};
+
+MemoryGame.prototype.showFrontCard = function() {
+
 };
 
 // //******************************************************************
@@ -39,25 +138,61 @@ var MemoryGame = function() {
 
 var memoryGame;
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
+$(document).ready(function() {
+  newGame = new MemoryGame();
   var html = '';
-
-  memoryGame.cards.forEach(function(pic, index) {
+  newGame.randomHeroes();
+  newGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
     html += '<div class= "card" id="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="img/' + pic.name + '"';
-    html += '    id="'       + pic.img +  '">';
+    html += '    id="' + pic.img + '">';
     html += '</div>';
     html += '<div class="front" ';
     html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    id="'       + pic.img +  '">';
+    html += '    id="' + pic.img + '">';
     html += '</div>';
     html += '</div>';
   });
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  document.getElementById('memory_board').innerHTML = html;
+
+  $('.card').click(function() {
+    flipCard(this);
+    var cardName = $(this).attr('id');
+    newGame.selectedCards.push(cardName);
+    if (newGame.selectedCards.length == 2) {
+      console.log(newGame.selectedCards[0] + " - " + newGame.selectedCards[1]);
+      newGame.compareCards();
+      var intervalId = setInterval(function() {
+        if (remainTime === 0) {
+          flipCardRemove(this);
+          clearInterval(intervalId);
+        } else {
+          remainTime--;
+        }
+      }, 1 * 1000);
+      newGame.cleanSelectedCards();
+    }
+    console.log(newGame.selectedCards);
+  });
+
+  function flipCard(card) {
+    $(card).children('div.back').css('display', 'none');
+    $(card).children('div.front').addClass('back');
+  }
+
+  function flipCardRemove(card) {
+    $(card).children('div.back').css('display', 'block');
+    $(card).children('div.front').removeClass('back');
+  }
+
+  function removeFoundCard(card) {
+    $(card).children('div.back').css('display', 'none');
+    $(card).children('div.front').css('display', 'none');
+  }
 });
