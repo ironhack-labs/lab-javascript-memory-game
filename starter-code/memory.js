@@ -32,6 +32,36 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
+MemoryGame.prototype.shuffleCards = function() {
+  var result = _.shuffle(this.cards);
+  this.cards = result;
+};
+MemoryGame.prototype.selectCard = function (cards){
+  $('.card').click(function(){
+    var cardName = $(this).attr('id');
+    memoryGame.selectedCards.push(cardName);
+    if(memoryGame.selectedCards.length == 2){
+      console.log(memoryGame.selectedCards[0] + " - " + memoryGame.selectedCards[1]);// console.log de prueba para ver las dos cartas
+    memoryGame.compareCards();
+    memoryGame.cleanSelectedCards();
+  }
+    console.log(memoryGame.selectedCards);
+  });
+
+
+};
+MemoryGame.prototype.compareCards = function(){
+  if(this.selectedCards[0] == this.selectedCards[1]){
+    console.log("good!!!")  ;
+  }else{
+    console.log("not good!!!");
+  }
+};
+MemoryGame.prototype.cleanSelectedCards = function(){
+  this.selectedCards = [];
+};
+
+
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -42,7 +72,7 @@ var memoryGame;
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
-
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -60,4 +90,30 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+memoryGame.selectCard();
+});
+// Wait for a click on a card
+$(".card").click(function(){
+ var clickCard = String($(this).attr("id"));
+ $(this).find(":first-child").toggle("back");
+ $(this).find(":first-child").next().addClass("back");
+ memoryGame.pairsClicked +=1;
+ memoryGame.selectedCards.push(clickCard);
+ memoryGame.selectCard();
+
+
+ if(memoryGame.selectedCards.length === 2){
+   if(memoryGame.check) {
+     console.log("rigth");
+     $(this).find(":first-child").toggle("back");
+     $(this).find(":first-child").next().toggle("back");
+     memoryGame.selectedCards = [];
+   } else {
+     $(".card").find(":first-child").toggle("back");
+     $(".card").find(":first-child").next().toggle("back");
+     memoryGame.selectedCards = [];
+   }
+ }
+
+
 });
