@@ -13,8 +13,7 @@ html {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
-
-.visible{
+.visible {
   width:71px;
   height:71px;
   float:left;
@@ -24,7 +23,12 @@ html {
 }
 .card .back {
   background-color: #456783;
-
+  width:71px;
+  height:71px;
+  float:left;
+  margin:10px;
+  padding:20px;
+  font-size:64px;
 }
 .card .front.blocked,
 .card .back.blocked {
