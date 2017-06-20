@@ -31,6 +31,7 @@ var MemoryGame = function() {
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
+    this.check = false;
 };
 
 MemoryGame.prototype._shuffleCards = function() {
@@ -55,14 +56,15 @@ MemoryGame.prototype._shuffleCards = function() {
 
 };
 
-MemoryGame.prototype.selectCard = function(card) {
+MemoryGame.prototype.selectCard = function() {
     if (this.selectedCards.length === 2){
       console.log(this.selectedCards[0]);
       console.log(this.selectedCards[1]);
       if(this.selectedCards[0] === this.selectedCards[1]){
         console.log("You got it rigth");
-        this.selectedCards = [];
         this.correctPairs +=1;
+        this.check = true;
+        count =1;
         if(this.correctPairs === 12) {
           this.finished();
         }
@@ -70,8 +72,9 @@ MemoryGame.prototype.selectCard = function(card) {
         console.log(this.correctPairs);
       } else {
         console.log("Wrong guess, try again");
-        this.selectedCards=[];
         this.pairsClicked = 0;
+        this.check = false;
+        count = 1;
       }
     }
 
@@ -94,10 +97,10 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join(' ');
 
-    html += '<div class= "card" id="' + sanitizedName + '" index='+ index +'">';
+    html += '<div class= "card" id="' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '"';
-    html += '    id="'       + pic.img +  '">';
+    html += '    id="'       + index +  '">';
     html += '</div>';
     html += '<div class="front" ';
     html += 'style="background: url(./img/' + pic.img + '") no-repeat"';
@@ -116,6 +119,20 @@ $(document).ready(function(){
     memoryGame.pairsClicked +=1;
     memoryGame.selectedCards.push(clickCard);
     memoryGame.selectCard();
+
+
+    if(memoryGame.selectedCards.length === 2){
+      if(memoryGame.check) {
+        console.log("rigth");
+        $(this).find(":first-child").removeClass("back");
+        $(this).find(":first-child").next().addClass("back");
+        memoryGame.selectedCards = [];
+      } else {
+        $(".card").find(":first-child").addClass("back");
+        $(".card").find(":first-child").next().removeClass("back");
+        memoryGame.selectedCards = [];
+      }
+    }
   });
 
 });
