@@ -63,6 +63,9 @@ MemoryGame.prototype.selectCard = function(card) {
         console.log("You got it rigth");
         this.selectedCards = [];
         this.correctPairs +=1;
+        if(this.correctPairs === 12) {
+          this.finished();
+        }
         this.pairsClicked = 0;
         console.log(this.correctPairs);
       } else {
@@ -72,6 +75,10 @@ MemoryGame.prototype.selectCard = function(card) {
       }
     }
 
+};
+
+MemoryGame.prototype.finished = function() {
+    return "You WIN :)";
 };
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -104,6 +111,8 @@ $(document).ready(function(){
 
   $(".card").click(function(){
     var clickCard = String($(this).attr("id"));
+    $(this).find(":first-child").removeClass("back");
+    $(this).find(":first-child").next().addClass("back");
     memoryGame.pairsClicked +=1;
     memoryGame.selectedCards.push(clickCard);
     memoryGame.selectCard();
