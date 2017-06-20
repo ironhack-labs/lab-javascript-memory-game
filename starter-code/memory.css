@@ -4,6 +4,15 @@ html {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+body {
+  background-image: url("./img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0px;
+  padding 0px;
+
+}
+
 #memory_board {
   background:#dddddd;
 	width:800px;
