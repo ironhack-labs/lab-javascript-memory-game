@@ -103,6 +103,9 @@ $(document).ready(function(){
 
             that.selectedCards.push(that)
             that.correctPairs ++
+            that.chosenCard = null
+            that.pairsClicked = false
+
             removeFoundCard(that)
 
           } else {
@@ -114,6 +117,7 @@ $(document).ready(function(){
                 flipCardRemove(object)
                 flipCardRemove(that.chosenCard)
                 that.chosenCard = null
+                that.pairsClicked = false
               }, 2000)
             }
           }
@@ -125,7 +129,8 @@ $(document).ready(function(){
             setTimeout(function(){
               flipCardRemove(object)
               flipCardRemove(that.chosenCard)
-              // that.chosenCard = null
+              that.chosenCard = null
+              that.pairsClicked = false
             }, 2000)
           }
         }
@@ -145,7 +150,6 @@ function flipCardRemove(card) {
 }
 
 function removeFoundCard(card) {
-  alert('removing')
   $(card).children('div.back').css('display', 'none')
   $(card).children('div.front').css('display', 'none')
 }
