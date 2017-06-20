@@ -1,6 +1,7 @@
 // //******************************************************************
 // // Game Logic
 // //******************************************************************
+var remainTime = 2;
 var MemoryGame = function() {
   this.cards = [{
       name: "aquaman",
@@ -114,9 +115,10 @@ MemoryGame.prototype.randomHeroes = function() {
   return this.card;
 };
 
-MemoryGame.prototype.compareCards = function(){
-  if (this.selectedCards[0] == this.selectedCards[1]){
+MemoryGame.prototype.compareCards = function() {
+  if (this.selectedCards[0] == this.selectedCards[1]) {
     console.log('Zon iguale, primo');
+    this.correctPairs++;
   } else {
     console.log('Ni de flai');
   }
@@ -124,6 +126,10 @@ MemoryGame.prototype.compareCards = function(){
 
 MemoryGame.prototype.cleanSelectedCards = function() {
   this.selectedCards = [];
+};
+
+MemoryGame.prototype.showFrontCard = function() {
+
 };
 
 // //******************************************************************
@@ -155,14 +161,38 @@ $(document).ready(function() {
   document.getElementById('memory_board').innerHTML = html;
   document.getElementById('memory_board').innerHTML = html;
 
-  $('.card').click(function(){
+  $('.card').click(function() {
+    flipCard(this);
     var cardName = $(this).attr('id');
     newGame.selectedCards.push(cardName);
-    if (newGame.selectedCards.length == 2){
-      console.log(newGame.selectedCards[0] + " - " + newGame.selectedCards[1]); // Este mamon se queda
+    if (newGame.selectedCards.length == 2) {
+      console.log(newGame.selectedCards[0] + " - " + newGame.selectedCards[1]);
       newGame.compareCards();
+      var intervalId = setInterval(function() {
+        if (remainTime === 0) {
+          flipCardRemove(this);
+          clearInterval(intervalId);
+        } else {
+          remainTime--;
+        }
+      }, 1 * 1000);
       newGame.cleanSelectedCards();
     }
     console.log(newGame.selectedCards);
   });
+
+  function flipCard(card) {
+    $(card).children('div.back').css('display', 'none');
+    $(card).children('div.front').addClass('back');
+  }
+
+  function flipCardRemove(card) {
+    $(card).children('div.back').css('display', 'block');
+    $(card).children('div.front').removeClass('back');
+  }
+
+  function removeFoundCard(card) {
+    $(card).children('div.back').css('display', 'none');
+    $(card).children('div.front').css('display', 'none');
+  }
 });
