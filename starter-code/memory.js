@@ -62,6 +62,7 @@ MemoryGame.prototype.selectCard = function() {
       console.log(this.selectedCards[1]);
       if(this.selectedCards[0] === this.selectedCards[1]){
         console.log("You got it rigth");
+        this.selectedCards = [];
         this.correctPairs +=1;
         this.check = true;
         count =1;
@@ -72,6 +73,7 @@ MemoryGame.prototype.selectCard = function() {
         console.log(this.correctPairs);
       } else {
         console.log("Wrong guess, try again");
+        this.selectedCards = [];
         this.pairsClicked = 0;
         this.check = false;
         count = 1;
@@ -121,18 +123,18 @@ $(document).ready(function(){
     memoryGame.selectCard();
 
 
-    if(memoryGame.selectedCards.length === 2){
-      if(memoryGame.check) {
-        console.log("rigth");
-        $(this).find(":first-child").removeClass("back");
-        $(this).find(":first-child").next().addClass("back");
-        memoryGame.selectedCards = [];
-      } else {
-        $(".card").find(":first-child").addClass("back");
-        $(".card").find(":first-child").next().removeClass("back");
-        memoryGame.selectedCards = [];
-      }
-    }
+    // if(memoryGame.selectedCards.length === 2){
+    //   if(memoryGame.check) {
+    //     console.log("rigth");
+    //     $(this).find(":first-child").removeClass("back");
+    //     $(this).find(":first-child").next().addClass("back");
+    //     memoryGame.selectedCards = [];
+    //   } else {
+    //     $(".card").find(":first-child").addClass("back");
+    //     $(".card").find(":first-child").next().removeClass("back");
+    //     memoryGame.selectedCards = [];
+    //   }
+    // }
   });
 
 });
