@@ -29,6 +29,19 @@ html {
   pointer-events: none;
 }
 
+.flipped {
+  display: none;
+}
+
+.showFront {
+  width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
