@@ -1,6 +1,7 @@
 // //******************************************************************
 // // Game Logic
 // //******************************************************************
+
 var MemoryGame = function() {
   this.cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
@@ -33,6 +34,17 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+//Shuffling
+MemoryGame.prototype.shuffle = function () {
+  this.cards = _.shuffle(this.cards);
+};
+
+//select cards
+MemoryGame.prototype.selectCard = function (card) {
+  console.log(card);
+};
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -42,6 +54,10 @@ var memoryGame;
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
+
+  memoryGame.shuffle();
+  console.log(memoryGame.cards);
+
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -60,4 +76,20 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  var preArray;
+
+  $('.card').click(function(){
+    preArray=$(this).attr("id");
+    console.log(preArray);
+    memoryGame.selectedCards.push(preArray);
+    console.log(memoryGame.selectedCards);
+  });
+  if (memoryGame.selectedCards.length === 2){
+    if (memoryGame.selectedCards[0]===memoryGame.selectedCards[1]){
+      console.log("IGUAL");
+      
+    }else{
+      memoryGame.selectedCards.splice(0, 2);
+    }
+  }
 });
