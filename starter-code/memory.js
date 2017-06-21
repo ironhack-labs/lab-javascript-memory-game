@@ -46,29 +46,35 @@ MemoryGame.prototype.shuffleCards = function() {
 };
 // SELECT A CARD
 MemoryGame.prototype.selectCard = function(card) {
+if(this.selectedCards.length ===0) {
   this.selectedCards.push(card);
-  if(this.selectedCards.length === 2) {
+  console.log(this.selectedCards);
+} else if (this.selectedCards.length === 1) {
+  this.selectedCards.push(card);
+  if(this.selectedCards[0]===this.selectedCards[1]){
     this.pairsClicked++;
-  } else {
-  this.selectedCards.push(card);
-} if (this.selectedCards[0] === this.selectedCards[1]){
-  this.selectedCards = [];
-  this.correctedPairs++;
-  //FLIP CARD
+    this.correctPairs++;
+    this.selectedCards = [];
+  $("#pairs_clicked").html(this.pairsClicked);
+  $("#pairs_guessed").html(this.correctPairs);
 } else {
-  return "WRONG GUESS";
+  function flipBack() {
+
+    this.pairsClicked++;
+    $("#pairs_clicked").html(this.pairsClicked);
+    this.selectedCards = [];
+    }
+    setTimeout(flipBack,1000);
+  }
 }
 };
+
 // WIN FUNCTION
 MemoryGame.prototype.finished = function () {
   if(this.correctedPairs === this.cards/2) {
     return ("YOU WIN!");
 }
 };
-//Psuedo-Code
-// Shuffle cards
-//
-
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -97,26 +103,12 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
   $('div.front').hide(); // This hides all front displays at the beginning of game
+
   $('.back').on('click',function(){
     var index = $('.back').index(this);
-    console.log(index);
     $(this).hide();
     $('div.front').eq(index).show();
-    // $('.front').css("display","block");
-    // $(this).toggleClass('front');
-
-  });
+    memoryGame.selectCard($(this).parent().attr('id'));
+    });
 
 });
-
-//Toggle back class
-//enable front class
-
-// 'style="background: url(\'img/' + pic.img + '\') no-repeat"'
-
-//
-// <div class="back" name="img/aquaman" id="aquaman.jpg"></div>
-// <div class="front" style="background: url('img/aquaman.jpg') no-repeat;" id="aquaman.jpg"></div>
-//$('div.back').hide(); this will hide all backs and show front
-//$('div.car:nth-child(index starting from 1)') returns card
-//$('div.card').get(0) returns specific card to flip
