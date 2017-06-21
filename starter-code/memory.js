@@ -58,7 +58,7 @@ MemoryGame.prototype.selectCard = function(parentEleCard) {
     if (card[0].name === this.selectedCards[0].name) {
       this.correctPairs+=1;      
     } else {
-      this.pairsClicked+=1;
+     
       // tell user "Wrong Guess"
       //unflip second
       var self = this;
