@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: gray no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -24,21 +24,57 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: white; /*rgba(215, 44, 44, 0.8);*/
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  /*margin-left: 75%;*/
 }
+
+.success {
+  -moz-animation: success 1s ease-out;
+  -moz-animation-iteration-count: 1;
+
+  -webkit-animation: success 1s ease-out;
+  -webkit-animation-iteration-count: 1;
+
+  -ms-animation: success 1s ease-out;
+  -ms-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes success {
+    0% { background-color: none; }
+    50% { background-color: #42f47d; }
+    100% { background-color: white; }
+}
+
+.failure {
+  -moz-animation: failure 1s ease-out;
+  -moz-animation-iteration-count: 1;
+
+  -webkit-animation: failure 1s ease-out;
+  -webkit-animation-iteration-count: 1;
+
+  -ms-animation: failure 1s ease-out;
+  -ms-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes failure {
+    0% { background-color: none; }
+    50% { background-color: #f90000; }
+    100% { background-color: white; }
+}
+
 
 .container {
   position: relative;
@@ -54,7 +90,7 @@ h1 {
 }
 
 h2 {
-  color: #456783;
+  color: black;
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
