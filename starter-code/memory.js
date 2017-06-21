@@ -63,12 +63,13 @@ MemoryGame.prototype.selectCard = function() {
       if(this.selectedCards[0] === this.selectedCards[1]){
         console.log("You got it rigth");
         this.correctPairs +=1;
+        this.cleanCardsSelected();
         if(this.correctPairs === 12) {
           this.finished();
         }
       } else {
         console.log("Wrong guess, try again");
-        this.check = false;
+        this.cleanCardsSelected();
       }
     }
 
@@ -117,9 +118,10 @@ $(document).ready(function(){
     memoryGame.pairsClicked +=1;
     memoryGame.selectedCards.push(clickCard);
     memoryGame.selectCard();
-    memoryGame.cleanCardsSelected();
 
-    
+    if (memoryGame.correctPairs > 0){
+      $("#pairs_guessed").html(""+memoryGame.correctPairs);
+    }
 
     // if(memoryGame.selectedCards.length === 2){
     //   if(memoryGame.check) {
