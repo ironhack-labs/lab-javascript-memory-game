@@ -33,17 +33,39 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype.shuffleCards = function() {
+  this.cards = _.shuffle(this.cards);
+};
+
+MemoryGame.prototype.selectCard = function(card) {
+  this.selectedCards.push(card);
+};
+
+MemoryGame.prototype.checkIfEqual = function() {
+  if(this.selectedCards[0] == this.selectedCards[1]){
+    console.log("You won!");
+    this.correctPairs += 1;
+  }else{
+    console.log("Try again!");
+  }
+}
+
+MemoryGame.prototype.emptySelectedCards = function() {
+  this.selectedCards = [];
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
 
-var memoryGame;
+var game;
 
 $(document).ready(function(){
-  memoryGame = new MemoryGame();
+  game = new MemoryGame();
   var html = '';
+  game.shuffleCards();
 
-  memoryGame.cards.forEach(function(pic, index) {
+  game.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
     html += '<div class= "card" id="card_' + sanitizedName + '">';
@@ -60,4 +82,15 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  $(".card").click(function(){
+    var card = $(this).attr("id");
+    game.selectCard(card);
+    if(game.selectedCards.length == 2){
+      game.checkIfEqual();
+      game.pairsClicked += 1;
+      game.emptySelectedCards();
+      console.log(game.pairsClicked + " guessed pairs");
+      console.log(game.correctPairs + " correct pairs");
+    }
+  });
 });
