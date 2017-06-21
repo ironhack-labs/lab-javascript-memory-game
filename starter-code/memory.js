@@ -31,8 +31,42 @@ var MemoryGame = function() {
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
+    this.shuffleCards();
+
+};
+MemoryGame.prototype.shuffleCards = function() {
+  this.cards = _.shuffle(this.cards);
+
 };
 
+MemoryGame.prototype.selectCard = function(card){
+  this.selectedCards.push(card);
+  //console.log(this.selectedCards);
+  if (this.selectedCards.length == 2) {
+    this.pairsClicked++;
+
+      if (this.selectedCards[0] === this.selectedCards[1]) {
+        this.correctPairs++;
+        this.selectedCards = [];
+        this.isCorrect = true;
+
+        console.log("Parejas correctas: " + this.correctPairs);
+            console.log("Parejas elegidas: "+ this.pairsClicked);
+            return true;
+      }else{
+        console.log('no coinciden, reiniciamos turno');
+
+        this.selectedCards = [];
+      
+        return false;
+      }
+  }else {
+    console.log("elige otra carta");
+  }
+};
+MemoryGame.prototype.finish = function(){
+
+};
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -46,7 +80,7 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-    html += '<div class= "card" id="card_' + sanitizedName + '">';
+    html += '<div class= "card" id="' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="img/' + pic.name + '"';
     html += '    id="'       + pic.img +  '">';
@@ -59,5 +93,20 @@ $(document).ready(function(){
   });
 
   // Add all the divs to the HTML
+
   document.getElementById('memory_board').innerHTML = html;
+
+
+  $(".card").click(function(){
+     var card = $(this).attr('id');
+
+     console.log(card);
+     $(this).find(':first-child').removeClass('back');
+    $(this).find(':first-child').next().addClass('back');
+
+  memoryGame.selectCard(card);
+
+
+  });
+
 });
