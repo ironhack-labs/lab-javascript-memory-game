@@ -67,9 +67,9 @@ MemoryGame.prototype._shuffleCards = function(array) {
 
 MemoryGame.prototype.selectCard = function(cardPair) {
 
-  if (memoryGame.selectedCards.length === 1) {
+  if (cardPair.length === 1) {
     console.log('only one card selected');
-  } else if (memoryGame.selectedCards.length > 1) {
+  } else if (cardPair.length > 1) {
 
     if ( cardPair[0] === cardPair[1] ) {
       updatePairsClicked();
@@ -81,8 +81,8 @@ MemoryGame.prototype.selectCard = function(cardPair) {
       if (memoryGame.correctPairs === (memoryGame.cards.length / 2)) {
         memoryGame.finished();
       }
-
     }
+
     if ( cardPair[0] !== cardPair[1] ) {
       memoryGame.selectedCards = [];
       updatePairsClicked();
