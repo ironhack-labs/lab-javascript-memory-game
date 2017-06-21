@@ -38,22 +38,35 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: #fff;
+  position: absolute;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
-  width:200px;
+  width: 200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  margin-left: 80%;
+  transition: all 0.4s ease-out;
+    -ms-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
 }
 
+#score.red{
+  background:red;
+  transition: all 0.4s ease-out;
+    -ms-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+}
 .container {
   position: relative;
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  background: rgba(0,0,0,0.7);
+  color: #fff;
   font-weight: bolder;
   font-size: 67px;
   text-align: center;

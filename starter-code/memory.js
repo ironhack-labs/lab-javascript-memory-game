@@ -1,11 +1,18 @@
-
+// //******************************************************************
+// // Helper Functions
+// //******************************************************************
 var flipBack = function(item){
-  $('#'+item).find('.front').hide();
-  console.log(item);
+  $('#'+item+' .front').fadeOut(300);
 };
 
 var updateHtml = function(node,value){
   $(node).html(value);
+};
+var displayRed = function(){
+  $("#score").addClass("red");
+  setTimeout(function(){
+    $("#score").removeClass("red");
+  }, 500);
 };
 
 // //******************************************************************
@@ -52,24 +59,33 @@ MemoryGame.prototype.selectCard = function(card){
   this.selectedCards.push(card);
 
   if(this.selectedCards.length==2){
+
     this.pairsClicked+=1;
     updateHtml('#pairs_clicked',this.pairsClicked);
 
     if(this.selectedCards[0]==card){
+
       this.correctPairs += 1;
       updateHtml('#pairs_guessed',this.correctPairs);
       this.selectedCards = [];
+
     }else{
+
       var prev=this.selectedCards[0];
       var current=card;
+
       setTimeout(function(){
         flipBack(prev);
-      }, 1000);
+      }, 600);
+
       setTimeout(function(){
         flipBack(current);
-      }, 1500);
-      console.log('wroong!');
+      }, 550);
+
+      //Wrong answer
+      displayRed();
       this.selectedCards = [];
+
     }
   }
 };
@@ -104,10 +120,26 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  var counter=0;
+  var totalPairs=13;
   $('.back').on('click', function(){
     var card=$(this).parent().attr('id');
     memoryGame.selectCard(card);
     $(this).find('div').show();
+
+    //Finished
+    if(memoryGame.correctPairs==totalPairs){
+      swal({
+        title: 'You win!',
+        text: "Want to give it another try?",
+        type: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "Nah, I'm good.",
+        confirmButtonText: 'Yes!'
+      }).then(function () {
+        location.reload();
+      });
+    }
   });
 });
