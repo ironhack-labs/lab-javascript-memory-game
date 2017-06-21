@@ -76,20 +76,20 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
-var firstCard;
-var secondCard;
+  var preArray;
 
   $('.card').click(function(){
-    firstCard=$(this).attr("id");
-    console.log(firstCard);
+    preArray=$(this).attr("id");
+    console.log(preArray);
+    memoryGame.selectedCards.push(preArray);
+    console.log(memoryGame.selectedCards);
   });
-
-  $('.card').click(function(){
-    secondCard=$(this).attr("id");
-    console.log(secondCard);
-  });
-
-  if (firstCard == secondCard) {
-
+  if (memoryGame.selectedCards.length === 2){
+    if (memoryGame.selectedCards[0]===memoryGame.selectedCards[1]){
+      console.log("IGUAL");
+      
+    }else{
+      memoryGame.selectedCards.splice(0, 2);
+    }
   }
 });
