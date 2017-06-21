@@ -33,6 +33,29 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype.shuffleCards = function () {
+  this.cards = _.shuffle(this.cards);
+};
+
+MemoryGame.prototype.selectCard = function(card){
+  this.selectedCards.push(card);
+  console.log(this.selectedCards);
+  if (this.selectedCards.length <= 1){
+    card++;
+  } else {
+    if (this.selectedCards[0]=== this.selectedCards[1]){
+      this.pairsClicked++;
+      console.log("Correct Pairs!! That's the way to go!");
+      this.selectedCards=[];
+    } else{
+      flipBack(card);
+      console.log("You'll better play another game. Looser.");
+      this.selectedCards=[];
+    }
+  }
+};
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -41,6 +64,8 @@ var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+  memoryGame.shuffleCards();
+
   var html = '';
 
   memoryGame.cards.forEach(function(pic, index) {
@@ -58,6 +83,23 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $(".card").click(function(){
+    flip($(this));
+    var cardSelected = $(this).attr("id");
+    return memoryGame.selectCard(cardSelected);
+  });
 });
+
+function flip(card) {
+  $(card).children('div.back').css('display', 'none');
+  $(card).children('div.front').addClass('back');
+}
+
+function flipBack(card) {
+  $(card).children('div.back').css('display', 'block');
+  $(card).children('div.front').removeClass('back');
+}
