@@ -108,30 +108,65 @@ MemoryGame.prototype.shuffleCards = function() {
   var result = _.shuffle(this.cards);
   this.cards = result;
 };
-MemoryGame.prototype.selectCard = function(cards) {
-  if (this.selectedCards.length !== 0) {
-    this.pairsClicked++;
-    if (this.compareCards() === true) {
-      this.cleanSelectedCards();
-      this.correctPairs++;
-    } else {
-      console.log("Fallaste");
 
+//MemoryGame.prototype.selectCard = function() {
+  if (this.selectedCards.length === 2) {
+      console.log(this.selectedCard[0]);
+      console.log(this.selectedCard[0]);
+      this.pairsClicked++;
+      console.log(this.pairsClicked);
+      console.log(memoryGame.selectedCards);
+      if (this.compareCards() === true) {
+        this.cleanSelectedCards();
+        this.correctPairs++;
+        } else {
+        console.log("Fallaste");
+
+//    }
+
+//  }
+//};
+
+
+/*MemoryGame.prototype.selectCard = function() {
+    if (this.selectedCards.length === 2){
+      console.log(this.selectedCards[0]);
+      console.log(this.selectedCards[1]);
+      if(this.selectedCards[0] === this.selectedCards[1]){
+        console.log("Acierto");
+        this.selectedCards = [];
+        this.correctPairs +=1;
+        count =1;
+        if(this.correctPairs === 12) {
+          this.finished();
+        }
+        this.pairsClicked = 0;
+        console.log(this.correctPairs);
+      } else {
+        console.log("Error");
+        this.selectedCards = [];
+        this.pairsClicked = 0;
+        count = 1;
+      }
     }
 
-  }
-};
+};*/
 
 MemoryGame.prototype.compareCards = function() {
   if (this.selectedCards[0] == this.selectedCards[1]) {
-    console.log('Zon iguale, primo');
+    console.log('Iguales');
+    this.correctPairs += 1;
   } else {
-    console.log('Ni de flai');
+    console.log('Distintas');
   }
 };
 
 MemoryGame.prototype.cleanSelectedCards = function() {
   this.selectedCards = [];
+};
+
+MemoryGame.prototype.finished = function (){
+  console.log("Has ganado");
 };
 
 // //******************************************************************
@@ -162,10 +197,25 @@ $(document).ready(function() {
     // Add all the divs to the HTML
     document.getElementById('memory_board').innerHTML = html;
 
-    $('.card').click(function() {
-      var cardName = $(this).attr('id');
-      memoryGame.selectedCards.push(cardName);
-    });
+    //$('.card').click(function() {
+    //  var cardName = $(this).attr('id');
+    //  memoryGame.selectedCards.push(cardName);
+    //});
+
+    $(".card").click(function(){
+       var clickCard = String($(this).attr("id"));
+       $(this).find(":first-child").removeClass("back");
+       $(this).find(":first-child").next().addClass("back");
+       memoryGame.pairsClicked +=1;
+       memoryGame.selectedCards.push(clickCard);
+       memoryGame.selectCard();
+     });
+
+
+
+
+
+
       memoryGame.selectCard();
       console.log(memoryGame.selectedCards);
 });
