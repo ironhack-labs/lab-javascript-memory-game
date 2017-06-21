@@ -109,7 +109,7 @@ MemoryGame.prototype.shuffleCards = function() {
   this.cards = result;
 };
 
-//MemoryGame.prototype.selectCard = function() {
+MemoryGame.prototype.selectCard = function() {
   if (this.selectedCards.length === 2) {
       console.log(this.selectedCard[0]);
       console.log(this.selectedCard[0]);
@@ -119,8 +119,9 @@ MemoryGame.prototype.shuffleCards = function() {
       if (this.compareCards() === true) {
         this.cleanSelectedCards();
         this.correctPairs++;
-        } else {
-        console.log("Fallaste");
+      } else{}
+    }};
+
 
 //    }
 
