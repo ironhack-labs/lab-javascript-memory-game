@@ -16,7 +16,15 @@ html {
 
 
 .card .back {
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
   background-color: #456783;
+}
+.card .actual-image {
 	width:71px;
 	height:71px;
 	float:left;
@@ -24,9 +32,11 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+
 .card .front.blocked,
 .card .back.blocked {
-  pointer-events: none;
+
 }
 
 #score {
