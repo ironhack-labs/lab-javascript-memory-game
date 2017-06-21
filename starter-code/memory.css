@@ -1,11 +1,13 @@
 html {
-  background: url(img/background.jpg) no-repeat;
-  background-size: cover;
+  background: url(img/superhero.png) repeat;
+  background-size: contain;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
-
+.win,
+.loose,
 #memory_board {
-  background:#dddddd;
+  background:white;
+  border-color: 2px black solid;
 	width:800px;
 	height:540px;
 	padding:70px;
@@ -14,8 +16,8 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-
-.card .back {
+.show,
+.card .back  {
   background-color: #456783;
 	width:71px;
 	height:71px;
@@ -24,6 +26,21 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+
+.win,
+.loose {
+  display:none;
+}
+
+.win {
+  background: url(img/win.png) repeat;
+};
+.loose {
+  background: url(img/loose.jpg) repeat;
+}
+
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
