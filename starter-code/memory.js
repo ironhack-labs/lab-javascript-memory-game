@@ -65,9 +65,7 @@ MemoryGame.prototype._shuffleCards = function(array) {
 
 };
 
-MemoryGame.prototype.selectCard = function(card) {
-
-  var cardPair = memoryGame.selectedCards;
+MemoryGame.prototype.selectCard = function(cardPair) {
 
   if (memoryGame.selectedCards.length === 1) {
     console.log('only one card selected');
@@ -96,7 +94,7 @@ MemoryGame.prototype.selectCard = function(card) {
 
 MemoryGame.prototype.finished = function() {
   $('h2').html('Done!');
-  $('h2, p').solitaireVictory();
+  $('h2, p, #score').solitaireVictory();
 };
 
 // //******************************************************************
