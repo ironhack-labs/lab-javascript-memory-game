@@ -99,20 +99,47 @@ var MemoryGame = function() {
       img: "thor.jpg"
     },
   ];
-
   this.selectedCards = [];
   this.pairsClicked = 0;
   this.correctPairs = 0;
-
 };
 
-MemoryGame.prototype._shuffleCards = function() {
-  var shuffled = _.shuffle(this.cards);
-  return shuffled;
+MemoryGame.prototype.shuffleCards = function() {
+  var result = _.shuffle(this.cards);
+  this.cards = result;
 };
 
-MemoryGame.prototype.selectCard = function(card) {
+MemoryGame.prototype.flipCard = function(card) {
+  if (this.selectedCards.className == "back"){
+    this.selectedCards.className = "front";
+  } else if (this.selectedCards.className == "front"){
+    this.selectedCards.className = "back";
+  }
+};
 
+MemoryGame.prototype.flipCardsBack = function() {
+  this.flipCard(this.selectedCards[0]);
+  this.flipCard(this.selectedCards[1]);
+  this.selectedCards = [];
+};
+
+MemoryGame.prototype.selectCard = function(cards) {
+};
+
+MemoryGame.prototype.compareCards = function() {
+  if (this.selectedCards[0] == this.selectedCards[1]) {
+    this.selectedCards = [];
+    this.correctPairs ++;
+    this.flipCard(this.selectedCards[1]);
+    console.log('Son iguales');
+  } else {
+    this.flipCardsBack();
+    console.log('No son iguales');
+  }
+};
+
+MemoryGame.prototype.cleanSelectedCards = function() {
+  this.selectedCards = [];
 };
 
 // //******************************************************************
@@ -124,7 +151,7 @@ var memoryGame;
 $(document).ready(function() {
   memoryGame = new MemoryGame();
   var html = '';
-
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -140,24 +167,18 @@ $(document).ready(function() {
     html += '</div>';
   });
 
-
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  $(".card").click(function() {
-    console.log(this);
-  });
-
   $('.card').click(function() {
-    if (this.selectedCards[i] == "1") {
-      this.pairsClicked = "1";
-      if (this.id == this.selectCards) {
-        this.selectedCards = [];
-        this.correctPairs = "1";
-      }
-    } else {
-      this.selectedCards.push(this.id);
+    var cardName = $(this).attr('id');
+    memoryGame.selectedCards.push(cardName);
+    if (memoryGame.selectedCards.length == 2) {
+      console.log(memoryGame.selectedCards[0] + " - " + memoryGame.selectedCards[1]);
+      memoryGame.compareCards();
+      memoryGame.cleanSelectedCards();
     }
+    console.log(memoryGame.selectedCards);
   });
 
 });
