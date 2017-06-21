@@ -32,7 +32,7 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
     this.shuffleCards();
-    this.isCorrect = false;
+
 };
 MemoryGame.prototype.shuffleCards = function() {
   this.cards = _.shuffle(this.cards);
@@ -55,7 +55,9 @@ MemoryGame.prototype.selectCard = function(card){
             return true;
       }else{
         console.log('no coinciden, reiniciamos turno');
+
         this.selectedCards = [];
+      
         return false;
       }
   }else {
@@ -94,22 +96,15 @@ $(document).ready(function(){
 
   document.getElementById('memory_board').innerHTML = html;
 
-   function flip(){
-     if (memoryGame.isCorrect){
-       console.log('acertado');
-     }else {
-        $(".card").find(':first-child').addClass('back');
-        $(".card").find(':first-child').next().removeClass('back');
-      }
-  }
+
   $(".card").click(function(){
      var card = $(this).attr('id');
-     console.log(card);
 
-  if(memoryGame.selectCard(card);) 
-   $(this).find(':first-child').removeClass('back');
+     console.log(card);
+     $(this).find(':first-child').removeClass('back');
     $(this).find(':first-child').next().addClass('back');
 
+  memoryGame.selectCard(card);
 
 
   });
