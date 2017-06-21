@@ -1,5 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: url("img/background.jpg") no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -14,15 +16,22 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
+.card .visible{
+  display: block;
+  width:71px;
+  height:71px;
+  float:left;
+  margin:10px;
+  padding:20px;
+  font-size:64px;
+}
+
+.card .hidden{
+  display: none;
+}
 
 .card .back {
   background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
 }
 .card .front.blocked,
 .card .back.blocked {
@@ -30,6 +39,9 @@ html {
 }
 
 #score {
+  position: fixed;
+  right: 30px;
+  top: 160px;
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
   font-size: 30px;
@@ -44,13 +56,37 @@ html {
   position: relative;
 }
 
+#win-panel{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(215, 40, 40, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#win-panel h1{
+  color: #dddddd;
+  text-shadow: 0px 0px 20px rgba(215, 40, 40, 0.9);
+  font-family: "Oswald";
+  font-size: 120px;
+}
+
+#win-panel.hidden{
+  display: none;
+}
+
 h1 {
-  color: rgba(215, 40, 40, 0.9);
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
-
+  text-shadow: 0px 0px 20px rgba(215, 40, 40, 0.9);
+  font-family: "Oswald";
+  text-transform: uppercase;
+  color: #dddddd;
 }
 
 h2 {
