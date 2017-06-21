@@ -14,9 +14,21 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-
 .card .back {
-  background-color: #456783;
+  background: url(img/cardback.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background-color: #456783;*/
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+.card .front {
+  background-repeat: no-repeat;
+  background-size: cover;
 	width:71px;
 	height:71px;
 	float:left;
@@ -30,7 +42,7 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: white;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
@@ -45,7 +57,7 @@ html {
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: white;
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
