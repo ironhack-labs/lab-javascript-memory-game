@@ -59,6 +59,7 @@ function flipCard(cardId, side) {
 
 MemoryGame.prototype.selectCard = function(card) {
   if (this.selectedCards.length == 1) {
+    console.log(this.selectedCards);
     if (card.id === this.selectedCards[0].id) {
       alert("You can't click on the same card twice!");
       return;
@@ -75,16 +76,16 @@ MemoryGame.prototype.selectCard = function(card) {
         return;
       }
       this.bindKeys();
+      this.selectedCards = [];
     } else {
-      var savedId = this.selectedCards[0].id;
       var self = this;
       setTimeout(function(){
         flipCard(card.id, 'down');
-        flipCard(savedId, 'down');
+        flipCard(self.selectedCards[0].id, 'down');
+        self.selectedCards = [];
         self.bindKeys();
       }, 1000);
     }
-    this.selectedCards = [];
   } else {
     flipCard(card.id, 'up');
     this.selectedCards.push(card);
