@@ -33,16 +33,51 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype.shuffleCards = function () {
+  var result = _.shuffle(this.cards);
+  this.cards = result;
+};
+MemoryGame.prototype.selectCard = function (cards) {
+
+};
+
+MemoryGame.prototype.compareCards = function(){
+  if (this.selectedCards[0] == this.selectedCards[1]){
+    console.log('Pair Guessed!!');
+    this.correctPairs +=1;
+    this.pairsClicked +=1;
+  } else {
+    console.log('Try again');
+    this.pairsClicked +=1;
+  }
+};
+
+MemoryGame.prototype.cleanSelectedCards = function(){
+  this.selectedCards = [];
+};
+
+MemoryGame.prototype.finished = function() {
+  if(this.pairsClicked === 25) {
+    alert("GAME OVER! RELOAD THE PAGE TO PLAY AGAIN");
+  } else if (this.correctPairs === 12) {
+    alert("YOU WIN!! RELOAD THE PAGE TO PLAY AGAIN");
+	}
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
 
 var memoryGame;
+function printScore() {
+	$("#pairs_clicked").html(memoryGame.pairsClicked);
+	$("#pairs_guessed").html(memoryGame.correctPairs);
+}
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
-
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -60,4 +95,34 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $('.card').click(function(){
+    var cardName = $(this).attr('id');
+    memoryGame.selectedCards.push(cardName);
+    if (memoryGame.selectedCards.length == 2){
+      console.log(memoryGame.selectedCards[0] + " - " + memoryGame.selectedCards[1]); // Este mamon se queda
+      memoryGame.compareCards();
+      memoryGame.cleanSelectedCards();
+    }
+    console.log(memoryGame.selectedCards);
+    printScore();
+    memoryGame.finished();
+  });
+
+  function turnCard(card) {
+      $(card).children('div.back').css('display', 'none');
+      $(card).children('div.front').addClass('back');
+    }
+
+    function turnCardRemove(card) {
+      $(card).children('div.back').css('display', 'block');
+      $(card).children('div.front').removeClass('back');
+    }
+
+    function removeFoundCard(card) {
+      $(card).children('div.back').css('display', 'none');
+      $(card).children('div.front').css('display', 'none');
+    }
+
+
 });
