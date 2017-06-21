@@ -16,7 +16,7 @@ html {
 
 
 .card .back {
-  background-color: #456783;
+  background-color: red;
 	width:71px;
 	height:71px;
 	float:left;
@@ -27,6 +27,8 @@ html {
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
+  transform: rotatez(180deg);
+  transition: 1s ease-in 1s;
 }
 
 #score {
