@@ -129,7 +129,8 @@ MemoryGame.prototype.selectCard = function(card) {
       op: 0, //Operation 0: Uncheck card
       card: [card]
     };
-  } else if (this.selectedCards[0].replace(/[0-9]/, '') === card.replace(/[0-9]/, '')) {
+    //Remove number from ther class name to get the card type
+  } else if (this.selectedCards[0].replace(/[0-9]+/, '') === card.replace(/[0-9]+/, '')) {
     oldCard = this.selectedCards[0];
     this.selectedCards = [];
     this.pairsClicked++;
@@ -160,28 +161,9 @@ MemoryGame.prototype.selectCard = function(card) {
 var memoryGame;
 
 $(document).ready(function() {
-  memoryGame = new MemoryGame();
-  memoryGame._shuffleCards();
-  console.table(memoryGame.cards);
-  var html = '';
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+  resetGame();
 
-    html += '<div class= "card" id="card_' + sanitizedName + index + '">';
-    html += '<div class="back visible"';
-    html += '    name="img/' + pic.name + '"';
-    html += '    id="' + pic.img + '">';
-    html += '</div>';
-    html += '<div class="front hidden" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    id="' + pic.img + '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
 
   $(".card").click(function() {
     var card = $(this);
@@ -199,8 +181,23 @@ $(document).ready(function() {
       case 1:
         console.log("Pairs");
         showCard($("#" + result.card[1]));
+        //Detach listenerts
+        $("#" + result.card[0]).off("click");
+        $("#" + result.card[1]).off("click");
+        //Update scoreboards
         $("#pairs_clicked").html(result.pairsClicked);
-        $("#pairs_clicked").html(result.correctPairs);
+        $("#pairs_guessed").html(result.correctPairs);
+
+        //Win condition
+        if (result.correctPairs == 12) {
+          $("#win-panel").removeClass("hidden");
+
+          //Reset game
+          setTimeout(function() {
+            resetGame();
+
+          }, 3000);
+        }
         break;
       case 2:
         console.log("Fail");
@@ -218,6 +215,39 @@ $(document).ready(function() {
   // //******************************************************************
   // // Helpers
   // //******************************************************************
+
+  /**
+   * resetGame - Resets the MemoryGame and updates the board
+   *
+   */
+  function resetGame() {
+    $("#win-panel").addClass("hidden");
+    memoryGame = new MemoryGame();
+    memoryGame._shuffleCards();
+    console.table(memoryGame.cards);
+    var html = '';
+
+    memoryGame.cards.forEach(function(pic, index) {
+      var sanitizedName = pic.name.split(' ').join('_');
+
+      html += '<div class= "card" id="card_' + sanitizedName + index + '">';
+      html += '<div class="back visible"';
+      html += '    name="img/' + pic.name + '"';
+      html += '    id="' + pic.img + '">';
+      html += '</div>';
+      html += '<div class="front hidden" ';
+      html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+      html += '    id="' + pic.img + '">';
+      html += '</div>';
+      html += '</div>';
+    });
+
+    // Add all the divs to the HTML
+    document.getElementById('memory_board').innerHTML = html;
+    $("#pairs_clicked").html("0");
+    $("#pairs_guessed").html("0");
+  }
+
   showCard = function(card) {
     card.find(".back").addClass("hidden");
     card.find(".back").removeClass("visible");
