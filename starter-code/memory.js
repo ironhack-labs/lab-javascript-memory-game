@@ -63,12 +63,14 @@ MemoryGame.prototype.selectCard = function() {
       if(this.selectedCards[0] === this.selectedCards[1]){
         console.log("You got it rigth");
         this.correctPairs +=1;
+        this.pairsClicked +=1;
         this.cleanCardsSelected();
         if(this.correctPairs === 12) {
           this.finished();
         }
       } else {
         console.log("Wrong guess, try again");
+        this.pairsClicked +=1;
         this.cleanCardsSelected();
       }
     }
@@ -115,12 +117,14 @@ $(document).ready(function(){
     var clickCard = String($(this).attr("id"));
     $(this).find(":first-child").removeClass("back");
     $(this).find(":first-child").next().addClass("back");
-    memoryGame.pairsClicked +=1;
     memoryGame.selectedCards.push(clickCard);
     memoryGame.selectCard();
 
     if (memoryGame.correctPairs > 0){
       $("#pairs_guessed").html(""+memoryGame.correctPairs);
+    }
+    if (memoryGame.pairsClicked > 0){
+      $("#pairs_clicked").html(""+memoryGame.pairsClicked);
     }
 
     // if(memoryGame.selectedCards.length === 2){
