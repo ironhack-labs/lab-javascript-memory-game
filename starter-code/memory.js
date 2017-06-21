@@ -161,56 +161,7 @@ MemoryGame.prototype.selectCard = function(card) {
 var memoryGame;
 
 $(document).ready(function() {
-
   resetGame();
-
-
-  $(".card").click(function() {
-    var card = $(this);
-    var result = memoryGame.selectCard(card.attr('id'));
-
-    switch (result.op) {
-      case -1:
-        console.log("Select card");
-        showCard($("#" + result.card[0]));
-        break;
-      case 0:
-        console.log("Unselect card");
-        hideCard($("#" + result.card[0]));
-        break;
-      case 1:
-        console.log("Pairs");
-        showCard($("#" + result.card[1]));
-        //Detach listenerts
-        $("#" + result.card[0]).off("click");
-        $("#" + result.card[1]).off("click");
-        //Update scoreboards
-        $("#pairs_clicked").html(result.pairsClicked);
-        $("#pairs_guessed").html(result.correctPairs);
-
-        //Win condition
-        if (result.correctPairs == 12) {
-          $("#win-panel").removeClass("hidden");
-
-          //Reset game
-          setTimeout(function() {
-            resetGame();
-
-          }, 3000);
-        }
-        break;
-      case 2:
-        console.log("Fail");
-        showCard($("#" + result.card[1]));
-        $("#pairs_clicked").html(result.pairsClicked);
-
-        setTimeout(function() {
-          hideCard($("#" + result.card[0]));
-          hideCard($("#" + result.card[1]));
-        }, 500);
-        break;
-    }
-  });
 
   // //******************************************************************
   // // Helpers
@@ -246,6 +197,53 @@ $(document).ready(function() {
     document.getElementById('memory_board').innerHTML = html;
     $("#pairs_clicked").html("0");
     $("#pairs_guessed").html("0");
+
+    $(".card").click(function() {
+      var card = $(this);
+      var result = memoryGame.selectCard(card.attr('id'));
+
+      switch (result.op) {
+        case -1:
+          console.log("Select card");
+          showCard($("#" + result.card[0]));
+          break;
+        case 0:
+          console.log("Unselect card");
+          hideCard($("#" + result.card[0]));
+          break;
+        case 1:
+          console.log("Pairs");
+          showCard($("#" + result.card[1]));
+          //Detach listenerts
+          $("#" + result.card[0]).off("click");
+          $("#" + result.card[1]).off("click");
+          //Update scoreboards
+          $("#pairs_clicked").html(result.pairsClicked);
+          $("#pairs_guessed").html(result.correctPairs);
+
+          //Win condition
+          if (result.correctPairs == 12) {
+            $("#win-panel").removeClass("hidden");
+
+            //Reset game
+            setTimeout(function() {
+              resetGame();
+
+            }, 3000);
+          }
+          break;
+        case 2:
+          console.log("Fail");
+          showCard($("#" + result.card[1]));
+          $("#pairs_clicked").html(result.pairsClicked);
+
+          setTimeout(function() {
+            hideCard($("#" + result.card[0]));
+            hideCard($("#" + result.card[1]));
+          }, 500);
+          break;
+      }
+    });
   }
 
   showCard = function(card) {
