@@ -1,7 +1,11 @@
-html {
+ahtml {
   background: url(img/background.jpg) no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background-image: url("./img/background-image.jpg");
 }
 
 #memory_board {
@@ -14,6 +18,18 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
+.front-view {
+  width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+
+.hide-card {
+  display: none;
+}
 
 .card .back {
   background-color: #456783;
@@ -24,6 +40,8 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
