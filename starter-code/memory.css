@@ -15,7 +15,7 @@ html {
 }
 
 
-.card .back {
+.card {
   background-color: #456783;
 	width:71px;
 	height:71px;
@@ -24,20 +24,20 @@ html {
 	padding:20px;
 	font-size:64px;
 }
-.card .front.blocked,
-.card .back.blocked {
-  pointer-events: none;
+
+.blocked {
+  pointer-events: none; /*pointer-events means they cannot click on that DOM*/
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: white;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  margin-left: 25%;
 }
 
 .container {
@@ -45,7 +45,7 @@ html {
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: white;
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
