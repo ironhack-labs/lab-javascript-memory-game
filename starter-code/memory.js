@@ -115,21 +115,23 @@ $(document).ready(function(){
     myPairs.push({back:myCard, front:myFront});
 
     if (myPairs.length ===2) {
-    result=memoryGame.selectCard();
-    $("#pairs_clicked").text(memoryGame.pairsClicked);
-      if (result==="Wrong") {
-        myPairs.forEach(function(card) {
-          card.back.toggleClass("back");
-          card.front.toggleClass("show");
-          memoryGame.selectedCards=[];
-        });
-         myPairs = [];
-         memoryGame.selectedCards=[];
-       } else {
-         $("#pairs_guessed").text(memoryGame.correctPairs);
-         myPairs=[];
-         memoryGame.selectedCards=[];
-       }
+    setTimeout(function(){result=memoryGame.selectCard();
+      $("#pairs_clicked").text(memoryGame.pairsClicked);
+        if (result==="Wrong") {
+          myPairs.forEach(function(card) {
+            card.back.toggleClass("back");
+            card.front.toggleClass("show");
+            memoryGame.selectedCards=[];
+          });
+           myPairs = [];
+           memoryGame.selectedCards=[];
+         } else {
+           $("#pairs_guessed").text(memoryGame.correctPairs);
+           myPairs=[];
+           memoryGame.selectedCards=[];
+         }
+    },1000);
+
      }
 
 
