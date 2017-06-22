@@ -14,11 +14,9 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-.card .back {
-  background: url(img/cardback.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  /*background-color: #456783;*/
+
+.card {
+  background-color: #456783;
 	width:71px;
 	height:71px;
 	float:left;
@@ -26,19 +24,9 @@ html {
 	padding:20px;
 	font-size:64px;
 }
-.card .front {
-  background-repeat: no-repeat;
-  background-size: cover;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
-}
-.card .front.blocked,
-.card .back.blocked {
-  pointer-events: none;
+
+.blocked {
+  pointer-events: none; /*pointer-events means they cannot click on that DOM*/
 }
 
 #score {
@@ -49,7 +37,7 @@ html {
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  margin-left: 25%;
 }
 
 .container {
