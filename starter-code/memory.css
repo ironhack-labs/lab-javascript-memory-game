@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: url(img/background.jpg) no-repeat center center fixed;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -15,7 +15,7 @@ html {
 }
 
 
-.card .back {
+.card .back, .card .front {
   background-color: #456783;
 	width:71px;
 	height:71px;
