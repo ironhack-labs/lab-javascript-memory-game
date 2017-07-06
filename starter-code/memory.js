@@ -100,6 +100,11 @@ $(document).ready(function(){
   }
   var lastCard;
   $('.back').on('click', function(){
+    console.log(memoryGame.selectedCards.length);
+    if (memoryGame.selectedCards.length == 2) {
+      console.log("STOP!!!!!!!")
+      return;
+    }
     var currentImgValue = $(this).attr("id");
 
     var cardsMustRestart = memoryGame.selectCard(currentImgValue);
@@ -117,7 +122,7 @@ $(document).ready(function(){
     backside.addClass("blocked");
     frontside.show();
 
-    function restartCards(){
+    function restartCards(frontside, backside, lastCard){
       frontside.hide();
       backside.removeClass("blocked");
       backside.show();
@@ -128,7 +133,7 @@ $(document).ready(function(){
     }
 
     if (cardsMustRestart){
-      setTimeout(restartCards, 2000);
+      setTimeout(restartCards, 2000, frontside, backside, lastCard);
     }
 
 });
