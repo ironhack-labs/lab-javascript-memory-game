@@ -97,7 +97,7 @@ var MemoryGame = function() {
     {
       name: "thor",
       img: "thor.jpg"
-    },
+    }
   ];
   this.selectedCards = [];
   this.pairsClicked = 0;
@@ -108,29 +108,59 @@ MemoryGame.prototype._shuffleCards = function() {
   this.cards = _.shuffle(this.cards);
 };
 MemoryGame.prototype.selectCard = function(card) {
-  console.log(card);
-  var whichCard = $(card).attr("id");
+  this.whichCard = $(card).attr("id");
+
+  $(card).next().addClass("clicked-front");
+  $(card).addClass("clicked-back");
+
+
   if (this.selectedCards.length > 0) {
     this.pairsClicked++;
     $("#pairs_clicked").html(this.pairsClicked);
 
-    if (whichCard === this.selectedCards[0]) {
-      console.log("same")
+
+    if (this.whichCard === this.selectedCards[0]) {
       this.selectedCards = [];
       this.correctPairs++;
       $("#pairs_guessed").html(this.correctPairs);
+      $(".clicked-front").removeClass("front");
+      $(".clicked-back").removeClass("back");
+      $(card).next().removeClass("front");
+      $(card).removeClass("back");
 
-      //what
-      // $(card).parent().css("visibility", "hidden");
     } else {
-      console.log("you suck")
+
+      this.selectedCards = [];
+      console.log(
+        "selectedCards",
+        this.selectedCards,
+        this.selectedCards.length
+      );
+
+      $(".front").removeClass("clicked-front");
+      $(".back").removeClass("clicked-back");
+
+      console.log("you suck");
+      setTimeout(function(){
+        $(".back").show();
+
+      }, 0);
+      setTimeout(function(){
+        $(".front").hide();
+
+      }, 0);
     }
+
+    this.finished();
   } else {
-    this.selectedCards.push(whichCard);
+    this.selectedCards.push(this.whichCard);
   }
 };
+
 MemoryGame.prototype.finished = function() {
-  // this.correctPairs === this.cards.length - 1 ? console.log("win") : return;
+  if(this.correctPairs === 12){
+    alert("win");
+  }
 };
 
 // //******************************************************************
@@ -142,32 +172,28 @@ var memoryGame;
 $(document).ready(function() {
   memoryGame = new MemoryGame();
   memoryGame._shuffleCards();
-  var html = '';
+  var html = "";
 
   memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+    var sanitizedName = pic.name.split(" ").join("_");
 
     html += '<div class= "card" id="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="img/' + pic.name + '"';
     html += '    id="' + pic.img + '">';
-    html += '</div>';
+    html += "</div>";
     html += '<div class="front" ';
     html += 'style="background: url(img/' + pic.img + '") no-repeat"';
     html += '    id="' + pic.img + '">';
-    html += '</div>';
-    html += '</div>';
+    html += "</div>";
+    html += "</div>";
   });
 
   // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-
-
-  $('.back').on('click', function(e) {
-    memoryGame.selectCard(e.currentTarget);
-    $(this).hide()
+  document.getElementById("memory_board").innerHTML = html;
+  $(".back").on("click", function(e) {
+    $(this).hide();
     $(this).next().show();
-
+    memoryGame.selectCard(e.currentTarget);
   });
-
 });
