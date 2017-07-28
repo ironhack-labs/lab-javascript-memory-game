@@ -1,6 +1,3 @@
-// //******************************************************************
-// // Game Logic
-// //******************************************************************
 var MemoryGame = function() {
   this.cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
@@ -28,7 +25,6 @@ var MemoryGame = function() {
   		{ name: "the avengers",    img: "the-avengers.jpg" },
   		{ name: "thor",            img: "thor.jpg" },
   	];
-    this.actualCards=[];
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
@@ -48,35 +44,60 @@ function shuffle(array) {
   }
   return array;
 }
-var pairsGuessed = 0;
+
 var pairsClicked = 0;
+var pairsGuessed = 0;
 var clickAmount = 0;
-var roundClicks = 0;
 
 function pairClk(){
-  if (clickAmount % 2===0){
-    pairsGuessed += 1;
-    console.log(clickAmount)
-    console.log(pairsGuessed);
+  clickAmount += 1;
+  if(clickAmount%2===0){
+    pairsClicked +=1;
   }
-  else {
-    pairsGuessed = pairsGuessed };
+  else{
+    pairsClicked = pairsClicked
+  }
+  $("#pairs_clicked").html(pairsClicked);
 }
+
+var imgUrl ="";
+
+function changePic(x){
+  var imgUrl = (x.children(".front").prop("id"));
+  console.log(imgUrl)
+  x.children(".back").css("background", "url(img/" + imgUrl);
+}
+
+// var imgUrl = ($(this).children(".front").prop("id"));
+// $(this).children(".back").css("background", "url(img/" + imgUrl);
+// $(this).addClass("blocked");
+
+function findSuperhero(){
+function findCard(superhero) {
+  return superhero.img === imgUrl;
+};
+var foundCard = memoryGame.cards.find(findCard);
+memoryGame.selectedCards.push(foundCard);
+console.log(memoryGame.selectedCards);
+};
+
+
+
 
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
+
 var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   shuffle(memoryGame.cards);
   var html = '';
-
-// -----------------------------------------------------
+// ------------------------------
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
-    // console.log(sanitizedName);
+
     html += '<div class= "card" id="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="img/' + pic.name + '"';
@@ -91,60 +112,26 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
-// ---------------------------------------------------------------
 
-    $('div.card').on("click", function(){
-      memoryGame.actualCards.push($(this).children(".back"));
-        clickAmount += 1;
-        pairClk();
-        var imgUrl = ($(this).children(".front").prop("id"));
-        $(this).children(".back").css("background", "url(img/" + imgUrl);
-        $(this).addClass("blocked");
-        function findCard(superhero){
-          return superhero.img === imgUrl;
-        };
-        var foundCard = memoryGame.cards.find(findCard);
-        memoryGame.selectedCards.push(foundCard);
-        console.log(memoryGame.selectedCards);
+// ==========================================================
+  $("div.card").on("click", function(){
+  pairClk();
+  changePic($(this));
+  console.log(imgUrl);
+  $(this).addClass("blocked");
 
-      if (memoryGame.selectedCards.length === 2){
-        if (memoryGame.selectedCards[0]=== memoryGame.selectedCards[1]){
-          pairsClicked += 1;
-          $("#pairs_clicked").html(pairsClicked);
-          $(this).addClass("blocked");
-          memoryGame.actualCards=[];
-          memoryGame.selectedCards = [];
-          // console.log(memoryGame.selectedCards);
-        } else {
-          setTimeout(function(){
-            console.log(memoryGame.actualCards[0]);
-            console.log(memoryGame.actualCards[1]);
-            memoryGame.actualCards[0].css("background", "#456783");
-            memoryGame.actualCards[1].css("background", "#456783");
-            memoryGame.actualCards=[];
-            memoryGame.selectedCards = [];
-          }, 1000);
-          // memoryGame.selectedCards = [];
-        }
-
-
-
-      }
-
-      function gameOver(){
-        if (pairsClicked === 12) {
-alert("Good Job MOFO game is over! Refresh the page to replay!");
-        }
-      }
-
-        $("#pairs_guessed").html(pairsGuessed);
-    });
+  // var imgUrl = ($(this).children(".front").prop("id"));
+  // $(this).children(".back").css("background", "url(img/" + imgUrl);
+  // $(this).addClass("blocked");
+  findSuperhero();
 
 
 
 
 
-// add in the if statement if the pairs are not equal change the css back
+  })
+
+
 
 
 
