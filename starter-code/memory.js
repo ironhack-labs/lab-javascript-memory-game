@@ -32,6 +32,23 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
+  MemoryGame.prototype.shuffleCards = function (){
+    var ramdom =_.shuffle(this.cards);
+    var cardsA = this.cards;
+
+    for (var i = 0; i < cardsA.length; i++) {
+      cardsA[i] = ramdom[i];
+    }
+
+    console.log(ramdom);
+  };
+
+  MemoryGame.prototype.selectCard = function(){
+    $(".back").click(function(){
+      var prueba = $("#pairs_clicked").text();
+      console.log(prueba);
+    });
+  };
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -41,6 +58,9 @@ var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+  memoryGame.shuffleCards();
+
+
   var html = '';
 
   memoryGame.cards.forEach(function(pic, index) {
@@ -59,4 +79,8 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  memoryGame.selectCard();
+
+
 });
