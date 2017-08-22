@@ -33,6 +33,13 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype.mixCards = function() {
+var shuffle = _.shuffle(this.cards)
+  console.log(shuffle);
+  return shuffle
+};
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -41,7 +48,11 @@ var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+  memoryGame.mixCards()
+
   var html = '';
+
+
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -59,4 +70,16 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $(".back").click(function(){
+    console.log(this);
+    var a =this.getAttribute("name");
+    console.log(a);
+  });
+
+  //function commpare(a, b) {
+   //var x = $(a).attr('name')
+   //var y = $(b).attr('name')
+   //if(x == y) {}
+
 });
