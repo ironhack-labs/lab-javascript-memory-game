@@ -114,7 +114,7 @@ MemoryGame.prototype.selectedCards = function () {
 
 };
 
-// The game over when the user win the game
+// The game finish when the user win the game
 MemoryGame.prototype.finished = function () {
 
 };
@@ -145,9 +145,6 @@ $(document).ready(function() {
   })
 
   $('.back').on('click', function(e){
-    console.log(e.eventTarget())
-    var cardName = $(this).attr('[name]').val()
-    console.log(cardName)
   })
 
   // memoryGame.cards.forEach(function(pic, index) {
