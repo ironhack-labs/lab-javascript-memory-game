@@ -44,9 +44,10 @@ var MemoryGame = function() {
   };
 
   MemoryGame.prototype.selectCard = function(){
-    $(".back").click(function(){
-      var prueba = $("#pairs_clicked").text();
-      console.log(prueba);
+    $(".back").click(function(e){
+      // array = $(e.currentTarget).attr("name");
+      console.log(selectedCards);
+      this.selectedCards.push("1");
     });
   };
 
