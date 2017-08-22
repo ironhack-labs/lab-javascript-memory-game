@@ -71,5 +71,9 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
 
+  $(".card").on("click", function(){
+    $("#pairs_clicked").append(1)
+    console.log($("#pairs_clicked").append(1))
+  });
 
 });
