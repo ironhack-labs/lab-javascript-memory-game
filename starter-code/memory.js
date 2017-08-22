@@ -28,10 +28,17 @@ var MemoryGame = function() {
   		{ name: "the avengers",    img: "the-avengers.jpg" },
   		{ name: "thor",            img: "thor.jpg" },
   	];
+
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
+    this.randomCards()
 };
+
+MemoryGame.prototype.randomCards = function(){
+  console.log(this.cards = _.shuffle(this.cards))
+
+}
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -44,9 +51,12 @@ $(document).ready(function(){
   var html = '';
 
   memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+    var sanitizedName = pic.name.split('this.cards[i].name').join('');
+    console.log(pic.name.split('this.cards[i].name'))
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    var sanitizedImages = pic.img.split('this.cards[i].image').join('-')
+
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
@@ -59,4 +69,7 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
+
 });
