@@ -1,6 +1,9 @@
 // //******************************************************************
 // // Game Logic
 // //******************************************************************
+
+//var _ = require ('lodash');
+
 var MemoryGame = function() {
   this.cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
@@ -32,12 +35,49 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
+    MemoryGame.prototype.shuffleCards = function(){
+      this.cards =  _.shuffle(this.cards);
+    };
+
+    MemoryGame.prototype.selectCard = function(card){
+
+      var lastCardPicked;
+      if(this.selectedCards.length >0){
+        this.pairsClicked ++;
+        lastCardPicked = memoryGame.selectedCards.pop();
+
+        if(lastCardPicked == this.cards[card].name){
+          this.correctPairs ++;
+          this.selectedCards = [];
+          console.log("good job, you guessed  ");
+        }
+        else{
+          console.log("You failed");
+
+        }
+      }
+      else{
+         this.selectedCards.push(this.cards[card].name);
+      }
+
+      // return this.selectedCards;
+    };
+    MemoryGame.prototype.finished = function(){
+        console.log("You did good, lets try again");
+        this.selectedCards = [];
+        this.pairsClicked = 0;
+        this.correctPairs = 0;
+
+    };
 
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
 
 var memoryGame;
+
+
+
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
@@ -59,4 +99,6 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
 });
