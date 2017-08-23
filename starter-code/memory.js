@@ -49,7 +49,7 @@ MemoryGame.prototype.shuffleCards = function(){
 };
 
 MemoryGame.prototype.finished = function() {
-  console.log("YOU WIN!!");
+  alert("YOU WIN!!");
 };
 
 //Function to select a card
