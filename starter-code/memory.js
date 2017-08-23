@@ -51,10 +51,10 @@ $(document).ready(function(){
   var html = '';
 
   memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split('this.cards[i].name').join('');
-    console.log(pic.name.split('this.cards[i].name'))
+    var sanitizedName = pic.name.split(' ').join('-');
+    console.log(pic.name.split('this.cards.name'))
 
-    var sanitizedImages = pic.img.split('this.cards[i].image').join('-')
+    //var sanitizedImages = pic.img.split('this.cards[i].image').join('-')
 
     html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
