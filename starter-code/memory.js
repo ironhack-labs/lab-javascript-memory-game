@@ -43,7 +43,25 @@ var MemoryGame = function() {
   };
 
   MemoryGame.prototype.selectCard = function(card){
+    // console.log(this)
     this.selectedCards.push(card);
+    console.log(this.selectedCards);
+    if (this.selectedCards.length == 2){
+      this.pairsClicked +=1;
+      this.compareCards();
+      this.selectedCards = [];
+      console.log(this.pairsClicked);
+
+    }
+  };
+  MemoryGame.prototype.compareCards=function (){
+    if (this.selectedCards[0] === this.selectedCards[1]){
+      console.log("son iguales!!");
+      this.correctPairs += 1;
+      console.log(this.correctPairs)
+    }
+    else{ console.log("no son iguales");}
+    //this.selectedCards = [];
   };
 
 // //******************************************************************
@@ -77,8 +95,8 @@ $(document).ready(function(){
 
   $(".back").on("click", function(e){
     memoryGame.selectCard($(e.currentTarget).attr("name"));
-    console.log(memoryGame.selectedCards);
-    console.log(parseInt($("#pairs_clicked").text()));
+    //console.log(memoryGame.selectedCards);
+    // console.log(parseInt($("#pairs_clicked").text()));
 
   });
 
