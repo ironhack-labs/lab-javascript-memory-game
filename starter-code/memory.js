@@ -111,12 +111,13 @@ MemoryGame.prototype._shuffleCards = function() {
 
 // Select the cards clicked by the user, a maximum of two cards
 MemoryGame.prototype.selectedCards = function () {
-
+  return this.selectedCards[0].card == this.selectedCards[1].card
 };
 
 // The game finish when the user win the game
 MemoryGame.prototype.finished = function () {
-
+  alert('You finish the game')
+  return true
 };
 
 // //******************************************************************
@@ -126,7 +127,7 @@ MemoryGame.prototype.finished = function () {
 var memoryGame;
 
 $(document).ready(function() {
-  memoryGame = new MemoryGame();
+  memoryGame = new MemoryGame()
   var randomDeck = memoryGame._shuffleCards()
   var html = ' '
 
@@ -145,6 +146,7 @@ $(document).ready(function() {
   })
 
   $('.back').on('click', function(e){
+    $(this).find('.back').attr('name')
   })
 
   // memoryGame.cards.forEach(function(pic, index) {
