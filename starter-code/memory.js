@@ -73,7 +73,6 @@ MemoryGame.prototype.selectCard = function(cardName, cardIndex){
 
 MemoryGame.prototype.finished = function() {
   console.log('You win!!')
-  return true
 }
 
 
