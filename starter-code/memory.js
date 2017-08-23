@@ -33,6 +33,22 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+
+MemoryGame.prototype._shuffleCards = function() {
+    return _.shuffle(this.cards);
+
+};
+
+MemoryGame.prototype.selectCard = function(card){
+
+
+    this.selectedCards.push(card);
+    return this.selectedCards;
+
+};
+
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -40,13 +56,16 @@ var MemoryGame = function() {
 var memoryGame;
 
 $(document).ready(function(){
-  memoryGame = new MemoryGame();
+  game = new MemoryGame();
   var html = '';
 
-  memoryGame.cards.forEach(function(pic, index) {
+  MemoryGame.cards = memoryGame._shuffleCards();
+  console.log(memoryGame.cards);
+
+  MemoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+   html += '<div class= "card"  name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
@@ -57,6 +76,19 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+$(".card").on('click',function(){
+  console.log(this);
+  var a =this.getAttribute("name");
+  console.log(a);
+  game.selectCard(this.getAttribute("name"));
+
+});
+    console.log(MemoryGame.selectedCards);
+
+
 });
