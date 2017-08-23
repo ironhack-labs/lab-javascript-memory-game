@@ -81,6 +81,7 @@ $(document).ready(function(){
   function comparePairs(a, b) {
     var x = $(a).attr('name')
     var y = $(b).attr('name')
+    memoryGame.selectedCards = []
     if(x == y) {
       memoryGame.correctPairs ++
       $('#pairs_guessed').text(memoryGame.correctPairs)
@@ -109,11 +110,7 @@ $(document).ready(function(){
     console.log($name)
 
     switch (memoryGame.selectedCards.length) {
-      case 2:
-        memoryGame.selectedCards = []        
-        memoryGame.selectedCards.push($div)
-        break;
-        case 1:
+      case 1:
         memoryGame.selectedCards.push($div)
         comparePairs(memoryGame.selectedCards[0], $div)
         memoryGame.pairsClicked ++
