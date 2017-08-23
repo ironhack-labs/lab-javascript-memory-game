@@ -47,7 +47,7 @@ MemoryGame.prototype.selectCard = function(card){
 
 };
 
-var game = new MemoryGame();
+
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -56,7 +56,7 @@ var game = new MemoryGame();
 var memoryGame;
 
 $(document).ready(function(){
-  memoryGame = new MemoryGame();
+  game = new MemoryGame();
   var html = '';
 
   MemoryGame.cards = memoryGame._shuffleCards();
@@ -85,7 +85,7 @@ $(".card").on('click',function(){
   console.log(this);
   var a =this.getAttribute("name");
   console.log(a);
-  MemoryGame.selectCard(this.getAttribute("name"));
+  game.selectCard(this.getAttribute("name"));
 
 });
     console.log(MemoryGame.selectedCards);
