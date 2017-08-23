@@ -35,6 +35,9 @@ var MemoryGame = function() {
 
 MemoryGame.prototype.mixCards = function() {
 var shuffle = _.shuffle(this.cards)
+for (var i = 0; i<shuffle.length; i++) {
+  this.cards[i] = shuffle[i]
+}
   console.log(shuffle);
   return shuffle
 };
@@ -73,13 +76,16 @@ $(document).ready(function(){
 
   $(".back").click(function(){
     console.log(this);
-    var a =this.getAttribute("name");
+    var a = this.getAttribute("name");
     console.log(a);
   });
 
-  //function commpare(a, b) {
-   //var x = $(a).attr('name')
-   //var y = $(b).attr('name')
-   //if(x == y) {}
+  function commpare(a, b) {
+   var x = $(a).attr('name')
+   var y = $(b).attr('name')
+   if(x == y) {
+     console.log("They match!");
+   }
+ };
 
 });
