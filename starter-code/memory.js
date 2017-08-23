@@ -33,6 +33,48 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype._shuffleCards = function() {
+  var m = this.cards.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = this.cards[m];
+    this.cards[m] = this.cards[i];
+    this.cards[i] = t;
+  }
+  return this.cards;
+};
+
+
+MemoryGame.prototype.selectCard = function(card) {
+  if (this.selectedCards.length === 0) {
+    this.selectedCards.push(card);
+  } else {
+    this.pairsClicked++;
+    this.selectedCards.push(card);
+    var firstCard = this.selectedCards[0];
+    var secondCard = this.selectedCards[1];
+    if (firstCard.attr("name") === secondCard.attr("name")) {
+        this.correctPairs++;
+    } else {
+      $(".back").css("pointer-events", "none");
+      var flipBack = function() {
+        setTimeout(function() {
+          firstCard.show();
+          firstCard.siblings().removeClass("back");
+          secondCard.show();
+          secondCard.siblings().removeClass("back");
+          $(".back").css("pointer-events", "auto");
+        }, 1000);
+      };
+      flipBack();
+      }
+      this.selectedCards = [];
+      if (this.correctPairs === 12) {
+        alert("Congratulations!");
+      }
+    }
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -40,8 +82,13 @@ var MemoryGame = function() {
 var memoryGame;
 
 $(document).ready(function(){
+
   memoryGame = new MemoryGame();
   var html = '';
+
+  var shuffle = (function() {
+    memoryGame._shuffleCards();
+  })();
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -59,4 +106,16 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
+  $('.back').on('click', function(){
+      $(this).hide(); // hide back
+      $(this).siblings().addClass("back"); // show front
+      memoryGame.selectCard($(this)); // perform logic
+      $("#pairs_clicked").html(memoryGame.pairsClicked); // update pairs clicked
+      $("#pairs_guessed").html(memoryGame.correctPairs); // update pairs guessed
+  });
+
+
 });
+
