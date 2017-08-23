@@ -112,6 +112,8 @@ $(document).ready(function(){
 
   $('.card').on('click', function(){
     flipCard($(this).attr('name'), $(this).index())
+    $(this).children('.back').addClass('blocked')
+    $(this).children('.front').addClass('blocked')
     memoryGame.selectCard($(this).attr('name'), $(this).index())
   })
 })
@@ -120,8 +122,8 @@ function flipCard(cardName, cardIndex) {
   var $backCard = $($('#memory_board').children().get(cardIndex)).children(".back")
   var $frontCard = $($('#memory_board').children().get(cardIndex)).children(".front")
 
-  $backCard.addClass("front")
-  $backCard.removeClass("back")
-  $frontCard.addClass("back")
-  $frontCard.removeClass("front")
+  $backCard.addClass('front')
+  $backCard.removeClass('back')
+  $frontCard.addClass('back')
+  $frontCard.removeClass('front')
 }
