@@ -76,17 +76,16 @@ var memoryGame;
 var count=0;
 var $turndown = $('.selected');
 
-//Enlace de la lógica con el DOM
 function deleteSelected(){
   $('#memory_board').find(".selected").removeClass('selected');
   $('#memory_board').find(".selected").removeClass('selected');
 }
+
 function turnDown(){
-  $('.selected').find(".front").toggleClass('back');
-  $('.selected').find(".front").removeClass('front');
-  $('.selected').find(".back:nth-child(2)").toggleClass('front');
-  $('.selected').find(".back:nth-child(2)").removeClass('back');
-  $('.selected').find(".front").removeClass('blocked');
+  console.log($turndown);
+  $('.selected').find(".back").removeClass('blocked');
+  $('.selected').find(".front").attr('class', 'back');
+  $('.selected').find(".back:nth-child(2)").attr('class', 'front');
   deleteSelected();
 }
 
@@ -94,7 +93,7 @@ function turnDown(){
 $(document).ready(function(){
   memoryGame = new MemoryGame();
 
-  //Movemos cartas aleatorias
+  //Move cards randomly
   memoryGame.shuffleCards();
 
   //HTML
@@ -102,7 +101,7 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
@@ -112,36 +111,34 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
+
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
 
-  //Funcion para dar la vuelta a las cartas (bocarriba)
+  //Function to turn up the cards
   $('.card').on('click', function(){
-    $(this).find(".back").toggleClass('front');
-    $(this).find(".back").removeClass('back');
-    $(this).find(".front:nth-child(2)").toggleClass('back');
-    $(this).find(".front:nth-child(2)").toggleClass('front');
+    $(this).find(".back").attr('class', 'front');
+    $(this).find(".front:nth-child(2)").attr('class', 'back');
     $(this).find(".back").toggleClass('blocked');
     $(this).toggleClass('selected');
 
+    //Adding card into array memoryGame.selectedCards
     $chosenCart = $(this).find('.front').attr('name');
     memoryGame.selectedCards.push($chosenCart);
     console.log("a",memoryGame.selectedCards);
   });
 
-
-
   $(".card").click(function() {
     count++;
     console.log("contador: " + count);
     if(count >1){
-      //Compar loas cartas
+      //Compare cards
       console.log(memoryGame.selectedCards);
       var result = memoryGame.selectCard();
       memoryGame.pairsClicked += 1;
       if(result){
-        //que se queden bocarriba
         console.log("Has acertado!!", result);
         memoryGame.correctPairs += 1;
         $('#pairs_guessed').text(memoryGame.correctPairs/2);
@@ -153,15 +150,12 @@ $(document).ready(function(){
         console.log("no son iguales", result);
         setTimeout(function(){
           turnDown();
-        }, 1000);
+        }, 500);
       }
-      //Reincio contador y array de cartas
+      //Resent counter and array
       count = 0;
       memoryGame.selectedCards = [];
       $('#pairs_clicked').text(memoryGame.pairsClicked/2);
     }
-
-
   });
-
 });
