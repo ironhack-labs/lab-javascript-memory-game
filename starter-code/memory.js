@@ -83,6 +83,7 @@ $(document).ready(function(){
     var y = $(b).attr('name')
     if(x == y) {
       memoryGame.correctPairs ++
+      $('#pairs_guessed').text(memoryGame.correctPairs)
       (memoryGame.correctPairs == 12) ? console.log('YOU WIN!!') : console.log('Great!')
     } else {
       console.log('Fail')
@@ -111,11 +112,12 @@ $(document).ready(function(){
       case 2:
         memoryGame.selectedCards = []        
         memoryGame.selectedCards.push($div)
-        memoryGame.pairsClicked ++
         break;
-      case 1:
+        case 1:
         memoryGame.selectedCards.push($div)
         comparePairs(memoryGame.selectedCards[0], $div)
+        memoryGame.pairsClicked ++
+        $('#pairs_clicked').text(memoryGame.pairsClicked)
         break
       default:
         memoryGame.selectedCards.push($div)
