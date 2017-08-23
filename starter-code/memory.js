@@ -51,7 +51,7 @@ MemoryGame.prototype.selectCard = function(card){
          console.log("good job, you guessed  ");
        }
        else{
-         console.log("You failed");
+         console.log("Wrong!");
 
        }
      }
