@@ -33,6 +33,49 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype._shuffleCards = function () {
+  // Modern Fisher-Yates shuffling algorithm
+  var length = this.cards.length
+  for (var i = 0; i < length - 2; i++) {
+    var j = Math.floor(Math.random() * (length - i)) + i
+    this.cards = shuffle(i, j, this.cards)
+  }
+  console.log(this.cards)
+}
+
+function shuffle (IndexCardA, IndexCardB, array) {
+  // Copies the original array and returns a new one with the two items exchanging place
+  var new_array = array.slice()
+  var cardB = array[IndexCardB]
+
+  new_array[IndexCardB] = array[IndexCardA]
+  new_array[IndexCardA] = cardB
+  return new_array
+}
+
+MemoryGame.prototype.selectCard = function (card) {
+  if (this.selectedCards.length === 0) {
+    this.selectedCards.push(card)
+  }
+  else {
+    this.pairsClicked += 1
+    var cardA = this.selectedCards[0]
+    if (cardA.name === cardB.name) {
+      this.selectedCards = []
+      this.correctPairs += 1
+      //Flip the cards
+    } else {
+      //Flip both cards to the backside
+    }
+  }
+}
+
+MemoryGame.prototype.finished = function () {
+  if (this.correctPairs === this.cards.length / 2) {
+    //Win!
+  }
+}
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -59,4 +102,8 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $('.back').on('click', function () {
+    console.log($(this))
+  });
 });
