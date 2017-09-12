@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  /*background: url(img/background.jpg) no-repeat;*/
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -15,8 +15,7 @@ html {
 }
 
 
-.card .back {
-  background-color: #456783;
+.card .front, .card .back {
 	width:71px;
 	height:71px;
 	float:left;
@@ -24,6 +23,9 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+.card .back {
+   background-color: #456783;
+ }
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;

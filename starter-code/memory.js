@@ -33,6 +33,51 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype._shuffleCards = function() {
+  this.cards = _.shuffle(this.cards);
+};
+
+MemoryGame.prototype.selectCard = function(card) {
+  console.log(card.attr('name'));
+  if (this.selectedCards.length>0) {//If the user has selected a card in the last turn
+    this.selectedCards.push(card.attr('name'));
+    console.log(this.selectedCards[0]+' coucou'+this.selectedCards[1]);
+    this.pairsClicked++;
+    // update the DOM
+    if (this.selectedCards[1]===this.selectedCards[0]) { //Compare the newly selected card to the previously selected card. Are they of the same type?*/
+      this.correctPairs++;
+      console.log(this.selectedCards[1]===this.selectedCards[0]);
+      this.selectedCards= [];
+    } else if (this.selectedCards[1]!=this.selectedCards[0] && this.selectedCards.length===2) {
+      /*
+      If no
+      Possibly add some styling to tell the user "Wrong Guess"
+      Flip both cards back to the "back side"*/
+      console.log("Wrong guess");
+
+      /*$(".front[name*='"+this.selectedCards[0]+"']").hide();
+      $(".back[name*='"+this.selectedCards[0]+"']").show();
+      $(".front[name*='"+this.selectedCards[1]+"']").hide();
+      $(".back[name*='"+this.selectedCards[1]+"']").show();*/
+      card.parent().find('.front').hide();
+      card.show();
+      this.selectedCards= [];
+      
+
+      }
+    } else if(this.selectedCards.length===0){
+    /*If the user has not selected a card in the last turn
+    Add the card to the selectedCards array and move on*/
+    this.selectedCards.push(card.attr('name'));
+  }
+};
+
+
+MemoryGame.prototype.finished = function() {
+};
+
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -42,6 +87,8 @@ var memoryGame;
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
+  memoryGame._shuffleCards();
+
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -51,12 +98,22 @@ $(document).ready(function(){
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
   });
 
+
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  $('.front').hide();
+//to call the method whenever a user selects a face-down card
+  $('.back').on('click', function(){
+    memoryGame.selectCard($(this)/*.parent()/*.get(0)*/);
+    $(this).parent().find('.front').show();
+    $(this).hide();
+  });
+
 });
