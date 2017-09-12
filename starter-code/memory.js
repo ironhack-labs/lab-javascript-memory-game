@@ -51,7 +51,7 @@ $(document).ready(function(){
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
