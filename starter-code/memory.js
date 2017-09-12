@@ -33,6 +33,19 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype._shuffleCards = function() {
+  var j = "";
+  for (var i = MemoryGame.length; i > 0; i--) {
+    j = Math.floor(Math.random * i);
+    
+  }
+};
+
+// -- To shuffle an array a of n elements (indices 0..n-1):
+// for i from n−1 downto 1 do
+//      j ← random integer such that 0 ≤ j ≤ i
+//      exchange a[j] and a[i]
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -51,7 +64,7 @@ $(document).ready(function(){
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
