@@ -32,6 +32,35 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
+MemoryGame.prototype.selectCard = function(cardImgValue){
+  var cardsMustRestart = false;
+
+  if (this.selectedCards.length === 0){ // first card selection
+    this.selectedCards.push(cardImgValue);
+
+  }
+  else if (this.selectedCards[0] === cardImgValue){ // second card selection correct case
+    this.correctPairs += 1; // increment correctPairs
+    this.pairsClicked += 1;   // increment pairsClicked
+    this.selectedCards = []; // empty selectedCards
+  }
+  else { //second card selection wrong case
+    this.pairsClicked += 1;   // increment pairsClicked
+    this.selectedCards = [];   // empty selectedCards
+    cardsMustRestart = true;
+  }
+  if (this.pairsClicked === 30){ //play 30 rounds max
+    this.finished();
+  }
+  return cardsMustRestart;
+};
+
+MemoryGame.prototype.finished = function() {
+  alert("Your final score is: " + this.correctPairs + " out of " + this.pairsClicked);
+  location.reload(); //reload on click
+};
+
+
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -59,4 +88,56 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $(".card .front").hide();
+
+  // my actual code starts here, M
+
+  function updateScore(){
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.correctPairs);
+  }
+  var lastCard;
+  $('.back').on('click', function(){
+    console.log(memoryGame.selectedCards.length);
+    if (memoryGame.selectedCards.length == 2) {
+      console.log("STOP!!!!!!!")
+      return;
+    }
+    var currentImgValue = $(this).attr("id");
+
+    var cardsMustRestart = memoryGame.selectCard(currentImgValue);
+
+    if (memoryGame.selectedCards.length !== 0){
+      lastCard = $(this);
+    }
+    else{
+      updateScore();
+    }
+
+    var backside = $(this);
+    var frontside = $(this).siblings();
+    backside.hide();
+    backside.addClass("blocked");
+    frontside.show();
+
+    function restartCards(frontside, backside, lastCard){
+      frontside.hide();
+      backside.removeClass("blocked");
+      backside.show();
+
+      lastCard.siblings().hide();
+      lastCard.removeClass("blocked");
+      lastCard.show();
+    }
+
+    if (cardsMustRestart){
+      setTimeout(restartCards, 2000, frontside, backside, lastCard);
+    }
+
+});
+
+
+
+
 });

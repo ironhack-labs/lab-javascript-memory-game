@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: url(img/back.jpg) no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -15,7 +15,7 @@ html {
 }
 
 
-.card .back {
+.card .front, .card .back {
   background-color: #456783;
 	width:71px;
 	height:71px;
@@ -24,13 +24,14 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(50, 44, 44, 0.4);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
@@ -45,7 +46,7 @@ html {
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: rgba(50, 40, 80, 0.7);
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
@@ -54,7 +55,7 @@ h1 {
 }
 
 h2 {
-  color: #456783;
+  color: rgba(50, 40, 80, 0.7);
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
@@ -66,4 +67,9 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.user-update {
+  color: red;
+  font: 20px;
 }
