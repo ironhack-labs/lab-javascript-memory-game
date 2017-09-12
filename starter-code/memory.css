@@ -15,8 +15,7 @@ html {
 }
 
 
-.card .back {
-  background-color: #456783;
+.card .front, .card .back {
 	width:71px;
 	height:71px;
 	float:left;
@@ -24,7 +23,9 @@ html {
 	padding:20px;
 	font-size:64px;
 }
-
+.card .back {
+  background-color: #456783;
+}
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
