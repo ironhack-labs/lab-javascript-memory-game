@@ -39,37 +39,69 @@ MemoryGame.prototype._shuffleCards = function() {
 
 MemoryGame.prototype.selectCard = function(card) {
   console.log(card.attr('name'));
-  if (this.selectedCards.length>0) {//If the user has selected a card in the last turn
-    this.selectedCards.push(card.attr('name'));
-    console.log(this.selectedCards[0]+' coucou'+this.selectedCards[1]);
+
+
+    if (this.selectedCards.length===1) {//If the user has selected a card in the last turn
+    this.selectedCards.push(card);
     this.pairsClicked++;
+    $("#pairs_clicked").text(this.pairsClicked);
+    //console.log(this.selectedCards[0]+" "+this.selectedCards[1]);
     // update the DOM
-    if (this.selectedCards[1]===this.selectedCards[0]) { //Compare the newly selected card to the previously selected card. Are they of the same type?*/
+    if (card.attr('name')===this.selectedCards[0].attr('name')) { //Compare the newly selected card to the previously selected card. Are they of the same type?
       this.correctPairs++;
-      console.log(this.selectedCards[1]===this.selectedCards[0]);
+      $("#pairs_guessed").text(this.correctPairs);
+      console.log(this.selectedCards);
+      this.selectedCards[0].addClass('blocked');
+      this.selectedCards[1].addClass('blocked');
+      //console.log(this.selectedCards[1]===this.selectedCards[0]);
       this.selectedCards= [];
-    } else if (this.selectedCards[1]!=this.selectedCards[0] && this.selectedCards.length===2) {
-      /*
-      If no
-      Possibly add some styling to tell the user "Wrong Guess"
-      Flip both cards back to the "back side"*/
-      console.log("Wrong guess");
+    } else { //(this.selectedCards[1]!=this.selectedCards[0] && this.selectedCards.length===2) {
 
-      /*$(".front[name*='"+this.selectedCards[0]+"']").hide();
-      $(".back[name*='"+this.selectedCards[0]+"']").show();
-      $(".front[name*='"+this.selectedCards[1]+"']").hide();
-      $(".back[name*='"+this.selectedCards[1]+"']").show();*/
-      card.parent().find('.front').hide();
-      card.show();
+      //If no
+      //Possibly add some styling to tell the user "Wrong Guess"
+      //Flip both cards back to the "back side"
+      console.log(this.selectedCards[0]);
+      console.log(this.selectedCards[0]);
+      setTimeout(function(){
+        alert("Wrong guess!!!");
+
+        $(".front").hide();
+        $(".front").siblings(".back").show();
+
+        /*this.selectedCards[0].parent().find('.front').hide();
+        this.selectedCards[1].parent().find('.front').hide();
+
+        this.selectedCards[0].show();
+        this.selectedCards[1].show();
+        */
+
+        /*
+
+        $(".front[name*='"+this.selectedCards[0]+"']").hide();
+        $(".back[name*='"+this.selectedCards[0]+"']").show();
+        $(".front[name*='"+this.selectedCards[1]+"']").hide();
+        $(".back[name*='"+this.selectedCards[1]+"']").show();
+        */
+      }, 500);
       this.selectedCards= [];
-      
 
-      }
-    } else if(this.selectedCards.length===0){
-    /*If the user has not selected a card in the last turn
-    Add the card to the selectedCards array and move on*/
-    this.selectedCards.push(card.attr('name'));
+      //$('.front').hide();
+
+      //$('.front').siblings('.back').show();
+
+    }
+
+  } else {
+    //If the user has not selected a card in the last turn
+  //  Add the card to the selectedCards array and move on
+
+    this.selectedCards.push(card);
+    console.log(card.attr('name'));
+    //card.parent().find('.front').show();
+
   }
+  console.log(this.selectedCards);
+
 };
 
 
@@ -109,11 +141,13 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
   $('.front').hide();
+
 //to call the method whenever a user selects a face-down card
   $('.back').on('click', function(){
-    memoryGame.selectCard($(this)/*.parent()/*.get(0)*/);
-    $(this).parent().find('.front').show();
     $(this).hide();
+    $(this).parent().find('.front').show();
+    memoryGame.selectCard($(this)/*.parent()/*.get(0)*/);
+    //$(this).parent().find('.front').addClass('blocked');
   });
 
 });
