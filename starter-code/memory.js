@@ -37,8 +37,11 @@ MemoryGame.prototype._shuffleCards = function() {
   this.cards = _.shuffle(this.cards);
 };
 
+var previousCard;
+
 MemoryGame.prototype.selectCard = function(card) {
-  console.log(card.attr('name'));
+  console.log(card.attr('name')+"selected");
+
 
 
     if (this.selectedCards.length===1) {//If the user has selected a card in the last turn
@@ -47,12 +50,12 @@ MemoryGame.prototype.selectCard = function(card) {
     $("#pairs_clicked").text(this.pairsClicked);
     //console.log(this.selectedCards[0]+" "+this.selectedCards[1]);
     // update the DOM
-    if (card.attr('name')===this.selectedCards[0].attr('name')) { //Compare the newly selected card to the previously selected card. Are they of the same type?
+    if (card.attr('name')===previousCard.attr('name')) { //Compare the newly selected card to the previously selected card. Are they of the same type?
       this.correctPairs++;
       $("#pairs_guessed").text(this.correctPairs);
       console.log(this.selectedCards);
-      this.selectedCards[0].addClass('blocked');
-      this.selectedCards[1].addClass('blocked');
+      previousCard.addClass('blocked');
+      card.addClass('blocked');
       //console.log(this.selectedCards[1]===this.selectedCards[0]);
       this.selectedCards= [];
     } else { //(this.selectedCards[1]!=this.selectedCards[0] && this.selectedCards.length===2) {
@@ -60,34 +63,18 @@ MemoryGame.prototype.selectCard = function(card) {
       //If no
       //Possibly add some styling to tell the user "Wrong Guess"
       //Flip both cards back to the "back side"
-      console.log(this.selectedCards[0]);
-      console.log(this.selectedCards[0]);
+      console.log(previousCard);
+      console.log(card);
       setTimeout(function(){
-        alert("Wrong guess!!!");
-
-        $(".front").hide();
-        $(".front").siblings(".back").show();
-
-        /*this.selectedCards[0].parent().find('.front').hide();
-        this.selectedCards[1].parent().find('.front').hide();
-
-        this.selectedCards[0].show();
-        this.selectedCards[1].show();
-        */
-
-        /*
-
-        $(".front[name*='"+this.selectedCards[0]+"']").hide();
-        $(".back[name*='"+this.selectedCards[0]+"']").show();
-        $(".front[name*='"+this.selectedCards[1]+"']").hide();
-        $(".back[name*='"+this.selectedCards[1]+"']").show();
-        */
+        console.log("Wrong guess!!!");
+        card.siblings().hide();
+        card.show();
+        previousCard.siblings().hide();
+        previousCard.show();
       }, 500);
+
+      //need to restart
       this.selectedCards= [];
-
-      //$('.front').hide();
-
-      //$('.front').siblings('.back').show();
 
     }
 
@@ -96,16 +83,21 @@ MemoryGame.prototype.selectCard = function(card) {
   //  Add the card to the selectedCards array and move on
 
     this.selectedCards.push(card);
+    previousCard=card;
     console.log(card.attr('name'));
     //card.parent().find('.front').show();
 
   }
   console.log(this.selectedCards);
 
+
 };
 
 
 MemoryGame.prototype.finished = function() {
+  if (this.correctPairs === 12) {
+    console.log("You win!!! Want play more?");
+  }
 };
 
 
@@ -144,10 +136,15 @@ $(document).ready(function(){
 
 //to call the method whenever a user selects a face-down card
   $('.back').on('click', function(){
+    if(memoryGame.selectedCards.length>2){
+      console.log("You selected more then 2 cards. It against the rules!");
+      //event.preventDefault
+      //addClass('blocked') for everyone
+    }
     $(this).hide();
     $(this).parent().find('.front').show();
     memoryGame.selectCard($(this)/*.parent()/*.get(0)*/);
     //$(this).parent().find('.front').addClass('blocked');
   });
-
+    memoryGame.finished();
 });

@@ -1,5 +1,6 @@
 html {
   /*background: url(img/background.jpg) no-repeat;*/
+  background-color: lightBlue;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
