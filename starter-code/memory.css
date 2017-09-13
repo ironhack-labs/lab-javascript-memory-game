@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  /*background: url(img/background.jpg) no-repeat;*/
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -14,15 +14,21 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
+/* Added a class to hide all of the front cards at the beginning of the game */
+.front {
+  display: none;
+}
 
-.card .back {
-  background-color: #456783;
+.card .front, .card .back {
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+.card .back {
+  background-color: #456783;
 }
 .card .front.blocked,
 .card .back.blocked {
