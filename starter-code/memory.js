@@ -40,18 +40,20 @@ MemoryGame.prototype._shuffleCards = function() {
 // Game mechanics and logic
 
 MemoryGame.prototype.selectCard = function(card) {
-  if (this.selectedCards.length === 1) {
+  if (this.selectedCards.length === 1) { // 2nd card from attempted pair
     this.pairsClicked += 1;
-    // $(selector).update();
-    if ( card === this.selectedCards[0] ) {
-      console.log(this.selectedCards);
+    if ( card === this.selectedCards[0] ) { // we picked a pair
       this.selectedCards = [];
       this.correctPairs += 1;
-      // $(selector1).flipthecard
+      // We do nothing to the css, because we want the pair to stay shown
     } else {
-      this.selectedCards = [];
+      this.selectedCards = []; // our 2 cards didn't match, so we need to turn them again
+      $(".front[name='" + card + "']").hide();
+      // $(".front").attr(card)
+      $(".back[name='" + card + "']").show();
+      $(".front[name='" + card + "']").parent().children(".front").show();
+      console.log($(".front[name='" + card + "']"));
       console.log("different card picked, the array is: "); console.log(this.selectedCards);
-      // JQUERY GOES HERE
     }
   }
   else {
@@ -102,7 +104,7 @@ $(document).ready(function(){
   // storing the clicked card as a variable to be called on the selectCard function (the one that handles the game mechanics and logic)
 
 $('.back').click(function() {
-    $(this).attr("name");
+    // $(this).attr("name");
     cardName = $(this).attr("name");
     memoryGame.selectCard(cardName);
     if ( memoryGame.selectCard.length <= 2) {
