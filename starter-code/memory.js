@@ -37,6 +37,38 @@ MemoryGame.prototype._shuffleCards = function() {
   this.cards = _.shuffle(this.cards);
 };
 
+// Game mechanics and logic
+
+MemoryGame.prototype.selectCard = function(card) {
+  if (this.selectedCards.length === 1) {
+    this.pairsClicked += 1;
+    // $(selector).update();
+    if ( card === this.selectedCards[0] ) {
+      console.log(this.selectedCards);
+      this.selectedCards = [];
+      this.correctPairs += 1;
+      // $(selector1).flipthecard
+    } else {
+      this.selectedCards = [];
+      console.log("different card picked, the array is: "); console.log(this.selectedCards);
+      // JQUERY GOES HERE
+    }
+  }
+  else {
+    this.selectedCards.push(card);
+    console.log(this.selectedCards);
+   }
+};
+
+MemoryGame.prototype.finished = function() {
+  if ( this.correctPairs === (this.cards.length / 2) ) {
+    return "You win!!";
+  } else {
+    return "Pick another card!";
+  }
+};
+
+
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -69,39 +101,15 @@ $(document).ready(function(){
 
   // storing the clicked card as a variable to be called on the selectCard function (the one that handles the game mechanics and logic)
 
-  var card = $('#memory_board .card').click(function() {
+$('.back').click(function() {
     $(this).attr("name");
+    cardName = $(this).attr("name");
+    memoryGame.selectCard(cardName);
+    if ( memoryGame.selectCard.length <= 2) {
+      $(this).css("display", "none");
+      $(this).parent().children(".front").show();
+    }
   });
-
-  // Game mechanics and logic
-
-  MemoryGame.prototype.selectCard = function(card) {
-    if (this.selectedCards.length === 1) {
-      this.pairsClicked += 1;
-      // $(selector).update();
-      if ( this.card === this.selectedCards[0].name ) {
-        this.selectedCards = [];
-        this.correctPairs += 1;
-        // $(selector1).flipthecard
-      } else {
-        this.selectedCards = [];
-        // JQUERY GOES HERE
-      }
-    }
-    else {
-      this.selectedCards.push(card);
-     }
-  };
-
-  MemoryGame.prototype.finished = function() {
-    if ( this.correctPairs === (this.cards.length / 2) ) {
-      return "You win!!";
-    } else {
-      return "Pick another card!";
-    }
-  };
-
-
 
 
 
