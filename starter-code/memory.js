@@ -3,34 +3,81 @@
 // //******************************************************************
 var MemoryGame = function() {
   this.cards = [
-  		{ name: "aquaman",         img: "aquaman.jpg" },
-  		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain america", img: "captain-america.jpg" },
-  		{ name: "fantastic four",  img: "fantastic-four.jpg" },
-  		{ name: "flash",           img: "flash.jpg" },
-      { name: "green arrow",     img: "green-arrow.jpg" },
-  		{ name: "green lantern",   img: "green-lantern.jpg" },
-  		{ name: "ironman",         img: "ironman.jpg" },
-  		{ name: "spiderman",       img: "spiderman.jpg" },
-  		{ name: "superman",        img: "superman.jpg" },
-  		{ name: "the avengers",    img: "the-avengers.jpg" },
-  		{ name: "thor",            img: "thor.jpg" },
-      { name: "aquaman",         img: "aquaman.jpg" },
-  		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four",  img: "fantastic-four.jpg" },
-  		{ name: "flash",           img: "flash.jpg" },
-  		{ name: "green arrow",     img: "green-arrow.jpg" },
-  		{ name: "green lantern",   img: "green-lantern.jpg" },
-  		{ name: "ironman",         img: "ironman.jpg" },
-  		{ name: "spiderman",       img: "spiderman.jpg" },
-  		{ name: "superman",        img: "superman.jpg" },
-  		{ name: "the avengers",    img: "the-avengers.jpg" },
-  		{ name: "thor",            img: "thor.jpg" },
-  	];
-    this.selectedCards = [];
-    this.pairsClicked = 0;
-    this.correctPairs = 0;
+    { name: "aquaman", img: "aquaman.jpg" },
+    { name: "batman", img: "batman.jpg" },
+    { name: "captain america", img: "captain-america.jpg" },
+    { name: "fantastic four", img: "fantastic-four.jpg" },
+    { name: "flash", img: "flash.jpg" },
+    { name: "green arrow", img: "green-arrow.jpg" },
+    { name: "green lantern", img: "green-lantern.jpg" },
+    { name: "ironman", img: "ironman.jpg" },
+    { name: "spiderman", img: "spiderman.jpg" },
+    { name: "superman", img: "superman.jpg" },
+    { name: "the avengers", img: "the-avengers.jpg" },
+    { name: "thor", img: "thor.jpg" },
+    { name: "aquaman", img: "aquaman.jpg" },
+    { name: "batman", img: "batman.jpg" },
+    { name: "captain america", img: "captain-america.jpg" },
+    { name: "fantastic four", img: "fantastic-four.jpg" },
+    { name: "flash", img: "flash.jpg" },
+    { name: "green arrow", img: "green-arrow.jpg" },
+    { name: "green lantern", img: "green-lantern.jpg" },
+    { name: "ironman", img: "ironman.jpg" },
+    { name: "spiderman", img: "spiderman.jpg" },
+    { name: "superman", img: "superman.jpg" },
+    { name: "the avengers", img: "the-avengers.jpg" },
+    { name: "thor", img: "thor.jpg" }
+  ];
+  this.selectedCards = [];
+  this.pairsClicked = 0;
+  this.correctPairs = 0;
+  this._shuffleCards();
+};
+
+//Shuffling
+MemoryGame.prototype._shuffleCards = function() {
+  this.cards = _.shuffle(this.cards);
+};
+
+//Selecting a Card
+MemoryGame.prototype.selectCard = function(card) {
+  console.log($(card).attr("name"));
+  if (this.selectedCards.length === 1) {
+    this.pairsClicked++;
+    $("#pairs_clicked").text(this.pairsClicked);
+    // update the dom
+    if ($(card).attr("name") === $(this.selectedCards[0]).attr("name")) {
+      this.selectedCards = [];
+      this.correctPairs++;
+      $("#pairs_guessed").text(this.correctPairs);
+      var messageY = function() {
+        alert("Good job man!");
+        $(".front").hide();
+      };
+      setTimeout(messageY, 1000);
+      // Add flip the card later
+    } else {
+      var messageN = function() {
+        alert("wrong guess!");
+        $(".front").hide();
+        $(".front")
+          .siblings(".back")
+          .show();
+      };
+      setTimeout(messageN, 1000);
+
+      this.selectedCards = [];
+    }
+  } else {
+    this.selectedCards.push(card);
+  }
+};
+
+// Ending the Game
+MemoryGame.prototype.finished = function() {
+  if (this.correctPairs === 12) {
+    alert("You win!!");
+  }
 };
 
 // //******************************************************************
@@ -39,24 +86,34 @@ var MemoryGame = function() {
 
 var memoryGame;
 
-$(document).ready(function(){
+$(document).ready(function() {
   memoryGame = new MemoryGame();
-  var html = '';
+  var html = "";
 
   memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+    var sanitizedName = pic.name.split(" ").join("_");
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
-    html += '</div>';
+    html += "</div>";
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat"';
+    html += '    name="' + pic.name + '">';
+    html += "</div>";
+    html += "</div>";
   });
 
   // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+  document.getElementById("memory_board").innerHTML = html;
+  $(".front").hide();
+
+  // HTML/CSS Interactions
+  $(".back").on("click", function() {
+    $(this).hide();
+    $(this)
+      .siblings(".front")
+      .show();
+    memoryGame.selectCard(this);
+  });
 });
