@@ -34,17 +34,9 @@ var MemoryGame = function() {
 };
 
 MemoryGame.prototype._shuffleCards = function() {
-  var j = "";
-  for (var i = MemoryGame.length; i > 0; i--) {
-    j = Math.floor(Math.random * i);
-    
-  }
+  this.cards = _.shuffle(this.cards);
 };
 
-// -- To shuffle an array a of n elements (indices 0..n-1):
-// for i from n−1 downto 1 do
-//      j ← random integer such that 0 ≤ j ≤ i
-//      exchange a[j] and a[i]
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -70,6 +62,48 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
+  // storing the clicked card as a variable to be called on the selectCard function (the one that handles the game mechanics and logic)
+
+  var card = $('#memory_board .card').click(function() {
+    $(this).attr("name");
+  });
+
+  // Game mechanics and logic
+
+  MemoryGame.prototype.selectCard = function(card) {
+    if (this.selectedCards.length === 1) {
+      this.pairsClicked += 1;
+      // $(selector).update();
+      if ( this.card === this.selectedCards[0].name ) {
+        this.selectedCards = [];
+        this.correctPairs += 1;
+        // $(selector1).flipthecard
+      } else {
+        this.selectedCards = [];
+        // JQUERY GOES HERE
+      }
+    }
+    else {
+      this.selectedCards.push(card);
+     }
+  };
+
+  MemoryGame.prototype.finished = function() {
+    if ( this.correctPairs === (this.cards.length / 2) ) {
+      return "You win!!";
+    } else {
+      return "Pick another card!";
+    }
+  };
+
+
+
+
+
+
 });
