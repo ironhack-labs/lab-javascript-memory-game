@@ -31,6 +31,38 @@ var MemoryGame = function() {
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
+  };
+
+
+
+    MemoryGame.prototype._shuffleCards = function() {
+      for(var i=0; i<this.cards.length - 2; i++){
+        var j= Math.floor(Math.random()*(this.cards.length - i)) + i;
+        this.cards = shuffle(i, j, this.cards);
+      }
+      console.log(this.cards);
+};
+
+function shuffle (indiceA, indiceB, array) {
+  var newarray = array.slice();
+  var itemA = array[indiceA];
+  newarray[indiceA]=array[indiceB];
+  newarray[indiceB]=itemA;
+  return newarray;
+}
+
+MemoryGame.prototype.selectCard = function(card){
+  if(this.selectedCards.length === 1){
+    this.pairsClicked +=1;
+    if(this.card.name === this.selectedCards[0].name){
+      this.selectedCards = [];
+      this.correctPairs += 1;
+    } else {
+      this.selectedCards = [];
+    }}
+    else {
+      this.selectedCards[0] = this.card.name;
+    }
 };
 
 // //******************************************************************
