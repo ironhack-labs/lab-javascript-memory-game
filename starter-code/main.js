@@ -9,28 +9,14 @@ var memoryGame;
 $(document).ready(function(){
 
   memoryGame = new MemoryGame();
-  var html = '';
-  memoryGame.cards = memoryGame._shuffleCards(memoryGame.cards);
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-
-    html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+  paintBoard();
 
   //////// MY CODE ///////////
 
-  $('.back').on('click', function(){
+// This way we can add the event dynamically to new elements
+// created by restart game or replay
+  $('#memory_board').on('click','.back', function(){
+    console.log("YEE");
     flipCard($(this));
     if(memoryGame.selectedCards.length > 0){
       memoryGame.selectedCards.push($(this));
@@ -44,6 +30,10 @@ $(document).ready(function(){
       memoryGame.selectedCards.push($(this));
     }
   });
+
+  $('#btnRestart').on('click', function(){
+    restartGame();
+  })
 
 
 function blockCards(){
@@ -94,10 +84,37 @@ function checkMatch(nameOne, nameTwo){
   }
 }
 
+function restartGame (){
+  memoryGame.restart();
+  updateScore();
+  paintBoard();
+}
+
 function winner(){
   if(memoryGame.correctPairs == memoryGame.cards.length / 2){
     alert("CONGRATS WINNER");
   }
+}
+
+function paintBoard () {
+  var html = '';
+  memoryGame.cards = memoryGame._shuffleCards(memoryGame.cards);
+  memoryGame.cards.forEach(function(pic, index) {
+    var sanitizedName = pic.name.split(' ').join('_');
+
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class="back"';
+    html += '    name="' + pic.name + '">';
+    html += '</div>';
+    html += '<div class="front" ';
+    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += '    name="'       + pic.name +  '">';
+    html += '</div>';
+    html += '</div>';
+  });
+
+  // Add all the divs to the HTML
+  document.getElementById('memory_board').innerHTML = html;
 }
 
 

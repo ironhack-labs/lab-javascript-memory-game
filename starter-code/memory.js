@@ -52,5 +52,11 @@ var MemoryGame = function() {
  };
 
  MemoryGame.prototype.selectCard = function(card){
-   this.selectedCardspush(card);
+   this.selectedCards.push(card);
+ }
+
+ MemoryGame.prototype.restart = function() {
+   this.selectedCards = [];
+   this.pairsClicked = 0;
+   this.correctPairs = 0;
  }
