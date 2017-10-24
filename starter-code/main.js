@@ -7,7 +7,7 @@ var memoryGame;
 $(document).ready(function(){
   memoryGame = new MemoryGame();
   memoryGame.shuffleCards();
-  console.log(memoryGame.cards);
+
 
   var html = '';
 
