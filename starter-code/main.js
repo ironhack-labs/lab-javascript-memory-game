@@ -33,6 +33,6 @@ $(document).ready(function() {
   // Get the card clicked and start the logical
   $('.back').on("click", function() {
     memoryGame.selectCard($(this));
-    memoryGame.finished()
+    memoryGame.finished();
   });
 });
