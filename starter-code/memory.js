@@ -43,14 +43,38 @@ MemoryGame.prototype.shuffle = function(array) {
 
 MemoryGame.prototype.selectCard = function(cardPos){
   // Add to the empty array of cards our selected one
-  this.selectedCards.push(cardPos);
-  console.log('card position: ' + cardPos);
+  this.selectedCards.push(this.cards[cardPos]);
+  console.log('- One card selected at position: ' + cardPos);
+
+  // Check card's name
+  console.log('- Name: ' + this.cards[cardPos].name);
 
   // Increase cards clicked counter
-  this.pairsClicked++;
-  console.log(this.pairsClicked);
+  if(this.pairsClicked % 2 == 0 || this.pairsClicked != 0){
+    console.log('- Pairs clicked: ' + this.pairsClicked);
+  } else {
+    this.pairsClicked++;
+  }
+
+  // Delete pair from Selected cards array to leave room for rest
+
+}
+
+MemoryGame.prototype.compare = function(){
+  if(this.selectedCards.length == 2){
+    var card1 = this.selectedCards[0];
+    var card2 = this.selectedCards[1];
+
+    if(card1.name == card2.name){
+      alert('MATCH');
+    } else {
+      console.log('SORRY, NO MATCH')
+    }
+  }
 }
 
 MemoryGame.prototype.finished = function() {
-  alert('You win');
+  if(this.pairsClicked == 12){
+    alert('You win'); // All pairs found therefore he wins
+  }
 };

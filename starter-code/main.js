@@ -29,13 +29,14 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  // Pick a card
+  // Pick a card, any card!
   $('#memory_board .card').on('click', function(){
-    // $('#memory_board .card').each(function(){
       var pos = $(this).index();
-      alert(pos);
-      // alert(pos);
-    //});
+      memoryGame.selectCard(pos);
+      $('#pairs_clicked').text(memoryGame.pairsClicked);
+      memoryGame.compare();
   });
 
-    });
+  // Update pairs clicked
+
+});
