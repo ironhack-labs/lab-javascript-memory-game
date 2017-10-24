@@ -104,6 +104,7 @@ var MemoryGame = function() {
   this.correctPairs = 0;
 };
 
+//1-ITERATION DONE
 MemoryGame.prototype._shuffleCards = function(array) {
   return _.shuffle(array);
 }
@@ -122,12 +123,41 @@ MemoryGame.prototype.selectedCard = function(position) {
     }
   }
 };
+// ITERATION 2 DONE
+MemoryGame.prototype.selectCard = function(card) {
+  flipCards(card);
+  if (this.selectedCards.length > 0) {
+    this.pairsClicked += 1;
+    $("#pairs_clicked").text(this.pairsClicked);
+    this.selectedCards.push(card);
+    if (this.selectedCards[0].attr("name") == this.selectedCards[1].attr("name")) {
+      this.correctPairs += 1;
+      $("#pairs_guessed").text(this.correctPairs);
+      this.selectedCards = [];
+      return;
+    } else {
+      setTimeout(flipBack, 500, this.selectedCards[0]);
+      setTimeout(flipBack, 500, card);
+      this.selectedCards = [];
+    }
+  } else {
+    this.selectedCards.push(card);
+  }
+};
 
-  //tenemos que comprobar cuantas cartas hay en el array, si hay 2 cartas tendremos que comprobar si ambas son iguales y que vaciar el array
-  //si no es tendras que sumar una a intentos y vaciar el array
+// ITERATION 3 DONE
+MemoryGame.prototype.finished = function() {
+  if (this.correctPairs == 12) {
+    alert("It's a Win!! Congratulations!!");
+  }
+};
 
+function flipCards(e) {
+  e.removeClass("back");
+  e.siblings().addClass("back");
+}
 
-//
-// if (array[0]==array[1]) {
-//   console.log("you win")
-// }
+function flipBack(e) {
+  e.siblings().removeClass("back");
+  e.addClass("back");
+}
