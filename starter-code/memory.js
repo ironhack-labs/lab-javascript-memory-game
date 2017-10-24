@@ -5,7 +5,7 @@ var MemoryGame = function() {
   this.cards = [
   		{ name: "aquaman",         img: "aquaman.jpg" },
   		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain amer ica", img: "captain-america.jpg" },
+  		{ name: "captain america", img: "captain-america.jpg" },
   		{ name: "fantastic four",  img: "fantastic-four.jpg" },
   		{ name: "flash",           img: "flash.jpg" },
       { name: "green arrow",     img: "green-arrow.jpg" },
@@ -36,4 +36,8 @@ var MemoryGame = function() {
 MemoryGame.prototype.shuffleCards = function() {
   //shuffle
   this.cards = _.shuffle(this.cards);
+};
+
+MemoryGame.prototype.selectCard = function(card) {
+
 };
