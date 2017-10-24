@@ -179,6 +179,8 @@ $(document).ready(function() {
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
+
+  //move function out of ready and use callback?
   $('.card').on('click', function() {
     $(this).children().toggleClass('back front');
     memoryGame.selectedCards.push(this.innerHTML);
