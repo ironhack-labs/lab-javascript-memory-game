@@ -46,16 +46,9 @@ MemoryGame.prototype.selectCard = function(cardPos){
   this.selectedCards.push(this.cards[cardPos]);
   console.log('- One card selected at position: ' + cardPos);
 
-  // Check card's name
-  console.log('- Name: ' + this.cards[cardPos].name);
-
   // Increase cards clicked counter
-  if(this.pairsClicked % 2 == 0 || this.pairsClicked == 0){
     console.log('- Pairs clicked: ' + this.pairsClicked);
-    this.pairsClicked++;
-  } else {
-    this.pairsClicked / 2;
-  }
+    this.pairsClicked += 0.5;
 }
 
 MemoryGame.prototype.compare = function(){

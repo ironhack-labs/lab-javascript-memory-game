@@ -36,13 +36,12 @@ $(document).ready(function(){
     memoryGame.selectCard(pos);
     memoryGame.compare();
     $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.correctPairs);
 
     if ($(this).find('.back').hasClass('back')){
       $(this).find(".back").removeClass('back');
       $(this).find(".front").addClass('back');
-    } else {
-      $(this).find(".back").addClass('back');
-      $(this).find(".front").removeClass('back');
+      event.preventDefault();
     }
   });
 

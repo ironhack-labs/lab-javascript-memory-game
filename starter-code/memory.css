@@ -28,24 +28,26 @@ p {
 }
 
 #memory_board {
-  background: white;
+  background-color: rgba(0,0,0,0.5);
   width: 800px;
   height: 540px;
-  padding: 70px;
-  margin: 0px auto;
-  border-radius: 40px;
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 20px;
 }
 
 #score {
   font-family: Arial;
-  top: 0;
+  width: 100%;
+  top: 10px;
   right: 0;
   position: absolute;
   padding: 0 20px 20px;
 }
 
-#score p {
+#score p, #score h2 {
   text-transform: uppercase;
+  color: white;
 }
 
 .container {
@@ -53,14 +55,22 @@ p {
 }
 
 .card .back {
-  background-color: #456783;
+  background-color: tomato;
+  border-radius: 50%;
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+  transition: 0.15s background-color linear;
 }
+
+.card .back:hover {
+  cursor: pointer;
+  background-color: #c1432c;
+}
+
 .card .front.blocked, .card .back.blocked {
   pointer-events: none;
 }
