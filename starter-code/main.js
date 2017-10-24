@@ -29,6 +29,8 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   $('.back').on('click', function(){
+    $(this).addClass("is-clicked");
+
     var name = $(this).attr("pic_path");
     $(this).css("background-image", "url('img/"+name+"");
     var selectedCardResult= memoryGame.selectedCard(name);
@@ -41,6 +43,9 @@ $(document).ready(function(){
       // console.log(memoryResult);
       if(memoryResult === false) {
         console.log($(this));
+        // setTimeout(function() {
+        //   $(".back").hasClass(".is-clicked").hide();
+        // }, 1000);
 
         // $(this).css("background-image", "none");
       } else {
