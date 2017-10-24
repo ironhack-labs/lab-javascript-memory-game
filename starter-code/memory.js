@@ -55,25 +55,28 @@ MemoryGame.prototype.selectCard = function(card) {
     var self = this;
     var card_name = $(card).attr('name');
 
+    // First we push the card's name and flip the card
     self.selectedCards.push(card_name);
     self.flipCard(card);
 
+    // If two cards were clicked
     if (self.selectedCards.length === 2) {
+        // If they're the same
         if (self.selectedCards[0] === self.selectedCards[1]) {
             self.correctPairs++;
             $('#pairs_guessed').text(self.correctPairs);
-            $('.back[name=' + card_name.split(' ').join('_') + ']').addClass('okay');
+            $('.back[name=' + card_name.split(' ').join('_') + ']').addClass('okay'); // Adding this class to not flip them later
             if (self.correctPairs === (self.cards.length / 2)) {
                 self.finished();
             }
-        } else {
+        } else { // If they're not the same, flip them after un second
             setTimeout(function() {
                 self.flipCard($('.backsHidden:not(.okay)'));
             }, 1000);
         }
         self.pairsClicked++;
         $('#pairs_clicked').text(self.pairsClicked);
-        self.selectedCards = [];
+        self.selectedCards = []; // Reset
     }
 
 };
