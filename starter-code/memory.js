@@ -32,11 +32,24 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
-MemoryGame.prototype.shuffleCards = function(){
-  var randomCards =_.shuffle(this.cards);
-  console.log(_.shuffle(this.cards));
+MemoryGame.prototype.shuffleCards = function() {
+  var randomCards = _.shuffle(this.cards);
+  // console.log(_.shuffle(this.cards));
   this.cards = randomCards;
 };
-
-MemoryGame.prototype.selectCards = function(card,card){
+MemoryGame.prototype.selectCards = function (card) {
+  this.selectedCards.push(card);
+  console.log(this.selectedCards);
+};
+MemoryGame.prototype.checkCards = function (){
+  console.log(this.selectedCards);
+  this.pairsClicked += 1;
+  if(this.selectedCards[0] === this.selectedCards[1]){
+    this.correctPairs += 1;
+    this.selectedCards = [];
+    console.log("ACIERTO");
+  } else {
+    this.selectedCards = [];
+    console.log("FALLO");
+  };
 };
