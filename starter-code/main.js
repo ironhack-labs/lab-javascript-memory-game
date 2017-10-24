@@ -5,9 +5,11 @@
 var memoryGame;
 function blockCards() {
   $('.back, .front').addClass('blocked');
+  $('#memory_board').css('cursor', 'wait');
 }
 function unblockCards() {
   $('.back, .front').removeClass('blocked');
+  $('#memory_board').css('cursor', 'default');
 }
 function reveal(element) {
   $(element).next().addClass('back');
@@ -25,6 +27,12 @@ function fixCards() {
   var guessedCards = $('.front.back:not(".fixed")');
   $(guessedCards).addClass('fixed');
   $(guessedCards).prev().addClass('fixed');
+}
+function updateScore() {
+  var pairsClicked = memoryGame.pairsClicked;
+  var pairsGuessed = memoryGame.correctPairs;
+  $('#pairs_clicked').html(pairsClicked);
+  $('#pairs_guessed').html(pairsGuessed);
 }
 $(document).ready( function () {
   memoryGame = new MemoryGame();
@@ -50,16 +58,13 @@ $(document).ready( function () {
   // document.getElementById('memory_board').innerHTML = html;
   // Ya que estamos usando JQuery, mejor:
   $('#memory_board').html(html);
-  //$('.back').on('click', function() { console.log( $(this).attr('name') ); });
+
   $('.back').on('click', function() {
     var turn = memoryGame.selectedCards.length;
     if ( turn < 2) {
       reveal(this);
-    } else if (turn == 2) {
-      flip(this);
     }
     var cardName = $(this).attr('name');
     memoryGame.selectCard(cardName);
   });
-
 });

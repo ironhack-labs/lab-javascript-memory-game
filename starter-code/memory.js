@@ -40,20 +40,31 @@ MemoryGame.prototype._shuffleCards = function() {
 MemoryGame.prototype.selectCard = function(card) {
   if (this.selectedCards.length == 0) {
     this.selectedCards.push(card);
-  } else /*if (this.selectedCards.length == 1)*/ {
+  } else {
     if (card == this.selectedCards[0]) {
       this.correctPairs++;
-      //this.selectedCards.push(card);
       fixCards();
       blockCards();
-      //setTimeout(function(){ alert("Bravo. Buena Memoria"); }, 1 * 1000);
-      setTimeout(unblockCards, 3 * 1000);
+      setTimeout(unblockCards, 2 * 1000);
     } else {
       blockCards();
       setTimeout(flipPair, 2 * 1000);
-      setTimeout(unblockCards, 3 * 1000);
+      setTimeout(unblockCards, 2 * 1000);
     }
     _.remove(this.selectedCards);
     this.pairsClicked++;
+    updateScore();
+    this.finished();
+  }
+};
+
+MemoryGame.prototype.finished = function() {
+  if (this.correctPairs == this.cards.length / 2) {
+    setTimeout(function(){ alert("Ganaste Campeón"); }, 2 *1000);
+    //console.log("Juego terminado");
+    return true;
+  } else {
+    //console.log("Aún falta");
+    return false;
   }
 };
