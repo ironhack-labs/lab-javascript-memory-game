@@ -8,8 +8,15 @@ $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
 
-  memoryGame.suffleCarts();
+  memoryGame._shuffleCarts();
   console.log(memoryGame.cards);
+
+  for (var i=0; i<2; i++){
+    memoryGame.selectCard(memoryGame.cards[i]);
+    console.log(memoryGame.selectedCards);
+    console.log(memoryGame.pairsClicked);
+  }
+
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 

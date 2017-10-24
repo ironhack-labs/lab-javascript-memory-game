@@ -34,7 +34,23 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-MemoryGame.prototype.suffleCarts = function(){
+MemoryGame.prototype._shuffleCarts = function(){
   var baraja = _.shuffle(this.cards);
   this.cards = baraja;
+};
+
+MemoryGame.prototype.selectCard = function(card){
+  if (this.selectedCards.length == 2){
+    this.pairsClicked++;
+    if (this.selectedCards[0] === this.selectedCards[1]){
+      this.correctPairs++;
+      console.log("acertaste"); //habria que dar la vuelta a la carta toggle el div
+    }
+    else {
+      console.log("fallaste"); // habría que dar la vuelta a las cartas
+    }
+  }
+  else {
+    this.selectedCards.push(card);
+  }
 };
