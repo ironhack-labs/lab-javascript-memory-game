@@ -39,18 +39,19 @@ MemoryGame.prototype._shuffleCarts = function(){
   this.cards = baraja;
 };
 
-MemoryGame.prototype.selectCard = function(card){
-  if (this.selectedCards.length == 2){
+MemoryGame.prototype.selectCard = function(card, founded){
+  if (this.selectedCards.length == 1){
     this.pairsClicked++;
-    if (this.selectedCards[0] === this.selectedCards[1]){
+    if (this.selectedCards[0] === card){
       this.correctPairs++;
-      console.log("acertaste"); //habria que dar la vuelta a la carta toggle el div
+      founded.push(card);
+      console.log("CONGRATS! You guess a new pair!!");
+      console.log("You have guessed "+memoryGame.correctPairs+" pairs");
     }
-    else {
-      console.log("fallaste"); // habría que dar la vuelta a las cartas
-    }
+    else {console.log ("OOOOH You fail!");}
+    memoryGame.selectedCards = [];
   }
-  else {
+  else{
     this.selectedCards.push(card);
   }
 };

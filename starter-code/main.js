@@ -9,18 +9,11 @@ $(document).ready(function(){
   var html = '';
 
   memoryGame._shuffleCarts();
-  console.log(memoryGame.cards);
-
-  for (var i=0; i<2; i++){
-    memoryGame.selectCard(memoryGame.cards[i]);
-    console.log(memoryGame.selectedCards);
-    console.log(memoryGame.pairsClicked);
-  }
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
@@ -33,4 +26,22 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  // Var for saving the superheroes guessed.
+  var superheroes = [];
+  // Selecting the card by the user
+  $(".card").click(function(){
+    var cardSelected = $(this).attr("name");
+    console.log (superheroes);
+    if ($.inArray(cardSelected,superheroes) > -1) {
+      console.log ("You have discovered this pair yet. Choose another one");
+    }
+    else {
+      console.log("The card you select is: "+cardSelected);
+      memoryGame.selectCard(cardSelected, superheroes);
+    }
+    if (memoryGame.correctPairs == (memoryGame.cards.length/2)){
+      console.log("YOU WON! ");
+    }
+  });
 });
