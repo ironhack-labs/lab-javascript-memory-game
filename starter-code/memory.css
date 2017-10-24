@@ -67,3 +67,13 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.hidden{
+  visibility: hidden;
+}
+
+#wrong{
+  height: 25px;
+  width: 250px;
+  display: inline-block;
+}
