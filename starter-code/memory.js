@@ -1,3 +1,6 @@
+function init(){
+///////////////////////////////////
+
 // //******************************************************************
 // // Game Logic
 // //******************************************************************
@@ -60,3 +63,9 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 });
+
+
+///////////////////////////////////
+}
+
+$(document).ready(init);
