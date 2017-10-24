@@ -60,3 +60,44 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 });
+
+MemoryGame.prototype._shuffleCards = function() {
+  this.cards = _.shuffle(this.cards);
+};
+
+MemoryGame.prototype.selectCard = function(card){
+  this.selectedCards.push(_.find(this.cards,{ 'name': card }));
+  this.pairsClicked += 1;
+  $('#pairs_clicked').html(this.pairsClicked);
+  if(this.selectedCards.length == 2){
+    if(this.selectedCards[0] == this.selectedCards[1]){
+      console.log("Are equal");
+      this.correctPairs += 1;
+      this.selectedCards = [];
+      $('#pairs_guessed').html(this.correctPairs);
+      if(this.correctPairs == 12){
+        // Status 3 - Finish
+        console.log("Finish!");
+        return 3;
+      };
+      // Status 1 Equal (+1)
+      console.log("Its equal!");
+      return 1;
+    }
+    else{
+      console.log("Different! Check again");
+      this.selectedCards = [];
+      // Status 0 Different (unflip)
+      return 0;
+    }
+  }
+  console.log("waiting for the next");
+  return 2;
+
+};
+MemoryGame.prototype.timeout = function(){
+  this.selectedCards = [];
+};
+MemoryGame.prototype.finished = function() {
+  console.log("HAS ACABADO!!!");
+};
