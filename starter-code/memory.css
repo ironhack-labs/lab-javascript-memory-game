@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: url(img/background.jpg) repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -24,6 +24,8 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+
 .card .front.blocked,
 .card .back.blocked {
 
