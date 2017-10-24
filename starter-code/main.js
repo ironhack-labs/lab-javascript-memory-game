@@ -43,18 +43,18 @@ $(document).ready(function(){
       // console.log(memoryResult);
       if(memoryResult === false) {
         console.log($(this));
-        // setTimeout(function() {
-        //   $(".back").hasClass(".is-clicked").hide();
-        // }, 1000);
+        setTimeout(function() {
+          $(this).hasClass("is-clicked").hide();
+        }, 1000);
 
         // $(this).css("background-image", "none");
       } else {
+        $(this).removeClass("is-clicked");
         $("#pairs_guessed").html(memoryGame.correctPairs);
         $(this).css(
           {index: "-1"},
           {position: "relative"}
         );
-        $(this).addClass("match");
       }
     }
   });
