@@ -99,70 +99,53 @@ var MemoryGame = function() {
       img: "thor.jpg"
     },
   ];
-  this.selectedCards = [];
+  this.selectedCards = ["",""];
   this.pairsClicked = 0;
   this.correctPairs = 0;
 };
 
+// Shuffle cards method. Returns the cards shuffled!
+
 MemoryGame.prototype.shuffleCards = function() {
-  var i = 0
-    , aleatorio = 0
-    ,nonShuffledCards = this.cards
-    ,shuffledCards = [];
-  for (i = nonShuffledCards.length - 1; i > -1 ; i--) {
+  var i = 0,
+    aleatorio = 0,
+    nonShuffledCards = this.cards,
+    shuffledCards = [];
+  for (i = nonShuffledCards.length - 1; i > -1; i--) {
     aleatorio = Math.round(Math.random() * i);
     shuffledCards.push(nonShuffledCards[aleatorio]);
-    nonShuffledCards.splice([aleatorio],1);
+    nonShuffledCards.splice([aleatorio], 1);
   }
-  return(shuffledCards);
+  return (shuffledCards);
 };
 
+MemoryGame.prototype.selectCard = function(card) {
+  if (this.selectedCards[0] == "") {
+    this.selectedCards[0] = card;
+    console.log("First card is " + this.selectedCards[0]);
+  } else {
+    this.pairsClicked++;
+    this.selectedCards[1]=card;
+    console.log("Second card is " + this.selectedCards[1]);
+    if (this.selectedCards[0] == this.selectedCards[1]) {
+      this.correctPairs++;
+      this.selectedCards = ["",""];
+      console.log("You got a couple! Good work");
+    } else {
+      setTimeout(function(){
+        alert("Wrong Choice");},1000);
+      //$('div[name=this.selectedCards[0]]').addClass("back"); //I need help using this attribute contains selector.
+      //$('div[name=this.selectedCards[1]]').addClass("back"); //I need help using this attribute contains selector.
+      this.selectedCards = ["",""];
+      console.log("Next round!",this.selectedCards);
+    }
+  }
+};
 
-
-
-// var someArray = [1,2,3,4,5,6,7,8,9];
-// var theLength = someArray.length - 1;
-// var toSwap; // The index we will swap  (i.e. the random number)
-// var temp; // A temporary variable to hold reference to index variable i points to
-// for (i = theLength; i > 0; i--) {
-//     toSwap = Math.floor(Math.random() * i);
-//     temp = someArray[i];
-//     someArray[i] = someArray[toSwap];
-//     someArray[toSwap] = temp;
-
-
+// $( "div[name=" + this.selectedCards[0] + "]").removeClass("front");
+// $( "div[name=" + this.selectedCards[1] + "]").removeClass("front");
 // Selected Cards - Array with 1, 2 or 0 values
 
 // Pairs Clicked - Keeps track of the amount of cicks
 
 // Correct Pairs - Number of correct clicks
-
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
-
-var memoryGame;
-
-$(document).ready(function() {
-  memoryGame = new MemoryGame();
-  var html = '';
-
-
-memoryGame.shuffleCards();
-
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-    html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url("img/' + pic.img + '") no-repeat"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
