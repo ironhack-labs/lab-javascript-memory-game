@@ -29,6 +29,7 @@ $(document).ready(function(){
 $(".back").click(function(){
 console.log(this)
 memoryGame.selectedCards(this)
+$(this).toggleClass('front')
 })
 
 
