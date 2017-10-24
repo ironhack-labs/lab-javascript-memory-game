@@ -66,7 +66,8 @@ MemoryGame.prototype._shuffleCards = function() {
 };
 
 MemoryGame.prototype.selectCard = function(card){
-  this.selectedCards.push(_.find(this.cards,{ 'name': card }));
+  console.log('card vale: '+card+'y despues'+card.substring(4));
+  this.selectedCards.push(_.find(this.cards,{ 'name': card.substring(4) }));
   this.pairsClicked += 1;
   $('#pairs_clicked').html(this.pairsClicked);
   if(this.selectedCards.length == 2){
@@ -100,4 +101,6 @@ MemoryGame.prototype.timeout = function(){
 };
 MemoryGame.prototype.finished = function() {
   console.log("HAS ACABADO!!!");
+  $('.container').css({ 'display' : 'block'});
+  $('#memory_board').css({ 'display' : 'none'});
 };
