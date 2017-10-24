@@ -33,30 +33,38 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+MemoryGame.prototype._shuffleCards = function() {
+  return _.shuffle(this.cards);
+};
 
-var memoryGame;
+MemoryGame.prototype.selectCard = function(card) {
+  if (this.selectedCards.length == 0) {
+    this.selectedCards.push(card);
+  } else {
+    if (card == this.selectedCards[0]) {
+      this.correctPairs++;
+      fixCards();
+      blockCards();
+      setTimeout(unblockCards, 2 * 1000);
+    } else {
+      blockCards();
+      setTimeout(flipPair, 2 * 1000);
+      setTimeout(unblockCards, 2 * 1000);
+    }
+    _.remove(this.selectedCards);
+    this.pairsClicked++;
+    updateScore();
+    this.finished();
+  }
+};
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
-
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+MemoryGame.prototype.finished = function() {
+  if (this.correctPairs == this.cards.length / 2) {
+    setTimeout(function(){ alert("Ganaste Campeón"); }, 2 *1000);
+    //console.log("Juego terminado");
+    return true;
+  } else {
+    //console.log("Aún falta");
+    return false;
+  }
+};
