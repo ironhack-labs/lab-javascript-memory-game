@@ -40,7 +40,20 @@ MemoryGame.prototype.shuffleCards = function() {
 };
 
 MemoryGame.prototype.selectCards = function (card) {
-  // var cardSelect = _.sample(this.cards);
-  // console.log(_.sample(this.cards));
-  // this.cards = cardSelect;
+  this.selectedCards.push(card);
+  console.log(this.selectedCards);
+};
+
+
+MemoryGame.prototype.checkCards = function (){
+  console.log(this.selectedCards);
+  this.pairsClicked += 1;
+  if(this.selectedCards[0] === this.selectedCards[1]){
+    this.correctPairs += 1;
+    this.selectedCards = [];
+    console.log("ACIERTO");
+  } else {
+    this.selectedCards = [];
+    console.log("FALLO");
+  };
 };
