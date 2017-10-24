@@ -4,6 +4,11 @@ $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
 
+  var shuff = _.shuffle(memoryGame.cards);
+  console.log(shuff);
+
+  memoryGame.cards = shuff
+
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -18,10 +23,23 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  var shuff = _.shuffle(memoryGame.cards);
-  console.log(shuff);
-  
-
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  $('.back').on('click', function(){
+    console.log($(this).attr('name'))
+  });
+
+
+var car = $(".card");
+car.click(function(){
+  $('.back').toggleClass('back');
+  $('.front').toggleClass('back');
+});
+
+
+// $('.price ul li:nth-child(1)').show();
+
+
+
+
 });
