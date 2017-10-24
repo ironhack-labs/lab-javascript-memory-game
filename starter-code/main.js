@@ -6,11 +6,13 @@ var memoryGame;
 
 $(document).ready(function(){
   juego = new MemoryGame();
-  var html = '';
   juego.shuffleCards();
+
+  var html = '';
+
   //llamar al metodo shuffle para desordenar
 
-  memoryGame.cards.forEach(function(pic, index) {
+  juego.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
    html += '<div class= "card" name="card_' + sanitizedName + '">';
@@ -28,11 +30,12 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 });
 
-$(".card").on("click", function(){
-  var cardValue = $(this).attr("name")
-})
+$(".back").on("click", function(){
+var image = $(this).attr("pic_img");
+$(this).css("background", "url('img/ "+ image + "'")
 
-juego.selectCards(cardValue)
+  var cardValue = $(this).attr("name");
+  juego.selectCards(cardValue)
   if(juego.selectedCards.length === 2){
     console.log(juego.selectedCards)
     if(juego.setEquals() == true) {
@@ -45,4 +48,4 @@ juego.selectCards(cardValue)
     }else{
     console.log("No son iguales");
   }
-  }
+  }})

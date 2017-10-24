@@ -34,13 +34,11 @@ var MemoryGame = function() {
 };
 
 MemoryGame.prototype.shuffleCards = function() {
-  var newcards = _.shuffle(this.cards);
-  console.log(newcards);
+  this.cards = _.shuffle(this.cards);
 };
 
 MemoryGame.prototype.selectCards = function(card) {
 this.selectedCards.push(card);
-  console.log(card);
 };
 
 MemoryGame.prototype.setEquals = function() {
@@ -48,15 +46,16 @@ MemoryGame.prototype.setEquals = function() {
   if (this.selectedCards[0] === this.selectedCards[1]){
     this.correctPairs++;
     this.selectedCards = [];
-    return true
+    return true;
   }else{
-    this.correctPairs++;
-    return false
+    this.selectedCards = [];
+    return false;
   }
 }
 
 MemoryGame.prototype.checkWinner = function() {
   if(this.correctPairs == 12){
-    console.log("Has ganado")
+    return true;
   }
+  return false;
 }
