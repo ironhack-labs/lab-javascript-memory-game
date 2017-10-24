@@ -9,9 +9,9 @@ $(document).ready(function(){
   var html = '';
 
   // We shuffle our cards before displaying
-  // Proto shuffle method
   memoryGame.shuffle(memoryGame.cards);
 
+  // Display the cards
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -30,5 +30,12 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   // Pick a card
+  $('#memory_board .card').on('click', function(){
+    // $('#memory_board .card').each(function(){
+      var pos = $(this).index();
+      alert(pos);
+      // alert(pos);
+    //});
+  });
 
-});
+    });

@@ -36,19 +36,21 @@ var MemoryGame = function() {
 // Object prototype functions
 
 MemoryGame.prototype.shuffle = function(array) {
-  a = _.shuffle(array);
-  console.log('Cards shuffled');
-  console.log(a);
+  this.cards = _.shuffle(array);
+  console.log('- Cards shuffled');
+  console.log(this.cards);
 }
 
-MemoryGame.prototype.selectCard = function(index){
-  var selected = [];
-  var first;
-  var second;
+MemoryGame.prototype.selectCard = function(cardPos){
+  // Add to the empty array of cards our selected one
+  this.selectedCards.push(cardPos);
+  console.log('card position: ' + cardPos);
 
-  if(selected[0] == selected[1]){
-    console.log('correct!');
-  } else {
-    console.log('try again!');
-  }
+  // Increase cards clicked counter
+  this.pairsClicked++;
+  console.log(this.pairsClicked);
 }
+
+MemoryGame.prototype.finished = function() {
+  alert('You win');
+};
