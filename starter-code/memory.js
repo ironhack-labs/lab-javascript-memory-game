@@ -33,30 +33,27 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+MemoryGame.prototype._shuffleCards = function() {
+  return _.shuffle(this.cards);
+};
 
-var memoryGame;
-
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
-
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+MemoryGame.prototype.selectCard = function(card) {
+  if (this.selectedCards.length == 0) {
+    this.selectedCards.push(card);
+  } else /*if (this.selectedCards.length == 1)*/ {
+    if (card == this.selectedCards[0]) {
+      this.correctPairs++;
+      //this.selectedCards.push(card);
+      fixCards();
+      blockCards();
+      //setTimeout(function(){ alert("Bravo. Buena Memoria"); }, 1 * 1000);
+      setTimeout(unblockCards, 3 * 1000);
+    } else {
+      blockCards();
+      setTimeout(flipPair, 2 * 1000);
+      setTimeout(unblockCards, 3 * 1000);
+    }
+    _.remove(this.selectedCards);
+    this.pairsClicked++;
+  }
+};
