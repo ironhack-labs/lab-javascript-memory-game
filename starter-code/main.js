@@ -1,5 +1,3 @@
-// MemoryGame.prototype.selectCard = function(card)
-// };
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -16,11 +14,9 @@ $(document).ready(function(){
 // This way we can add the event dynamically to new elements
 // created by restart game or replay
   $('#memory_board').on('click','.back', function(){
-    console.log("YEE");
     flipCard($(this));
     if(memoryGame.selectedCards.length > 0){
       memoryGame.selectCard($(this));
-      console.log(memoryGame.selectedCards[0]);
       blockCards();
 
       checkMatch(memoryGame.selectedCards[0],
@@ -30,7 +26,6 @@ $(document).ready(function(){
       memoryGame.selectCard($(this));
       $(this).addClass("blocked");
       $(this).next().addClass("blocked");
-      console.log(memoryGame.selectedCards[0]);
     }
   });
 
@@ -109,6 +104,8 @@ function restartGame (){
 }
 
 function winner(){
+  console.log("WINNER?");
+  console.log(memoryGame.finished());
   if(memoryGame.finished()){
     if (confirm("CONGRATULATIONS! Do you want to play again?")){
       restartGame();

@@ -56,11 +56,7 @@ var MemoryGame = function() {
  }
 
  MemoryGame.prototype.finished = function() {
-   if(this.correctPairs == this.cards.length / 2){
-     return true;
-   } else {
-     return false;
-   }
+   return (this.correctPairs == this.cards.length / 2) ? true : false;
  }
 
  MemoryGame.prototype.restart = function() {
