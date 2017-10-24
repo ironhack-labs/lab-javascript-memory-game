@@ -38,7 +38,7 @@ var MemoryGame = function() {
 MemoryGame.prototype.shuffle = function(array) {
   this.cards = _.shuffle(array);
   console.log('- Cards shuffled');
-  console.log(this.cards);
+  console.table(this.cards);
 }
 
 MemoryGame.prototype.selectCard = function(cardPos){
@@ -50,14 +50,12 @@ MemoryGame.prototype.selectCard = function(cardPos){
   console.log('- Name: ' + this.cards[cardPos].name);
 
   // Increase cards clicked counter
-  if(this.pairsClicked % 2 == 0 || this.pairsClicked != 0){
+  if(this.pairsClicked % 2 == 0 || this.pairsClicked == 0){
     console.log('- Pairs clicked: ' + this.pairsClicked);
-  } else {
     this.pairsClicked++;
+  } else {
+    this.pairsClicked / 2;
   }
-
-  // Delete pair from Selected cards array to leave room for rest
-
 }
 
 MemoryGame.prototype.compare = function(){
@@ -66,10 +64,11 @@ MemoryGame.prototype.compare = function(){
     var card2 = this.selectedCards[1];
 
     if(card1.name == card2.name){
-      alert('MATCH');
+      this.correctPairs++;
     } else {
       console.log('SORRY, NO MATCH')
     }
+    this.selectedCards = [];
   }
 }
 

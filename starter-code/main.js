@@ -24,17 +24,26 @@ $(document).ready(function(){
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
+
   });
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  // Pick a card, any card!
-  $('#memory_board .card').on('click', function(){
-      var pos = $(this).index();
-      memoryGame.selectCard(pos);
-      $('#pairs_clicked').text(memoryGame.pairsClicked);
-      memoryGame.compare();
+  // Show and hide cards
+  $(".card").click(function() {
+    var pos = $(this).index();
+    memoryGame.selectCard(pos);
+    memoryGame.compare();
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+
+    if ($(this).find('.back').hasClass('back')){
+      $(this).find(".back").removeClass('back');
+      $(this).find(".front").addClass('back');
+    } else {
+      $(this).find(".back").addClass('back');
+      $(this).find(".front").removeClass('back');
+    }
   });
 
   // Update pairs clicked
