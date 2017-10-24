@@ -36,6 +36,34 @@ var MemoryGame = function() {
 // Method to shuffle the cards
 
 MemoryGame.prototype.shuffleCards = function() {
-  var newCards = _.shuffle(this.cards);
-  console.log(newCards);
+  this.cards = _.shuffle(this.cards);
+
+};
+
+//Selecting a Card
+
+MemoryGame.prototype.selectCards = function(card) {
+  this.selectedCards.push(card);
+
+};
+
+//Checking if cards match
+
+MemoryGame.prototype.checkEquals = function () {
+  this.pairsClicked++; //pairs clicked are added
+  if(this.selectedCards[0] === this.selectedCards[1]) {
+    this.correctPairs++; //correct pairs added
+    this.selectedCards = []; //with this we clean the array to start again
+    return true;
+  } else {
+    this.selectedCards = [];
+    return false;
+  }
+};
+
+MemoryGame.prototype.checkWinner = function() {
+  if(this.correctPairs == 12) {
+    return true;
+  }
+  return false;
 };

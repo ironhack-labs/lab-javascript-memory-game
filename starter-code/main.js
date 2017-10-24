@@ -5,15 +5,15 @@
 var memoryGame;
 
 $(document).ready(function(){
-  memoryGame = new MemoryGame();
+  juanGame = new MemoryGame();
+  juanGame._shuffleCards();
+
   var html = '';
 
-  memoryGame.shuffleCards();
-
-  memoryGame.cards.forEach(function(pic, index) {
+  JuanGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
@@ -25,8 +25,31 @@ $(document).ready(function(){
   });
 
   // Add all the divs to the HTML
+
   document.getElementById('memory_board').innerHTML = html;
-});
+$(."back").on( "click", function(){
 
+  //card it turns when you click it
 
-//code
+  var cardImage = $(this).attr("pic_img");
+  $(this).css("background", "url("img/"+ cardImage+""");
+
+  var cardvalue = $(this).attr("name");
+
+  //Checking the cards that are into the array
+
+  juanGame.selectCards(cardvalue);
+  if(juanGame.selectedCards == 2) {
+    console.log(juanGame.selectedCards)
+    if(juanGame.checkEquals() == true) {
+      console.log("They match!")
+      if (juanGame.checkWinner() == true) {
+        console.log("You win!")
+      } else {
+        console.log("Push it, you are close!")
+      };
+    } else {
+      console.log("They don't match")
+    }
+   }
+  });
