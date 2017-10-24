@@ -31,15 +31,14 @@ $(document).ready(function(){
     var valor = $(this).attr("name");
     if(memoryGame.selectCard(valor)){
       memoryGame.correctPairs++;
-      var n = this.correctPairs;
-      $("#pairs_guessed").text(n);
+      $("#pairs_guessed").text(memoryGame.correctPairs);
     } else{
-
+      //Esta parte para el fin de semana
+      //Queda que el contador de parejas suba con cada pareja en lugar de por unidad
+      //Que las cartas, una vez vueltas, en caso de acierto no se den la vuelta
     }
-    this.pairsClicked++;
-    var n = this.pairsClicked;
-    console.log(n);//Esta n sale undefined
-    $("#pairs_clicked").text(n);
+    memoryGame.pairsClicked++;
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
     swipeCard(this);
   });
 
