@@ -26,9 +26,12 @@ html {
 }
 .card .front.blocked,
 .card .back.blocked {
+
   pointer-events: none;
 }
-
+.card:hover {
+  cursor: pointer;
+}
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;

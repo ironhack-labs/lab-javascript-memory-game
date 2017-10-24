@@ -177,6 +177,26 @@
 		"opt": 0,
 		"q": 100
 		},
+	"\/starter-code\/main.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/starter-code\/main-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/starter-code\/memory-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/starter-code\/memory-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/starter-code\/memory.css": {
 		"aP": 1,
 		"bl": 0,
