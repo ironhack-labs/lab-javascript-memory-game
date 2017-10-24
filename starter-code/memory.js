@@ -33,30 +33,22 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+// Object prototype functions
 
-var memoryGame;
+MemoryGame.prototype.shuffle = function(array) {
+  a = _.shuffle(array);
+  console.log('Cards shuffled');
+  console.log(a);
+}
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
+MemoryGame.prototype.selectCard = function(index){
+  var selected = [];
+  var first;
+  var second;
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+  if(selected[0] == selected[1]){
+    console.log('correct!');
+  } else {
+    console.log('try again!');
+  }
+}
