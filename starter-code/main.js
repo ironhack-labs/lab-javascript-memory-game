@@ -19,15 +19,18 @@ $(document).ready(function(){
     console.log("YEE");
     flipCard($(this));
     if(memoryGame.selectedCards.length > 0){
-      memoryGame.selectedCards.push($(this));
-
+      memoryGame.selectCard($(this));
+      console.log(memoryGame.selectedCards[0]);
       blockCards();
 
-      checkMatch(memoryGame.selectedCards[0].attr('name'),
-        memoryGame.selectedCards[1].attr('name'));
+      checkMatch(memoryGame.selectedCards[0],
+        memoryGame.selectedCards[1]);
 
     } else {
-      memoryGame.selectedCards.push($(this));
+      memoryGame.selectCard($(this));
+      $(this).addClass("blocked");
+      $(this).next().addClass("blocked");
+      console.log(memoryGame.selectedCards[0]);
     }
   });
 
@@ -44,6 +47,10 @@ function blockCards(){
 function unblockCards(){
   $('.card .back').removeClass("blocked");
   $('.card .front').removeClass("blocked");
+}
+
+function definitiveBlock(card){
+  card.next().addClass("correct");
 }
 
 
@@ -63,16 +70,26 @@ function flipCard(card){
 }
 
 // Check if the images selected are the same
-function checkMatch(nameOne, nameTwo){
+function checkMatch(cardOne, cardTwo){
   // IF SAME IMAGES
-  if(nameOne == nameTwo){
+  if(cardOne.attr('name') == cardTwo.attr('name')){
     memoryGame.correctPairs += 1;
     memoryGame.pairsClicked += 1;
     memoryGame.selectedCards = [];
+
+    // Permanent block for cards in case they are correct
+    definitiveBlock(cardOne);
+    definitiveBlock(cardTwo);
+
     unblockCards();
     updateScore();
+
+    //Check if game was beated
     winner();
+
   } else {
+    // IF WRONG turn over cards after 1 second, update object, score
+    // and unlock card to keep playing
     setTimeout(function () {
       flipCard(memoryGame.selectedCards[0]);
       flipCard(memoryGame.selectedCards[1]);
@@ -81,6 +98,7 @@ function checkMatch(nameOne, nameTwo){
       unblockCards();
       updateScore();
     }, 1000);
+
   }
 }
 
@@ -91,8 +109,10 @@ function restartGame (){
 }
 
 function winner(){
-  if(memoryGame.correctPairs == memoryGame.cards.length / 2){
-    alert("CONGRATS WINNER");
+  if(memoryGame.finished()){
+    if (confirm("CONGRATULATIONS! Do you want to play again?")){
+      restartGame();
+    }
   }
 }
 

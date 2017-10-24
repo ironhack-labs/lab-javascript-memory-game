@@ -55,6 +55,14 @@ var MemoryGame = function() {
    this.selectedCards.push(card);
  }
 
+ MemoryGame.prototype.finished = function() {
+   if(this.correctPairs == this.cards.length / 2){
+     return true;
+   } else {
+     return false;
+   }
+ }
+
  MemoryGame.prototype.restart = function() {
    this.selectedCards = [];
    this.pairsClicked = 0;

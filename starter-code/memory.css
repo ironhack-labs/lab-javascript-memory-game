@@ -1,6 +1,8 @@
 html {
-  background: url("http://vignette1.wikia.nocookie.net/rickandmorty/images/4/49/Total_Rickall.png/revision/latest?cb=20160920093829") no-repeat;
+  background-image: url("http://s1.picswalls.com/wallpapers/2015/11/22/deadpool-wallpaper_103703409_293.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -29,6 +31,11 @@ html {
   pointer-events: none;
 }
 
+.card .front.correct,
+.card .back.correct {
+  pointer-events: none;
+}
+
 #score {
   background-color: rgba(215, 44, 44, 0.95);;
   border-radius: 8px;
@@ -46,7 +53,7 @@ html {
 }
 
 h1 {
-  color: black;
+  color: rgba(215, 40, 40, 0.9);
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
@@ -72,4 +79,8 @@ p {
   display: flex;
   justify-content: center;
   margin: 50px 0 15px 0;
+}
+
+#score, #memory_board, h1 {
+  margin-top: 80px;
 }
