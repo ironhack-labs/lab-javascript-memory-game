@@ -8,8 +8,7 @@ $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
 
-  console.log(memoryGame.shuffleCards());
-  //Por aquí deberá ir el shuffle (Quizás Lodash)
+  memoryGame.shuffleCards();
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -27,4 +26,25 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  $(".card").click(function(){
+    var valor = $(this).attr("name");
+    if(memoryGame.selectCard(valor)){
+      memoryGame.correctPairs++;
+      var n = this.correctPairs;
+      $("#pairs_guessed").text(n);
+    } else{
+
+    }
+    this.pairsClicked++;
+    var n = this.pairsClicked;
+    console.log(n);//Esta n sale undefined
+    $("#pairs_clicked").text(n);
+    swipeCard(this);
+  });
+
+  function swipeCard(card) {
+    $($(card).children()).first().toggle();
+    $($(card).children()).last().toggleClass("back");
+  }
 });

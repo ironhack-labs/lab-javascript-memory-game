@@ -36,4 +36,17 @@ var MemoryGame = function() {
 MemoryGame.prototype.shuffleCards = function(){
   this.cards = _.shuffle(this.cards);
   return this.cards;
+};
+
+MemoryGame.prototype.selectCard = function(card){
+  if(this.selectedCards.length < 1){
+    this.selectedCards.push(card);
+  }else{
+    this.selectedCards.push(card);
+    if(this.selectedCards[0] === this.selectedCards[1]){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
