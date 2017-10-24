@@ -6,5 +6,6 @@
     },
     "rules": {
         "semi": 2
-    }
+    },
+    "asi": true
 }
