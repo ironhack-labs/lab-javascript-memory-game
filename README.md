@@ -172,7 +172,7 @@ MemoryGame.prototype._shuffleCards = function() {
 When the tiles are rendered, the user will select a card and all of the game logic will be executed. This method will receive a reference to a DOM element which will be a card.
 
 ```javascript
-MemoryGame.prototype.selectCard = function(card)
+MemoryGame.prototype.selectCard = function(card) {}
 };
 ```
 **Logic needed to complete this method**
