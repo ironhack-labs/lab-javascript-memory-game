@@ -7,6 +7,7 @@ $(document).ready(function(){
 
   memoryGame.cartRandom();
 
+
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -23,28 +24,39 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   $(".card").on("click", function(e){
-
     var e = $(this).attr("name");
     memoryGame.selectCard(e);
-    $(this).children().first().toggle();//Cambia a none y block;
-    $(this).children().last().toggleClass('back');//le pone una clase y se la quita;
 
-    if (memoryGame.selectedCards.length == 2) {
-      if(memoryGame.checkPairs()){
+    showHidden(this);
 
+    if(memoryGame.finished()){
+      debugger
+      var nodosSize = $('.card').length;
+      for(var i = 0; i < nodosSize; i++) {
+        toggleCard($('.card')[i]);
       }
-      else {
-        var that = this
-        setTimeout(function () {
-          $(that).children().first().toggle();
-          $(that).children().last().toggleClass('back');
-          $(firstCard).children().first().toggle();
-          $(firstCard).children().last().toggleClass('back');
-        }, 1000);
-      }
-    } else {
-      firstCard = this
     }
   });
-  
+
+//Una vez ganado esconde todos sus elementos;
+
+  function showHidden(node) {
+    toggleCard(node);//muestra
+    if (memoryGame.selectedCards.length == 2 && !memoryGame.checkPairs()) {
+      setTimeout(function () {
+        toggleCard(node);//esconde_carta
+        toggleCard(firstCard);//esconde_carta
+      }, 1000);
+    }
+    else {
+      firstCard = node;
+    }
+  }
+
+//Muestra y esconde carta si esta mostrada la quita , si no la esconde
+  function toggleCard(node) {
+    $(node).children().first().toggle();
+    $(node).children().last().toggleClass('back');
+  }
+
 });

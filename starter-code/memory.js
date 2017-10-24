@@ -55,8 +55,17 @@ MemoryGame.prototype.checkPairs = function() {
     this.selectedCards = [];
     return true;
   }
-  else {
-    this.selectedCards = [];
-    return false;
-  }
+  this.selectedCards = [];
+  return false;
 };
+
+MemoryGame.prototype.finished = function() {
+  var sizePairsWin = this.cards.length/2;
+  if (this.correctPairs ==  sizePairsWin) {
+    console.log("You win!!");
+    this.correctPairs = 0;
+    return true;
+  }
+  console.log("continue...!!")
+  return false;
+}
