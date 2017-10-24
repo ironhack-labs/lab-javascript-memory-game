@@ -48,7 +48,7 @@ MemoryGame.prototype.selectCard = function(card) {
         this.selectedCards.push(card);
         this.flipToFrontCard(card);
 
-        if (this.selectedCards[0].name == this.selectedCards[1].name) {
+        if (this.selectedCards[0].attr('name') == this.selectedCards[1].attr('name')) {
             this.selectedCards.splice(0, 2);
             this.correctPairs++;
             $('#pairs_guessed').text(this.correctPairs);
