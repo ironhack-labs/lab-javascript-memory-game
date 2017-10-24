@@ -11,6 +11,9 @@ $(document).ready(function(){
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
+    MemoryGame.prototype._shuffleCards = function() {
+      this.cards =_.shuffle(this.cards);
+ };
 
    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
@@ -24,22 +27,38 @@ $(document).ready(function(){
   });
 
   // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-  $('.back').on('click', function(){
-    console.log($(this).attr('name'))
-  });
+  MemoryGame.prototype.saveCard = function(a) {
+   this.selectedCards.push(a);
+ };
 
+  document.getElementById('memory_board').innerHTML = html;
+
+  MemoryGame.prototype.compareCards = function() {
+     this.pairsClicked += 1;
+     if(this.selectedCards[0] === this.selectedCards[1]){
+       console.log("Verdadero");
+       this.correctPairs += 1;
+       var newPairs = $("#pairs_guessed").html(this.correctPairs);
+       $("#pairs_clicked").html(this.pairsClicked);
+       this.selectedCards = [];
+    } else {
+      console.log("THIS IS AN ERROR");
+      this.selectedCards = [];
+    }
+   };
 
 var car = $(".card");
-car.click(function(){
-  $('.back').toggleClass('back');
-  $('.front').toggleClass('back');
+car.on('click',function(){
+  var cardd = $(this).attr("name");
+  memoryGame.saveCard(cardd);
+  if (memoryGame.selectedCards.length == 2){
+    // memory.Game.compareCards();
+  }
+
+
+  // $('.back').toggleClass('back');
+  // $('.front').toggleClass('back');
+
 });
-
-
-// $('.price ul li:nth-child(1)').show();
-
-
-
 
 });
