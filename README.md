@@ -1,3 +1,8 @@
+
+Ejercicio Individual jQuery:
+file:///home/sara/Documents/IRONHACK/SEMANA2/jquery-indiv-exer/exercise.html
+
+
 ![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
 # JS | Memory Game
 
