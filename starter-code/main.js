@@ -24,7 +24,14 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
+  var cards = document.querySelectorAll('.back');
+  for(var i = 0; i < cards.length; i++) {
+    cards[i].onclick = function() {
+      memoryGame.selectCard(this);
+    };
+  };
 });

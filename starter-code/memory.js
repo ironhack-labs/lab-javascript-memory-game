@@ -30,17 +30,39 @@ var MemoryGame = function() {
   	];
     this.selectedCards = [];
     this.pairsClicked = 0;
-    this.correctPairs = 0;
+    this.pairsGuessed = 0;
 };
 
-MemoryGame.prototype.save = function(e) {
-  this.selectedCards.push(e);
+MemoryGame.prototype.selectCard = function(element) {
+  this.flipCard(element);
+  this.selectedCards.push(element);
+
+  if(this.selectedCards.length === 2) {
+    var card1 = this.selectedCards[0].getAttribute('name');
+    var card2 = this.selectedCards[1].getAttribute('name');
+
+    if (card1 === card2 ) {
+      this.pairsGuessed = this.pairsGuessed + 1;
+      $('#pairs_guessed').html(this.pairsGuessed);
+    }
+    else {
+      for(var i = 0; i < this.selectedCards.length; i++) {
+        this.flipCard(this.selectedCards[i]);
+      }
+    }
+    this.pairsClicked = this.pairsClicked + 1;
+    $('#pairs_clicked').html(this.pairsClicked);
+    this.selectedCards = [];
+  }
 };
 
+MemoryGame.prototype.flipCard = function(element) {
+  $(element).toggleClass('front').toggleClass('back');
+  $(element).next().toggleClass('back').toggleClass('front');
+};
 // shuffle
 
 MemoryGame.prototype.shuffleCards = function(){
   var cards = _.shuffle(this.cards);
-  console.log(cards);
-  return cards;
+  this.cards = cards;
 };
