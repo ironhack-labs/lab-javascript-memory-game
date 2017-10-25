@@ -107,22 +107,8 @@ var MemoryGame = function() {
 //1-ITERATION DONE
 MemoryGame.prototype._shuffleCards = function(array) {
   return _.shuffle(array);
-}
-//THIS SE REFIERE OBJETO - CARD SE REFIERE AL DIV
-MemoryGame.prototype.selectedCard = function(position) {
-  this.selectedCards.push(this.cards[position]);
-  if(this.selectedCards.length === 2) {
-    if(this.selectedCards[0] === this.selectedCards[1]){
-      console.log("you win");
-      this.correctPairs += 1;
-      this.selectedCards = [];
-    } else {
-      this.pairsClicked +=1;
-      console.log("You lost");
-      this.selectedCards = [];
-    }
-  }
 };
+
 // ITERATION 2 DONE
 MemoryGame.prototype.selectCard = function(card) {
   flipCards(card);
