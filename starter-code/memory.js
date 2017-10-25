@@ -1,6 +1,4 @@
 // //******************************************************************
-
-
 // //******************************************************************
 var MemoryGame = function() {
   this.cards = [{
@@ -113,6 +111,7 @@ var memoryGame;
 
 $(document).ready(function() {
   memoryGame = new MemoryGame();
+  //var shuffledCards=[MemoryGame._shuffleCards(this.cards)];
   var html = '';
 
   memoryGame.cards.forEach(function(pic, index) {
@@ -132,6 +131,11 @@ $(document).ready(function() {
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  $(".card").on("click", function() {
+    $(".card").removeClass(".back");
+    //$(".card":last-child)//
+    // $(this).children().toggleClass("front");
+  });
 
 
   MemoryGame.prototype._shuffleCards = function() {
@@ -145,9 +149,27 @@ $(document).ready(function() {
     }
     return this.cards;
   };
+
+
+  /* When the tiles are rendered, the user will select a card and all of the
+  game logic will be executed. This method will receive a reference
+  to a DOM element which will be a card.
+  SEE BELOW ---->
+  */
+
+
+// CODE BELOW SHOULD WORK BUT DOES NOT / + TAKE OUT OF METHOD.
+  MemoryGame.prototype.selectCard = function(card) {
+
+
+
+
+  };
+
 });
 
 /*        PRINT THIS IN CONSOLE LOG;
-
+MemoryGame.selectCard() ->
 memoryGame._shuffleCards()
+
 */
