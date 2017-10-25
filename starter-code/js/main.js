@@ -36,7 +36,7 @@ $(document).ready(function(){
   $('#score > p').css({ 'display': 'inline-block',
                       'color': 'white',
                     'margin' : '0',
-                      'width': '30%',
+                      'width': '20%',
                 'margin-top' : '4px',
                 'text-align' : 'right',
                'margin-left' : '20px',
@@ -44,7 +44,10 @@ $(document).ready(function(){
             'vertical-align' : 'top',
                 'margin-top' : '10px'});
   // Add all the divs to the HTML
-
+  $('#reset').on('click',function(){
+    console.log("hey!");
+    location.reload();
+  });
   // Here start the magic
   $('.card').on('click', function(){
     // AntiClick in same image
@@ -57,8 +60,7 @@ $(document).ready(function(){
         unflip();
         console.log("HEY!");
       }else{
-        var status = memoryGame.selectCard(
-          $(this).children().attr("name"));
+        var status = memoryGame.selectCard($(this).children().attr("name"));
         $(this).children().toggleClass("back front");
         $(this).children().addClass("playing");
         if(status == 3){
@@ -72,7 +74,7 @@ $(document).ready(function(){
             unflip();
             setInterval(function(){
             })
-          ; }, 3000);
+          ; }, 2500);
           console.log("Lets go! Search a pair");
         }else if(status == 1){
           // Not flip and next (here put animation)
