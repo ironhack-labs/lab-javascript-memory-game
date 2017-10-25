@@ -85,6 +85,8 @@ function checkMatch(cardOne, cardTwo){
   } else {
     // IF WRONG turn over cards after 1 second, update object, score
     // and unlock card to keep playing
+    console.log(memoryGame.selectedCards[0]);
+    console.log(memoryGame.selectedCards[1]);
     setTimeout(function () {
       flipCard(memoryGame.selectedCards[0]);
       flipCard(memoryGame.selectedCards[1]);
@@ -115,7 +117,7 @@ function winner(){
 
 function paintBoard () {
   var html = '';
-  memoryGame.cards = memoryGame._shuffleCards(memoryGame.cards);
+  memoryGame.shuffleCards(memoryGame.cards);
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 

@@ -33,7 +33,7 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
- MemoryGame.prototype._shuffleCards = function(array) {
+ MemoryGame.prototype.shuffleCards = function(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
@@ -48,7 +48,7 @@ var MemoryGame = function() {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-  return array;
+  this.cards = array;
  };
 
  MemoryGame.prototype.selectCard = function(card){
