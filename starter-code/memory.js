@@ -61,6 +61,7 @@ MemoryGame.prototype.selectCard = function(card) {
 
     // If two cards were clicked
     if (self.selectedCards.length === 2) {
+        $('.back').unbind('click'); // Desactive the click event
         // If they're the same
         if (self.selectedCards[0] === self.selectedCards[1]) {
             self.correctPairs++;
@@ -76,7 +77,13 @@ MemoryGame.prototype.selectCard = function(card) {
         }
         self.pairsClicked++;
         $('#pairs_clicked').text(self.pairsClicked);
-        self.selectedCards = []; // Reset
+        self.selectedCards = [];
+        setTimeout(function() { // Activate the click event after un second
+            $('.back').on('click', function(e) {
+                e.stopPropagation();
+                memoryGame.selectCard($(this));
+            });
+        }, 1000);
     }
 
 };
@@ -91,7 +98,7 @@ MemoryGame.prototype.finished = function() {
 
 var memoryGame;
 
-$(document).ready(function(){
+$(document).ready(function() {
   memoryGame = new MemoryGame();
   var html = '';
   var shuffledCards = memoryGame._shuffleCards(memoryGame.cards);
