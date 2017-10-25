@@ -30,21 +30,25 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  // Show and hide cards
+  // Card click
   $(".card").click(function() {
     var pos = $(this).index();
     memoryGame.selectCard(pos);
     memoryGame.compare();
+
+    // Show card
+    $(this).find(".back").removeClass('back');
+    $(this).find(".front").addClass('back');
+
+    // Hide card
+    setTimeout(function(){
+      $(this).first().addClass('back');
+      $(this).find(".front.back").removeClass('back');
+    }, 2000);
+
+    // Update score counters on card click
     $('#pairs_clicked').text(memoryGame.pairsClicked);
     $('#pairs_guessed').text(memoryGame.correctPairs);
-
-    if ($(this).find('.back').hasClass('back')){
-      $(this).find(".back").removeClass('back');
-      $(this).find(".front").addClass('back');
-      event.preventDefault();
-    }
   });
-
-  // Update pairs clicked
 
 });
