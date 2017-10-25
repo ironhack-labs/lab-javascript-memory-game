@@ -54,7 +54,6 @@ MemoryGame.prototype.flipCard = function (card) {
 MemoryGame.prototype.selectCard = function(card) {
     var self = this;
     var card_name = $(card).attr('name');
-    console.log(card_name + " " + typeof(card_name));
 
     // First we push the card's name and flip the card
     self.selectedCards.push(card_name);
@@ -84,15 +83,10 @@ MemoryGame.prototype.selectCard = function(card) {
                 e.stopPropagation();
                 memoryGame.selectCard($(this));
             });
-        }, 1000);
+        }, 950);
     }
 
 };
-
-/*
-    My error is at line 69:
-    the attribute `name` goes without _ and takes spaces.
-*/
 
 MemoryGame.prototype.finished = function() {
     alert("Congratulations, you won!");
