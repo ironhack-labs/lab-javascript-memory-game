@@ -56,6 +56,14 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   $('.card').click(function() {
+    showCard(this);
     memoryGame.selectCard($(this).attr('name'));
   });
+
+  function showCard(card) {
+
+    console.log($(card).find('.back'));
+    $(card).find('.back').toggleClass('front');
+    $(card).find('.front').toggleClass('back');
+  };
 });
