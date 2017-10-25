@@ -37,15 +37,24 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  $(".card").click(function(){
+  $(".card").on("click",function(){
     //controlamos los click y asignamos card1 y card2 a variables
     if(click == true){
     card1 = $(this).attr("name");
     console.log("card1-->", card1);
-    $(this).addClass("back");
+    $(this).prev().removeClass("back");
+    $(this).prev().addClass("front");
+    $(this).prev(".back").css("display","none");
+
+
     click = false;
   }else{
     card2 = $(this).attr("name");
+    $(this).children().addClass("back");
+    $(this).prev().css("display","none");
+      $(this).prev(".back").removeClass("back");
+    //$(this).prev().css("display","auto");
+    $(this).prev(".back").removeClass("front");
     console.log("card2-->",card2);
     click = true;
   }
