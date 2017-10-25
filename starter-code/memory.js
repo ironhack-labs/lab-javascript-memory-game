@@ -44,6 +44,7 @@ MemoryGame.prototype.shuffleCards = function() {
 
 MemoryGame.prototype.selectCards = function(card) {
   this.selectedCards.push(card);
+  console.log(this.selectedCards);
 
 };
 

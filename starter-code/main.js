@@ -6,11 +6,12 @@ var memoryGame;
 
 $(document).ready(function(){
   juanGame = new MemoryGame();
-  juanGame._shuffleCards();
+  juanGame.shuffleCards();
+  console.log(juanGame.cards);
 
   var html = '';
 
-  JuanGame.cards.forEach(function(pic, index) {
+  juanGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
     html += '<div class= "card" name="card_' + sanitizedName + '">';
@@ -27,29 +28,35 @@ $(document).ready(function(){
   // Add all the divs to the HTML
 
   document.getElementById('memory_board').innerHTML = html;
-$(."back").on( "click", function(){
+$(".back").on( "click", function(){
 
   //card it turns when you click it
 
   var cardImage = $(this).attr("pic_img");
-  $(this).css("background", "url("img/"+ cardImage+""");
-
+  //$(this).css("background", "url("img/"+ cardImage+""");
+//This is to flip the cards, but not working, so it's commented
   var cardvalue = $(this).attr("name");
+  console.log(cardvalue);
 
   //Checking the cards that are into the array
 
   juanGame.selectCards(cardvalue);
-  if(juanGame.selectedCards == 2) {
-    console.log(juanGame.selectedCards)
+  //No olvidar length
+  if(juanGame.selectedCards.length == 2) {
+    console.log(juanGame.selectedCards);
     if(juanGame.checkEquals() == true) {
-      console.log("They match!")
+      console.log("They match!");
       if (juanGame.checkWinner() == true) {
-        console.log("You win!")
-      } else {
-        console.log("Push it, you are close!")
+        console.log("You win!");
+      }
+      else {
+        console.log("Push it, you are close!");
       };
-    } else {
-      console.log("They don't match")
+    }
+    else {
+      console.log("They don't match");
     }
    }
-  });
+ });
+
+});
