@@ -37,14 +37,16 @@ $(document).ready(function(){
     memoryGame.compare();
 
     // Show card
-    $(this).find(".back").removeClass('back');
-    $(this).find(".front").addClass('back');
+    $(this).find('.back').removeClass('back');
+    $(this).find('.front').addClass('back');
+    $(this).addClass('clicked');
 
-    // Hide card
-    setTimeout(function(){
-      $(this).first().addClass('back');
-      $(this).find(".front.back").removeClass('back');
-    }, 2000);
+    // Hide card *not working*
+    // setTimeout(function(){
+    //   $('.clicked').first().addClass('back');
+    //   $('.front').removeClass('back');
+    //   alert('interval executed');
+    // }, 2000);
 
     // Update score counters on card click
     $('#pairs_clicked').text(memoryGame.pairsClicked);

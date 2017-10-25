@@ -47,8 +47,7 @@ MemoryGame.prototype.selectCard = function(cardPos){
   console.log('- One card selected at position: ' + cardPos);
 
   // Increase cards clicked counter
-    console.log('- Pairs clicked: ' + this.pairsClicked);
-    this.pairsClicked += 0.5;
+  this.pairsClicked += 0.5;
 }
 
 MemoryGame.prototype.compare = function(){
