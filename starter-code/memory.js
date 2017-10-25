@@ -125,8 +125,7 @@ MemoryGame.prototype._shuffleCards = function() {
 
 MemoryGame.prototype.selectCard = function(card) {
   $('.card').on('click', function() {
-    $(this).children().toggleClass('back front');
-    this.selectedCards.push((this).name);
+    memoryGame.selectedCards.push((this).name);
     console.log(this.selectedCards);
   });
 };
@@ -162,6 +161,12 @@ $(document).ready(function() {
 
   $('.card').on('click', function() {
     $(this).children().toggleClass('back front');
+    if (memoryGame.selectedCards.length < 2 && $.inArray((this).innerHTML, [memoryGame.selectedCards]) === -1) {
+      memoryGame.selectedCards.push(this.innerHTML);
+    } else if ($.inArray((this).innerHTML, [memoryGame.selectedCards]) != -1) {
+      memoryGame.selectedCards.push(this.innerHTML);
+      console.log('Found a pair!');
+    }
   });
 
 });
