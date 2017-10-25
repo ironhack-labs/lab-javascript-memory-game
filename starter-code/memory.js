@@ -38,31 +38,48 @@ var MemoryGame = function() {
 // // HTML/CSS Interactions
 // //******************************************************************
 
-MemoryGame.prototype.shuffle = function() {
-  var shuffle = _.shuffle(this.cards);
-  this.cards = shuffle;
+//Iteration 1
+MemoryGame.prototype.shuffle = function(array) {
+  return _.shuffle(array);
 }
 
-MemoryGame.prototype.selectedCard = function(card) {
-  this.selectedCards.push(card);
+//Iteration 2
+MemoryGame.prototype.selectCard = function(card) {
+  flipCards(card);
+  if (this.selectedCards.length > 0) {
+    this.pairsClicked += 1;
+    $("#pairs_clicked").text(this.pairsClicked);
+    this.selectedCards.push(card);
+    if (this.selectedCards[0].attr("name") == this.selectedCards[1].attr("name")) {
+      this.correctPairs += 1;
+      $("#pairs_guessed").text(this.correctPairs);
+      this.selectedCards = [];
+      return;
+    } else {
+      setTimeout(flipBack, 500, this.selectedCards[0]);
+      setTimeout(flipBack, 500, card);
+      this.selectedCards = [];
+    }
+  } else {
+    this.selectedCards.push(card);
+  }
 };
 
-MemoryGame.prototype.checkPairs = function() {
-  this.pairsClicked +=1;
-  if(this.selectedCards[0] === this.selectedCards[1]){
-    this.correctPairs += 1;
-    flag = true;
-  } else {
-    flag =  false;
-  }
-  this.selectedCards = [];
-  return flag;
-}
-
+//Iteration 3
 MemoryGame.prototype.finished = function() {
   if(this.correctPairs === 12) {
     console.log("you win");
     correctPairs = 0;
     pairsClicked = 0;
   }
+}
+
+function flipCards(e) {
+  e.removeClass("back");
+  e.siblings().addClass("back");
+}
+
+function flipBack(e) {
+  e.siblings().removeClass("back");
+  e.addClass("back");
 }

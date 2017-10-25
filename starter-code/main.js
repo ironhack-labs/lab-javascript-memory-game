@@ -4,12 +4,6 @@ $(document).ready(function(){
   var html = '';
 
   memoryGame.shuffle();
-  // console.log(memoryGame.cards);
-  // memoryGame.selectedCard();
-  // console.log(memoryGame.selectedCards);
-  // // memoryGame.checkCard();
-// memoryGame.finished();
-
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -28,34 +22,11 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  $('.back').on('click', function(){
-    $(this).addClass("is-clicked");
 
-    var name = $(this).attr("pic_path");
-    $(this).css("background-image", "url('img/"+name+"");
-    var selectedCardResult= memoryGame.selectedCard(name);
-
-
-    if(memoryGame.selectedCards.length === 2) {
-      var memoryResult = memoryGame.checkPairs();
-
-      $("#pairs_clicked").html(memoryGame.pairsClicked);
-      // console.log(memoryResult);
-      if(memoryResult === false) {
-        console.log($(this));
-        setTimeout(function() {
-          $(this).hasClass("is-clicked").hide();
-        }, 1000);
-
-        // $(this).css("background-image", "none");
-      } else {
-        $(this).removeClass("is-clicked");
-        $("#pairs_guessed").html(memoryGame.correctPairs);
-        $(this).css(
-          {index: "-1"},
-          {position: "relative"}
-        );
-      }
-    }
+  // ADD DIVS
+  document.getElementById('memory_board').innerHTML = html;
+    $('.back').on('click', function(){
+        memoryGame.selectCard($(this));
+        memoryGame.finished();
+    });
   });
-});
