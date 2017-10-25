@@ -183,7 +183,11 @@ $(document).ready(function() {
   $('.card').on('click', function() {
     $(this).children().toggleClass('back front');
     memoryGame.selectedCards.push(this.innerHTML);
-    console.log(memoryGame.selectedCards);
+    if (memoryGame.selectedCards.length === 2) {
+      if (memoryGame.selectedCards[0] !== memoryGame.selectedCards[1]) {
+        $(this).children().toggleClass('back front');
+      }
+    }
   });
 
 
