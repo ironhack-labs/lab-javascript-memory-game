@@ -39,6 +39,7 @@ MemoryGame.prototype.shuffleCards = function() {
 
 MemoryGame.prototype.selectCards = function(card) {
 this.selectedCards.push(card);
+console.log(this.selectedCards);
 };
 
 MemoryGame.prototype.setEquals = function() {
@@ -51,11 +52,11 @@ MemoryGame.prototype.setEquals = function() {
     this.selectedCards = [];
     return false;
   }
-}
+};
 
 MemoryGame.prototype.checkWinner = function() {
   if(this.correctPairs == 12){
     return true;
   }
   return false;
-}
+};

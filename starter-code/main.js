@@ -7,6 +7,7 @@ var memoryGame;
 $(document).ready(function(){
   juego = new MemoryGame();
   juego.shuffleCards();
+  console.log(juego.cards);
 
   var html = '';
 
@@ -28,16 +29,15 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
-});
-
 $(".back").on("click", function(){
 var image = $(this).attr("pic_img");
-$(this).css("background", "url('img/ "+ image + "'")
+//$(this).css('background', "url('img/"+ image + "'");
+var cardValue = $(this).attr("name")
+console.log(cardValue);
 
-  var cardValue = $(this).attr("name");
-  juego.selectCards(cardValue)
+  juego.selectCards(cardValue);
   if(juego.selectedCards.length === 2){
-    console.log(juego.selectedCards)
+    console.log(juego.selectedCards);
     if(juego.setEquals() == true) {
       console.log("Son iguales");
     if(juego.checkWinner() == true){
@@ -48,4 +48,7 @@ $(this).css("background", "url('img/ "+ image + "'")
     }else{
     console.log("No son iguales");
   }
-  }})
+  }
+});
+
+});
