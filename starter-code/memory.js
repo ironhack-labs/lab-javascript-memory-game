@@ -43,12 +43,14 @@ MemoryGame.prototype.theCard = function (card) {
 
 MemoryGame.prototype.compareCards = function () {
   this.pairsClicked += 1;
-  if (this.selectedCards[0] === this.selectedCards[1]) {
+  if (this.selectedCards[0].attr('name') === this.selectedCards[1].attr('name')) {
     console.log("Acierto");
     this.correctPairs += 1;
     this.selectedCards = [];
+    return true;
   } else {
     console.log("ERROR");
     this.selectedCards = [];
+    return false;
   }
 };

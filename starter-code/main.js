@@ -28,30 +28,28 @@ $(document).ready(function () {
     document.getElementById('memory_board').innerHTML = html;
 
 
+    var flip = function (carta) {
+        carta.toggleClass('back')
+        carta.next().toggleClass('back')
+        carta.next().toggleClass('front')
+    }
 
-    // $('.back').on('click', function () {
-    //    $(this).attr('name')
-    //     console.log( $(this).attr('name'))
-    //     if (memoryGame.selectedCards.length > 0) {
-    //         if (memoryGame.selectedCards[0] == $(this).attr('name')) {
-                
-    //         } else {
-    //             memoryGame.selectedCards.push($(this).attr('name'));
-    //             console.log()
-    //         }
-    //     }
-    // });
-    $(".card").on("click", function(){
-            var carta = $(this).attr("name");
-            memoryGame.theCard(carta);
-            console.log(memoryGame.selectedCards)
-            if(memoryGame.selectedCards.length == 2){
-              memoryGame.compareCards();
+
+    $('.back').on('click', function () {
+        flip($(this))
+        var carta = $(this);
+        memoryGame.theCard(carta);
+        console.log(memoryGame.selectedCards)
+        if (memoryGame.selectedCards.length == 2) {
+            console.log(memoryGame.selectedCards[0]);
+            console.log(memoryGame.selectedCards[1]);
+            if (!memoryGame.compareCards()) {
+                //flip(memoryGame.selectedCards[0]);
+                flip();
             }
-            
-            // $('.back').toggleClass('back')
-            // $('.front').toggleClass('back')
-        });
-        
+        }
+    });
+
+
 
 });
