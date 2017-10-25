@@ -88,7 +88,7 @@ Take a look at the `js` starter file. You already have a section for the logic a
 When starting our memory game, we have to keep track of 3 different attributes:
 
 
-- **Selected Cards**: A user can only select two cards at a time. When the user has selected a second card, we need to compare it to the first. If the first card and the second card are of the same time, then it's a match. This array can only have 0, 1, or 2 elements at any given time.
+- **Selected Cards**: A user can only select two cards at a time. When the user has selected a second card, we need to compare it to the first. If the first card and the second card are of the same kind, then it's a match. This array can only have 0, 1, or 2 elements at any given time.
 - **Pairs Clicked** - This is a counter which keeps track of the total number of pairs that a user has guessed.
 - **Correct Pairs** - This is an attribute that holds the total number of pairs the user has guessed correctly.
 
