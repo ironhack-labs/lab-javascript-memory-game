@@ -30,33 +30,39 @@ var MemoryGame = function() {
   	];
     this.selectedCards = [];
     this.pairsClicked = 0;
-    this.correctPairs = 0;
+    this.pairsGuessed = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+MemoryGame.prototype.selectCard = function(element) {
+  this.flipCard(element);
+  this.selectedCards.push(element);
 
-var memoryGame;
+  if(this.selectedCards.length === 2) {
+    var card1 = this.selectedCards[0].getAttribute('name');
+    var card2 = this.selectedCards[1].getAttribute('name');
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
+    if (card1 === card2 ) {
+      this.pairsGuessed = this.pairsGuessed + 1;
+      $('#pairs_guessed').html(this.pairsGuessed);
+    }
+    else {
+      for(var i = 0; i < this.selectedCards.length; i++) {
+        this.flipCard(this.selectedCards[i]);
+      }
+    }
+    this.pairsClicked = this.pairsClicked + 1;
+    $('#pairs_clicked').html(this.pairsClicked);
+    this.selectedCards = [];
+  }
+};
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+MemoryGame.prototype.flipCard = function(element) {
+  $(element).toggleClass('front').toggleClass('back');
+  $(element).next().toggleClass('back').toggleClass('front');
+};
+// shuffle
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+MemoryGame.prototype.shuffleCards = function(){
+  var cards = _.shuffle(this.cards);
+  this.cards = cards;
+};
