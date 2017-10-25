@@ -54,6 +54,7 @@ MemoryGame.prototype.flipCard = function (card) {
 MemoryGame.prototype.selectCard = function(card) {
     var self = this;
     var card_name = $(card).attr('name');
+    console.log(card_name + " " + typeof(card_name));
 
     // First we push the card's name and flip the card
     self.selectedCards.push(card_name);
@@ -66,7 +67,7 @@ MemoryGame.prototype.selectCard = function(card) {
         if (self.selectedCards[0] === self.selectedCards[1]) {
             self.correctPairs++;
             $('#pairs_guessed').text(self.correctPairs);
-            $('.back[name=' + card_name.split(' ').join('_') + ']').addClass('okay'); // Adding this class to not flip them later
+            $('.back[name="' + card_name + '"]').addClass('okay'); // Adding this class to not flip them later
             if (self.correctPairs === (self.cards.length / 2)) {
                 self.finished();
             }
@@ -88,6 +89,11 @@ MemoryGame.prototype.selectCard = function(card) {
 
 };
 
+/*
+    My error is at line 69:
+    the attribute `name` goes without _ and takes spaces.
+*/
+
 MemoryGame.prototype.finished = function() {
     alert("Congratulations, you won!");
 };
@@ -95,8 +101,6 @@ MemoryGame.prototype.finished = function() {
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
-
-var memoryGame;
 
 $(document).ready(function() {
   memoryGame = new MemoryGame();
@@ -124,4 +128,5 @@ $(document).ready(function() {
       e.stopPropagation();
       memoryGame.selectCard($(this));
   });
+
 });
