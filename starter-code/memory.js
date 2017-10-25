@@ -32,31 +32,67 @@ var MemoryGame = function() {
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
+// Iteration 1: shuffle the cards
+MemoryGame.prototype.shuffleCards = function() {
+  this.cards = _.shuffle(this.cards);
+};
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+//Iteration 2 : start the selection cards
+MemoryGame.prototype.selectCard = function(card) {
+  card.removeClass('back');
+  card.siblings().addClass('back');
 
-var memoryGame;
+  switch (this.selectedCards.length) {
+    case 0:
+      this.selectedCards.push(card);
+      break;
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
+    case 1:
+      this.compareCards(card);
+      break;
+    default:
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+  }
+};
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
+//Iteration 3
+MemoryGame.prototype.finished = function() {
+  if (this.correctPairs == 12) {
+    alert("WHOOOUU!!!. Win the game");
+  }
+};
 
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+MemoryGame.prototype.compareCards = function(card) {
+  this.selectedCards.push(card);
+  this.pairsClicked++;
+  if (this.selectedCards[0].attr('name') === this.selectedCards[1].attr('name')) {
+    this.correctPairs++;
+    $('#pairs_guessed').text(this.correctPairs);
+  } else {
+    showWrong();
+    this.coverCards();
+  }
+  this.selectedCards = [];
+  $('#pairs_clicked').text(this.pairsClicked);
+};
+
+MemoryGame.prototype.coverCards = function() {
+  flipBothBack(this.selectedCards[0]);
+  flipBothBack(this.selectedCards[1]);
+};
+
+function flipBothBack(element) {
+  setTimeout(function() {
+    element.siblings().removeClass('back');
+    element.addClass('back');
+  }, 0.8 * 1000);
+
+};
+
+// function for show a message when the cards are differents
+function showWrong(){
+  setTimeout(function() {
+    $('#wrong').toggleClass("hidden");
+  }, 0.7 * 1000);
+  $('#wrong').toggleClass("hidden");
+};

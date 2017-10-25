@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  /*background: url(img/background.jpg) no-repeat;*/
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -66,4 +66,14 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+#wrong{
+  height: 25px;
+  width: 250px;
+  display: inline-block;
 }
