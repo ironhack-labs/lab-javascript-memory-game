@@ -33,30 +33,27 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+MemoryGame.prototype.shuffleCards = function() {
+  var randomCards = _.shuffle(this.cards);
+  // console.log(_.shuffle(this.cards));
+  this.cards = randomCards;
+};
 
-var memoryGame;
+MemoryGame.prototype.selectCards = function (card) {
+  this.selectedCards.push(card);
+  console.log(this.selectedCards);
+};
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+MemoryGame.prototype.checkCards = function (){
+  console.log(this.selectedCards);
+  this.pairsClicked += 1;
+  if(this.selectedCards[0] === this.selectedCards[1]){
+    this.correctPairs += 1;
+    this.selectedCards = [];
+    console.log("Match!");
+  } else {
+    this.selectedCards = [];
+    console.log("Keep Trying!");
+  };
+};
