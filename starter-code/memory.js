@@ -185,9 +185,20 @@ $(document).ready(function() {
     memoryGame.selectedCards.push(this.innerHTML);
     if (memoryGame.selectedCards.length === 2) {
       if (memoryGame.selectedCards[0] !== memoryGame.selectedCards[1]) {
-        $('.active').toggleClass('back front active');
-        memoryGame.selectedCards = [];
+        setTimeout(function() {
+          $('.active').toggleClass('back front active');
+          console.log(memoryGame.pairsClicked);
+        }, 1000);
+      } else {
+        memoryGame.correctPairs += 1;
+        $('.active').toggleClass('active');
+        $('#pairs_guessed').innerHTML = memoryGame.correctPairs;
       }
+      memoryGame.selectedCards = [];
+      memoryGame.pairsClicked += 1;
+      $('span#pairs_clicked').innerHTML = memoryGame.pairsClicked;
+
+
     }
   });
 
