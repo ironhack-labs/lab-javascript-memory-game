@@ -20,6 +20,7 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
+  // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Lets change visual!
   $('.back').css({"border-radius": "50%"});
@@ -43,7 +44,7 @@ $(document).ready(function(){
                     'margin' : '0',
             'vertical-align' : 'top',
                 'margin-top' : '10px'});
-  // Add all the divs to the HTML
+  // RESET!
   $('#reset').on('click',function(){
     console.log("hey!");
     location.reload();
