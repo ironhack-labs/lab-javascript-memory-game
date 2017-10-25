@@ -30,7 +30,6 @@ $(document).ready(function(){
     showHidden(this);
 
     if(memoryGame.finished()){
-      debugger
       var nodosSize = $('.card').length;
       for(var i = 0; i < nodosSize; i++) {
         toggleCard($('.card')[i]);

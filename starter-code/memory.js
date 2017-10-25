@@ -67,5 +67,4 @@ MemoryGame.prototype.finished = function() {
     return true;
   }
   console.log("continue...!!")
-  return false;
 }
