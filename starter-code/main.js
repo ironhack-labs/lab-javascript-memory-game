@@ -34,7 +34,7 @@ $(".back").on( "click", function(){
 
   var cardImage = $(this).attr("pic_img");
   //$(this).css("background", "url("img/"+ cardImage+""");
-//This is to flip the cards, but not working, so it's commented
+//This is to flip the cards, but not working, so it's commented. Maybe toglle with set Interval
   var cardvalue = $(this).attr("name");
   console.log(cardvalue);
 
