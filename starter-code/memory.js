@@ -33,30 +33,39 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+// Object prototype functions
 
-var memoryGame;
+MemoryGame.prototype.shuffle = function(array) {
+  this.cards = _.shuffle(array);
+  console.log('- Cards shuffled');
+  console.table(this.cards);
+}
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
+MemoryGame.prototype.selectCard = function(cardPos){
+  // Add to the empty array of cards our selected one
+  this.selectedCards.push(this.cards[cardPos]);
+  console.log('- One card selected at position: ' + cardPos);
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+  // Increase cards clicked counter
+  this.pairsClicked += 0.5;
+}
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
+MemoryGame.prototype.compare = function(){
+  if(this.selectedCards.length == 2){
+    var card1 = this.selectedCards[0];
+    var card2 = this.selectedCards[1];
 
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+    if(card1.name == card2.name){
+      this.correctPairs++;
+    } else {
+      console.log('SORRY, NO MATCH')
+    }
+    this.selectedCards = [];
+  }
+}
+
+MemoryGame.prototype.finished = function() {
+  if(this.pairsClicked == 12){
+    alert('You win'); // All pairs found therefore he wins
+  }
+};
