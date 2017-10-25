@@ -181,11 +181,12 @@ $(document).ready(function() {
   //FLIP CARD WHEN USER CLICKS IT
   //move function out of ready and use callback?
   $('.card').on('click', function() {
-    $(this).children().toggleClass('back front');
+    $(this).children().toggleClass('back front active');
     memoryGame.selectedCards.push(this.innerHTML);
     if (memoryGame.selectedCards.length === 2) {
       if (memoryGame.selectedCards[0] !== memoryGame.selectedCards[1]) {
-        $(this).children().toggleClass('back front');
+        $('.active').toggleClass('back front active');
+        memoryGame.selectedCards = [];
       }
     }
   });
