@@ -27,15 +27,29 @@ $(document).ready(function() {
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  $('.back').on('click', function() {
+  $('.card').on('click', function() {
+    var cardSelect = $(this);
     var cardToCheck = $(this).attr('name');
-    // var flip = $(this);
-    memoryGame.selectCards(cardToCheck);
-    // cardToCheck.addClass('front');
 
+    if (memoryGame.selectedCards.length <= 2){
+      memoryGame.selectCards(cardToCheck);
+        flipCard(cardSelect);
+  } else {
+    flipCardReset(cardSelect);
+  }
     if (memoryGame.selectedCards.length == 2) {
       memoryGame.checkCards();
+          flipCardReset(cardSelect);
     }
   });
+
+  function flipCard(frontCard){
+    $(cardSelect).children().first().toggle();
+    $(cardSelect).children().last().toggleClass('back');
+  }
+  function flipCardReset(backCard){
+    $(backCard).children().first().toggleClass('back');
+    $(backCard).children().last().toggleClass('front');
+  };
 
 });

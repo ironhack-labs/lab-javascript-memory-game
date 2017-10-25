@@ -51,9 +51,9 @@ MemoryGame.prototype.checkCards = function (){
   if(this.selectedCards[0] === this.selectedCards[1]){
     this.correctPairs += 1;
     this.selectedCards = [];
-    console.log("ACIERTO");
+    console.log("Match!");
   } else {
     this.selectedCards = [];
-    console.log("FALLO");
+    console.log("Keep Trying!");
   };
 };
