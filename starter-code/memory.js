@@ -40,45 +40,45 @@ MemoryGame.prototype.shuffle = function() {
 
 MemoryGame.prototype.selectCard = function(card) {
     if (this.selectedCards.length == 0) {
+        console.log("Añado carta 1");
         this.selectedCards.push(card);
-        this.flipToFrontCard(card);
     } else if (this.selectedCards.length == 1) {
+        console.log("Añado carta 2");
         this.pairsClicked++;
         $('#pairs_clicked').text(this.pairsClicked);
         this.selectedCards.push(card);
-        this.flipToFrontCard(card);
 
         if (this.selectedCards[0].attr('name') == this.selectedCards[1].attr('name')) {
+            console.log("Cartas iguales");
             this.selectedCards.splice(0, 2);
+            console.log(this.selectedCards);
             this.correctPairs++;
             $('#pairs_guessed').text(this.correctPairs);
         } else {
+            console.log("Cartas distintas");
+            var memoryGameInstance = this;
             var cards = this.selectedCards;
+            console.log(cards[0]);
+            console.log(cards);
             setTimeout(function() {
-                this.flipToBackCard(cards[0]);
-                this.flipToBackCard(cards[1]);
+                console.log("Dar la vuelta de nuevo");
+                console.log(cards[0]);
+                memoryGameInstance.flipBackCard(cards[0]);
+                memoryGameInstance.flipBackCard(cards[1]);
+                cards.splice(0, 2);
             }, 2000);
         }
     }
 };
 
-MemoryGame.prototype.flipToFrontCard = function(card) {
-    card.addClass("hidden");
-    card.removeClass("visible");
-    card.next().addClass("visible");
-    card.next().removeClass("hidden");
-};
-
-MemoryGame.prototype.flipToBackCard = function(card) {
-    card.addClass("visible");
-    card.removeClass("hidden");
-    card.next().addClass("hidden");
-    card.next().removeClass("visible");
+MemoryGame.prototype.flipBackCard = function(card) {
+    card.addClass('back');
+    card.siblings().removeClass('back');
 };
 
 MemoryGame.prototype.finished = function() {
     if (this.correctPairs == 12) {
-        // Finish
+        console.log('You win!');
     } else {
         return;
     }

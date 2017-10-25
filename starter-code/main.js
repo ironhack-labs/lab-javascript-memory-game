@@ -27,6 +27,8 @@ $(document).ready(function() {
 
     $('.back').on('click', function() {
         console.log($(this), $(this).next());
+        $(this).removeClass('back');
+        $(this).siblings().addClass('back');
         memoryGame.selectCard($(this));
         memoryGame.finished();
     });
