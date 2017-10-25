@@ -106,7 +106,7 @@ var MemoryGame = function() {
   //CALLING THE FUNCTIONS
   this._shuffleCards();
   this.selectCard();
-  this.flipCard();
+  // this.flipCard();
 
 
 };
@@ -127,19 +127,17 @@ MemoryGame.prototype._shuffleCards = function() {
   return this.cards;
 };
 
-//FLIP CARD WHEN USER CLICKS IT
-
-// $('.div[style*: background]').on('click', this.flipCard);
 
 
-MemoryGame.prototype.flipCard = function() {
-  //function WORKS in console and in ready
-  $("div[style*='background']").on('click', function() {
-    $(this).children().toggleClass('back front');
-    memoryGame.selectedCards.push(this);
-    console.log(memoryGame.selectedCards);
-  });
-};
+
+// MemoryGame.prototype.flipCard = function() {
+//function WORKS in console and in ready
+//   $("div[style*='background']").on('click', function() {
+//     $(this).children().toggleClass('back front');
+//     memoryGame.selectedCards.push(this);
+//     console.log(memoryGame.selectedCards);
+//   });
+// };
 
 //CHECK IF FLIPPED CARDS IS EQUAL
 MemoryGame.prototype.selectCard = function(card) {
@@ -180,12 +178,12 @@ $(document).ready(function() {
   document.getElementById('memory_board').innerHTML = html;
 
 
+  //FLIP CARD WHEN USER CLICKS IT
   //move function out of ready and use callback?
   $('.card').on('click', function() {
     $(this).children().toggleClass('back front');
     memoryGame.selectedCards.push(this.innerHTML);
     console.log(memoryGame.selectedCards);
-
   });
 
 
