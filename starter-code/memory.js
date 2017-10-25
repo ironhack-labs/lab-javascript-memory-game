@@ -33,30 +33,34 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-// //******************************************************************
-// // HTML/CSS Interactions
-// //******************************************************************
+ MemoryGame.prototype.shuffleCards = function(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-var memoryGame;
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
 
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  this.cards = array;
+ };
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="' + pic.name + '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    name="'       + pic.name +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
+ MemoryGame.prototype.selectCard = function(card){
+   this.selectedCards.push(card);
+ }
 
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
+ MemoryGame.prototype.finished = function() {
+   return (this.correctPairs == this.cards.length / 2) ? true : false;
+ }
+
+ MemoryGame.prototype.restart = function() {
+   this.selectedCards = [];
+   this.pairsClicked = 0;
+   this.correctPairs = 0;
+ }
