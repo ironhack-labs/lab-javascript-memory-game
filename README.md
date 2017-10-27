@@ -216,3 +216,5 @@ In this Learning Unit, you were able to separate the logic of the game from the 
 
 - [jQuery](https://jquery.com/)
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
+
+- Enlace al ejercicio individual: https://github.com/gemaderus/jquery-exercise;
