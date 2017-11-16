@@ -57,6 +57,23 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+  MemoryGame.prototype._shuffleCards = function() {
+    var gameLen = this.cards.length;
+
+    var shuffleArray = [];
+    var i=0;
+    for(var k=gameLen-1;k>1 && i<gameLen;k++){
+      shuffleArray[i]=this.cards[randNum(k)];
+      i++;
+    }
+    
+    return shuffleArray;
+  };
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 });
+
+function randNum(max){
+  return Math.floor(Math.random()*max);
+}
