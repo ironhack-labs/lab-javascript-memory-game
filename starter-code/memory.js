@@ -33,6 +33,15 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype.shuffle = function(array) {
+  for (var i = array.length - 1; i >= 0; i--) {
+    randomIndex = Math.floor(Math.random() * (i + 1));
+    tmp = array[i];
+    array[i] = array[randomIndex];
+    array[randomIndex] = tmp;
+  }
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
