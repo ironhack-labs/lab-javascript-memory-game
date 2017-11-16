@@ -35,8 +35,15 @@ var MemoryGame = function() {
 
 MemoryGame.prototype._shuffleCards = function() {
     var eligibleCards = this.cards.length;
-    var randomIndex = Math.floor(Math.random() * eligibleCards);
-    cardsRandom = [];
+    while(eligibleCards >= 0) {
+      // decrease 1 because array goes until [0]
+      eligibleCards -= 1;
+      var randomIndex = Math.floor(Math.random() * eligibleCards);
+      temporaryValue = this.cards[eligibleCards];
+      this.cards[eligibleCards] = this.cards[randomIndex];
+      this.cards[randomIndex] = temporaryValue;
+    }
+    return this.cards;
 };
 
 // //******************************************************************
