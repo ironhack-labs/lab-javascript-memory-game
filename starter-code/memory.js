@@ -33,6 +33,12 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype._shuffleCards = function() {
+    var eligibleCards = this.cards.length;
+    var randomIndex = Math.floor(Math.random() * eligibleCards);
+    cardsRandom = [];
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -46,7 +52,7 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
