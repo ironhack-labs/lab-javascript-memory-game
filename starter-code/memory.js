@@ -121,43 +121,40 @@ MemoryGame.prototype._shuffleCards = function(array) {
 
 MemoryGame.prototype.selectCard = function(card) {
   $(card).click(function(event) {
-    // this.selectedCards = [];
-    // var valor=$(this).parent().attr("name");
-    // alert(memoryGame.selectedCards);
     if (memoryGame.selectedCards.length <= 2) {
-      $(this).removeClass('back');
-      $(this).addClass('front');
-      $(this).next().removeClass('front');
-      $(this).next().addClass('back');
-      memoryGame.selectedCards.push($(this).attr("index"));
-      // debugger;
+      changeClasses($(this),'back','front');
+      objCard = {};
+      objCard.name = $(this).parent().attr("name");
+      objCard.index = $(this).attr("index");
+      memoryGame.selectedCards.push(objCard);
     }
     if (memoryGame.selectedCards.length === 2) {
       memoryGame.pairsClicked++;
-      if (memoryGame.selectedCards[0] === memoryGame.selectedCards[1]) {
+      $("#pairs_clicked").text(memoryGame.pairsClicked);
+      if (memoryGame.selectedCards[0].name === memoryGame.selectedCards[1].name) {
         memoryGame.correctPairs++;
-        alert("Match");
+        $("#pairs_guessed").text(memoryGame.correctPairs);
+        memoryGame.selectedCards = [];
       } else {
         setTimeout(function() {
-          debugger;
-          var firstCard = $("div[index='" + memoryGame.selectedCards[0] + "']");
-          // debugger
-          //TIENES QUE HACERDER AL PRIMER HIJO
-
-          firstCard.addClass('front');
-          firstCard.removeClass('back');
-          firstCard.next().addClass('back');
-          firstCard.next().removeClass('front');
-
-
+          var firstCard = $("div[index='" + memoryGame.selectedCards[0].index.toString() + "']");
+          changeClasses(firstCard,'front','back');
+          var secondCard = $("div[index='" + memoryGame.selectedCards[1].index.toString() + "']");
+          changeClasses(secondCard,'front','back');
           memoryGame.selectedCards = [];
         }, 1000);
       }
     }
-
   });
-
 };
+
+function changeClasses(element,firstClass,secondClass){
+  element.removeClass(firstClass);
+  element.addClass(secondClass);
+  element.next().removeClass(secondClass);
+  element.next().addClass(firstClass);
+}
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -170,10 +167,10 @@ $(document).ready(function() {
   memoryGame._shuffleCards(memoryGame.cards);
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
-    // alert(index);
+
     html += '<div class= "card" name="card_' + sanitizedName + '">';
-    html += '<div class="back" index="' + index;
-    html += '"    name="' + pic.name + '">';
+    html += '<div class="back"';
+    html += '    name="' + pic.name + '" index="' + index + '">';
     html += '</div>';
     html += '<div class="front" ';
     html += 'style="background: url(img/' + pic.img + ')" no-repeat"';
@@ -184,6 +181,6 @@ $(document).ready(function() {
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  memoryGame.selectCard("div[index]");
+  memoryGame.selectCard(".back");
 
 });
