@@ -9,24 +9,35 @@ function MemoryGame(cardsArray, matchesNum) {
     this.correctPairs = 0;
 };
 
-
-MemoryGame.prototype.randomCards = function() {
+// Método para el reparto aleatorio de cartas
+MemoryGame.prototype.shuffleCards = function() {
   var cardsLength = this.cardsArray.length;
   console.log( "Total de cartas barajar: " + cardsLength )
   console.log( "repeticiones por carta: " + this.matchesNum )
   var usedCards = this.cardsArray;
       for(var i=0; i<cardsLength*this.matchesNum; i++){
         cardSelected = Math.floor( Math.random()*usedCards.length );
-        usedCards[cardSelected]["matches"]++
+        usedCards[cardSelected]["matches"]++;
         console.log( usedCards[cardSelected]["name"] );
-            if (usedCards[cardSelected]["matches"]===this.matchesNum){
-              usedCards.splice(cardSelected,1);
-            }
-        
-      }
-}
+        var sanitizedName = usedCards[cardSelected]["name"].split(' ').join('_');
+        var card_sanitizedName = sanitizedName;
+        var imgName = usedCards[cardSelected]["img"];
+        $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '"></div>');
+              //$( ".card name:" + card_sanitizedName + "").append('<div class="front" style="background: url(img/' + imgName + ') no-repeat" name="' + sanitizedName + '></div>');
+              $(".card:last-child").append('<div class="back" name="' + sanitizedName + '"></div>');
+              $(".card:last-child").append('<div class="front" style="background: url(img/' + imgName + ') no-repeat" name="' + sanitizedName + '"></div>');
 
-// Función para el reparto de cartas aleatorio 
+            if (usedCards[cardSelected]["matches"]===this.matchesNum){
+              usedCards.splice(cardSelected,1);   
+            }
+      }
+ }
+
+// Método para jugar al seleccionar una carta
+MemoryGame.prototype.selectCard = function(card){
+
+};
+
 
 
 // //******************************************************************
@@ -39,7 +50,7 @@ $(document).ready(function(){
 
  
 
-  var cardsArraywerwqerqwerqwreqwre = [
+  var cardsArray = [
     { name: "aquaman",         img: "aquaman.jpg",         matches: 0 },
     { name: "batman",          img: "batman.jpg",          matches: 0 },
     { name: "captain america", img: "captain-america.jpg", matches: 0 },
@@ -54,43 +65,12 @@ $(document).ready(function(){
     { name: "thor",            img: "thor.jpg",            matches: 0 },
   ];
 
-  var cardsArray = [
-    {name: "A", matches: 0},
-    {name: "B", matches: 0},
-    {name: "C", matches: 0},
-    {name: "D", matches: 0},
-    {name: "E", matches: 0},
-    {name: "F", matches: 0}];
-
-    
 
     var memoryGame = new MemoryGame(cardsArray, 2);
-    console.log("creado objeto memoryGame");
-    console.log(memoryGame);
-    memoryGame.randomCards();
+
+    memoryGame.shuffleCards();
 
     var usedCards = this.cardsArray;
-
-
-
-    var html = '';
-
-    memoryGame.cards.forEach(function(pic, index) {
-        var sanitizedName = pic.name.split(' ').join('_');
-
-        html += '<div class= "card" name="card_' + sanitizedName + '">';
-        html += '<div class="back"';
-        html += '    name="' + pic.name + '">';
-        html += '</div>';
-        html += '<div class="front" ';
-        html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-        html += '    name="'       + pic.name +  '">';
-        html += '</div>';
-        html += '</div>';
-    });
-
-    // Add all the divs to the HTML
-    document.getElementById('memory_board').innerHTML = html;
 
     //evento click en cada card
     $(".card").click(function(){

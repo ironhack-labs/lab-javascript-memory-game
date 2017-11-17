@@ -7,22 +7,26 @@
     </head>
 
     <body>
-        <div>
+     <div id="background" class = "flex vertical">
+
+        <div id="title">
           <h1>Superhero Memory Game</h1>
         </div>
-        <div id="score">
+
+        <div id="score" >
           <h2>Score</h2>
           <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
           <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
         </div>
-        <div id="memory_board"></div>
 
+        <div id="memory_board" class = "flex enLinea"></div>
+      
+    </div>
 
-        
-    </body>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script type="text/javascript" src="memory.js"></script>
 
+  </body>
 </html>
