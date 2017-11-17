@@ -1,60 +1,79 @@
 // //******************************************************************
 // // Game Logic
 // //******************************************************************
-function MemoryGame(cardsArray, matchesNumber) {
-
-
+function MemoryGame(cardsArray, matchesNum) {
+    this.cardsArray = cardsArray;
+    this.matchesNum = matchesNum;
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
 };
 
+
+MemoryGame.prototype.randomCards = function() {
+  var cardsLength = this.cardsArray.length;
+  console.log( "Total de cartas barajar: " + cardsLength )
+  console.log( "repeticiones por carta: " + this.matchesNum )
+  var usedCards = this.cardsArray;
+      for(var i=0; i<cardsLength*this.matchesNum; i++){
+        cardSelected = Math.floor( Math.random()*usedCards.length );
+        usedCards[cardSelected]["matches"]++
+        console.log( usedCards[cardSelected]["name"] );
+            if (usedCards[cardSelected]["matches"]===this.matchesNum){
+              usedCards.splice(cardSelected,1);
+            }
+        
+      }
+}
+
+// Función para el reparto de cartas aleatorio 
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
 
-var memoryGame;
 
 $(document).ready(function(){
 
 
-  Chronometer.prototype.startClock = function() {
-    console.log("START CLICK");
-    this.setStart();
-    this.setSplit();
-    this.intervalID = window.setInterval(this.runCounter, interval);
-  }
+ 
 
-  var cardsArray = [
-    { name: "aquaman",         img: "aquaman.jpg" },
-    { name: "batman",          img: "batman.jpg" },
-    { name: "captain america", img: "captain-america.jpg" },
-    { name: "fantastic four",  img: "fantastic-four.jpg" },
-    { name: "flash",           img: "flash.jpg" },
-    { name: "green arrow",     img: "green-arrow.jpg" },
-    { name: "green lantern",   img: "green-lantern.jpg" },
-    { name: "ironman",         img: "ironman.jpg" },
-    { name: "spiderman",       img: "spiderman.jpg" },
-    { name: "superman",        img: "superman.jpg" },
-    { name: "the avengers",    img: "the-avengers.jpg" },
-    { name: "thor",            img: "thor.jpg" },
+  var cardsArraywerwqerqwerqwreqwre = [
+    { name: "aquaman",         img: "aquaman.jpg",         matches: 0 },
+    { name: "batman",          img: "batman.jpg",          matches: 0 },
+    { name: "captain america", img: "captain-america.jpg", matches: 0 },
+    { name: "fantastic four",  img: "fantastic-four.jpg",  matches: 0 },
+    { name: "flash",           img: "flash.jpg",           matches: 0 },
+    { name: "green arrow",     img: "green-arrow.jpg",     matches: 0 },
+    { name: "green lantern",   img: "green-lantern.jpg",   matches: 0 },
+    { name: "ironman",         img: "ironman.jpg",         matches: 0 },
+    { name: "spiderman",       img: "spiderman.jpg",       matches: 0 },
+    { name: "superman",        img: "superman.jpg",        matches: 0 },
+    { name: "the avengers",    img: "the-avengers.jpg",    matches: 0 },
+    { name: "thor",            img: "thor.jpg",            matches: 0 },
   ];
 
+  var cardsArray = [
+    {name: "A", matches: 0},
+    {name: "B", matches: 0},
+    {name: "C", matches: 0},
+    {name: "D", matches: 0},
+    {name: "E", matches: 0},
+    {name: "F", matches: 0}];
+
+    
+
+    var memoryGame = new MemoryGame(cardsArray, 2);
+    console.log("creado objeto memoryGame");
+    console.log(memoryGame);
+    memoryGame.randomCards();
+
+    var usedCards = this.cardsArray;
 
 
-
-    memoryGame = new MemoryGame();
 
     var html = '';
-
-    // Función para el reparto de cartas aleatorio 
-    var cardsLength = memoryGame.cards.length;
-    console.log( "Total de cartas: " + cardsLength );
-
-    for(var i=0; i<cardsLength; i++){
-      cardSelected = Math.floor( Math.random()*cardsLength );
-      console.log( cardSelected );
-    }
 
     memoryGame.cards.forEach(function(pic, index) {
         var sanitizedName = pic.name.split(' ').join('_');
