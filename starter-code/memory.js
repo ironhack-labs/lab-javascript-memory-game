@@ -64,8 +64,8 @@ $(document).ready(function(){
     
 
   };
-
-
+ 
+  memoryGame._shuffleCards();
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -91,16 +91,20 @@ $(document).ready(function(){
       {
         this.selectedCards = [];
         this.correctPairs++;
+        $("#pairs_guessed").html(this.correctPairs);
+        this.pairsClicked++;
+        $("#pairs_clicked").html(this.pairsClicked/2);
         value.attr('class','back blocked');
         selCard.attr('class','back blocked');
       }
       else{
     //     alert("WRONG");
-        
+        this.pairsClicked++;
+        $("#pairs_clicked").html(this.pairsClicked/2);
         this.selectedCards = [];
         setTimeout(function() {
           $(".back").not(".blocked").css('background','#456783');
-        }, 2000);       
+        }, 500);       
         
       }
     }
