@@ -62,12 +62,9 @@ $(document).ready(function(){
         this.cards[randomIndex] = temporaryValue;
       }
     
-      return this.cards;
 
   };
 
-
-  memoryGame.cards = memoryGame._shuffleCards();
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -100,8 +97,11 @@ $(document).ready(function(){
       else{
     //     alert("WRONG");
         
-        this.selectedCards = [];       
-        $(".back").not(".blocked").css('background','#456783');
+        this.selectedCards = [];
+        setTimeout(function() {
+          $(".back").not(".blocked").css('background','#456783');
+        }, 2000);       
+        
       }
     }
     else{
@@ -116,9 +116,9 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   $('.back').on('click', function(e){
-    
+    var selCard = $(this);
     var name = $(this).attr('name');
-    alert(name);
+   // alert(name);
     memoryGame.selectedCards.push($(this));
     var parent = $(this).parent();
     var front  = parent.find(".front");
@@ -126,6 +126,7 @@ $(document).ready(function(){
     var css = front.css('background');
     back.css('background',css);
     memoryGame.selectCard($(this));
+  //  window.setTimeout(memoryGame.selectCard,1000,$(this));
           
   });
 });
@@ -146,12 +147,4 @@ function compareCards(previous,old){
   
     return (previous === old) ? 1 : 0;
 
-}
-
-function wait(ms){
-  var start = new Date().getTime();
-  var end = start;
-  while(end < start + ms) {
-    end = new Date().getTime();
- }
 }
