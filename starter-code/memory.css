@@ -1,6 +1,9 @@
 html {
+  /*
   background: url(img/background.jpg) no-repeat;
   background-size: cover;
+  */
+  background-color: orange;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
