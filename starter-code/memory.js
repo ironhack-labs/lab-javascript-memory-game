@@ -48,7 +48,17 @@ MemoryGame.prototype._shuffleCards = function(array) {
 };
 
 MemoryGame.prototype.selectCard = function(card){
+  $(card).click(function(event) {
+    // this.selectedCards = [];
+    // var valor=$(this).parent().attr("name");
+    memoryGame.selectedCards.push($(this).parent().attr("name"));
+    // alert(memoryGame.selectedCards);
+    $(this).removeClass('back');
+    $(this).addClass('front');
+    $(this).next().removeClass('front');
+    $(this).next().addClass('back');
 
+  });
 
 };
 // //******************************************************************
@@ -69,7 +79,7 @@ $(document).ready(function(){
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background: url(img/' + pic.img + ')" no-repeat"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
@@ -77,8 +87,6 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  memoryGame.selectCard(".back");
 
-  $(".card").click(function(event) {
-    alert("hola");
-  });
 });
