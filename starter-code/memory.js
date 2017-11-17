@@ -22,20 +22,30 @@ MemoryGame.prototype.shuffleCards = function() {
         var sanitizedName = usedCards[cardSelected]["name"].split(' ').join('_');
         var card_sanitizedName = sanitizedName;
         var imgName = usedCards[cardSelected]["img"];
-        $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '"></div>');
-              //$( ".card name:" + card_sanitizedName + "").append('<div class="front" style="background: url(img/' + imgName + ') no-repeat" name="' + sanitizedName + '></div>');
-              $(".card:last-child").append('<div class="back" name="' + sanitizedName + '"></div>');
-              $(".card:last-child").append('<div class="front" style="background: url(img/' + imgName + ') no-repeat" name="' + sanitizedName + '"></div>');
-
-            if (usedCards[cardSelected]["matches"]===this.matchesNum){
-              usedCards.splice(cardSelected,1);   
-            }
+        $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
+              //$(".card:last-child").append('<div class="back" name="' + sanitizedName + '"></div>');
+              //$(".card:last-child").append('<div class="front" style="background: url(img/green-arrow.jpg)" name="green_arrow"></div>');
+              $(".card:last-child").append('<div></div>');
+              $(".card:last-child").append('<div class="cover"></div>');
+              if (usedCards[cardSelected]["matches"]===this.matchesNum){
+          usedCards.splice(cardSelected,1);   
+        }
       }
  }
 
 // Método para jugar al seleccionar una carta
-MemoryGame.prototype.selectCard = function(card){
-
+MemoryGame.prototype.selectCard = function(card){   
+  clickName = $(card).attr("name");
+  coverName = $(card.cover)
+  console.log("clic en la carta " + clickName);
+  if (coverName.is(':visible')) {
+    coverName.hide();
+  }  
+  else{
+    coverName.show();  
+  }   
+  this.selectedCards.push(clickName);
+  this.pairsClicked = 0;
 };
 
 
@@ -66,7 +76,7 @@ $(document).ready(function(){
   ];
 
 
-    var memoryGame = new MemoryGame(cardsArray, 2);
+    var memoryGame = new MemoryGame(cardsArray, 3);
 
     memoryGame.shuffleCards();
 
@@ -74,7 +84,8 @@ $(document).ready(function(){
 
     //evento click en cada card
     $(".card").click(function(){
-      console.log("clic en una carta");
+      memoryGame.selectCard(this);
     });
+
 
 });
