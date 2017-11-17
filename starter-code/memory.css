@@ -1,14 +1,14 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: url("https://i2.wp.com/www.outrightgeekery.com/wp-content/uploads/2016/04/Top-5-Civil-War-Moments-Splash.jpg") no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory_board {
-  background:#dddddd;
+  background:rgba(92, 92, 92, 0.42);
 	width:800px;
 	height:540px;
-	padding:70px;
+	padding:50px;
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
@@ -16,28 +16,43 @@ html {
 
 
 .card .back {
-  background-color: #456783;
+  background-color: rgb(134, 134, 134);
+  background-image: url("https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAA16AAAAJDAxYWVmNzJhLWRjNTgtNDZiMS04NjU3LWIxMDRmN2ZiZDFmMg.png");
+  background-size: contain;
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+  border-radius: 3px;
 }
+
+.card .front {
+  background-size: contain;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+  border-radius: 3px;
+}
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(92, 92, 92, 0.8);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  margin-left: 80%;
 }
 
 .container {
@@ -45,16 +60,17 @@ html {
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
 
 }
 
 h2 {
-  color: #456783;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
@@ -66,4 +82,8 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.table {
+  display: flex;
 }
