@@ -23,9 +23,6 @@ MemoryGame.prototype.shuffleCards = function() {
         var card_sanitizedName = sanitizedName;
         var imgName = usedCards[cardSelected]["img"];
         $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
-              //$(".card:last-child").append('<div class="back" name="' + sanitizedName + '"></div>');
-              //$(".card:last-child").append('<div class="front" style="background: url(img/green-arrow.jpg)" name="green_arrow"></div>');
-              $(".card:last-child").append('<div></div>');
               $(".card:last-child").append('<div class="cover"></div>');
               if (usedCards[cardSelected]["matches"]===this.matchesNum){
           usedCards.splice(cardSelected,1);   
@@ -35,17 +32,30 @@ MemoryGame.prototype.shuffleCards = function() {
 
 // Método para jugar al seleccionar una carta
 MemoryGame.prototype.selectCard = function(card){   
-  clickName = $(card).attr("name");
-  coverName = $(card.cover)
+  var clickName = $(card).attr("name");
+  var coverName = 0;
+  // var coverName = $('"' + card + ' .cover"');
+  console.log("card = " + card);
+  console.log(card);
   console.log("clic en la carta " + clickName);
-  if (coverName.is(':visible')) {
-    coverName.hide();
-  }  
-  else{
-    coverName.show();  
-  }   
+  //console.log("vamos a ocultar " + coverName);
+  // if (coverName.is(':visible')) {
+  //  console.log("vamos a ocultar " + coverName);
+  //  coverName.hide();
+  // }  
+  // else{
+  //  coverName.show();  
+  // }   
   this.selectedCards.push(clickName);
   this.pairsClicked = 0;
+};
+
+hideCard = function(card){   
+  var clickName = $(card).attr("name");
+    console.log("clic en la carta " + clickName);
+  var coverCard = $(card).find(".cover");
+
+  coverCard.is(':visible')? coverCard.hide() : coverCard.show() ;
 };
 
 
@@ -76,7 +86,7 @@ $(document).ready(function(){
   ];
 
 
-    var memoryGame = new MemoryGame(cardsArray, 3);
+    var memoryGame = new MemoryGame(cardsArray, 2);
 
     memoryGame.shuffleCards();
 
@@ -84,8 +94,17 @@ $(document).ready(function(){
 
     //evento click en cada card
     $(".card").click(function(){
-      memoryGame.selectCard(this);
+      //memoryGame.selectCard(this);
+      hideCard(this)
     });
+
+    $('.star').click(function(){
+      if ($(this).hasClass('on')){
+        $('.star').removeClass('on').addClass('off');
+      }
+      $(this).addClass('on').removeClass('off');
+      $(this).prevAll().addClass('on').removeClass('off');
+   });  
 
 
 });

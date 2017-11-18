@@ -41,11 +41,32 @@ body {
   flex-wrap:  wrap;
 }
 
+#board_control{
+  background:#dddddd;
+	width:800px;
+	padding:35px 70px;
+	margin:0px auto;
+  border-radius: 84px;
+  box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+.star{
+  font-size: 100px;
+  margin: 0 10px 0 0;
+}
 
+.on{
+  color:orange;
+}
 
+.off{
+  color:rgb(99, 99, 99);
+}
 
-
-#memory_board {
+.board {
   background:#dddddd;
 	width:800px;
 	padding:70px;
@@ -59,27 +80,25 @@ body {
 .card {
 	width:110px;
 	height:110px;
-	margin:10px;
+  margin:10px;
+  z-index: 10;
 }
 
 .cover {
   background-color: orange;
+  width:110px;
+  height:110px;
+  z-index: 20;
 }
 
-.card .front.blocked,
-.card .back.blocked {
+.blocked {
   pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
-  border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
-  padding: 20px;
-  padding-top: 0;
-  margin-bottom: 50px;
   z-index: 4;
 }
 

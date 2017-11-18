@@ -13,13 +13,25 @@
           <h1>Superhero Memory Game</h1>
         </div>
 
-        <div id="score" >
-          <h2>Score</h2>
-          <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-          <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+        <div id="board_control" class = "board flex enLinea">
+            <div id="dificultad">
+                <h2>Nivel dificultad</h2>
+                <div class = "flex enLinea">
+                    <div class="star on">✪</div>
+                    <div class="star off">✪</div>
+                    <div class="star off">✪</div>
+                    <div class="star off">✪</div>
+                    <div class="star off">✪</div>
+                  </div>
+            </div>
+            <div id="score" >
+              <h2>Score</h2>
+              <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
+              <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+            </div>
         </div>
 
-        <div id="memory_board" class = "flex enLinea"></div>
+        <div id="memory_board" class = "board flex enLinea"></div>
       
     </div>
 
