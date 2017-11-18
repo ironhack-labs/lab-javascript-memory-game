@@ -60,17 +60,24 @@ MemoryGame.prototype.selectCard = function(card) {
     $("#pairs_clicked").text(this.pairsClicked);
 
     if (previousCard.attr("name") === card.attr("name")) {
+      document.getElementById("right").play();
       this.selectedCards.splice(0, this.selectedCards.length);
       this.correctPairs++;
       $("#pairs_guessed").text(this.correctPairs);
+      $("h3").addClass("green").text("Right answer!").show("slow");
+      setTimeout(function() {
+        $("h3").text("").removeClass("green").hide("slow");
+      }, 1000);
     } else {
-      console.log("Wrong answer");
+      $("h3").text("Wrong Answer!").show( "slow" );
+      document.getElementById("wrong").play();
       setTimeout(function(){
         card.removeClass("front blocked").addClass("back");
         card.siblings().removeClass("back").addClass("front");
         previousCard.removeClass("front").addClass("back");
         previousCard.siblings().removeClass("back").addClass("front");
-      }, 750);
+        $("h3").text("").hide("slow");
+      }, 1000);
       this.selectedCards.splice(0, this.selectedCards.length);
     }
 
@@ -112,6 +119,7 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  $("#memory_board").append("<h3></h3>");
 
   // Click a card
 

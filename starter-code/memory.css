@@ -12,6 +12,7 @@ html {
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  position: relative;
 }
 
 
@@ -66,4 +67,18 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+h3 {
+  width: 800px;
+  text-align: center;
+  position: absolute;
+  color: #fb0000;
+  font-size: 3rem;
+  bottom: -25px;
+  display: none;
+}
+
+.green {
+  color: #0b7e0f;
 }
