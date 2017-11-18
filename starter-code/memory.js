@@ -33,13 +33,21 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
-MemoryGame.prototype.shuffle = function(array) {
-  for (var i = array.length - 1; i >= 0; i--) {
-    randomIndex = Math.floor(Math.random() * (i + 1));
-    tmp = array[i];
-    array[i] = array[randomIndex];
-    array[randomIndex] = tmp;
+MemoryGame.prototype.shuffle = function() {
+  var array = this.cards;
+  var m = array.length, t, i;
+
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
   }
+
+  this.cards = array;
+
+  return this.cards;
 };
 
 // //******************************************************************
@@ -50,6 +58,7 @@ var memoryGame;
 
 $(document).ready(function(){
   memoryGame = new MemoryGame();
+  memoryGame.shuffle();
   var html = '';
 
   memoryGame.cards.forEach(function(pic, index) {
