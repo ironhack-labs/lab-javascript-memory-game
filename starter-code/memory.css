@@ -91,6 +91,9 @@ body {
   z-index: 20;
 }
 
+.selected {
+  display:none;
+}
 .blocked {
   pointer-events: none;
 }

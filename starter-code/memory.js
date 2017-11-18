@@ -37,14 +37,22 @@ MemoryGame.prototype.selectCard = function(card){
   this.selectedCards.push(clickName);
   console.log("matchesnum " + this.matchesNum);
   console.log("numero de clicks " + this.pairsClicked);
-  if (this.pairsClicked>=this.matchesNum){
-        if ( allValuesSame(this.selectedCards) ){
-          console.log("BIEN PARAJAS OK!!!!!!!");
-        }
-        else {
-          console.log("mal..... sigue intentándolo!");
-        }
-  }
+  console.log(this.selectedCards);
+      if (this.pairsClicked>=this.matchesNum){
+            if ( allValuesSame(this.selectedCards) ){
+              console.log("BIEN PARAJAS OK!!!!!!!");
+              $(".selected" ).addClass("blocked");
+            }
+            else {
+              $(".selected" ).removeClass("selected");
+              console.log("mal..... sigue intentándolo!");
+              for (var e=0; e<this.selectedCards.length; e++ ){
+                console.log(this.selectedCards[e]);
+              }
+            }
+        this.selectedCards = [];
+        this.pairsClicked = 0;
+      }
 };
 
 // funcion que oculta/activa la carta
@@ -52,14 +60,14 @@ hideCard = function(card){
   // var clickName = $(card).attr("name");
   // console.log("clic en la carta " + clickName);
   var coverCard = $(card).find(".cover");
-  coverCard.is(':visible')? coverCard.hide() : coverCard.show() ;
+  coverCard.hasClass("selected")? coverCard.removeClass("selected") : coverCard.addClass("selected") ;
 };
 
 // funcion que comprueba si todos los elementos del array son iguales
 allValuesSame = function(array) {
       for(var i = 1; i < array.length; i++)
       {
-          if(array[i] !== this[0])
+          if(array[i] !== array[0])
               return false;
       }
       return true;
