@@ -12,13 +12,13 @@ function MemoryGame(cardsArray, matchesNum) {
 // Método para el reparto aleatorio de cartas
 MemoryGame.prototype.shuffleCards = function() {
   var cardsLength = this.cardsArray.length;
-  console.log( "Total de cartas barajar: " + cardsLength )
-  console.log( "repeticiones por carta: " + this.matchesNum )
+  // console.log( "Total de cartas barajar: " + cardsLength )
+  // console.log( "repeticiones por carta: " + this.matchesNum )
   var usedCards = this.cardsArray;
       for(var i=0; i<cardsLength*this.matchesNum; i++){
         cardSelected = Math.floor( Math.random()*usedCards.length );
         usedCards[cardSelected]["matches"]++;
-        console.log( usedCards[cardSelected]["name"] );
+        // console.log( usedCards[cardSelected]["name"] );
         var sanitizedName = usedCards[cardSelected]["name"].split(' ').join('_');
         var card_sanitizedName = sanitizedName;
         var imgName = usedCards[cardSelected]["img"];
@@ -31,32 +31,39 @@ MemoryGame.prototype.shuffleCards = function() {
  }
 
 // Método para jugar al seleccionar una carta
-MemoryGame.prototype.selectCard = function(card){   
+MemoryGame.prototype.selectCard = function(card){ 
   var clickName = $(card).attr("name");
-  var coverName = 0;
-  // var coverName = $('"' + card + ' .cover"');
-  console.log("card = " + card);
-  console.log(card);
-  console.log("clic en la carta " + clickName);
-  //console.log("vamos a ocultar " + coverName);
-  // if (coverName.is(':visible')) {
-  //  console.log("vamos a ocultar " + coverName);
-  //  coverName.hide();
-  // }  
-  // else{
-  //  coverName.show();  
-  // }   
+  this.pairsClicked ++ ; 
   this.selectedCards.push(clickName);
-  this.pairsClicked = 0;
+  console.log("matchesnum " + this.matchesNum);
+  console.log("numero de clicks " + this.pairsClicked);
+  if (this.pairsClicked>=this.matchesNum){
+        if ( allValuesSame(this.selectedCards) ){
+          console.log("BIEN PARAJAS OK!!!!!!!");
+        }
+        else {
+          console.log("mal..... sigue intentándolo!");
+        }
+  }
 };
 
+// funcion que oculta/activa la carta
 hideCard = function(card){   
-  var clickName = $(card).attr("name");
-    console.log("clic en la carta " + clickName);
+  // var clickName = $(card).attr("name");
+  // console.log("clic en la carta " + clickName);
   var coverCard = $(card).find(".cover");
-
   coverCard.is(':visible')? coverCard.hide() : coverCard.show() ;
 };
+
+// funcion que comprueba si todos los elementos del array son iguales
+allValuesSame = function(array) {
+      for(var i = 1; i < array.length; i++)
+      {
+          if(array[i] !== this[0])
+              return false;
+      }
+      return true;
+  }
 
 
 
@@ -66,9 +73,6 @@ hideCard = function(card){
 
 
 $(document).ready(function(){
-
-
- 
 
   var cardsArray = [
     { name: "aquaman",         img: "aquaman.jpg",         matches: 0 },
@@ -85,26 +89,65 @@ $(document).ready(function(){
     { name: "thor",            img: "thor.jpg",            matches: 0 },
   ];
 
+  var memoryGame;
+  var cardsDifficulty = cardsArray.slice(0, 3);
 
-    var memoryGame = new MemoryGame(cardsArray, 2);
+ 
 
-    memoryGame.shuffleCards();
-
-    var usedCards = this.cardsArray;
-
-    //evento click en cada card
-    $(".card").click(function(){
-      //memoryGame.selectCard(this);
-      hideCard(this)
-    });
-
+    //establecemos el nivel de dificultad
     $('.star').click(function(){
       if ($(this).hasClass('on')){
         $('.star').removeClass('on').addClass('off');
       }
       $(this).addClass('on').removeClass('off');
       $(this).prevAll().addClass('on').removeClass('off');
+      var difficulty = $('.star.on').length
+      
+      switch (difficulty) {
+        case 1:
+          cardsDifficulty = cardsArray.slice(0, 3);
+          matchesNum=2;
+          break;
+        case 2:
+          cardsDifficulty = cardsArray.slice(0, 6);
+          matchesNum=2;
+          break;
+        case 3:
+          cardsDifficulty = cardsArray.slice(0, 9);
+          matchesNum=2;
+          break;
+        case 4:
+          cardsDifficulty = cardsArray.slice(0, 12);
+          matchesNum=2;
+          break;
+        case 5:
+          cardsDifficulty = cardsArray.slice(0, 12);
+          matchesNum=3;
+          break;
+        default:
+          break;
+      }
+
+      $( ".card" ).remove();
+      memoryGame = new MemoryGame(cardsDifficulty, matchesNum);
+      memoryGame.shuffleCards();
+
+      //evento click en cada card
+      $(".card").click(function(){
+        hideCard(this);
+        memoryGame.selectCard(this);
+      });
+
    });  
 
+
+   memoryGame = new MemoryGame(cardsDifficulty, 2);
+   memoryGame.shuffleCards();
+
+    //evento click en cada card
+    $(".card").click(function(){
+      hideCard(this);
+      memoryGame.selectCard(this);
+    });
 
 });
