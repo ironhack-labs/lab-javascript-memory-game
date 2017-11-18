@@ -50,6 +50,36 @@ MemoryGame.prototype.shuffle = function() {
   return this.cards;
 };
 
+MemoryGame.prototype.selectCard = function(card) {
+  card.removeClass("back").addClass("front");
+  card.siblings().removeClass("front").addClass("back");
+
+  if (this.selectedCards.length === 1) {
+    var previousCard = this.selectedCards[0];
+    this.pairsClicked++;
+    $("#pairs_clicked").text(this.pairsClicked);
+
+    if (previousCard.attr("name") === card.attr("name")) {
+      this.selectedCards.splice(0, this.selectedCards.length);
+      this.correctPairs++;
+      $("#pairs_guessed").text(this.correctPairs);
+    } else {
+      console.log("Wrong answer");
+      setTimeout(function(){ alert("Hello"); }, 3000);
+      this.selectedCards.splice(0, this.selectedCards.length);
+    }
+
+  } else {
+    this.selectedCards.push(card);
+  }
+};
+
+MemoryGame.prototype.finished = function() {
+  if (this.correctPairs === this.cards.length / 2) {
+    alert("Congratulations, you have win this game!");
+  }
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -77,4 +107,11 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  // Click a card
+
+  $('.back').on('click', function(){
+    memoryGame.selectCard($(this));
+    memoryGame.finished();
+  });
 });
