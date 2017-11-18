@@ -1,5 +1,5 @@
 // //******************************************************************
-// // Game Logic
+// // FUNCION CONSTRUCTORA
 // //******************************************************************
 function MemoryGame(cardsArray, matchesNum) {
     this.cardsArray = cardsArray;
@@ -7,13 +7,15 @@ function MemoryGame(cardsArray, matchesNum) {
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
+    this.totalClicks = 0;
 };
 
-// Método para el reparto aleatorio de cartas
+
+// //****************************************************************************
+// // METODO REPARTO ALEATORIO DE CARTAS CON EL NUMERO DE DUPLICADOS ESTABLECIDO
+// //****************************************************************************
 MemoryGame.prototype.shuffleCards = function() {
   var cardsLength = this.cardsArray.length;
-  // console.log( "Total de cartas barajar: " + cardsLength )
-  // console.log( "repeticiones por carta: " + this.matchesNum )
   var usedCards = this.cardsArray;
       for(var i=0; i<cardsLength*this.matchesNum; i++){
         cardSelected = Math.floor( Math.random()*usedCards.length );
@@ -28,40 +30,60 @@ MemoryGame.prototype.shuffleCards = function() {
           usedCards.splice(cardSelected,1);   
         }
       }
+   $("#pairs_to_match").text(this.cardsArray.length);   
  }
 
-// Método para jugar al seleccionar una carta
+
+// //******************************************************************
+// // METODO JUEGO AL SELECCIONAR UNA CARTA
+// //******************************************************************
 MemoryGame.prototype.selectCard = function(card){ 
   var clickName = $(card).attr("name");
-  this.pairsClicked ++ ; 
-  this.selectedCards.push(clickName);
-  console.log("matchesnum " + this.matchesNum);
-  console.log("numero de clicks " + this.pairsClicked);
-  console.log(this.selectedCards);
+
+  this.totalClicks ++ ; 
+  $("#total_clicks").text(this.totalClicks);
+
+  var coverCard = $(card).find(".cover");
+
+  if ( coverCard.hasClass("selected") ){
+    coverCard.removeClass("selected");
+    this.pairsClicked -- ; 
+    var indexCard = this.selectedCards.indexOf(clickName);
+    this.selectedCards.splice(indexCard, 1);
+    console.log("quitamos " + clickName);
+  }
+  else {
+    coverCard.addClass("selected");
+    this.pairsClicked ++ ; 
+    this.selectedCards.push(clickName);
+    console.log("añadimos " + clickName);
+  }
+
       if (this.pairsClicked>=this.matchesNum){
             if ( allValuesSame(this.selectedCards) ){
               console.log("BIEN PARAJAS OK!!!!!!!");
-              $(".selected" ).addClass("blocked");
+              $(".selected" ).parent().addClass("blocked");
+              $(".selected" ).removeClass("selected").addClass("cardOk");
+              this.correctPairs ++;
+              $("#pairs_matched").text(this.correctPairs);
             }
             else {
-              $(".selected" ).removeClass("selected");
-              console.log("mal..... sigue intentándolo!");
-              for (var e=0; e<this.selectedCards.length; e++ ){
-                console.log(this.selectedCards[e]);
-              }
+              setTimeout(function(){ 
+                $(".selected").removeClass("selected");
+                console.log("mal..... sigue intentándolo!");
+              }, 500);
+
+              
+              
             }
         this.selectedCards = [];
         this.pairsClicked = 0;
       }
+  if (this.correctPairs >= this.cardsArray.length){
+  $("#instrText").text("WELLDONE, MISSION ACCOMPLISHED!!");
+  }
 };
 
-// funcion que oculta/activa la carta
-hideCard = function(card){   
-  // var clickName = $(card).attr("name");
-  // console.log("clic en la carta " + clickName);
-  var coverCard = $(card).find(".cover");
-  coverCard.hasClass("selected")? coverCard.removeClass("selected") : coverCard.addClass("selected") ;
-};
 
 // funcion que comprueba si todos los elementos del array son iguales
 allValuesSame = function(array) {
@@ -75,6 +97,10 @@ allValuesSame = function(array) {
 
 
 
+
+
+  
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -83,18 +109,18 @@ allValuesSame = function(array) {
 $(document).ready(function(){
 
   var cardsArray = [
-    { name: "aquaman",         img: "aquaman.jpg",         matches: 0 },
-    { name: "batman",          img: "batman.jpg",          matches: 0 },
-    { name: "captain america", img: "captain-america.jpg", matches: 0 },
-    { name: "fantastic four",  img: "fantastic-four.jpg",  matches: 0 },
-    { name: "flash",           img: "flash.jpg",           matches: 0 },
-    { name: "green arrow",     img: "green-arrow.jpg",     matches: 0 },
-    { name: "green lantern",   img: "green-lantern.jpg",   matches: 0 },
-    { name: "ironman",         img: "ironman.jpg",         matches: 0 },
-    { name: "spiderman",       img: "spiderman.jpg",       matches: 0 },
-    { name: "superman",        img: "superman.jpg",        matches: 0 },
-    { name: "the avengers",    img: "the-avengers.jpg",    matches: 0 },
-    { name: "thor",            img: "thor.jpg",            matches: 0 },
+    { name: "aquaman",         img: "aquaman.jpg"},
+    { name: "batman",          img: "batman.jpg"},
+    { name: "captain america", img: "captain-america.jpg"},
+    { name: "fantastic four",  img: "fantastic-four.jpg"},
+    { name: "flash",           img: "flash.jpg"},
+    { name: "green arrow",     img: "green-arrow.jpg"},
+    { name: "green lantern",   img: "green-lantern.jpg"},
+    { name: "ironman",         img: "ironman.jpg"},
+    { name: "spiderman",       img: "spiderman.jpg"},
+    { name: "superman",        img: "superman.jpg"},
+    { name: "the avengers",    img: "the-avengers.jpg"},
+    { name: "thor",            img: "thor.jpg"},
   ];
 
   var memoryGame;
@@ -115,22 +141,27 @@ $(document).ready(function(){
         case 1:
           cardsDifficulty = cardsArray.slice(0, 3);
           matchesNum=2;
+          $("#instrText").text("trainning mode - just match pairs");
           break;
         case 2:
           cardsDifficulty = cardsArray.slice(0, 6);
           matchesNum=2;
+          $("#instrText").text("easy mode - match pairs");
           break;
         case 3:
           cardsDifficulty = cardsArray.slice(0, 9);
           matchesNum=2;
+          $("#instrText").text("medium mode - match pairs");
           break;
         case 4:
           cardsDifficulty = cardsArray.slice(0, 12);
           matchesNum=2;
+          $("#instrText").text("difficult mode - match pairs");
           break;
         case 5:
           cardsDifficulty = cardsArray.slice(0, 12);
           matchesNum=3;
+          $("#instrText").text("Just for super heroes!!!! - match 3 elements");
           break;
         default:
           break;
@@ -142,7 +173,6 @@ $(document).ready(function(){
 
       //evento click en cada card
       $(".card").click(function(){
-        hideCard(this);
         memoryGame.selectCard(this);
       });
 
@@ -154,7 +184,6 @@ $(document).ready(function(){
 
     //evento click en cada card
     $(".card").click(function(){
-      hideCard(this);
       memoryGame.selectCard(this);
     });
 
