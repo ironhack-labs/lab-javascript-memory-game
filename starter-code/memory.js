@@ -52,7 +52,7 @@ MemoryGame.prototype.shuffle = function() {
 
 MemoryGame.prototype.selectCard = function(card) {
   card.removeClass("back").addClass("front");
-  card.siblings().removeClass("front").addClass("back");
+  card.siblings().removeClass("front").addClass("back blocked");
 
   if (this.selectedCards.length === 1) {
     var previousCard = this.selectedCards[0];
@@ -65,7 +65,12 @@ MemoryGame.prototype.selectCard = function(card) {
       $("#pairs_guessed").text(this.correctPairs);
     } else {
       console.log("Wrong answer");
-      setTimeout(function(){ alert("Hello"); }, 3000);
+      setTimeout(function(){
+        card.removeClass("front blocked").addClass("back");
+        card.siblings().removeClass("back").addClass("front");
+        previousCard.removeClass("front").addClass("back");
+        previousCard.siblings().removeClass("back").addClass("front");
+      }, 750);
       this.selectedCards.splice(0, this.selectedCards.length);
     }
 
