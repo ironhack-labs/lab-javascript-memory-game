@@ -221,11 +221,6 @@ p {
   animation: pop 0.3s both alternate linear 1;
 }
 
-@keyframes pop {
-  100% {
-    transform: scale(1.2, 1.2);
-}
-
 /**********************************************************/
 
 @media (max-width: 1600px) {
@@ -259,4 +254,9 @@ p {
     font-size: 30px;
     height: 160px;
   }
+}
+
+@keyframes pop {
+  100% {
+    transform: scale(1.2, 1.2);
 }
