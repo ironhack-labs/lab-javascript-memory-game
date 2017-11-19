@@ -37,11 +37,38 @@ var MemoryGame = function() {
 // // HTML/CSS Interactions
 // //******************************************************************
 
-var memoryGame;
+// function to shuffle array
 
 $(document).ready(function(){
+
+function shuffle(array) {
+  console.log(array[1]);
+  console.log(array); // es diferente del array inicial, es como si ya hubiera shuffleado: POR QUE?
+  var temporaryValue, randomIndex;
+  // While there remain elements to shuffle...
+  for (i=0; i<array.length; i++) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * i);
+
+    // And swap it with the current element.
+    temporaryValue = array[i];
+    array[i] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  console.log(array[1]); // es diferente del console log array [1] al principio: OK
+
+  return array;
+}
+
+// creating the grid
+
+var memoryGame;
+
+
   memoryGame = new MemoryGame();
   var html = '';
+
+  shuffle(memoryGame.cards);
 
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
@@ -57,11 +84,14 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
+
+
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
 
-// flip card - a la que tiene back le pongo front y viceversa
+// flip card
 
   $(".card").click(function(){
     $(this).children().toggleClass("back");
