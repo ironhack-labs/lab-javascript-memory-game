@@ -42,42 +42,20 @@ MemoryGame.prototype._shuffleCards = function() {
 };
 
 MemoryGame.prototype.selectCard = function(card) {
-
-  card.removeClass("back").addClass("front");
-  card.siblings().removeClass("front").addClass("back");
-
-  if(this.selectedCards.length === 0){
-    // Si es la primera carta
+  if(this.selectedCards.length == 0){
     this.selectedCards.push(card);
+    console.log('Imprmo this.selectedCard en lenght == 0 =>');
+    console.log(this.selectedCards);
   }else{
-    // Si es la segunda carta
-    var previousCard = this.selectedCards[0];
     this.pairsClicked += 1;
-    $("#pairs_clicked").text(this.pairsClicked);
-    if(card.attr("name") === previousCard.attr("name")){
-      // Si son las dos CARTAS IGUALES");
-      this.selectedCards.splice(0, this.selectedCards.length);
+    console.log(this.pairsClicked);
+    if(card == this.selectedCards[0]){
+      this.selectedCards = [];
       this.correctPairs += 1;
-      $("#pairs_guessed").text(this.correctPairs);
-      this.finished();
+      var test = $("card.div");
     }else{
-      // Si son las dos cartas diferentes");
-      this.selectedCards.splice(0, this.selectedCards.length);
-      setTimeout(function(){
-        card.removeClass("front").addClass("back");
-        card.siblings().removeClass("back").addClass("front");
-        previousCard.removeClass("front").addClass("back");
-        previousCard.siblings().removeClass("back").addClass("front");
-      }, 1500);
+
     }
-  }
-};
-
-
-MemoryGame.prototype.finished = function() {
-  if (this.correctPairs == 12){
-    alert("FINISHED - Well done! Let's play again");
-    window.location.reload();
   }
 };
 
@@ -111,9 +89,7 @@ $(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
-  $('.back').on('click', function(){
-    memoryGame.selectCard($(this));
+  $(".card").click(function(){
+    memoryGame.selectCard(this);
   });
-
-
 });
