@@ -161,6 +161,7 @@ function hideCard() {
 var memoryGame;
 
 $(document).ready(function() {
+  $("#gg").hide();
   memoryGame = new MemoryGame();
   var html = '';
   memoryGame._shuffleCards();
@@ -190,5 +191,6 @@ $(document).ready(function() {
     if(memoryGame.control % 2 === 0) {
       setTimeout(hideCard, 500);
     }
+    if(memoryGame.correctPairs === 12) $("#gg").show();
   });
 });

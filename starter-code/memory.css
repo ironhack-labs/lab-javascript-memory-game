@@ -95,12 +95,38 @@ p {
   background-color: rgb(98, 98, 98);
 }
 
-.match:hover {
-  animation: yuhuuu 0.3s both alternate ease;
+#gg {
+  width: 100vw;
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes yuhuuu {
-  100% {
-    transform: translate(0px, -5px);
-  }
+#gg div {
+  display: flex;
+  align-items: flex-end;
+  width: 18vw;
+  justify-content: center;
+}
+
+#gg div:nth-child(3) img {
+  z-index: 1000;
+}
+
+#gg div:nth-child(2) img {
+  width: 100px;
+}
+
+#gg div:nth-child(4) img {
+  height: 600px;
+}
+
+#gg div:nth-child(5) img {
+  height: 550px;
+}
+
+#gg div:nth-child(1) img {
+  height: 600px;
 }
