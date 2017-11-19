@@ -129,12 +129,14 @@ MemoryGame.prototype.selectCard = function(card) {
     this.selectedCards.push(card);
     match = false;
   } else if (this.selectedCards[0].attr("name") === card.attr("name")) {
+    $(".back").addClass("blocked");
     this.correctPairs += 1;
     this.pairsClicked += 1;
-    this.selectedCards[0].addClass("match");
-    card.addClass("match");
+    this.selectedCards[0].addClass("match").removeClass("back");
+    card.addClass("match").removeClass("back");
     this.selectedCards = [];
   } else {
+    $(".back").addClass("blocked");
     this.pairsClicked += 1;
     this.selectedCards = [];
   }
@@ -144,10 +146,11 @@ MemoryGame.prototype.selectCard = function(card) {
 //************************  hide card  **************************//
 function hideCard() {
   //debugger;
-  // if(!$(".card div:first-child").hasClass("match")) {
-    $(".back").show();
-    $(".front").hide();
-  // }
+  $(".back").show();
+  $(".back").next(".front").hide();
+  document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
+  document.getElementById("pairs_guessed").innerHTML = memoryGame.correctPairs;
+  $(".back").removeClass("blocked");
 }
 //_______________________________________________________________//
 
@@ -181,13 +184,11 @@ $(document).ready(function() {
   $(".front").hide();
 
   $(".back").click(function() {
-
     $(this).hide();
-    $(this).next().show();
+    $(this).next(".front").show();
     memoryGame.selectCard($(this));
     if(memoryGame.control % 2 === 0) {
-      setTimeout(hideCard, 1000);
+      setTimeout(hideCard, 500);
     }
   });
-
 });

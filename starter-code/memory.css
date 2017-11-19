@@ -5,12 +5,11 @@ html {
 }
 
 #memory_board {
-  background:rgba(92, 92, 92, 0.42);
+  background:rgba(92, 92, 92, 0.8);
 	width:800px;
 	height:540px;
 	padding:50px;
-	margin:0px auto;
-  border-radius: 84px;
+  border-radius: 20px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
@@ -49,14 +48,14 @@ html {
   font-size: 30px;
   font-family: Arial;
   width:200px;
+  height: 200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 80%;
 }
 
-.container {
+/*.container {
   position: relative;
-}
+}*/
 
 h1 {
   color: rgba(255, 255, 255, 0.9);
@@ -83,6 +82,25 @@ p {
   text-align: center;
 }
 
-.table {
+#table {
   display: flex;
+  justify-content: center;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card .back:hover {
+  background-color: rgb(98, 98, 98);
+}
+
+.match:hover {
+  animation: yuhuuu 0.3s both alternate ease;
+}
+
+@keyframes yuhuuu {
+  100% {
+    transform: translate(0px, -5px);
+  }
 }
