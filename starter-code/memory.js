@@ -88,6 +88,7 @@ function hideCard() {
 // //******************************************************************
 
 var memoryGame;
+var diff;
 
 $(document).ready(function() {
   $("#gg").hide();
@@ -120,15 +121,25 @@ $(document).ready(function() {
     $(this).next(".front").show();
     memoryGame.selectCard($(this));
     if(memoryGame.control % 2 === 0) {
-      setTimeout(hideCard, 500);
+      setTimeout(hideCard, diff);
     }
     if(memoryGame.correctPairs === 12) {
       $("#gg").fadeIn(1000);
       $("#playAgain").fadeIn(1000);
       $("#grayBackground").fadeIn(1000);
       $("#playAgain").click(function() {
-    location.reload();
-});
+        location.reload();
+      });
     }
+  });
+
+  $("#easy").click(function(){
+    $("#difficulty").hide();
+    diff = 750;
+  });
+
+  $("#hard").click(function(){
+    $("#difficulty").hide();
+    diff = 50;
   });
 });
