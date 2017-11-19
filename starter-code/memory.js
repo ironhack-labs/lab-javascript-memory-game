@@ -89,6 +89,15 @@ function hideCard() {
 
 var memoryGame;
 var diff;
+var bleep = new Audio();
+var easySound = new Audio();
+var hardSound = new Audio();
+var ggSound = new Audio();
+bleep.src = "audio/click-on.mp3";
+easySound.src = "audio/yaaay.mp3";
+hardSound.src = "audio/scary.mp3";
+ggSound.src = "audio/smoke-weed.mp3";
+ggSound.loop = true;
 
 $(document).ready(function() {
   $("#gg").hide();
@@ -117,6 +126,7 @@ $(document).ready(function() {
   $(".front").hide();
 
   $(".back").click(function() {
+    bleep.play();
     $(this).hide();
     $(this).next(".front").show();
     memoryGame.selectCard($(this));
@@ -127,7 +137,8 @@ $(document).ready(function() {
       $("#gg").fadeIn(1000);
       $("#playAgain").fadeIn(1000);
       $("#grayBackground").fadeIn(1000);
-      $("#playAgain").click(function() {
+      ggSound.play();
+      $("#playAgain img").click(function() {
         location.reload();
       });
     }
@@ -135,11 +146,13 @@ $(document).ready(function() {
 
   $("#easy").click(function(){
     $("#difficulty").hide();
+    easySound.play();
     diff = 750;
   });
 
   $("#hard").click(function(){
     $("#difficulty").hide();
+    hardSound.play();
     diff = 50;
   });
 });
