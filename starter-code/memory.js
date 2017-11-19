@@ -33,6 +33,7 @@ var MemoryGame = function() {
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
+    this.tries = 0;
 };
 
 MemoryGame.prototype._shuffleCards = function() {
@@ -65,13 +66,14 @@ MemoryGame.prototype.blockClick = function(cssSelector) {
 }
 
 MemoryGame.prototype.finished = function() {
-  alert("YOU WIN!");
+  alert("YOU WIN! in: " + this.tries + " tries");
 };
 
 MemoryGame.prototype.selectCard = function(card) {
   this.pairsClicked += 1;
   $("#pairs_clicked").text(this.pairsClicked);
   if(this.pairsClicked === 2) {
+    this.tries += 1;
     this.selectedCards.push(card);
     this.flipCard(card);
     // In the second card disable all click events on cards.
