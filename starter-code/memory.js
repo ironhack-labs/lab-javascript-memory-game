@@ -65,8 +65,8 @@ MemoryGame.prototype.blockClick = function(cssSelector) {
   $(cssSelector).off("click");
 }
 
-MemoryGame.prototype.finished = function() {
-  alert("YOU WIN! in: " + this.tries + " tries");
+MemoryGame.prototype.finished = function(tries) {
+  alert("YOU WIN! in: " + tries + " tries");
 };
 
 MemoryGame.prototype.selectCard = function(card) {
@@ -83,7 +83,8 @@ MemoryGame.prototype.selectCard = function(card) {
       $("#pairs_guessed").text(this.correctPairs);
       // The game finish when correctPairs = cards.length/2.
       if(this.correctPairs == this.cards.length/2) {
-        this.finished();
+        setTimeout(this.finished, 500, this.tries);
+        // this.finished();
       }
       else {
         this.selectedCards = [];
