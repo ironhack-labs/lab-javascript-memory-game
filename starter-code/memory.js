@@ -43,11 +43,14 @@ MemoryGame.prototype._shuffleCards = function() {
 };
 
 MemoryGame.prototype.flipCard = function(card) {
+  // Add class found if the card is up.
   $(card).toggleClass("found");
+  // Toggle front and back classes to show the cards.
   $(card.children()[0]).toggleClass("front").toggleClass("back");
   $(card.children()[1]).toggleClass("back").toggleClass("front");
 }
 
+// Activate click event on cssSelector
 MemoryGame.prototype.activeClick = function(cssSelector) {
   var that = this;
   $(cssSelector).click(function(){
@@ -55,41 +58,58 @@ MemoryGame.prototype.activeClick = function(cssSelector) {
   });
 }
 
+// Disable click event on cssSelector
 MemoryGame.prototype.blockClick = function(cssSelector) {
   var that = this;
   $(cssSelector).off("click");
 }
 
+MemoryGame.prototype.finished = function() {
+  alert("YOU WIN!");
+};
+
 MemoryGame.prototype.selectCard = function(card) {
   this.pairsClicked += 1;
-  parseInt($("#pairs_clicked").text(this.pairsClicked));
+  $("#pairs_clicked").text(this.pairsClicked);
   if(this.pairsClicked === 2) {
     this.selectedCards.push(card);
     this.flipCard(card);
+    // In the second card disable all click events on cards.
     this.blockClick(".card");
     if(this.selectedCards[0].attr("name") === this.selectedCards[1].attr("name")) {
       this.correctPairs += 1;
-      parseInt($("#pairs_guessed").text(this.correctPairs));
-      this.selectedCards = [];
-      this.pairsClicked = 0;
-      parseInt($("#pairs_clicked").text(this.pairsClicked));
-      this.activeClick(".card:not(.found)");
+      $("#pairs_guessed").text(this.correctPairs);
+      // The game finish when correctPairs = cards.length/2.
+      if(this.correctPairs == this.cards.length/2) {
+        this.finished();
+      }
+      else {
+        this.selectedCards = [];
+        this.pairsClicked = 0;
+        $("#pairs_clicked").text(this.pairsClicked);
+        // Active click event only in cards without found class.
+        this.activeClick(".card:not(.found)");
+      }
     }
     else {
       var that = this;
       setTimeout(function(){
+        // Afert 1 second flip two cards because doesn't match.
         that.flipCard(that.selectedCards[0]);
         that.flipCard(that.selectedCards[1]);
         that.selectedCards = [];
         that.pairsClicked = 0;
-        parseInt($("#pairs_clicked").text(that.pairsClicked));
+        $("#pairs_clicked").text(that.pairsClicked);
+        // Active click event only in cards without found class.
         that.activeClick(".card:not(.found)");
       }, 1000);  
     }
   }
   else {
+    // Actions on the first card.
     this.selectedCards.push(card);
     this.flipCard(card);
+    // Disable the new card and others found.
     this.blockClick(".found");
   }
 }
@@ -124,6 +144,10 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 
+  // Disable all click
+  $(document).off("click");
+
   // Click on cards
+  // Activate click event on all cards
   memoryGame.activeClick(".card");
 });
