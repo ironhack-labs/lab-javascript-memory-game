@@ -25,6 +25,7 @@ html {
 	font-size:64px;
 }
 
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;

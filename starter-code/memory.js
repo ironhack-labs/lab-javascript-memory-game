@@ -57,6 +57,12 @@ MemoryGame.prototype.compareCards = function () {
   }
 };
 
+MemoryGame.prototype.winCheck = function () {
+  if (this.correctPairs === 12) {
+    return true;
+  }
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -90,81 +96,56 @@ $(document).ready(function(){
   // // Gameplay
   // //******************************************************************
 
-// click on card event
+// START GAME : click on card event
   $(".back").click(function(){
-    // variables card value
+
+    // variables and functions
     var nameCard = $(this).attr("name");
+    var cardsToBeTurned = $(".wrongClicked");
+    var block = function () {$(".back, .front").addClass("blocked");};
+    var unblock = function () {$(".back, .front").removeClass("blocked");};
+    var victoryMessage = function () {$(".card").remove(); $("#memory_board").text("VICTORY!");};
+
 
     // show image of card aka flip
     $(this).hide();
     $(this).next().addClass("back");
-    $(this).addClass("clicked");
 
-    // save card value in array
+    // adds a class to the clicked card to remove later
+    $(this).addClass("marked");
+
+    // save card name in array
     memoryGame.pickedCards(nameCard);
 
     // check how many cards in array
     if (memoryGame.selectedCards.length == 2) {
-      // block click possibility
+      // block click possibility, will unblock after 1 sec
+      block();
+      setTimeout(unblock, 1000);
 
-      // check if cards are equal
-      memoryGame.compareCards();
+      // if cards are equal
+      if(memoryGame.compareCards()) {
+        $(".marked").removeClass("marked");
+          // if all pairs are found
+          if (memoryGame.winCheck()) {
+            victoryMessage();
+          }
+      }
+      // if cards are no match, flip the cards again after 1 sec
+      else {
+      var hideCards = function() {
+          $(".marked").show();
+          $(".marked").next().removeClass("back");
+          };
+
+      setTimeout(hideCards, 1000);
+      }
 
       // updates scoreboard
       $("#pairs_guessed").text(memoryGame.correctPairs);
       $("#pairs_clicked").text(memoryGame.pairsClicked);
-
     }
+
   });
-
-
-
-// $(".clicked").show().next().removeClass("back");
-
-
-
-
-
-
-
-
-
-
-// Flip cards function
-  /*function flipCard () {
-    $("back").click(function(){
-      $(this).hide();
-      $(this).next().addClass("back");
-    });
-  }
-
-
-
-/*
-  // Push selected selected
-  memoryGame.pushCards = function () {
-    $(".card").click(function(){
-      var selectedCard = $(this);
-      memoryGame.selectedCards.push(selectedCard);
-      clickAmount ++;
-    });
-  };
-
-
-  // Compare cards
-memoryGame.compareCards = function () {
-  var card1 = memoryGame.selectedCards[0];
-  var card2 = memoryGame.selectedCards[1];
-
-  if(memoryGame.selectedCards.length === 2) {
-    $(".front, .back").toggleClass("blocked");
-    alert("winner");
-  }
-};
-*/
-
-
-
-// End playerTurn
 
 });
