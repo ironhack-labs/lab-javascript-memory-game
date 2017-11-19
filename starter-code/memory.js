@@ -39,52 +39,58 @@ MemoryGame.prototype._shuffleCards = function() {
   this.cards.sort(function (){
     return Math.random() - 0.5;
   });
-  console.log(this.cards);
   return this.cards;
 };
 
 MemoryGame.prototype.flipCard = function(card) {
-    console.log("CARD");
-    console.log(card);
-    $(card.children()[0]).toggleClass("front").toggleClass("back");
-    $(card.children()[1]).toggleClass("back").toggleClass("front");
+  $(card).toggleClass("found");
+  $(card.children()[0]).toggleClass("front").toggleClass("back");
+  $(card.children()[1]).toggleClass("back").toggleClass("front");
 }
 
-MemoryGame.prototype.blockCards = function(cards) {
-  cards.forEach(function(card){
-    $(card.children().off());
+MemoryGame.prototype.activeClick = function(cssSelector) {
+  var that = this;
+  $(cssSelector).click(function(){
+    that.selectCard($(this));
   });
+}
+
+MemoryGame.prototype.blockClick = function(cssSelector) {
+  var that = this;
+  $(cssSelector).off("click");
 }
 
 MemoryGame.prototype.selectCard = function(card) {
   this.pairsClicked += 1;
   parseInt($("#pairs_clicked").text(this.pairsClicked));
-  // Turn cards by toggle classes front and back
-
   if(this.pairsClicked === 2) {
     this.selectedCards.push(card);
-    // flip the second card inmediately
     this.flipCard(card);
+    this.blockClick(".card");
     if(this.selectedCards[0].attr("name") === this.selectedCards[1].attr("name")) {
-      this.blockCards(this.selectedCards);
+      this.correctPairs += 1;
+      parseInt($("#pairs_guessed").text(this.correctPairs));
       this.selectedCards = [];
+      this.pairsClicked = 0;
+      parseInt($("#pairs_clicked").text(this.pairsClicked));
+      this.activeClick(".card:not(.found)");
     }
     else {
       var that = this;
-      console.log("THAT");
-      console.log(that.selectedCards);
       setTimeout(function(){
         that.flipCard(that.selectedCards[0]);
         that.flipCard(that.selectedCards[1]);
+        that.selectedCards = [];
+        that.pairsClicked = 0;
+        parseInt($("#pairs_clicked").text(that.pairsClicked));
+        that.activeClick(".card:not(.found)");
       }, 1000);  
-      this.selectedCards = [];
     }
-    this.pairsClicked = 0;
   }
   else {
     this.selectedCards.push(card);
-    // flip card inmediately
     this.flipCard(card);
+    this.blockClick(".found");
   }
 }
 
@@ -119,7 +125,5 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   // Click on cards
-  $(".card").click(function(){
-    memoryGame.selectCard($(this));
-  });
+  memoryGame.activeClick(".card");
 });
