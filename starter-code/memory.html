@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <title>Superhero Memory Game</title>
+       <title>Stranger Games</title>
        <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
     </head>
     <body>
         <div>
-          <h1>Superhero Memory Game</h1>
+          <h1 id="title">Stranger Games</h1>
         </div>
         <div id="score">
           <h2>Score</h2>
@@ -14,6 +14,10 @@
           <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
         </div>
         <div id="memory_board"></div>
+
+        <audio id="right" src="audio/correct.mp3"> </audio>
+        <audio id="wrong" src="audio/incorrect.mp3"> </audio>
+        <audio id="congratulations" src="audio/congratulations.mp3"> </audio>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="memory.js"></script>
