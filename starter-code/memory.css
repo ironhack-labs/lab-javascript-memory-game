@@ -75,10 +75,51 @@ h3 {
   position: absolute;
   color: #fb0000;
   font-size: 3rem;
-  bottom: -25px;
+  bottom: 15px;
   display: none;
+  margin: 0;
 }
 
 .green {
   color: #0b7e0f;
+}
+
+.finished {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.finished > div {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.finished h1 {
+  margin-bottom: 30px;
+}
+
+#refresh {
+  margin: 0 auto;
+  display: inline;
+  background: rgb(215, 40, 40);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+#refresh:hover {
+  background: rgb(187, 25, 25);
 }

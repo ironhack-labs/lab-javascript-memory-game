@@ -88,7 +88,13 @@ MemoryGame.prototype.selectCard = function(card) {
 
 MemoryGame.prototype.finished = function() {
   if (this.correctPairs === this.cards.length / 2) {
-    alert("Congratulations, you have win this game!");
+    $("body").append("<div class='finished'><div><h1>CONGRATULATIONS!</h1><h2>You have finished the game</h2><div id='refresh' class='btn'>Play again</div><div></div>");
+    setTimeout(function() {
+      $(".finished").fadeIn(1000);
+    }, 750);
+    $('#refresh').click(function() {
+      location.reload();
+    });
   }
 };
 
