@@ -173,22 +173,22 @@ p {
 @media (max-width: 1600px) {
 
   #memory_board {
-  	width:600px;
-  	height:400px;
+  	width:730px;
+  	height:500px;
   	padding:40px;
   }
 
   .card .back {
-  	width:56px;
-  	height:56px;
-  	margin:7px;
-  	padding:15px;
+  	width:71px;
+  	height:71px;
+  	margin:5px;
+  	padding:19px;
   }
 
   .card .front {
-    width:56px;
-  	height:56px;
-  	margin:7px;
-  	padding:15px;
+    width:71px;
+  	height:71px;
+  	margin:5px;
+  	padding:19px;
   }
 }
