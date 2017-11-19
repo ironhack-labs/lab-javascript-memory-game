@@ -3,30 +3,30 @@
 // //******************************************************************
 var MemoryGame = function() {
   this.cards = [
-  		{ name: "aquaman",         img: "aquaman.jpg" },
-  		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain america", img: "captain-america.jpg" },
-  		{ name: "fantastic four",  img: "fantastic-four.jpg" },
-  		{ name: "flash",           img: "flash.jpg" },
-      { name: "green arrow",     img: "green-arrow.jpg" },
-  		{ name: "green lantern",   img: "green-lantern.jpg" },
-  		{ name: "ironman",         img: "ironman.jpg" },
-  		{ name: "spiderman",       img: "spiderman.jpg" },
-  		{ name: "superman",        img: "superman.jpg" },
-  		{ name: "the avengers",    img: "the-avengers.jpg" },
-  		{ name: "thor",            img: "thor.jpg" },
-      { name: "aquaman",         img: "aquaman.jpg" },
-  		{ name: "batman",          img: "batman.jpg" },
-  		{ name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four",  img: "fantastic-four.jpg" },
-  		{ name: "flash",           img: "flash.jpg" },
-  		{ name: "green arrow",     img: "green-arrow.jpg" },
-  		{ name: "green lantern",   img: "green-lantern.jpg" },
-  		{ name: "ironman",         img: "ironman.jpg" },
-  		{ name: "spiderman",       img: "spiderman.jpg" },
-  		{ name: "superman",        img: "superman.jpg" },
-  		{ name: "the avengers",    img: "the-avengers.jpg" },
-  		{ name: "thor",            img: "thor.jpg" },
+  		{ name: "trainer",         img: "trainer.jpg" },
+  		{ name: "glasses",         img: "glasses.jpg" },
+  		{ name: "will",            img: "will.jpg" },
+  		{ name: "dustin",          img: "dustin.jpg" },
+  		{ name: "lucas",           img: "lucas.jpg" },
+      { name: "phone",           img: "phone.jpg" },
+  		{ name: "mike",            img: "mike.jpg" },
+  		{ name: "arm",             img: "arm.jpg" },
+  		{ name: "eleven",          img: "eleven.jpg" },
+  		{ name: "waffle",          img: "waffle.jpg" },
+  		{ name: "bike",            img: "bike.jpg" },
+  		{ name: "lights",          img: "lights.jpg" },
+      { name: "trainer",         img: "trainer.jpg" },
+  		{ name: "glasses",         img: "glasses.jpg" },
+  		{ name: "will",            img: "will.jpg" },
+      { name: "dustin",          img: "dustin.jpg" },
+  		{ name: "lucas",           img: "lucas.jpg" },
+  		{ name: "phone",           img: "phone.jpg" },
+  		{ name: "mike",            img: "mike.jpg" },
+  		{ name: "arm",             img: "arm.jpg" },
+  		{ name: "eleven",          img: "eleven.jpg" },
+  		{ name: "waffle",          img: "waffle.jpg" },
+  		{ name: "bike",            img: "bike.jpg" },
+  		{ name: "lights",          img: "lights.jpg" },
   	];
     this.selectedCards = [];
     this.pairsClicked = 0;
@@ -92,6 +92,7 @@ MemoryGame.prototype.finished = function() {
     setTimeout(function() {
       $(".finished").fadeIn(1000);
     }, 750);
+    document.getElementById("congratulations").play();
     $('#refresh').click(function() {
       location.reload();
     });

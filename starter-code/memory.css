@@ -1,3 +1,8 @@
+@@font-face {
+  font-family: 'Stranger';
+  src: url('stranger.ttf') format('truetype');
+}
+
 html {
   background: url(img/background.jpg) no-repeat;
   background-size: cover;
@@ -5,7 +10,7 @@ html {
 }
 
 #memory_board {
-  background:#dddddd;
+  background:rgba(16, 48, 48, 0.5);
 	width:800px;
 	height:540px;
 	padding:70px;
@@ -17,7 +22,7 @@ html {
 
 
 .card .back {
-  background-color: #456783;
+  background-color: #283241;
 	width:71px;
 	height:71px;
 	float:left;
@@ -31,32 +36,38 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(215, 44, 44, 0.5);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 .container {
   position: relative;
 }
 
+#title {
+  z-index: 1000;
+}
+
 h1 {
-  color: rgba(215, 40, 40, 0.9);
-  font-weight: bolder;
-  font-size: 67px;
+  font-family: 'Stranger';
+  font-size: 76px;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
+  /*text-shadow: 0px 0px 20px rgba(215, 40, 40, 0.9);*/
+  text-shadow: -2px 0 rgba(215, 40, 40, 0.9), 0 2px rgba(215, 40, 40, 0.9), 2px 0 rgba(215, 40, 40, 0.9), 0 -2px rgba(215, 40, 40, 0.9);
 
 }
 
 h2 {
-  color: #456783;
-  font-weight: bolder;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Stranger';
   font-size: 35px;
   text-align: center;
   text-shadow: 1px #ff0000;
@@ -67,6 +78,7 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+  color: rgb(157, 165, 194);
 }
 
 h3 {
@@ -88,8 +100,7 @@ h3 {
   height: 100%;
   width: 100%;
   text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
+  background: rgba(20, 24, 62, 0.7);
   position: fixed;
   top: 0;
   left: 0;
