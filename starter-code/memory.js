@@ -46,12 +46,12 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
-   html += '<div class= "card" name="card_' + sanitizedName + '">';
+    html += '<div class= "card" name="card_' + sanitizedName + '">';
     html += '<div class="back"';
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
@@ -59,4 +59,16 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
+// flip card - a la que tiene back le pongo front y viceversa
+
+  $(".card").click(function(){
+    $(this).children().toggleClass("back");
+  });
+
+// llenar el grid con personajes e imágenes
+
+
+
 });
