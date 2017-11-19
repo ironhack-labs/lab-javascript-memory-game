@@ -1,27 +1,24 @@
 html {
+  background: url(img/background.jpg) repeat;
+  background-size: auto;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory_board {
   background:#dddddd;
 	width:800px;
-	height:500px;
-	padding:50px;
+	height:540px;
+	padding:70px;
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-.game {
-  background: url(img/background.jpg) repeat;
-  background-size: auto;
-}
 
 .card .back {
-  background-image: url(img/yo.jpg);
-  background-size: cover;
-	width:70px;
-	height:70px;
+  background-color: #456783;
+	width:71px;
+	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
@@ -33,21 +30,14 @@ html {
 }
 
 #score {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 50px
-}
-
-.box{
-  display: block;
   background-color: rgba(215, 44, 44, 1);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
-  padding: 10px;
-  margin: auto;
-  vertical-align: top;
-  align-self: flex-start;
+  width:200px;
+  padding: 20px;
+  padding-top: 0;
+  margin-left: 75%;
 }
 
 .container {
@@ -55,14 +45,11 @@ html {
 }
 
 h1 {
-  display: block;
   color: rgba(215, 40, 40, 0.9);
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
-  margin: auto;
-  margin-bottom: 10px;
-  width: 40%;
+  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
 
 }
 
