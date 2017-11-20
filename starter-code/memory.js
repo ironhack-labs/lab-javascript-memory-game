@@ -93,13 +93,17 @@ var bleep = new Audio();
 var easySound = new Audio();
 var hardSound = new Audio();
 var ggSound = new Audio();
+var startSound = new Audio();
 bleep.src = "audio/click-on.mp3";
 easySound.src = "audio/yaaay.mp3";
 hardSound.src = "audio/scary.mp3";
 ggSound.src = "audio/smoke-weed.mp3";
 ggSound.loop = true;
+startSound.src = "audio/wonder-woman.mp3";
+startSound.loop = true;
 
 $(document).ready(function() {
+  startSound.play();
   $("#gg").hide();
   $("#grayBackground").hide();
   $("#playAgain").hide();
@@ -146,12 +150,14 @@ $(document).ready(function() {
 
   $("#easy").click(function(){
     $("#difficulty").hide();
+    startSound.pause();
     easySound.play();
     diff = 750;
   });
 
   $("#hard").click(function(){
     $("#difficulty").hide();
+    startSound.pause();
     hardSound.play();
     diff = 50;
   });

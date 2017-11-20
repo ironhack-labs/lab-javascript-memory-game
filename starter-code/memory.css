@@ -100,7 +100,7 @@ p {
 
 #gg {
   width: 100vw;
-  position: absolute;
+  position: fixed;
   z-index: 100;
   bottom: 0;
   display: flex;
@@ -136,7 +136,7 @@ p {
 }
 
 #playAgain {
-  position: absolute;
+  position: fixed;
   z-index: 5000;
   top: 10vh;
   width: 100%;
@@ -148,7 +148,7 @@ p {
 }
 
 #grayBackground {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -169,19 +169,19 @@ p {
 }
 
 #ligthBackground {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 50;
+  z-index: 30;
   background-color: rgba(230, 228, 228, 0.85);
 }
 
 #choose h2 {
-  position: absolute;
+  position: fixed;
   top: 15%;
-  left: 50%;
+  left: 32%;
   transform: translate(-50%, 0);
   z-index: 60;
   color: rgb(46, 46, 46);
@@ -191,10 +191,10 @@ p {
 }
 
 #easy {
-  position: absolute;
+  position: fixed;
   z-index: 60;
   top: 38%;
-  left: 30%;
+  left: 12%;
 }
 
 #easy img {
@@ -207,10 +207,10 @@ p {
 }
 
 #hard {
-  position: absolute;
+  position: fixed;
   z-index: 60;
   top: 35%;
-  left: 58%;
+  left: 40%;
 }
 
 #hard img {
@@ -220,6 +220,17 @@ p {
 #hard img:hover {
   cursor: pointer;
   animation: pop 0.3s both alternate linear 1;
+}
+
+#ironman {
+  position: fixed;
+  z-index: 40;
+  top: 40px;
+  right: 10%;
+}
+
+#ironman img {
+  width: 100%;
 }
 
 /**********************************************************/
