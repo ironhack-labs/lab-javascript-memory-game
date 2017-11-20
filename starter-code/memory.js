@@ -137,64 +137,69 @@ $(document).ready(function() {
 
   // Creamos un evento click
   $('.card').click(function() {
+    $(this).addClass( "blocked" );
     // Determinamos si ya había un elemento guardado en la primera posición del array selectedCards
     if (memoryGame.selectedCards[0] === undefined) {
       // Si no había ningún elemento guardado, guardamos el objeto
       memoryGame.selectedCards[0] = $(this);
 
       // Damos la vuelta a la primera carta para mostrar el front
-      //voltearFront( memoryGame.selectedCards[0] );
-      memoryGame.selectedCards[0].children(".back").hide();
-      memoryGame.selectedCards[0].children(".front").show();
+      $(this).children('.front').show();
+      $(this).children('.back').hide();
+      // voltearFront( memoryGame.selectedCards[0] );
 
     } else {
       // Si había un elemento guardado, guardamos el nuevo objeto en la segunda posición
       memoryGame.selectedCards[1] = $(this);
 
       // Damos la vuelta a la segunda carta para mostrar el front
-      //  voltearFront( memoryGame.selectedCards[1]);
-      memoryGame.selectedCards[1].children(".back").hide();
-      memoryGame.selectedCards[1].children(".front").show();
+      $(this).children('.front').show();
+      $(this).children('.back').hide();
 
-      // Comparamos los atributos name de los 2 objetos guardados
-      if (memoryGame.selectedCards[0].children(".back").attr("name") === memoryGame.selectedCards[1].children(".back").attr("name")) {
-        // Si son iguales
-        alert("Iguales");
-        memoryGame.correctPairs++;
-        memoryGame.selectedCards= []
-      } else {
-        // Si son distintos
-        alert("Distintos");
 
-        setTimeout(
-          function() {
-            memoryGame.selectedCards[0].children(".back").show();
-            memoryGame.selectedCards[0].children(".front").hide();
-            memoryGame.selectedCards[1].children(".back").show();
-            memoryGame.selectedCards[1].children(".front").hide();
-            memoryGame.selectedCards= []
 
-          }, 1000);
+        // voltearFront( memoryGame.selectedCards[1]);
 
-      }
+        // Comparamos los atributos name de los 2 objetos guardados
+        if (memoryGame.selectedCards[0].children(".back").attr("name") === memoryGame.selectedCards[1].children(".back").attr("name")) {
+          // Si son iguales
+          memoryGame.correctPairs++;
+          // Bloqueamos las cartas para siempre
+          memoryGame.selectedCards[0].addClass( "blocked-forever" );
+          memoryGame.selectedCards[1].addClass( "blocked-forever" );
+          // Vaciamos array
+          memoryGame.selectedCards= [];
+        } else {
+          // Si son distintos
+          $('.card').addClass( "blocked" );
+          setTimeout(
+            function() {
+              // Damos la vuelta a las 2 cartas para mostrar el back
+              voltearBack( memoryGame.selectedCards[0] );
+              voltearBack( memoryGame.selectedCards[1] );
+              memoryGame.selectedCards= []
+              $('.card').removeClass( "blocked" );
 
+            }, 1000);
+            memoryGame.selectedCards[0].removeClass( "blocked" );
+            memoryGame.selectedCards[1].removeClass( "blocked" );
+        }
       memoryGame.pairsClicked++;
-
-
     }
 
+    // Mostramos el Pairs Clicked y el Pairs Guessed actualizados
     $('#pairs_clicked').text(memoryGame.pairsClicked);
     $('#pairs_guessed').text(memoryGame.correctPairs);
   });
 
 });
 
-// function voltearFront( card ) {
-//   card.children(".back").hide();
-//   card.children(".front").show();
-// }
-//
-// function voltearBack( card ) {
-//   card.children(".back").show();
-//   card.children(".front").hide();
-// }
+function voltearFront( card ) {
+  card.children(".back").hide();
+  card.children(".front").show();
+}
+
+function voltearBack( card ) {
+  card.children(".back").show();
+  card.children(".front").hide();
+}

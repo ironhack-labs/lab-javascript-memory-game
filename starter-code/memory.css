@@ -24,7 +24,8 @@ html {
 	padding:20px;
 	font-size:64px;
 }
-
+.card.blocked-forever,
+.card.blocked,
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
