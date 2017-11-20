@@ -1,14 +1,16 @@
+
 // //******************************************************************
 // // FUNCION CONSTRUCTORA
 // //******************************************************************
 function MemoryGame(cardsArray, matchesNum) {
-    this.cardsArray = cardsArray;
-    this.matchesNum = matchesNum;
-    this.selectedCards = [];
-    this.pairsClicked = 0;
-    this.correctPairs = 0;
-    this.totalClicks = 0;
+  this.cardsArray = cardsArray;
+  this.matchesNum = matchesNum;
+  this.selectedCards = [];
+  this.pairsClicked = 0;
+  this.correctPairs = 0;
+  this.totalClicks = 0;
 };
+
 
 
 // //****************************************************************************
@@ -17,21 +19,22 @@ function MemoryGame(cardsArray, matchesNum) {
 MemoryGame.prototype.shuffleCards = function() {
   var cardsLength = this.cardsArray.length;
   var usedCards = this.cardsArray;
-      for(var i=0; i<cardsLength*this.matchesNum; i++){
-        cardSelected = Math.floor( Math.random()*usedCards.length );
-        usedCards[cardSelected]["matches"]++;
-        // console.log( usedCards[cardSelected]["name"] );
-        var sanitizedName = usedCards[cardSelected]["name"].split(' ').join('_');
-        var card_sanitizedName = sanitizedName;
-        var imgName = usedCards[cardSelected]["img"];
-        $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
-              $(".card:last-child").append('<div class="cover"></div>');
-              if (usedCards[cardSelected]["matches"]===this.matchesNum){
-          usedCards.splice(cardSelected,1);   
-        }
+    for(var i=0; i<cardsLength*this.matchesNum; i++){
+      console.log(usedCards);
+      var cardSelectedIndex = Math.floor( Math.random()*usedCards.length );
+      usedCards[cardSelectedIndex]["matches"]++;
+      var card_sanitizedName = usedCards[cardSelectedIndex]["name"].split(' ').join('_');
+      var imgName = usedCards[cardSelectedIndex]["img"];
+      $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
+             $(".card:last-child").append('<div class="cover"></div>');
+      if (usedCards[cardSelectedIndex]["matches"] >= this.matchesNum){
+        usedCards.splice(cardSelectedIndex,1);   
       }
-   $("#pairs_to_match").text(this.cardsArray.length);   
- }
+  }
+$("#pairs_to_match").text(this.cardsArray.length);   
+}
+
+
 
 
 // //******************************************************************
@@ -85,7 +88,58 @@ MemoryGame.prototype.selectCard = function(card){
 };
 
 
-// funcion que comprueba si todos los elementos del array son iguales
+// //******************************************************************
+// // DEF ARRAY DE SUPER HEROES Y OTRAS VARIABLES
+// //******************************************************************
+var superHeroArray = [
+  { name: "aquaman",         img: "aquaman.jpg",         matches: 0 },
+  { name: "batman",          img: "batman.jpg",          matches: 0 },
+  { name: "captain america", img: "captain-america.jpg", matches: 0 },
+  { name: "fantastic four",  img: "fantastic-four.jpg",  matches: 0 },
+  { name: "flash",           img: "flash.jpg",           matches: 0 },
+  { name: "green arrow",     img: "green-arrow.jpg",     matches: 0 },
+  { name: "green lantern",   img: "green-lantern.jpg",   matches: 0 },
+  { name: "ironman",         img: "ironman.jpg",         matches: 0 },
+  { name: "spiderman",       img: "spiderman.jpg",       matches: 0 },
+  { name: "superman",        img: "superman.jpg",        matches: 0 },
+  { name: "the avengers",    img: "the-avengers.jpg",    matches: 0 },
+  { name: "thor",            img: "thor.jpg",            matches: 0 },
+];
+
+var memoryGame;
+var matchesNum = 2 ;
+var cardsDifficultyArray = [] ;
+
+
+// //******************************************************************
+// // FUNCION QUE SELECCIONA LOS SUPERHEROES AL ZAR SEGUN EL NUMERO ESTABLECIDO
+// //******************************************************************
+newSuperHeroArray = function(numHeroes){
+  cardsDifficultyArray = [];
+  var availableHeroes = superHeroArray;
+  var heroIndex;
+  var superHero;
+
+  for(var c=0; c<numHeroes ; c++){
+    heroIndex = Math.floor( Math.random()*availableHeroes.length );
+    superHero = availableHeroes[ heroIndex ];
+    //cardsDifficultyArray.push("superHero") ;
+    cardsDifficultyArray.push(superHero) ;
+    availableHeroes.splice(heroIndex,1);
+  }
+}
+
+newSuperHeroArray(3);
+
+
+
+
+
+
+
+// //******************************************************************
+// // FUNCION QUE COMPRUEBA SI TODOS OS ELEMENTOS DE UN ARRAY SON IGUALES
+// //******************************************************************
 allValuesSame = function(array) {
       for(var i = 1; i < array.length; i++)
       {
@@ -96,6 +150,21 @@ allValuesSame = function(array) {
   }
 
 
+// //******************************************************************
+// // FUNCION QUE CREA CADA NUEVA PARTIDA
+// //******************************************************************
+newGame = function(){
+  //creamos el nuevo objeto juego
+  memoryGame = new MemoryGame(cardsDifficultyArray, matchesNum);
+  //repartimos las cartas
+  memoryGame.shuffleCards()
+  //y asignamos el evento click a cada carta
+  $(".card").click(function(){
+    memoryGame.selectCard(this);
+  });
+
+}
+  
 
 
 
@@ -107,24 +176,6 @@ allValuesSame = function(array) {
 
 
 $(document).ready(function(){
-
-  var cardsArray = [
-    { name: "aquaman",         img: "aquaman.jpg"},
-    { name: "batman",          img: "batman.jpg"},
-    { name: "captain america", img: "captain-america.jpg"},
-    { name: "fantastic four",  img: "fantastic-four.jpg"},
-    { name: "flash",           img: "flash.jpg"},
-    { name: "green arrow",     img: "green-arrow.jpg"},
-    { name: "green lantern",   img: "green-lantern.jpg"},
-    { name: "ironman",         img: "ironman.jpg"},
-    { name: "spiderman",       img: "spiderman.jpg"},
-    { name: "superman",        img: "superman.jpg"},
-    { name: "the avengers",    img: "the-avengers.jpg"},
-    { name: "thor",            img: "thor.jpg"},
-  ];
-
-  var memoryGame;
-  var cardsDifficulty = cardsArray.slice(0, 3);
 
  
 
@@ -139,27 +190,27 @@ $(document).ready(function(){
       
       switch (difficulty) {
         case 1:
-          cardsDifficulty = cardsArray.slice(0, 3);
+          cardsDifficultyArray = superHeroArray.slice(0, 3);
           matchesNum=2;
           $("#instrText").text("trainning mode - just match pairs");
           break;
         case 2:
-          cardsDifficulty = cardsArray.slice(0, 6);
+          cardsDifficultyArray = superHeroArray.slice(0, 6);
           matchesNum=2;
           $("#instrText").text("easy mode - match pairs");
           break;
         case 3:
-          cardsDifficulty = cardsArray.slice(0, 9);
+          cardsDifficultyArray = superHeroArray.slice(0, 9);
           matchesNum=2;
           $("#instrText").text("medium mode - match pairs");
           break;
         case 4:
-          cardsDifficulty = cardsArray.slice(0, 12);
+          cardsDifficultyArray = superHeroArray.slice(0, 12);
           matchesNum=2;
           $("#instrText").text("difficult mode - match pairs");
           break;
         case 5:
-          cardsDifficulty = cardsArray.slice(0, 12);
+          cardsDifficultyArray = superHeroArray.slice(0, 12);
           matchesNum=3;
           $("#instrText").text("Just for super heroes!!!! - match 3 elements");
           break;
@@ -168,23 +219,10 @@ $(document).ready(function(){
       }
 
       $( ".card" ).remove();
-      memoryGame = new MemoryGame(cardsDifficulty, matchesNum);
-      memoryGame.shuffleCards();
-
-      //evento click en cada card
-      $(".card").click(function(){
-        memoryGame.selectCard(this);
-      });
+      newGame();
 
    });  
 
-
-   memoryGame = new MemoryGame(cardsDifficulty, 2);
-   memoryGame.shuffleCards();
-
-    //evento click en cada card
-    $(".card").click(function(){
-      memoryGame.selectCard(this);
-    });
+newGame();
 
 });
