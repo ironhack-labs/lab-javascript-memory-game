@@ -181,13 +181,19 @@ p {
 #choose h2 {
   position: fixed;
   top: 15%;
-  left: 32%;
-  transform: translate(-50%, 0);
+  left: 15%;
   z-index: 60;
   color: rgb(46, 46, 46);
   font-family: 'Spectral SC', serif;
   font-size: 3vw;
   text-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+  animation: jumpSlow 1s both alternate ease infinite;
+}
+
+@keyframes jumpSlow {
+  100% {
+    transform: translate(0px, -20px);
+  }
 }
 
 #easy {
