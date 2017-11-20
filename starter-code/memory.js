@@ -33,6 +33,7 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -42,20 +43,22 @@ var MemoryGame = function() {
 $(document).ready(function(){
 
 function shuffle(array) {
-  console.log(array[1]);
-  console.log(array); // es diferente del array inicial, es como si ya hubiera shuffleado: POR QUE?
+
+  /* check */ console.log(array[1]); // check para ver como entra el array al loop
+  /* check */ console.log(array); // es diferente del array inicial, es como si ya hubiera shuffleado: POR QUE?
+
   var temporaryValue, randomIndex;
-  // While there remain elements to shuffle...
+
   for (i=0; i<array.length; i++) {
-    // Pick a remaining element...
+
     randomIndex = Math.floor(Math.random() * i);
 
-    // And swap it with the current element.
     temporaryValue = array[i];
     array[i] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-  console.log(array[1]); // es diferente del console log array [1] al principio: OK
+
+  /* check */ console.log(array[1]); // es diferente del console log array [1] al principio: OK
 
   return array;
 }
@@ -92,13 +95,23 @@ var memoryGame;
 
 
 // flip card
+var clicksCounter = 0;
+var visibleCards = [];
 
   $(".card").click(function(){
     $(this).children().toggleClass("back");
+    clicksCounter++;
+    visibleCards.push(this);
+    /* check */ console.log(visibleCards);
+    if(clicksCounter === 2){
+      /* check */console.log(visibleCards[0]);
+      /* check */console.log(visibleCards[1]);
+      if(visibleCards[0] == visibleCards[1]){
+        console.log("you win!");
+      } else $(".card").toggleClass("back");
+    }
+    /* check */ console.log("accumulated clicks " + clicksCounter); // see status of variable
   });
-
-// llenar el grid con personajes e imágenes
-
 
 
 });
