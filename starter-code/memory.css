@@ -1,62 +1,75 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background: url("https://i2.wp.com/www.outrightgeekery.com/wp-content/uploads/2016/04/Top-5-Civil-War-Moments-Splash.jpg") no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory_board {
-  background:#dddddd;
+  background:rgba(92, 92, 92, 0.8);
 	width:800px;
 	height:540px;
-	padding:70px;
-	margin:0px auto;
-  border-radius: 84px;
+	padding:50px;
+  border-radius: 20px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-
 .card .back {
-  background-color: #456783;
+  background-color: rgb(134, 134, 134);
+  background-image: url("https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAA16AAAAJDAxYWVmNzJhLWRjNTgtNDZiMS04NjU3LWIxMDRmN2ZiZDFmMg.png");
+  background-size: contain;
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+  border-radius: 3px;
 }
+
+.card .front {
+  background-size: contain;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+  border-radius: 3px;
+}
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(92, 92, 92, 0.8);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
+  height: 200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
 }
 
-.container {
+/*.container {
   position: relative;
-}
+}*/
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: bolder;
-  font-size: 67px;
+  font-size: 3.7vw;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
-
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
 }
 
 h2 {
-  color: #456783;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
   font-weight: bolder;
-  font-size: 35px;
+  font-size: 2vw;
   text-align: center;
   text-shadow: 1px #ff0000;
   text-shadow: 1px #ff0000;
@@ -66,4 +79,210 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+#table {
+  display: flex;
+  justify-content: center;
+}
+
+.back, .front {
+  box-shadow: 5px 5px 10px #000;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card .back:hover {
+  background-color: rgb(98, 98, 98);
+}
+
+#gg {
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#gg div {
+  display: flex;
+  align-items: flex-end;
+  width: 17vw;
+  justify-content: center;
+}
+
+#gg div:nth-child(3) img {
+  z-index: 1000;
+  height: 60vh;
+}
+
+#gg div:nth-child(2) img {
+  width: 15vh;
+}
+
+#gg div:nth-child(4) img {
+  height: 60vh;
+}
+
+#gg div:nth-child(5) img {
+  height: 55vh;
+}
+
+#gg div:nth-child(1) img {
+  height: 60vh;
+}
+
+#playAgain {
+  position: fixed;
+  z-index: 5000;
+  top: 10vh;
+  width: 100%;
+  text-align: center;
+}
+
+#playAgain img {
+  height: 20vh;
+}
+
+#grayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background-color: rgba(88, 88, 88, 0.77);
+}
+
+#playAgain img:hover {
+  animation: jump 0.2s both alternate ease infinite;
+  cursor: pointer;
+}
+
+@keyframes jump {
+  100% {
+    transform: translate(0px, -10px);
+  }
+}
+
+#cityBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background-color: rgba(230, 228, 228, 0.85);
+}
+
+#choose h2 {
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  z-index: 60;
+  color: rgb(46, 46, 46);
+  font-family: 'Spectral SC', serif;
+  font-size: 3vw;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+  animation: jumpSlow 1s both alternate ease infinite;
+}
+
+@keyframes jumpSlow {
+  100% {
+    transform: translate(0px, -20px);
+  }
+}
+
+#easy {
+  position: fixed;
+  z-index: 60;
+  top: 38%;
+  left: 12%;
+}
+
+#easy img {
+  width: 250px;
+}
+
+#easy img:hover {
+  cursor: pointer;
+  animation: pop 0.3s both alternate linear 1;
+}
+
+#hard {
+  position: fixed;
+  z-index: 60;
+  top: 35%;
+  left: 40%;
+}
+
+#hard img {
+  width: 190px;
+}
+
+#hard img:hover {
+  cursor: pointer;
+  animation: pop 0.3s both alternate linear 1;
+}
+
+#ironman {
+  position: fixed;
+  z-index: 40;
+  top: 40px;
+  right: 10%;
+}
+
+#ironman img {
+  width: 100%;
+}
+
+/**********************************************************/
+
+@media (max-width: 1600px) {
+
+  #memory_board {
+  	width:730px;
+  	height:500px;
+  	padding:10px;
+  }
+
+  .card .back {
+  	width:71px;
+  	height:71px;
+  	margin:5px;
+  	padding:19px;
+  }
+
+  .card .front {
+    width:71px;
+  	height:71px;
+  	margin:5px;
+  	padding:19px;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #score {
+    font-size: 30px;
+    height: 160px;
+  }
+
+  #easy img {
+    width: 200px;
+  }
+
+  #hard img {
+    width: 140px;
+  }
+}
+
+@keyframes pop {
+  100% {
+    transform: scale(1.2, 1.2);
 }
