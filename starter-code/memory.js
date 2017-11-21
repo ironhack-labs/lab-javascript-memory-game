@@ -120,7 +120,12 @@ $(document).ready(function(){
   MemoryGame.prototype.finished = function() {
     debugger;
     if(this.correctPairs === this.cards.length/2){
-      
+      this.correctPairs = 0;
+      this.pairsClicked = 0;
+      $("#pairs_guessed").html(this.correctPairs);
+      $("#pairs_clicked").html(this.pairsClicked/2);
+      $(".blocked").removeClass(".blocked");
+      $(".back").css('background','#456783');
       return alert("WIN");
     }
   };
