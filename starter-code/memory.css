@@ -92,7 +92,7 @@ body {
 }
 
 .cover {
-  
+  background-color: orange;
   width:110px;
   height:110px;
   z-index: 20;

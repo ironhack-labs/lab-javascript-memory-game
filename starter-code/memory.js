@@ -14,12 +14,10 @@
     this.totalClicks = 0;
   };
   
-
   // //******************************************************************
   // // METODO QUE SELECCIONA LOS SUPERHEROES AL ZAR SEGUN EL NUMERO ESTABLECIDO
   // //******************************************************************
   MemoryGame.prototype.selectHeroes = function(){
-    console.log("inicializando selectedHeroesIndexArray");
     var availableHeroesIndexArray = [];
       for(var h=0; h<this.heroesArray.length ; h++){
         availableHeroesIndexArray.push(h) ;
@@ -29,18 +27,15 @@
         this.selectedHeroesIndexArray.push(availableHeroesIndexArray[heroIndex]) ;
         availableHeroesIndexArray.splice( heroIndex ,1);
       }
-    console.log("indice de los heroes seleccionados:" + this.selectedHeroesIndexArray);
-
-    //return selectedHeroesIndexArray
-    
+    // console.log("METODO selectedHeroesIndexArray");
+    // console.log("indice de los heroes seleccionados:" + this.selectedHeroesIndexArray);
   }
+
 
   // //****************************************************************************
   // // METODO SHUFFLE: REPARTO ALEATORIO DE CARTAS CON EL NUMERO DE DUPLICADOS ESTABLECIDO
   // //****************************************************************************
   MemoryGame.prototype.shuffleCards = function() {
-    console.log("/////////////");
-    console.log("iniciando Función SHUFFLECARDAS:");
     var indexToUseArray = [];
     for( var i=0; i<this.matchesNum; i++){
       for( var p=0; p<this.selectedHeroesIndexArray.length; p++){
@@ -48,22 +43,18 @@
       }
     }
     var totalNumCards = indexToUseArray.length;
-    console.log("total indices a asignar: " + indexToUseArray);
 
-    
     for(var e=0; e < ( totalNumCards ) ; e++){
        var cardSelectedIndex = Math.floor( Math.random()*indexToUseArray.length );
        var card_sanitizedName = this.heroesArray[ indexToUseArray[cardSelectedIndex] ]["name"].split(' ').join('_');
        var imgName = this.heroesArray[ indexToUseArray[cardSelectedIndex] ]["img"];
        $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
              $(".card:last-child").append('<div class="cover"></div>');
-      console.log("iteración azar:" + cardSelectedIndex + " entre 0 y " + totalNumCards);
-      console.log("indice al azar " + indexToUseArray[cardSelectedIndex] + " de " + card_sanitizedName);
       indexToUseArray.splice(cardSelectedIndex,1);  
    }
-   console.log("terminado, este array tiene que estar vacío " + indexToUseArray);
-  // y ponemos en el panel del juego el número de elementos a emparejar
-  $("#pairs_to_match").text(this.selectedHeroesIndexArray.length);   
+   $("#pairs_to_match").text(this.selectedHeroesIndexArray.length); 
+   // console.log("METODO selectedHeroesIndexArray");
+   // console.log("terminado, si todo ok este array tiene que estar vacío " + indexToUseArray);
   }
 
 
@@ -74,6 +65,7 @@
   // //******************************************************************
   MemoryGame.prototype.selectCard = function(card){ 
     var clickName = $(card).attr("name");
+    console.log("clic en la carta " + clickName);
 
     this.totalClicks ++ ; 
     $("#total_clicks").text(this.totalClicks);
@@ -96,7 +88,7 @@
 
         if (this.pairsClicked>=this.matchesNum){
               if ( allValuesSame(this.selectedCards) ){
-                console.log("BIEN PARAJAS OK!!!!!!!");
+                console.log("BIEN, las cartas seleccionadas son iguales!!!!!!!");
                 $(".selected" ).parent().addClass("blocked");
                 $(".selected" ).removeClass("selected").addClass("cardOk");
                 this.correctPairs ++;
@@ -106,15 +98,14 @@
                 setTimeout(function(){ 
                   $(".selected").removeClass("selected");
                   console.log("mal..... sigue intentándolo!");
-                }, 500);
-
-                
+                }, 400);
                 
               }
           this.selectedCards = [];
           this.pairsClicked = 0;
         }
-    if (this.correctPairs >= this.selectedSuperHeroes.length){
+
+    if (this.correctPairs >= this.heroesNum){
     $("#instrText").text("WELLDONE, MISSION ACCOMPLISHED!!");
     }
   };
@@ -140,13 +131,6 @@
 
   var memoryGame;
   var matchesNum = 2 ;
-
-
-
- 
-
-
-
 
 
 
