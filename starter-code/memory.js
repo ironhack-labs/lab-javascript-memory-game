@@ -59,4 +59,46 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  // Ocultamos todos los elem con clase "front"
+  $('.front').hide();
+  // Creamos un evento click
+  $('.card').click(function() {
+    // Determinamos si ya había un elemento guardado en la primera posición del array selectedCards
+    if (memoryGame.selectedCards[0] === undefined) {
+      // Si no había ningún elemento guardado, guardamos el objeto
+      memoryGame.selectedCards[0] = $(this);
+      // Damos la vuelta a la primera carta para mostrar el front
+      //voltearFront( memoryGame.selectedCards[0] );
+      memoryGame.selectedCards[0].children(".back").hide();
+      memoryGame.selectedCards[0].children(".front").show();
+    } else {
+      // Si había un elemento guardado, guardamos el nuevo objeto en la segunda posición
+      memoryGame.selectedCards[1] = $(this);
+      // Damos la vuelta a la segunda carta para mostrar el front
+      //  voltearFront( memoryGame.selectedCards[1]);
+      memoryGame.selectedCards[1].children(".back").hide();
+      memoryGame.selectedCards[1].children(".front").show();
+      // Comparamos los atributos name de los 2 objetos guardados
+      if (memoryGame.selectedCards[0].children(".back").attr("name") === memoryGame.selectedCards[1].children(".back").attr("name")) {
+        // Si son iguales
+
+        memoryGame.correctPairs++;
+        memoryGame.selectedCards= []
+      } else {
+        // Si son distintos
+
+        setTimeout(
+          function() {
+            memoryGame.selectedCards[0].children(".back").show();
+            memoryGame.selectedCards[0].children(".front").hide();
+            memoryGame.selectedCards[1].children(".back").show();
+            memoryGame.selectedCards[1].children(".front").hide();
+            memoryGame.selectedCards= []
+          }, 2000);
+      }
+      memoryGame.pairsClicked++;
+    }
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.correctPairs);
+  });
 });
