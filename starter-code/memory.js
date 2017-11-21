@@ -91,11 +91,13 @@ $(document).ready(function(){
       {
         this.selectedCards = [];
         this.correctPairs++;
+        
         $("#pairs_guessed").html(this.correctPairs);
         this.pairsClicked++;
         $("#pairs_clicked").html(this.pairsClicked/2);
         value.attr('class','back blocked');
         selCard.attr('class','back blocked');
+        this.finished();
       }
       else{
     //     alert("WRONG");
@@ -113,6 +115,14 @@ $(document).ready(function(){
     }
 
   
+  };
+
+  MemoryGame.prototype.finished = function() {
+    debugger;
+    if(this.correctPairs === this.cards.length/2){
+      
+      return alert("WIN");
+    }
   };
 
   
