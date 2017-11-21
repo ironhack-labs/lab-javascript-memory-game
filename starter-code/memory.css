@@ -67,3 +67,13 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.finish{
+  align-content: space-between;
+  align-items: center;
+}
+
+.button {
+    margin:0 auto;
+    display:block;
+}
