@@ -94,7 +94,7 @@ $(document).ready(function () {
   myGame = new MemoryGame();
   var html = '';
 
-  // myGame._shuffleCards();
+  myGame._shuffleCards();
 
   myGame.cards.forEach(function (pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
