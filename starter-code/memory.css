@@ -1,56 +1,124 @@
-html {
-  background: url(img/background.jpg) no-repeat;
-  background-size: cover;
+body {
   font-family: "Helvetica Neue", Arial, sans-serif;
+  height: auto;
 }
 
-#memory_board {
+#background{
+  height: 100vh;
+  background: url(img/superheroes-marvel.jpg) no-repeat;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#title{
+  z-index: 2;
+}
+
+#background::after {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(247, 103, 19, 0.431);
+  z-index: 1;
+  }
+
+.flex {
+  display: flex;
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: center;
+}
+
+.enLinea {
+  flex-direction: row;
+  flex-wrap:  wrap;
+}
+
+#board_control{
   background:#dddddd;
-	width:800px;
-	height:540px;
+	width:824px;
+	padding:35px 70px;
+	margin:0px auto;
+  border-radius: 84px;
+  box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+.star{
+  font-size: 100px;
+  margin: 0 10px 0 0;
+}
+
+.on{
+  color:orange;
+}
+
+.off{
+  color:rgb(99, 99, 99);
+}
+
+.board {
+  background:#dddddd;
+	width:824px;
 	padding:70px;
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  z-index: 2;
+}
+
+#instructions{
+  width:824px;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 
-.card .back {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+.card {
+	width:110px;
+	height:110px;
+  margin:10px;
+  z-index: 10;
+  border: 2px solid #dddddd;
 }
-.card .front.blocked,
-.card .back.blocked {
+
+.cover {
+  background-color: orange;
+  width:110px;
+  height:110px;
+  z-index: 20;
+}
+
+.selected, .cardOk {
+  display:none;
+}
+.blocked {
   pointer-events: none;
+  border: 2px solid yellow;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
-  border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
-  padding: 20px;
-  padding-top: 0;
-  margin-left: 75%;
-}
-
-.container {
-  position: relative;
+  z-index: 4;
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: yellow;
   font-weight: bolder;
-  font-size: 67px;
+  font-size: 75px;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
-
+  text-shadow: 0px 0px 20px rgba(231, 40, 40, 0.904);
 }
 
 h2 {
@@ -58,7 +126,6 @@ h2 {
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
-  text-shadow: 1px #ff0000;
   text-shadow: 1px #ff0000;
 }
 

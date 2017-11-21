@@ -1,60 +1,45 @@
+$(document).ready(function(){
 
-
+    
   // //******************************************************************
   // // FUNCION CONSTRUCTORA
   // //******************************************************************
-  function MemoryGame(heroesArray, heroesNum, matchesNum) {
-    this.heroesArray = heroesArray;
-    this.heroesNum = heroesNum;
+  function MemoryGame(selectedSuperHeroes, matchesNum) {
+    this.selectedSuperHeroes = selectedSuperHeroes;
     this.matchesNum = matchesNum;
-    this.selectedHeroesIndexArray = [];
     this.selectedCards = [];
     this.pairsClicked = 0;
     this.correctPairs = 0;
     this.totalClicks = 0;
   };
-  
-  // //******************************************************************
-  // // METODO QUE SELECCIONA LOS SUPERHEROES AL ZAR SEGUN EL NUMERO ESTABLECIDO
-  // //******************************************************************
-  MemoryGame.prototype.selectHeroes = function(){
-    var availableHeroesIndexArray = [];
-      for(var h=0; h<this.heroesArray.length ; h++){
-        availableHeroesIndexArray.push(h) ;
-      }
-      for(var s=0; s<this.heroesNum ; s++){
-        var heroIndex = Math.floor( Math.random()*availableHeroesIndexArray.length );
-        this.selectedHeroesIndexArray.push(availableHeroesIndexArray[heroIndex]) ;
-        availableHeroesIndexArray.splice( heroIndex ,1);
-      }
-    // console.log("METODO selectedHeroesIndexArray");
-    // console.log("indice de los heroes seleccionados:" + this.selectedHeroesIndexArray);
-  }
+
 
 
   // //****************************************************************************
-  // // METODO SHUFFLE: REPARTO ALEATORIO DE CARTAS CON EL NUMERO DE DUPLICADOS ESTABLECIDO
+  // // METODO REPARTO ALEATORIO DE CARTAS CON EL NUMERO DE DUPLICADOS ESTABLECIDO
   // //****************************************************************************
   MemoryGame.prototype.shuffleCards = function() {
-    var indexToUseArray = [];
-    for( var i=0; i<this.matchesNum; i++){
-      for( var p=0; p<this.selectedHeroesIndexArray.length; p++){
-      indexToUseArray.push(this.selectedHeroesIndexArray[p]);
-      }
+    console.log("iniciando Función shuffleCards:");
+    console.log("selectedSuperHeroes");
+    console.log(selectedSuperHeroes);
+    console.log("this.selectedSuperHeroes");
+    console.log(this.selectedSuperHeroes);
+    var cardsLength = this.selectedSuperHeroes.length;
+    var usedCards = this.selectedSuperHeroes;
+      for(var i=0; i<cardsLength*this.matchesNum; i++){
+        console.log("usedCards:");
+        console.log(usedCards);
+        var cardSelectedIndex = Math.floor( Math.random()*usedCards.length );
+        usedCards[cardSelectedIndex]["matches"]++;
+        var card_sanitizedName = usedCards[cardSelectedIndex]["name"].split(' ').join('_');
+        var imgName = usedCards[cardSelectedIndex]["img"];
+        $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
+              $(".card:last-child").append('<div class="cover"></div>');
+        if (usedCards[cardSelectedIndex]["matches"] >= this.matchesNum){
+          usedCards.splice(cardSelectedIndex,1);   
+        }
     }
-    var totalNumCards = indexToUseArray.length;
-
-    for(var e=0; e < ( totalNumCards ) ; e++){
-       var cardSelectedIndex = Math.floor( Math.random()*indexToUseArray.length );
-       var card_sanitizedName = this.heroesArray[ indexToUseArray[cardSelectedIndex] ]["name"].split(' ').join('_');
-       var imgName = this.heroesArray[ indexToUseArray[cardSelectedIndex] ]["img"];
-       $( "#memory_board" ).append( '<div class= "card" name="' + card_sanitizedName + '" style="background: url(img/' + imgName + ')"></div>');
-             $(".card:last-child").append('<div class="cover"></div>');
-      indexToUseArray.splice(cardSelectedIndex,1);  
-   }
-   $("#pairs_to_match").text(this.selectedHeroesIndexArray.length); 
-   // console.log("METODO selectedHeroesIndexArray");
-   // console.log("terminado, si todo ok este array tiene que estar vacío " + indexToUseArray);
+  $("#pairs_to_match").text(this.selectedSuperHeroes.length);   
   }
 
 
@@ -65,7 +50,6 @@
   // //******************************************************************
   MemoryGame.prototype.selectCard = function(card){ 
     var clickName = $(card).attr("name");
-    console.log("clic en la carta " + clickName);
 
     this.totalClicks ++ ; 
     $("#total_clicks").text(this.totalClicks);
@@ -88,7 +72,7 @@
 
         if (this.pairsClicked>=this.matchesNum){
               if ( allValuesSame(this.selectedCards) ){
-                console.log("BIEN, las cartas seleccionadas son iguales!!!!!!!");
+                console.log("BIEN PARAJAS OK!!!!!!!");
                 $(".selected" ).parent().addClass("blocked");
                 $(".selected" ).removeClass("selected").addClass("cardOk");
                 this.correctPairs ++;
@@ -98,14 +82,15 @@
                 setTimeout(function(){ 
                   $(".selected").removeClass("selected");
                   console.log("mal..... sigue intentándolo!");
-                }, 400);
+                }, 500);
+
+                
                 
               }
           this.selectedCards = [];
           this.pairsClicked = 0;
         }
-
-    if (this.correctPairs >= this.heroesNum){
+    if (this.correctPairs >= this.selectedSuperHeroes.length){
     $("#instrText").text("WELLDONE, MISSION ACCOMPLISHED!!");
     }
   };
@@ -114,7 +99,7 @@
   // //******************************************************************
   // // DEF ARRAY DE SUPER HEROES Y OTRAS VARIABLES
   // //******************************************************************
-  var heroesArray = [
+  var superHeroArray = [
     { name: "aquaman",         img: "aquaman.jpg",         matches: 0 },
     { name: "batman",          img: "batman.jpg",          matches: 0 },
     { name: "captain america", img: "captain-america.jpg", matches: 0 },
@@ -131,6 +116,31 @@
 
   var memoryGame;
   var matchesNum = 2 ;
+
+
+  // //******************************************************************
+  // // FUNCION QUE SELECCIONA LOS SUPERHEROES AL ZAR SEGUN EL NUMERO ESTABLECIDO
+  // //******************************************************************
+  newSuperHeroArray = function(numHeroes){
+    var selectedSuperHeroes = [];
+    var availableHeroes = superHeroArray;
+    var heroIndex;
+    var superHero;
+
+    for(var c=0; c<numHeroes ; c++){
+      heroIndex = Math.floor( Math.random()*availableHeroes.length );
+      superHero = availableHeroes[ heroIndex ];
+      selectedSuperHeroes.push(superHero) ;
+      availableHeroes.splice(heroIndex,1);
+    }
+    console.log("These ara the selected superheroes:");
+    console.log(selectedSuperHeroes);
+    
+    return selectedSuperHeroes
+  }
+
+
+
 
 
 
@@ -151,14 +161,13 @@
   // //******************************************************************
   // // FUNCION QUE CREA CADA NUEVA PARTIDA
   // //******************************************************************
-  newGame = function(heroesNum, matchesNum, message){
-    console.log("NUEVA PARTIDA!!!!");
+  newGame = function(numHeroes, matchesNum, message){
+    console.log("NUEVA PARTIDA!!!!")
+    newSuperHeroArray(numHeroes);
     //creamos el nuevo objeto juego
-    memoryGame = new MemoryGame(heroesArray, heroesNum, matchesNum);
-    //seleccionamos al azar los super héroes según el "heroesNum" asignado al crear el objeto
-    memoryGame.selectHeroes();
-    //repartimos las cartas repitiéndolas el "matchesNum" asignado al crear el objeto
-    memoryGame.shuffleCards();
+    memoryGame = new MemoryGame(selectedSuperHeroes, matchesNum);
+    //repartimos las cartas
+    memoryGame.shuffleCards()
     //asignamos el evento click a cada carta
     $(".card").click(function(){
       memoryGame.selectCard(this);
@@ -177,7 +186,7 @@
   // // HTML/CSS Interactions
   // //******************************************************************
 
-  $(document).ready(function(){
+
   
 
       //establecemos el nivel de dificultad
@@ -209,7 +218,7 @@
           default:
             break;
         }
-       });  
+    });  
 
   newGame(3,2,"trainning mode - just match pairs");
 
