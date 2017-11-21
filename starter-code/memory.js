@@ -33,6 +33,15 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+MemoryGame.prototype.compareCards = function (visibleCards) {
+  /* check */console.log(visibleCards[0]);
+  /* check */console.log(visibleCards[1]);
+  if(visibleCards[0] === visibleCards[1]) {
+    console.log("you win!");
+
+  } else $(".card").toggleClass("back");
+};
+
 
 // //******************************************************************
 // // HTML/CSS Interactions
@@ -101,14 +110,12 @@ var visibleCards = [];
   $(".card").click(function(){
     $(this).children().toggleClass("back");
     clicksCounter++;
-    visibleCards.push(this);
+    console.log('Imprimo this');
+    var cardName = $(this).attr('name');
+    visibleCards.push(cardName);
     /* check */ console.log(visibleCards);
-    if(clicksCounter === 2){
-      /* check */console.log(visibleCards[0]);
-      /* check */console.log(visibleCards[1]);
-      if(visibleCards[0] == visibleCards[1]){
-        console.log("you win!");
-      } else $(".card").toggleClass("back");
+    if(clicksCounter === 2) {
+      memoryGame.compareCards(visibleCards);
     }
     /* check */ console.log("accumulated clicks " + clicksCounter); // see status of variable
   });
