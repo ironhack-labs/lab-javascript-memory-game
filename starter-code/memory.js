@@ -33,11 +33,15 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+//Iteration 1
+MemoryGame.prototype._shuffleCards = function(arr) {
+  return (arr);
+};
 //function MemoryGame(name, img) {
   //this.name = name;
   //this.img = img;
 //}
-//MemoryGame.prototype._shuffleCards = function() {
+//MemoryGame.prototype._shuffleCards = function(card) {
 //return this.name;
 //};
 //var myMemoryGame = new MemoryGame ("name", "img");
