@@ -43,6 +43,19 @@ $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
 
+  //Shuffle cards
+  MemoryGame.prototype.shuffleCards = function() {
+    var i = this.cards.length, j, temp;
+    while(--i > 0) {
+      j = (Math.floor(Math.random() * (i+1)));
+      temp = this.cards[j];
+      this.cards[j] = this.cards[i];
+      this.cards[i] = temp;
+    }
+     return this.cards;
+  };
+  memoryGame.shuffleCards();
+
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -51,7 +64,7 @@ $(document).ready(function(){
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background-image:url(img/' + pic.img +')"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
@@ -59,4 +72,45 @@ $(document).ready(function(){
 
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+  //Selecting a card
+  MemoryGame.prototype.selectCard = function(e){
+    if (this.selectedCards.length === 1) {
+      var actualCard = e.currentTarget;
+      //console.log(clickedCard.outerHTML);
+      $(actualCard).hide();
+      $(actualCard).next().toggleClass("back");
+      this.selectedCards.push(clickedCard);
+      this.pairsClicked+=1;
+      $("#pairs_clicked").html(this.pairsClicked);
+      console.log(this.selectedCards);
+
+      if (this.selectedCards[0] == this.selectedCards[1]){
+          console.log("las cratas son guales");
+          console.log(this.selectedCards[0]);
+          console.log(this.selectedCards[1]);
+        }//   alert("acierto");
+        //   this.correctPairs +=1;
+        //   console.log("correct pairs: "+this.correctPairs);
+        // } else {
+        //   alert("fallo");
+        //   $(clickedCard).show();
+        //   $(clickedCard).next().toggleClass("back");
+        // }
+      this.selectedCards = [];
+    } else if (this.selectedCards.length === 0) {
+      var oldCard = e.currentTarget;
+      this.selectedCards.push(oldCard);
+    }
+  };
+
+
+  //Win
+  MemoryGame.prototype.finished = function() {
+  };
+
+  $('.back').on('click', function(e){
+    memoryGame.selectCard(e);
+  });
+
 });
