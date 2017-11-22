@@ -33,6 +33,21 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+//Iteration 1
+MemoryGame.prototype._shuffleCards = function(arr) {
+  return (arr);
+};
+//function MemoryGame(name, img) {
+  //this.name = name;
+  //this.img = img;
+//}
+//MemoryGame.prototype._shuffleCards = function(card) {
+//return this.name;
+//};
+//var myMemoryGame = new MemoryGame ("name", "img");
+//myMemoryGame._shuffleCards();
+
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -60,3 +75,13 @@ $(document).ready(function(){
   // Add all the divs to the HTML
   document.getElementById('memory_board').innerHTML = html;
 });
+
+function MemoryGame(name, img) {
+  this.name = name;
+  this.img = img;
+}
+MemoryGame.prototype._shuffleCards = function() {
+return this.name;
+};
+var myMemoryGame = new MemoryGame ("name", "img");
+myMemoryGame._shuffleCards();
