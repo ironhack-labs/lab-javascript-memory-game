@@ -1,5 +1,5 @@
 html {
-  background: url(img/background.jpg) no-repeat;
+  background-image: url(https://i.pinimg.com/originals/12/fe/22/12fe220c083d648f1da8de7f5de5a95a.jpg);
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
@@ -30,7 +30,7 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(100, 100, 100, 0.8);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;

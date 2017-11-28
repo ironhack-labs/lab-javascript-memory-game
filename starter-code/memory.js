@@ -33,6 +33,62 @@ var MemoryGame = function() {
     this.correctPairs = 0;
 };
 
+// Shuffle the cards
+MemoryGame.prototype._shuffleCards = function() {
+  this.cards.sort(function() {
+    return Math.random() - 0.5;
+  });
+};
+
+// Selecting a Card
+MemoryGame.prototype.selectCard = function(card) {
+  if ($(card).hasClass("wait")) {
+    return;
+  }
+
+  // Switch classes
+  $(card).find(".back").removeClass("back").addClass("blocked");
+  $(card).find(".front").addClass("back");
+
+  // Change reference
+  var that = this;
+
+   if (this.selectedCards.length === 0) {
+    this.selectedCards.push(card);
+  } else {
+    // Modify the text
+    $("#pairs_clicked").text(++this.pairsClicked);
+    // Compare card and save
+    if (this.selectedCards[0].getAttribute("name") === card.getAttribute("name")) {
+      $("#pairs_guessed").text(++this.correctPairs);
+      that.selectedCards = [];
+      // End if the cards are correct
+      if (this.correctPairs == (this.cards.length / 2)) {
+        this.finished();
+      }
+
+    } else {
+      // Wait time to try again
+      $(".card").addClass("wait");
+       setTimeout(function() {
+         [card, that.selectedCards[0]].forEach(function(elem) {
+          $(elem).find(".blocked").removeClass("blocked").addClass("back");
+          $(elem).find(".front").removeClass("back");
+        });
+        that.selectedCards = [];
+        $(".wait").removeClass("wait");
+      }, 1000);
+    }
+  }
+};
+
+// when the game finish
+MemoryGame.prototype.finished = function() {
+  if(confirm("COOL!! Do you want play again?")) {
+    location.reload();
+  }
+};
+
 // //******************************************************************
 // // HTML/CSS Interactions
 // //******************************************************************
@@ -43,6 +99,8 @@ $(document).ready(function(){
   memoryGame = new MemoryGame();
   var html = '';
 
+  memoryGame._shuffleCards();
+
   memoryGame.cards.forEach(function(pic, index) {
     var sanitizedName = pic.name.split(' ').join('_');
 
@@ -51,12 +109,18 @@ $(document).ready(function(){
     html += '    name="' + pic.name + '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat"';
     html += '    name="'       + pic.name +  '">';
     html += '</div>';
     html += '</div>';
   });
 
   // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+  $('#memory_board').html(html);
+
+  $('.back').click(function() {
+    memoryGame.selectCard(
+      $(this).closest(".card")[0]
+    );
+  });
 });
