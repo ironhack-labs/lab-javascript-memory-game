@@ -33,17 +33,17 @@ The starter-code provides every resource you need to style your game. Please, pu
 
 ## Introduction
 
-Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles.
+Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles. 
 
 The game consists of an even number of tiles with images on one side and a generic back. Each image appears on precisely two tiles.
 
-![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
+![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg =300)
 
 When the game starts, all tiles are turned face down. The player then flips over two cards, selecting them by clicking on them. If the two tiles have the same image, they remain face up. Otherwise, the tiles flip back over after a small period of time.
 
 The goal of the game is to get all the tiles flipped face up in the least number of tries. That means that lower number of tries are better scores.
 
-**Let's do this in JavaScript!**
+**[Let's do this in JavaScript!](https://github.com/ironhack/lab-javascript-memory-game)**
 
 ## Plan your Game
 
@@ -51,148 +51,69 @@ To code the game, on one hand we will need to re-create the physical parts of th
 
 Remember: organization is the key. Keep the JavaScript related to your layout and your user interface in one section of your file and the JavaScript related to the code in another section.
 
-For this exercise, it won't be necessary to create several files.
+### Think about the layout
 
-### Import the Stylesheet
+- Add to your html the parts you'll game will have. The board, the tiles and the score.
 
-Included is a Stylesheet with all of the necessary styles. Since we want you to focus most of your energy on the game logic, we've given the stylesheet to you already. You need to make sure you code your HTML and JavaScript with the same selectors as the CSS though.
+```htmlmixed=
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Superhero Memory Game</title>
+    <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
+  </head>
+  <body>
+  </body>
+</html>
+```
 
-In addition, **include the stylesheet in your HTML**.
+Take a look above. We are not adding a **Start** button. If you think about it, we don't need it. We can render the tiles and create a listener to begin the game when the user clicks on an element. 
 
-### Adding jQuery & Personal JS
+### Add your jQuery library
 
-- At the bottom of your `body` element, add the CDN for your jQuery library:
+- At the bottom of your `body` element, you can already add the CDN for your jQuery library:
 
-```html
+```htmlmixed
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 ```
-Also, link the included `memory.js` file. We already know how to do it :wink:.
+Also, link your `js` file. We already know how to do it :wink:.
 
-### Adding Styles
+### Add your styles
 
 - In the `header` section, remember to add the link to your CSS file.
 
-```html
+```htmlmixed
 <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
 ```
 
 ### The Logic
 
-Take a look at the `js` starter file. You already have a section for the logic and one section for the HTML/CSS interactions.
+Take a look at the `src/main.js` and `src/memory.js` starter file. You already have one file for the logic and one file for the HTML/CSS interactions.
 
-### The Game
+### The Game Logic
 
-#### Game State Attributes
+We will test our game logic using Jasmine (at this point you shold be **Jasmine Masters!**). Actually, for this game the game logic is pretty simple, we only going to need a `MemoryGame` constructor, and some methods to shuffle and compare cards, and one to check when the game finishes.
 
-When starting our memory game, we have to keep track of 3 different attributes:
+- First things first: Create a `MemoryGame` constructor that will receive an array of cards as a parameter and set this array to a `this.cards` property. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
 
-
-- **Selected Cards**: A user can only select two cards at a time. When the user has selected a second card, we need to compare it to the first. If the first card and the second card are of the same time, then it's a match. This array can only have 0, 1, or 2 elements at any given time.
-- **Pairs Clicked** - This is a counter which keeps track of the total number of pairs that a user has guessed.
-- **Correct Pairs** - This is an attribute that holds the total number of pairs the user has guessed correctly.
-
-#### Cards
-
-First things first: we need somewhere to get the info about our tiles. We are providing the images for your game in the `img` directory. In `memory.js`, we've provided a constructor function for a `MemoryGame`, and populated its array of cards. Each one is an object with a key for the card's `name` and image(`img`).
+- Create a method to shuffle the cards, so every time you create a new game, the order or the card changes. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle).
 
 ```javascript
-// memory.js
-// ...other code
-this.cards = [
-    { name: "aquaman",         img: "aquaman.jpg" },
-    { name: "batman",          img: "batman.jpg" },
-    { name: "captain america", img: "captain-america.jpg" },
-    { name: "fantastic four",  img: "fantastic-four.jpg" },
-    { name: "flash",           img: "flash.jpg" },
-    { name: "green arrow",     img: "green-arrow.jpg" },
-    { name: "green lantern",   img: "green-lantern.jpg" },
-    { name: "ironman",         img: "ironman.jpg" },
-    { name: "spiderman",       img: "spiderman.jpg" },
-    { name: "superman",        img: "superman.jpg" },
-    { name: "the avengers",    img: "the-avengers.jpg" },
-    { name: "thor",            img: "thor.jpg" },
-    { name: "aquaman",         img: "aquaman.jpg" },
-    { name: "batman",          img: "batman.jpg" },
-    { name: "captain america", img: "captain-america.jpg" },
-    { name: "fantastic four",  img: "fantastic-four.jpg" },
-    { name: "flash",           img: "flash.jpg" },
-    { name: "green arrow",     img: "green-arrow.jpg" },
-    { name: "green lantern",   img: "green-lantern.jpg" },
-    { name: "ironman",         img: "ironman.jpg" },
-    { name: "spiderman",       img: "spiderman.jpg" },
-    { name: "superman",        img: "superman.jpg" },
-    { name: "the avengers",    img: "the-avengers.jpg" },
-    { name: "thor",            img: "thor.jpg" },
-  ];
-// ...other code
+MemoryGame.prototype._shuffleCard = function() {
+};
 ```
+- When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters (both cards selected by the user). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
 
-In addition, we've written code to render the board whenever the document loads:
-
-```javascript
-// memory.js
-// ...other code
-$(document).ready(function(){
-  memoryGame = new MemoryGame();
-  var html = '';
-
-  memoryGame.cards.forEach(function(pic, index) {
-    var sanitizedName = pic.name.split(' ').join('_');
-
-    html += '<div class= "card" id="card_' + sanitizedName + '">';
-    html += '<div class="back"';
-    html += '    name="img/' + pic.name + '"';
-    html += '    id="'       + pic.img +  '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat"';
-    html += '    id="'       + pic.img +  '">';
-    html += '</div>';
-    html += '</div>';
-  });
-
-  // Add all the divs to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-});
-// ...other code
-```
-
-#### Shuffling
-
-Create a method to shuffle the cards, so every time you create a new game, the order or the card changes. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle).
+Finally it will return `true` or `false` depending on the result of comparing both cards.
 
 ```javascript
-MemoryGame.prototype._shuffleCards = function() {
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
+
 };
 ```
 
-#### Selecting a Card
-
-When the tiles are rendered, the user will select a card and all of the game logic will be executed. This method will receive a reference to a DOM element which will be a card.
-
-```javascript
-MemoryGame.prototype.selectCard = function(card)
-};
-```
-**Logic needed to complete this method**
-
-- If *the user has selected a card in the last turn*
-  - Increase the `pairsClicked` attribute of the memoryGame and update the DOM
-  - Compare the newly selected card to the previously selected card. Are they of the same type?
-    - If *yes*
-      - Empty out the `selectedCards` array for the next round
-      - Increase the `correctPairs` attribute by one
-      - "Flip" the card
-    - If *no*
-      - Possibly add some styling to tell the user "Wrong Guess"
-      - Flip both cards back to the "back side"
-- If *the user has **not** selected a card in the last turn*
-  - Add the card to the `selectedCards` array and move on
-
-#### Ending the Game
-
-As Memory doesn't have a 'Game Over', we just need a 'Win' function.
+- As Memory doesn't have a 'Game Over', we just need a 'Win' function, where we need to check if our property `pairsGuessed` reach the numbers of pairs the game has.
 
 ```javascript
 MemoryGame.prototype.finished = function() {
@@ -201,7 +122,16 @@ MemoryGame.prototype.finished = function() {
 
 ### HTML/CSS Interactions
 
-We have to add a click listener for when the user selects a card. We currently have a method in our memoryGame class, but nothing to call it with. Add some code to call the method whenever a user selects a face-down card.
+Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
+
+- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `document.ready` method. Use jQuery to change the elements dynamically.
+
+```javascript
+$(document).ready(function(){
+});
+```
+
+- The other important interaction is the click listener. Remember to add the listeners when the document is loaded.
 
 ```javascript
 $('.back').on('click', function(){
@@ -210,9 +140,11 @@ $('.back').on('click', function(){
 
 ## Summary
 
-In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm and got
+In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm and got 
 
 ## Extra Resources
 
 - [jQuery](https://jquery.com/)
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
+
+
