@@ -5,36 +5,54 @@ html {
 }
 
 #memory_board {
-  background:#dddddd;
-	width:800px;
-	height:540px;
-	padding:70px;
-	margin:0px auto;
+  background: #dddddd;
+  width: 800px;
+  height: 540px;  
+  padding: 70px;
+  margin: 0px auto;
   border-radius: 84px;
-  box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
 }
 
+.card {
+  width: 111px;
+  height: 111px;
+  float: left;
+  margin: 10px;
+  font-size: 64px;
+  position: relative;
+  cursor: pointer;
+}
 
 .card .back {
   background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: relative;
 }
+
+.card .front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.card.blocked,
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
-  width:200px;
+  width: 200px;
   padding: 20px;
   padding-top: 0;
   margin-left: 75%;
@@ -50,7 +68,6 @@ h1 {
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
-
 }
 
 h2 {
@@ -66,4 +83,31 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.visible {
+  z-index: 0!important;
+}
+
+.matched, .matched .back {
+  z-index: 0!important;
+  pointer-events: none;
+}
+
+.winning-overlay {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: grey;
+  opacity: .9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: none;
+}
+.winning-overlay h1 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
 }
