@@ -9,7 +9,7 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
   var m = cardsArr.length,t,i;
 
   // While there remain elements to shuffle…
-  while (m) {
+  cardsArr.forEach(function() {
     // Pick a remaining element…
     i = Math.floor(Math.random() * m--);
 
@@ -17,7 +17,7 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
     t = cardsArr[m];
     cardsArr[m] = cardsArr[i];
     cardsArr[i] = t;
-  }
+  });
   return cardsArr;
 };
 
