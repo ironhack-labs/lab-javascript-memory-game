@@ -5,13 +5,35 @@ var MemoryGame = function(cards) {
   this.pairsGuessed = 0;
 };
 
-MemoryGame.prototype.shuffleCard = function(cardsArr) {
+MemoryGame.prototype.shuffleCard = function(array) {
 
-  return [];
-}
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
-MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {};
-    this.firstCard = firstCard;
-    this.secondCard = secondCard;
+    while (0 !== currentIndex) {
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+};
+//Algoritmo sacado de internet
 
-MemoryGame.prototype.finished = function() {};
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
+  this.pairsClicked++;
+  if(firstCard === secondCard){
+    this.pairsGuessed++;
+    return true;
+  }
+  return false;
+};
+MemoryGame.prototype.finished = function() {
+  if(this.pairsGuessed == 12){
+    return true
+  }
+    return false
+};
