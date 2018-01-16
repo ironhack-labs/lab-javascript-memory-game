@@ -39,12 +39,26 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+  
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  displayClickedCard(this);
 });
+$(".active").on("click", function() {
+  UnDisplayClickedCard(this);
+});
+function displayClickedCard(card){
+  card.className+='';
+  card.style.background='url( img/'+card.getAttribute('name')+') no-repeat';
+}
+function unDisplayClickedCard(card) {
+  card.className += "";
+  card.style.background =
+    "url(" + card.getAttribute("name") + ") no-repeat";
+} 
+
 });
 
 
