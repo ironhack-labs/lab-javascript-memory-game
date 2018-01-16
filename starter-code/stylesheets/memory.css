@@ -24,8 +24,31 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+
+
+.card {
+  width: 111px;
+  height: 111px;
+  float: left;
+  margin: 10px;
+  font-size: 64px;
+  position: relative;
+  cursor: pointer;
+}
+
 .card .front.blocked,
 .card .back.blocked {
+  pointer-events: none;
+}
+
+.visible {
+  z-index: 0 !important;
+  pointer-events: none;
+}
+
+.matched  , .matched.back{
+  z-index: 0 !important;
   pointer-events: none;
 }
 
@@ -67,3 +90,6 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+
+
