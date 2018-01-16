@@ -64,12 +64,10 @@ $(document).ready(function() {
         game.pickedCards.push(card);
       } else if (game.pickedCards.length == 1) {
         game.pickedCards.push(card);
-        game.pairsClicked++;
         updateClickedPairs(game.pairsClicked);
         var correctPair = game.checkIfPair(game.pickedCards[0].attr("style"), game.pickedCards[1].attr("style"));
         if (correctPair) {
           game.pickedCards = [];
-          game.pairsGuessed++;
           updateGuessedPairs(game.pairsGuessed);
         } 
       } else if (game.pickedCards.length == 2){
