@@ -1,6 +1,6 @@
-// var MemoryGame = function (cards) {
-//   this.cards = cards;
-// };
+var MemoryGame = function (cards) {
+   this.cards = cards;
+ };
 
 // MemoryGame.prototype.shuffleCard = function (cardsArr) {
 
