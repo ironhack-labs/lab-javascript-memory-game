@@ -13,17 +13,28 @@ html {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
-
-
+.card {
+	width:111px;
+  height:111px;
+  position: relative;
+  font-size:64px;
+  float: left;
+  margin: 10px;
+}
 .card .back {
   background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+	width:100%;
+	height:100%;
+  position: absolute;
+  
 }
+.card .front {
+	width:100%;
+  height:100%;
+  top: 0;
+  left: 0;
+}
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
