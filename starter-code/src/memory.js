@@ -6,16 +6,17 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
-  var shuffledCards = [], n = cardsArr.length, i;
+  var shuffledCards = [];
+  var i = 0;
 
   // While there remain elements to shuffle…
-  while (n) {
+  while (cardsArr.length > 0) {
 
     // Pick a remaining element…
-    i = Math.floor(Math.random() * n--);
+    i = Math.floor(Math.random() * cardsArr.length);
 
     // If not already shuffled, move it to the new array.
-    if (i in cardsArr) {
+    if (cardsArr[i] <= cardsArr.length) {
       shuffledCards.push(cardsArr[i]);
       delete cardsArr[i];
     }

@@ -67,3 +67,12 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.front{
+  width: 110px;
+  height: 110px;
+  display: none;
+  margin-top: 20px;
+  margin-left: 20px;
+  position: absolute;
+}
