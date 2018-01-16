@@ -113,85 +113,41 @@ $(document).ready(function () {
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
   // Bind the click event of each element to a function
-  /* var numClicks = 0;
-  $('.back').on('click', function (e) {
-    numClicks += 1;
-    if (numClicks === 1) {
-      memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
-      $(this).addClass('visible');
-    } else if (numClicks === 2) {
-      $('.card').addClass('blocked');
-      memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
-      $(this).addClass('visible');
-      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
-        console.log('Match');
-        $('.visible').parent().addClass('matched');
-        numClicks = 0;
-        memoryGame.pickedCards = [];
-        $('.card').removeClass('blocked');
-      } else {
-        setTimeout(function () {hideNotMatchedCards()}, 500);
-        numClicks = 0;
-        memoryGame.pickedCards = [];  
-        $('.card').removeClass('blocked');
-      }
-    }
-
-    var pairsClickedContainer = $('#pairs_clicked').text(memoryGame.pairsClicked);
-    var pairsGuessedContainer = $('#pairs_guessed').text(memoryGame.pairsGuessed);
-
-    if (memoryGame.pairsGuessed === 12) {
-      $('.winning-overlay').fadeIn();
-    }
-  }); */
-
-
   $('.back').on('click', function (e) {
     if (memoryGame.pickedCards.length === 0) {
       memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
       $(this).addClass('visible');
     } else if (memoryGame.pickedCards.length === 1) {
-      $('.card').addClass('blocked');
       $('.back').addClass('blocked');
       memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
       $(this).addClass('visible');
       if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
-        console.log('Match');
         $('.visible').parent().addClass('matched');
         resetTry();
       } else {
         setTimeout(function () {
-          hideNotMatchedCards()
+          resetTry();
         }, 500);
       }
     }
 
-    var pairsClickedContainer = $('#pairs_clicked').text(memoryGame.pairsClicked);
-    var pairsGuessedContainer = $('#pairs_guessed').text(memoryGame.pairsGuessed);
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
 
     if (memoryGame.finished()) {
       $('.winning-overlay').fadeIn();
     }
   });
 
-  function showCard(e, that) {
-    that.addClass('visible')
-  }
-
-  function hideNotMatchedCards() {
-    $('.back').removeClass('visible');
-    $('.card').removeClass('blocked');
-    $('.back').removeClass('blocked');
-    memoryGame.pickedCards = [];
-  }
-
   function resetTry() {
     memoryGame.pickedCards = [];
-    $('.card').removeClass('blocked');
-    $('.back').removeClass('blocked');
+    $('.back').removeClass('blocked visible');
   }
 
-
+  $('.winning-overlay h1 button').click(function () {
+    location.reload();
+  });
 
 });
