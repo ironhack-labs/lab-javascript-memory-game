@@ -100,7 +100,7 @@ $(document).ready(function(){
   }
 
   // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 
 //var segunda = null;
@@ -112,22 +112,9 @@ $('.back').on('click', function () {
      }else{
 
        muestraCarta(this);
-       
-       //setTimeout(function(){alert("Esperamos");}, 3000);
-
        setTimeout(comparamos, 400, this, primera);
-       
-
-       console.log(primera);
-       
-
-   
       
      }
-     
-       
-
-   
 });
 });
 
