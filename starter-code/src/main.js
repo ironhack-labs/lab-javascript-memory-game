@@ -42,9 +42,5 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
-
-
+  $('.back').on('click', function (e) {
+    
