@@ -50,16 +50,21 @@ $('.back').on('click', function (e) {
   clicks ++;
 
   if(clicks%2==0){
-    console.log(memoryGame.pickedCards);
     $('.card').addClass('blocked');
     memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
     $(this).addClass('visible');
+
     if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
       $('.visible').parent().addClass('matched');
       memoryGame.pickedCards.length = 0;
       $('.card').removeClass('blocked');
+
     } else {
-      setTimeout(function () {hideNotMatchedCards()}, 500);
+
+      setTimeout(function () {
+      hideCards()
+    }, 1000);
+
       memoryGame.pickedCards.length = 0;  
       $('.card').removeClass('blocked');
     }
@@ -73,7 +78,7 @@ $('.back').on('click', function (e) {
 
 });
 
-function hideNotMatchedCards() {
+function hideCards() {
   $('.back').removeClass('visible');
 }
 
