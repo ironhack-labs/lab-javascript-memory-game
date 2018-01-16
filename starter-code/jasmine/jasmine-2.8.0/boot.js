@@ -30,7 +30,7 @@
   /**
    * ## The Global Interface
    *
-   * Build up the functions that will be exposed as the Jasmine public interface. A project can customize, rename or alias any of these functions as desired, provided the implementation remains unchanged.
+   * Build up the functions that will be exposed as  the Jasmine public interface. A project can customize, rename or alias any of these functions as desired, provided the implementation remains unchanged.
    */
   var jasmineInterface = jasmineRequire.interface(jasmine, env);
 
