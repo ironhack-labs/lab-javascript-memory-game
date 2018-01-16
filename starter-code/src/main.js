@@ -39,10 +39,94 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+  //**** Funciones Auxiliares*/
+  function muestraTodo(){
+
+    var back = $(".back");
+    var front = $(".back + .front");
+
+    back.removeClass("back");
+    back.addClass("front");
+    front.removeClass("front");
+    front.addClass("back");
+    front.addClass("visible");
+
+  }
+
+  function muestraCarta(cartaActual){
+
+    var back = $(cartaActual);
+    var front = $(cartaActual).next();//$(".back + .front");
+
+    back.removeClass("back");
+    back.addClass("front");
+    front.removeClass("front");
+    front.addClass("back");
+    //front.addClass("visible");
+
+  }
+
+  function ocultaCarta(cartaActual){
+
+    var front = $(cartaActual);
+    var back = $(cartaActual).next();
+
+    front.removeClass("front");
+    front.addClass("back");
+    //front.removeClass("visible");
+    back.removeClass("back");
+    back.addClass("front");
+    
+  }
+
+  var primera = null;
+  function comparamos(actual, anterior){
+    
+    //var primera;
+    //console.log($(actual).parent().attr('id'));
+    //console.log($(anterior).parent().attr('id'));
+    if($(actual).parent().attr('id')!==$(anterior).parent().attr('id')){
+        
+      ocultaCarta(actual);
+      ocultaCarta(anterior);
+      primera = null;
+
+     }else{
+      primera = null;
+     }
+
+     //return primera;
+
+  }
+
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
+
+//var segunda = null;
 $('.back').on('click', function () {
+
+     if(primera==null){
+       muestraCarta(this);
+       primera = this;
+     }else{
+
+       muestraCarta(this);
+       
+       //setTimeout(function(){alert("Esperamos");}, 3000);
+
+       setTimeout(comparamos, 400, this, primera);
+       
+
+       console.log(primera);
+       
+
+   
+      
+     }
+     
+       
+
    
 });
 });
