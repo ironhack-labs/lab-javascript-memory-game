@@ -34,7 +34,7 @@ $(document).ready(function(){
     html += '    name="'       + pic.img +  '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + '") no-repeat">';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
   });
