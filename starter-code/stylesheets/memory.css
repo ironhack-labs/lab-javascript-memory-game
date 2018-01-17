@@ -67,3 +67,12 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.seen {
+  z-index: -100; 
+}
+
+.guessed {
+  pointer-events: none;
+  z-index: -100;
+}

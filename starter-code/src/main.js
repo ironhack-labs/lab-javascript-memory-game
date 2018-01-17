@@ -43,7 +43,23 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).addClass("seen");
+  memoryGame.pickedCards.push($(this).attr("name"));
+  if (memoryGame.pickedCards.length == 2) {
+    $(".card").addClass('blocked');
+    if (
+      memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])) {
+      $(".seen").addClass("guessed");
+    } else {
+      setTimeout(function() {
+        $(".seen").removeClass("seen");
+      }, 1500);
+    }
+    $("#pairs_clicked").html(memoryGame.pairsClicked);
+    $("#pairs_guessed").html(memoryGame.pairsGuessed);
+    memoryGame.pickedCards = [];
+    $(".card").removeClass("blocked");
+  }
 });
 });
 
