@@ -67,7 +67,8 @@ $('.back').on('click', function () {
       var decideToFinish = memoryGame.finished();
       if (decideToFinish) {
         alert('You won!');
-        document.getElementById('memory_board').innerHTML = html;
+        reset();
+        
       }
     } 
     else {
@@ -89,4 +90,10 @@ function turnWrongPair() {
 
 });
 
+function reset() {
+  memoryGame.pairsClicked = 0;
+  memoryGame.pairsGuessed = 0;
+  memoryGame.shuffleCard(memoryGame.cards);
+  document.getElementById('memory_board').innerHTML = html;
+}
 
