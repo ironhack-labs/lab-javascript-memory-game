@@ -47,6 +47,10 @@ html {
 	pointer-events: none;
 }
 
+.no-cursor {
+	cursor: not-allowed;
+}
+
 #score {
 	background-color: rgba(215, 44, 44, 0.8);
 	border-radius: 8px;

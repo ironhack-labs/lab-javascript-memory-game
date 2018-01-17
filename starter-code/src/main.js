@@ -133,6 +133,7 @@ $(document).ready(function () {
 		} else if (memoryGame.pickedCards.length === 1) {
 			//si es la segunda vez que se hace click en una carta para compararlas, bloqueamos el click en el DOM usando CSS y la clase 'blocked', así no se pueden desvelar más cartas hasta que no termina la evaluación
 			$('.back').addClass('blocked');
+			$('.card').addClass('no-cursor');
 			//Igual que hacíamos en el if, mandamos el valor de atributo 'name' al array, ya tenemos dos strings listos para ser evaluados
 			memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
 			// e igual que en el if, desvelamos al usuario la carta usando CSS
@@ -170,6 +171,7 @@ $(document).ready(function () {
 	function resetTry() {
 		memoryGame.pickedCards = [];
 		$('.back').removeClass('blocked visible');
+		$('.card').removeClass('no-cursor');
 	}
 
 	// si se clicka en el botón del overlay cuando ganas, la página se recarga...
