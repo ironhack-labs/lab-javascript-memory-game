@@ -58,11 +58,12 @@ $('.back').on('click', function (e) {
       $('.visible').parent().addClass('matched');
       memoryGame.pickedCards.length = 0;
       $('.card').removeClass('blocked');
+      memoryGame.finished();
 
     } else {
 
       setTimeout(function () {
-      hideCards()
+        $('.back').removeClass('visible');
     }, 1000);
 
       memoryGame.pickedCards.length = 0;  
@@ -72,15 +73,11 @@ $('.back').on('click', function (e) {
     memoryGame.pickedCards.push($(this).attr('name').split('.')[0]);
     $(this).addClass('visible');
   }
-
+  $('#click_number').text(clicks);
   $('#pairs_clicked').text(memoryGame.pairsClicked);
   $('#pairs_guessed').text(memoryGame.pairsGuessed);
 
 });
-
-function hideCards() {
-  $('.back').removeClass('visible');
-}
 
 });
 

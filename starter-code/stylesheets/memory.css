@@ -63,9 +63,9 @@ p {
   cursor: pointer;
 }
 
-.card.blocked,
-.card .front.blocked,
-.card .back.blocked{
+.card .blocked,
+.card .front .blocked,
+.card .back .blocked{
   pointer-events: none;
 }
 
