@@ -26,7 +26,7 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsClicked).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be an number', function () {
     expect(typeof memoryGame.pairsClicked).toBe('number');
   });
 
@@ -34,7 +34,7 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsGuessed).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsGuessed property should be an number', function () {
     expect(typeof memoryGame.pairsGuessed).toBe('number');
   });
 });
@@ -49,7 +49,7 @@ describe('shuffleCard method', function () {
     { name: 'green arrow',     img: 'green-arrow.jpg' },
     { name: 'green lantern',   img: 'green-lantern.jpg' },
     { name: 'ironman',         img: 'ironman.jpg' },
-    ]
+  ];
     memoryGame = new MemoryGame(cardsArray);
   });
 
@@ -62,8 +62,8 @@ describe('shuffleCard method', function () {
   });
 
   it('Should mixed the array and return a different one from the original', function () {
-    var firstArray = memoryGame.shuffleCard([1,2,3,4,5,6,7,8,9])
-    var secondArray = memoryGame.shuffleCard([1,2,3,4,5,6,7,8,9])
+    var firstArray = memoryGame.shuffleCard([1,2,3,4,5,6,7,8,9]);
+    var secondArray = memoryGame.shuffleCard([1,2,3,4,5,6,7,8,9]);
     expect(firstArray).not.toEqual(secondArray);
   });
 });
@@ -88,13 +88,13 @@ describe('checkIfPair method', function () {
 
   it('It should add 1 to pairsGuessed if they are the same card', function () {
     memoryGame.pairsGuessed = 0;
-    memoryGame.checkIfPair(2,2)
+    memoryGame.checkIfPair(2,2);
     expect(memoryGame.pairsGuessed).toBe(1);
   });
 
   it('It should not add anything to pairsGuessed if the not the same card', function () {
     memoryGame.pairsGuessed = 0;
-    memoryGame.checkIfPair(2,4)
+    memoryGame.checkIfPair(2,4);
     expect(memoryGame.pairsGuessed).toBe(0);
   });
 });
@@ -105,7 +105,7 @@ describe('finished method', function () {
   });
 
   it('It should return false at the beggining of the game', function () {
-    let memoryGame = new MemoryGame([])
+    let memoryGame = new MemoryGame([]);
     expect(memoryGame.finished()).toBe(false);
   });
 
@@ -120,4 +120,3 @@ describe('finished method', function () {
   });
 
 });
-
