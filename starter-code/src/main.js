@@ -43,6 +43,8 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
+  
+  $("#memory_board .card").hide();
    
 });
 });
