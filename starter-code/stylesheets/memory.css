@@ -1,131 +1,134 @@
 html {
-  background: url("../img/background.jpg") no-repeat;
-  background-size: cover;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+	background: url("../img/background.jpg") no-repeat;
+	background-size: cover;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory_board {
-  background: #dddddd;
-  width: 800px;
-  height: 540px;  
-  padding: 70px;
-  margin: 0px auto;
-  border-radius: 84px;
-  box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
+	background: #dddddd;
+	width: 800px;
+	height: 540px;
+	padding: 70px;
+	margin: 0px auto;
+	border-radius: 84px;
+	box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
 }
 
 .card {
-  width: 111px;
-  height: 111px;
-  float: left;
-  margin: 10px;
-  font-size: 64px;
-  position: relative;
-  cursor: pointer;
+	width: 111px;
+	height: 111px;
+	float: left;
+	margin: 10px;
+	font-size: 64px;
+	position: relative;
+	cursor: pointer;
 }
 
 .card .back {
-  background-color: #456783;
-  height: 100%;
-  width: 100%;
-  z-index: 2;
-  position: relative;
+	background-color: #456783;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	position: relative;
 }
 
 .card .front {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
 }
 
 .card.blocked,
 .card .front.blocked,
 .card .back.blocked {
-  pointer-events: none;
+	pointer-events: none;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);
-  border-radius: 8px;
-  font-size: 30px;
-  font-family: Arial;
-  width: 200px;
-  padding: 20px;
-  padding-top: 0;
-  margin-left: 75%;
+	background-color: rgba(215, 44, 44, 0.8);
+	border-radius: 8px;
+	font-size: 30px;
+	font-family: Arial;
+	width: 200px;
+	padding: 20px;
+	padding-top: 0;
+	margin-left: 75%;
 }
 
 .container {
-  position: relative;
+	position: relative;
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
-  font-weight: bolder;
-  font-size: 67px;
-  text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
+	color: rgba(215, 40, 40, 0.9);
+	font-weight: bolder;
+	font-size: 67px;
+	text-align: center;
+	text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
 }
 
 h2 {
-  color: #456783;
-  font-weight: bolder;
-  font-size: 35px;
-  text-align: center;
-  text-shadow: 1px #ff0000;
-  text-shadow: 1px #ff0000;
+	color: #456783;
+	font-weight: bolder;
+	font-size: 35px;
+	text-align: center;
+	text-shadow: 1px #ff0000;
+	text-shadow: 1px #ff0000;
 }
 
 p {
-  font-weight: bolder;
-  font-size: 20px;
-  text-align: center;
+	font-weight: bolder;
+	font-size: 20px;
+	text-align: center;
 }
 
 .visible {
-  z-index: 0!important;
+	z-index: 0!important;
 }
 
-.matched, .matched .back {
-  z-index: 0!important;
-  pointer-events: none;
+.matched,
+.matched .back {
+	z-index: 0!important;
+	pointer-events: none;
 }
 
 .winning-overlay {
-  width: 100%;
-  height: 100vh;
-  background: grey;
-  opacity: .92;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  display: none;
+	width: 100%;
+	height: 100vh;
+	background: grey;
+	opacity: .92;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: none;
 }
+
 .winning-overlay h1 {
-  color: black;
-  position: absolute;
-  top: 35%;
-  left: 40%;
-  text-align: center;
+	color: black;
+	position: absolute;
+	top: 35%;
+	left: 40%;
+	text-align: center;
 }
+
 .winning-overlay h1 button {
-  display: block;
-  margin: 50px auto 0;
-  padding: 15px 30px;
-  border-radius: 3px;
-  background: black;
-  color: white;
-  border-color: transparent;
-  cursor: pointer;
-  transition: .3s all;
+	display: block;
+	margin: 50px auto 0;
+	padding: 15px 30px;
+	border-radius: 3px;
+	background: black;
+	color: white;
+	border-color: transparent;
+	cursor: pointer;
+	transition: .3s all;
 }
 
 .winning-overlay h1 button:hover {
-  background: white;
-  color: black;
-  border-color: black;
+	background: white;
+	color: black;
+	border-color: black;
 }
