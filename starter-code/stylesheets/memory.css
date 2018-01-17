@@ -14,21 +14,6 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-
-.card .back {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
-}
-.card .front.blocked,
-.card .back.blocked {
-  pointer-events: none;
-}
-
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
@@ -66,4 +51,46 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.card {
+  width: 111px;
+  height: 111px;
+  float: left;
+  margin: 10px;
+  font-size: 64px;
+  position: relative;
+  cursor: pointer;
+}
+
+.card .blocked,
+.card .front .blocked,
+.card .back .blocked{
+  pointer-events: none;
+}
+
+.visible{
+  z-index: 0 !important;
+}
+
+.matched, .matched .back{
+  z-index: 0 !important;
+  pointer-events: none;
+}
+
+.card .back {
+  background-color: #456783;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+
+.card .front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
