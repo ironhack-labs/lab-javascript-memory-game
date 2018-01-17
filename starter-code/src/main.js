@@ -154,7 +154,7 @@ $('.back').on('click', function () {
      }else{
 
        muestraCarta(this);
-       setTimeout(comparamos, 400, this, primera);
+       setTimeout(comparamos, 300, this, primera);
       
      }
 });
