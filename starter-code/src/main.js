@@ -48,3 +48,5 @@ $('.back').on('click', function () {
 });
 
 
+// Por más que lea los learning no logro ver por donde empezar..pero 
+// es una practica chula y la acabare sacando el finde lo tendreis acabado!!!
