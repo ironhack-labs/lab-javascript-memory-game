@@ -25,7 +25,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+$(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
@@ -38,13 +38,51 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
+  
+  var pickedCards = [];
+  var classPickedCards = [];
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  function displayClickedCard(card) {
+    card.className += ' active';
+    card.style.background = 'url(img/' + card.getAttribute('name') + ') no-repeat';
+    var nameCard = card.getAttribute('name');
+    return nameCard.replace('.jpg', '');
+  }
+
+  function hideClickedCard(card) {
+    card.className -= ' active';
+    card.style.background = '#456783';
+  }
+  
+  $('.back').on('click', function () {
+    if (pickedCards.length <= 1) {
+      var cardName = displayClickedCard(this);
+      classPickedCards.push(this);
+      for (var i = 0; i < cards.length; i++) {
+        if (cards[i].name === cardName) {
+          pickedCards.push(cards[i]);
+          break;
+        }
+      }
+    }
+    if (pickedCards.length > 1) {
+      var checkCards = memoryGame.checkIfPair(pickedCards[0], pickedCards[1]);
+      if (!checkCards) {
+        hideClickedCard(classPickedCards[0]);
+        hideClickedCard(classPickedCards[1]);
+      }
+      pickedCards = [];
+      classPickedCards = [];
+    }
+    console.log(pickedCards);
+  });
+  
+
+
 });
 
 
