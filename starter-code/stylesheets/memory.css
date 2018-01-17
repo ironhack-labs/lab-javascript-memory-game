@@ -67,3 +67,10 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.finalTitle {
+  margin-top: 50%;
+  left:50%;
+  color: red;
+  position: absolute;
+}
