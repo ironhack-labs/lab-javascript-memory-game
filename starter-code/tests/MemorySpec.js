@@ -69,6 +69,7 @@ describe('shuffleCard method', function () {
 });
 
 describe('checkIfPair method', function () {
+  
   it('Should be declare', function () {
     expect(typeof memoryGame.checkIfPair).toBe('function');
   });
