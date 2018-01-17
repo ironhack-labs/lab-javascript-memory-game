@@ -44,25 +44,32 @@ $(document).ready(function() {
 
   // Bind the click event of each element to a function
   $(".back").on("click", function(e) {
-    $(this).addClass("visible");
-    memoryGame.pickedCards.push($(this).attr("name"));
-    if (memoryGame.pickedCards.length == 2) {
-      $(".card").addClass('blocked');
-      if (
-        memoryGame.checkIfPair(
-          memoryGame.pickedCards[0],
-          memoryGame.pickedCards[1])
-      ) {
-        $(".visible").addClass("acertado");
-      } else {
-        setTimeout(function() {
-          $(".visible").removeClass("visible");
-        }, 1500);
+    if (memoryGame.pickedCards.length < 2) {
+      $(this).addClass("visible");
+      memoryGame.pickedCards.push($(this).attr("name"));
+      if (memoryGame.pickedCards.length == 2) {
+        $(".card").addClass("blocked");
+        if (
+          memoryGame.checkIfPair(
+            memoryGame.pickedCards[0],
+            memoryGame.pickedCards[1]
+          )
+        ) {
+          $(".visible").addClass("acertado");
+        } else {
+          setTimeout(function() {
+            $(".visible").removeClass("visible");
+          }, 1500);
+        }
+        $("#pairs_clicked").html(memoryGame.pairsClicked);
+        $("#pairs_guessed").html(memoryGame.pairsGuessed);
+        memoryGame.pickedCards = [];
+        $(".card").removeClass("blocked");
       }
-      $("#pairs_clicked").html(memoryGame.pairsClicked);
-      $("#pairs_guessed").html(memoryGame.pairsGuessed);
-      memoryGame.pickedCards = [];
-      $(".card").removeClass("blocked");
+    }
+    if (memoryGame.finished()) {
+      console.log(memoryGame.pairsGuessed);
+      alert("Enhorabuena, has ganado!");
     }
   });
 });

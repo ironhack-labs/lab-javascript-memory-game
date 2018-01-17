@@ -31,7 +31,7 @@ MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
 };
 
 MemoryGame.prototype.finished = function () {
-    if (this.pairsGuessed === 12){
+    if (this.pairsGuessed == 12){
         return true;
     }
     return false;
