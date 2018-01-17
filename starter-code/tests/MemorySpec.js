@@ -26,7 +26,7 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsClicked).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be an number', function () {
     expect(typeof memoryGame.pairsClicked).toBe('number');
   });
 
@@ -34,7 +34,7 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsGuessed).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be an number', function () {
     expect(typeof memoryGame.pairsGuessed).toBe('number');
   });
 });
