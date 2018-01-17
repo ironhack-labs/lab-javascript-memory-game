@@ -69,6 +69,9 @@ describe('shuffleCard method', function () {
 });
 
 describe('checkIfPair method', function () {
+  beforeEach(function () {
+    memoryGame = new MemoryGame();
+  });
   
   it('Should be declare', function () {
     expect(typeof memoryGame.checkIfPair).toBe('function');
@@ -101,6 +104,10 @@ describe('checkIfPair method', function () {
 });
 
 describe('finished method', function () {
+  beforeEach(function () {
+    memoryGame = new MemoryGame();
+  });
+  
   it('Should be declare', function () {
     expect(typeof memoryGame.finished).toBe('function');
   });
