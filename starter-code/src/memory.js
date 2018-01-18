@@ -1,8 +1,9 @@
 var MemoryGame = function (cards) {
   this.cards = cards;
   this.pickedCards = [];
-  this.pairsClicked = 1;
-  this.pairsGuessed = 1;
+  this.pairsClicked = 0;
+  this.pairsGuessed = 0;
+  this.isMatch = false;
 };
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
@@ -20,20 +21,22 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+    this.pairsClicked++;
     if (firstCard === secondCard) {
-        this.pairsClicked += 1;
-        this.pairsGuessed += 1;
+        this.pairsGuessed++;
+        this.isMatch = true;
         return true;
     } else {
-        this.pairsClicked += 1;
         return false;
     }
-
 }
 
 MemoryGame.prototype.finished = function () {
-    this.numberOfPairs = this.pickedCards.length / 2;
-    if (this.pairsGuessed == this.numberOfPairs) {
+    var numberOfPairs = this.cards.length / 2;
+    if (this.pairsClicked == 0) {
+        return false
+    }
+    else if (this.pairsGuessed === numberOfPairs) {
         return true;
     } else {
         return false;
