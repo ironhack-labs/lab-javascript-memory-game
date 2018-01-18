@@ -29,6 +29,14 @@ html {
   pointer-events: none;
 }
 
+.front {
+  width: 111px;
+  height: 111px;
+  margin:10px;
+  float: left;
+  display:none;
+}
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;

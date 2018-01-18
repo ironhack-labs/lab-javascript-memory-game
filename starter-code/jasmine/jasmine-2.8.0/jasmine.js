@@ -1,3 +1,5 @@
+'use strict';
+
 /*
 Copyright (c) 2008-2017 Pivotal Labs
 
