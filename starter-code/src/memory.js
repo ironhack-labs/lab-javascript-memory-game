@@ -1,20 +1,10 @@
 var MemoryGame = function (cards) {
   this.cards = cards;
-  
+
+  this.pickedCards = [''];
+  this.pairsClicked = 0;
+  this.pairsGuessed = 0;
 };
-
-MemoryGame.prototype.pickedCards = function (cardsArrPick){
-    return MemoryGame
-}
-
-MemoryGame.prototype.pairsClicked = function (cardsArrPair){
-    return MemoryGame
-}
-
-MemoryGame.prototype.pairsGuessed = function (cardsArrGuessed){
-    return MemoryGame
-}
-
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
 
