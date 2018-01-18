@@ -43,7 +43,29 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
+   console.log(event.target);
+
+  
+    $(this).hide(0);
+    $(this).next().toggleClass('back');
+
    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 });
 
