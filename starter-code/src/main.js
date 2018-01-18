@@ -44,7 +44,7 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function (event) {
-    $(event.currentTarget).toggle();
+    $(event.currentTarget).toggle();// CONTINUE HERE - toggle incorrect
   });
 });
 
