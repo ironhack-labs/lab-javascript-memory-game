@@ -24,9 +24,10 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
+var memoryGame = new MemoryGame(cards);
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCard(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -43,8 +44,34 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
-});
-});
+   $(this).hide(0);
+   $(this).next().toggleClass('back');
 
+   memoryGame.pickedCards.push(this);
+   if (memoryGame.pickedCards.length === 2) {
+    isMatch = memoryGame.checkIfPair($(memoryGame.pickedCards[0]).attr('name'), $(memoryGame.pickedCards[1]).attr('name'));
+    console.log(memoryGame.pickedCards)
+    
+   } 
+   if (!memoryGame.isMatch && memoryGame.pickedCards.length === 2) {
+      setTimeout(() => {
+        $(memoryGame.pickedCards[0]).show(0);
+        $(memoryGame.pickedCards[0]).next().toggleClass('back');
+        $(memoryGame.pickedCards[1]).show(0);
+        $(memoryGame.pickedCards[1]).next().toggleClass('back');
+        memoryGame.pickedCards.splice(0,2);
+      }, 700);
+  } else if (memoryGame.isMatch) {
+    // $("[name = '" + pickedCard + "']")
+    // $(memoryGame.pickedCards[0]).next().css('border', '2px solid red');
+    // $(memoryGame.pickedCards[1]).next().css('border', '2px solid red');
+    memoryGame.isMatch = false;
+    memoryGame.pickedCards.splice(0,2);
+  }
+  var $pairsClicked = $('#pairs_clicked');
+  var $pairsGuessed = $('#pairs_guessed');
+  $pairsClicked.text(memoryGame.pairsClicked);
+  $pairsGuessed.text(memoryGame.pairsGuessed);
+  });
+});
 
