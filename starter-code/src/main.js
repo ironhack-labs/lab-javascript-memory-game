@@ -1,7 +1,3 @@
-$(document).ready(function(){
-
-  
-});
 
 
 var cards = [
@@ -31,8 +27,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  var randomCards = memoryGame.shuffleCard(cards)
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -45,19 +44,26 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+  
+
   var selectedCards = [];
   var counter = 0;
-
+ 
+  
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
+
+  
+//function para girar las cras
   $('.back').on('click', function () {
     $(this).css('display','none');
-    $(this).siblings().addClass("back");// sibling = hermanos :  back = classes que estan en el CSS
+    $(this).siblings().addClass("back");
     counter++
     selectedCards.push($(this).attr("name"))
-    console.log(selectedCards);
-    console.log(memoryGame.pairsGuessed)
+ 
+   
+
+    // función para que se giren las 2 cartas si No son iguales
     if (counter===2){
       var first=selectedCards[0];
       var second=selectedCards[1];
@@ -70,13 +76,19 @@ $(document).ready(function(){
         $(".back[name='"+second+"']").siblings().removeClass("back");
         }, 500)
        
-      } else {
-        memoryGame.pairsGuessed++
       }
       counter=0;
       selectedCards=[];
       
     }
+    //contador de los pair Guessed
+    $("#pairs_guessed").text(memoryGame.pairsGuessed); 
+
+    //contador de los pair Clicked
+    $("#pairs_clicked").text(memoryGame.pairsClicked); 
+
+    
+    
 
 });
 

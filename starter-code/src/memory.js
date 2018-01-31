@@ -6,8 +6,11 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
-var numberRandom = Math.floor(Math.random()* cardsArr.length-1)
-return cardsArr[numberRandom];
+    for (let i = cardsArr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cardsArr[i], cardsArr[j]] = [cardsArr[j], cardsArr[i]];
+    }
+    return cardsArr;
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
