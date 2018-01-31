@@ -44,20 +44,28 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function(){
+  //Flip the card over
   var name= $(this).attr('name')
   console.log(name);
   $(this).css("background", "url(img/" + name + ") no-repeat ");
   
-  memoryGame.pickedCards.push($(this).parent().prop("id"))
+  // var name= $(this).parent().prop("id")
+  memoryGame.pickedCards.push(name);
   console.log(memoryGame.pickedCards);
   if (memoryGame.pickedCards.length === 2){
-      memoryGame.checkIfPair(memoryGame.pickedCards[0].toString(), memoryGame.pickedCards[1].toString())
-      console.log(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]))
-    }
+      memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+      $('#pairs_clicked').html(memoryGame.pairsClicked); 
+      $('#pairs_guessed').html(memoryGame.pairsGuessed);  
+     memoryGame.pickedCards=[];
+    
 
-  
-  console.log(memoryGame.pairsClicked);
-  console.log(memoryGame.pairsGuessed);
+     memoryGame.finished(); 
+      // console.log(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]))
+      // console.log(memoryGame.pairsClicked);
+      // console.log(memoryGame.pairsGuessed);
+}
+
+
   //  var name= $(this).parent().prop("id")
   //  console.log(name)
   //  var img = $("#" + name).children(".front").css("background"); 
