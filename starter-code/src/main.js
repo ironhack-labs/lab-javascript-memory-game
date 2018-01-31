@@ -39,12 +39,31 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
-
+ 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function(){
+  var name= $(this).attr('name')
+  console.log(name);
+  $(this).css("background", "url(img/" + name + ") no-repeat ");
   
+  memoryGame.pickedCards.push($(this).parent().prop("id"))
+  console.log(memoryGame.pickedCards);
+  if (memoryGame.pickedCards.length === 2){
+      memoryGame.checkIfPair(memoryGame.pickedCards[0].toString(), memoryGame.pickedCards[1].toString())
+      console.log(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]))
+    }
+
+  
+  console.log(memoryGame.pairsClicked);
+  console.log(memoryGame.pairsGuessed);
+  //  var name= $(this).parent().prop("id")
+  //  console.log(name)
+  //  var img = $("#" + name).children(".front").css("background"); 
+  //  console.log(img)
+  //  $(this).attr('style', img);
+  //  console.log(this);
   
 });
 });
