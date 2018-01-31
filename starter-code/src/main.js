@@ -28,6 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCard(cards)
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
