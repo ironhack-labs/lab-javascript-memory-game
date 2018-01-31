@@ -39,12 +39,44 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+    // Add all the div's to the HTML
+    document.getElementById('memory_board').innerHTML = html;
+    // Bind the click event of each element to a function
+
+    $('.back').on('click', function () {
+      $(this).removeClass('back'); 
+      $(this).siblings().addClass('back');
+      $(this).addClass('active');
+      pickedCards.push($(this).attr('name'));
+    if (pickedCards.length === 2) {
+      function checks(){
+        if(memoryGame.checkIfPair(pickedCards[0], pickedCards[1])){
+          $('.active').addClass('correct');
+          $('.correct').removeClass('active');
+          memoryGame.pairsGuessed ++;
+          memoryGame.pickedCards=[];
+        } else {
+          setTimeout(function reset() {
+            $('.active').addClass('back');
+            $('.back').removeClass('active');
+            $('.front').removeClass('back');
+            memoryGame.pickedCards=[];
+        } , 2000);
+      }
+    }
+
+
+
+
+    
 });
 
 
+
+
+
+
+
+
+
+});
