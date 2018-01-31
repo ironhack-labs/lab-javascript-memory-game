@@ -42,8 +42,41 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+ $('.back').on('click', function () {
+    $(this).css('display', 'none');
+    $(this).siblings().addClass('back');
+
+
+
+
+$('.back').on('click', function(){
+  $(this).removeClass('back');
+  $(this).siblings().addClass('back');
+
+});
+
+
+memoryGame.pickedCards.push($(this).attr('name'));
+if(memoryGame.pickedCards.length === 2){
+  memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+
+  if (first!=second) {
+  setTimeout(function () {
+$(".back[name=]'"+first+"'").siblings().removeClass('back');
+$(".back[name'"+first+"'").css("display", "block");
+$(".back[name]'"+second+"'").sibling().removeClass('back');
+$(".back[name'"+second+"'").css("display", "block");
+      
+    } 
+  }
+
+}
+
+if (memoryGame.pickedCards[0]!= memoryGame.pickedCards[1]){
+
+}
+
+memoryGame.pickedCards=[];
 });
 });
 
