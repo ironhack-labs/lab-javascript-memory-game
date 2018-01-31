@@ -88,7 +88,7 @@ $(document).ready(function(){
     $("#pairs_clicked").text(memoryGame.pairsClicked); 
 
     if(memoryGame.pairsGuessed === 12){
-      alert("you win! you are the best!")
+      alert("you win! you are the best! Refresh the page to start again")
     }
     
 
