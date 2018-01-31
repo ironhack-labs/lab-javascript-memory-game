@@ -87,7 +87,9 @@ $(document).ready(function(){
     //contador de los pair Clicked
     $("#pairs_clicked").text(memoryGame.pairsClicked); 
 
-    
+    if(memoryGame.pairsGuessed === 12){
+      alert("you win! you are the best!")
+    }
     
 
 });
