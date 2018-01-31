@@ -74,6 +74,7 @@ $(document).ready(function(){
         $(".back[name='"+first+"']").siblings().removeClass("back");
         $(".back[name='"+second+"']").css('display','block');
         $(".back[name='"+second+"']").siblings().removeClass("back");
+        
         }, 500)
        
       }
@@ -87,7 +88,7 @@ $(document).ready(function(){
     //contador de los pair Clicked
     $("#pairs_clicked").text(memoryGame.pairsClicked); 
 
-    if(memoryGame.pairsGuessed === 12){
+    if(memoryGame.finished()){
       alert("you win! you are the best! Refresh the page to start again")
     }
     
