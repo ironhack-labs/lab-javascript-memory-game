@@ -116,6 +116,7 @@ describe('finished method', function () {
 
   it('It should return true if all pairs were guessed', function () {
     memoryGame.pairsGuessed = 12;
+    console.log(memoryGame.cards)
     expect(memoryGame.finished()).toBe(true);
   });
 
