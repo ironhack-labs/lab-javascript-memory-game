@@ -6,7 +6,7 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
-var numberRandom = Math.floor(Math.random()* cardsArr.length + 1)
+var numberRandom = Math.floor(Math.random()* cardsArr.length)
 return cardsArr[numberRandom];
 };
 
