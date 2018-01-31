@@ -45,13 +45,39 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+  var selectedCards = [];
+  var counter = 0;
+
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-  $(this).css("display","none");
-  $(this).siblings().addClass("back")
-});
+  $('.back').on('click', function () {
+    $(this).css('display','none');
+    $(this).siblings().addClass("back");// sibling = hermanos :  back = classes que estan en el CSS
+    counter++
+    selectedCards.push($(this).attr("name"))
+    console.log(selectedCards);
+    console.log(memoryGame.pairsGuessed)
+    if (counter===2){
+      var first=selectedCards[0];
+      var second=selectedCards[1];
+      if (memoryGame.checkIfPair(first, second)===false){
+        
+        setTimeout(function(){
+        $(".back[name='"+first+"']").css('display','block');
+        $(".back[name='"+first+"']").siblings().removeClass("back");
+        $(".back[name='"+second+"']").css('display','block');
+        $(".back[name='"+second+"']").siblings().removeClass("back");
+        }, 500)
+       
+      } else {
+        memoryGame.pairsGuessed++
+      }
+      counter=0;
+      selectedCards=[];
+      
+    }
+
 });
 
-
+});
