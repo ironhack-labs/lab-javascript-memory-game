@@ -5,12 +5,16 @@ var MemoryGame = function (cards) {
   this.pairsGuessed = 0;
 };
 
+
+
+
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
   var randomNumber = Math.floor(Math.random()* cardsArr.length -1);
 
 return cardsArr[randomNumber];
 
 };
+
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++;
