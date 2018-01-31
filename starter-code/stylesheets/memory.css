@@ -67,3 +67,15 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.btn-again{
+  margin-left: 80%;
+  background-color: rgba(86, 104, 202, 0.3);
+  font-size: 20px;
+  color: black;
+  width: 10%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 3px solid #f85656;
+}
