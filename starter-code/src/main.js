@@ -42,9 +42,22 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+
+
+  $('.back').on('click', function () {
+   $(this).removeClass("back");
+   console.log(this.classList.contains("active"));
+   if (!this.classList.contains("active")) {
+    // pushed cards into arr pickedCards from the MemoryGame constructor
+    memoryGame.pickedCards.push(this);
+    // shows card images by adding active class
+    displayClickedCard(this);
+  }
+
+  
 });
+
+
 });
 
 
