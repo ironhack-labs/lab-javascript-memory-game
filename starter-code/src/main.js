@@ -1,3 +1,9 @@
+$(document).ready(function(){
+
+  
+});
+
+
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -43,7 +49,8 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).css("display","none");
+  $(this).siblings().addClass("back")
 });
 });
 
