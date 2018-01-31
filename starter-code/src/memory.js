@@ -1,15 +1,37 @@
-// var MemoryGame = function (cards) {
-//   this.cards = cards;
-// };
+var MemoryGame = function (cards) {
+    this.cards = cards;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
+};
 
-// MemoryGame.prototype.shuffleCard = function (cardsArr) {
+MemoryGame.prototype.shuffleCard = function (cardsArr) {
+    for (let i = cardsArr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cardsArr[i], cardsArr[j]] = [cardsArr[j], cardsArr[i]];
+    }
+    return cardsArr;
+};
 
-// };
+MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+    
+    this.pairsClicked = this.pairsClicked + 1;
 
-// MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+    if(firstCard === secondCard) {
+        this.pairsGuessed = this.pairsGuessed + 1;
+        return true;
+        
+    } else {
+        return false
+    }
+}
 
-// }
+MemoryGame.prototype.finished = function () {
+    if (this.cards.length === 0) return false;
+    if (this.pairsGuessed === 12) {
+        return true;
+    } else {
+        return false;
+    }
+};
 
-// MemoryGame.prototype.finished = function () {
-
-// };
