@@ -43,6 +43,24 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
+  var selectedCards =[];
+$('.back').on('click', function () {
+  $(this).css("display", "none");
+  $(this).siblings().addClass("back");
+   selectedCards.push($(this).attr("name"));
+   console.log(selectedCards);
+   if (selectedCards.length===2){
+     var first = selectedCards[0];
+     var second = selectedCards[1];
+     if (memoryGame.checkIfPair(first,second)===false){
+       $(".back[name='"+first+"']").css("display", "block");
+       $(".back[name='"+first+"']").removeClass("back");
+     }
+     $(".back[name='"+second+"']").css("display", "block");
+       $(".back[name='"+second+"']").removeClass("back");
+   }
+});
+});
    
 });
 });
