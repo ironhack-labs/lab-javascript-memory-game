@@ -30,7 +30,7 @@ describe('MemoryGame constructor', function () {
     expect(typeof memoryGame.pairsClicked).toBe('number');
   });
 
-  it('MemoryGame should have a pairsClicked property', function () {
+  it('MemoryGame should have a pairsGuessed property', function () {
     expect(memoryGame.pairsGuessed).toBeDefined();
   });
 
