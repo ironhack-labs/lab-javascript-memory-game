@@ -39,12 +39,35 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+
+  $('.card').on('click', function (event) {
+
+    var chosenCard = $(event.currentTarget).children();
+
+
+    function toggleCard(){
+      chosenCard.toggleClass('back').toggleClass('front');
+    }
+
+    if (!memoryGame.finished()) {
+
+       memoryGame.checkIfPair();
+
+       toggleCard();
+
+       memoryGame.pickedCards.push(chosenCard);
+
+
+
+
+    } 
+
+    
+  });
 });
 
 
