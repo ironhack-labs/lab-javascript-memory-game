@@ -52,8 +52,32 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   console.log("Clicked!");
+$('.back').on('click', function (e) {
+  $(this).toggleClass("back front");
+  $(this).next().toggleClass("front back");
+
+  var currentCard = $(this).parent().attr('id');
+
+  memoryGame.pickedCards.push(currentCard);
+  
+
+  if(memoryGame.pickedCards.length == 2){
+    var check = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+
+/*     if(check === false){
+      var changeBackFirst = "#" + $(memoryGame.pickedCards[0]).selector + " > div";
+      var changeBackSecond = "." + $(memoryGame.pickedCards[1]).selector;
+      
+      $(changeBackFirst).toggleClass("front back");
+      $(changeBackSecond).next().toggleClass("back front");
+
+      console.log(changeBackFirst, changeBackSecond);
+    } */
+  }
+
+  
+
+  
 });
 });
 
