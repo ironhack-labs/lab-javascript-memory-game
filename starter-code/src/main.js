@@ -34,6 +34,7 @@ $(document).ready(function(){
 
   var html = '';
 
+  memoryGame.cards = memoryGame.shuffleCard(cards);
   //Gets each object inside the "cards" array and puts is name and img inside html objects
   memoryGame.cards.forEach(function (pic, index) {
     //console.log(pic, index);

@@ -36,9 +36,9 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
 
   cardsToSelect.forEach(function(elem){
     newCardsArray.push(cardsArr[elem]);
-    
   });
-  return cardsToSelect;
+
+  return newCardsArray;
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
