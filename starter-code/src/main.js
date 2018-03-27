@@ -24,7 +24,6 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
@@ -38,13 +37,20 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
-
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+$('.card').on('click', function () {
+   event.stopPropagation();
+   var thisCard = $(this).children();
+  if ($(thisCard[0]).hasClass("back")){
+    $(thisCard[0]).removeClass("back").addClass("front");
+    $(thisCard[1]).removeClass("front").addClass("back");
+  }
+  else {
+    $(thisCard[0]).removeClass("front").addClass("back");
+    $(thisCard[1]).removeClass("back").addClass("front");
+  }
 });
 });
-
 
