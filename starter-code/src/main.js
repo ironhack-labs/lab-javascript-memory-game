@@ -1,3 +1,4 @@
+//Array of objects
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -25,9 +26,15 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+//Start program after DOM is ready
 $(document).ready(function(){
+
+  //Creates new object called "memoryGame" that points to "cards" array using a constructor function assigned to a variable called "MemoryGame"
   var memoryGame = new MemoryGame(cards);
+
   var html = '';
+
+  //Gets each object inside the "cards" array and puts is name and img inside html objects
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
@@ -39,7 +46,7 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
+  // Adds all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
