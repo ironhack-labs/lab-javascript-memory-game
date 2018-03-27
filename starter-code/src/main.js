@@ -41,10 +41,50 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
+
+  var contador = 1;
+  var firstCard = "";
+  var secondCard = "";
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+$('.back').on('click', {contador}, function () {
+  $(this).hide();
+  $(this).next().addClass("back");
+
+  secondCard = $(this).attr("name");
+
+  $(this).next().attr("name", secondCard);
+  for (var i = 0; i < $('.back').length; i++) {
+
+    if  (checkIfPair(($('.back')[i].next().attr("name"),secondCard)) = true) {
+      
+      $('.back')[i].next().addClass("blocked");
+      $(this).addClass("blocked");
+
+
+    }
+    else {
+      $(this).show();
+      $(this).next().removeClass("back");
+
+    }
+  }
+
+  if (contador == 2){
+    checkIfPair(firstCard, secondCard);
+      if (!isPair) {
+
+      }
+    
+  }
+  
+  
+ 
+  
 });
+
+
 });
 
 
