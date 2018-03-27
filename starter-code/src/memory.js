@@ -26,10 +26,8 @@ MemoryGame = function (cards) {
             return true;
         }else{
             return false;
-        }
-    
+        }   
  }
-
 MemoryGame.prototype.finished = function (pairsGuessed) {
     if(this.pairsGuessed === 12){
         return true;
