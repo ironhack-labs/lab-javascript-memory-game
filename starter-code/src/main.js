@@ -43,7 +43,7 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $( this ).switchClass( "back", "front", 1000, "easeInOutQuad" );  
 });
 });
 
