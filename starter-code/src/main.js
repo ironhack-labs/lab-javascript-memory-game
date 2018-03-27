@@ -41,10 +41,19 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  $('.back').on('click', function () {
+    $(this).removeClass("back");
+    $(this).addClass("front");
+    var $sibling = $(this).siblings();
+    var $parent = $(this).parent();
+    $sibling.removeClass("front");
+    $sibling.addClass("back");
+    // console.log($(".selected").length);
+    // console.log($(".back").length);
+  });
+
 });
 
 
