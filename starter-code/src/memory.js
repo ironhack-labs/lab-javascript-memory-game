@@ -1,11 +1,11 @@
-var MemoryGame = function (cards) {
+var MemoryGame = function(cards) {
   this.cards = cards;
   this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
 };
 
-MemoryGame.prototype.shuffleCard = function (cardsArr) {
+MemoryGame.prototype.shuffleCard = function(cardsArr) {
   var randomCardsArray = [];
   var array = cardsArr.slice();
   while (array.length !== 0) {
@@ -16,18 +16,22 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
   return randomCardsArray;
 };
 
-MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  this.pairsClicked ++;
-  if(firstCard == secondCard){
-    this.pairsGuessed ++;
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
+  this.pairsClicked++;
+  if (firstCard == secondCard) {
+    this.pairsGuessed++;
     return true;
-  }else{
+  } else {
     return false;
   }
+};
 
-  
-}
-
-MemoryGame.prototype.finished = function () {
+MemoryGame.prototype.finished = function() {
+  if (this.pairsClicked == 0) {
     return false;
+  } else if (this.pairsGuessed === this.cards.length) {
+    return true;
+  } else {
+    return false;
+  }
 };
