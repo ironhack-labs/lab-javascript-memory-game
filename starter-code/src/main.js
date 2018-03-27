@@ -36,6 +36,7 @@ $(document).ready(function(){
 
   //Gets each object inside the "cards" array and puts is name and img inside html objects
   memoryGame.cards.forEach(function (pic, index) {
+    //console.log(pic, index);
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -48,9 +49,10 @@ $(document).ready(function(){
 
   // Adds all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+   console.log("Clicked!");
 });
 });
 

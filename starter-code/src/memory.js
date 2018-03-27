@@ -10,18 +10,19 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
   var N = cardsArr.length;
   var cardsToSelect = [];
   var indexOfCards = [];
+  var newCardsArray = [];
   var i = 0;
 
   //Write numbers from 1 to N
   cardsArr.forEach(function(e) {
-    indexOfCards.push(i + 1);
+    indexOfCards.push(i);
     i++;
   });
 
   //Shuffle algorithim-----------------------------------------
   for (i = 0; cardsToSelect.length < cardsArr.length; i++) {
     //Select a number k between 1 and N
-    var randomNum = Math.floor(Math.random() * (N - 1) + 1);
+    var randomNum = Math.floor(Math.random() * (N) + 1);
     var selectedNum = N - randomNum;
 
     if (cardsToSelect.indexOf(indexOfCards[selectedNum]) == -1) {
@@ -33,6 +34,10 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
     }
   } //End------------------------------------------------------
 
+  cardsToSelect.forEach(function(elem){
+    newCardsArray.push(cardsArr[elem]);
+    
+  });
   return cardsToSelect;
 };
 
