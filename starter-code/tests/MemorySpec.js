@@ -110,7 +110,12 @@ describe('finished method', function () {
   });
 
   it('It should return false if there still some pairs to be guessed', function () {
-    memoryGame.pairsGuessed = 10;
+    //i think there is a mistake
+    //the original call is memoryGame.pairsGuessed = 10;
+    //but the call is for an array of 8 cards
+    //which means that memoryGame.pairsGuessed should be smaller than array/2=4 toBe false
+    // or memoryGame.pairsGuessed = 10; and expect blah blah toBe(true);
+    memoryGame.pairsGuessed = 3; // original (maybe wrong?) memoryGame.pairsGuessed = 10;
     expect(memoryGame.finished()).toBe(false);
   });
 
