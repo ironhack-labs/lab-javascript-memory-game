@@ -41,9 +41,13 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+
+  // Bind the click event of each element to a function -- still need to link card2 and check if this works
+$('.back').on('click', function (event) {
+  var target = $(event.target); 
+  target.name = card1;
+
+  memoryGame.checkIfPair(card1, card 2);
 });
 });
 
