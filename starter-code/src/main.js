@@ -25,6 +25,7 @@ var cards = [
   { name: "thor", img: "thor.jpg" }
 ];
 var cont = 0;
+
 $(document).ready(function() {
   var memoryGame = new MemoryGame(cards);
   var html = "";
@@ -46,16 +47,57 @@ $(document).ready(function() {
   $(".back").on("click", function(e) {
     
     if (cont === 0) {
-      $(this).addClass("primera");
+      $(this).addClass("primera front");
+      $(this).removeClass("back");
+      
+      // console.log($(this).next);
+      memoryGame.pickedCards.push($(".primera")[0].parentNode.id);
+      $(($(".primera")[0]).parentNode.lastChild).removeClass("front");
+      $(($(".primera")[0]).parentNode.lastChild).addClass("back");
       cont++;
     } else if (cont === 1) {
-      $(this).addClass("primera");
-      if (memoryGame.checkIfPair($(".primera")[0].parentNode.id, $(".primera")[1].parentNode.id)){
+      $(this).addClass("segundo front");
+      $(this).removeClass("back");
+      memoryGame.pickedCards.push($(".segundo")[0].parentNode.id);
+      $(($(".segundo")[0]).parentNode.lastChild).removeClass("front");
+      $(($(".segundo")[0]).parentNode.lastChild).addClass("back");
+      if (memoryGame.checkIfPair($(".primera")[0].parentNode.id, $(".segundo")[0].parentNode.id)){
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
+        // $(($(".primera")[0]).css("visivility", "collapse"));
+        // $(($(".segundo")[0]).css("visivility", "collapse"));
       }
       cont --
-       $(".primera").removeClass("primera");
-       $("#pairs_clicked").text(memoryGame.pairsClicked);
+      // $(".card").children().attr("disabled","disabled");
+      
+       setTimeout(function(){ 
+         console.log("pepe");
+         
+          let carta = ($(".primera")[0]);
+          let hermano = carta.parentNode.lastChild;
+          if ($(".primera")[0].parentNode.id === $(".segundo")[0].parentNode.id){
+            $(carta).css("visibility", "hidden");
+            $(hermano).css("visibility", "hidden");
+          }           
+          $(hermano).removeClass("back");
+          $(hermano).addClass("front");
+          $(carta).removeClass("front");
+          $(carta).addClass("back");
+          carta = ($(".segundo")[0]);
+          hermano = carta.parentNode.lastChild;
+          if ($(".primera")[0].parentNode.id === $(".segundo")[0].parentNode.id){
+            $(carta).css("visibility", "hidden");
+            $(hermano).css("visibility", "hideen");
+          }            
+          $(hermano).removeClass("back");
+          $(hermano).addClass("front");
+          $(carta).removeClass("front");
+          $(carta).addClass("back");           
+         
+         $(".primera").removeClass("primera");
+         $(".segundo").removeClass("segundo");
+         
+      }, 1000);
+      $("#pairs_clicked").text(memoryGame.pairsClicked);
     }
     
     // $("#pairs_clicked").text(memoryGame.pairsClicked());
