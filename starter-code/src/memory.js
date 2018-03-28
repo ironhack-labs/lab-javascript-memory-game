@@ -1,20 +1,24 @@
 var MemoryGame = function (cards) {
    this.cards = cards;
    this.pickedCards = [];
-   this.pairsClicked = [];
-   this.pairsGuessed= [];
+   this.pairsClicked = 0;
+   this.pairsGuessed= 0;
 }
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
   
   //Math.floor(Math.random()*cardsArr.length-1)+1
 
-  for(i=0:i<=cardsArr.length-1:i++){
+  var newArray = []
 
+  for(i=0 ; i<array.length; i++){
+    newArray.push(Math.floor(Math.random()*array.length-1)+1);
+    
   }
   
+  return newArray;
   
-    return d;
+
   
 };
 
