@@ -43,7 +43,12 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).toggleClass("back front");
+  $(this).next().toggleClass("front back");
+});
+$('.front').on('click', function (){
+    $(this).toggleClass("front back");
+    $(this).next().toggleClass("back front");
 });
 });
 
