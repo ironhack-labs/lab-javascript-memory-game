@@ -29,7 +29,7 @@ MemoryGame.prototype.checkIfPair = function(card1, card2) {
 
 MemoryGame.prototype.finished = function() {
   if (this.pairsGuessed === 0) return false;
-  if (this.pairsGuessed === this.cards.lenght / 2) return true;
+  if (this.pairsGuessed === cards.length/2) return true;
   return false;
 };
 MemoryGame.prototype.pairsClicked = function(){

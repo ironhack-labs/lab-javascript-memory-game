@@ -44,62 +44,71 @@ $(document).ready(function() {
   // Add all the div's to the HTML
   document.getElementById("memory_board").innerHTML = html;
   // Bind the click event of each element to a function
+
   $(".back").on("click", function(e) {
-    
+    // if ($(".card").find(".stop")) {
+    //   return;
+    // }
     if (cont === 0) {
       $(this).addClass("primera front");
       $(this).removeClass("back");
-      
+
       // console.log($(this).next);
       memoryGame.pickedCards.push($(".primera")[0].parentNode.id);
-      $(($(".primera")[0]).parentNode.lastChild).removeClass("front");
-      $(($(".primera")[0]).parentNode.lastChild).addClass("back");
+      $($(".primera")[0].parentNode.lastChild).removeClass("front");
+      $($(".primera")[0].parentNode.lastChild).addClass("back");
       cont++;
     } else if (cont === 1) {
       $(this).addClass("segundo front");
       $(this).removeClass("back");
       memoryGame.pickedCards.push($(".segundo")[0].parentNode.id);
-      $(($(".segundo")[0]).parentNode.lastChild).removeClass("front");
-      $(($(".segundo")[0]).parentNode.lastChild).addClass("back");
-      if (memoryGame.checkIfPair($(".primera")[0].parentNode.id, $(".segundo")[0].parentNode.id)){
+      $($(".segundo")[0].parentNode.lastChild).removeClass("front");
+      $($(".segundo")[0].parentNode.lastChild).addClass("back");
+      if (
+        memoryGame.checkIfPair(
+          $(".primera")[0].parentNode.id,
+          $(".segundo")[0].parentNode.id
+        )
+      ) {
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
-        // $(($(".primera")[0]).css("visivility", "collapse"));
-        // $(($(".segundo")[0]).css("visivility", "collapse"));
       }
-      cont --
-      // $(".card").children().attr("disabled","disabled");
-      
-       setTimeout(function(){ 
-         console.log("pepe");
-         
-          let carta = ($(".primera")[0]);
-          let hermano = carta.parentNode.lastChild;
-          if ($(".primera")[0].parentNode.id === $(".segundo")[0].parentNode.id){
-            $(carta).css("visibility", "hidden");
-            $(hermano).css("visibility", "hidden");
-          }           
-          $(hermano).removeClass("back");
-          $(hermano).addClass("front");
-          $(carta).removeClass("front");
-          $(carta).addClass("back");
-          carta = ($(".segundo")[0]);
-          hermano = carta.parentNode.lastChild;
-          if ($(".primera")[0].parentNode.id === $(".segundo")[0].parentNode.id){
-            $(carta).css("visibility", "hidden");
-            $(hermano).css("visibility", "hideen");
-          }            
-          $(hermano).removeClass("back");
-          $(hermano).addClass("front");
-          $(carta).removeClass("front");
-          $(carta).addClass("back");           
-         
-         $(".primera").removeClass("primera");
-         $(".segundo").removeClass("segundo");
-         
+      cont--;
+      $(".card").addClass("stop");
+
+      setTimeout(function() {
+        console.log("pepe");
+
+        let carta = $(".primera")[0];
+        let hermano = carta.parentNode.lastChild;
+        if ($(".primera")[0].parentNode.id === $(".segundo")[0].parentNode.id) {
+          $(carta).css("visibility", "hidden");
+          $(hermano).css("visibility", "hidden");
+        }
+        $(hermano).removeClass("back");
+        $(hermano).addClass("front");
+        $(carta).removeClass("front");
+        $(carta).addClass("back");
+        carta = $(".segundo")[0];
+        hermano = carta.parentNode.lastChild;
+        if ($(".primera")[0].parentNode.id === $(".segundo")[0].parentNode.id) {
+          $(carta).css("visibility", "hidden");
+          $(hermano).css("visibility", "hideen");
+        }
+        $(hermano).removeClass("back");
+        $(hermano).addClass("front");
+        $(carta).removeClass("front");
+        $(carta).addClass("back");
+        $(".card").removeClass("stop");
+        $(".primera").removeClass("primera");
+        $(".segundo").removeClass("segundo");
+
+        if (memoryGame.finished()) {
+          alert("Ganas");
+        }
       }, 1000);
       $("#pairs_clicked").text(memoryGame.pairsClicked);
     }
-    
+
     // $("#pairs_clicked").text(memoryGame.pairsClicked());
   });
 });
