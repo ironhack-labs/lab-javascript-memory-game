@@ -1,3 +1,4 @@
+//Array of objects
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -25,10 +26,18 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+//Start program after DOM is ready
 $(document).ready(function(){
+
+  //Creates new object called "memoryGame" that points to "cards" array using a constructor function assigned to a variable called "MemoryGame"
   var memoryGame = new MemoryGame(cards);
+
   var html = '';
+
+  memoryGame.cards = memoryGame.shuffleCard(cards);
+  //Gets each object inside the "cards" array and puts is name and img inside html objects
   memoryGame.cards.forEach(function (pic, index) {
+    //console.log(pic, index);
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -39,12 +48,40 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
+  // Adds all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
-});
-});
+
+  $(this).toggleClass("back front");
+  $(this).next().toggleClass("front back");
 
 
+
+  var currentCard = $(this).parent().attr('id');
+
+  memoryGame.pickedCards.push(currentCard);
+
+  if(memoryGame.pickedCards.length == 2){
+
+    var check = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+
+    if(check === false){
+      
+      var changeFirst = memoryGame.pickedCards[0];
+      var changeSecond = memoryGame.pickedCards[1];
+      
+      console.log(changeFirst, changeSecond);
+      
+      /*       $(changeFirst).toggleClass("front back");
+      $(changeSecond).next().toggleClass("back front"); */
+      
+    }
+    memoryGame.pickedCards = [];
+  }
+
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
+});
+});
