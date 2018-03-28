@@ -56,8 +56,8 @@ $(document).ready(function() {
     } else {
       if (clickeds == 2) {
         clickeds = 0;
-        $(".back :not(.block)").css("display", "initial");
-        $(".front :not(.block)").css("display", "none");
+        $(".back:not(.back.blocked)").css("display", "initial");
+        $(".front:not(.front.blocked)").css("display", "none");
 
       } else {
         selectedCard = $(this);
