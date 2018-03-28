@@ -44,8 +44,8 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').on('click', function () {
-
-    
+    var newImage = $(this).next().attr("style")
+    $(this).attr("style", newImage)  
 });
 });
 
