@@ -44,7 +44,6 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
   $(this).parent().flip()
-  $(this).siblings().height(110) 
 });
 });
 
