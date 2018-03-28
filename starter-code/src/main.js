@@ -46,20 +46,35 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $(".back").on('click', function () {
+    console.log(this)
     $(this).toggleClass("back front");
     $(this).next().toggleClass("front back");
-    var currentCard = $(this).parent().attr("id");
     
+    currentCard = $(this).parent().attr("id");
     memoryGame.pickedCards.push(currentCard);
 
     if(memoryGame.pickedCards.length === 2){
+      
+      memoryGame.pairsClicked += 1;
       var checkEq = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
 
-      if(!checkEq){
+      if(checkEq){
+        memoryGame.pairsGuessed += 1;
+        if(memoryGame.finished()){
+          alert("You Win!");
+        }
+      } else {
+        alert("Oooops, they don't match!");
         $(memoryGame.pickedCards[0]).toggleClass("front back");
         $(memoryGame.pickedCards[0]).next().toggleClass("back front");
+        $(memoryGame.pickedCards[1]).toggleClass("front back");
+        $(memoryGame.pickedCards[1]).next().toggleClass("back front");
       }
     }
+
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
+
   });
 });
 

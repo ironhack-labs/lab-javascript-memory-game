@@ -23,7 +23,7 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked += 1;
 
-  if(firstCard === secondCard){
+  if(firstCard.name === secondCard.name){
     this.pairsGuessed += 1;
     return true;
   } else {
