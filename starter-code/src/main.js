@@ -28,10 +28,10 @@ var cards = [
 
 var memoryGame = new MemoryGame(cards);
 $(document).ready(function() {
-  var arrayCards = memoryGame.shuffleCard(cards);
+ // var arrayCards = memoryGame.shuffleCard(cards);
   var html = "";
   html += "<div class ='front' style='background: url(img/thor.jpg')> </div>";
-  arrayCards.forEach(function(pic, index) {
+  cards.forEach(function(pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="' + pic.img + '">';
@@ -52,6 +52,7 @@ $(document).ready(function() {
       var atributo = $(this).attr("name");
       var prueba = "url(img/" + atributo + ")";
       $(this).css("background", prueba);
+      $(this).addClass("blocked");
 
       memoryGame.pickedCards.push(atributo);
 
@@ -71,16 +72,16 @@ $(document).ready(function() {
        // alert("entra")
        // $(this).removeAttr("background");
         $('.active').removeAttr("style");
-    
+        $('.active').removeClass("blocked");
         
-
         memoryGame.pickedCards = [];
       }
-  score();
+
+
   if( memoryGame.finished()){
     alert("YOU WIN!!!!")
   }
- 
+  score();
     
   });
 });
