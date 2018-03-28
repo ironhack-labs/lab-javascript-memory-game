@@ -43,8 +43,16 @@ $(document).ready(function() {
   document.getElementById("memory_board").innerHTML = html;
   // Bind the click event of each element to a function
   $(".back").on("click", function() {
+
     $(this).className += " active";
     var atributo = $(this).attr("name");
+ 
     var prueba = "url(img/" + atributo + ")";
-  });
+ 
+    $(this).css("background", prueba);
+   
+  })
+
+
 });
+
