@@ -52,33 +52,36 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-$('.back').on('click', function (e) {
+$('.back').on('click', function () {
+
   $(this).toggleClass("back front");
   $(this).next().toggleClass("front back");
+
+
 
   var currentCard = $(this).parent().attr('id');
 
   memoryGame.pickedCards.push(currentCard);
-  
 
   if(memoryGame.pickedCards.length == 2){
+
     var check = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
 
-/*     if(check === false){
-      var changeBackFirst = "#" + $(memoryGame.pickedCards[0]).selector + " > div";
-      var changeBackSecond = "." + $(memoryGame.pickedCards[1]).selector;
+    if(check === false){
       
-      $(changeBackFirst).toggleClass("front back");
-      $(changeBackSecond).next().toggleClass("back front");
-
-      console.log(changeBackFirst, changeBackSecond);
-    } */
+      var changeFirst = memoryGame.pickedCards[0];
+      var changeSecond = memoryGame.pickedCards[1];
+      
+      console.log(changeFirst, changeSecond);
+      
+      /*       $(changeFirst).toggleClass("front back");
+      $(changeSecond).next().toggleClass("back front"); */
+      
+    }
+    memoryGame.pickedCards = [];
   }
 
-  
-
-  
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
 });
 });
-
-

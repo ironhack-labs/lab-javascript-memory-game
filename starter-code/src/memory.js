@@ -56,6 +56,7 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 MemoryGame.prototype.finished = function () {
     
     //I believe it could be done taking by reference the length of the cards array, for future modifications on the deck. Example, if you want more cards.
+    
     //var l = this.cards.length;
     //if(this.pairsGuessed == (l/2)){
     //    return true;
