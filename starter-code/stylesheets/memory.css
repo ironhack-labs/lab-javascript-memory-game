@@ -13,8 +13,12 @@ html {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
-
-
+.card{
+  width:110px;
+  height:110px;
+  display:inline-block;
+  margin: 10px;
+}
 .card .back {
   background-color: #456783;
 	width:71px;

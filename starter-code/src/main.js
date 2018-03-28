@@ -30,7 +30,7 @@ $(document).ready(function(){
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
-    html += '<div class="back"';
+    html += '<div class="back flip"';
     html += '    name="'       + pic.img +  '">';
     html += '</div>';
     html += '<div class="front" ';
@@ -43,7 +43,7 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).parent().flip()
 });
 });
 
