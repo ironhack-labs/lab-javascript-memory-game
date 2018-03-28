@@ -42,9 +42,26 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+
+
+
+  $('.card').on('click', function (event) {
+    event.stopPropagation();
+    var thisCard = $(this).children();
+  if ($(thisCard[0]).hasClass("back")) {
+    console.log(thisCard[0])
+    $(this).addClass('active')
+    $(thisCard[0]).removeClass("back").addClass("front");
+    $(thisCard[1]).removeClass("front").addClass("back");
+  } else {
+    console.log(thisCard);
+    $(this).addClass("active");
+    $(thisCard[0]).removeClass("front").addClass("back");
+    $(thisCard[1]).removeClass("back").addClass("front");
+  }
 });
+
+
 });
 
 
