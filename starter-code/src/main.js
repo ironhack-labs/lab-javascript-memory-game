@@ -49,12 +49,16 @@ $(document).ready(function() {
       $(this).siblings().addClass("blocked");
       selectedCard.addClass("blocked");
       selectedCard.siblings().addClass("blocked");
+      $(this).toggle();
+        $(this)
+          .siblings()
+          .toggle();
     } else {
       if (clickeds == 2) {
         clickeds = 0;
-        $(".back").css("display", "initial");
-        $(".front").css("display", "none");
-        $(".block").css("display", "initial");
+        $(".back :not(.block)").css("display", "initial");
+        $(".front :not(.block)").css("display", "none");
+
       } else {
         selectedCard = $(this);
         clickeds++;
