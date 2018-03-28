@@ -49,7 +49,8 @@ $(document).ready(function() {
   var card2 = "";
 
   if (!memoryGame.finished()) {
-    $(".back").on("click", { turn: turn }, function(e) {
+    $(".back").on("click", { turn: turn }, function(e) {      
+
       // select a card and change turn
       if (turn == 1) {
         card1 = $(this).attr("name");
@@ -65,9 +66,10 @@ $(document).ready(function() {
       if (card1 != "" && card2 != "") {
         var equals = memoryGame.checkIfPair(card1, card2);
 
+        // if cards are equals, save guessed pair
         // if cards are different, hide image and reset both cards
         if (equals) {
-          saveCards(memoryGame, card1, card2);
+          saveCards(memoryGame, card1);
         } else {
           hideCards(card1, card2);
           card1 = "";
@@ -78,7 +80,7 @@ $(document).ready(function() {
       updateScore(memoryGame);
     });
   } else {
-    document.getElementById("memory_board").innerHTML = "<h1>You win</h1>";
+    document.getElementById("memory_board").innerHTML = "<h2>Game Over</h2>";
   }
 
   function updateScore(game) {
@@ -97,7 +99,18 @@ $(document).ready(function() {
     $(attribute2).css("background-image", "none");
   }
 
-  function saveCards(game, card1, card2) {
-    game.pickedCards.push([card1, card2]);
+  function saveCards(game, card) {
+    game.pickedCards.push(card);
   }
+
+
+  /* function showCards(game, card) {
+    // show guessed cards
+    if (card1 != "" && card2 != "") {
+      if (memoryGame.pickedCards.includes(card1)) {
+        var guessedCards = $("[name='" + card1 + "']");
+        console.log(guessedCards);
+      }
+    }
+  } */
 });
