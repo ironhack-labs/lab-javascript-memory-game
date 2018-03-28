@@ -38,30 +38,44 @@ $(document).ready(function() {
     html += "</div>";
     html += "</div>";
   });
-
+  
   // Add all the div's to the HTML
   document.getElementById("memory_board").innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   $(".back").on("click", function() {
     var newImage = $(this)
       .next()
       .attr("style");
     $(this).attr("style", newImage);
-    card = $(this).attr("name");
+    card = $(this);
     memoryGame.pickedCards.push(card);
     if (memoryGame.pickedCards.length == 2) {
       var firstCard = memoryGame.pickedCards[0];
       var secondCard = memoryGame.pickedCards[1];
-      if (firstCard === secondCard) {
-        memoryGame.pairsGuessed++;
+      
+      if (firstCard.attr("name") === secondCard.attr("name")) {
+        console.log(typeof(memoryGame.pairsGuessed))
+        memoryGame.pairsGuessed = memoryGame.pairsGuessed+=1;
+        console.log(memoryGame.pairsGuessed)
         memoryGame.pairsClicked++;
+        $("#pairs_clicked").html(memoryGame.pairsClicked);
+        $("#pairs_guessed").html(memoryGame.pairsGuessed);
         memoryGame.pickedCards = [];
-              } else {
+        firstCard.addClass("acertado");
+        secondCard.addClass("acertado");
+      } else {
         memoryGame.pairsClicked++;
-        memoryGame.pickedCards = []
-        setTimeout(function(){$(".back").attr("style", "background: #456783")}, 1000)
+        $("#pairs_clicked").html(memoryGame.pairsClicked);
+        memoryGame.pickedCards = [];
+        setTimeout(function() {
+          $(".back:not(.acertado)").attr("style", "background: #456783");
+        }, 1000);
       }
     }
+    if (memoryGame.pairsGuessed = memoryGame.cards / 2) {
+      alert("you won")
+    }
+  
   });
 });
