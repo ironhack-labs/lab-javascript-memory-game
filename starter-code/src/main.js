@@ -25,8 +25,12 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+// variable for checking number of picked cards > not more than 2
+var nbCards = 0;
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCard(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -39,12 +43,42 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
+// Add all the div's to the HTML
+document.getElementById('memory_board').innerHTML = html;
+
+// Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  // console.log($(this));
+
+  if($(this).hasClass('active')){
+    return;
+  }
+  else{
+    if(nbCards < 2){
+      nbCards += 1;
+      displayClickedCards($(this));
+      memoryGame.pickedCards.push($(this).attr('name'));
+      console.log(memoryGame.pickedCards);
+      console.log("nb cards : " + nbCards);
+      if(nbCards === 2){
+        console.log("ok");
+        memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+      }
+    }
+  }
 });
+
+// display the cards
+function displayClickedCards(card){
+
+  console.log(card.attr('name'));
+  card.css({'background' : 'url(img/' + card.attr('name') + ') no-repeat'});
+  card.addClass('active');
+  
+}
+
+
+
 });
 
 
