@@ -4,6 +4,23 @@ var MemoryGame = function (cards) {
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
 };
+MemoryGame.prototype.selectCard = function ($card){
+  if($card.hasClass('waiting')){
+    return;
+  }
+  if(this.pickedCards.length === 0){
+    this.pickedCards.push($card);
+  } else {
+    $("#pairs_clicked").text(++this.pairsClicked);
+  if(this.pickedCards[0].attr('name') == $card.attr('name')){
+
+  } else {
+    setTimeout(function(){
+      $('.waiting').removeClass('waiting');
+    }, 2000);
+  }
+  }
+}
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
   return shuffle(cardsArr);

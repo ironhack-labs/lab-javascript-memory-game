@@ -44,6 +44,7 @@ $(document).ready(function() {
   document.getElementById("memory_board").innerHTML = html;
   // Bind the click event of each element to a function
   $(".back").on("click", function() {
+    //selectCard method en el objeto memoryGame.
     if ($(this).attr("name") == selectedCard.attr("name")) {
       $(this).addClass("blocked");
       $(this).siblings().addClass("blocked");
