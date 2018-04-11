@@ -60,6 +60,7 @@ $('.back').on('click', function () {
       selectedCards = [];
 
       $('div [class*="front back"]').addClass('front-blocked')
+      turn = true;
     }else{
       selectedCards = []
       setTimeout(function(){
