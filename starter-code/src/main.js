@@ -1,3 +1,4 @@
+// Cards Array
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -25,10 +26,13 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+// Ready Function
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  var theGame = new MemoryGame(cards);
+  theGame.shuffleCard(theGame.cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+  theGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -39,11 +43,22 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
+
+// Add all the div's to the HTML
+document.getElementById('memory_board').innerHTML = html;
+// Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).addClass("just-clicked");
+  // Grab the name of the image as a unique identifier we will use to check the pair later
+  var nameOfImage = $(this).attr("name");
+  // Push the image name into the current pair array
+  theGame.currentPair.push(nameOfImage);
+  // Change the background from blue to the image
+  $(this).css('background', 'url(img/' + nameOfImage + ')')
+// Run checkIfPair function when second card gets clicked, otherwise, do nothing
+if(theGame.currentPair.length === 2) {
+  theGame.checkIfPair(theGame.currentPair[0], theGame.currentPair[1]);
+}
 });
 });
 
