@@ -26,7 +26,7 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsClicked).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be a Number', function () {
     expect(typeof memoryGame.pairsClicked).toBe('number');
   });
 
@@ -34,7 +34,7 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsGuessed).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be a Number', function () {
     expect(typeof memoryGame.pairsGuessed).toBe('number');
   });
 });
@@ -110,12 +110,12 @@ describe('finished method', function () {
   });
 
   it('It should return false if there still some pairs to be guessed', function () {
-    memoryGame.pairsGuessed = 10;
+    memoryGame.pairsGuessed = 3;
     expect(memoryGame.finished()).toBe(false);
   });
 
   it('It should return true if all pairs were guessed', function () {
-    memoryGame.pairsGuessed = 12;
+    memoryGame.pairsGuessed = 4;
     expect(memoryGame.finished()).toBe(true);
   });
 
