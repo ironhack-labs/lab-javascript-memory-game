@@ -26,7 +26,9 @@ var cards = [
 ];
 
 $(document).ready(function(){
+  
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCard(memoryGame.cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -39,12 +41,63 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
+
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
   // Bind the click event of each element to a function
+
 $('.back').on('click', function () {
+
+  var cardName = this.getAttribute('name');
+  $(this).toggleClass("back");
+  $(this).next().toggleClass("back");
+
+  var selectedCards = [];
+
+  selectedCards.push(cardName);
+
+  if(selectedCards.length === 2){
+  memoryGame.checkIfPair(selectedCards[0],selectedCards[1]);
+} else {  
+          
+          selectedCards = [];
+          }
+
+
+
+  //selectedCards.push(card1);
+
+  //memoryGame.checkIfPair(card1,);
+
+
+  //obtener las dos cartas , saber que es click 1 y click 2 ,
+  //guardar las dos cartas en variables 
+  //preguntarle al juego con memorycars.check si son iguales
+  //sacarlas del array
+  //si son iguales 
+  //si son 
+
+   });
+
+$('.front').on('click', function () {
+  $(this).toggleClass("back");
+  $(this).prev().toggleClass("back");
+
+$("#pairs_clicked").on("click", function(){
+
+});
+
+
+
    
 });
+
+
+
+
 });
+
 
 
