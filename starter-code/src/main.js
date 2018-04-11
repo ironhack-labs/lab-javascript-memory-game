@@ -27,9 +27,10 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  var html = '';
+memoryGame.shuffleCard(memoryGame.cards);
+  var html = ' ';
   memoryGame.cards.forEach(function (pic, index) {
-    html += '<div class= "card" id="card_' + pic.name + '">';
+    html += '<div class= "card" id="card"' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
     html += '</div>';
@@ -42,9 +43,35 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
-
-
+  var selectedCards = [];
+  var turn = true;
+ 
+  $('back').on('click', function () {
+    if(turn){
+      $(this).toggleClass('back');
+      $(this).next().toggleClass('back');
+      selectedCards.push($(this).attr('name'));
+    if(selectedCards.length === 2){
+      turn = false;
+      if (memoryGame.checkIfPair(selectedCards[0],selectedCards[1])){
+        $('#pairs_guessed').text(memoryGame.pairsGuessed)
+        selectedCards = [];
+        $('div [class*=“front back”]').addClass('front-blocked')
+        turn = true;
+      } else {
+        selectedCards = []
+         setTimeout(function(){
+          $('div [class*=“front back”]:not(.front-blocked)').prev().toggleClass('back');
+          $('div [class*=“front back”]:not(.front-blocked)').removeClass('back');
+          turn = true;
+        }, 700)
+      }
+      $('#pairs_clicked').text(memoryGame.pairsClicked)
+    }
+    if(memoryGame.finished()){
+      $('h1').text('YOU WON!')
+    }
+  }
+  });
+ 
+  });
