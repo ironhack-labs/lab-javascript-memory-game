@@ -1,15 +1,20 @@
-// var MemoryGame = function (cards) {
-//   this.cards = cards;
-// };
+var MemoryGame = function (cards) {
+    this.cards = cards;
+    this.pair = [];
 
-// MemoryGame.prototype.shuffleCard = function (cardsArr) {
+    this.shuffleCard = function (cardsArr) {
+        this.cards = _.shuffle(cardsArr);
+    };
 
-// };
+    this.checkIfPair = function () {
+        return (this.pair[0] === this.pair[1]);
+    };
 
-// MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+    this.finished = function () {
+        if ($('#pairs_guessed').text() === "12")
+            alert("Congrats!!!!");
+    };
 
-// }
+};
 
-// MemoryGame.prototype.finished = function () {
 
-// };
