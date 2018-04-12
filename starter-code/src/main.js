@@ -49,6 +49,8 @@ document.getElementById('memory_board').innerHTML = html;
 // Bind the click event of each element to a function
 $('.back').on('click', function () {
   $(this).addClass("just-clicked");
+  // Block each card after clicking it so you cannot click it again
+  $(this).addClass('blocked');
   // Grab the name of the image as a unique identifier we will use to check the pair later
   var nameOfImage = $(this).attr("name");
   // Push the image name into the current pair array

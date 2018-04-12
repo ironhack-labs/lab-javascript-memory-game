@@ -37,20 +37,28 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
   if(firstCard === secondCard) {
     $('.back').addClass('blocked');
+    $('.just-clicked').addClass('permaBlocked');
     // Same as this.pairsGuessed += 1 and this.pairsGuessed = this.pairsGuessed + 1
     this.pairsGuessed++;
     $('#pairs_guessed').text(this.pairsGuessed);
+    $('.just-clicked').removeClass('just-clicked');
+    $('.back').removeClass('blocked');
   }
   else {
     $('.back').addClass('blocked');
-    $('.just-clicked').css("background", "#456783");
+
+    setTimeout(function() {
+      $('.just-clicked').css("background", "#456783");
+      $('.just-clicked').removeClass('just-clicked');
+      $('.back').removeClass('blocked');
+    }, 1000);   
   }
   this.currentPair = [];
-  // Remove the just-clicked class from anything that has it
-  $('.just-clicked').removeClass('just-clicked');
-  $('.back').removeClass('blocked');
+  this.finished();
 };
 
-// MemoryGame.prototype.finished = function () {
-
-// };
+MemoryGame.prototype.finished = function() {
+  if(this.pairsGuessed > 11) {
+    alert("You won!!!");
+  }
+};
