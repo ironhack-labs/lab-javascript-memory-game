@@ -35,13 +35,14 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
   if (firstCard === secondCard){
     $('.back').addClass('blocked');
+    $('.just-clicked').addClass('permaBlocked');
     this.pairsGuessed++;
     $('#pairs_guessed').text(this.pairsGuessed);
     $('.just-clicked').removeClass('just-clicked');
     $('.back').removeClass('blocked');
-    if(this.finished()){
-      alert("CONGRATULATIONS!!! Refresh the game to start over.");
-    }
+    // if(this.finished()){
+    //   alert("CONGRATULATIONS!!! Refresh the game to start over.");
+    // }
 } else {
 
     $('.back').addClass('blocked');
@@ -56,26 +57,20 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   }
 
     this.currentPair = [];
+    this.finished();
 }
 
-// MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-//   function checkIfPair(firstCard,secondCard) {
-//     if firstCard === secondCard {
-//     for (k = 0; k < pairsClicked.length; k ++) {
-//       var pairsClicked = 
-//     }
-//   }
-// }
-
-
 MemoryGame.prototype.finished = function () {
-  totalPairs = this.cards.length / 2;
-  if(this.pairsGuessed < totalPairs){
-    return false;
-  }
-  else{
-    return true;
-  }
+  // totalPairs = this.cards.length / 2;
+  // if(this.pairsGuessed < totalPairs){
+  //   return false;
+  // }
+  // else{
+  //   return true;
+  // }
+  if(this.pairsGuess > 11){
+  alert("Yay, you won!")
+}
 };
 
 
