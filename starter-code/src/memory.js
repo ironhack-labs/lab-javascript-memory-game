@@ -39,16 +39,19 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     $('.just-clicked').removeClass('just-clicked');
     $('.back').removeClass('blocked');
     if(this.finished()){
-      alert("CONGRATULATIONS!!! Refresh the game to start over.")
+      var waitForCelebration = function(){
+        alert("CONGRATULATIONS!!! Refresh the game to start over.")
+      };
+      setTimeout(waitForCelebration, 200);
     }
   }
   else{
-    var explode = function(){
+    var wait = function(){
       $('.just-clicked').parent().children().toggleClass("front back");
       $('.just-clicked').removeClass('just-clicked');
       $('.back').removeClass('blocked');
     };
-    setTimeout(explode, 2000);
+    setTimeout(wait, 500);
   }
   this.currentPair = [];
 }
