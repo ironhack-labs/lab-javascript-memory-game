@@ -68,23 +68,10 @@ MemoryGame.prototype.finished = function () {
   // else{
   //   return true;
   // }
-  if(this.pairsGuess > 11){
-  alert("Yay, you won!")
+  if(this.pairsGuessed > 11){
+  alert("Yay, you won!");
 }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
