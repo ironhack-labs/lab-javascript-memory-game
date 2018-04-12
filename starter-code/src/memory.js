@@ -21,18 +21,23 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     this.pairsClicked++;
     $('#pairs_clicked').text(this.pairsClicked);
     if (firstCard === secondCard){
-      this.pairsGuessed++;
-        $('.back').addClass('blocked');
+      $('.just-clicked').addClass('blocked');
+        this.pairsGuessed++;
         $('#pairs_guessed').text(this.pairsGuessed);
+        $('.just-clicked').removeClass('just-clicked');
       } else {
         $('.back').addClass('blocked');
-        $('just-clicked').css("background","#456783");
-      }
+        setTimeout(function(){
+          $('.just-clicked').css("background","#456783")
+          $('.just-clicked').removeClass('just-clicked')
+          $('.back').removeClass('blocked')}
+          , 1000);      
+        }
     this.pickedCards = [];
-    $('.just-clicked').removeClass('just-clicked');
-    $('.back').removeClass('blocked');
 }
 
 MemoryGame.prototype.finished = function () {
-  window.alert("You Win!!!");
+  if (this.pairsGuessed > 11){  
+    return alert("You Win!!!");
+  }
 }
