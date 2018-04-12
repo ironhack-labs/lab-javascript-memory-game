@@ -24,11 +24,13 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-
+// create a constructor function
+//create memoryGame.cards (this.cards = something)
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  var theGame = new MemoryGame(cards);
+  theGame.shuffleCard(theGame.cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+  theGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -43,6 +45,18 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
+  $(this).addClass("just-clicked");
+  $(this).addClass('blocked');
+
+  console.log (theGame.currentPair);
+  var nameOfImage = $(this).attr("name");
+
+  theGame.currentPair.push(nameOfImage);
+  $(this).css('background',"url(img/" + nameOfImage + ")");
+
+  if(theGame.currentPair.length === 2){
+    theGame.checkIfPair(theGame.currentPair[0], theGame.currentPair[1]);
+  }
    
 });
 });
