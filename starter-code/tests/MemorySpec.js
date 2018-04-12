@@ -105,16 +105,18 @@ describe('finished method', function () {
   });
 
   it('It should return false at the beggining of the game', function () {
-    let memoryGame = new MemoryGame([])
+    let memoryGame = new MemoryGame([1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12])
     expect(memoryGame.finished()).toBe(false);
   });
 
   it('It should return false if there still some pairs to be guessed', function () {
+    let memoryGame = new MemoryGame([1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12])
     memoryGame.pairsGuessed = 10;
     expect(memoryGame.finished()).toBe(false);
   });
 
   it('It should return true if all pairs were guessed', function () {
+    let memoryGame = new MemoryGame([1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12])
     memoryGame.pairsGuessed = 12;
     expect(memoryGame.finished()).toBe(true);
   });
