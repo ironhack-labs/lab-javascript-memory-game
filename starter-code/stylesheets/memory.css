@@ -29,6 +29,17 @@ html {
   pointer-events: none;
 }
 
+.permaBlocked {
+  pointer-events: none;
+}
+/* create peraBlocked rule in css to prevent click */
+
+/* //.card (first selector) find me something that has .front and blocked(or #blocked)- 
+prevents further clinking. */
+
+/* //pointer, opposite of an event listener, add this class and remove-when you click two, prevents clicking other cards
+essentially we re adding a removing classes */
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
