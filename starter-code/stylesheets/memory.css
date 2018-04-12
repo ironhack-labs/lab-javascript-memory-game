@@ -24,10 +24,10 @@ html {
 	padding:20px;
 	font-size:64px;
 }
-.card .front.blocked,
-.card .back.blocked {
-  pointer-events: none;
-}
+/*.card .front.blocked,*/
+/*.card .back.blocked {*/
+  /*pointer-events: none;*/
+/*}*/
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
@@ -67,3 +67,5 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+

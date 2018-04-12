@@ -27,8 +27,10 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCard(cards);
+
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+  memoryGame.cards.forEach(function (pic) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -38,13 +40,36 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
-
+  console.log(memoryGame.cards);
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  var objs = [];
+  $('.back').on('click', function () {
+      objs.push(this);
+      $(this).css('pointer-events','none');
+      var pictureName = $(this).attr('name');
+      memoryGame.pair.push(pictureName);
+      $(this).css('background', "url(img/" + pictureName);
+
+      setTimeout(function (){
+          if(memoryGame.pair.length === 2){
+            if (memoryGame.checkIfPair()) {
+                $('#pairs_guessed').text(Number($('#pairs_guessed').text()) + 1);
+                memoryGame.finished();
+            }
+            else{
+                $(objs[0]).css("background", '#456783');
+                $(objs[1]).css("background", '#456783');
+                $(objs[0]).css('pointer-events','');
+                $(objs[1]).css('pointer-events','');
+            }
+            objs = [];
+            memoryGame.pair = [];
+            $('#pairs_clicked').text(Number($('#pairs_clicked').text()) + 1);
+          }
+      }, 1000);
+  });
 });
 
 
