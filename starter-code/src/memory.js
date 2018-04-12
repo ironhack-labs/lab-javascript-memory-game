@@ -24,17 +24,25 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 	$('.back').addClass('blocked');
 
 	if(firstCard === secondCard) {
+		$('.just-clicked').addClass('permaBlocked');	
 		this.pairsGuessed++;
 		$('#pairs_guessed').text(this.pairsGuessed);
+		$(".just-clicked").removeClass("just-clicked");
+		$('.back').removeClass('blocked');
 	} else {
-		$('.just-clicked').css("background", "#456783");
+		setTimeout(function(){
+			$('.just-clicked').css("background", "#456783");
+			$(".just-clicked").removeClass("just-clicked");
+			$('.back').removeClass('blocked');
+		},1000);	
 	}
 
-	this.currentPair = [];
-	$(".just-clicked").removeClass("just-clicked");
-	$('.back').removeClass('blocked');
+	this.currentPair = [];	
+	this.finished();
 }
 
 MemoryGame.prototype.finished = function () {
-
+	if(this.pairsGuessed > 11) {
+		alert("Yay, you won!");
+	}
 };

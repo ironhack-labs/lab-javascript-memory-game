@@ -29,6 +29,10 @@ html {
   pointer-events: none;
 }
 
+.permaBlocked {
+  pointer-events: none;
+}
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
