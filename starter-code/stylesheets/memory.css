@@ -67,3 +67,6 @@ p {
   font-size: 20px;
   text-align: center;
 }
+.permaBlocked {
+  pointer-events: none;
+}
