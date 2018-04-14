@@ -26,25 +26,45 @@ var cards = [
 ];
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  var theGame = new MemoryGame(cards);
+  theGame.shuffleCard(theGame.cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+  theGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
+
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
     html += '</div>';
+
     html += '<div class="front" ';
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
+
     html += '</div>';
   });
 
   // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+    document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+    $('.back').on('click', function () {
+      //console.log(         VVV to test if working    )
+      //console.log(theGame.currentPair); to test
+      $(this).addClass("just-clicked");
+      $(this).addClass('blocked');
+      var nameOfImage = $(this).attr("name");
+      theGame.currentPair.push(nameOfImage);
+      //   ^^ pushing current pair into array
+      $(this).css('background', 'url(img/' + nameOfImage + ')');
+        //console.log(theGame.currentPair); to test
+       //if this is the first card jsut chill
+        // else if this is the second card compare the two
+        if(theGame.currentPair.length === 2){
+          theGame.checkIfPair(theGame.currentPair[0], theGame.currentPair[1]);
+        }
+
+     });
+
+
 });
 
 
