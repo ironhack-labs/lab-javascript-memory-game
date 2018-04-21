@@ -28,6 +28,10 @@ html {
 .card .back.blocked {
   pointer-events: none;
 }
+.blocked-for-real{
+pointer-events: none;
+ 
+}
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
