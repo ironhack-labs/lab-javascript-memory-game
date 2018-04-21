@@ -85,7 +85,7 @@ $(document).ready(function(){
               
               },1000);
         } 
-        console.log(memoryGame.finished())
+        
         memoryGame.finished();
 
         memoryGame.pickedCards = [];
