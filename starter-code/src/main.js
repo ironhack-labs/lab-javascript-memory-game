@@ -27,7 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  
+
   memoryGame.shuffleCard(cards)
   
   var html = '';
@@ -86,11 +86,7 @@ $(document).ready(function(){
               },1000);
         } 
         console.log(memoryGame.finished())
-        if(memoryGame.finished()){
-
-       
-            $("#memory_board").html("<h1>CONGRATS!</h1>")
-        }
+        memoryGame.finished();
 
         memoryGame.pickedCards = [];
 

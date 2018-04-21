@@ -17,7 +17,7 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     if(firstCard === secondCard){
 
         this.pairsGuessed++;
-
+        
         return true;
 
     }else{
@@ -27,21 +27,8 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 }
 
 MemoryGame.prototype.finished = function () {
-    var pairCount = ((this.cards).length);
- 
-    if(this.pairsGuessed == 0 ){
-        if(this.pairsClicked == 0){
-            return false;
-        }
+    if(this.pairsGuessed > 11){
+        alert("Winner!");
     }
-
-    if(this.pairsGuessed === pairCount){
-        return true;
-    }else{
-        return false;
-    }
-
-    return true;
-
 };
 
