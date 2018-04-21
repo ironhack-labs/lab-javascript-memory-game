@@ -16,10 +16,30 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+  // count every two clics
+  this.pairClicked ++;
+  $("#pairs_clicked").text(this.pairClicked);
+
   if(firstCard === secondCard){
-    console.log("match!");
+    $(".back").addClass("blocked");
+    $(".just-clicked").addClass("blocked-for-real");
+    // console.log("match!");
+    this.pairGuessed ++;
+    $("#pairs_guessed").text(this.pairGuessed);
+    $(".just-clicked").removeClass("just-clicked");
+    $(".back").removeClass("blocked");
+  }else{
+    $(".back").addClass("blocked");
+    setTimeout(function(){
+      $(".just-clicked").css("background", "#456783");
+      $(".just-clicked").removeClass("just-clicked");
+      $(".back").removeClass("blocked");
+    },1000);
+    
   }
-}
+
+  this.pickedCards = [];
+};
 
 // MemoryGame.prototype.finished = function () {
 

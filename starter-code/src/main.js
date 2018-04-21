@@ -47,6 +47,8 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
+  $(this).addClass("just-clicked");
+  $(this).addClass(" blocked");
   //  console.log("what is this: ",$(this));
   var nameOfTheImage = $(this).attr("name");
   // console.log("name is: ", nameOfTheImage);
