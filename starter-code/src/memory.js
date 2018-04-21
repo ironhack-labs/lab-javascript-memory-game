@@ -13,10 +13,38 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
   this.cards = _.shuffle(cardsArr);
 };
 
-// MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+    // count every 2 clicks
+    this.pairsPicked ++;
+    // updates span with id "pairs_clicked" with current numbers
+    $("#pairs_clicked").text(this.pairsPicked);
 
-// }
+  if (firstCard === secondCard){
+    $(".back").addClass("blocked");  
+    $(".just-clicked").addClass("blocked-for-real");
+    // counts the pairs
+   this.pairsGuessed ++;
+   $("#pairs_guessed").text(this.pairsGuessed);
+   $(".just-clicked").removeClass("just-clicked");
+   $(".back").removeClass("blocked");
+  }
+  else {
+    $(".back").addClass("blocked");
+    setTimeout(function(){
+      $(".just-clicked").css("background", "#456783");
+      $(".just-clicked").removeClass("just-clicked");
+      $(".back").removeClass("blocked");
+    }, 500);
+   
+  }
+  this.pickedCards = [];
+  this.finished();
+    
+};
 
-// MemoryGame.prototype.finished = function () {
-
-// };
+MemoryGame.prototype.finished = function () {
+  if (this.pairsGuessed === 12){
+    setTimeout(function(){
+      alert("YOU WIN");
+    },500);}
+};
