@@ -39,8 +39,17 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   }
 
   this.pickedCards = [];
+  this.finished();
 };
 
-// MemoryGame.prototype.finished = function () {
+MemoryGame.prototype.finished = function () {
 
-// };
+  if(this.pairGuessed > 12){
+    setTimeout(function(){
+      alert("Winner!!!");
+    },300);
+    
+
+    // console.log("You Win!");
+  }
+};
