@@ -12,8 +12,7 @@ html {
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
-}
-
+} 
 
 .card .back {
   background-color: #456783;
@@ -66,4 +65,16 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+div#memory_board{
+  position: relative;
+}
+div#memory_board.thinking:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
 }

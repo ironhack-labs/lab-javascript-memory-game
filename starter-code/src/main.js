@@ -23,10 +23,13 @@ var cards = [
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
-];
+]; 
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  
+  memoryGame.shuffleCard(cards)
+  
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -42,9 +45,60 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  $('.back').on('click', function () {
+
+    if(!$(this).hasClass('match') || !$(this).hasClass('blocked')){
+
+      var img = $(this).attr("name");
+
+      $(this).attr("style","background-image:url(img/"+img+");'");
+
+      $(this).addClass('blocked');
+
+      memoryGame.pickedCards.push(img);
+
+      if((memoryGame.pickedCards).length == 2){
+
+         //Prevent user from clicking multiple times while setTimeout is initiated
+        $('#memory_board').addClass('thinking')
+
+        $('#pairs_clicked').text(memoryGame.pairsClicked);
+
+        if(memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])){
+
+          $('#pairs_guessed').text(memoryGame.pairsGuessed);
+         
+          $('#memory_board').removeClass('thinking');
+
+          $('.back[name="'+memoryGame.pickedCards[0]+'"]').addClass('match');
+          $('.back[name="'+memoryGame.pickedCards[1]+'"]').addClass('match');
+
+        }else{
+
+              setTimeout(function(){
+
+                $('.blocked').removeClass('blocked');
+                
+                $('.back:not(.match)').attr('style','');
+
+                $('#memory_board').removeClass('thinking');
+              
+              },1000);
+        } 
+        console.log(memoryGame.finished())
+        if(memoryGame.finished()){
+
+       
+            $("#memory_board").html("<h1>CONGRATS!</h1>")
+        }
+
+        memoryGame.pickedCards = [];
+
+      }
+      
+    }
+
+  });
 });
 
 
