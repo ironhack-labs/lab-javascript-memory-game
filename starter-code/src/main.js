@@ -26,7 +26,10 @@ var cards = [
 ];
 
 $(document).ready(function(){
+  // Creates current game
   var memoryGame = new MemoryGame(cards);
+  // Current game gets the shuffled cards array
+  memoryGame.shuffleCard(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -43,7 +46,37 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).addClass('just-clicked');
+  $(this).addClass('blocked');
+
+  // console.log('what is this', $(this))
+  // targeting the unique name attribute for each image
+  let imageName = $(this).attr('name')
+  console.log('name is', imageName)
+
+  // background: url("images/blah.jpg")
+  // using css we are targeting the background property and as a second
+  // parameter url concatenated with the imageName, giving us full
+  // path to the image itself
+  $(this).css('background', "url(img/" + imageName + ")")
+
+  memoryGame.pickedCards.push(imageName);
+  // console.log('type is: ', typeof(memoryGame.pickedCards))
+  console.log('memoryGame.pickedCards: ', memoryGame.pickedCards);
+
+  // if the length of the array is 2, check if they're a pair
+  if(memoryGame.pickedCards.length === 2){
+    // console.log('Checking the pairs');
+    // our arrau has only two elements giving us the chance to target them
+    // through the 0 and 1 position
+    let firstOfArray = memoryGame.pickedCards[0];
+    let secondOfArray = memoryGame.pickedCards[1];
+    // console.log('1: ', firstOfArray, '2: ', secondOfArray)
+    // passing the variables to check if they match
+    memoryGame.checkIfPair(firstOfArray, secondOfArray)
+  }
+
+
 });
 });
 
