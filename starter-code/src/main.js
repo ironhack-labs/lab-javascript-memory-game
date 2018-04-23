@@ -26,16 +26,21 @@ var cards = [
 ];
 
 $(document).ready(function(){
+  var theGame = new MemoryGame(cards);
+  theGame.shuffleCard(theGame.cards);
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
+
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
     html += '</div>';
+
     html += '<div class="front" ';
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
+
     html += '</div>';
   });
 
@@ -43,6 +48,21 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
+  $(this).addClass('just-clicked');
+  $(this).addClass('blocked');
+  // console.log(theGame.currentPair);
+  // getting name of image
+  var nameOfImage = $(this).attr("name");
+  theGame.currentPair.push(nameOfImage);
+  // console.log(theGame.currentPair);
+  $(this).css('background',   "url(img/" + nameOfImage + ")" );
+
+  if(theGame.currentPair.length  === 2){
+    theGame.checkIfPair(theGame.currentPair[0], theGame.currentPair[1]);
+    $(this).addClass('blocked');
+    console.log("hi")
+  }
+
    
 });
 });
