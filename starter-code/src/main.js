@@ -41,10 +41,36 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  
+  let arrayHeroes = $(".back").toArray();
+
   // Bind the click event of each element to a function
+
 $('.back').on('click', function () {
-   
-});
+
+  let heroJpg = $(this).attr("name");
+  let backgroundUrlHero = $(this).next().attr("style");
+
+  // Hasta aquí voy
+  // Hay que voltear la carta, verificar en el loop de divs, puntualmente en lass class Back, si hay otro héroe.jpg también. Si sí, entonces se quedan volteados, se incrementa pairsClicked y se incrementa pairsGuessed. Si no, se les remueve el background inline (style) que se le había puesto y se incrementa pairsClicked.
+
+  $(this).css("background", "url('img/" + heroJpg + "')");
+
+    let hola = arrayHeroes.filter(function(e) {
+      
+      return e == $(this);
+    });
+
+    console.log(hola);
+    
+
+  });
 });
 
+
+let memoryGame = new MemoryGame();
+
+
+
+console.log(memoryGame.checkIfPair(cards[0].name, cards[12].name ))
 
