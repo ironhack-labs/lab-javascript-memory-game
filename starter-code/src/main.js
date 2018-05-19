@@ -29,27 +29,51 @@ $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
-
-    html += '<div class= "card" id="card_' + pic.name + '">';
-    
-    html += '<div class="back"';
+    html += '<div class= "card" id="card_' + pic.name + '">';    
+    html += '<div class="back"';    
     html += '    name="'       + pic.img +  '">';
     html += '</div>';
-
-    // html += '<div class="front" ';
-    // html += 'style="background: url(img/' + pic.img + ') no-repeat">';
-    // html += '</div>';
-
+    html += '<div class="front" ';
+    html += 'style="background: url(img/' + pic.img + ') no-repeat">';
+    html += '</div>';
     html += '</div>';
   });
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-  $('.back').on('click', function () {
-    console.log($(this).removeClass("back"));
-    $(this).removeClass("back");
-    $(this).hide();
+  $('.back').on('click', function (e) {
+    $("#pairs_clicked").text(memoryGame.pairsGuessed);
+    $(this).css("display", "none");
+    $(this).siblings().addClass("back");
+    // console.log($(this).name);
+    // console.log($(this).img);
+    // console.log($(this).index);
+    // console.log($(this).pic);
+    // console.log(cards);
+    //console.log(cards[0]);
+    //console.log($('.card').length);
+    console.log($(e.target));
+    //console.log($(e.target).attributes.value);
+    console.log($(this).attr("name"));
+    memoryGame.pickedCards.push($(this).attr("name"));
+    console.log(memoryGame.pickedCards);
+    //console.log(memoryGame.pickedCards.length);
+    if ((memoryGame.pickedCards.length) == 2){
+      
+      if( memoryGame.checkIfPair(memoryGame.pickedCards[0],
+                                 memoryGame.pickedCards[1])){
+        memoryGame.pairsGuessed = memoryGame.pairsGuessed + 1;
+        console.log("adivinaste..." + memoryGame.pairsGuessed);        
+        $("#pairs_guessed").text(memoryGame.pairsGuessed);
+      } else {
+        console.log("fallaste..." + memoryGame.pairsGuessed);                       
+      }
+      memoryGame.pickedCards = [];
+    }
+    if (memoryGame.finished){
+      console.log("Juego Terminado");
+    }
   });
 });
 
