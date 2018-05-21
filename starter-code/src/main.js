@@ -35,7 +35,7 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function (elem, index) {
     html += '<div class= "card" id="card_' + elem.name + '">';
     html += '<div class="back"';
-    html += '<div data='+index+'';
+    html += 'data='+index+'';
     html += '    name="'       + elem.img +  '">';
     html += '</div>';
     html += '<div class="front" ';

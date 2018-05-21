@@ -41,7 +41,9 @@ MemoryGame.prototype.checkIfPair = function ($firstCard, $secondCard) {
       this.flipCard($card1, $card2);
       this.msg('Try again', 'wrong', 1500);      
     }
-  }  
+  }  else{
+    this.msg('Dont click in the same card', 'wrong', 1500);      
+  }
 };
 
 //message
@@ -56,11 +58,14 @@ MemoryGame.prototype.msg = function (mensaje, type, tiempo) {
 
 
 //finish
-MemoryGame.prototype.flipCard = function (card, card2) {
-  $(card).toggleClass('back front');
-  $(card).next().addClass('front back');
+MemoryGame.prototype.flipCard = function (card ,card2) {
+  // $(card).toggleClass('back front');
+  // $(card).next().addClass('front back');
   // $(card2).toggleClass('back front');
   // $(card2).next().addClass('front back');
+  $(card).find('.back').removeClass('back').addClass('blocked');
+  $(card).find(".front").addClass("back");
+  
 };
 
 
