@@ -22,23 +22,27 @@ MemoryGame.prototype.addCardToPickedCards = function (card) {
 };
 
 //check if match
-MemoryGame.prototype.checkIfPair = function ($firstCard, $secondCard) {  
-  this.pickedCards = [];
-  var $card1 = $firstCard.children()[0];
-  var $card2 = $secondCard.children()[0];
+MemoryGame.prototype.checkIfPair = function (card1, card2) {  
   
-  if ($card1.getAttribute('data') !== $card2.getAttribute('data')) {
+  this.pickedCards = [];  
+  var dataCard1 = $(card1).attr('data');
+  var dataCard2 = $(card2).attr('data');
+  var idCard1   = $(card1).attr('id');
+  var idCard2   = $(card2).attr('id');
+  
+  
+  if (dataCard1 !== dataCard2) {
     
     this.pairsClicked++;
     $('#pairs_clicked').text(this.pairsClicked);
     
-    if ($firstCard.attr('id') === $secondCard.attr('id')) {     
+    if (idCard1 === idCard2) {     
       this.pairsGuessed++;
       $('#pairs_guessed').text(this.pairsGuessed); 
       this.msg('YOUT FOUND A MATCH', 'success', 1500);
       
     } else{
-      this.flipCard($card1, $card2);
+      this.flipCard(card1, card2);
       this.msg('Try again', 'wrong', 1500);      
     }
   }  else{
@@ -56,19 +60,24 @@ MemoryGame.prototype.msg = function (mensaje, type, tiempo) {
   }, tiempo);
 };
 
+//flip cards
+MemoryGame.prototype.flipCard = function (card1, card2) {
+  $(card1).find('.back').removeClass('back');
+  $(card1).find(".front").addClass("back");
+  $(card2).find('.back').removeClass('back');
+  $(card2).find(".front").addClass("back");
+    
+  setTimeout(function(){
+    $(card1).children(0).addClass('back');
+    $(card1).find(".front").removeClass("back");
+    $(card2).children(0).addClass('back');
+    $(card2).find(".front").removeClass("back");
 
-//finish
-MemoryGame.prototype.flipCard = function (card ,card2) {
-  // $(card).toggleClass('back front');
-  // $(card).next().addClass('front back');
-  // $(card2).toggleClass('back front');
-  // $(card2).next().addClass('front back');
-  $(card).find('.back').removeClass('back').addClass('blocked');
-  $(card).find(".front").addClass("back");
+  }, 1500);
   
 };
 
-
+//finish
 MemoryGame.prototype.finished = function () {
   return false;
   

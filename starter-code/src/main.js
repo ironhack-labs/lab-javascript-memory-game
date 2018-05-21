@@ -33,9 +33,8 @@ $(document).ready(function(){
   
   var html = '';
   memoryGame.cards.forEach(function (elem, index) {
-    html += '<div class= "card" id="card_' + elem.name + '">';
+    html += '<div class= "card" data="'+index+'" id="card_' + elem.name + '">';
     html += '<div class="back"';
-    html += 'data='+index+'';
     html += '    name="'       + elem.img +  '">';
     html += '</div>';
     html += '<div class="front" ';
@@ -49,16 +48,16 @@ $(document).ready(function(){
   
   // Bind the click event of each element to a function
   $('.card').on('click', function (e) {
-    memoryGame.flipCard(e.target, null);
-
-
+    memoryGame.flipCard(this, null);
+    
+    
     memoryGame.addCardToPickedCards($(this));
     
-    var $card1 = memoryGame.pickedCards[0];
-    var $card2 = memoryGame.pickedCards[1];
+    var card1 = memoryGame.pickedCards[0];
+    var card2 = memoryGame.pickedCards[1];
     
     if (memoryGame.pickedCards.length === 2) {
-      memoryGame.checkIfPair($card1, $card2);      
+      memoryGame.checkIfPair(card1, card2);      
     }
     
   });
