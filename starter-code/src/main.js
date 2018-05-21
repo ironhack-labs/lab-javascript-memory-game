@@ -10,7 +10,6 @@ var cards = [
   { name: 'spiderman',       img: 'spiderman.jpg' },
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
-  { name: 'thor',            img: 'thor.jpg' },
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -22,29 +21,49 @@ var cards = [
   { name: 'spiderman',       img: 'spiderman.jpg' },
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
+  { name: 'thor',            img: 'thor.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
 $(document).ready(function(){
+  
   var memoryGame = new MemoryGame(cards);
+  
+  // memoryGame.shuffleCard(cards);
+  
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
-    html += '<div class= "card" id="card_' + pic.name + '">';
+  memoryGame.cards.forEach(function (elem, index) {
+    html += '<div class= "card" id="card_' + elem.name + '">';
     html += '<div class="back"';
-    html += '    name="'       + pic.img +  '">';
+    html += '<div data='+index+'';
+    html += '    name="'       + elem.img +  '">';
     html += '</div>';
     html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + ') no-repeat">';
+    html += 'style="background: url(img/' + elem.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
   });
-
+  
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+  
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  $('.card').on('click', function (e) {
+    memoryGame.flipCard(e.target, null);
+
+
+    memoryGame.addCardToPickedCards($(this));
+    
+    var $card1 = memoryGame.pickedCards[0];
+    var $card2 = memoryGame.pickedCards[1];
+    
+    if (memoryGame.pickedCards.length === 2) {
+      memoryGame.checkIfPair($card1, $card2);      
+    }
+    
+  });
+  
+  
 });
 
 
