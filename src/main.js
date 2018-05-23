@@ -29,7 +29,8 @@ $(document).ready(function(){
   
   var memoryGame = new MemoryGame(cards);
   
-  // memoryGame.shuffleCard(cards);
+  memoryGame.shuffleCard(cards);
+  
   
   var html = '';
   memoryGame.cards.forEach(function (elem, index) {
@@ -47,9 +48,7 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   
   // Bind the click event of each element to a function
-  $('.card').on('click', function (e) {
-    memoryGame.flipCard(this, null);
-    
+  $('.card').on('click', function (e) {   
     
     memoryGame.addCardToPickedCards($(this));
     
