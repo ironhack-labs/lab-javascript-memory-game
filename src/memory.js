@@ -18,7 +18,7 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
   return cardsArr;
 };
 
-//add card
+//add card.
 MemoryGame.prototype.addCardToPickedCards = function (card) {  
   this.pickedCards.push(card); 
   this.flipCard(card);
