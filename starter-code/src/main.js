@@ -27,9 +27,9 @@ var cards = [
 
 $(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
-  //var shuffleCards = memoryGame.shuffleCard(memoryGame.cards);
+  var shuffleCards = memoryGame.shuffleCard(memoryGame.cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+    shuffleCards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="' + pic.img + '">';
@@ -83,7 +83,7 @@ function checkPairFalse(pair) {
     $(pairsToRemove[1][0].children[1]).removeClass('back');
     $(pairsToRemove[1][0].children[1]).addClass('front');
 
-  }, 1000)
+  }, 900)
 }
 
 function check(pair, memoryGame) {

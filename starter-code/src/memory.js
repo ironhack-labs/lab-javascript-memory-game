@@ -21,17 +21,17 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     if (firstCard === secondCard) {
         this.pairsGuessed++;
         return true;
-    } else{
+    } else {
         return false;
     }
 };
 
- MemoryGame.prototype.finished = function () {
-     if(this.pairsGuessed ===0){
+MemoryGame.prototype.finished = function () {
+    if (this.pairsGuessed === 0) {
         return false
-     } else if(this.pairsGuessed === (this.cards.length)/2){
+    } else if (this.pairsGuessed === (this.cards.length) / 2) {
         return true;
-    }else{
+    } else {
         return false;
     }
- };
+};
