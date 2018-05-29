@@ -38,13 +38,26 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
-
+  
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  $('.card').on('click', function () {
+    $(this).toggleClass('back');
+    console.log(this)
+  });
+
+
+  // this.pickedCards.push(this)
+  // if (this.pickedCards.length === 2)
+  //   console.log("check if match")
+
+    
+  // Init Game (Do I need something like this???) 
+  // $(".card").on('click', function (){
+    
+  // })
+
 });
 
 
