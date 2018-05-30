@@ -1,6 +1,6 @@
 var MemoryGame = function (cards) {
-  this.cards = cards;
-  // this.cards = this.shuffleCard(cards);
+  // this.cards = cards;
+  this.cards = this.shuffleCard(cards);
   this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
