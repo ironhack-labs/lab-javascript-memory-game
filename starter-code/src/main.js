@@ -50,10 +50,17 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function () {
+    
+    if (memoryGame.pickedCards.length === 2) {
+      return;
+    }
+    
     if(memoryGame.pickedCards.length < 2){
       $(this).toggleClass('front back');
       $(this).next().toggleClass('front back');
       $(this).parent().addClass('picked');
+      
+      
       memoryGame.pickedCards.push($(this).parent().attr('data-name'));
       console.log(memoryGame.pickedCards);
     }
@@ -63,30 +70,30 @@ $(document).ready(function(){
       var isMatch =  memoryGame.checkIfPair(firstCard, secondCard);
       console.log(isMatch);
       
-      //update the scoreboard
-      //reset pickedCars array
-      memoryGame.pickedCards= [];
+      updateScore();
       
-      //if a pair, do this
       
       
       //if not a pair, flip them back;
-      setTimeout(function(){
-        if(!isMatch){
+      if(!isMatch){
+        setTimeout(function(){
+          
           $('.picked').children().toggleClass('front back');
-        }
-        $('.picked').removeClass('picked')
-      },2000);
-      
-      
-      
+          memoryGame.pickedCards= [];
+          $('.picked').removeClass('picked');
+        },2000);
+      }else{
+        memoryGame.pickedCards= [];
+        $('.picked').removeClass('picked');
+      }
     }
     
     
-    
-    
-    
   });
+  function updateScore() {
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+  }
   
 });
 
