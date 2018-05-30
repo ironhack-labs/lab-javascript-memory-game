@@ -30,7 +30,7 @@ html {
 }
 
 /* Added this... */
-.card .front {
+/* .card .front {
   position: absolute;
   top: 45px;
   left: 7px;
@@ -40,12 +40,13 @@ html {
 	margin:10px;
 	padding:20px;
   font-size:64px;
-}
+} */
+
 
 /* Added this... */
-.hide {
-  z-index: -1;
-}
+/* .hideCard {
+  visibility: hidden;
+} */
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;

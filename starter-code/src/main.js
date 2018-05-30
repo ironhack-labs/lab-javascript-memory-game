@@ -1,27 +1,27 @@
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four',  img: 'fantastic-four.jpg' },
+  { name: 'captain_america', img: 'captain-america.jpg' },
+  { name: 'fantastic_four',  img: 'fantastic-four.jpg' },
   { name: 'flash',           img: 'flash.jpg' },
-  { name: 'green arrow',     img: 'green-arrow.jpg' },
-  { name: 'green lantern',   img: 'green-lantern.jpg' },
+  { name: 'green_arrow',     img: 'green-arrow.jpg' },
+  { name: 'green_lantern',   img: 'green-lantern.jpg' },
   { name: 'ironman',         img: 'ironman.jpg' },
   { name: 'spiderman',       img: 'spiderman.jpg' },
   { name: 'superman',        img: 'superman.jpg' },
-  { name: 'the avengers',    img: 'the-avengers.jpg' },
+  { name: 'the_avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' },
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four',  img: 'fantastic-four.jpg' },
+  { name: 'captain_america', img: 'captain-america.jpg' },
+  { name: 'fantastic_four',  img: 'fantastic-four.jpg' },
   { name: 'flash',           img: 'flash.jpg' },
-  { name: 'green arrow',     img: 'green-arrow.jpg' },
-  { name: 'green lantern',   img: 'green-lantern.jpg' },
+  { name: 'green_arrow',     img: 'green-arrow.jpg' },
+  { name: 'green_lantern',   img: 'green-lantern.jpg' },
   { name: 'ironman',         img: 'ironman.jpg' },
   { name: 'spiderman',       img: 'spiderman.jpg' },
   { name: 'superman',        img: 'superman.jpg' },
-  { name: 'the avengers',    img: 'the-avengers.jpg' },
+  { name: 'the_avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
@@ -43,21 +43,46 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.card').on('click', function () {
-    $(this).toggleClass('back');
-    console.log(this)
-  });
-
-
-  // this.pickedCards.push(this)
-  // if (this.pickedCards.length === 2)
-  //   console.log("check if match")
-
     
-  // Init Game (Do I need something like this???) 
-  // $(".card").on('click', function (){
+    $(this).children().toggleClass('back');
+    $(this).children().toggleClass('front');
+    var that = this;
     
-  // })
-
+    memoryGame.pickedCards.push($(this).attr("id"));
+    
+    if (memoryGame.pickedCards.length === 1) {
+      var first = that;
+      setTimeout(function(){ 
+        $(first).children().toggleClass('back');
+        $(first).children().toggleClass('front');
+        }, 1000);
+    }
+    
+    console.log(memoryGame.pickedCards)
+    
+    if (memoryGame.pickedCards.length === 2) {
+      var c1 = memoryGame.pickedCards[0];
+      var c2 = memoryGame.pickedCards[1];
+      if (memoryGame.checkIfPair(c1,c2)) {
+        console.log("flip cards back up")
+        var findId = "#" + c1;
+        $(findId).children().toggleClass('back');
+        $(findId).children().toggleClass('front');
+        if (memoryGame.finished())
+        $("#winner").text("You Win!!");
+      } else {
+        setTimeout(function(){ 
+          $(that).children().toggleClass('back');
+          $(that).children().toggleClass('front');
+        }, 1000);
+      }
+    }
+    
+    
+    
+    //   $(i).toggleClass('back');
+    //   $(i).toggleClass('front');
+  })
 });
 
 

@@ -1,5 +1,6 @@
 var MemoryGame = function (cards) {
   this.cards = this.shuffleCard(cards);
+    // this.cards = cards;
   this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
@@ -7,7 +8,6 @@ var MemoryGame = function (cards) {
 
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
-  // Fisher-Yates, from https://bost.ocks.org/mike/shuffle/
 
     var copy = [], n = cardsArr.length, i;
     // While there remain elements to shuffle…
@@ -28,11 +28,18 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  var same = (firstCard === secondCard)
   this.pairsClicked += 1;
-  if (same)
+  $("#pairs_clicked").text(this.pairsClicked);
+  console.log("clicked ", this.pairsClicked);
+  this.pickedCards = [];
+  if (firstCard == secondCard) {
     this.pairsGuessed += 1;
-  return same
+    $("#pairs_guessed").text(this.pairsGuessed);
+    console.log("guessed ", this.pairsGuessed)
+    console.log('same!')
+    return true
+  }
+  return false
 }
 
 
