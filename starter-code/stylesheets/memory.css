@@ -29,24 +29,6 @@ html {
   pointer-events: none;
 }
 
-/* Added this... */
-/* .card .front {
-  position: absolute;
-  top: 45px;
-  left: 7px;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-  font-size:64px;
-} */
-
-
-/* Added this... */
-/* .hideCard {
-  visibility: hidden;
-} */
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
