@@ -41,10 +41,16 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
 
+  // Bind the click event of each element to a function
   $('.back').on('click', function () {
-    $(this).hide();
-    $(this).siblings().show();
+    memoryGame.pickedCards.push($(this));
+    memoryGame.flipCard($(this));
+    memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+    if (memoryGame.finished()) {
+      $('#score').append('<p>YOU WIN!</p>');
+    }
   });
 });

@@ -19,12 +19,23 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  this.pairsClicked++
-  if (firstCard === secondCard) {
-    this.pairsGuessed++
-    return true;
+  var me = this;
+  if (this.checkTurn()) {
+      this.pairsClicked++
+    if (firstCard.attr('name') === secondCard.attr('name')) {
+      this.pairsGuessed++
+      this.pickedCards[0].addClass('front.blocked');
+      this.pickedCards[1].addClass('front.blocked');
+      this.pickedCards = [];
+      return true;
+    }
+    setTimeout(function () {
+      me.flipCard(me.pickedCards[0]);
+      me.flipCard(me.pickedCards[1]);
+      me.pickedCards = [];
+      return false;
+    }, 1500);
   }
-  return false;
 }
 
 MemoryGame.prototype.finished = function () {
@@ -32,4 +43,14 @@ MemoryGame.prototype.finished = function () {
     return true;
   }
   return false;
-};
+}
+
+MemoryGame.prototype.checkTurn = function () {
+  if (this.pickedCards.length === 2 ) { return true; }
+  return false;
+}
+
+MemoryGame.prototype.flipCard = function (card) {
+  card.toggle();
+  card.siblings().toggle();
+}
