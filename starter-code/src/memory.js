@@ -1,31 +1,11 @@
 var MemoryGame = function (cards) {
-  this.cards = cards;
+  this.cards = this.shuffleCard(cards);
   this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
 };
 
 MemoryGame.prototype._shuffleArray = function (array) {
-  //array i barrejat (buit)
-  //barrejat[0] = array[random]
-  //array.splice(random, 1)
-
-  // var arrayCopia = [];
-  // for (var j = 0; j<array.length; j++)
-  // {
-  //   arrayCopia[j] = array[j];
-  // }
-  // var barrejat = [];
-  // var iterations = arrayCopia.length;
-  // for (var i=0; i<iterations; i++)
-  // {
-  //   var random = Math.floor(Math.random() * arrayCopia.length);
-  //   barrejat[i] = arrayCopia[random];
-  //   arrayCopia.splice(random, 1);
-  // }
-
-  // return barrejat;
-
   var m = array.length,
   t,
   i;
