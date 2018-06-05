@@ -110,7 +110,8 @@ describe('finished method', function () {
   });
 
   it('It should return false if there still some pairs to be guessed', function () {
-    memoryGame.pairsGuessed = 10;
+    //MARIONA changed memoryGame.pairsGuessed = 10;
+    memoryGame.pairsGuessed = 5;
     expect(memoryGame.finished()).toBe(false);
   });
 

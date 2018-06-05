@@ -67,3 +67,30 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.front
+{
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+.front, .selected .back
+{
+  display: none;
+}
+.selected  .front, .back
+{
+  display: block;
+}
+
+.guessed .back
+{
+  display: none !important;
+}
+.guessed  .front
+{
+  display: block !important;
+}
