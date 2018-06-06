@@ -37,36 +37,35 @@ $(document).ready(function () {
     html += '</div>';
     html += '</div>';
   });
-});
+
 
   // Add all the div's to the HTML
-document.getElementById('memory_board').innerHTML = html;
-// Bind the click event of each element to a function
-$('.back').on('click', function () {
-  var paired;
+  document.getElementById('memory_board').innerHTML = html;
+  // Bind the click event of each element to a function
+  $('.back').on('click', function () {
 
-  if (!memoryGame.finished()) {
-    if (memoryGame.pickedCards.length < 2) {
-      memoryGame.pickedCards.push($(this).parent().attr("id"));
-      $(this).toggleClass('front back');
-      $(this).next().toggleClass('front back');
+    if (!memoryGame.finished()) {
+      if (memoryGame.pickedCards.length < 2) {
+        memoryGame.pickedCards.push($(this));
+        $(this).parent().toggleClass('selected'); //mark div card as selected
+        $(this).toggleClass('front back');        //change div front to back
+        $(this).next().toggleClass('front back'); //change div back to front
 
-      if (memoryGame.pickedCards.length == 2) {
-        paired = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
-
-        if (paired) {
-
-          $(this).toggleClass('.blocked');
-          $(this).next().toggleClass('blocked');
-        } else {
-          $(this).toggleClass('front back');
-          $(this).next().toggleClass('front back');
-
+        if (memoryGame.pickedCards.length === 2) { //two cards selected. Compare id text
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().attr("id"), memoryGame.pickedCards[1].parent().attr("id"))) {
+            //alert("dos cartas e iguales");
+            $(memoryGame.pickedCards[0]).toggleClass('.blocked');
+          } else {
+          for(var i=0;i<memoryGame.pickedCards.length;i++){  //alert('dos cartas y diferents');
+            memoryGame.pickedCards[i].toggleClass('front back'); //change div front to back
+            memoryGame.pickedCards[i].next().toggleClass('front back');
+            memoryGame.pickedCards[i].toggleClass('selected');} //mark div card as selected
+          }
+          $(".pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+          $(".pairs_clicked").innerHTML = memoryGame.pairsClicked;
+          memoryGame.pickedCards.length = 0; //Clear pair
         }
-        $(".pairs_guessed").innerHTML = memoryGame.pairsGuessed;
-        $(".pairs_clicked").innerHTML = memoryGame.pairsClicked;
-        memoryGame.pickedCards.length = 0; //Clear pair
       }
     }
-  }
+  });
 });
