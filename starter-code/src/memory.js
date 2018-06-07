@@ -1,16 +1,16 @@
 var MemoryGame = function (cards) {
-  this.cards = cards;
+  this.cards = this._shuffleCard(cards);
   this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
 }
 
-MemoryGame.prototype.shuffleCard = function (cardsArr) {
+MemoryGame.prototype._shuffleCard = function (cardsArr) {
   var cardsArray = [];
-  var cardsTotal = cardsArr.length;
+  var cardsTotal = cardsArr.length-1;
   var cardTemp;
 
-  cardsArray = cards.slice(0);
+  cardsArray = cards.slice(0); //copy the array
 
   //implementation of the Fisher-Yates algorithm
   for (var iterator = cardsTotal; iterator > 0; iterator--) {
