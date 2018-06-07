@@ -43,29 +43,28 @@ $(document).ready(function () {
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function () {
+    if (memoryGame.pickedCards.length < 2) {
+      memoryGame.pickedCards.push($(this).parent().attr("id"));
+      $(this).parent().toggleClass('selected'); //mark div card as selected
+      $(this).toggleClass('front back');        //change div front to back
+      $(this).next().toggleClass('front back'); //change div back to front
 
-    if (!memoryGame.finished()) {
-      if (memoryGame.pickedCards.length < 2) {
-        memoryGame.pickedCards.push($(this));
-        $(this).parent().toggleClass('selected'); //mark div card as selected
-        $(this).toggleClass('front back');        //change div front to back
-        $(this).next().toggleClass('front back'); //change div back to front
-
-        if (memoryGame.pickedCards.length === 2) { //two cards selected. Compare id text
-          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().attr("id"), memoryGame.pickedCards[1].parent().attr("id"))) {
-            //alert("dos cartas e iguales");
-            $(memoryGame.pickedCards[0]).toggleClass('.blocked');
-          } else {
-          for(var i=0;i<memoryGame.pickedCards.length;i++){  //alert('dos cartas y diferents');
-            memoryGame.pickedCards[i].toggleClass('front back'); //change div front to back
-            memoryGame.pickedCards[i].next().toggleClass('front back');
-            memoryGame.pickedCards[i].toggleClass('selected');} //mark div card as selected
-          }
-          $(".pairs_guessed").innerHTML = memoryGame.pairsGuessed;
-          $(".pairs_clicked").innerHTML = memoryGame.pairsClicked;
-          memoryGame.pickedCards.length = 0; //Clear pair
+      if (memoryGame.pickedCards.length === 2) { //two cards selected. Compare id text
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+          $('.selected').children().toggleClass('.blocked');
+          $('.selected').toggleClass('selected');
+        } else {
+          setTimeout(function () {                 //delay for back the cards
+            $('.selected').children().children().toggleClass('front back');
+            $('.selected').children().toggleClass('front back');
+            $('.selected').toggleClass('selected');
+          }, 500);
         }
+        memoryGame.pickedCards = []; //Clear pair
       }
+      $("#pairs_guessed").text(memoryGame.pairsGuessed);
+      $("#pairs_clicked").text(memoryGame.pairsClicked);
     }
+    if (memoryGame.finished()) { alert('\tCongratulations!!! end of game.\t\n \tall couples found\t') };
   });
 });
