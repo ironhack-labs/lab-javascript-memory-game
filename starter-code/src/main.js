@@ -43,8 +43,31 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  $(this).hide()
+  $(this).parent().find('.front').addClass('back');
+  if (memoryGame.pickedCards.length === 0) {
+    // if it is the first card that I pick
+    memoryGame.pickedCards.push($(this).attr('name'))
+  } else {
+    // is there's already a card in pickedCards
+    // if (memoryGame.pickedCards[0] === $(this).attr('name'))
+    if (memoryGame.checkIfPair(memoryGame.pickedCards[0], $(this).attr('name'))) {
+      memoryGame.pickedCards = [];
+      memoryGame.finished();
+    } else {
+      $(this).show()
+      $(this).parent().find('.front').removeClass('back');
+      memoryGame.pickedCards[0]
+    }
+
+
+  }
+  onclick
+  if (guessedPair) return result
+  if (guessFailed) return result2
 });
 });
+
+
 
 
