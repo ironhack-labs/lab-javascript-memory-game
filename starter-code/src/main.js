@@ -24,8 +24,11 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
+function reloadPage(){
+  location.reload();
+}
 
-$(document).ready(function(){
+$(document).ready(function(){  
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
@@ -37,12 +40,61 @@ $(document).ready(function(){
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
+
   });
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
-$('.back').on('click', function () {
+  // Bind the click event of each element to a 
+ 
+  var pickedCardCount = 0;
+  var firstCard;
+  var secondCard;
+  var pairsClicked = 0;
+  var pairsGuessed = 0;
+$('.card').on('click', function () { 
+  document.getElementById('pairs_clicked').innerHTML = pairsClicked;
+   $(this.children).toggleClass('back front');
+  
+  if (pickedCardCount === 0){
+    pickedCardCount =+ 1; 
+    firstCard = this;
+    return false
+  }
+  else { 
+  pairsClicked++;
+  document.getElementById('pairs_clicked').innerHTML = pairsClicked;
+  secondCard = this
+   var id1 = ($(firstCard).attr('id'))
+   var id2 = ($(secondCard).attr('id'))
+   if (id1 === id2){
+    pairsGuessed++;
+    document.getElementById('pairs_guessed').innerHTML = pairsGuessed;
+     console.log("CORRECT");
+   pickedCardCount= 0; 
+
+    if (pairsGuessed === 12){
+      alert("WIN");
+          reloadPage();
+    
+    }
+   
+     return true
+   }
+   else { console.log("NOPE");
+
+   setTimeout(
+    function() 
+    {
+      $(secondCard.children).toggleClass('back front');
+      $(firstCard.children).toggleClass('back front');
+     
+    }, 500);
+
+   pickedCardCount = 0; 
+   return false}
+  }
+
    
 });
 });
