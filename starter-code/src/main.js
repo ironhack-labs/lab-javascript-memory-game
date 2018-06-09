@@ -25,7 +25,8 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+
+$(document).ready(function(){  
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
@@ -37,6 +38,7 @@ $(document).ready(function(){
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
+
   });
 
   // Add all the div's to the HTML

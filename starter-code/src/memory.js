@@ -1,27 +1,28 @@
 var MemoryGame = function (cards) {
-this.cards = cards;
-this.pickedCards = [];
-this.pairsClicked = 0;
-this.pairsGuessed = 0;
-
-
+  this.cards = cards;
+  this.pickedCards = [];
+  this.pairsClicked = 0;
+  this.pairsGuessed = 0;
+  this.shuffleCard();
 };
 
 
 
- MemoryGame.prototype.shuffleCard = function (cardsArr) {
+ MemoryGame.prototype.shuffleCard = function () {
    /**
  * Randomize array element order in-place.
  * Using Durstenfeld shuffle algorithm.
  */
 
-  for (var i = cardsArr.length - 1; i > 0; i--) {
+  console.log("barajando")
+
+  for (var i = this.cards.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      var temp = cardsArr[i];
-      cardsArr[i] = cardsArr[j];
-      cardsArr[j] = temp;
+      var temp = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = temp;
   }
-  return cardsArr;
+  return this.cards;
 
  };
 
