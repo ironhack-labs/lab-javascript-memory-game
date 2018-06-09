@@ -24,7 +24,9 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-
+function reloadPage(){
+  location.reload();
+}
 
 $(document).ready(function(){  
   var memoryGame = new MemoryGame(cards);
@@ -48,7 +50,10 @@ $(document).ready(function(){
   var pickedCardCount = 0;
   var firstCard;
   var secondCard;
+  var pairsClicked = 0;
+  var pairsGuessed = 0;
 $('.card').on('click', function () { 
+  document.getElementById('pairs_clicked').innerHTML = pairsClicked;
    $(this.children).toggleClass('back front');
   
   if (pickedCardCount === 0){
@@ -56,12 +61,23 @@ $('.card').on('click', function () {
     firstCard = this;
     return false
   }
-  else { secondCard = this
+  else { 
+  pairsClicked++;
+  document.getElementById('pairs_clicked').innerHTML = pairsClicked;
+  secondCard = this
    var id1 = ($(firstCard).attr('id'))
    var id2 = ($(secondCard).attr('id'))
    if (id1 === id2){
+    pairsGuessed++;
+    document.getElementById('pairs_guessed').innerHTML = pairsGuessed;
      console.log("CORRECT");
    pickedCardCount= 0; 
+
+    if (pairsGuessed === 12){
+      alert("WIN");
+          reloadPage();
+    
+    }
    
      return true
    }
