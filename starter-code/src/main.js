@@ -60,29 +60,33 @@ $(document).ready(function(){
                   .toggleClass("back");
 
     // Pushing cards to the picked 2 cards array every time you click
-    memoryGame.pickedCards.push($(this).attr("name"));
+    memoryGame.pickedCards.push($(this).parent());
     
     var arr = memoryGame.pickedCards;
     // Call cheackPair when getting to 2 cards
     counter++;
     if (counter == 2) {
-      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+      if (memoryGame.checkIfPair(arr[0].attr('id'), arr[1].attr('id'))) {
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
       } else {
         setTimeout(function(){
-          console.log(arr[0])
-          console.log(arr[1])
-
-            //$(arr[0]).parent()("div").toggleClass("back")
-            //      .closest("div").next().toggleClass("front");
-            //$(arr[1]).closest("div").toggleClass("back")
-            //      .closest("div").next().toggleClass("front");
-        }, 400)
+          $(arr[0]).find("div").toggleClass("front").toggleClass("back");
+          $(arr[1]).find("div").toggleClass("front").toggleClass("back");
+        }, 1000)
       }
       memoryGame.pickedCards = [];
       $("#pairs_clicked").text(memoryGame.pairsClicked); // Writing pairs clicked
 
       counter = 0;  
+    }
+    
+    if (memoryGame.finished()) {
+      $(".card").fadeOut(1500);
+      setTimeout(function(){
+        $("#memory_board").prepend("<p>YOU  WIN</p>");
+        $("#memory_board p").css({"color"     : "#1F618D", 
+        "font-size" : "6em"});
+      }, 1500)
     }
 
   });
