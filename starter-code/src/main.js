@@ -62,22 +62,24 @@ function faceDownCard(card){
       var parentCard=$(that).parent();
       var parentCardId = parentCard.attr("id");
       if (memoryGame.pickedCards.length == 0){
-          memoryGame.pickedCards.push(parentCardId);
+          memoryGame.pickedCards.push($(this));
           faceUpCard($(this)); 
         } else if (memoryGame.pickedCards.length == 1){
-            memoryGame.pickedCards.push(parentCardId);
+            memoryGame.pickedCards.push($(this));
             faceUpCard($(this));
-            if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
+            if (memoryGame.checkIfPair(memoryGame.pickedCards[0].attr("name"), memoryGame.pickedCards[1].attr("name"))){
                 memoryGame.pickedCards=[];
                 $("#pairs_clicked").html(memoryGame.pairsClicked.toString());  
-                $("#pairs_guessed").html(memoryGame.pairsClicked.toString());            
+                $("#pairs_guessed").html(memoryGame.pairsGuessed.toString());            
             }
             else {
                 var intID=setTimeout(function() {
                     $("#pairs_clicked").html(memoryGame.pairsClicked.toString());  
-                    faceDownCard($(that));
-              }, 3000);               
+                    faceDownCard($(memoryGame.pickedCards[0]));
+                    faceDownCard($(memoryGame.pickedCards[1]));
+                    memoryGame.pickedCards=[];
+              }, 3000);         
             }
         }
-});
+    });
 })
