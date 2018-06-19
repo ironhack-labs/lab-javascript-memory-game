@@ -53,7 +53,6 @@ $(document).ready(function () {
           if (memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'), memoryGame.pickedCards[1].attr('name'))) {
             memoryGame.pickedCards = [];
           } else {
-            console.log(memoryGame.pickedCards[1]);
             memoryGame.pickedCards[1].attr('class', 'back');
             memoryGame.pickedCards[1].siblings('.back').attr('class', 'front');
             memoryGame.pickedCards[0].attr('class', 'back');
@@ -61,7 +60,12 @@ $(document).ready(function () {
             memoryGame.pickedCards = [];
           }
         }
-      }, 1500);
+        $('#pairs_clicked').text(memoryGame.pairsClicked);
+        $('#pairs_guessed').text(memoryGame.pairsGuessed);
+        if (memoryGame.finished()){
+          location.reload();
+        }
+      }, 1200);
     }
   });
 
