@@ -5,6 +5,9 @@ html {
 }
 
 #memory_board {
+ /* display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;*/
   background:#dddddd;
 	width:800px;
 	height:540px;
@@ -22,12 +25,29 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
+}
+.imagen{
+  width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+  font-size:64px;
+}
+.imagenSet{
+  width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+  font-size:64px;
 }
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
+
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
