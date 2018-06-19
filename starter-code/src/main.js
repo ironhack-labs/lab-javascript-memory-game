@@ -63,14 +63,17 @@ $(document).ready(function() {
     turnCard($(this));
     turnCounter++;
     if(turnCounter == 2){
+      $('#memory_board').addClass("noclick");
       var firstCard = memoryGame.pickedCards[0];
       var secondCard = memoryGame.pickedCards[1];
       if(memoryGame.checkIfPair(firstCard.parent().attr('id'), secondCard.parent().attr('id'))){
           memoryGame.pickedCards = [];
+          $('#memory_board').removeClass("noclick");
       }else{
         setTimeout(function(){
           resetCards(memoryGame.pickedCards);
           memoryGame.pickedCards = [];
+          $('#memory_board').removeClass("noclick");
         }, 1000);
       }
       turnCounter = 0;

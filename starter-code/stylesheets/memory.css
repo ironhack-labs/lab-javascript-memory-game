@@ -67,3 +67,10 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+/*custom css*/
+
+.noclick{
+  cursor: forbidden;
+  pointer-events: none;
+}
