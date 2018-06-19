@@ -67,3 +67,8 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.negativo{
+  pointer-events: none;
+  cursor:not-allowed;
+}
