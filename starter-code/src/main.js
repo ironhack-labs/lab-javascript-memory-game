@@ -80,5 +80,8 @@ $(document).ready(function() {
       pairsClicked.text(memoryGame.pairsClicked);
       pairsGuessed.text(memoryGame.pairsGuessed);
     }
+    if(memoryGame.finished()){
+      alert("Has ganado");
+    }
   });
 });

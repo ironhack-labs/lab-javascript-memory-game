@@ -33,6 +33,5 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 }
 
 MemoryGame.prototype.finished = function () {
-  console.log(this.cards);
-  return this.pairsGuessed >= 12 && this.pairsGuessed > 0;
+  return this.pairsGuessed >= this.cards.length / 2 && this.pairsGuessed > 0;
 };
