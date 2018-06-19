@@ -27,6 +27,7 @@ var cards = [
 
 $(document).ready(function() {
   var memoryGame = new MemoryGame(cards);
+  //memoryGame.cards = memoryGame.shuffleCard(memoryGame.cards);
   var html = "";
   memoryGame.cards.forEach(function(pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -50,6 +51,7 @@ $(document).ready(function() {
     $(this.parentNode.lastChild).addClass("on");
     if (memoryGame.pickedCards.length == 2) {
       $(".back").css({"pointer-events": "none"});
+  //    clearTimeout(timeoutId);
       if (
         memoryGame.checkIfPair(
           memoryGame.pickedCards[0],
@@ -60,6 +62,10 @@ $(document).ready(function() {
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
         memoryGame.pickedCards = [];
         $(".on").removeClass("on");
+        if(memoryGame.finished()){
+          alert("You have win on "+memoryGame.pairsClicked+" tries");
+          location.reload();
+        }
       }else {
         var that = this;
         setTimeout(function() {
@@ -70,9 +76,16 @@ $(document).ready(function() {
           $(".on").removeClass("on");
           $(".back").css({"pointer-events": "all"})
           memoryGame.pickedCards = [];
-        }, 3000);
+        }, 1000);
       }
       $("#pairs_clicked").text(memoryGame.pairsClicked);
+/*       var timeoutId = setTimeout(function (){
+        $(".on").toggleClass("back");
+        $(".on").toggleClass("front");
+        $(".on").removeClass("on");
+        $(".back").css({"pointer-events": "all"})
+        memoryGame.pickedCards = [];
+      }, 3000); */
     }
   });
 });
