@@ -29,6 +29,7 @@ $(document).ready(function() {
   var pairsClicked = $('#pairs_clicked');
   var pairsGuessed = $('#pairs_guessed');
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCard(cards);
   var html = "";
   memoryGame.cards.forEach(function(pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -65,12 +66,14 @@ $(document).ready(function() {
       var firstCard = memoryGame.pickedCards[0];
       var secondCard = memoryGame.pickedCards[1];
       if(memoryGame.checkIfPair(firstCard.parent().attr('id'), secondCard.parent().attr('id'))){
-        
+          memoryGame.pickedCards = [];
       }else{
-        resetCards(memoryGame.pickedCards);
+        setTimeout(function(){
+          resetCards(memoryGame.pickedCards);
+          memoryGame.pickedCards = [];
+        }, 1000);
       }
       turnCounter = 0;
-      memoryGame.pickedCards = [];
       pairsClicked.text(memoryGame.pairsClicked);
       pairsGuessed.text(memoryGame.pairsGuessed);
     }
