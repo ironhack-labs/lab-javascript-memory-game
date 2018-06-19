@@ -50,15 +50,28 @@ $(document).ready(function() {
     nextElement.toggleClass("front")
     nextElement.toggleClass("back")  
     memoryGame.pickedCards.push($(this))
-    if (pickedCards.length===2){
-    memoryGame.checkIfPair($(this)[0].name, $(this).pickedCards[1].name)
+    $('#pairs_clicked').text(memoryGame.pairsClicked)
+    
+    
+    if (memoryGame.pickedCards.length==2){
+      var compare = memoryGame.checkIfPair(memoryGame.pickedCards[0].attr("name"), memoryGame.pickedCards[1].attr("name"))
+      if (compare){
+        memoryGame.pickedCards = [];
+        $('#pairs_guessed').text(memoryGame.pairsGuessed)
+        $('#pairs_clicked').text(memoryGame.pairsClicked)
+
+      }else{
+        setTimeout(function(){
+          memoryGame.pickedCards[0].toggleClass("front")
+          memoryGame.pickedCards[0].next().toggleClass("back") 
+          memoryGame.pickedCards[1].toggleClass("front")
+          memoryGame.pickedCards[1].next().toggleClass("back") 
+          memoryGame.pickedCards=[]
+        }, 500)
+        
+      }
+
+
     }
-    else {
-    $(this).toggleClass("front")
-    $(this).toggleClass("back")
-    nextElement.toggleClass("back")
-    nextElement.toggleClass("front")  
-    }
-    });
-  ;
+});
 });
