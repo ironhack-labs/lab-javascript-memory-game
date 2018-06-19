@@ -37,14 +37,42 @@ $(document).ready(function(){
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
+
   });
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
+  var that = this;
+  memoryGame.timeouts.push(setTimeout(function(){
+    that.className = 'back';
+    that.parentNode.lastChild.className = 'front';
+    
+  }, 5000));
+  this.className = 'front';
+  this.parentNode.lastChild.className = 'back';
+  memoryGame.pickedCards.push($(this).attr("name"));
+  twoCardsUp();
 });
+
+function twoCardsUp(){
+  if (memoryGame.timeouts.length == 2){
+    console.log(memoryGame.pairsClicked);
+    if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+      clearTimeout(memoryGame.timeouts[0]);
+      clearTimeout(memoryGame.timeouts[1]);
+      $("#pairs_guessed").text(memoryGame.pairsGuessed);
+    }
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    memoryGame.timeouts = [];
+    memoryGame.pickedCards = [];
+  }
+
+  function stopWaiting(){
+
+  }
+}
 });
 
 
