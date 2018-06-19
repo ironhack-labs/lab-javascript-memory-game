@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-       <title>Superhero Memory Game</title>
-       <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
-    </head>
-    <body>
-        <div>
-          <h1>Superhero Memory Game</h1>
-        </div>
-        <div id="score">
-          <h2>Score</h2>
-          <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-          <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
-        </div>
-        <div id="memory_board"></div>
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        <script type="text/javascript" src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-        <script type="text/javascript" src="src/memory.js"></script>
-        <script type="text/javascript" src="src/main.js"></script>
-    </body>
+<head>
+  <title>Superhero Memory Game</title>
+  <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
+</head>
+
+<body>
+  <div class="ganador">
+    <button class="button"></button>
+  <div class="comic">
+    <h1>Superhero Memory Game</h1>
+  </div>
+  <h2 class="texto"></h2>
+  <div id="score">
+    <h2>Score</h2>
+    <p>Pairs Clicked:
+      <span id="pairs_clicked">0</span>
+    </p>
+    <p>Pairs Guessed:
+      <span id="pairs_guessed">0</span>
+    </p>
+  </div>
+  <div id="memory_board"></div>
+</div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+  <script type="text/javascript" src="src/memory.js"></script>
+  <script type="text/javascript" src="src/main.js"></script>
+</body>
 
 </html>
