@@ -48,7 +48,6 @@ $(document).ready(function () {
       $(this).attr('class', "front");
       $(this).siblings('.front').attr('class', 'back');
       memoryGame.pickedCards.push($(this));
-      console.log(memoryGame.pickedCards);
       setTimeout(function () {
         if (memoryGame.pickedCards.length == 2) {
           if (memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'), memoryGame.pickedCards[1].attr('name'))) {
