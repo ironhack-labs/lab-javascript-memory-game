@@ -3,7 +3,6 @@
    this.pickedCards = [];
    this.pairsClicked = 0;;
    this.pairsGuessed = 0;
-   this.timeouts=[];
  };
 
  MemoryGame.prototype.shuffleCard = function (cardsArr) {
