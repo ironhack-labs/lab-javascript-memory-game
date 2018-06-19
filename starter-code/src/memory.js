@@ -1,15 +1,33 @@
-// var MemoryGame = function (cards) {
-//   this.cards = cards;
-// };
+var MemoryGame = function (cards) {
+  this.cards = cards;
+  this.pickedCards = [];
+  this.pairsClicked = 0;
+  this.pairsGuessed = 0;
+ };
 
-// MemoryGame.prototype.shuffleCard = function (cardsArr) {
+MemoryGame.prototype.shuffleCard = function (cardsArr) {
+  this.cards =  _.shuffle(cardsArr);
+  return _.shuffle(cardsArr);
+};
 
-// };
+MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+  var that = this;
+  if(firstCard == secondCard) {
+    that.pairsClicked++;
+    that.pairsGuessed++;
+    return true;
+  } 
+  that.pairsClicked++;
+  return false;
+};
 
-// MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+MemoryGame.prototype.finished = function () {
+  if(this.pairsGuessed == 12){
+    return true;
+  } else{
+    return false;
+  }
 
-// }
+ };
 
-// MemoryGame.prototype.finished = function () {
 
-// };
