@@ -1,3 +1,4 @@
+//CSS INTERACTIONS
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -42,9 +43,13 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
+     var counter = 0;
+    var actualCard = $("card").attr("id");
 $('.back').on('click', function () {
-   
-});
+    $(this).toggleClass("front").toggleClass("back");
+        $(this).next().toggleClass("front").toggleClass("back");
+    });
+    memoryGame.pickedCards.push($(this).parent().attr("id"));
 });
 
 
