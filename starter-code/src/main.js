@@ -59,8 +59,7 @@ function faceDownCard(card){
 
   $(".back").on("click", function() {
       var that = this;      
-      var parentCard=$(that).parent();
-      var parentCardId = parentCard.attr("id");
+      if (!memoryGame.finished()){
       if (memoryGame.pickedCards.length == 0){
           memoryGame.pickedCards.push($(this));
           faceUpCard($(this)); 
@@ -81,5 +80,6 @@ function faceDownCard(card){
               }, 3000);         
             }
         }
+    }
     });
 })
