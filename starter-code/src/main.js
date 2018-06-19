@@ -129,6 +129,9 @@ $(document).ready(function () {
 	var frasesNoTanMalas=[d,e,f,h];
 	var introduceTexto = $(".texto");
 	introduceTexto.toggle();
+	var textoBoton="VICTORIA!"
+	var boton = $(".button");
+	boton.toggle();
 	$(".back").on("click", function () {
 		contador++;
 		var bro = $(this).next();
@@ -181,7 +184,13 @@ $(document).ready(function () {
 				 },1000);
 			}
 			if (memoryGame.finished()) {
-				location.reload();
+				setTimeout(function() {
+				boton.text(textoBoton)
+				boton.toggle()
+				 },1);
+				 boton.click(function(){
+					 location.reload();
+				 })
 			}
 		}
 	});
