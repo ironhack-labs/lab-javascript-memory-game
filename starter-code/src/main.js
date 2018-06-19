@@ -41,10 +41,41 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
 
 
+
+  $('.card').on('click', function(){
+    alert("probando el elemento card para enviar a la variable firstcard y secondcard")
+  });
+
+
+
+
+  
+
+    // Bind the click event of each element to a function
+
+  $('.back').on('click', function () {
+      $(this).toggleClass("front");
+      $(this).toggleClass("back");
+      $(this).siblings().toggleClass("front");
+      $(this).siblings().toggleClass("back"); 
+  });
+
+  $('.front').on('click', function () {
+      $(this).toggleClass("front");
+      $(this).toggleClass("back");
+      $(this).siblings().toggleClass("front");
+      $(this).siblings().toggleClass("back"); 
+  });
+
+});
+
+/* Definir variables para enviar el nombre de la primera carta que gire a firstCard
+ Definir variables para enviar el nombre de la segunda carta que gire a firstCard
+      si devuelve false MemoryGame.checkIfPair()
+          girar primera carta y dar valor indefinido firstCard
+          girar segunda carta y dar valor indefinido secondCard */
+
+
+          
