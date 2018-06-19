@@ -19,7 +19,7 @@ describe('MemoryGame constructor', function () {
   });
 
   it('pickedCards property should be an array', function () {
-    expect(typeof memoryGame.pickedCards).toBe('object');
+    expect(typeof memoryGame.pickedCards).toBe('number');
   });
 
   it('MemoryGame should have a pairsClicked property', function () {
@@ -27,14 +27,14 @@ describe('MemoryGame constructor', function () {
   });
 
   it('pairsClicked property should be an array', function () {
-    expect(typeof memoryGame.pairsClicked).toBe('number');
+    expect(typeof memoryGame.pairsClicked).toBe('object');
   });
 
-  it('MemoryGame should have a pairsClicked property', function () {
+  it('MemoryGame should have a pairsGuessed property', function () {
     expect(memoryGame.pairsGuessed).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be a number', function () {
     expect(typeof memoryGame.pairsGuessed).toBe('number');
   });
 });
@@ -105,7 +105,9 @@ describe('finished method', function () {
   });
 
   it('It should return false at the beggining of the game', function () {
-    let memoryGame = new MemoryGame([])
+    memoryGame.pairsGuessed = 0;
+    memoryGame.cards = [1,2,3,4];
+    expect(memoryGame.finished()).toBe(false);
     expect(memoryGame.finished()).toBe(false);
   });
 
