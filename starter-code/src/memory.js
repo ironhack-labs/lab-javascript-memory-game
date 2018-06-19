@@ -6,7 +6,8 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCard = function (cardsArr) {
-  return _.shuffle(cardsArr);
+  this.cards = _.shuffle(cardsArr);
+  return this.cards;
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
