@@ -60,8 +60,9 @@ $(document).ready(function(){
                   .toggleClass("back");
 
     // Pushing cards to the picked 2 cards array every time you click
-    memoryGame.pickedCards.push($(this).parent().attr("id"));
-
+    memoryGame.pickedCards.push($(this).attr("name"));
+    
+    var arr = memoryGame.pickedCards;
     // Call cheackPair when getting to 2 cards
     counter++;
     if (counter == 2) {
@@ -69,10 +70,13 @@ $(document).ready(function(){
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
       } else {
         setTimeout(function(){
-            $(this).toggleClass("back")
-                   .toggleClass("front");
-            $(this).next().toggleClass("back")
-                   .toggleClass("front");
+          console.log(arr[0])
+          console.log(arr[1])
+
+            //$(arr[0]).parent()("div").toggleClass("back")
+            //      .closest("div").next().toggleClass("front");
+            //$(arr[1]).closest("div").toggleClass("back")
+            //      .closest("div").next().toggleClass("front");
         }, 400)
       }
       memoryGame.pickedCards = [];
