@@ -129,8 +129,8 @@ $(document).ready(function () {
 	var frasesNoTanMalas=[d,e,f,h];
 	var introduceTexto = $(".texto");
 	introduceTexto.toggle();
-	var textoBoton="VICTORIA!"
 	var boton = $(".button");
+	boton.text("VICTORIA!")
 	boton.toggle();
 	$(".back").on("click", function () {
 		contador++;
@@ -147,10 +147,8 @@ $(document).ready(function () {
 					$(container[0]).attr("name"),
 					$(container[1]).attr("name")
 				)) {
-					setTimeout(function() {
-						aleatorio=Math.floor(Math.random()*3);
-						introduceTexto.text(frasesMalas[aleatorio]).fadeIn("1000");
-					 },1);
+					aleatorio=Math.floor(Math.random()*3);
+					introduceTexto.text(frasesMalas[aleatorio]).fadeIn("1000");
 					var timeoutId = setTimeout(function () {
 					$(container[1]).toggleClass("back");
 					$(container[1]).toggleClass("front");
@@ -163,31 +161,23 @@ $(document).ready(function () {
 					container = [];
 					$("#pairs_clicked").text(memoryGame.pairsClicked);
 					$("#pairs_guessed").text(memoryGame.pairsGuessed);
-				}, 1000);
-				setTimeout(function() {
 					introduceTexto.fadeOut("1000");
 					$("#memory_board").removeClass("negativo");
-				 },1000);
+				}, 1000);
 			} else {
-				setTimeout(function() {
-					aleatorio=Math.floor(Math.random()*3);
-					introduceTexto.text(frasesNoTanMalas[aleatorio]).fadeIn("1000");
-				 },1);
-				var timeoutId = setTimeout(function () {
-					$("#pairs_clicked").text(memoryGame.pairsClicked);
-					$("#pairs_guessed").text(memoryGame.pairsGuessed);
-					container = [];
+				
+				aleatorio=Math.floor(Math.random()*3);
+				introduceTexto.text(frasesNoTanMalas[aleatorio]).fadeIn("1000");
+				 setTimeout(function () {
+		           $("#pairs_clicked").text(memoryGame.pairsClicked);
+				 $("#pairs_guessed").text(memoryGame.pairsGuessed);
+				 introduceTexto.fadeOut("1000");
+				 $("#memory_board").removeClass("negativo")
+				 container = [];
 				}, 1000);
-				setTimeout(function() {
-					introduceTexto.fadeOut("1000");
-					$("#memory_board").removeClass("negativo");
-				 },1000);
 			}
 			if (memoryGame.finished()) {
-				setTimeout(function() {
-				boton.text(textoBoton)
 				boton.toggle()
-				 },1);
 				 boton.click(function(){
 					 location.reload();
 				 })

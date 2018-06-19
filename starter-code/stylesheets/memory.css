@@ -106,22 +106,6 @@ border-left: 18px solid transparent;
 margin: -30px 0 0 40px;
 }
 
-/* .button {
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color:black;
-  color: white;
-  font-size: 16px;
-  padding: 16px 30px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-}
-*/
 .button:hover {
   background-color: white;
   color: black;
@@ -130,7 +114,8 @@ margin: -30px 0 0 40px;
 .button {
   position: absolute;
   top: 80%;
-  left: 50%;
+  left: 45%;
+  background-color: #456783;
   background: linear-gradient(top, rgb(97,196,25) 0%, rgb(149,226,90) 100%);
   margin: 0 auto;
   padding: 10px 20px 10px 20px;
@@ -145,7 +130,7 @@ margin: -30px 0 0 40px;
   display: block;
   font-family: Arial Black, Gadget, sans-serif;
   font-size: 15px;
-  color: #fff;
+  color:black;
   text-align: center;
   text-transform: uppercase;
 }
