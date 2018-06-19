@@ -48,9 +48,10 @@ $(document).ready(function() {
     $(this).toggleClass("back")
     $(this).toggleClass("front")
     nextElement.toggleClass("front")
-    nextElement.toggleClass("back")  
-    memoryGame.pickedCards.push($(this))
+    nextElement.toggleClass("back")
     $('#pairs_clicked').text(memoryGame.pairsClicked)
+    memoryGame.pickedCards.push($(this))
+    
     
     
     if (memoryGame.pickedCards.length==2){
@@ -62,10 +63,20 @@ $(document).ready(function() {
 
       }else{
         setTimeout(function(){
-          memoryGame.pickedCards[0].toggleClass("front")
-          memoryGame.pickedCards[0].next().toggleClass("back") 
-          memoryGame.pickedCards[1].toggleClass("front")
-          memoryGame.pickedCards[1].next().toggleClass("back") 
+          memoryGame.pickedCards[0].removeClass("front")
+          memoryGame.pickedCards[0].addClass("back") 
+
+          memoryGame.pickedCards[0].next().removeClass("back")
+          memoryGame.pickedCards[0].next().addClass("front") 
+
+          memoryGame.pickedCards[1].removeClass("front")
+          memoryGame.pickedCards[1].addClass("back") 
+
+          memoryGame.pickedCards[1].next().removeClass("back")
+          memoryGame.pickedCards[1].next().addClass("front") 
+
+
+
           memoryGame.pickedCards=[]
         }, 500)
         
