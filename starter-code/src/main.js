@@ -25,38 +25,6 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-//Function that runs the game
-// function startGame(memoryGame) {
-//   var id = setInterval(function () {
-//
-//
-//     //Check if pair
-//
-//     //Check if fiished
-//     if (checkIfFinished(memoryGame.pairsGuessed)) {
-//       clearInterval(id)
-//     }
-//   }, 2000)
-// }
-
-
-// function storeCard(card) {
-//   if
-//   memoryGame.pickedCards.push(card)
-// }
-
-//Function that returns if a pair es equal
-// function checkIfPair(card1, card2) {
-//   return memoryGame.checkIfPair(card1, card2)
-// }
-
-//Function that return if the game is finished
-// function checkIfFinished(pairsGuessed) {
-//   return memoryGame.finished(pairsGuessed)
-// }
-
-
-//Function that is called just after the docuents loads
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   memoryGame.cards = memoryGame.shuffleCard(memoryGame.cards)
@@ -76,31 +44,36 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function () {
+    //If we have less than two cards flipped
     if (memoryGame.pickedCards.length < 2) {
-      //Change the cards order
-      $(this).removeClass('back')
-      $(this).addClass('front')
-      $(this).next().addClass('back')
-      $(this).next().removeClass('front')
-      memoryGame.pickedCards.push($(this))
+      //If isnt blocked
+      if (!$(this).hasClass('blocked')) {
+        //Flip the cards
+        $(this).removeClass('back').addClass('front clicked')
+        $(this).next().removeClass('front').addClass('back clicked')
+        //Save the cards on pickedCards
+        console.log($(this).parent().attr('id'))
+        memoryGame.pickedCards.push($(this).parent().attr('id'))
 
-      if (memoryGame.pickedCards.length > 1) {
-        var that = $(this)
-        setTimeout(function() {
-          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].name, memoryGame.pickedCards[1])) {
-            $(that).addClass('blocked')
-            $(that).next().addClass('blocked')
-          } else {
-            $(that).removeClass('front')
-            $(that).addClass('back')
-            $(that).next().addClass('front')
-            $(that).next().removeClass('back')
+        //If we have picked two cards
+        if (memoryGame.pickedCards.length > 1) {
+          //Check if the cards are equal
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+            //Block cards and void the pickedCards property
+            $('.clicked').addClass('blocked').removeClass('clicked')
             memoryGame.pickedCards = []
+          } else {
+            //Wait before flipping the cards and voiding the pickedCards property
+            setTimeout(function() {
+              $('.clicked.front').addClass('back').removeClass('front clicked')
+              $('.clicked.back').addClass('front').removeClass('back clicked')
+              memoryGame.pickedCards = []
+            }, 1200)
           }
-        }, 1500)
+          $('#pairs_clicked').text(memoryGame.pairsClicked)
+          $('#pairs_guessed').text(memoryGame.pairsGuessed)
+        }
       }
     }
   });
-
-  //startGame(memoryGame)
 });

@@ -14,7 +14,7 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 //Function that checks if two cards are the same
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++
-  if (firstCard == secondCard) {
+  if (firstCard === secondCard) {
     this.pairsGuessed++
     return true
   } else {
