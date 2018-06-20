@@ -17,8 +17,10 @@ html {
 
 .card .back {
   background-image: url(../img/gatete.jpg) ;
-  background-size:contain;
+  background-size:cover;
   background-color: #456783;
+  background-repeat: no-repeat;
+  background-position: center;
 	width:71px;
 	height:71px;
 	float:left;

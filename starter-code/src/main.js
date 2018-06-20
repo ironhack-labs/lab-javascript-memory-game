@@ -117,7 +117,7 @@ $(document).ready(function () {
 	// Bind the click event of each element to a function
 	var contador = 0;
 	var container = [];
-	var a = "Mas suerte la proxima vez crack";
+	var a = "No tendras mas suerte la proxima vez";
 	var b = "Buen intento"
 	var c ="Uyyyy casi eh!"
 	var g="No es tu dia... "
@@ -147,7 +147,7 @@ $(document).ready(function () {
 					$(container[0]).attr("name"),
 					$(container[1]).attr("name")
 				)) {
-					aleatorio=Math.floor(Math.random()*3);
+					aleatorio=Math.floor(Math.random()*4);
 					introduceTexto.text(frasesMalas[aleatorio]).fadeIn("1000");
 					var timeoutId = setTimeout(function () {
 					$(container[1]).toggleClass("back");
@@ -166,7 +166,7 @@ $(document).ready(function () {
 				}, 1000);
 			} else {
 				
-				aleatorio=Math.floor(Math.random()*3);
+				aleatorio=Math.floor(Math.random()*4);
 				introduceTexto.text(frasesNoTanMalas[aleatorio]).fadeIn("1000");
 				 setTimeout(function () {
 		           $("#pairs_clicked").text(memoryGame.pairsClicked);
