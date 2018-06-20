@@ -39,11 +39,19 @@ $(document).ready(function(){
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+
+  $('.back').on('click', function () {
+    if(pairs.length === 2){
+      setTimeout(function(){
+        pairs[0].toggleClass("back");
+        pairs[0].next().toggleClass("back");
+        pairs[1].toggleClass("back");
+        pairs[1].next().toggleClass("back");
+        pairs=[];
+        $("#memory_board").removeClass("blocked");
+      },2000);
+    }   
 });
 });
 
