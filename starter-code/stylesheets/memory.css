@@ -5,6 +5,9 @@ html {
 }
 
 #memory_board {
+  /*display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;*/
   background:#dddddd;
 	width:800px;
 	height:540px;
@@ -14,12 +17,15 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-
+.block{
+    pointer-events: none;
+    cursor:not-allowed;
+}
 .card .back {
   background-color: #456783;
 	width:71px;
-	height:71px;
-	float:left;
+  height:71px;
+  float: left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
