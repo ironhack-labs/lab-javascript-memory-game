@@ -13,7 +13,7 @@ MemoryGame.prototype.shuffleCards = function () {
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked.push([firstCard, secondCard]);
-  if (firstCard.name === secondCard.name) {
+  if (firstCard.name == secondCard.name) {
     this.pairsGuessed.push([firstCard, secondCard]);
     return true;
   } else {
