@@ -48,59 +48,29 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
 $('.card').on('click', function () {
+  $(this).children(".back").removeClass("back");
+  $(this).children(".front").addClass("back");
 
-$(this).children(".back").removeClass("back");
-$(this).children(".front").addClass("back");
+  memoryGame.pickedCards.push($(this));
 
-memoryGame.pickedCards.push($(this));
+  var booleano = memoryGame.checkIfPair(memoryGame.pickedCards[0].children().attr("name"), memoryGame.pickedCards[1].children().attr("name"))
 
-var booleano = memoryGame.checkIfPair(memoryGame.pickedCards[0].children().attr("name"), memoryGame.pickedCards[1].children().attr("name"))
-console.log(memoryGame.pickedCards[0])
-if (booleano == true ){
-
-memoryGame.pickedCards = []
-memoryGame.pairsGuessed ++;
-memoryGame.pairsClicked ++;
-} else {
-  $(memoryGame.pickedCards[0])(".vuelta").addClass("back");
-  $(memoryGame.pickedCards[1])(".back").removeClass("back");
-  console.log($($(memoryGame.pickedCards[0])(".vuelta")));
-  memoryGame.pairsClicked ++
-  memoryGame.pickedCards = [];
-
-}
-
-
-
-
- /* if(memoryGame.pickedCards.length == 2){
-
-  if(memoryGame.pickedCards[0] == memoryGame.pickedCards[1]){
+  if (booleano == true ){
 
     memoryGame.pickedCards = []
-    memoryGame.pairsGuessed ++
 
-  } else {
+    }   else {
+      setTimeout( function (){
 
-    setTimeout (function(){
-      $('.card:first-child').addClass("back")
-      $(this).children(".back").removeClass("back")
-      memoryGame.pairsClicked ++ ;
+      $(memoryGame.pickedCards[0]).children(".vuelta").addClass("back");
+      $(memoryGame.pickedCards[0]).children(".front").removeClass("back")
+      $(memoryGame.pickedCards[1]).children(".vuelta").addClass("back")
+      $(memoryGame.pickedCards[1]).children(".front").removeClass("back");
       memoryGame.pickedCards = [];
-    },3000)
+
+      }, 500)
     
-
-
-  } */
-
-} 
-
-);
-
-
-
-
-
-});
-
-
+    };
+     
+})
+})
