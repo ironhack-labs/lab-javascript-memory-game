@@ -42,9 +42,37 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
-
-
+  $('.back').on('click', function () {
+      //copiado de un stackoverflow. leido y entendido.
+        if ((memoryGame.pickedCards.length<2)&&(this.parentNode.firstChild.className=="back")){ 
+            this.parentNode.firstChild.style.background=this.parentNode.lastChild.style.background; //levantar carta
+            this.parentNode.firstChild.className="front";
+            this.parentNode.lastChild.className="back";    
+            memoryGame.pickedCards.push(this);
+            if (memoryGame.pickedCards.length==2){
+              memoryGame.pairsClicked++;
+              $("#pairs_clicked").html(memoryGame.pairsClicked.toString());
+              if (memoryGame.pickedCards[0].parentNode.id==memoryGame.pickedCards[1].parentNode.id){
+                memoryGame.pairsGuessed++;
+                $("#pairs_guessed").html(memoryGame.pairsGuessed.toString());
+    
+                memoryGame.pickedCards=[];
+              }else {
+                setTimeout(function(){
+                memoryGame.pickedCards[0].parentNode.firstChild.style.background=""; //darles la vuelta
+                memoryGame.pickedCards[1].parentNode.firstChild.style.background="";
+                memoryGame.pickedCards[0].parentNode.firstChild.className="back";
+                memoryGame.pickedCards[0].parentNode.lastChild.className="front";
+                memoryGame.pickedCards[1].parentNode.firstChild.className="back";
+                memoryGame.pickedCards[1].parentNode.lastChild.className="front";
+                memoryGame.pickedCards=[];
+                
+                },1500 );
+              }
+              
+              
+            } 
+            
+        }
+    });
+    }); 
