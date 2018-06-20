@@ -6,7 +6,7 @@ var MemoryGame = function(cards) {
 };
 
 MemoryGame.prototype.shuffleCard = function(cardsArr) {
-  var i = 0;
+  /*var i = 0;
   var j = 0;
   var temp = null;
   for (i = cardsArr.length - 1; i > 0; i -= 1) {
@@ -15,20 +15,22 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
     cardsArr[i] = cardsArr[j];
     cardsArr[j] = temp;
   }
-  return cardsArr;
+  return cardsArr;*/
 
-              /*var b=arr.length
-              cont=[]
-              do {
-                for(i=0;i<b;i++){
-                 var temp=arr[0]
-                 var a = Math.floor(Math.random()*arr.length)
-                 arr.splice(0, 1)
-                 if(cont[a]==null){
-                  cont[a]=temp
-                  }
-                }
-              }while(cont.length < b )*/
+  var b = cardsArr.length;
+  cont = [];
+  console.log(cardsArr.length)
+  for (i = 0; i < b; i++) {
+    var temp = cardsArr[0];
+    var a = Math.floor(Math.random() * b);
+    while (cont[a]) {
+      var a = Math.floor(Math.random() * b);
+    }
+    cont[a] = temp;
+    cardsArr.splice(0, 1);
+  }
+  cardsArr = cont;
+  return cardsArr;
 };
 
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
