@@ -53,6 +53,7 @@ $(document).ready(function () {
       memoryGame.pickedCards.push($(this));
 
       if (memoryGame.pickedCards.length === 2) {
+        $("#memory_board").addClass('.blocked');
         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].attr("name"), memoryGame.pickedCards[1].attr("name"))) {
           setTimeout(function () {
             memoryGame.pickedCards.forEach(function(e){        
@@ -72,6 +73,7 @@ $(document).ready(function () {
           $('h1').html('YOU WON! &#128518 &#128077 &#128170')
         }
       }
+      $("#memory_board").removeClass('.blocked');
     }
   });
 });
