@@ -25,13 +25,14 @@ var cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-function toggleV (card){
+function toggleV(card) {
   card.toggleClass("back");
   card.toggleClass("front");
 
 }
 $(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCard(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -48,22 +49,22 @@ $(document).ready(function () {
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function () {
-    
+
 
     if (memoryGame.pickedCards.length < 2) {
       toggleV($(this));
       toggleV($(this).next(".front"));
-      
+
 
       memoryGame.pickedCards.push($(this));
 
       if (memoryGame.pickedCards.length === 2) {
         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].attr("name"), memoryGame.pickedCards[1].attr("name"))) {
           setTimeout(function () {
-            memoryGame.pickedCards.forEach(function(e){        
-            toggleV(e);
-            toggleV(e.next(".back"));
-          });
+            memoryGame.pickedCards.forEach(function (e) {
+              toggleV(e);
+              toggleV(e.next(".back"));
+            });
             memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
             $("#pairs_clicked").text(memoryGame.pairsClicked);
             $("#pairs_guessed").text(memoryGame.pairsGuessed);
@@ -73,7 +74,7 @@ $(document).ready(function () {
           memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
           $("#pairs_clicked").text(memoryGame.pairsClicked);
           $("#pairs_guessed").text(memoryGame.pairsGuessed);
-        }else{
+        } else {
           location.reload();
         }
       }
