@@ -47,37 +47,52 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $(".front").hide();
   var turn =0;
-  var firstCard = 0
-  var secondCard = 0
+  var backFirstCard = 0
+  var backSecondCard = 0
+  var frontFirstCard =0;
+  var frontSecondCard = 0;
   var time = 0;
 
 
     $('.back').click(function(){
       if (turn ==0){
-      firstCard = $(this);
-      firstCard.toggle();
-      firstCard.next().toggle();
+      backFirstCard = $(this);
+      backFirstCard.toggle();
+      frontFirstCard = backFirstCard.next();
+      frontFirstCard.toggle();
       turn += 1
     } else if(turn==1){
-      secondCard = $(this);
-      secondCard.toggle();
-      secondCard.next().toggle();
+      backSecondCard = $(this);
+      backSecondCard.toggle();
+      frontSecondCard = backSecondCard.next();
+      frontSecondCard.toggle();
       turn += 1
-      console.log(firstCard, secondCard)
-      if(!memoryGame.checkIfPair(firstCard, secondCard)){
+      if(!memoryGame.checkIfPair(frontFirstCard.attr("style"), frontSecondCard.attr("style"))){
         flip();
         $("#pairs_clicked").html(memoryGame.pairsClicked);
+      } else{
+        $("#pairs_guessed").html(memoryGame.pairGuessed);
+        $("#pairs_clicked").html(memoryGame.pairsClicked);
+        turn=0;
+        memoryGame.finished(cards);
+        win();
       }
     }
   })
 
+  function win(){
+    if (memoryGame.finished(cards)){
+      $("#score h2:first-child").html("You Won!")
+    }
+  }
+
   function flip(){
   if (turn == 2){
     var interval = setInterval(function(){
-    firstCard.next().toggle();
-    secondCard.next().toggle();
-    firstCard.toggle();
-    secondCard.toggle();
+    frontFirstCard.toggle();
+    frontSecondCard.toggle();
+    backFirstCard.toggle();
+    backSecondCard.toggle();
     time+=1;
     turn=0;
     if (time == 1) {
