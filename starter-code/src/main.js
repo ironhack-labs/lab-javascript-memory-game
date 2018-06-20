@@ -1,3 +1,4 @@
+//CSS INTERACTIONS
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -42,9 +43,31 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
+     
+    
 
+    $('.back').on('click', function () {
+    $(this).toggleClass("front").toggleClass("back");
+        $(this).next().toggleClass("front").toggleClass("back");
+    });
+    memoryGame.pickedCards.push($(this).parent().attr("id"));
+
+var counter = 0;
+counter++;
+    if (counter == 2) {
+      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+        $("#pairs_guessed").text(memoryGame.pairsGuessed);
+      } else {
+        setTimeout(function(){
+            $(this).toggleClass("back").toggleClass("front");
+            $(this).next().toggleClass("back").toggleClass("front");
+        }, 400)
+      }
+      memoryGame.pickedCards = [];
+      $("#pairs_clicked").text(memoryGame.pairsClicked); 
+
+      counter = 0;  
+    }
+
+  });
 
