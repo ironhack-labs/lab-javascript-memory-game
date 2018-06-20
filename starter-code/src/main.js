@@ -42,9 +42,21 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
+/* $('.back').on('click', function () {
+  
+})
+}); */
+})
 
-
+function cardUpCard(){
+  card.removeClass('back');
+  card.addClass('front');
+  card.removeClass().next('back');
+  card.addClass().next()('front');
+}
+function faceDownCard(){
+  card.removeClass('front');
+  card.addClass('back');
+  card.removeClass().next('front');
+  card.addClass().next()('back');
+}
