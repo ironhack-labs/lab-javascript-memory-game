@@ -58,19 +58,25 @@ $('.card').on('click', function () {
   if (booleano == true ){
 
     memoryGame.pickedCards = []
+    memoryGame.pairsClicked ++
+    memoryGame.pairsGuessed ++
 
     }   else {
       setTimeout( function (){
 
-      $(memoryGame.pickedCards[0]).children(".vuelta").addClass("back");
-      $(memoryGame.pickedCards[0]).children(".front").removeClass("back")
-      $(memoryGame.pickedCards[1]).children(".vuelta").addClass("back")
-      $(memoryGame.pickedCards[1]).children(".front").removeClass("back");
-      memoryGame.pickedCards = [];
+        $(memoryGame.pickedCards[0]).children(".vuelta").addClass("back");
+        $(memoryGame.pickedCards[0]).children(".front").removeClass("back")
+        $(memoryGame.pickedCards[1]).children(".vuelta").addClass("back")
+        $(memoryGame.pickedCards[1]).children(".front").removeClass("back");
+        memoryGame.pickedCards = [];
+        memoryGame.pairsClicked ++
 
-      }, 500)
+       }, 500)
     
     };
+
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
      
 })
 })
