@@ -52,25 +52,23 @@ $('.back').on('click', function () {
      if (memoryGame.checkIfPair(memoryGame.pickedCards[0].parents().attr('id'), memoryGame.pickedCards[1].parents().attr('id'))) {
        $('#pairs_clicked').text(memoryGame.pairsClicked);
        $('#pairs_guessed').text(memoryGame.pairsGuessed);
+       memoryGame.pickedCards = [];
    } else { 
+     var timeOut = setTimeout(function() {
       $(this).parents().children().toggleClass('back').toggleClass('front'); 
-      $(memoryGame.pickedCards[0]).parent().children().toggleClass("back").toggleClass("front");
+      memoryGame.pickedCards[0].parents().children().toggleClass('front').toggleClass('back');
+      memoryGame.pickedCards[1].parents().children().toggleClass('front').toggleClass('back');
       $('#pairs_clicked').text(memoryGame.pairsClicked);
+      memoryGame.pickedCards = [];
+     }, 1000); 
      }
-     memoryGame.pickedCards = [];
     }
-    /* var reload = memoryGame.finished.reload(forcedReload);
-    reload; */
-    
+        
     if (memoryGame.finished()) {
       location.reload();
     };
   });
 });
  
-/* var timeOut = setTimeout(function() {
-  $(this).parents().children().toggleClass('back').toggleClass('front'); 
-  $(memoryGame.pickedCards[0]).parent().children().toggleClass("back").toggleClass("front");
-  $('#pairs_clicked').text(memoryGame.pairsClicked);
- }, 1000); */
+
 
