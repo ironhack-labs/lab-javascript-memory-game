@@ -29,7 +29,7 @@ $(document).ready(function(){
   
   //Start new game and declare needed vars
   var game = new MemoryGame(cards);
-  // cards = game.shuffleCard(game.cards);
+  cards = game.shuffleCard(game.cards);
   var firstClick = true;
   var firstCard, secondCard, isPair;
 
@@ -63,23 +63,20 @@ $(document).ready(function(){
       //Card's name attributes is used for comparison, because the checkIfPair()
       //method only checks whether the received arguments are strickly equal
       isPair = game.checkIfPair($(firstCard).attr("name"), $(secondCard).attr("name"));
-      $("#pairs_clicked").html(game.pairsClicked);
-      
+      $("#pairs_clicked").html(game.pairsClicked);      
       if(!isPair) {
-        $(firstCard).toggleClass('back').next().toggleClass('blocked');
-        $(secondCard).toggleClass('back').next().toggleClass('blocked');
+        setTimeout(function(){
+          $(firstCard).toggleClass('back').next().toggleClass('blocked');
+          $(secondCard).toggleClass('back').next().toggleClass('blocked');
+        }, 300);
       } else {
         $("#pairs_guessed").html(game.pairsGuessed);
-      }
-
-      if(game.finished()) {
-        alert("You won!");
+        setTimeout(function(){
+          if(game.finished()) {
+            alert("Congratulations!!\n You helped our heroes save the world!!");
+          }
+        }, 300);
       }
     }
   });
-
-
-
-
-
 });
