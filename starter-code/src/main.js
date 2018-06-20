@@ -98,8 +98,8 @@ var cards = [{
 
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
-	memoryGame.pickedCards = cards;
-	memoryGame.cards = memoryGame.shuffleCard(memoryGame.pickedCards);
+	//memoryGame.pickedCards = cards;
+	//memoryGame.cards = memoryGame.shuffleCard(memoryGame.pickedCards);
 	var html = "";
 	memoryGame.cards.forEach(function (pic, index) {
 		html += '<div class= "card" id="card_' + pic.name + '">';
@@ -179,7 +179,7 @@ $(document).ready(function () {
 			if (memoryGame.finished()) {
 				boton.toggle()
 				 boton.click(function(){
-					 location.reload();
+					 location.replace("https://giphy.com/gifs/excited-yes-victory-uTuLngvL9p0Xe/fullscreen");
 				 })
 			}
 		}
