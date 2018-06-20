@@ -98,8 +98,8 @@ var cards = [{
 
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
-	//memoryGame.pickedCards = cards;
-	//memoryGame.cards = memoryGame.shuffleCard(memoryGame.pickedCards);
+	memoryGame.pickedCards = cards;
+	memoryGame.cards = memoryGame.shuffleCard(memoryGame.pickedCards);
 	var html = "";
 	memoryGame.cards.forEach(function (pic, index) {
 		html += '<div class= "card" id="card_' + pic.name + '">';
@@ -112,7 +112,7 @@ $(document).ready(function () {
 		html += "</div>";
 	});
 
-	// Add all the div's to the HTML
+	//Add all the div's to the HTML
 	document.getElementById("memory_board").innerHTML = html;
 	// Bind the click event of each element to a function
 	var contador = 0;
