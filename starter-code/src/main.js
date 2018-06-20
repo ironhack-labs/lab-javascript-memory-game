@@ -27,7 +27,7 @@ var cards = [
 
 $(document).ready(function() {
   var memoryGame = new MemoryGame(cards);
-  //memoryGame.cards = memoryGame.shuffleCard(memoryGame.cards);
+  memoryGame.cards = memoryGame.shuffleCard(memoryGame.cards);
   var html = "";
   memoryGame.cards.forEach(function(pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -50,42 +50,36 @@ $(document).ready(function() {
     $(this).addClass("on");
     $(this.parentNode.lastChild).addClass("on");
     if (memoryGame.pickedCards.length == 2) {
-      $(".back").css({"pointer-events": "none"});
-  //    clearTimeout(timeoutId);
+      $(".back").css({
+        "pointer-events": "none"
+      });
       if (
         memoryGame.checkIfPair(
           memoryGame.pickedCards[0],
           memoryGame.pickedCards[1]
         )
       ) {
-        $(".back").css({"pointer-events": "all"})
+        $(".back").css({ "pointer-events": "all" });
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
         memoryGame.pickedCards = [];
         $(".on").removeClass("on");
-        if(memoryGame.finished()){
-          alert("You have win on "+memoryGame.pairsClicked+" tries");
+        if (memoryGame.finished()) {
+          alert("You have win on " + memoryGame.pairsClicked + " tries");
           location.reload();
         }
-      }else {
+      } else {
         var that = this;
         setTimeout(function() {
-          that.className = "back";
-          that.parentNode.lastChild.className = "front";
           $(".on").toggleClass("back");
           $(".on").toggleClass("front");
           $(".on").removeClass("on");
-          $(".back").css({"pointer-events": "all"})
+          $(".back").css({ "pointer-events": "all" });
           memoryGame.pickedCards = [];
         }, 1000);
       }
       $("#pairs_clicked").text(memoryGame.pairsClicked);
-/*       var timeoutId = setTimeout(function (){
-        $(".on").toggleClass("back");
-        $(".on").toggleClass("front");
-        $(".on").removeClass("on");
-        $(".back").css({"pointer-events": "all"})
-        memoryGame.pickedCards = [];
-      }, 3000); */
     }
   });
 });
+
+function reverseCards() {}
