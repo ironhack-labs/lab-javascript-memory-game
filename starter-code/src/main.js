@@ -78,13 +78,15 @@ $(document).ready(function(){
     firstCard = undefined;
     secondCard = undefined;
     setScore();
+    $('.back').css('pointer-events', 'all');
   }
-  
+
   $('.back').on('click', function () {
     if(firstCard){
+      $('.back').css('pointer-events', 'none');
       secondCard = $(this);
       flipCard(secondCard);
-      setTimeout(checkCards, 500)
+      setTimeout(checkCards, 500);
     } else {
       firstCard = $(this);
       flipCard(firstCard);
