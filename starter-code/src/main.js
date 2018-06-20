@@ -24,11 +24,9 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+  cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -37,8 +35,8 @@ $(document).ready(function(){
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
+    $('#memory_board').html(html);
   });
-
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
@@ -46,5 +44,3 @@ $('.back').on('click', function () {
    
 });
 });
-
-
