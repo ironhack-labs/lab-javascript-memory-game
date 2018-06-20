@@ -71,6 +71,9 @@ $(document).ready(function() {
         
 			}
     }
-   
+	if(memoryGame.finished()){
+		alert("You WIN");
+	}
+
 	});
 });
