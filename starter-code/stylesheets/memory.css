@@ -22,9 +22,10 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
+  
 }
-.card .front.blocked,
+/* .card .front.blocked, */
 .card .back.blocked {
   pointer-events: none;
 }
