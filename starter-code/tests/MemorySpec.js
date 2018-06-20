@@ -27,7 +27,7 @@ describe('MemoryGame constructor', function () {
   });
 
   it('pairsClicked property should be an array', function () {
-    expect(typeof memoryGame.pairsClicked).toBe('object');
+    expect(typeof memoryGame.pairsClicked).toBe('number');
   });
 
   it('MemoryGame should have a pairsGuessed property', function () {
@@ -35,7 +35,7 @@ describe('MemoryGame constructor', function () {
   });
 
   it('pairsGuessed property should be an array', function () {
-    expect(typeof memoryGame.pairsGuessed).toBe('object');
+    expect(typeof memoryGame.pairsGuessed).toBe('number');
   });
 });
 

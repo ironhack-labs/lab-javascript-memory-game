@@ -27,8 +27,11 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.cards = memoryGame.shuffleCard(cards); 
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+
+
+memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -37,14 +40,23 @@ $(document).ready(function(){
     html += 'style="background: url(img/' + pic.img + ') no-repeat">';
     html += '</div>';
     html += '</div>';
-  });
+});
+
 
   // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
-  // Bind the click event of each element to a function
+document.getElementById('memory_board').innerHTML = html;
+ // Bind the click event of each element to a function
 $('.back').on('click', function () {
-   
-});
-});
-
-
+   $(this).toggleClass('back front');
+   $(this).next().toggleClass('back front');
+   memoryGame.checkIfPair;
+   memoryGame.finished;
+      if (this.pairsGuessed == 12){
+          return "Congratulations! You've finished!";
+      } else if (0 < pairsGuessed < 12) {
+          return "Keep trying...";
+      } else {
+          return "Click on a card to start playing!";
+      }
+   })
+})
