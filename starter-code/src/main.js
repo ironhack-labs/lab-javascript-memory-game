@@ -26,6 +26,14 @@ var cards = [
 ];
 
 $(document).ready(function(){
+  
+  //Start new game and declare needed vars
+  var game = new MemoryGame(cards);
+  // cards = game.shuffleCard(game.cards);
+  var firstClick = true;
+  var firstCard, secondCard, isPair;
+
+  //Add cards to board (HTML)
   var html = '';
   cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -38,12 +46,40 @@ $(document).ready(function(){
     html += '</div>';
   });
   
+  // Add all the div's to the HTML
   $('#memory-board').html(html);
 
-  // Add all the div's to the HTML
-  // document.getElementById('memory-board').innerHTML = html;
+
   // Bind the click event of each element to a function
-  $('.back').on('click', function () {
-   
+  $('.back').on('click', function() {
+    if(firstClick) {
+      firstCard = $(this);
+      $(firstCard).toggleClass('back').next().toggleClass('blocked');
+      firstClick = false;      
+    } else {
+      secondCard = $(this);
+      $(secondCard).toggleClass('back').next().toggleClass('blocked');
+      firstClick = true;
+      //Card's name attributes is used for comparison, because the checkIfPair()
+      //method only checks whether the received arguments are strickly equal
+      isPair = game.checkIfPair($(firstCard).attr("name"), $(secondCard).attr("name"));
+      $("#pairs_clicked").html(game.pairsClicked);
+      
+      if(!isPair) {
+        $(firstCard).toggleClass('back').next().toggleClass('blocked');
+        $(secondCard).toggleClass('back').next().toggleClass('blocked');
+      } else {
+        $("#pairs_guessed").html(game.pairsGuessed);
+      }
+
+      if(game.finished()) {
+        alert("You won!");
+      }
+    }
   });
+
+
+
+
+
 });

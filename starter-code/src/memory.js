@@ -30,4 +30,4 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
 MemoryGame.prototype.finished = function () {
   return this.pairsGuessed === cards.length / 2;
-}; 
+};
