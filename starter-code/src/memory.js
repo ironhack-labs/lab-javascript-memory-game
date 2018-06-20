@@ -1,5 +1,4 @@
 //LOGIC FILE
-
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -26,7 +25,6 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-
 
 var MemoryGame = function (cards) {
   this.cards = cards;
