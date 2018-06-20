@@ -31,13 +31,20 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-    // When a user pick 2 cards, we will need to check if they are the same. Let's 
-    //create a method checkIfPair, that will receive two parameters (both cards selected by the user).
-    this.pickedCards = 0; 
-    //The method will add 1 to our pairsClicked property, and if the cards are the same 
-    //also add 1 to pairsGuessed.
-    // Finally it will return true or false depending on the result of comparing both cards.
+    this.firstCard = cards.forEach(function(i){
+        return cards[i].name;
+    })
 
+    this.secondCard = cards.forEach(function(i){
+        return cards[i].name;
+    })
+
+    if (secondCard === firstCard){
+        this.pairsGuessed++;
+        return true;
+    } else {
+        return false;
+    }
 }
 
 MemoryGame.prototype.finished = function () {
