@@ -59,7 +59,10 @@ $(document).ready(function() {
       if (compare){
         memoryGame.pickedCards = [];
         $('#pairs_guessed').text(memoryGame.pairsGuessed)
+        if ($("#pairs_guessed").text =="12"){
+        }
         $('#pairs_clicked').text(memoryGame.pairsClicked)
+
 
       }else{
         setTimeout(function(){
