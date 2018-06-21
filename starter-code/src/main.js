@@ -70,7 +70,7 @@ var cards = [
         $('.back').removeClass('blocked');
         },500);
       } else {
-        theGame.currentpair = [];
+        theGame.currentPair = [];
         $('.back').removeClass('blocked');
       }
     }
