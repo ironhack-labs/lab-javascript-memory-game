@@ -12,7 +12,17 @@ html {
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 135px 135px 135px 135px;
 }
+
+/* .child {
+  grid-column: span 1;
+  background-color: #3C6686;
+  margin: 10px;
+} */
 
 
 .card .back {
@@ -66,4 +76,12 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+
+
+.show {
+  padding: 20px;
+  height: 71px;
+  margin: 10px;
 }
