@@ -38,13 +38,33 @@ $(document).ready(function(){
     html += '</div>';
     html += '</div>';
   });
-
+  
   // Add all the div's to the HTML
+  var pickedCards = []
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
+  function displayCard(card){
+    card.addClass("front");
+    card.removeClass("back");
+    pickedCards.push(card)
+    card.next().addClass("back");
+    card.next().removeClass("front");
+    pickedCards.push(card);
+
+  }
+  function validate(card1,card2){
+
+  }
+
+  $('.back').on('click', function () {
+    console.log('clicked a back card')
+    displayCard($(this));
+  });
+
+
+
+  
+// End of document load	
 });
 
 
