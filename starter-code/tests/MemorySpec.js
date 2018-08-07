@@ -26,15 +26,15 @@ describe('MemoryGame constructor', function () {
     expect(memoryGame.pairsClicked).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsClicked property should be a number', function () {
     expect(typeof memoryGame.pairsClicked).toBe('number');
   });
 
-  it('MemoryGame should have a pairsClicked property', function () {
+  it('MemoryGame should have a pairsGuessed property', function () {
     expect(memoryGame.pairsGuessed).toBeDefined();
   });
 
-  it('pairsClicked property should be an array', function () {
+  it('pairsGuessed property should be a number', function () {
     expect(typeof memoryGame.pairsGuessed).toBe('number');
   });
 });
@@ -82,7 +82,7 @@ describe('checkIfPair method', function () {
     expect(memoryGame.checkIfPair(2,2)).toBe(true);
   });
 
-  it('It should return false when the comparing cards are the same', function () {
+  it('It should return false when the comparing cards are not the same', function () {
     expect(memoryGame.checkIfPair(2,3)).toBe(false);
   });
 
@@ -120,4 +120,3 @@ describe('finished method', function () {
   });
 
 });
-
