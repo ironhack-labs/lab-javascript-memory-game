@@ -25,10 +25,13 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+var pairsClicked = 0;
+var pairsGuessed = 0;
+
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  var myGame = new MemoryGame(cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+  myGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -40,31 +43,35 @@ $(document).ready(function(){
   });
   
   // Add all the div's to the HTML
-  var pickedCards = []
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   function displayCard(card){
-    card.addClass("front");
-    card.removeClass("back");
-    pickedCards.push(card)
-    card.next().addClass("back");
-    card.next().removeClass("front");
-    pickedCards.push(card);
-
+    card.toggleClass('back front');
+    card.next().toggleClass('front back');
+    console.log(myGame.pickedCards);
   }
-  function validate(card1,card2){
-
-  }
-
+  
   $('.back').on('click', function () {
-    console.log('clicked a back card')
-    displayCard($(this));
-  });
-
-
+    if(myGame.pickedCards.length === 0){
+      myGame.pickedCards.push( $(this).parent().attr('id'));
+      displayCard($(this));
+    }else{
+      myGame.pickedCards.push( $(this).parent().attr('id'));
+      displayCard($(this));
+      console.log('timer activated')
+      setTimeout(function(){
+        if (myGame.checkIfPair(myGame.pickedCards[0],myGame.pickedCards[1]))
+        {
+          console.log('a match!');
+    }else{
+      console.log('not a match');
+      $(this).toggleClass('back front');
+      $(this).last().toggleClass('front back');
+    },500)
+  }
+}
+}
 
   
 // End of document load	
 });
-
-

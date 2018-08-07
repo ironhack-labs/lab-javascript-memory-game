@@ -1,5 +1,5 @@
 var MemoryGame = function(cards) {
-  this.cards = cards;
+  this.cards = this.shuffleCard(cards);
   this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
@@ -14,16 +14,23 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
   return cardsArr;
 };
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
-  memoryGame.pairsClicked++;
+  this.pairsClicked++;
+  console.log(this.pickedCards)
+  console.log('checked pair')
   if (firstCard === secondCard) {
-    memoryGame.pairsGuessed++;
+    console.log('check positive')
+    this.pairsGuessed++;
     return true;
   } else {
+    console.log('check negative')
     return false;
+    this.pickedCards = []
   }
 };
 MemoryGame.prototype.finished = function() {
-  if (memoryGame.pairsGuessed === 12) {
+  console.log('Finish activated')
+  if (this.pairsGuessed === 12) {
+    console.log('Bingo EndGame')
     return true;
   } else {
     return false;
