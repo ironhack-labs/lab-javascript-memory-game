@@ -42,9 +42,52 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
-});
-});
+  var lastCard;
+  var wait = false;
+  $('.back').on('click', function () {
 
+    if ( wait === true){
+      return 0;
+    }
+    var thisCard = $(this)
+    var name = $(this).attr('name')
+    var result;
+    memoryGame.pickedCards.push(name)
+    $(thisCard).removeClass('back')
+    $(thisCard).addClass('front')
+    $(thisCard).next().removeClass('front')
+    $(thisCard).next().addClass('back')
+    if ( memoryGame.pickedCards.length == 2 ){
+      wait = true;
+      result = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
+      memoryGame.pickedCards = [];
+      $('#pairs_guessed').text(memoryGame.pairsGuessed)
+      $('#pairs_clicked').text(memoryGame.pairsClicked)
+      if ( memoryGame.finished()){
+        setTimeout(function(){
+          alert("Congrats you finished the game !\n Reload to play again :)");
+        },1500)
+      }
+      if ( result == false){
+        setTimeout(function(){
+          $(thisCard).removeClass('front')
+          $(thisCard).addClass('back')
+          $(thisCard).next().removeClass('back')
+          $(thisCard).next().addClass('front')
 
+          $(lastCard).removeClass('front')
+          $(lastCard).addClass('back')
+          $(lastCard).next().removeClass('back')
+          $(lastCard).next().addClass('front')
+          wait = false;
+        }, 1000)
+      }
+      else{
+        wait = false;
+      }
+    }
+    else{
+      lastCard = $(thisCard)
+    }
+});
+})
