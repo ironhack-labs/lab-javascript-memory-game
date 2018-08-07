@@ -26,9 +26,11 @@ var cards = [
 ];
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  var theGame = new MemoryGame(cards);
+  theGame.shuffleCard();
   var html = '';
-  memoryGame.cards.forEach(function (pic, index) {
+
+  theGame.cards.forEach(function (pic) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -39,11 +41,44 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+$('#memory_board').html(html);
   // Add all the div's to the HTML
   document.getElementById('memory_board').innerHTML = html;
+
+
   // Bind the click event of each element to a function
-$('.back').on('click', function () {
-   
+  $('.back').on('click', function(){
+    $(this).toggle();
+    $(this).parent().find('.front').toggle();
+    
+    theGame.currentPair.push($(this));
+    console.log(theGame.currentPair);
+
+    if(theGame.currentPair.length === 2){
+      var result = theGame.checkIfPair(theGame.currentPair[0], theGame.currentPair[1]);
+      $('#pairs_clicked').text(theGame.pairsClicked);
+      $('#pairs_guessed').text(theGame.pairsGuessed);
+      $('.back').addClass('blocked');
+      if(!result){
+        setTimeout(function(){
+        theGame.currentPair[0].toggle();
+        theGame.currentPair[0].parent().find('.front').toggle();
+        theGame.currentPair[1].toggle();
+        theGame.currentPair[1].parent().find('.front').toggle();
+        theGame.currentPair = [];
+        $('.back').removeClass('blocked');
+        },500);
+      } else {
+        theGame.currentPair = [];
+        $('.back').removeClass('blocked');
+      }
+    }
+
+    if(theGame.finished()){
+      setTimeout(function(){
+        alert('You Have Won The Game')
+      },100)
+    }
 });
 });
 
