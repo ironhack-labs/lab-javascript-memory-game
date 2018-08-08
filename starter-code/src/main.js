@@ -25,8 +25,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.cards = memoryGame.shuffleCard(memoryGame.cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
@@ -48,6 +51,7 @@ $('.card').on('click', function () {
    $(this).children().toggleClass("front back");
    memoryGame.pickedCards.push($(this));
   console.log(memoryGame.pickedCards)
+  
    if (memoryGame.pickedCards.length === 2) {
     var card1 = memoryGame.pickedCards[0];
     var card2 = memoryGame.pickedCards[1];
@@ -55,26 +59,26 @@ $('.card').on('click', function () {
         console.log("match");
         $(card1).children().addClass("blocked")
         $(card2).children().addClass("blocked")
-        memoryGame.pairsGuessed += 1;
         }
        else {setTimeout (function() {
         console.log("no Match")
         $(card1).children().toggleClass("front back")
         $(card2).children().toggleClass("front back")
-      }, 2000);
+      }, 1000);
       
     }
       memoryGame.pickedCards = [];
-      memoryGame.pairsClicked += 1;
    }
-  $("#pairs_clicked").text((memoryGame.pairsClicked)/2);
-  $("#pairs_guessed").text((memoryGame.pairsGuessed)/2);
+  $("#pairs_clicked").text((memoryGame.pairsClicked));
+  $("#pairs_guessed").text((memoryGame.pairsGuessed));
   console.log(memoryGame.pairsGuessed)
+  if (memoryGame.finished() === true) {
+    setTimeout (function () {alert("Great, Job! Click Ok to start again!")}, 1000);
+    setTimeout (function() {location.reload()}, 2000);
+    console.log("finished");
+  }
 });
 
-if (memoryGame.finished() === true) {
-  $(".card").children().toggleClass("front back");
-  console.log(finished);
-}
+
 
 });

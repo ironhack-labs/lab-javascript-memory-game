@@ -10,7 +10,6 @@ MemoryGame.prototype.shuffleCard = function (cardsArr) {
   var i = 0;
   while (0 <= i <= cardsArr.length) {
     var randomindex = Math.floor(Math.random()*cardsArr.length);
-    console.log(randomindex);
     newarray.push(cardsArr[randomindex]);
     cardsArr.splice(randomindex, 1)
     i++
