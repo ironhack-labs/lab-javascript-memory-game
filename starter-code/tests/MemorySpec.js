@@ -120,4 +120,3 @@ describe('finished method', function () {
   });
 
 });
-
