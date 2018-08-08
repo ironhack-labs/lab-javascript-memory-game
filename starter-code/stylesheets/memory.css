@@ -14,6 +14,15 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
+.card .front {
+  display: none;
+	width:71px;
+	height:71px;
+	margin:10px;
+	padding:20px;
+  font-size:64px;
+  float:left;
+}
 
 .card .back {
   background-color: #456783;
