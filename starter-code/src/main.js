@@ -45,34 +45,42 @@ $(document).ready(function() {
     // Bind the click event of each element to a function
 
     $('.back').on('click', function() {
-        var card = $(this).attr('name');
-        console.log('CANOPEN', memoryGame.canOpenNewCard());
-        if (memoryGame.canOpenNewCard()) {
-            memoryGame.registerCard(card);
-            var pairsClicked = memoryGame.getPairsClicked();
-            $('#pairs_clicked').html(pairsClicked);
-            var front = $(this).siblings();
-            $(this).removeClass('back');
-            $(this).addClass('front');
-            front.removeClass('front');
-            front.addClass('back');
+        if (memoryGame.pickedCards.length >= 2) {
+            return;
         }
 
-        setTimeout(
-            function() {
-                if (memoryGame.checkIfPair()) {
-                    var pairsGuessed = memoryGame.getPairsGuessed();
-                    $('#pairs_guessed').html(pairsGuessed);
-                }
+        var card = $(this).attr('name');
+        memoryGame.pickedCards.push(card);
+        $(this)
+            .parent()
+            .addClass('picked');
+        $(this)
+            .parent()
+            .children()
+            .toggleClass('front back');
 
-                memoryGame.unregisterCards();
-
-                $(this).removeClass('front');
-                $(this).addClass('back');
-                front.removeClass('back');
-                front.addClass('font');
-            }.bind(this),
-            3000
-        );
+        if (memoryGame.pickedCards.length == 2) {
+            if (!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+                setTimeout(
+                    function() {
+                        $('.card.picked')
+                            .children()
+                            .toggleClass('front back');
+                        $('.card.picked').removeClass('picked');
+                        memoryGame.pickedCards = [];
+                    }.bind(this),
+                    3000
+                );
+            } else {
+                $('.card.picked').removeClass('picked');
+                memoryGame.pickedCards = [];
+            }
+            updateScore(memoryGame);
+        }
     });
 });
+
+function updateScore(memoryGame) {
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+}
