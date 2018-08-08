@@ -14,7 +14,6 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
   return cardsArr;
 };
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
-  this.pairsClicked++;
   console.log(this.pickedCards)
   console.log('checked pair')
   if (firstCard === secondCard) {

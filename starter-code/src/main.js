@@ -48,6 +48,7 @@ $(document).ready(function(){
   function displayCard(card){
     card.toggleClass('back front');
     card.next().toggleClass('front back');
+    card.parent().toggleClass('picked');
     console.log(myGame.pickedCards);
   }
   
@@ -55,29 +56,22 @@ $(document).ready(function(){
     if(myGame.pickedCards.length === 0){
       myGame.pickedCards.push( $(this).parent().attr('id'));
       displayCard($(this));
-      var firstCard = $()
+      var firstCard = $(this)
+   //   console.log('first: '+firstCard)
     }else{
+      myGame.pairsClicked++;
       myGame.pickedCards.push( $(this).parent().attr('id'));
       displayCard($(this));
       console.log('timer activated')
       var checkCards = (myGame.checkIfPair(myGame.pickedCards[0],myGame.pickedCards[1]))
-    if (checkCards == false){
+    
+      if (checkCards == false){
       console.log('condition false');
       myGame.pickedCards=[];
+      console.log('waiting completed')
+      displayCard($(this));
+     // displayCard(firstCard);
 
-      for (var i = 1; i <= 5; i++) {
-        var tick = function(i) {
-            return function() {
-                console.log(i);
-            }
-            if(i==5){
-              console.log('waiting completed')
-            $(this).toggleClass('back front');
-            $(this).next().toggleClass('front back');
-            }
-        };
-        setTimeout(tick(i), 500 * i);
-    }
 
 
 
