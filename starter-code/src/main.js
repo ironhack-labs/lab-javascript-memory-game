@@ -25,10 +25,10 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-
+var memoryGame;
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  memoryGame = new MemoryGame(cards);
   memoryGame.cards = memoryGame.shuffleCard(memoryGame.cards);
   var html = '';
   memoryGame.cards.forEach(function (pic, index) {
@@ -43,13 +43,13 @@ $(document).ready(function(){
   });
 
   
-
+  $("memory_board").html(html);
   document.getElementById('memory_board').innerHTML = html;
 
-$('.card').on('click', function () {
+$('.back').on('click', function () {
    console.log("click");
-   $(this).children().toggleClass("front back");
-   memoryGame.pickedCards.push($(this));
+   $(this).parent().children().toggleClass("front back");
+   memoryGame.pickedCards.push($(this).parent());
   console.log(memoryGame.pickedCards)
   
    if (memoryGame.pickedCards.length === 2) {
