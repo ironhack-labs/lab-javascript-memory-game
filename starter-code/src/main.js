@@ -27,107 +27,68 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  memoryGame.shuffleCard(cards)
-  var html = '';
+  let newGame = () => memoryGame.shuffleCard(cards);
+  newGame()
+  var myHTML = '';
   memoryGame.cards.forEach(function (pic, index) {
-    html += '<div class= "card" id="card_' + pic.name + '">';
-    html += '<div class="back"';
-    html += '    name="'       + pic.img +  '">';
-    html += '</div>';
-    html += '<div class="front" ';
-    html += 'style="background: url(img/' + pic.img + ') no-repeat">';
-    html += '</div>';
-    html += '</div>';
+    myHTML += `
+      <div class= "card" id="card_${pic.name}">
+        <div class="back"    name="${pic.img}"></div>
+        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+      </div>
+    `
   });
 
   // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+  document.getElementById('memory_board').innerHTML = myHTML;
   // Bind the click event of each element to a function
-  var firstCard;
-  var secondCard;
-  var loading = false;
-  var pairsClicked = document.getElementById('pairs_clicked');
-  var pairsGuessed = document.getElementById('pairs_guessed');
+  let loading = false;
   
   $('.back').on('click', function () {
-    // var clickedCardName = $(this).attr('name');
-    
+    if (memoryGame.finished()) {
+      newGame()
+    }
     if (!loading) {
       toggleCard($(this))
       addCard($(this))
-    } else {
-      console.log('please wait')
-    }
-   
-    // console.log(clickedCardName)
+    } 
   });
  
-  
-  function toggleCard(card) {
-    console.log(card)
-    card.addClass('front').removeClass('back')
-    card.next().addClass('back').removeClass('front')
+  let toggleCard = (card) => {
+    card.toggleClass('front').toggleClass('back')
+    card.next().toggleClass('front').toggleClass('back')
   }
 
-  function disappear(card) {
-    card.addClass('back').removeClass('front')
-    card.next().addClass('front').removeClass('back')
-  }
-  function addCard(card) {
-   
-    if (memoryGame.pickedCards.length === 0) {
-      firstCard = card;
-      // console.log('1', firstCard)
-      var cardName = card.attr('name');
-      memoryGame.pickedCards.push(cardName)
-      // console.log(cardName)
-    } else if (memoryGame.pickedCards.length === 1) {
-      secondCard = card;
-      // console.log(secondCard)
-      var cardName = card.attr('name');
-      memoryGame.pickedCards.push(cardName)
-      // console.log(cardName)
-
+  let addCard = (card) => {
+    if (memoryGame.pickedCards.length < 1) {
+      memoryGame.pickedCards.push(card)
+    } else {
+      memoryGame.pickedCards.push(card)
+      checkResult();
     }
-    if (memoryGame.pickedCards.length === 2) {
+  }
 
-      var result = checkResult();
-      if (result) {
-        console.log('do nothing')
-        pairsGuessed.innerHTML = memoryGame.pairsGuessed;
-
+  let checkResult = () => {
+    const result = memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'), memoryGame.pickedCards[1].attr('name'));
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    if (result) {
+      $('#pairs_guessed').text(memoryGame.pairsGuessed);
+      reset()
+    } else {
+      loading = true;
+      setTimeout(function() {
+        toggleCard(memoryGame.pickedCards[0])
+        toggleCard(memoryGame.pickedCards[1])
         reset()
-      } else {
-        console.log('disappear')
-        // firstCard.addClass('back')
-        console.log('2', firstCard)
-        loading = true;
-        setTimeout(function() {
-          console.log('interval')
-          disappear(firstCard)
-          disappear(secondCard)
-          reset()
-        }, 1000)
-
-        
-        
-        // toggleCard(firstCard)
-        // toggleCard(secondCard)
-      }
+      }, 500)
     }
   }
-  function checkResult() {
-    var result = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
-    pairsClicked.innerHTML = memoryGame.pairsClicked;
-    return result;
-  }
 
-  function reset() {
+  let reset = () => {
     memoryGame.pickedCards = [];
-    firstCard = undefined;
-    secondCard = undefined;
     loading = false;
   }
+
 });
 
 
