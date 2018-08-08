@@ -50,54 +50,51 @@ $(document).ready(function() {
     // Add all the div's to the HTML
     document.getElementById('memory_board').innerHTML = html;
 
-    // Bind the click event of each element to a function
     $('.back').on('click', function(ev) {
         var myArr = memoryGame.pickedCards;
-        myArr.push(ev.target.parentElement); //pushes clicked card to array in object
+        myArr.push(ev.target.parentElement); //pushes current clicked event to array
 
-        var pair = [];
-        pair[0] = myArr[myArr.length - 2];
-        pair[1] = myArr[myArr.length - 1];
+        var pair = createPair(myArr);
 
-        $(this).removeClass();
-        $(this).addClass('front');
-
-        $(this)
-            .siblings()
-            .removeClass();
-        $(this)
-            .siblings()
-            .addClass('back');
+        removeAndAddClass($(this));
 
         if (myArr.length % 2 === 0) {
             memoryGame.checkIfPair(pair[0], pair[1]);
 
-            var secondLastEl = String(pair[0].getAttribute('id'));
-            var lastEl = String(pair[1].getAttribute('id'));
-
-            if (secondLastEl !== lastEl) {
+            if (pair[0].getAttribute('id') !== pair[1].getAttribute('id')) {
                 pair.forEach(function(el) {
                     for (var i = 0; i < el.childNodes.length; i++) {
                         if (el.childNodes[i].className === 'front') {
-                            setTimeout(function() {
-                                el.childNodes[0].classList.remove('front');
-                                el.childNodes[0].classList.add('back');
-
-                                el.childNodes[1].classList.remove('back');
-                                el.childNodes[1].classList.add('front');
-                            }, 1000);
+                            hideCard(el);
                         }
                     }
                 });
             }
         }
-
-        //hide images if they do not match
-        //change class to back
-        // lastEl.removeClass('front');
-        // lastEl.addClass('back');
-        // secondLastEl.removeClass('front');
-        // secondLastEl.addClass('back');
     });
 });
-//
+
+function removeAndAddClass(el) {
+    el.removeClass();
+    el.addClass('front');
+
+    el.siblings().removeClass();
+    el.siblings().addClass('back');
+}
+
+function hideCard(el) {
+    setTimeout(function() {
+        el.childNodes[0].classList.remove('front');
+        el.childNodes[0].classList.add('back');
+
+        el.childNodes[1].classList.remove('back');
+        el.childNodes[1].classList.add('front');
+    }, 1000);
+}
+
+function createPair(arr) {
+    var pair = [];
+    pair[0] = arr[arr.length - 2];
+    pair[1] = arr[arr.length - 1];
+    return pair;
+}

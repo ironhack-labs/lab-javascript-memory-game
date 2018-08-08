@@ -33,18 +33,12 @@ MemoryGame.prototype.shuffleCard = function(cardsArr) {
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
     this.pairsClicked += 1;
     var pairClickedEl = document.querySelector('#pairs_clicked');
-    pairClickedEl.innerHTML = this.pairsClicked; //increments pairs clicked and updates the DOM
-
-    var firstId = String(firstCard.getAttribute('id'));
-    var secondId = String(secondCard.getAttribute('id'));
+    pairClickedEl.innerHTML = this.pairsClicked; //updates DOM
 
     var pairsGuessedEl = document.querySelector('span#pairs_guessed');
-
-    //if firstcard === second card return this.pairsGuessed
-    if (firstId === secondId) {
-        console.log('condition passed');
-        this.pairsGuessed += 1; //works
-        pairsGuessedEl.innerHTML = this.pairsGuessed; //works
+    if (firstCard.getAttribute('id') === secondCard.getAttribute('id')) {
+        this.pairsGuessed += 1;
+        pairsGuessedEl.innerHTML = this.pairsGuessed; //updates DOM
     }
 };
 
