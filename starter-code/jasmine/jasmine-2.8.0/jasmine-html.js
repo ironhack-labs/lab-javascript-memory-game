@@ -155,7 +155,7 @@ jasmineRequire.HtmlReporter = function(j$) {
       var alert = find('.jasmine-alert');
       var order = doneResult && doneResult.order;
       labName.appendChild(createDom('img', {src: 'jasmine/jasmine-2.8.0/ironhack.png'}, ''));
-      labName.appendChild(createDom('span', {}, 'Lab - JS | All time movies'));
+      labName.appendChild(createDom('span', {}, 'Lab - JS | Memory Game'));
       alert.appendChild(createDom('span', {className: 'jasmine-duration'}, 'finished in ' + timer.elapsed() / 1000 + 's'));
 
       banner.appendChild(

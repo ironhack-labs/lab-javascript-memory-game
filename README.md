@@ -23,7 +23,7 @@ $ git add .
 $ git commit -m "done"
 $ git push origin master
 ```
-Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
+Navigate to your repo and create a Pull Request from your master branch to the original repository master branch.
 
 In the Pull request name, add your name and last names separated by a dash "-"
 
@@ -37,13 +37,13 @@ Do you remember that game called Memory that you used to play in with actual pap
 
 The game consists of an even number of tiles with images on one side and a generic back. Each image appears on precisely two tiles.
 
-![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg =300)
+![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
 When the game starts, all tiles are turned face down. The player then flips over two cards, selecting them by clicking on them. If the two tiles have the same image, they remain face up. Otherwise, the tiles flip back over after a small period of time.
 
 The goal of the game is to get all the tiles flipped face up in the least number of tries. That means that lower number of tries are better scores.
 
-**[Let's do this in JavaScript!](https://github.com/ironhack/lab-javascript-memory-game)**
+**Let's do this in JavaScript!**
 
 ## Plan your Game
 
@@ -55,7 +55,7 @@ Remember: organization is the key. Keep the JavaScript related to your layout an
 
 - Add to your html the parts you'll game will have. The board, the tiles and the score.
 
-```htmlmixed=
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -73,7 +73,7 @@ Take a look above. We are not adding a **Start** button. If you think about it, 
 
 - At the bottom of your `body` element, you can already add the CDN for your jQuery library:
 
-```htmlmixed
+```html
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 ```
@@ -83,7 +83,7 @@ Also, link your `js` file. We already know how to do it :wink:.
 
 - In the `header` section, remember to add the link to your CSS file.
 
-```htmlmixed
+```html
 <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
 ```
 
@@ -97,13 +97,13 @@ We will test our game logic using Jasmine (at this point you shold be **Jasmine 
 
 - First things first: Create a `MemoryGame` constructor that will receive an array of cards as a parameter and set this array to a `this.cards` property. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
 
-- Create a method to shuffle the cards, so every time you create a new game, the order or the card changes. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle).
+- Create a method to shuffle the cards, so every time you create a new game, the order of the cards changes. You will only need to change the `cards` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this function, you can skip for the moment and go back on it later.
 
 ```javascript
-MemoryGame.prototype._shuffleCard = function() {
+MemoryGame.prototype.shuffleCards = function() {
 };
 ```
-- When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters (both cards selected by the user). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
+- When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
 
 Finally it will return `true` or `false` depending on the result of comparing both cards.
 
@@ -116,7 +116,7 @@ MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
 - As Memory doesn't have a 'Game Over', we just need a 'Win' function, where we need to check if our property `pairsGuessed` reach the numbers of pairs the game has.
 
 ```javascript
-MemoryGame.prototype.finished = function() {
+MemoryGame.prototype.isFinished = function() {
 };
 ```
 
@@ -134,13 +134,31 @@ $(document).ready(function(){
 - The other important interaction is the click listener. Remember to add the listeners when the document is loaded.
 
 ```javascript
-$('.back').on('click', function(){
+$('.back').click(function(){
 });
+```
+
+To flip a card, there are different possibilities. One them is toggle the classes `front` and `back`, like in the following example:
+
+```html
+<!-- Only display the back that is blue -->
+<div class= "card" data-card-name="ironman">
+  <div class="back" name="ironman.jpg"></div>
+  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+</div>
+
+<!-- After flipping (back and front are reverted) -->
+
+<!-- Only display the back that has a ironman backgroung image -->
+<div class= "card" data-card-name="ironman">
+  <div class="front" name="ironman.jpg"></div>
+  <div class="back" style="background: url(img/ironman.jpg) no-repeat"></div>
+</div
 ```
 
 ## Summary
 
-In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm and got 
+In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm.
 
 ## Extra Resources
 
