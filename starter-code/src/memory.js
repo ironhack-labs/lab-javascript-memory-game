@@ -18,14 +18,14 @@ MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
   console.log(this.pickedCards)
   console.log('checked pair')
   if (firstCard === secondCard) {
-    console.log('check positive')
     this.pairsGuessed++;
+    console.log('Guessed'+ this.pairsGuessed)
     return true;
   } else {
     console.log('check negative')
     return false;
-    this.pickedCards = []
   }
+  this.pickedCards = []
 };
 MemoryGame.prototype.finished = function() {
   console.log('Finish activated')

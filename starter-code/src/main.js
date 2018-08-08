@@ -55,23 +55,42 @@ $(document).ready(function(){
     if(myGame.pickedCards.length === 0){
       myGame.pickedCards.push( $(this).parent().attr('id'));
       displayCard($(this));
+      var firstCard = $()
     }else{
       myGame.pickedCards.push( $(this).parent().attr('id'));
       displayCard($(this));
       console.log('timer activated')
-      setTimeout(function(){
-        if (myGame.checkIfPair(myGame.pickedCards[0],myGame.pickedCards[1]))
-        {
-          console.log('a match!');
-    }else{
-      console.log('not a match');
-      $(this).toggleClass('back front');
-      $(this).last().toggleClass('front back');
-    },500)
-  }
-}
-}
+      var checkCards = (myGame.checkIfPair(myGame.pickedCards[0],myGame.pickedCards[1]))
+    if (checkCards == false){
+      console.log('condition false');
+      myGame.pickedCards=[];
 
-  
+      for (var i = 1; i <= 5; i++) {
+        var tick = function(i) {
+            return function() {
+                console.log(i);
+            }
+            if(i==5){
+              console.log('waiting completed')
+            $(this).toggleClass('back front');
+            $(this).next().toggleClass('front back');
+            }
+        };
+        setTimeout(tick(i), 500 * i);
+    }
+
+
+
+    } else {
+      console.log('condition true')
+      myGame.pickedCards=[];
+      if(myGame.finished() == true){
+        console.log('bingo')
+      }
+    }
+    $('#pairs_guessed').text(myGame.pairsGuessed)
+    $('#pairs_clicked').text(myGame.pairsClicked)
+      //END of CLICK FUNCTION
+    }})
 // End of document load	
 });
