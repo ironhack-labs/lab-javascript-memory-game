@@ -25,13 +25,15 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-var pairsClicked = 0;
-var pairsGuessed = 0;
+var g;
+var firstCard;
 
 $(document).ready(function(){
-  var myGame = new MemoryGame(cards);
+  
+
+  var g = new MemoryGame(cards);
   var html = '';
-  myGame.cards.forEach(function (pic, index) {
+  g.cards.forEach(function (pic, index) {
     html += '<div class= "card" id="card_' + pic.name + '">';
     html += '<div class="back"';
     html += '    name="'       + pic.img +  '">';
@@ -43,48 +45,48 @@ $(document).ready(function(){
   });
   
   // Add all the div's to the HTML
-  document.getElementById('memory_board').innerHTML = html;
+  $('#memory_board').html(html);
   // Bind the click event of each element to a function
   function displayCard(card){
-    card.toggleClass('back front');
-    card.next().toggleClass('front back');
-    card.parent().toggleClass('picked');
-    console.log(myGame.pickedCards);
+    $(card).parent().children().toggleClass('front back');
   }
+
   
   $('.back').on('click', function () {
-    if(myGame.pickedCards.length === 0){
-      myGame.pickedCards.push( $(this).parent().attr('id'));
+    if (g.pickedCards.length === 0){
+        console.log('first card picked executed');
+        g.pickedCards.push( $(this).parent().attr('id'));
+        displayCard($(this));
+        firstCard = $(this);
+  }else{
+      console.log('case 2 executed');
+      var secondCard = $(this);
       displayCard($(this));
-      var firstCard = $(this)
-   //   console.log('first: '+firstCard)
-    }else{
-      myGame.pairsClicked++;
-      myGame.pickedCards.push( $(this).parent().attr('id'));
-      displayCard($(this));
-      console.log('timer activated')
-      var checkCards = (myGame.checkIfPair(myGame.pickedCards[0],myGame.pickedCards[1]))
-    
-      if (checkCards == false){
-      console.log('condition false');
-      myGame.pickedCards=[];
-      console.log('waiting completed')
-      displayCard($(this));
-     // displayCard(firstCard);
+      g.pickedCards.push( $(this).parent().attr('id'));
+      var checkCards = (g.checkIfPair(g.pickedCards[0],g.pickedCards[1]))
+       if (!checkCards){
+            console.log('Not a match');
+            setTimeout(function(){
+              displayCard(secondCard);
+              displayCard(firstCard);
+              ;},1500);
+            
+               
+       }else{
+        console.log('A match');
 
-
-
-
-    } else {
-      console.log('condition true')
-      myGame.pickedCards=[];
-      if(myGame.finished() == true){
-        console.log('bingo')
-      }
+       }
+       g.pickedCards=[]
     }
-    $('#pairs_guessed').text(myGame.pairsGuessed)
-    $('#pairs_clicked').text(myGame.pairsClicked)
-      //END of CLICK FUNCTION
-    }})
-// End of document load	
+    updateScore(g)
+    if(g.finished()){
+      setTimeout(function(){alert("You Win");},500)
+    }
+    //END of CLICK FUNCTION
+  })
+  // End of document load	
 });
+function updateScore(g){
+$('#pairs_guessed').text(g.pairsGuessed)
+$('#pairs_clicked').text(g.pairsClicked)
+}
