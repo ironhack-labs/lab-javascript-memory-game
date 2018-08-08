@@ -47,6 +47,10 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
 
 $('.back').on('click', function () {
+
+    if (memoryGame.pickedCards.length >= 2)
+      return;
+
    console.log("click");
    $(this).parent().children().toggleClass("front back");
    memoryGame.pickedCards.push($(this).parent());
@@ -64,10 +68,11 @@ $('.back').on('click', function () {
         console.log("no Match")
         $(card1).children().toggleClass("front back")
         $(card2).children().toggleClass("front back")
-      }, 1000);
+        memoryGame.pickedCards = [];
+      }, 2000);
       
     }
-      memoryGame.pickedCards = [];
+      
    }
   $("#pairs_clicked").text((memoryGame.pairsClicked));
   $("#pairs_guessed").text((memoryGame.pairsGuessed));
