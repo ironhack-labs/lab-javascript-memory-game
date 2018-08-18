@@ -71,7 +71,9 @@ $(document).ready(function(){
 
     //Reload if finished
     if (memoryGame.isFinished()) {
-      location.reload();
+      setTimeout(function () {
+        location.reload();
+      }, 500);
     }
 
     cleanElements();
