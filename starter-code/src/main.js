@@ -27,7 +27,9 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  var html = '';
+  var html = ''; 
+  var numClics = 1, numPairs = 0;
+  var cardOne="", cardTwo="", cardNameOne="", cardNameTwo="";
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -39,8 +41,48 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.back').click(function () {    
+    if(memoryGame.isFinished()){
+      alert("¡G A N A S T E !");
+      return;
+    }
+    $(this).removeClass();
+    $(this).addClass('front');
+    $(this).next().removeClass();
+    $(this).next().addClass('back');
+    if(numClics == 2) {
+      cardNameTwo = $(this).parent().data('card-name');
+      $(this).attr('id','secondCardFront');
+      $(this).next().attr('id','secondCardBack');
+      numClics = 1;
+    }
+    else {
+      cardNameOne = $(this).parent().data('card-name');
+      $(this).attr('id','firstCardFront');
+      $(this).next().attr('id','firstCardBack');
+      numClics += 1;
+    }
+    if(memoryGame.checkIfPair(cardNameOne,cardNameTwo)){    
+      $('#pairs_guessed').html(memoryGame.pairsGuessed);
+    }else{
+      $('#pairs_clicked').html(memoryGame.pairsClicked);
+      if(cardNameTwo != ''){
+        $('#firstCardFront').removeClass();
+        $('#firstCardFront').addClass('back');
+        $('#firstCardBack').removeClass();
+        $('#firstCardBack').addClass('front');
+        $('#firstCardBack').removeAttr('id');
+        $('#firstCardFront').removeAttr('id');
+        $('#secondCardFront').removeClass();
+        $('#secondCardFront').addClass('back');
+        $('#secondCardBack').removeClass();
+        $('#secondCardBack').addClass('front');
+        $('#secondCardBack').removeAttr('id');
+        $('#secondCardFront').removeAttr('id');
+        cardNameOne = '';
+        cardNameTwo = '';
+      }
+    }
   });
 });
 
