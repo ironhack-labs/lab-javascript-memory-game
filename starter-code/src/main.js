@@ -27,6 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -38,10 +39,97 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
+  
   $('.back').click(function () {
-    // TODO: write some code here
-  });
-});
+
+    $(this).toggle();
+
+    $(this).siblings().toggle();
+
+    memoryGame.pickedCards.push($(this));
+    // var clicked = false;
+    // $('.back').l
+    // console.log("this is picked cards ============ ", memoryGame.pickedCards);
+    
+
+if(memoryGame.pickedCards.length === 2) {
+  $('.back:visible').addClass('blocked')
+  let gameStatus = memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'), memoryGame.pickedCards[1].attr('name'));
+  if(gameStatus) {
+    console.log("pairs matched --  True!!");
+    
+    memoryGame.pickedCards[0].addClass('blocked')
+    memoryGame.pickedCards[1].addClass('blocked')
+    memoryGame.pickedCards = [];
+    $('.back').removeClass('blocked')
+  } else {
+    
+    
+    setTimeout(()=>{
+      console.log("pairs did not match -- False!!!");
+      memoryGame.pickedCards[0].siblings('.front').toggle()
+      memoryGame.pickedCards[0].toggle();
+      memoryGame.pickedCards[1].siblings('.front').toggle()
+      memoryGame.pickedCards[1].toggle()
+      memoryGame.pickedCards = [];
+      // $(this).toggle()
+      // $(this).siblings().toggle();
+      $('.back').removeClass('blocked')
+      
+    },1000);
+  } 
+
+
+
+
+  }
+
+// memoryGame.pairsClicked
+  // var displayPrice = memoryGame.pairsClicked
+  var totalPrice = $('#pairs_clicked')
+  totalPrice.html(memoryGame.pairsClicked)
+  console.log('getting somewhere');
+
+
+
+var secondTotalPrice = $('#pairs_guessed')
+secondTotalPrice.html(memoryGame.pairsGuessed)
+console.log('it works for sure');
+
+  }); 
+
+
+
+}); 
+
+   
+
+  
+  
+
+
+
+//  var visibleCards = $('front:visible');
+//  if(visibleCards.length === 2) {
+//    let gameStatus = memoryGame.checkIfParis()
+//  } if(gameStatus) {
+//    visibleCards.addClass('blocked')
+//  } else {
+
+
+//  }
+
+
+
+
+var frontOfCards = $('.front')
+var allCards = $('.cards')
+
+  
+
+
+
+
+
 
 
