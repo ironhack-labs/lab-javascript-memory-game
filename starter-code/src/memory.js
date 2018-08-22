@@ -1,6 +1,9 @@
-var MemoryGame = function (cards) {
-  this.cards = cards;
-};
+class MemoryGame {
+  constructor(cards){
+    this.cards = cards;
+    this.pickedCards = [];
+  }
+}
 
 MemoryGame.prototype.shuffleCards = function () {
 };
