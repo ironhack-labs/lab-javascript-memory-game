@@ -5,24 +5,23 @@ html {
 }
 
 #memory_board {
-  background:#dddddd;
-	width:800px;
-	height:540px;
-	padding:70px;
-	margin:0px auto;
+  background: #dddddd;
+  width: 800px;
+  height: 540px;
+  padding: 70px;
+  margin: 0px auto;
   border-radius: 84px;
-  box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
 }
-
 
 .card .back {
   background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
+  width: 71px;
+  height: 71px;
+  float: left;
+  margin: 10px;
+  padding: 20px;
+  font-size: 64px;
 }
 .card .front.blocked,
 .card .back.blocked {
@@ -30,11 +29,11 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
-  width:200px;
+  width: 200px;
   padding: 20px;
   padding-top: 0;
   margin-left: 75%;
@@ -50,7 +49,6 @@ h1 {
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
-
 }
 
 h2 {
@@ -66,4 +64,13 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.front {
+  width: 71px;
+  height: 71px;
+  float: left;
+  margin: 10px;
+  padding: 20px;
+  display: none;
 }

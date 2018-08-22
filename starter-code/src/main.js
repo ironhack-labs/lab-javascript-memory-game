@@ -40,8 +40,57 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
-  });
-});
+    $(this).toggle();
+    $(this).parent().find(".front").toggle()
+    
+    memoryGame.pickedCards.push($(this));
+
+    console.log(memoryGame.pickedCards.length);
+
+   if (memoryGame.pickedCards.length === 2){
+     console.log('inside');
+    //  memoryGame.checkIfPair();
+
+     if (memoryGame.checkIfPair() == true){
+       $(this).addClass("blocked")
+
+     }
+     else 
+    //  if (memoryGame.checkIfPair() == false) {
+      {
+      setTimeout(function() {
+        memoryGame.pickedCards[0].toggle();
+        $(memoryGame.pickedCards[0]).parent().find(".front").toggle()
+        $(memoryGame.pickedCards[1]).parent().find(".front").toggle()
+        memoryGame.pickedCards[1].toggle();
+        memoryGame.pickedCards = [];
+       }, 500);
+      //  $(this).toggle();
+      //  $(this).parent().find(".front").toggle()
+
+     }
+     console.log(memoryGame.pairsClicked)
+     console.log($('#pairs_clicked').html());
+
+     $('#pairs_clicked').html(memoryGame.pairsClicked);
+     $('#pairs_guessed').html(memoryGame.pairsGuessed);
+
+     if (memoryGame.pairsGuessed === 12){
+       memoryGame.isFinished();
+     }
+     
+
+
+     }
+
+
+    console.log(memoryGame.pickedCards);
+   }
+  //  memoryGame.checkIfPair();
+  
+)
+})
+
+
 
 
