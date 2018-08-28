@@ -18,14 +18,16 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++;
   if(firstCard === secondCard){
     this.pairsGuessed++;
+    this.pickedCards = [];
     return true;
   } else {
+    this.pickedCards = [];
     return false;
   }
 }
 
 MemoryGame.prototype.isFinished = function () {
-  if(this.pairsGuessed < 8){
+  if(this.pairsGuessed < 12){
     return false;
   } else {
     return true;

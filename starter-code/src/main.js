@@ -25,13 +25,14 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+$(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '<div class="card" data-card-name="' + pic.name + '">';
+    html += '  <div class="back" name="' + pic.img + '"></div>';
+    html += '  <div class="front" style="background: url(img/' + pic.img + ') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -39,14 +40,38 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
+  var tempArray = [];
   $('.back').click(function () {
-    $(this).toggleClass("back");
-    $(this).toggleClass("front");
-    $($(this).siblings()).toggleClass("front");
-    $($(this).siblings()).toggleClass("back");
+    $(this).toggleClass("back front");
+    $(this).siblings().toggleClass("front back");
+    memoryGame.pickedCards.push($(this).attr("name"))
+    tempArray.push($(this));
+    if (memoryGame.pickedCards.length === 2) {
+      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+        tempArray = [];
+      } else {
+        setTimeout(function () {
+          tempArray.forEach(function (e) {
+            e.toggleClass("front back");
+            e.siblings().toggleClass("front back");
+            tempArray = [];
+          })
+        }, 1000)
+      }
+    }
+    $("#pairs_clicked").html(memoryGame.pairsClicked);
+    $("#pairs_guessed").html(memoryGame.pairsGuessed);
+    if(memoryGame.isFinished()){
+      $("#memory_board").html("<h1>YOU WIN!!<h1>");
+    }
   });
+
+
 
 
 });
 
+function clearArray(array) {
+  array = [];
+}
 
