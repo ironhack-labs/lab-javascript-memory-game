@@ -39,8 +39,28 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
+  var arrayCards=[];
   $('.back').click(function () {
-    // TODO: write some code here
+    arrayCards.push($(this));
+    $(this).toggleClass("back front");
+    $(this).next().toggleClass("back front");
+    if(arrayCards.length==2){
+     if (memoryGame.checkIfPair(arrayCards[0].attr("name"),arrayCards[1].attr("name"))){
+      arrayCards=[];
+    }
+    else{
+      setTimeout(function(){
+      arrayCards.forEach(function(e){
+        e.toggleClass("back front");
+        e.next().toggleClass("back front");
+        arrayCards=[];
+      });
+      },500);
+    };
+  };
+    $(".pairs_guessed").text(memoryGame.pairsGuessed);
+    $(".pairs_clicked").text(memoryGame.pairsClicked);
+    memoryGame.isFinished();
   });
 });
 
