@@ -48,11 +48,11 @@ function hiddeCard(el) {
 }
 
 function setPairsClicked(totalClicks) {
-	$('#pairs_clicked').innerHTML = totalClicks;
+	$('#pairs_clicked').html(totalClicks);
 }
 
 function setPairsGuessed(totalGuessed) {
-	$('#pairs_guessed').innerHTML = totalGuessed;
+	$('#pairs_guessed').html(totalGuessed);
 }
 
 $(document).ready(function () {
