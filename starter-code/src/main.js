@@ -23,9 +23,9 @@ var cards = [
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
-];
-
-$(document).ready(function(){
+ ];
+ 
+ $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -34,14 +34,23 @@ $(document).ready(function(){
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
+ 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-
+ 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    $(this).toggleClass("front back")
+    $(this).next().toggleClass("back front")
     // TODO: write some code here
   });
-});
+
+  $('.front').click(function () {
+    $(this).toggleClass("back front")
+    $(this).next().toggleClass("front back")
+  });
+
+  
+ });
 
 
