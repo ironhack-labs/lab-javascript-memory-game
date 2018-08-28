@@ -1,12 +1,9 @@
-var MemoryGame = function (cards) {
+var MemoryGame = function(cards) {
   this.cards = cards;
 };
 
-MemoryGame.prototype.shuffleCards = function () {
-};
+MemoryGame.prototype.shuffleCards = function() {};
 
-MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-}
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {};
 
-MemoryGame.prototype.isFinished = function () {
-};
+MemoryGame.prototype.isFinished = function() {};
