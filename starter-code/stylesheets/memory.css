@@ -52,6 +52,12 @@ h1 {
   text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
 
 }
+.lose{
+  display:none;
+}
+.win{
+  font-size: 200px;
+}
 
 h2 {
   color: #456783;
