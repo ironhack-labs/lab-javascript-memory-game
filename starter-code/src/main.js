@@ -34,6 +34,7 @@ function getNameAttribute(el){
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
 	var html = '';
+	var counter = 1;
 
 	memoryGame.shuffleCards();
 	memoryGame.cards.forEach(function (pic) {
@@ -48,9 +49,22 @@ $(document).ready(function () {
 
 	// Bind the click event of each element to a function
 	$('.back').click(function () {
-		var firstCard = getNameAttribute(this);
-		var secondCard = getNameAttribute(this); 
-		memoryGame.checkIfPair(firstCard, secondCard);
+		
+		if (counter === 1) {
+			//show this card
+			$(this).removeClass('back');
+			$(this).addClass('front');
+
+			$(this).next().removeClass('front');
+			$(this).next().addClass('back');
+
+			counter++;
+		} else {
+			var firstCard = getNameAttribute(this);
+			var secondCard = getNameAttribute(this);
+
+			memoryGame.checkIfPair(firstCard, secondCard);
+		}
 	});
 
 
