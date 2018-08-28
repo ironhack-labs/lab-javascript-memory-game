@@ -38,47 +38,34 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-  var arrayTemp = [];
+  
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
     var self = this;
     
     $(self).toggleClass('back');
     $(self).next().toggleClass('back');
-    
+    memoryGame.pickedCards.push($(self));
 
-    
-    arrayTemp.push($(self));
-    memoryGame.pickedCards.push($(self).attr('name'));
-    if(memoryGame.pickedCards.length == 2){
-      
-      var pair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+    if(memoryGame.pickedCards.length == 2){     
+      var pair = memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'), memoryGame.pickedCards[1].attr('name'));
       document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
       document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
-      //console.log(memoryGame.pairsClicked+"clicked")
-      if (pair == true) {
-  
       
+      if (pair == true) {
         memoryGame.pickedCards = [];
-        arrayTemp = [];
         if (memoryGame.isFinished()){
-          //vuelve a empezar
+          //END
         }
       } else {
-        //vuelves a dar la vuelta       
+        //TURN BACK     
         setTimeout (function(){
-          arrayTemp.forEach(function(e){
-            
+          memoryGame.pickedCards.forEach(function(e){     
             e.toggleClass('back');
             e.next().toggleClass('back');
           });
-          arrayTemp = [];
           memoryGame.pickedCards = [];
-          
           }, 2000 );
-        
-
       }
 
     }
