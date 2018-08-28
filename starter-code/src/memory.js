@@ -3,6 +3,7 @@ var MemoryGame = function (cards) {
   this.pickedCards=[];
   this.pairsClicked=0;
   this.pairsGuessed=0;
+  this.shuffleCards();
 };
 //https://bost.ocks.org/mike/shuffle/
 MemoryGame.prototype.shuffleCards = function shuffle() {
@@ -25,12 +26,18 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++
   if(firstCard === secondCard){
     this.pairsGuessed++
-    return true;
+    return true
   }
-  return false;
+  return false
+  
 }
 
 MemoryGame.prototype.isFinished = function () {
-    console.log(this.pairsGuessed == this.cards.length / 2)
   return this.pairsGuessed == this.cards.length / 2;
 };
+MemoryGame.prototype.reset = function() {
+  this.pairsClicked=0;
+  this.pairsGuessed=0;
+  this.pickedCards=[];
+  this.shuffleCards();
+}

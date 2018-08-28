@@ -24,23 +24,55 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
+function flipCard(name){
 
-$(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+}
+function resetBoard(cards){
   var html = '';
-  memoryGame.cards.forEach(function (pic) {
+  cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
-  // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+}
+$(document).ready(function(){
+  var memoryGame = new MemoryGame(cards);
+  resetBoard(memoryGame.cards)
+  // Add all the div's to the HTML
+
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.back').click(function (event) {
+    if(memoryGame.pickedCards.length<2){
+      memoryGame.pickedCards.push($(this))
+      $(this).toggleClass("front back").next().toggleClass("front back")
+    }else{
+      return
+    }
+    if(memoryGame.pickedCards.length>1){
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'),memoryGame.pickedCards[1].attr('name'))){
+        memoryGame.pickedCards=[]
+        if(memoryGame.isFinished()){
+          setTimeout(function(){
+            if(confirm("Has terminado con una puntuación de "+memoryGame.pairsClicked+"\n¿Quieres volver a jugar?")){
+              memoryGame.reset()
+              resetBoard(memoryGame.cards)
+            }
+          })
+        }
+      }else{
+        setTimeout(function(){
+          memoryGame.pickedCards[0].toggleClass("back front").next().toggleClass("back front")
+          memoryGame.pickedCards[1].toggleClass("back front").next().toggleClass("back front")
+          memoryGame.pickedCards=[]
+        },1000)
+
+      }
+    }
+    $('#pairs_clicked')[0].innerHTML=memoryGame.pairsClicked
+    $('#pairs_guessed')[0].innerHTML=memoryGame.pairsGuessed 
   });
 });
 
