@@ -67,3 +67,50 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#win-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00ff9d45;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 20vmin;
+}
+
+#ooops {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff00b345;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 10vmin;
+  color: white;
+}
+
+#yasss {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1900ff45;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 5vmin;
+  color: white;
+}
