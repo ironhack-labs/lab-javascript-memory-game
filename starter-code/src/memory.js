@@ -25,11 +25,11 @@ MemoryGame.prototype.shuffleCards = function () {
 }
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+  this.pairsClicked += 1;
   if (firstCard === secondCard) {
     this.pairsGuessed += 1;
     return true;
   }else {
-    this.pairsClicked += 1;
     return false;
   }
   
