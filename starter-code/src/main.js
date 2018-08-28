@@ -40,8 +40,33 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    $(this).toggleClass("front back");
+    $(this).next().toggleClass("back front");
+    
+    memoryGame.pickedCards.push($(this).attr("name"));
+    if (memoryGame.pickedCards.length === 2) {
+    
+     if (memoryGame.pickedCards[0]=== memoryGame.pickedCards[1]) {
+       //mostraria en la id pairs_guessed de la ventana de puntuacion del html, memoryGame.pairsGuessed
+       //haria un slice(1,1)  para vaciar el array pickedCards, dejando asi hueco para el siguiente par dejaria la posicion de las cartas tal cual
+
+      
+    }else {//mostraria en la id pairs_cliked de la ventana de puntuacion del html, memoryGame.pairsClicked
+    //haria un slice(1,1)  para vaciar el array pickedCards, dejando asi hueco para el siguiente par dejaria la posicion de las cartas tal cual
+    //giraria las cartas de nuevo
+  }
+// if (memoryGame.isFinished()== true)
+//haria un alert("ahora si eres un vengador!!")
+
+
+    }
+    
+  });
+    
+    
+    
     // TODO: write some code here
   });
-});
+
 
 
