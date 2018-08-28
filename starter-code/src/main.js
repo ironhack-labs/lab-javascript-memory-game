@@ -25,6 +25,12 @@ var cards = [
 	{ name: 'thor',            img: 'thor.jpg' }
   ];
 
+function getNameAttribute(el){
+	var cardName = $(el).attr('name');
+	var cardNameSplitted = cardName.split(".");
+	return cardNameSplitted[0];
+}
+
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
 	var html = '';
@@ -42,6 +48,10 @@ $(document).ready(function () {
 
 	// Bind the click event of each element to a function
 	$('.back').click(function () {
-		// TODO: write some code here
+		var firstCard = getNameAttribute(this);
+		var secondCard = getNameAttribute(this); 
+		memoryGame.checkIfPair(firstCard, secondCard);
 	});
+
+
 });

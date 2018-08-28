@@ -19,6 +19,13 @@ MemoryGame.prototype.shuffleCards = function () {
 	this.cards = currentCards;
 }
 
-MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {}
+MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+	
+	
+	if(firstCard === secondCard){
+		this.pairsGuessed++;
+	}
+	this.pickedCards++;
+}
 
 MemoryGame.prototype.isFinished = function () {};
