@@ -29,8 +29,8 @@ $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
+    html += '<div class="card" id=card_"'+ pic.name +'">';
+    html += '  <div class="back" ';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
@@ -39,9 +39,11 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
-  });
-});
+  $('.back').click(function() {
+    $(this).toggle("back front");
+    $(this).next().toggleClass("front back")
 
+    
+});
+});
 
