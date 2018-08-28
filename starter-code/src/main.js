@@ -47,6 +47,14 @@ function hiddeCard(el) {
 	$(el).next().addClass('front');
 }
 
+function setPairsClicked(totalClicks) {
+	$('#pairs_clicked').innerHTML = totalClicks;
+}
+
+function setPairsGuessed(totalGuessed) {
+	$('#pairs_guessed').innerHTML = totalGuessed;
+}
+
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
 	var html = '';
@@ -68,8 +76,7 @@ $(document).ready(function () {
 	$('#memory_board').html(html);
 
 	// Bind the click event of each element to a function
-	$('.back').click(function () {
-
+	$('.back').click(function (e) {
 
 		if (counter === 0) {
 			//show this card

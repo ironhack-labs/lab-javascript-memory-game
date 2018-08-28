@@ -24,9 +24,12 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 	
 	if (firstCard === secondCard) {
 		this.pairsGuessed++;
+		setPairsGuessed(this.pairsGuessed);
 		return true;
 	}
+
 	this.pairsClicked++;
+	setPairsClicked(this.pairsClicked);
 	return false;
 }
 
