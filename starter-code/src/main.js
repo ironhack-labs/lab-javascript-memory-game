@@ -25,18 +25,42 @@ var cards = [
 	{ name: 'thor',            img: 'thor.jpg' }
   ];
 
-function getNameAttribute(el){
+function getNameAttribute(el) {
 	var cardName = $(el).attr('name');
 	var cardNameSplitted = cardName.split(".");
 	return cardNameSplitted[0];
 }
 
+function showCard(el) {
+	$(el).removeClass('back');
+	$(el).addClass('front');
+
+	$(el).next().removeClass('front');
+	$(el).next().addClass('back');
+}
+
+function hiddeCard(el) {
+	$(el).removeClass('front');
+	$(el).addClass('back');
+
+	$(el).next().removeClass('back');
+	$(el).next().addClass('front');
+}
+
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
 	var html = '';
-	var counter = 1;
+	var counter = 0;
+	var firstCard;
+	var secondCard;
+	var TIME = 1000;
+
+	if(memoryGame.isFinished()){
+		alert("WIN :)!");
+	}
 
 	memoryGame.shuffleCards();
+
 	memoryGame.cards.forEach(function (pic) {
 		html += '<div class="card" data-card-name="' + pic.name + '">';
 		html += '  <div class="back" name="' + pic.img + '"></div>';
@@ -49,23 +73,31 @@ $(document).ready(function () {
 
 	// Bind the click event of each element to a function
 	$('.back').click(function () {
-		
-		if (counter === 1) {
+
+
+		if (counter === 0) {
 			//show this card
-			$(this).removeClass('back');
-			$(this).addClass('front');
-
-			$(this).next().removeClass('front');
-			$(this).next().addClass('back');
-
+			firstCard = getNameAttribute(this);
+			showCard(this);
 			counter++;
+
 		} else {
-			var firstCard = getNameAttribute(this);
-			var secondCard = getNameAttribute(this);
+			secondCard = getNameAttribute(this);
+
+			if(memoryGame.checkIfPair(firstCard, secondCard) === false){
+				//hidde this card after a time
+				showCard(this);
+
+				setTimeout(function() {
+					hiddeCard(this);
+				}.bind(this), TIME);
+				
+			} else {
+				showCard(this);
+				counter = 0;
+			}
 
 			memoryGame.checkIfPair(firstCard, secondCard);
 		}
 	});
-
-
 });
