@@ -55,10 +55,6 @@ $(document).ready(function () {
 	var secondCard;
 	var TIME = 1000;
 
-	if(memoryGame.isFinished()){
-		alert("WIN :)!");
-	}
-
 	memoryGame.shuffleCards();
 
 	memoryGame.cards.forEach(function (pic) {
@@ -84,20 +80,24 @@ $(document).ready(function () {
 		} else {
 			secondCard = getNameAttribute(this);
 
-			if(memoryGame.checkIfPair(firstCard, secondCard) === false){
+			if(memoryGame.checkIfPair(firstCard, secondCard)){
+
+				//hold show this card
+				showCard(this);
+				counter = 0;
+
+				if(memoryGame.isFinished()){
+					alert("WIN :)!");
+				}
+				
+			} else {
 				//hidde this card after a time
 				showCard(this);
 
 				setTimeout(function() {
 					hiddeCard(this);
 				}.bind(this), TIME);
-				
-			} else {
-				showCard(this);
-				counter = 0;
 			}
-
-			memoryGame.checkIfPair(firstCard, secondCard);
 		}
 	});
 });
