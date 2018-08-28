@@ -65,7 +65,7 @@ $(document).ready(function () {
     $("#pairs_clicked").html(memoryGame.pairsClicked);
     $("#pairs_guessed").html(memoryGame.pairsGuessed);
     if (memoryGame.isFinished()) {
-      $("#memory_board").html("<h1>YOU WIN!!<h1>");
+      $("#memory_board").html("<h1>CONGRATULATIONS, YOU WIN!!<h1>");
     }
   });
 });
