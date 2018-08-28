@@ -59,8 +59,12 @@ $(document).ready(function() {
           cardsSelected = [];
         }, 500);
       }else{
+        $("#pairs_guessed").html(memoryGame.pairsGuessed);
         cardsSelected = [];
+        memoryGame.isFinished();
       }
+      $("#pairs_clicked").html(memoryGame.pairsClicked);
     }
+    
   });
 });

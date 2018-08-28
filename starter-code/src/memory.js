@@ -1,8 +1,6 @@
 var MemoryGame = function (cards) {
   this.cards = cards;
-  this.shuffleCards(function(){
-
-  })
+  this.shuffleCards();
 };
 
 MemoryGame.prototype.pickedCards = [];
@@ -32,7 +30,8 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
 MemoryGame.prototype.isFinished = function () {
   if(this.pairsGuessed == (this.cards.length/2)){
-    //alert("Winner Winner, Chicken Dinner");
+    $(".lose").toggleClass("lose win");
+    console.log("Winner Winner, Chicken Dinner");
     return true;
   } else {
     return false;
