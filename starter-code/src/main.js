@@ -56,7 +56,7 @@ $(document).ready(function(){
       } else {
         setTimeout(function() {
           toggleCards(card1, card0);
-        }, 2000);
+        }, 800);
       }
       $("#pairs_clicked").text((memoryGame.pairsClicked))
       $("#pairs_guessed").text((memoryGame.pairsGuessed))
