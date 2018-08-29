@@ -28,11 +28,12 @@ var cards = [
 $(document).ready(function() {
   var memoryGame = new MemoryGame(cards);
   var html = "";
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function(pic) {
     html += '<div class="card" data-card-name="' + pic.name + '">';
-    html += '  <div class="back" name="' + pic.img + '"></div>';
+    html += '<div class="back" name="' + pic.img + '"></div>';
     html +=
-      '  <div class="front" style="background: url(img/' +
+      '<div class="front" style="background: url(img/' +
       pic.img +
       ') no-repeat"></div>';
     html += "</div>";
@@ -43,7 +44,9 @@ $(document).ready(function() {
 
   // Bind the click event of each element to a function
   $(".back").click(function() {
-    // TODO: write some code here
-    // al clic voltearla
+    $(this).attr("class", "front");
+    $(this)
+      .next()
+      .attr("class", "back");
   });
 });
