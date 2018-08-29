@@ -14,11 +14,21 @@ MemoryGame.prototype.shuffleCards = function () {
     array.splice(rIndex, 1);
   }
   this.cards = randomizedDeck;
-  return ;
+  return;
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+  this.pairsClicked++;
+  if (firstCard === secondCard) {
+    this.pairsGuessed++;
+    return true;
+  }
+  return false;
 }
 
 MemoryGame.prototype.isFinished = function () {
+  if (this.pairsGuessed === 8){
+    return true;
+  }
+  return false;
 };
