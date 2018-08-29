@@ -42,12 +42,42 @@ $(document).ready(function() {
   // Add all the div's to the HTML
   $("#memory_board").html(html);
 
+  var selectedCards = [];
+  var turn = true;
+
   // Bind the click event of each element to a function
-  $(".back").click(function() {
-    $(this).attr("class", "front");
-    $(this)
-      .next()
-      .attr("class", "back");
-    //
+  $(".back").on("click", function() {
+    if (turn) {
+      $(this).toggleClass("back");
+      $(this)
+        .next()
+        .toggleClass("back");
+      selectedCards.push($(this).attr("name"));
+      if (selectedCards.length === 2) {
+        //turn = false;
+        if (memoryGame.checkIfPair(selectedCards[0], selectedCards[1])) {
+          turn = false;
+          $("#pairs_guessed").text(memoryGame.pairsGuessed);
+          selectedCards = [];
+          $('div [class*="front back"]').addClass("front-blocked");
+          turn = true;
+        } else {
+          selectedCards = [];
+          setTimeout(function() {
+            $('div [class*="front back"]:not(.front-blocked)')
+              .prev()
+              .toggleClass("back");
+            $('div [class*="front back"]:not(.front-blocked)').removeClass(
+              "back"
+            );
+          }, 700);
+          turn = true;
+        }
+        $("#pairs_clicked").text(memoryGame.pairsClicked);
+      }
+    }
+    if (memoryGame.isFinished()) {
+      $("h1").html("YOU WON!");
+    }
   });
 });
