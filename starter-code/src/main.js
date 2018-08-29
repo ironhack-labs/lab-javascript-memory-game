@@ -41,7 +41,21 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    $(this).attr('class','front');
+    $(this).next().attr('class','back');
+    var nombre = $(this).parents().attr('data-card-name');
+    memoryGame.pickedCards.push(nombre)
+    if(memoryGame.pickedCards.length > 1){
+      var resultado = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+      if(resultado===false){
+        console.log("incorrecto")
+
+      }
+    }
+    
   });
+
 });
+
 
 

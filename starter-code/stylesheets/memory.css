@@ -29,8 +29,10 @@ html {
   pointer-events: none;
 }
 
+
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(215,
+  44, 44, 0.8);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
@@ -43,6 +45,7 @@ html {
 .container {
   position: relative;
 }
+
 
 h1 {
   color: rgba(215, 40, 40, 0.9);
