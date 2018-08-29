@@ -27,6 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -40,8 +41,46 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).toggleClass("back front");
+    $(this).next().toggleClass("front back");
+    memoryGame.pickedCards.push($(this).attr("name"));
+    if (memoryGame.pickedCards.length == 2){
+      console.log('2cards')
+      var card1 = memoryGame.pickedCards[1]
+      var card0 = memoryGame.pickedCards[0]
+      console.log(card0 === card1)
+      if (memoryGame.checkIfPair(card0, card1)) {
+        if (memoryGame.isFinished()){
+          var r = confirm("You've won! <br> press Ok to play gain or cancel to stay on page");
+            if (r == true) {
+              location.reload();
+            }
+        };
+      } else {
+        setTimeout(function() {
+          toggleCards(card1, card0);
+        }, 800);
+      }
+      $("#pairs_clicked").text((memoryGame.pairsClicked))
+      $("#pairs_guessed").text((memoryGame.pairsGuessed))
+    }
   });
+
+
+  function toggleCards (card1, card0) {
+    var arr = $('.card div:first-child')
+    cards = [card1, card0];
+    for (var i = 0; i < 2; i++){
+    arr.each(function(e){ 
+      if (($(this).attr('name') === cards[i]) && $(this).hasClass("front")) {
+        $(this).toggleClass('front back');
+        $(this).next().toggleClass('back front'); 
+      }
+    });
+    }
+  }
+
+
 });
 
 
