@@ -51,7 +51,10 @@ $(document).ready(function(){
       console.log(card0 === card1)
       if (memoryGame.checkIfPair(card0, card1)) {
         if (memoryGame.isFinished()){
-          alert("You've finished");
+          var r = confirm("You've won! <br> press Ok to play gain or cancel to stay on page");
+            if (r == true) {
+              location.reload();
+            }
         };
       } else {
         setTimeout(function() {
