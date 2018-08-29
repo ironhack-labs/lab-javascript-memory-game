@@ -25,6 +25,8 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     return false;
   }
 }
+// pickedCards array needs to be reseted before doing another comparision
+
 
 MemoryGame.prototype.isFinished = function () {
   if(this.pairsGuessed < 12){

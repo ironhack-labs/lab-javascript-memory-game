@@ -28,7 +28,7 @@ var cards = [
 $(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
   var html = '';
-  memoryGame.shuffleCards();
+  memoryGame.shuffleCards(); //shuffleCards is called when dec is loaded so card distribution is random
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="' + pic.name + '">';
     html += '  <div class="back" name="' + pic.img + '"></div>';
@@ -40,10 +40,11 @@ $(document).ready(function () {
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  var tempArray = [];
+  var tempArray = []; //tempArray works as an array that saves temporarily the element of the card that is selected, so then we can reverse it back if they don't match
   $('.back').click(function () {
     $(this).toggleClass("back front");
     $(this).siblings().toggleClass("front back");
+    //Here it pushes the name to memoryGame.pickedCards and the object to tempArray
     memoryGame.pickedCards.push($(this).attr("name"))
     tempArray.push($(this));
     if (memoryGame.pickedCards.length === 2) {
@@ -65,13 +66,5 @@ $(document).ready(function () {
       $("#memory_board").html("<h1>YOU WIN!!<h1>");
     }
   });
-
-
-
-
 });
-
-function clearArray(array) {
-  array = [];
-}
 
