@@ -24,10 +24,13 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
+var firstCard = null;
+var secondCard = null;
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -40,7 +43,34 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+     $(this).attr("class", "front");
+     $(this).next().attr("class", "back")
+
+     if(firstCard === null){
+       firstCard = $(this)
+     }else{
+      secondCard = $(this)
+     
+     if(memoryGame.checkIfPair(firstCard.attr("name"),secondCard.attr("name"))){
+       firstCard = null;
+     }else{
+       setTimeout(function(){
+         secondCard.attr("class","back");
+         secondCard.next().attr("class", "front");
+         firstCard.attr("class", "back");
+         firstCard.next().attr("class", "front")
+         firstCard = null;
+       }
+       ,700)
+     }
+    }
+    $("#pairs_clicked").html(memoryGame.pairsClicked);
+    $("#pairs_guessed").html(memoryGame.pairsGuessed);
+    
+    if(memoryGame.isFinished()){
+      $("h1").html("YOU ROCK!")
+    }
+
   });
 });
 
