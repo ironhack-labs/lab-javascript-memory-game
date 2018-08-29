@@ -28,6 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -40,8 +41,11 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    $(this).toggleClass("back front");
+    $(this).next().toggleClass("front back");
+  });
     // TODO: write some code here
   });
-});
+
 
 
