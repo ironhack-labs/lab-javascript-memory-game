@@ -28,6 +28,8 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+
+  // TESTING: Calling shuffleCards??? --> memoryGame.cards = memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -40,7 +42,14 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+  //TESTING: 
+    // $(this).attr("background-image", "url(img/'"+ $(this).attr(name)+"')");
+    // console.log(this);
+    // // var backClick = $(e.currentTarget);
+    // backClick.toggle();
+    // $(".front").toggleClass("back");
+    // $(".front").toggleClass("front");
+    //     // TODO: write some code here
   });
 });
 
