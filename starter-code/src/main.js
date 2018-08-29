@@ -25,8 +25,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -58,8 +61,8 @@ $(document).ready(function(){
       },500);
     };
   };
-    $(".pairs_guessed").text(memoryGame.pairsGuessed);
-    $(".pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
     memoryGame.isFinished();
   });
 });

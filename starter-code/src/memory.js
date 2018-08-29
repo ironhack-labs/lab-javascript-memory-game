@@ -10,7 +10,8 @@ MemoryGame.prototype.shuffleCards = function (cards) {
     var array=[];
     while(this.cards.length>0){
       var randomNumber=Math.floor(Math.random()*(cards.length));
-      array.push(cards.splice(randomNumber,1));
+      array.push(cards[randomNumber]);
+      cards.splice(randomNumber,1);
     }
     this.cards=array;
   }
@@ -27,7 +28,7 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   else{
     return false;
   }
-}
+};
 
 MemoryGame.prototype.isFinished = function () {
   if(this.pairsGuessed==this.cards.length/2){
