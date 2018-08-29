@@ -38,9 +38,60 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  var wait = false;
+  var lastCard;
+  $('.back').on('click',function() {
+  
+    if (wait === true) {
+      return 0
+    }
+
+    var name = $(this).attr("name")
+    var thisCard = $(this)
+
+    memoryGame.pickedCards.push(name)
+
+    $(thisCard).removeClass('back')
+    $(thisCard).addClass('front')
+    $(thisCard).next().removeClass('front')
+    $(thisCard).next().addClass('back')
+
+    if (memoryGame.pickedCards.length == 2) {
+      wait = true
+
+      var result = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
+      memoryGame.pickedCards=[];
+      $('#pairs_guessed').text(memoryGame.pairsGuessed)
+      $('#pairs_clicked').text(memoryGame.pairsClicked)
+      if (memoryGame.isFinished()) {
+        setTimeout(()=>{
+          alert('FInish the game')
+        },100)
+      }
+
+      if (result === false) {
+        setTimeout(()=>{
+          $(thisCard).removeClass('back')
+          $(thisCard).addClass('front')
+          $(thisCard).next().removeClass('front')
+          $(thisCard).next().addClass('back')
+
+          $(lastCard).removeClass('front')
+          $(lastCard).addClass('back')
+          $(lastCard).next().removeClass('back')
+          $(lastCard).next().addClass('front')
+          wait=false
+
+        },100)
+      }else{
+        wait=false
+      }
+
+    }else{
+      lastCard = $(thisCard)
+    }
+
+
   });
 });
 
