@@ -38,10 +38,39 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+
+  var cardArray = [];
+  var currentTime = 0;
+
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+
+    var current = $(this);
+
+    $(this).toggleClass("back front").next().toggleClass("front back");
+
+    cardArray.push(current);
+    console.log(cardArray);
+
+    if (cardArray.length === 2) {
+      $(".back").addClass("blocked");
+      if (memoryGame.checkIfPair(cardArray) == false) {
+        var intervalId = setInterval(
+          function(){
+            currentTime += 1;
+          }, 1000);
+          console.log(currentTime);
+      };
+      if (currentTime == 3) {
+        clearInterval(intervalId);
+        $(this).toggleClass("back front").next().toggleClass("back front");
+      }
+      console.log(memoryGame.checkIfPair(cardArray));
+    }
+
+
   });
+
 });
 
 
