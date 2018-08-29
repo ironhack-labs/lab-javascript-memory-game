@@ -55,6 +55,11 @@ function setPairsGuessed(totalGuessed) {
 	$('#pairs_guessed').html(totalGuessed);
 }
 
+function toggleBlockCards(){
+	$('.card .front').toggleClass('blocked',);
+	$('.card .back').toggleClass('blocked', );
+}
+
 $(document).ready(function () {
 	var memoryGame = new MemoryGame(cards);
 	var html = '';
@@ -100,9 +105,11 @@ $(document).ready(function () {
 			} else {
 				//hidde this card after a time
 				showCard(this);
+				toggleBlockCards();
 
 				setTimeout(function() {
 					hiddeCard(this);
+					toggleBlockCards();
 				}.bind(this), TIME);
 			}
 		}
