@@ -48,5 +48,6 @@ $(document).ready(function() {
     $(this)
       .next()
       .attr("class", "back");
+    //
   });
 });
