@@ -48,6 +48,8 @@ $(document).ready(function() {
     $(this).next().toggleClass("back front");
   });
 
+
+
 /*  
 cuando firstCard != secondCard
   debería ejecutarse este código (sin click){
