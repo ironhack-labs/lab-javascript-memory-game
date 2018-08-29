@@ -66,6 +66,9 @@ $(document).ready(function () {
     $("#pairs_guessed").html(memoryGame.pairsGuessed);
     if (memoryGame.isFinished()) {
       $("#memory_board").html("<h1>CONGRATULATIONS, YOU WIN!!<h1>");
+      setTimeout(function(e) {
+        window.alert("Refresh to start a new game");
+      }, 2000);
     }
   });
 });
