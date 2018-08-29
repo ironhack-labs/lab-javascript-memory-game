@@ -50,17 +50,13 @@ $(document).ready(function(){
     if (currentGame.pickedCards.length === 0) {
       currentGame.pickedCards.push(parentName);
       $(this).parent().toggleClass("first-card");
-      $(this).toggleClass("back");
-      $(this).toggleClass("front");
-      $(this).next().toggleClass("front");
-      $(this).next().toggleClass("back");
+      $(this).toggleClass("back front");
+      $(this).next().toggleClass("front back");
     } else {
       currentGame.pickedCards.push(parentName);
       $(this).parent().toggleClass("second-card");
-      $(this).toggleClass("back");
-      $(this).toggleClass("front");
-      $(this).next().toggleClass("front");
-      $(this).next().toggleClass("back");
+      $(this).toggleClass("back front");
+      $(this).next().toggleClass("front back");
       if (currentGame.checkIfPair()) {
         printScore();
         $(".first-card").toggleClass("first-card");
@@ -70,10 +66,8 @@ $(document).ready(function(){
         printScore();
         $("#ooops").toggle();
         setTimeout(function(){
-          $(".first-card").children().toggleClass("front");
-          $(".first-card").children().toggleClass("back");
-          $(".second-card").children().toggleClass("front");
-          $(".second-card").children().toggleClass("back");
+          $(".first-card").children().toggleClass("front back");
+          $(".second-card").children().toggleClass("front back");
           $(".first-card").toggleClass("first-card");
           $(".second-card").toggleClass("second-card");
           $("#ooops").toggle();
