@@ -25,7 +25,7 @@ MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
 };
 
 MemoryGame.prototype.isFinished = function() {
-  if (this.pairsGuessed % 2 == 0) {
+  if (this.pairsGuessed  == this.cards.length/2) {
     return true;
   } else {
     return false;
