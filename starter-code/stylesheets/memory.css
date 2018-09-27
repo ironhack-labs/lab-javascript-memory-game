@@ -12,17 +12,34 @@ html {
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: start;
 }
-
+.card {
+  width: 111px;
+  height: 111px;
+  margin: 10px;
+}
 
 .card .back {
   background-color: #456783;
 	width:71px;
 	height:71px;
 	float:left;
-	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.card .flipped {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.card .front {
+  width: 100%;
+  height: 100%;
 }
 .card .front.blocked,
 .card .back.blocked {
