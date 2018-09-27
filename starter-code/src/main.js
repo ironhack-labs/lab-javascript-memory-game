@@ -25,8 +25,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+var memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+var pairsToGuess = memoryGame.cards.length/2;
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -37,11 +40,60 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.back').click(function (e) {
+    var $cardElement = $(this).parent('.card');
+    var cardElement = $cardElement[0];
+    showCard(this);
+    activateCard(this);
+    rememberCard(cardElement);
+    if(memoryGame.pickedCards.length === 2) {
+      var match = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+      cleanPickedCards();
+      if(match) {
+        deactivateCards();
+        if(memoryGame.pairsGuessed === pairsToGuess) {
+          memoryGame.isFinished();
+        }
+      } else {
+        hideCards();
+      }
+      console.log(pairsToGuess - memoryGame.pairsGuessed + " left!");
+    }
   });
 });
 
+function rememberCard(card) {
+  var clickedCard = card.dataset.cardName;
+  memoryGame.pickedCards.push(clickedCard);
+}
 
+function cleanPickedCards() {
+  memoryGame.pickedCards = [];
+}
+
+function showCard(card) {
+  card.classList.add('flipped');
+}
+
+function activateCard(card) {
+  card.classList.add('playing');
+}
+
+function deactivateCards() {
+  $('.flipped.playing').removeClass('playing');
+}
+
+function hideCards() {
+  setTimeout(function() {
+    $('.playing').removeClass('flipped playing');
+  }, 1000);
+}
+
+function updateTryCount() {
+  memoryGame.pairsClicked += 1;
+}
+
+function updateGuessCount() {
+  memoryGame.pairsGuessed += 1;
+}
