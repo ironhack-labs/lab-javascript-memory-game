@@ -33,6 +33,7 @@ MemoryGame.prototype.isFinished = function () {
     return false;
   }
   else if (this.pairsGuessed === this.cards.length / 2) {
+    setTimeout(function(){alert('YOU WIN!');},700);
     return true;
   }
 };
