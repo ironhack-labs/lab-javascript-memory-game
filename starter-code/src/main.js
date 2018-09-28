@@ -26,7 +26,10 @@ var cards = [
 ];
 
 $(document).ready(function(){
+
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
+
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -37,11 +40,30 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-
+  
+ 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
-  });
-});
+    $(this).toggleClass("front back");
+    $(this).siblings().toggleClass("front back");
+    var name = $(this).attr("name");
+    var checkArray = memoryGame.pickedCards;
+    checkArray.push(name);
+
+    console.log(name);
+    console.log(checkArray);
+    if (checkArray.length > 1) {
+      if (checkArray[0] === checkArray[1]) {
+        checkArray.splice(0, 2);
+        console.log("coinciden!");
+      }else{
+        checkArray.splice(0, 2);        
+        console.log("no coinciden");
+        /* $("[name]="+ checkArray[0]+"").toggleClass("front back");
+        $("[name]="+ checkArray[1]+"").toggleClass("front back"); */
 
 
+      }
+    }
+  
+ 
