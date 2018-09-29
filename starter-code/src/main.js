@@ -25,9 +25,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -35,13 +37,16 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
+
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
+
+  //var prueba = [];
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).toggleClass("front back");
+    $(this).next().toggleClass("back front");
   });
 });
-
-
