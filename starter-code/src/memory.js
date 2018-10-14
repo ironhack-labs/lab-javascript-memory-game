@@ -1,3 +1,5 @@
+
+// Memory Game section
 var MemoryGame = function(cards) {
   this.cards = cards;
   this.pickedCards = [];
