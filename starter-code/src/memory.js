@@ -32,8 +32,11 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 }
 
 MemoryGame.prototype.isFinished = function () {
-  
-//It should return false at the beggining of the game
-//It should return false if there still some pairs to be guessed
+    if (this.pairsGuessed>11){
+      return true;
+    }
+    else {
+      return false;
+    }
 //It should return true if all pairs were guessed
 };
