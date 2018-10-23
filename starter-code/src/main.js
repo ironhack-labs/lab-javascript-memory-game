@@ -1,4 +1,4 @@
-var cards = [
+let cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -26,7 +26,9 @@ var cards = [
 ];
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  let memoryGame = new MemoryGame(cards);
+  // console.log(memoryGame.cards)
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -39,8 +41,25 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
+  $('.back').click(function (card) {
     // TODO: write some code here
+
+    memoryGame.pickedCards.push(card.currentTarget.attributes[1].nodeValue)
+
+    if(memoryGame.pickedCards.length === 2){
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])){
+        //Retira as cards do jogo, ou atribui as cartas classe visible permanente.
+        console.log(memoryGame.pickedCards)
+        memoryGame.pickedCards = [];
+        memoryGame.isFinished();
+      } else {
+        console.log(memoryGame.pickedCards)
+        memoryGame.pairsGuessed += 1;
+        memoryGame.pickedCards = [];
+        //Retorna as cards de face para baixo.
+      }
+    }
+    //Mantem a carta virada e retorna para um proxima escolha 
   });
 });
 
