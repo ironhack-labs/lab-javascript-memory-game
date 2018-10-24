@@ -14,8 +14,15 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-.front {
-  background-color: #ff0000;
+.card .front {
+  background-color: #456783;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+  font-size:64px;
+ 
 }
 
 .card .back {
@@ -25,7 +32,7 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
 }
 
 .card .front.blocked,

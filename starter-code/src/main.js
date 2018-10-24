@@ -1,4 +1,4 @@
-var cards = [
+/* var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -52,3 +52,4 @@ $(document).ready(function(){
 });
 
 
+ */

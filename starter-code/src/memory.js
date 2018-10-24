@@ -8,7 +8,7 @@ var MemoryGame = function(cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function() {
-  console.log("shuffling cards")
+  console.log("shuffling cards");
   this.shuffled = true;
   //ARRAY TO STORE CARDS IN RANDOMLY SELECTED CARDS
   let shuffledCards = [];
@@ -80,3 +80,96 @@ while (ranArray.length < arrayInOrder.length) {
   randomIndexArray(randomNum);
 }
  */
+
+var cards = [
+  { name: "aquaman", img: "aquaman.jpg" },
+  { name: "batman", img: "batman.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
+  { name: "aquaman", img: "aquaman.jpg" },
+  { name: "batman", img: "batman.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" }
+];
+
+//$(document).ready(function(){
+
+var memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+var html = "";
+memoryGame.cards.forEach(function(pic) {
+  memoryGame.cards.forEach(function (pic) {
+    html += '<div class="card" data-card-name="'+ pic.name +'">';
+    html += '  <div class="back" name="'+ pic.img +'"></div>';
+    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '</div>';
+});
+
+// Set initial value of pairs clicked
+$("#pairs_clicked").text(memoryGame.pairsClicked)
+
+// Set initial value of pairs guessed correctly
+$("#pairs_guessed").text(memoryGame.pairsGuessed)
+
+// Add all the div's to the HTML
+$("#memory_board").html(html);
+
+// Bind the click event of each element to a function
+$(".back").click(function() {
+  if (memoryGame.isFinished()) {
+    console.log("The game is finished");
+  } else {
+    //$(this).css("background-color", "transparent")
+    if ($(this).hasClass("paired-up")) {
+      console.log("this pair was paired up already");
+      memoryGame.pickedCards = [];
+    } else {
+      if (memoryGame.pickedCards.length < 1) {
+        memoryGame.pickedCards.push(this);
+        console.log(memoryGame.pickedCards);
+      } else if (memoryGame.pickedCards.length < 2) {
+        if(memoryGame.pickedCards.indexOf(this) === -1){
+          memoryGame.pickedCards.push(this);
+          console.log(memoryGame.pickedCards);
+        }else {
+          console.log("You can't pick the same card two times, start again")
+          memoryGame.pickedCards = [];
+        }
+        
+      }
+      if (
+        memoryGame.checkIfPair(
+          memoryGame.pickedCards[0].attributes.name.nodeValue,
+          memoryGame.pickedCards[1].attributes.name.nodeValue
+        )
+      ) {
+        console.log("It's a pair!");
+        $(this).toggleClass("paired-up");
+        memoryGame.pickedCards = [];
+        $("#pairs_clicked").text(memoryGame.pairsClicked)
+        $("#pairs_guessed").text(memoryGame.pairsGuessed)
+      } else {
+        console.log("not a pair");
+        memoryGame.pickedCards = [];
+        $("#pairs_clicked").text(memoryGame.pairsClicked)
+      }
+    }
+  }
+});
+//});
