@@ -31,7 +31,7 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '  <div class="front" style="background: url(../img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -40,8 +40,14 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    alert("clicked")
-    // TODO: write some code here
+    if(this.shuffled){
+      console.log("ok")
+    } else {
+      memoryGame.shuffleCards()    
+    }
+    $(this).css("background-color", "transparent")
+    $(this).css("background-img", "../img/aquaman.jpg")
+
   });
 });
 

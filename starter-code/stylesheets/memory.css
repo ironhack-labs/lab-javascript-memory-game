@@ -14,6 +14,9 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
+.front {
+  background-color: #ff0000;
+}
 
 .card .back {
   background-color: #456783;
@@ -24,6 +27,7 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
