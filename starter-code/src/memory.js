@@ -114,11 +114,10 @@ var memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards();
 var html = "";
 memoryGame.cards.forEach(function(pic) {
-  memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
+  html += '<div class="card" data-card-name="' + pic.name + '">';
+  html +=  '<div class="front" style="background-image: url(img/' +
+  pic.img + ')"><div class="back back-show" name="' + pic.img + '">' + '</div></div>';
+  html += "</div>";
 });
 
 // Set initial value of pairs clicked
@@ -132,10 +131,12 @@ $("#memory_board").html(html);
 
 // Bind the click event of each element to a function
 $(".back").click(function() {
+  $(this).removeClass("back-show")
+  $(".back[name]").prop("name")
   if (memoryGame.isFinished()) {
     console.log("The game is finished");
+    $(".back").removeClass("back-show")
   } else {
-    //$(this).css("background-color", "transparent")
     if ($(this).hasClass("paired-up")) {
       console.log("this pair was paired up already");
       memoryGame.pickedCards = [];
@@ -160,14 +161,15 @@ $(".back").click(function() {
         )
       ) {
         console.log("It's a pair!");
-        $(this).toggleClass("paired-up");
         memoryGame.pickedCards = [];
         $("#pairs_clicked").text(memoryGame.pairsClicked)
         $("#pairs_guessed").text(memoryGame.pairsGuessed)
+        
       } else {
         console.log("not a pair");
         memoryGame.pickedCards = [];
         $("#pairs_clicked").text(memoryGame.pairsClicked)
+        
       }
     }
   }

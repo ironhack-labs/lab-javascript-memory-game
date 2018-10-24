@@ -15,6 +15,7 @@ html {
 }
 
 .card .front {
+  position: relative;
   background-color: #456783;
 	width:71px;
 	height:71px;
@@ -22,10 +23,25 @@ html {
 	margin:10px;
 	padding:20px;
   font-size:64px;
- 
+  top: 18px;
+  z-index: 1;
 }
 
 .card .back {
+  position: absolute;
+  background-color: #45678321;
+  width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+  font-size:64px;
+  top: -10px;
+  left: -10px;
+}
+
+.card .back-show {
+  position: absolute;
   background-color: #456783;
 	width:71px;
 	height:71px;
@@ -33,6 +49,9 @@ html {
 	margin:10px;
 	padding:20px;
   font-size:64px;
+  z-index: 3;
+  top: -10px;
+  left: -10px;
 }
 
 .card .front.blocked,
