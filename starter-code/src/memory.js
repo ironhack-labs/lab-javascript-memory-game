@@ -7,22 +7,29 @@ var MemoryGame = function(cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function() {
+//ARRAY TO STORE CARDS IN RANDOMLY SELECTED CARDS
   let shuffledCards = [];
   let randomNum;
   randomNum = Math.floor(Math.random() * cards.length);
   
+//USE NUM AS THE INDEX TO SELECT RANDOM CARD IN THE ARRAY
   let randomIndexArray = function(num) {
+//CHECK IF RANDOM CARD IS IN THE SUFFLEDCARDS ARRAY
     if (shuffledCards.indexOf(cards[num]) !== -1) {
     } else {
+//IF NOT IN THE ARRAY PUSH IT
       shuffledCards.push(cards[num]);
       return shuffledCards;
     }
   };
 
   while (shuffledCards.length < cards.length) {
+//CREATE A RANDOM NUMBER BETWEEN 0 AND THE MAX INDEX OF THE ARRAY
     randomNum = Math.floor(Math.random() * cards.length);
+//SEND THIS NUMBER AS AN ARGUMENT TO RANDOMINDEXARRAY
     randomIndexArray(randomNum);
   }
+//ASSIGN SHUFFLEDCARDS ARRAY TO ORIGINAL CARDS ARRAY
   this.cards = shuffledCards;
 };
 
