@@ -41,25 +41,41 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function (card) {
-    // TODO: write some code here
+  $('.back').on('click', function (card) {
+    card.stopPropagation();
+    console.log(memoryGame.pairsClicked)
+    $('#pairs_clicked').text(memoryGame.pairsClicked)
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+    memoryGame.pickedCards.push(card.currentTarget)
+    if(memoryGame.pairsClicked < 2){
+      card.currentTarget.setAttribute("class", "front")
+      card.currentTarget.nextElementSibling.setAttribute("class", "back blocked")
+      memoryGame.pairsClicked += 1;
+    } else if(memoryGame.pairsClicked === 2){
+        if(memoryGame.checkIfPair(memoryGame.pickedCards[0].attributes[1].nodeValue,memoryGame.pickedCards[1].attributes[1].nodeValue)){
 
-    memoryGame.pickedCards.push(card.currentTarget.attributes[1].nodeValue)
+          memoryGame.pickedCards[0].setAttribute("class", "front blocked")
+          memoryGame.pickedCards[0].nextElementSibling.setAttribute("class", "back blocked")
+          memoryGame.pickedCards[1].setAttribute("class", "front blocked")
+          memoryGame.pickedCards[1].nextElementSibling.setAttribute("class", "back blocked")
+          memoryGame.pairsGuessed += 1;
+          memoryGame.pairsClicked = 0
+          memoryGame.pickedCards = [];
+          memoryGame.isFinished();
 
-    if(memoryGame.pickedCards.length === 2){
-      if(memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])){
-        //Retira as cards do jogo, ou atribui as cartas classe visible permanente.
-        console.log(memoryGame.pickedCards)
-        memoryGame.pickedCards = [];
-        memoryGame.isFinished();
-      } else {
-        console.log(memoryGame.pickedCards)
-        memoryGame.pairsGuessed += 1;
-        memoryGame.pickedCards = [];
-        //Retorna as cards de face para baixo.
-      }
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards[0].setAttribute("class", "back")
+            memoryGame.pickedCards[0].nextElementSibling.setAttribute("class", "front")
+            memoryGame.pickedCards[1].setAttribute("class", "back")
+            memoryGame.pickedCards[1].nextElementSibling.setAttribute("class", "front")
+            memoryGame.pairsClicked = 0;
+            memoryGame.pickedCards = [];
+          },1000);
+        }
+    } else if(memoryGame.isFinished()){
+        console.log("End!")
     }
-    //Mantem a carta virada e retorna para um proxima escolha 
   });
 });
 
