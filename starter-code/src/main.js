@@ -25,9 +25,10 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+function initializeGame(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -38,10 +39,51 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+  // Reset display counters
+  $('#pairs_guessed').html(0);
+  $('#pairs_clicked').html(0);
+  
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.back').click(function (event) {
+    var card = $(event.target);
+    card.toggleClass('front');
+    card.toggleClass('back');
+    card.next().toggleClass('front');
+    card.next().toggleClass('back');
+
+    // var cardName = card.parent().data().cardName;
+    memoryGame.pickedCards.push(card);
+    console.log(memoryGame.pickedCards);
+
+    if (memoryGame.pickedCards.length === 2){    
+      setTimeout(function(){
+        // if the two cards don't match
+        if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().data().cardName, memoryGame.pickedCards[1].parent().data().cardName)){
+          memoryGame.pickedCards.forEach(function(oneCard){
+            oneCard.toggleClass('front');
+            oneCard.toggleClass('back');
+            oneCard.next().toggleClass('front');
+            oneCard.next().toggleClass('back');
+            $('#pairs_clicked').html(memoryGame.pairsClicked);
+          });
+        } else if (memoryGame.pickedCards.length == 2){
+          // update pairs guessed display
+          console.log('here');
+          $('#pairs_guessed').html(memoryGame.pairsGuessed);
+          $('#pairs_clicked').html(memoryGame.pairsClicked);
+        }
+        memoryGame.pickedCards = [];
+        if (memoryGame.isFinished()){
+          alert("You won!\nIt took you " + memoryGame.pairsClicked + " clicks!");
+          initializeGame();
+        }
+      }, 100);
+    }    
   });
+}
+
+$(document).ready(function(){
+  initializeGame();
 });
 
 
