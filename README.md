@@ -39,7 +39,7 @@ The game consists of an even number of tiles with images on one side and a gener
 
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
-When the game starts, all tiles are turned face down. The player then flips over two cards, selecting them by clicking on them. If the two tiles have the same image, they remain face up. Otherwise, the tiles flip back over after a small period of time.
+When the game starts, all tiles are turned face down. The player then flips over two CARDS, selecting them by clicking on them. If the two tiles have the same image, they remain face up. Otherwise, the tiles flip back over after a small period of time.
 
 The goal of the game is to get all the tiles flipped face up in the least number of tries. That means that lower number of tries are better scores.
 
@@ -93,19 +93,19 @@ Take a look at the `src/main.js` and `src/memory.js` starter file. You already h
 
 ### The Game Logic
 
-We will test our game logic using Jasmine (at this point you shold be **Jasmine Masters!**). Actually, for this game the game logic is pretty simple, we only going to need a `MemoryGame` constructor, and some methods to shuffle and compare cards, and one to check when the game finishes.
+We will test our game logic using Jasmine (at this point you shold be **Jasmine Masters!**). Actually, for this game the game logic is pretty simple, we only going to need a `MemoryGame` constructor, and some methods to shuffle and compare CARDS, and one to check when the game finishes.
 
-- First things first: Create a `MemoryGame` constructor that will receive an array of cards as a parameter and set this array to a `this.cards` property. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
+- First things first: Create a `MemoryGame` constructor that will receive an array of CARDS as a parameter and set this array to a `this.CARDS` property. We also need a `this.pickedCards` array, where we will be storing the CARDS the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
 
-- Create a method to shuffle the cards, so every time you create a new game, the order of the cards changes. You will only need to change the `cards` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this function, you can skip for the moment and go back on it later.
+- Create a method to shuffle the CARDS, so every time you create a new game, the order of the CARDS changes. You will only need to change the `CARDS` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this function, you can skip for the moment and go back on it later.
 
 ```javascript
 MemoryGame.prototype.shuffleCards = function() {
 };
 ```
-- When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
+- When a user pick 2 CARDS, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters, the names of both CARDS selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the CARDS are the same also add 1 to `pairsGuessed`.
 
-Finally it will return `true` or `false` depending on the result of comparing both cards.
+Finally it will return `true` or `false` depending on the result of comparing both CARDS.
 
 ```javascript
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {

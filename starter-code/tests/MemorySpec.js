@@ -10,7 +10,7 @@ describe('MemoryGame constructor', function () {
     expect(typeof MemoryGame).toBe('function');
   });
 
-  it('MemoryGame should receive `cards` as a parameter and create it own `cards` property', function () {
+  it('MemoryGame should receive `CARDS` as a parameter and create it own `CARDS` property', function () {
     expect(memoryGame.cards).toBeDefined();
   });
 
@@ -70,7 +70,7 @@ describe('shuffleCards method', function () {
     expect(typeof memoryGame.shuffleCards()).toBe('undefined');
   });
 
-  it('Should mixed the cards property', function () {
+  it('Should mixed the CARDS property', function () {
     var formerCardsString = memoryGame.cards.map(function(card) { return card.name }).toString();
     memoryGame.shuffleCards();
     var newCardsString = memoryGame.cards.map(function(card) { return card.name }).toString();
@@ -88,11 +88,11 @@ describe('checkIfPair method', function () {
     expect(memoryGame.pairsClicked).toBe(1);
   });
 
-  it('It should return true when the comparing cards are the same', function () {
+  it('It should return true when the comparing CARDS are the same', function () {
     expect(memoryGame.checkIfPair('ironman','ironman')).toBe(true);
   });
 
-  it('It should return false when the comparing cards are the same', function () {
+  it('It should return false when the comparing CARDS are the same', function () {
     expect(memoryGame.checkIfPair('ironman','flash')).toBe(false);
   });
 

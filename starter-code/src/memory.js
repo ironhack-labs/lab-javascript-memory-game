@@ -3,7 +3,7 @@ class MemoryGame{
   constructor(cards){
     this.cards = cards;
 
-    // list of cards that are currently picked
+    // list of CARDS that are currently picked
     this.pickedCards = [];
 
     // Number of pairs clicked
@@ -11,11 +11,14 @@ class MemoryGame{
 
     // Number of pairs guesses
     this.pairsGuessed = 0;
+
+    // Shuffle the cards when creating the game
+    this.shuffleCards();
   }
 
 
   /**
-   * Method to shuffle the cards
+   * Method to shuffle the CARDS
    */
   shuffleCards(){
     this.cards = this._shuffle(this.cards)
@@ -51,13 +54,13 @@ class MemoryGame{
   }
 
   /**
-   * Returns true if and only if the two cards in the argument of the function are the same
+   * Returns true if and only if the two CARDS in the argument of the function are the same
    * @param firstCard
    * @param secondCard
    */
   checkIfPair(firstCard, secondCard){
 
-    var areEqual = firstCard === secondCard;
+    var areEqual = (firstCard.name === secondCard.name);
 
     this.pairsClicked += 1;
     this.pairsGuessed += (areEqual)? 1 : 0;
@@ -67,7 +70,7 @@ class MemoryGame{
 
 
   /**
-   * Returns true if and only if all the cards are returned
+   * Returns true if and only if all the CARDS are returned
    */
   isFinished(){
     return (this.pairsGuessed * 2) === this.cards.length;
