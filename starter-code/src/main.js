@@ -45,25 +45,25 @@ function initializeGame(){
   
   // Bind the click event of each element to a function
   $('.back').click(function (event) {
+    if (memoryGame.pickedCards.length === 2){
+      return
+    }
     var card = $(event.target);
-    card.toggleClass('front');
-    card.toggleClass('back');
-    card.next().toggleClass('front');
-    card.next().toggleClass('back');
+    // toggle card 
+    toggleCardClasses(card);
 
     // var cardName = card.parent().data().cardName;
     memoryGame.pickedCards.push(card);
     console.log(memoryGame.pickedCards);
 
-    if (memoryGame.pickedCards.length === 2){    
+    if (memoryGame.pickedCards.length === 2){  
       setTimeout(function(){
+        var cardOneName = memoryGame.pickedCards[0].parent().data().cardName;
+        var cardTwoName = memoryGame.pickedCards[1].parent().data().cardName;
         // if the two cards don't match
-        if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().data().cardName, memoryGame.pickedCards[1].parent().data().cardName)){
+        if (!memoryGame.checkIfPair(cardOneName, cardTwoName)){
           memoryGame.pickedCards.forEach(function(oneCard){
-            oneCard.toggleClass('front');
-            oneCard.toggleClass('back');
-            oneCard.next().toggleClass('front');
-            oneCard.next().toggleClass('back');
+            toggleCardClasses(oneCard);
             $('#pairs_clicked').html(memoryGame.pairsClicked);
           });
         } else if (memoryGame.pickedCards.length == 2){
@@ -77,8 +77,8 @@ function initializeGame(){
           alert("You won!\nIt took you " + memoryGame.pairsClicked + " clicks!");
           initializeGame();
         }
-      }, 100);
-    }    
+      }, 500);
+    }   
   });
 }
 
@@ -86,4 +86,9 @@ $(document).ready(function(){
   initializeGame();
 });
 
-
+function toggleCardClasses(card){
+  card.toggleClass('front');
+  card.toggleClass('back');
+  card.next().toggleClass('front');
+  card.next().toggleClass('back');
+}

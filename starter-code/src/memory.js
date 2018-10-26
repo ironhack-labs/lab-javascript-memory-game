@@ -6,7 +6,18 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function () {
-  this.cards = this.cards.sort(() => Math.random() - 0.5);
+  // ugly Fisher–Yates shuffle algorithm
+  var arr = this.cards;
+  for (var i=0; i<arr.length; i++){
+    var j = Math.floor(Math.random()*arr.length);
+    var tempEl = arr[j];
+    arr[j] = arr[i];
+    arr[i] = tempEl;
+  };
+  this.cards = arr;
+
+  // Prettier but naive sort
+  // this.cards = this.cards.sort(() => Math.random() - 0.5);
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
