@@ -32,15 +32,29 @@ class MemoryGame {
     return false;
   }
 
+  // isFinished(){
+  //   if (this.pairsGuessed === 12){
+  //     setTimeout(function(){
+  //       alert("You win!");
+  //       location.reload();
+  //       }, 800);
+  //       return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
   isFinished(){
-    if (this.pairsGuessed === 12){
+    if (this.pairsGuessed < this.cards.length/2){
+      return false
+    }
+    else {
       setTimeout(function(){
         alert("You win!");
         location.reload();
         }, 800);
         return true;
-    } 
-    return false;
+    }
   }
 
 };
