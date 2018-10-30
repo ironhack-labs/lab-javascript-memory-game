@@ -25,13 +25,14 @@ MemoryGame.prototype.shuffleCards = function () {
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++;
-  if(firstCard === secondCard){
-     this.pairsGuessed++;
+  //firstCard === secondCard
+  if($(firstCard).attr("data-card-name") === $(secondCard).attr("data-card-name")){
+     this.pairsGuessed + 1;
      return true;
   }else{
-     $(firstCard).children().toggleClass("front").toggleClass("back");
-     $(secondCard).children().toggleClass("front").toggleClass("back");
-     
+    setInterval($(firstCard).children().toggleClass("front").toggleClass("back"),1000);
+    setInterval($(secondCard).children().toggleClass("front").toggleClass("back"),1000);
+
      return false;
   };
 }
