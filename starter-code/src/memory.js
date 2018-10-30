@@ -24,7 +24,14 @@ MemoryGame.prototype.shuffleCards = function () {
 
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
- 
+  this.pairsClicked++;
+  if(firstCard === secondCard){
+     this.pairsGuessed++;
+     return true;
+  }else{
+    return false;
+  };
+
 
 
 MemoryGame.prototype.isFinished = function () {
