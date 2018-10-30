@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     if (memoryGame.isFinished()) {
       setTimeout(function () {
-        prompt(`CONGRATULATIONS! You solved the puzzle!`)
+        prompt(`CONGRATULATIONS! You solved the puzzle!`) //Here the user would enter the initials for a scoreboard.
       }, 1500);
 
 
