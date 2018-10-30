@@ -24,16 +24,18 @@ MemoryGame.prototype.shuffleCards = function () {
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++
-  if (firstCard === secondCard) {
+  if ($(firstCard).attr("data-card-name") === $(secondCard).attr("data-card-name")) {
     this.pairsGuessed++;
     return true;
   } else {
+    setTimeout(() => $(firstCard).children().toggleClass("front").toggleClass("back"), 1000);
+    setTimeout(() => $(secondCard).children().toggleClass("front").toggleClass("back"), 1000);
     return false;
   }
 }
 
 MemoryGame.prototype.isFinished = function () {
-  if (this.pairsGuessed === 8) {
+  if (this.pairsGuessed === this.cards.length / 2) {
     return true;
   } else {
     return false;

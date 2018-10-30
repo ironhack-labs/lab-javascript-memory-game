@@ -22,7 +22,8 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
+  cursor: pointer;
 }
 .card .front.blocked,
 .card .back.blocked {
