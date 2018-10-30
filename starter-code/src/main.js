@@ -38,12 +38,13 @@ $(document).ready(function () {
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-
+  let intervalID = 0;
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    if (intervalID!==0) return;
     memoryGame.pickedCards.push($(this).attr('name'));
-    console.table(memoryGame.pickedCards);
+    // console.table(memoryGame.pickedCards);
     $(this).siblings().addClass('back').removeClass('front');
     $(this).removeClass('back').addClass('front');
     let firstCard = memoryGame.pickedCards[0];
@@ -53,17 +54,26 @@ $(document).ready(function () {
       let isPair = memoryGame.checkIfPair(firstCard, secondCard);
       $('#pairs_clicked').text(memoryGame.pairsClicked);
       $('#pairs_guessed').text(memoryGame.pairsGuessed);
-      
-      if (!isPair){
-        setTimeout(function(){
-        $(`.front[name*='${firstCard}']`).siblings().removeClass('back').addClass('front');
-        $(`.front[name*='${firstCard}']`).addClass('back').removeClass('front');
-        $(`.front[name*='${secondCard}']`).siblings().removeClass('back').addClass('front');
-        $(`.front[name*='${secondCard}']`).addClass('back').removeClass('front');
-        },2000);     
-      }
 
+      if (!isPair) {
+        intervalID = setTimeout(function () {
+          $(`.front[name*='${firstCard}']`).siblings().removeClass('back').addClass('front');
+          $(`.front[name*='${firstCard}']`).addClass('back').removeClass('front');
+          $(`.front[name*='${secondCard}']`).siblings().removeClass('back').addClass('front');
+          $(`.front[name*='${secondCard}']`).addClass('back').removeClass('front');
+          intervalID = 0;
+        }, 1500);
+      }
+      // console.log(intervalID);
       memoryGame.pickedCards = [];
+    }
+
+    if (memoryGame.isFinished()) {
+      setTimeout(function () {
+        prompt(`CONGRATULATIONS! You solved the puzzle!`)
+      }, 1500);
+
+
     }
   });
 });
