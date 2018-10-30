@@ -1,3 +1,9 @@
+function executeWhenLoaded () {
+  alert("DOM is Loaded");
+};
+$(document).ready(executeWhenLoaded);
+
+
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -36,12 +42,17 @@ $(document).ready(function(){
   });
 
   // Add all the div's to the HTML
+var sum = 0;
+$('div').each(function(){
+    sum += parseFloat(this.value);
+});
+
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
-  });
+ 
+
+$('.back').click(function(){
+  $(this).toggleClass('.front')
 });
-
-
+});
