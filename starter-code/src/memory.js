@@ -9,9 +9,9 @@ MemoryGame.prototype.shuffleCards = function () {
   var auxCards = [];
 
   do {
-    auxCards.push(this.cards.splice(Math.floor(Math.random() * this.cards.length),1))
+    auxCards.push(this.cards.splice(Math.floor(Math.random() * this.cards.length),1)[0])
   } while (this.cards.length);
-
+  
   this.cards = auxCards;
 };
 
