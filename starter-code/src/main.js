@@ -51,6 +51,10 @@ $(document).ready(function () {
       memoryGame.pickedCards = [];
     }
 
+    if (memoryGame.isFinished()) {
+      alert("Congratulations! You won the game!")
+    }
+
     $("#pairs_clicked").text(memoryGame.pairsClicked);
     $("#pairs_guessed").text(memoryGame.pairsGuessed);
   });
