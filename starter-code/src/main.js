@@ -28,7 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
-  // memoryGame.shuffleCards(memoryGame.cards)
+  memoryGame.shuffleCards(memoryGame.cards)
   memoryGame.cards.forEach(function (pic) {
     // console.log(pic)
     html += '<div class="card" data-card-name="'+ pic.name +'">';
