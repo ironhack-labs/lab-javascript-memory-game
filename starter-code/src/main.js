@@ -40,7 +40,20 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).parent().children().toggleClass("front").toggleClass("back");
+    memoryGame.pickedCards.push($(this).parent());
+    //function pairs DOM
+     if (memoryGame.pickedCards.length === 2) {
+       memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+      memoryGame.pickedCards = [];
+    }
+
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
+    //finish alert
+    if (memoryGame.isFinished()) {
+      alert("YOU WON THE GAME!!!!")
+    }
   });
 });
 

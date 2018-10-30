@@ -29,10 +29,20 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
      this.pairsGuessed++;
      return true;
   }else{
-    return false;
+     $(firstCard).children().toggleClass("front").toggleClass("back");
+     $(secondCard).children().toggleClass("front").toggleClass("back");
+     
+     return false;
   };
-
+}
 
 
 MemoryGame.prototype.isFinished = function () {
+  var numberOfcards = this.cards;
+  if(this.pairsGuessed === numberOfcards.length / 2 ){
+  return true;
+  }else{
+    return false;
+    
+  }
 };
