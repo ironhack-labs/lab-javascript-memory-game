@@ -26,7 +26,7 @@ var cards = [
 ];
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -40,7 +40,36 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).toggleClass('back').toggleClass('front');
+    $(this).siblings().toggleClass('front').toggleClass('back');
+
+    memoryGame.pickedCards.push($(this).parent());
+
+    if (memoryGame.pickedCards.length === 2) {
+      var isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0].data('card-name'), memoryGame.pickedCards[1].data('card-name'));
+      
+      if (!isPair) {
+        var firstCard = memoryGame.pickedCards[0];
+        var secondCard = memoryGame.pickedCards[1];
+        $("body").css("pointer-events", "none");
+        setTimeout(() => {
+          $(firstCard).children().toggleClass("front").toggleClass("back");
+          $(secondCard).children().toggleClass("front").toggleClass("back");
+          $("body").css("pointer-events", "auto");
+        }, 1000);
+      }
+
+      memoryGame.pickedCards = [];
+    }
+
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+
+    if (memoryGame.isFinished()) {
+      setTimeout(() => {
+        alert("Completado");
+      }, 500);
+    }
   });
 });
 
