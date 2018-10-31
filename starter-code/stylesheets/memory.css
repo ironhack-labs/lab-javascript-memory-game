@@ -22,7 +22,9 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
+  transition: all 0.5s;
+  transform: rotateY(360deg);
 }
 .card .front.blocked,
 .card .back.blocked {
