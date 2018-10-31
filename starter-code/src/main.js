@@ -68,7 +68,7 @@ $(function () {
 
           if (memoryGame.isFinished()) {
             setTimeout(function () {
-              alert('Has ganado');
+              alert('HAS GANADO!!!');
             }, 1000)
 
           }
