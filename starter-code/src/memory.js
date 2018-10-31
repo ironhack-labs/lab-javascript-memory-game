@@ -2,6 +2,7 @@ var MemoryGame = function (cards) {
   this.cards = cards;
 };
 
+
 MemoryGame.prototype.shuffleCards = function () {
 };
 
