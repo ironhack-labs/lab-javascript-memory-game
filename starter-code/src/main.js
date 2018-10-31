@@ -40,8 +40,10 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
-    $(".price ul li:contains('pepperonni')").toggle();
+        // TODO: write some code here
+    $(this).parent().children().toggleClass("front").toggleClass("back");
+    memoryGame.pickedCards.push($(this).parent());
+
 
   });
 });
