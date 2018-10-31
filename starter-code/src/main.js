@@ -48,11 +48,11 @@ $(document).ready(function(){
 
     checkIfPair(firstCard, secondCard) {
       this.pairsClicked ++;
-      $("#pairs_clicked").text(`${memoryGame.pairsClicked}`);
+      $("#pairs_clicked").text(`${this.pairsClicked}`);
       if (firstCard === secondCard) {
         this.pairsGuessed++;
-        memoryGame.isFinished()
-        $("#pairs_guessed").text(`${memoryGame.pairsGuessed}`);
+        this.isFinished()
+        $("#pairs_guessed").text(`${this.pairsGuessed}`);
         return true
       } 
       this.pickedCards = [];
@@ -98,7 +98,7 @@ $(document).ready(function(){
       setTimeout(() => {$(".picked").toggle();
       $(".picked").siblings(".front").toggleClass("shown");
       $(".picked").toggleClass("picked");
-      memoryGame.pickedCards = [];}, 600)
+      memoryGame.pickedCards = [];}, 500)
     }
 
     // $(this)
