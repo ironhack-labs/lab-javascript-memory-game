@@ -42,7 +42,9 @@ $(document).ready(function(){
   $('.back').click(function () {
     // TODO: write some code here
 
-    $(this).toggleClass("back").toggleClass("front");
+    $(this).parent().toggleClass("back").toggleClass("front");
+
+    
       
 
       if (memoryGame.checkIfpair == true){
