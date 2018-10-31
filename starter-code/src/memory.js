@@ -26,6 +26,9 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     return true;
   } else{
     this.pairsClicked++;
+    firstCard=children().toggleClass("front").toggleClass("back");
+    secondCard=children().toggleClass("front").toggleClass("back");
+
     return false;
   }
 
