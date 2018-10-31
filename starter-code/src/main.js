@@ -41,7 +41,25 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    var arr = [];
+    
+
+    $(this).parents().children().toggleClass("back")
+    .toggleClass("front");
+    
+    memoryGame.pickedCards = $(this).parent().attr("data-card-name");
+
+    console.log(memoryGame.pickedCards.name); // shows undifined 
+    console.log(memoryGame.pickedCards);
+
+    arr.push(pickedCards);
+    console.log(arr);
+ 
+ 
   });
+  $('.front').click(function () {
+    $(this).parents().children().toggleClass("back").toggleClass("front");
 });
 
+});
 
