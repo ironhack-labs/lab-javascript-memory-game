@@ -42,6 +42,12 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    memoryGame.pickedCards.push($(this).attr('name'));
+    $(this).siblings().addClass('back').removeClass('front');
+    $(this).removeClass('back').addClass('front');
+    console.log("estoy pisando una carta");
+    console.log(memoryGame.pickedCards);
+
   });
 });
 
