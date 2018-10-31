@@ -43,8 +43,9 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     memoryGame.pickedCards.push($(this).attr('name'));
+
+    $(this).addClass('front').removeClass('back');
     $(this).siblings().addClass('back').removeClass('front');
-    $(this).removeClass('back').addClass('front');
 
     console.log("estoy pisando una carta");
     console.log(memoryGame.pickedCards);
@@ -66,7 +67,9 @@ $(document).ready(function(){
       $('#pairs_guessed').text(memoryGame.pairsGuessed);
       memoryGame.pickedCards = [];
     }
-    
+    if(memoryGame.isFinished()){
+      alert("Juego terminado");
+    }
   });
 });
 
