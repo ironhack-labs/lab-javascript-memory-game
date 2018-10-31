@@ -56,9 +56,9 @@ $(document).ready(function(){
     if (memoryGame.pickedCards.length == 2) {      
       if (!memoryGame.checkIfPair(firstCard, secCard)){
         setTimeout(function(){
-        $(`.front[name='${firstCard}']`).siblings().removeClass('back').addClass('front');
+        $(`.front[name='${firstCard}']`).siblings().addClass('front').removeClass('back');
         $(`.front[name='${firstCard}']`).addClass('back').removeClass('front');
-        $(`.front[name='${secCard}']`).siblings().removeClass('back').addClass('front');
+        $(`.front[name='${secCard}']`).siblings().addClass('front').removeClass('back');
         $(`.front[name='${secCard}']`).addClass('back').removeClass('front');
         },500);     
       }
