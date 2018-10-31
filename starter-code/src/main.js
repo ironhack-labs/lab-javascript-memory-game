@@ -40,8 +40,12 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+  $(this).parents().children().toggleClass("back").toggleClass("front")
   });
+
+  $('.front').click(function () {
+    $(this).parents().children().toggleClass("front").toggleClass("back")
+    });
 });
 
 
