@@ -15,7 +15,7 @@ html {
 }
 
 
-.card .back {
+.card .show {
   background-color: #456783;
 	width:71px;
 	height:71px;
@@ -24,10 +24,35 @@ html {
 	padding:20px;
 	font-size:64px;
 }
-.card .front.blocked,
-.card .back.blocked {
+.card .hide.blocked,
+.card .show.blocked {
   pointer-events: none;
 }
+
+
+.hide{
+  /* width:71px;
+  height:71px;
+  background:red;
+  width:71px;
+  height:71px;
+  float:left;
+  margin:10px;
+  padding:20px;
+  font-size:64px;  */
+} 
+
+
+/* .front2{
+  /* background-image: url(img/' + pic.img + ') no-repeat; */
+  /* background:red;
+  width:71px;
+  height:71px;
+  float:left;
+  margin:10px;
+  padding:20px;
+  font-size:64px; 
+} */ */
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
