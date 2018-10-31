@@ -1,4 +1,4 @@
-var cards = [
+let cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -28,20 +28,25 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic) {
+  
+  memoryGame.shuffleCards();
+  memoryGame.cards.forEach(function(pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '<div class="back" name="'+ pic.img +'"></div>';
+    html += '<div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.back').click(function(){
+    $(this).hide();
+    $(this).siblings().addClass('back');
+    
+      memoryGame.pickedCards.push($(this));
+      if(memoryGame.pickedCards.length === 2){
+        memoryGame.checkIfPair();
+      }
   });
 });
-
 
