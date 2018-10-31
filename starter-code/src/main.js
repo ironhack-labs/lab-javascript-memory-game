@@ -28,7 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
-  memoryGame.shuffleCards(); //baraja
+  // memoryGame.shuffleCards(); //baraja
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -43,8 +43,11 @@ $(document).ready(function(){
   $('.back').click(function () {
     // TODO: write some code here
   
-  $(this).parent().children().toggleClass("front").toggleClass("back"); // This para que sólo cambie el seleccionado y no todos
-  memoryGame.pickedCards.push($(this).parent());
+  
+    $(this).parent().children().toggleClass("front").toggleClass("back"); // This para que sólo cambie el seleccionado y no todos
+    console.log($(this).parent().attr('data-card-name'));
+    memoryGame.pickedCards.push($(this).parent().attr('data-card-name'));
+  
    
   if(memoryGame.pickedCards.length === 2){
     memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]); //compara las cartas
