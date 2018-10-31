@@ -45,3 +45,15 @@ $(document).ready(function(){
 });
 
 
+
+$(document).ready(function(){
+  memory.shuffleCards();
+});
+$(".back").click(function(){
+
+    $(this).toggleClass('back').toggleClass('front');
+    $(this).siblings().toggleClass('front').toggleClass('back');
+})
+
+
+
