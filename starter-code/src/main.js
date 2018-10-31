@@ -38,8 +38,21 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+
+
+  //el back nos tiene q enlazar con memory
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    $(this).parents().children().toggleClass("back").toggleClass("front");
+    memoryGame.pickedCards = $(this).parent().attr("data-card-name");
+
+    console.log(memoryGame.pickedCards);
+
+    // TODO: write some code here
+  });
+  $('.front').click(function () {
+    $(this).parents().children().toggleClass("back").toggleClass("front");
+
     // TODO: write some code here
   });
 });
