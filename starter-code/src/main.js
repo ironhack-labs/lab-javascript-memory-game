@@ -33,6 +33,9 @@ $(document).ready(function(){
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
+
+
+
   });
 
   // Add all the div's to the HTML
@@ -40,6 +43,11 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    $(this).toggleClass('back').toggleClass('front');
+    $(this).siblings().toggleClass('front').toggleClass('back');
+    
+    memoryGame.pickedCards.push($(this).parent());
+    
     // TODO: write some code here
   });
 });
