@@ -26,6 +26,8 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++
   if ($(firstCard).attr("data-card-name") === $(secondCard).attr("data-card-name")) {
     this.pairsGuessed++;
+  const guessSound = new Audio('./sound/magic-coins.ogg');
+    guessSound.play();  
     $(memoryGame.pickedCards).toggleClass("grow-cards")
     return true;
   } else {
@@ -37,6 +39,8 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
 MemoryGame.prototype.isFinished = function () {
   if (this.pairsGuessed === this.cards.length / 2) {
+    const winSound = new Audio ("./sound/win.ogg")
+    winSound.play();
     return true;
   } else {
     return false;
