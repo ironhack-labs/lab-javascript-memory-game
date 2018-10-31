@@ -27,7 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  var html = '';
+  var html = ''; 
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -50,6 +50,7 @@ $(document).ready(function(){
 
     $("#pairs_clicked").text(memoryGame.pairsClicked);
     $("#pairs_guessed").text(memoryGame.pairsGuessed);
+
     //finish alert
     if (memoryGame.isFinished()) {
       alert("YOU WON THE GAME!!!!")
