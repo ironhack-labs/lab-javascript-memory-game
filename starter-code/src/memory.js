@@ -26,6 +26,7 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked++
   if ($(firstCard).attr("data-card-name") === $(secondCard).attr("data-card-name")) {
     this.pairsGuessed++;
+    $(memoryGame.pickedCards).toggleClass("grow-cards")
     return true;
   } else {
     setTimeout(() => $(firstCard).children().toggleClass("front").toggleClass("back"), 1000);
