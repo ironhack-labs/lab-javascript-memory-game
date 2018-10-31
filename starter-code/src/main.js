@@ -37,11 +37,13 @@ $(document).ready(function(){
     
     shuffleCards() {
       let newCards = [];
-      for(let i = 0; i < this.cards.length; i++) {
-        let randomIndex = Math.floor(Math.random() * (this.cards.length - i));
-        newCards.push(this.cards[])
-
+      let cardsLength = this.cards.length;
+      for(let i = 0; i < cardsLength; i++) {
+        let randomIndex = Math.floor(Math.random() * (cardsLength - i));
+        newCards.push(this.cards[randomIndex]);
+        this.cards.splice(randomIndex, 1)
       }
+      this.cards = newCards;
     } 
 
     checkIfPair(firstCard, secondCard) {
@@ -68,7 +70,7 @@ $(document).ready(function(){
   };
   
   let memoryGame = new MemoryGame(cards);
-
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
