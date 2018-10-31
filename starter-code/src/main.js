@@ -41,7 +41,17 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
-    
+
+    $(this).toggleClass("back").toggleClass("front");
+      
+
+      if (memoryGame.checkIfpair == true){
+        memoryGame.pickedCards.toggleClass("front");
+      } else {
+        memoryGame.pickedCards.toggleClass("back");
+      }
+
+
   });
 });
 
