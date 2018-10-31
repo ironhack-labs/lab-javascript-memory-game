@@ -45,9 +45,28 @@ $(document).ready(function(){
     memoryGame.pickedCards.push($(this).attr('name'));
     $(this).siblings().addClass('back').removeClass('front');
     $(this).removeClass('back').addClass('front');
+
     console.log("estoy pisando una carta");
     console.log(memoryGame.pickedCards);
 
+    var firstCard = memoryGame.pickedCards[0];
+    var secCard = memoryGame.pickedCards[1];
+
+    if (memoryGame.pickedCards.length == 2) {      
+      if (!memoryGame.checkIfPair(firstCard, secCard)){
+        setTimeout(function(){
+        $(`.front[name='${firstCard}']`).siblings().removeClass('back').addClass('front');
+        $(`.front[name='${firstCard}']`).addClass('back').removeClass('front');
+        $(`.front[name='${secCard}']`).siblings().removeClass('back').addClass('front');
+        $(`.front[name='${secCard}']`).addClass('back').removeClass('front');
+        },500);     
+      }
+
+      $('#pairs_clicked').text(memoryGame.pairsClicked);
+      $('#pairs_guessed').text(memoryGame.pairsGuessed);
+      memoryGame.pickedCards = [];
+    }
+    
   });
 });
 
