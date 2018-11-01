@@ -36,14 +36,12 @@ $(document).ready(function(){
     }
     
     shuffleCards() {
-      let newCards = [];
-      let cardsLength = this.cards.length;
-      for(let i = 0; i < cardsLength; i++) {
-        let randomIndex = Math.floor(Math.random() * (cardsLength - i));
-        newCards.push(this.cards[randomIndex]);
-        this.cards.splice(randomIndex, 1)
+      for(let i = (this.cards.length - 1); i >= 0; i--) {
+        let randomIndex = Math.floor(Math.random() * i);
+        let swapper = this.cards[randomIndex];
+        this.cards[randomIndex] = this.cards[i];
+        this.cards[i] = swapper;
       }
-      this.cards = newCards;
     } 
 
     checkIfPair(firstCard, secondCard) {
