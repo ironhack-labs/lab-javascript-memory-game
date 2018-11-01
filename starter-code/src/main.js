@@ -35,13 +35,24 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
+  $('.card').click(function () {
     // TODO: write some code here
+
+    var front = $(this).children(".front")
+
+    $(this).children(".back").addClass("front").removeClass("back")
+
+    front.addClass("back").removeClass("front")
+
   });
+
 });
 
 
+// Um Karten aufgedeckt zu lassen, müssen wir CSS Klasse ".blocked" benutzen 
+// (wenn ein Pair gefunden wurde)
