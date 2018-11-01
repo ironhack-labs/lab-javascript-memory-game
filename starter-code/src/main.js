@@ -64,9 +64,9 @@ $(document).ready(function(){
 
       $('.back').addClass('blocked');
 
-      $('.back').click(function(){
-        event.preventDefault()
-      })
+      // $('.back').click(function(){
+      //   event.preventDefault()
+      // })
       countForClicks += 1;
       $('#pairs_clicked').text(countForClicks);
       
@@ -74,6 +74,7 @@ $(document).ready(function(){
         countForGuessed += 1;
         $('#pairs_guessed').text(countForGuessed);
         memoryGame.pickedCards = new Array();
+        $('.back').removeClass('blocked');
       } else {
 
 
