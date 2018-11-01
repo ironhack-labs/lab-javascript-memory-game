@@ -32,16 +32,24 @@ $(document).ready(function(){
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
+    html += '</div>';  
   });
+
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.card').click(function () {
+
+    var front = $(this).children(".front")
+    $(this).children(".back").addClass("front").removeClass("back")
+    front.addClass("back").removeClass("front")
+
   });
 });
+
+
+
 
 
