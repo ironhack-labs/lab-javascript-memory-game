@@ -39,8 +39,20 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.card').click(function () {  
+      var currentCard = $(this);
+
+    $(this)
+      .children()
+      .first()
+      .toggleClass('back')
+      .toggleClass('front'); 
+    
+    $(this)
+      .children(':nth-child(2)')
+      .toggleClass('back')
+      .toggleClass('front'); 
+  
   });
 });
 
