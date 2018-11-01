@@ -78,7 +78,7 @@ $(document).ready(function(){
 
         setTimeout(()=>{
 
-        if(countForGuessed == '1'){
+        if(countForGuessed == '12'){
           alert('You won! You clicked ' + countForClicks + ' pairs of cards before you won.');
         };
         }, 100);
