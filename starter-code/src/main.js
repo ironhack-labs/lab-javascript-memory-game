@@ -79,36 +79,26 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-  // $("#pairs_clicked").text(`${pairsClicked}`)
-  // $("#pairs_guessed").text(`${pairsGuessed}`)
-  // Bind the click event of each element to a function
   $('.back').click(function () {
     $(this).toggle()
     $(this).toggleClass("picked");
     $(this).siblings(".front").toggleClass("shown");
     memoryGame.pickedCards.push($(this).attr("name"));
     if (memoryGame.pickedCards.length === 2) {
+      $(".back, .front").addClass("blocked");
       if(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
         $(".picked").toggleClass("picked");
         memoryGame.pickedCards = [];
+        $(".back, .front").removeClass("blocked");
         return
-      };
+      }
       setTimeout(() => {$(".picked").toggle();
       $(".picked").siblings(".front").toggleClass("shown");
       $(".picked").toggleClass("picked");
-      memoryGame.pickedCards = [];}, 500)
+      $(".back, .front").removeClass("blocked");
+      memoryGame.pickedCards = [];}, 600)
     }
-
-    // $(this)
-      
-    // TODO: write some code here
   });
-  // $('.front').click(function () {
-  //   $(this).toggleClass("shown");
-  //   $(this).siblings(".back").toggle();
-  // });
-
-
 });
 
 
