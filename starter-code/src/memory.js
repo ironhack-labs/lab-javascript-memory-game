@@ -29,38 +29,34 @@ MemoryGame.prototype.loadGame = function () {
 }
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-    if (firstCard == secondCard) {
-      this.paired = true
-      this.pairsGuessed +=1;
-      this.pairsClicked +=1;
-    } else {
-      this.pairsClicked +=1
+  if (firstCard == secondCard) {
+    this.paired = true
+    this.pairsGuessed +=1;
+    this.pairsClicked +=1;
+  } else {
+    this.pairsClicked +=1
     }
-    return this.paired
+  return this.paired
 }
 
 MemoryGame.prototype.playGame = function (card) {
-    $(card).children().one().toggleClass("back front")
-    $(card).children().addClass("turned blocked")
-    $(".card").find(".change").toggleClass("front back")
-    $(".card").find(".change").removeClass("change")
-    this.pickedCards.push($(card).children().one().attr("name"))
-    console.log(this.pickedCards)
-    if (this.pickedCards.length == 2) {
-      this.checkIfPair(this.pickedCards[0],this.pickedCards[1]);
-      console.log(this.paired)
-      this.pickedCards = []
-      if (this.paired == false) {
-        $(".card").find(".turned").addClass("change")
-        $(".card").find(".turned").removeClass("blocked")
-      }
-      $(".card").find(".turned").removeClass("turned")
-      this.paired = false
-      } 
+  $(card).children().one().toggleClass("back front")
+  $(card).children().addClass("turned blocked")
+  $(".card").find(".change").toggleClass("front back")
+  $(".card").find(".change").removeClass("change")
+  this.pickedCards.push($(card).children().one().attr("name"))
+  if (this.pickedCards.length == 2) {
+    this.checkIfPair(this.pickedCards[0],this.pickedCards[1]);
+    this.pickedCards = []
+    if (this.paired == false) {
+      $(".card").find(".turned").addClass("change")
+      $(".card").find(".turned").removeClass("blocked")
+    }
+    $(".card").find(".turned").removeClass("turned")
+    this.paired = false
+  } 
     $("#pairs_clicked").html(this.pairsClicked)
     $("#pairs_guessed").html(this.pairsGuessed)
-    console.log(this.pairsClicked)
-    console.log(this.pairsGuessed)
   }; 
 
 MemoryGame.prototype.isFinished = function () {
