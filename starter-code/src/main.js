@@ -75,6 +75,14 @@ $(document).ready(function(){
         $('#pairs_guessed').text(countForGuessed);
         memoryGame.pickedCards = new Array();
         $('.back').removeClass('blocked');
+
+        setTimeout(()=>{
+
+        if(countForGuessed == '1'){
+          alert('You won! You clicked ' + countForClicks + ' pairs of cards before you won.');
+        };
+        }, 100);
+
       } else {
 
 
@@ -96,12 +104,15 @@ $(document).ready(function(){
     
         }, 500);
       };
+      
     }
 
     
 
     
   })
+
+  
 
 
 
