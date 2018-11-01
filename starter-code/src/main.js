@@ -25,9 +25,15 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+let clickCount = 0;
+let guessCount = 0;
+
+
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards(cards);
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="show" name="'+ pic.img +'"></div>';
@@ -40,9 +46,13 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.show').click(function () {
-    memoryGame.choosingCards($(this))
+    console.log($(this));
+    memoryGame.choosingCards($(this));
+    memoryGame.checkIfPair($(this));
     
   });
+  
+
 });
 
 

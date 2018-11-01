@@ -42,7 +42,16 @@ html {
   font-size:64px;  */
 } 
 
-
+.seen{
+   background-color: #456783;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+  z-index: 1;
+}
 /* .front2{
   /* background-image: url(img/' + pic.img + ') no-repeat; */
   /* background:red;
