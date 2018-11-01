@@ -42,8 +42,8 @@ $(document).ready(function(){
   $('.back').click(function(){
     $(this).hide();
     $(this).siblings().addClass('back');
-    
       memoryGame.pickedCards.push($(this));
+      
       if(memoryGame.pickedCards.length === 2){
         memoryGame.checkIfPair();
       }

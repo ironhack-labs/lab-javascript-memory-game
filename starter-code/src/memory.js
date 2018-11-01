@@ -31,15 +31,23 @@ class MemoryGame{
       this.pairsGuessed ++;
       
   } else {
-      this.pairsClicked ++;
-      this.pickedCards[0].show();
-      this.pickedCards[1].show();
+        this.pairsClicked ++;
+        
+      setTimeout(()=>{
+  
 
-      this.pickedCards[0].siblings().removeClass('back');
-      this.pickedCards[1].siblings().removeClass('back');
+
+        this.pickedCards[0].show();
+        this.pickedCards[1].show();
+  
+        this.pickedCards[0].siblings().removeClass('back');
+        this.pickedCards[1].siblings().removeClass('back');
+      }, 400)
   }
 
-  this.pickedCards = [];
+  setTimeout(()=>{
+    this.pickedCards = [];
+  }, 500)
 
 
   $("#pairs_clicked")[0].innerHTML = this.pairsClicked;
@@ -50,10 +58,4 @@ class MemoryGame{
   }
 
 };
-
-  // isFinished() {
-  //   if(this.pairsGuessed === 12){
-  //     alert("YAY! You won the game!")
-  //   }
-  // }
 };
