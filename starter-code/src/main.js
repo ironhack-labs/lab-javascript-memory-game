@@ -25,23 +25,24 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  var html = '';
-  memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
-  });
-
-  // Add all the div's to the HTML
-  $('#memory_board').html(html);
-
+  memoryGame.shuffleCards();
+  memoryGame.drawOnPage();
+  
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $(".card").click(function() {
+    memoryGame.flipCard(this);
+    memoryGame.isFinished();
   });
 });
 
 
+// $(".back").click(function() {
+  
+//   $(this).toggleClass("back front")
+//   $(this).siblings().toggleClass("front back")
+
+// });

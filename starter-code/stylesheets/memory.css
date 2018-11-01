@@ -29,6 +29,7 @@ html {
   pointer-events: none;
 }
 
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
@@ -66,4 +67,18 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+
+#congratulations p {
+  display: none;
+  font-weight: bolder;
+  font-size: 60px; 
+}
+
+#congratulations {
+  background-color:rgba(192,192,192,0.8);
+  border-radius: 25px;
+  width: 80%;
+  margin-left: 100px;
 }
