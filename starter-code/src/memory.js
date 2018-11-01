@@ -28,8 +28,8 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     $('#pairs_guessed').html(this.pairsGuessed);
     this.pickedCards = [];
   }
-  else { //cards with .turned class should be turned back
-   // this.flipCardsBack();
+  else { 
+  
     setTimeout(this.flipCardsBack.bind(this), 1000);
   }
  
@@ -47,6 +47,6 @@ MemoryGame.prototype.isFinished = function () {
 
 MemoryGame.prototype.flipCardsBack = function () {  
   this.pickedCards[0].children().toggleClass('front back');
-  this.pickedCards[1].children().toggleClass('back');
+  this.pickedCards[1].children().toggleClass('front back');
   this.pickedCards = [];
 }

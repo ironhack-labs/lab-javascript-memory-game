@@ -45,7 +45,6 @@ $(document).ready(function(){
     memoryGame.pickedCards.push($(this).parent(".card"));
     $(this).attr('class', 'front');
     $(this).siblings().attr('class', 'back');
-    // $(this).parent('.card').attr('class','card turned');
     
     if (memoryGame.pickedCards.length === 2){
       memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('data-card-name'), memoryGame.pickedCards[1].attr('data-card-name'));
