@@ -23,27 +23,27 @@ var cards = [
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
-];
+]
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  var memoryGame = new MemoryGame(cards)
   memoryGame.shuffleCards()
-  var html = '';
+  var html = ''
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
-  });
+    html += '<div class="card" data-card-name="'+ pic.name +'">'
+    html += '  <div class="back" name="'+ pic.img +'"></div>'
+    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>'
+    html += '</div>'
+  })
 
   // Add all the div's to the HTML
-  $('#memory_board').html(html);
+  $('#memory_board').html(html)
 
 // Bind the click event of each element to a function
   $('.back').click(function () {
     //flip the card over
-    $(this).parent().children().toggleClass('back');
-    $(this).parent().children().toggleClass('front');
+    $(this).parent().children().toggleClass('back')
+    $(this).parent().children().toggleClass('front')
 
     memoryGame.pickedCards++
     if (memoryGame.pickedCards===1) {
@@ -54,19 +54,19 @@ $(document).ready(function(){
       memoryGame.pairsClicked++
       $("#pairs_clicked").html(memoryGame.pairsClicked)
 
-      var match = memoryGame.checkIfPair();
+      var match = memoryGame.checkIfPair()
       if (!match) { 
         setTimeout(function () {
 
-          $(memoryGame.firstCard).parent().children().toggleClass('back');
-          $(memoryGame.firstCard).parent().children().toggleClass('front');
+          $(memoryGame.firstCard).parent().children().toggleClass('back')
+          $(memoryGame.firstCard).parent().children().toggleClass('front')
 
-          $(memoryGame.secondCard).parent().children().toggleClass('back');
-          $(memoryGame.secondCard).parent().children().toggleClass('front');
+          $(memoryGame.secondCard).parent().children().toggleClass('back')
+          $(memoryGame.secondCard).parent().children().toggleClass('front')
 
-        }, 700);
+        }, 700)
       } else {$("#pairs_guessed").html(memoryGame.pairsGuessed)}
     }
-  });
-});
+  })
+})
 
