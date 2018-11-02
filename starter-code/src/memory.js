@@ -6,14 +6,22 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function () {
-  var newCardSet = [];
-  
-  for(let i = 0; i < this.cards.length; i++){
-    var ranIndex = Math.floor(Math.random() * Math.floor(this.cards.length));
-    newCardSet.push(this.cards[ranIndex]);
+  var cardsCopy = this.cards;
+
+  var cardsIndex = cardsCopy.map(c => cardsCopy.indexOf(c));
+
+  var newCards = [];
+
+  while (cardsCopy.length > 0) {
+    var ranindx = Math.floor(Math.random() * Math.floor(cardsCopy.length));
+    if (cardsIndex.filter(c => c === ranindx)) {
+      newCards.push(cardsCopy[ranindx]);
+      cardsCopy.splice(ranindx, 1);
+      cardsIndex.splice(ranindx, 1, ' ');
+    }
   }
-  
-  this.cards = newCardSet;
+
+  this.cards = newCards;
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
@@ -28,6 +36,7 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
 MemoryGame.prototype.isFinished = function () {
   if(this.pairsGuessed === this.cards.length/2){
+    $('.finished').toggle();
     return true;
   }
   return false;

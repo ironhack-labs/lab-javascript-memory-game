@@ -41,22 +41,50 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color:#8b1f2c;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  margin-bottom: 20px;
+  margin-right: 50px;
+  color:rgba(255,255,255,0.6);
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+  position:relative;
+}
+.flex-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
   position: relative;
 }
 
+.pair{
+  display: block;
+}
+
+.finished{
+  position: absolute;
+  background-color: #8b1f2c;
+  padding:50px;
+  border-radius: 15px;
+  color: rgba(255,255,255,0.8);
+  top: 280px;
+  left:350px;
+  display: none;
+}
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: rgba(255,255,255,0.8);
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
@@ -65,12 +93,12 @@ h1 {
 }
 
 h2 {
-  color: #456783;
+  color: rgba(20, 54, 117, 0.6);
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
-  text-shadow: 1px #ff0000;
-  text-shadow: 1px #ff0000;
+  text-shadow: 2px #fff;
+  text-shadow: 1px #fff;
 }
 
 p {
