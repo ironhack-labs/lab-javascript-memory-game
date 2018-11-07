@@ -24,9 +24,13 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
+var pickedObj = [];
+var bandera = true;
 
 $(document).ready(function(){
+  console.log('chuffle');
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -40,7 +44,49 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    $('.card').toggleClass('front');
+    console.log('boltear');
+    var nameImg = $(this).attr('name');
+    var nameSolo = nameImg.slice(0,nameImg.length-4);
+    if(!bandera){
+        pickedObj[0].toggleClass('back front');
+        pickedObj[1].toggleClass('back front');
+        pickedObj = [];
+        memoryGame.pickedCards = [];
+    }
+
+    $(this).toggleClass('back front');
+    $(this).siblings().toggleClass('back front');
+      pickedObj.push($(this));
+
+    memoryGame.pickedCards.push({
+        name : nameSolo,
+        img : nameImg
+    });
+    if(memoryGame.pickedCards.length === 2){
+      //console.log(memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'),memoryGame.pickedCards[1].attr('name')))
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])){
+        console.log('par');
+        bandera = true
+        //dont turn
+          //$(this).addClass('dont');
+          //$(this).siblings.addClass('dont');
+      }else{
+        console.log('impar');
+        bandera = false;
+        /*
+        pickedObj[0].removeClass('front');        ;
+        pickedObj[0].toggleClass('back front');        ;
+        pickedObj[1].removeClass('front');
+        pickedObj[1].toggleClass('back front');
+        console.log(pickedObj[0].attr('name'));
+        console.log(pickedObj[1].attr('name'));*/
+      }//*/
+        /*memoryGame.pickedCards = [];
+        pickedObj = [];*/
+    }
+      console.log(memoryGame.pickedCards);
+    //$(this).toggleClass('front');
+    //$('.front').toggleClass('back');
     // TODO: write some code here
   });
 });
