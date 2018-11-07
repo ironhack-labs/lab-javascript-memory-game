@@ -40,8 +40,19 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).attr('class','front')
+    $(this).next().attr('class', 'back')
   });
+
+
+
+
 });
 
+var clicTotal=0
 
+var tarjeta = $('.card')
+tarjeta.on("click",function(){
+  clicTotal+=1
+  $('#pairs_clicked').text("Clics: "+clicTotal)
+})
