@@ -92,7 +92,7 @@ describe('checkIfPair method', function () {
     expect(memoryGame.checkIfPair('ironman','ironman')).toBe(true);
   });
 
-  it('It should return false when the comparing cards are the same', function () {
+  it('It should return false when the comparing cards are not the same', function () {
     expect(memoryGame.checkIfPair('ironman','flash')).toBe(false);
   });
 
