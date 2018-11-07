@@ -1,3 +1,6 @@
+
+$(document).ready(function(){
+
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -23,10 +26,11 @@ var cards = [
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
-];
+  ];
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -39,9 +43,21 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.card').click(function () { 
+    $(this).toggleClass('front')
+    $(this).toggleClass('back')
+    $(this).siblings().toggleClass('front')
+    $(this).siblings().toggleClass('back')
+    var name = $(this).parent().attr("data-card-name")
+    arr.push(name)
+    if(arr.length ==2){
+      if(memoryGame.checkIfPair(arr[0],arr[1])){
+          par ++
+      }
+    }
   });
 });
+});
+
 
 
