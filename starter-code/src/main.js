@@ -40,7 +40,7 @@ $(document).ready(function() {
 
   $("#memory_board").html(html);
 
-  // Bind the click event of each element to a function
+  // On click change classes front/back
   $(".card").on("click", function() {
     var front = $(this).children(".front");
     $(this)
@@ -53,35 +53,37 @@ $(document).ready(function() {
     memoryGame.pairsClicked += 1;
     $("#pairs_clicked").html(memoryGame.pairsClicked)
 
-    // in order to identify open cards
-    $(this).addClass("open")
-
-    // does not work - trying to turn the cards around if it's not a match
-
-    var number = parseFloat($("#pairs_clicked").text())
-
-    if (number != 0 && number % 2 === 0 && $(".open").first().attr("data-card-name") != $(".open").last().attr("data-card-name")) {
-  
-      var firstOpen =  $(".open").first().children(".back");
-      $(".open").first().children(".front").removeClass("front").addClass("back");
-      firstOpen.removeClass("back").addClass("front");
-  
-      var secOpen = $(".open").last().children(".back");
-      $(".open").last().children(".front").removeClass("front").addClass("back");
-      secOpen.removeClass("back").addClass("front");
-  
-      $(".open").first().removeClass("open");
-      $(".open").last().removeClass("open");
-  
-      } 
-  }
-  
+    // push selected card to pickedCards-array
+    memoryGame.pickedCards.push($(this))
 
   
-  );
+  if (memoryGame.pickedCards.length === 2 && $(memoryGame.pickedCards[0]).attr("data-card-name") === $(memoryGame.pickedCards[1]).attr("data-card-name")) {
+
+    memoryGame.pairsGuessed += 1;
+    $("#pairs_guessed").html(memoryGame.pairsGuessed)
+    $(memoryGame.pickedCards[0].children().addClass("blocked"));
+    $(memoryGame.pickedCards[1].children().addClass("blocked"));
+    memoryGame.pickedCards.splice(0,2)
+
+  } else if (memoryGame.pickedCards.length === 2 && $(memoryGame.pickedCards[0]).attr("data-card-name") !== $(memoryGame.pickedCards[1]).attr("data-card-name")) {
+
+    setTimeout(function() {
+
+      $(memoryGame.pickedCards[0]).children().toggleClass("front").toggleClass("back")
+      $(memoryGame.pickedCards[1]).children().toggleClass("front").toggleClass("back")
+      memoryGame.pickedCards.splice(0,2)
+      
+
+    }, 2000)};
+    
+    if ($("#pairs_guessed").html() === "12") {
+    
+      alert("DONE!!!")
+    }
+    
+
+});
+
 
   
-
-
-
 });

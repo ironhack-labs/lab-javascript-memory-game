@@ -30,4 +30,3 @@ if (this.cards.length / 2 === this.pairsGuessed) {
 }  }
 
 
-// um karten aufgedeckt zu lassen, müssen wir CSS Klasse "blocked" benutzen (wenn ein pair gefunden wurde)
