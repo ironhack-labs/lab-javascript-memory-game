@@ -24,6 +24,11 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+.card .opaco{
+	opacity: 0;
+}
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;

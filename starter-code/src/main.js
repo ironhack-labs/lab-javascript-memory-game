@@ -25,8 +25,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+var tarjetas = []
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards()
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -39,9 +42,47 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
+  //var backi = $('.front')
+  
+  $('.back').click(function (e) {
+    //$(this).siblings().attr('class','back')
+    var pares = this.pairGuessed = 0
+    var superH = $(this).parent().attr("data-card-name")
+    $(this).removeClass('back')
+    $(this).addClass('front')
+
+    $(this).next().removeClass('front')
+    $(this).next().addClass('back')
+    console.log("back")
+    console.log(e)
+    console.log(e.target)
+    console.log(superH)
+
+    tarjetas.push(superH)
+
+    console.log(tarjetas)
+
+    memoryGame.checkIfPair(tarjetas[0], tarjetas[1])
+
+    console.log(this.pairGuessed)
+
+    if(tarjetas.length == 2){
+      tarjetas=[]
+    }
+    //console.log(tarjetas)
+
+
+  /*else{
+    $(this).next().removeClass('front')
+    $(this).next().addClass('back')
+
+    $(this).removeClass('back')
+    $(this).addClass('front')
+  }*/
+    //$('back').siblings(".back").css(".front")
     // TODO: write some code here
-  });
-});
+  })
+  
+})
 
 
