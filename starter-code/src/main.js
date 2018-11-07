@@ -40,6 +40,7 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    $('.card').toggleClass('front');
     // TODO: write some code here
   });
 });
