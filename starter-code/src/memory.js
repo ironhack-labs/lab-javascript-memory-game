@@ -1,24 +1,31 @@
-var MemoryGame = function (cards) {
-  this.cards = cards;
-  this.pickedCards = [];
-  this.pairsClicked = 0;
-  this.pairsGuessed = 0;
-};
 
-
-
-MemoryGame.prototype.shuffleCards = function () {
-/*  var newSet = [];
-  for (i = 0; i < cards.length, i++) {
-
+class MemoryGame {
+  constructor(cards) {
+    this.cards = cards;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
-  return newSet.push(this.cards)
-*/
-};
+
+  shuffleCards() {}
 
 
-MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-}
+  checkIfPair(firstCard, secondCard) {
+    this.pairsClicked ++;
+    if (firstCard === secondCard) {
+      this.pairsGuessed ++;
+      return true;
+    }
+      return false;
+ 
+  }
 
-MemoryGame.prototype.isFinished = function () {
+  isFinished() {
+    if (this.pairsGuessed === this.cards.length/2) {
+      return true;
+
+    }
+    return false;
+  } 
+
 };

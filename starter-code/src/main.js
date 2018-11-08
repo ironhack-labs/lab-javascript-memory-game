@@ -38,9 +38,44 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    $(this).show();
+  $('.card').click(function () { //Click on one card --> turn around card
+    $(this).children().toggle();
+
+    memoryGame.pickedCards.push($(this).attr('data-card-name'));
+    console.log(memoryGame.pickedCards);
+    $(this).children().addClass('open');
+
+
+    if (memoryGame.pickedCards.length === 2) {
+      console.log('if running')
+      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+        console.log('hez')
+        console.log(memoryGame.pairsClicked);
+        console.log($('.open'));
+        $('.open').addClass('pair');
+        $('.pair').removeClass('open');
+        memoryGame.pickedCards = [];
+      } else {
+        console.log('running');
+        setTimeout(function() {
+          $('.open').toggle();
+          $('.open').removeClass('open');
+          memoryGame.pickedCards = [];
+        }, 500)
+
+      }
+    } 
+
+    
+
+
+      // if (memoryGame.pickedCards.length < 3) {
+      //   memoryGame.pickedCards.push($(this));
+      // } else {
+      //   $('.card').addClass("blocked")
+      // }   
   });
 });
 
