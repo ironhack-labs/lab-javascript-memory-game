@@ -44,4 +44,4 @@ $(document).ready(function(){
   });
 });
 
-
+// clase lock para dejar las dos cartas ancladas si son iguales
