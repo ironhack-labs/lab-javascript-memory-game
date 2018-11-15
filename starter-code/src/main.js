@@ -27,6 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards ();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -42,9 +43,36 @@ $(document).ready(function(){
   $('.back').click(function () {
     // TODO: write some code here
 
-    var firstCard = $(".pairsClicked").click();{}
+    do {
 
-    var secondCard = $(".pairsClicked").click();{}
+      if (memoryGame.legth === 2) {
+        memoryGame.pickedCards = [];
+      } else {
+           var firstCard = $(".pairsClicked").click( function (){
+              //sumamos 1 carta al array
+               memoryGame.pickedCards.push (this); //(esta bien hecho asi?)
+              //voltear la carta seleccionada
+              $()
+
+              });
+
+             var secondCard = $(".pairsClicked").click( function (){
+               //sumamos 1 carta al array
+               memoryGame.pickedCards.push (this); //(esta bien hecho asi?)
+                //voltear la carta seleccionada
+
+              });
+
+          if (checkIfPair (firstCard, secondCard)){
+
+            //bloquear las cartas levantadas
+            pairsGuessed++;
+
+            }
+        }
+
+      }while (pairsGuessed);
+
   });
 });
 
