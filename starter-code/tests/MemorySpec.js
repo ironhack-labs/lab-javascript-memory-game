@@ -12,7 +12,7 @@ describe('MemoryGame constructor', function () {
 
   it('MemoryGame should receive `cards` as a parameter and create it own `cards` property', function () {
     expect(memoryGame.cards).toBeDefined();
-  });
+  }); 
 
   it('MemoryGame should have a pickedCards property', function () {
     expect(memoryGame.pickedCards).toBeDefined();
