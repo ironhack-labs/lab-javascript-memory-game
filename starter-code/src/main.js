@@ -27,6 +27,8 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards(); //meto dentro la llamada y creacion del nuevo juego la funcion mezcla de cartas
+  
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -40,11 +42,18 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    $(this).addClass("back")
+    
+    $(this).hide();
+    $(this).siblings().addClass('back'); //siblings llama a cada uno de los hermmanos de la clase back
+    
+    //tengo que meter la condicional de las parejas de cartas
+    
+    
+  
+   
   });
-
-
-
+  //tengo que meter la condición juego terminado
+  
 });
 
 
