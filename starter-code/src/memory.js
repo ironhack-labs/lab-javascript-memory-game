@@ -11,6 +11,17 @@ MemoryGame.prototype.shuffleCards = function (cards) {
   });
 };
 
+// MemoryGame.prototype.checkIfPair = function ( , pickedCards[1] ) {
+//   this.pairsClicked += 1;
+//   if (pickedCards[0] === pickedCards[1]) {
+//     this.pairsGuessed += 1;
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked += 1;
   if (firstCard === secondCard) {
