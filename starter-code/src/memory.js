@@ -1,6 +1,7 @@
 var MemoryGame = function (cards) {
   this.cards = cards;
   this.pickedCards = [];
+  this.pairsMatched = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
 };
@@ -17,7 +18,9 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   if(firstCard === secondCard) {
     pairedCards = true;
     this.pairsGuessed++;
+    this.pairsMatched.push(firstCard);
   }
+  this.pickedCards = [];
   return pairedCards;
 }
 

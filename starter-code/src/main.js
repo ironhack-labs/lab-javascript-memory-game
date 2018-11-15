@@ -26,22 +26,71 @@ var cards = [
 ];
 
 $(document).ready(function(){
+  var clickedElements = [];
   var memoryGame = new MemoryGame(cards);
+  // memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
+    html += "<div class='card' data-card-name='" + pic.name + "'>";
+    html += "<div class='back' name='" + pic.img + "'></div>";
+    html += "<div class='front' style='background: url(img/" + pic.img + ");'></div>";
+    html += "</div>";
   });
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.card').click(function (e) {
+    var selectedCard = e.target.parentElement;
+    if(!clickedElements.includes(selectedCard)) {
+      clickedElements.push(selectedCard);
+      handleClick(selectedCard);
+    }
   });
+
+  function handleClick (card) {
+    if (memoryGame.pairsMatched.includes($(card).attr("data-card-name"))) {
+      alert("This card is paired.");
+      clickedElements.pop();
+    } else {
+      flipCard(card);
+      if(clickedElements.length === 2) {
+        if(!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+          flipCard(clickedElements[0]);
+          flipCard(clickedElements[1]);
+        }
+        else {
+          if(memoryGame.isFinished()) {
+            alert("You win");
+          }
+        }
+        clickedElements = [];
+      }
+    }
+  }
+
+  function flipCard (card) {
+    if ($(card).children(".back").css("display") === 'block') {
+      $(card).children(".back").css("display","none");
+      $(card).children(".front").css("display","block");
+      var pickedCard = $(card).attr("data-card-name");
+      memoryGame.pickedCards.push(pickedCard);
+    } else {
+      $(card).children(".back").css("display","block");
+      $(card).children(".front").css("display","none");
+      var pickedCard = $(card).attr("data-card-name");
+      memoryGame.pickedCards.pop(pickedCard);
+    }
+    
+  }
+
+
 });
+
+
+
+
+
 
 
