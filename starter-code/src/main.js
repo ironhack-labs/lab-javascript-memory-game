@@ -28,10 +28,10 @@ var cards = [
 $(document).ready(function(){
   var clickedElements = [];
   var memoryGame = new MemoryGame(cards);
-  // memoryGame.shuffleCards();
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
-    html += "<div class='card' data-card-name='" + pic.name + "'>";
+    html += "<div class='card zoomInDown' data-card-name='" + pic.name + "'>";
     html += "<div class='back' name='" + pic.img + "'></div>";
     html += "<div class='front' style='background: url(img/" + pic.img + ");'></div>";
     html += "</div>";
@@ -46,6 +46,7 @@ $(document).ready(function(){
     if(!clickedElements.includes(selectedCard)) {
       clickedElements.push(selectedCard);
       handleClick(selectedCard);
+      changeScore();
     }
   });
 
@@ -77,12 +78,18 @@ $(document).ready(function(){
       var pickedCard = $(card).attr("data-card-name");
       memoryGame.pickedCards.push(pickedCard);
     } else {
-      $(card).children(".back").css("display","block");
-      $(card).children(".front").css("display","none");
+      setTimeout(function() {
+        $(card).children(".back").css("display","block");
+        $(card).children(".front").css("display","none");
+      }, 200);
       var pickedCard = $(card).attr("data-card-name");
       memoryGame.pickedCards.pop(pickedCard);
     }
-    
+  }
+
+  function changeScore() {
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
   }
 
 
