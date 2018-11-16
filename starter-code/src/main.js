@@ -48,8 +48,8 @@ $(document).ready(function(){
         memoryGame.pickedCards = [];
          $(this).removeClass('front');
          //$(this).addClass('back');
-         $(this).siblings().addClass('back');
-         $(this).siblings().addClass('front');
+         //$(this).siblings().addClass('back');
+         //$(this).siblings().addClass('front');
         
       
       } else {
@@ -64,23 +64,7 @@ $(document).ready(function(){
               $(this).addClass('front');
               $(this).removeClass('back');
               $(this).siblings().addClass('back');
-              $(this).siblings().addClass('front');
-
-              
-          
-               //sumamos 1 carta al array
-              // memoryGame.pickedCards = memoryGame.pickedCards.push($(this).parent());
-               
-               //Sumamos y mostramos en pantalla el numero de cartas seleccionas
-               memoryGame.pairsClicked++;
-               $(".pairs_clicked").html ("<p>Pairs Clicked: <span id=" + "pairs_clicked>" + memoryGame.pickedCards + "</span></p>"); //(revisar si esta bien hecho)
-
-               //voltear la carta seleccionada
-               $(this).addClass('front');
-               $(this).removeClass('back');
-               $(this).siblings().addClass('back');
-               $(this).siblings().addClass('front');
-            
+              $(this).siblings().addClass('front');        
 
           if (memoryGame.checkIfPair){
 
