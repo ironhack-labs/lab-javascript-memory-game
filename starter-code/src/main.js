@@ -39,15 +39,17 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
+    // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
 
      if (memoryGame.pickedCards.length === 2) {
        
         memoryGame.pickedCards = [];
+        memoryGame.pairsClicked = 0;
+        $("#pairs_clicked").html ("<span id=" + "pairs_clicked" + ">" + memoryGame.pairsClicked + "</span>"); 
          $(this).removeClass('front');
-         //$(this).addClass('back');
+         $(this).addClass('back');
          //$(this).siblings().addClass('back');
          //$(this).siblings().addClass('front');
         
@@ -58,7 +60,7 @@ $(document).ready(function(){
 
               //Sumamos y mostramos en pantalla el numero de cartas seleccionas
               memoryGame.pairsClicked++;
-              $(".pairs_clicked").html ("<span id=" + "pairs_clicked>" + memoryGame.pickedCards + "</span></p>"); //(revisar si esta bien hecho)
+              $("#pairs_clicked").html ("<span id=" + "pairs_clicked" + ">" + memoryGame.pairsClicked + "</span>"); 
             
               //voltear la carta seleccionada
               $(this).addClass('front');
@@ -66,14 +68,22 @@ $(document).ready(function(){
               $(this).siblings().addClass('back');
               $(this).siblings().addClass('front');        
 
-          if (memoryGame.checkIfPair){
+      
+              if (!memoryGame.checkIfPair){
 
-            //bloquear las cartas levantadas, cambiar la clase de la carta a .card .back.blocked
-            //$(".pairs_guessed").text
-            //sumamos una pareja acertada y la pintamos en pantalla
-            memoryGame.pairsGuessed++;
+                //bloquear las cartas levantadas, cambiar la clase de la carta a .card .back.blocked
+                $(this).addClass("front.blocked");
+
+                //sumamos una pareja acertada y la pintamos en pantalla
+                memoryGame.pairsGuessed++;
+                $("#pairs_guessed").html ("<span id=" + "pairs_clicked" + ">" + memoryGame.pairsGuessed + "</span>"); 
             
             }
+            if (memoryGame.isFinished){
+
+              $("#memory_boad").removeClass(); //Revisar para acabar el juego
+            }
+
         }
       });
 });
