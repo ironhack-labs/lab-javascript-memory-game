@@ -27,21 +27,35 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
+
   });
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
+  $('.back').click(function (e) {
     // TODO: write some code here
-  });
+  //  console.log($(this).parent().children());
+   $(this).parent().children().toggleClass("back");
+   $(this).parent().children().toggleClass("front");
+
+  //  for (let index = 0; index < memoryGame.cards.length; index++) {
+  //   console.log(memoryGame.cards[index]);
+  //  }
+  memoryGame.pickedCards.push()
+  
+  })
+  
+  
+
 });
 
 
