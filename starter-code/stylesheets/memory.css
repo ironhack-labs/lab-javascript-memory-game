@@ -14,7 +14,6 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
-
 .card .back {
   background-color: #456783;
 	width:71px;
@@ -24,6 +23,18 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
+/* Agregué esto */
+.card .front {
+  display: none;
+  width: 71px;
+  height: 71px;
+  float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
