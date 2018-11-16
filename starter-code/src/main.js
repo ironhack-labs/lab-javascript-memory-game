@@ -50,6 +50,13 @@ $(document).ready(function(){
     }
   });
 
+  $('#btn-reload').click(function (e) {
+    e.preventDefault();
+    if(window.confirm('Are you sure you want to restart the game?')) {
+      location.reload();
+    }
+  })
+
   function handleClick (card) {
     if (memoryGame.pairsMatched.includes($(card).attr("data-card-name"))) {
       alert("This card is paired.");

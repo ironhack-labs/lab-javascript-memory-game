@@ -1,11 +1,11 @@
 html {
   background: url("../img/background.jpg") no-repeat;
   background-size: cover;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: "Pacifico", sans-serif;
 }
 
 #memory_board {
-  background:#dddddd;
+  background:#FFF;
 	width:800px;
 	height:540px;
 	padding:70px;
@@ -33,14 +33,33 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
   font-size: 30px;
-  font-family: Arial;
   width:200px;
-  padding: 20px;
+  padding: 10px;
   padding-top: 0;
+  margin-bottom: 2%;
   margin-left: 75%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 15%;
+  border: 2px solid #FFF;
+}
+
+#btn-reload {
+  width: 80%;
+  height: 50%;
+  text-align: center;
+  background: #0099CC;
+  border: 2px solid #FFF;
+  padding: 4%;
+  margin-top: 4%;
+  border-radius: 6px; 
+  font-size: 30px;
+  color: rgba(215, 40, 40, 0.9);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -57,9 +76,9 @@ h1 {
 }
 
 h2 {
-  color: #456783;
+  color: #0099CC;
   font-weight: bolder;
-  font-size: 35px;
+  font-size: 36px;
   text-align: center;
   text-shadow: 1px #ff0000;
   text-shadow: 1px #ff0000;
@@ -69,4 +88,5 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+  color: #FFF;
 }
