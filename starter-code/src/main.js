@@ -79,8 +79,9 @@ $(document).ready(function(){
       //Edita el texto del Score
 
     if ( clicked ) {
+      debugger;
       $('.control').toggleClass("control");
-      
+      //si son pareja, la clase control se quita.
       if ( memoryGame.isFinished()) {
         setTimeout(function() {
           alert("You Win!");
@@ -90,7 +91,7 @@ $(document).ready(function(){
       setTimeout(function() {
         changeClass('.control');
       },500);
-      //Si no es acertada la pareja, se quita el control.
+      //Si no es acertada la pareja, se quita el control. Pero se le deja medio segundo para que se pueda ver la carta.
         }
     memoryGame.pickedCards = [];
     //Vacía el array de cartas seleccionadas
