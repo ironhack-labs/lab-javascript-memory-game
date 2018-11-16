@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <title>Superhero Memory Game</title>
+       <title>Western Memory Game</title>
        <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
-       <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
+       <link href="https://fonts.googleapis.com/css?family=Wellfleet&amp;subset=latin-ext" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,700&amp;subset=latin-ext" rel="stylesheet">
     </head>
     <body>
-        <div>
-          <h1>Superhero Memory Game</h1>
+  
+      <audio id="congratulations" src="music/western.mp3" style="display:none;"> </audio>
+
+      <div id="intro-play">
+        <div id="intro-play-options">
+          <h1 id="intro-play-button">PLAY!</h1>
+          <p> Check <strong>the paired</strong>  cards on the board!</p>
+          <p><strong>Click</strong> in the card, and reveal the image under the each.</p>
         </div>
-        <div id="score">
-          <h2>Score</h2>
-          <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-          <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
-        </div>
+      </div>
+
+      <div>
+        <h1>WESTERN PAIRS</h1>
+      </div>
+
+      <div id="score">
+        <h2>Score</h2>
+        <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
+        <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+      </div>
+
+      <div id="flex-div">
         <div id="memory_board"></div>
+        <div id="final-replay">
+          <div id="intro-replay-options">
+            <h1 id="intro-replay-button">PLAY AGAIN!</h1>
+          </div>
+        </div>
+      </div>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
@@ -23,5 +44,6 @@
         <script type="text/javascript" src="src/main.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
     </body>
 </html>

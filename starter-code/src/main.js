@@ -27,7 +27,10 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-//  memoryGame.shuffleCards();
+  memoryGame.shuffleCards();
+
+  $('#intro-play-options').hide().fadeIn(1000).appendTo('.json');
+
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -36,14 +39,24 @@ $(document).ready(function(){
     html += '</div>';
   });
 
+
+  $( "#intro-play-button" ).click(function() {
+    document.getElementById("congratulations").play();
+  
+
+    $('#intro-play-options').fadeOut(500);
+
+    setTimeout(function(){  $('#intro-play' ).slideUp( "slow");
+    }, 300);
+  });
+
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-  
+
     memoryGame.pickedCards.push(this.getAttribute('name'));
-    
     $(this).addClass('front').removeClass('back');
     $(this).siblings().addClass('back').removeClass('front')
     $(this).parent().addClass('selected');
@@ -56,20 +69,21 @@ $(document).ready(function(){
         $('.card.selected').removeClass('selected');
         $('.card').children().removeClass('blocked');
       } else {
-         $('.card').children().addClass('blocked');
-        var cardsInner = $('.card.selected').children('.front');
-        cardsInner.addClass('back').removeClass('front');
-        cardsInner.siblings().addClass('front').removeClass('back');
-        memoryGame.pickedCards = [];
-        $('.card').removeClass('selected');
-        $('.card').children().removeClass('blocked');
+      //    $('.card.selected').children('.back')
+        $('.card').children().addClass('blocked');
+          setTimeout(function(){
+            var cardsInner = $('.card.selected').children('.front');
+            cardsInner.addClass('back').removeClass('front');
+            cardsInner.siblings().addClass('front').removeClass('back');
+            memoryGame.pickedCards = [];
+            $('.card').removeClass('selected');
+            $('.card').children().removeClass('blocked');
+        }, 800);
       }
-      
     } if (memoryGame.isFinished() === true){
-       alert('final');
+       $('#final-replay').fadeIn(1500).click(function(){
+          location.reload(1);
+       })
     }
-    
   });
 });
-
-
