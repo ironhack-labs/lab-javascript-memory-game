@@ -41,7 +41,28 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
-  });
+    $(this).toggleClass("front");
+    $(this).toggleClass("back");
+    $(this).siblings().toggleClass("front");
+    $(this).siblings().toggleClass("back");
+
+    
+        
+    if(memoryGame.pickedCards .length === 2){
+
+    $(this).toggleClass("front");
+    $(this).toggleClass("back");
+    $(this).siblings().toggleClass("front");
+    $(this).siblings().toggleClass("back");
+
+      
+    }
+  
+
+      
+    
+   
+    
+         
 });
-
-
+});
