@@ -1,4 +1,4 @@
-var cards = [
+  var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -38,9 +38,22 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+
+  
+
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+
+  let firstCard, secondCard;
+
+  if ($('.card').hasClass('back')) {
+    $('.card').toggleClass('back')
+    firstCard = this; 
+  } else {
+    $('.card').addClass('back')
+    secondCard = this;
+  }
+  
   });
 });
 
