@@ -30,4 +30,4 @@ MemoryGame.prototype.isFinished = function () {
   } else {
     return true
   }
-};
+}

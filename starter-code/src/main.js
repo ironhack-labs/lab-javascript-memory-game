@@ -47,15 +47,16 @@ $(document).ready(function(){
    $(this).parent().children().toggleClass("back");
    $(this).parent().children().toggleClass("front");
 
-  //  for (let index = 0; index < memoryGame.cards.length; index++) {
-  //   console.log(memoryGame.cards[index]);
-  //  }
-  memoryGame.pickedCards.push()
+ 
+  // if (memoryGame.pickedCards++ === memoryGame.firstCard) {
+  //   console.log("both cards are the same!");
+  // }
   
+    $(".back").on("click", function(e){
+      console.log($(this));
+    })
   })
   
-  
-
 });
 
 
