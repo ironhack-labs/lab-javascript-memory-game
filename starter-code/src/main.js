@@ -40,7 +40,41 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+      var firstCard;
+      var secondCard;
+      $(this).removeClass('back');
+      $(this).addClass('front volteado');
+      $(this).next().removeClass('front');
+      $(this).next().addClass('back');
+
+        var clicks = $(this).data('clicks');
+        if (clicks) {
+          $(this).removeClass('back');
+          $(this).addClass('front volteado');
+          $(this).next().removeClass('front');
+          $(this).next().addClass('back');
+          firstCard = $(this.img);
+
+        } else {
+                   $(this).removeClass('back');
+          $(this).addClass('front volteado');
+          $(this).next().removeClass('front');
+          $(this).next().addClass('back');
+          secondCard = $(this.img);
+
+          if (checkIfPair(firstCard, secondCard) = true) {
+            $(this).data("clicks", !clicks);
+          } else {
+            $('.volteado').removeClass('front volteado');
+            $(this).addClass('back');
+            $('.volteado').next().removeClass('back');
+            $(this).next().addClass('front');
+            $(this).data("clicks", !clicks);
+          }
+        }
+
+
+  
   });
 });
 
