@@ -16,8 +16,18 @@ html {
 
 
 .card .back {
+  display: block;
   background-color: #456783;
 	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+}
+
+.card .mostrar {
+  width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
