@@ -25,6 +25,10 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+var timesClick = 0;
+var card1 = '';
+var card2 = '';
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
@@ -39,9 +43,44 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  
+
+  $('.back').click(function (event) {
+    timesClick = timesClick + 1;
+
+    if (timesClick === 1) {
+  
+    $(this).toggleClass('back');
+    $(this).toggleClass('front');
+
+    $(this).siblings().toggleClass('back');
+    $(this).siblings().toggleClass('front');
+
+    card1 = $(this).attr('name');
+    card1 = card1.substr(0, card1.indexOf('.'))
+  }
+
+  else if (timesClick === 2) {
+    $(this).toggleClass('back');
+    $(this).toggleClass('front');
+
+    $(this).siblings().toggleClass('back');
+    $(this).siblings().toggleClass('front');
+
+    card2 = $(this).attr('name');
+    card2 = card2.substr(0, card2.indexOf('.'))
+  }
+
+  else if (timesClick === 3) {
+    timesClick = 0;
+    memoryGame.checkIfPair(card1,card2);
+    if (memoryGame.checkIfPair(card1,card2) === true) {
+      $("div[data-card-name|='green lantern']").remove();
+    }
+  }
   });
+
+  
 });
 
 
