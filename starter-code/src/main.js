@@ -39,8 +39,9 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.card').click(function () {
+    $('div:nth-child(1)', this).toggleClass("back front");
+    $('div:nth-child(2)', this).toggleClass("back front");
   });
 });
 
