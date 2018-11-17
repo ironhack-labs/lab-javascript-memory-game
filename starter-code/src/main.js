@@ -28,20 +28,26 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  var random = memoryGame.shuffleCard(cards)
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
+    html += '<div class= "card" id="card_' + pic.name + '">';
+ html += '<div class="back"';
+ html += '    name="'+ pic.img +'">';
+ html += '</div>';
+ html += '<div class="front" ';
+ html += 'style="background: url(img/' + pic.img + ') no-repeat">';
+ html += '</div>';
+ html += '</div>';
   });
 
   // Add all the div's to the HTML
-  $('#memory_board').html(html);
+
+  document.getElementById('memory_board').innerHTML = html;
+  $(this).css("display", "none");
+     $(this).siblings().addClass("back");
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
+  $('.back').click(function () {s
     // TODO: write some code here
   });
 });
-
-
