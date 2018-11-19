@@ -29,7 +29,7 @@ $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
 
-  memoryGame.shuffleCards(); //barajeamos las cartas
+  memoryGame.shuffleCards(); //barajamos las cartas
 
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -53,7 +53,7 @@ $(document).ready(function(){
   
   $(".front").switchClass("front","back",100);
   $(".back").switchClass("back","front",100);
-  // hacemos un setTimeout para monstrar durante un tiempo las cartas y volvemos a poner boca abajo.
+  // hacemos un setTimeout para mostrar durante un tiempo las cartas y volvemos a poner boca abajo.
 
   $('.back').click(function () {
 
@@ -71,7 +71,7 @@ $(document).ready(function(){
           
           setTimeout(function() {
             alert ("The mission is finished!!!");
-          },100);//mandamos un alert cuando termina el juego, con un setTimeour para monstrar la última carta.
+          },100);//mandamos un alert cuando termina el juego, con un setTimeout para mostrar la última carta.
         }
       } 
       else {
