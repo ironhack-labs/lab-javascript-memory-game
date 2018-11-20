@@ -43,59 +43,56 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-  //Mete todas las cartas en #memory_board.
 
   // Bind the click event of each element to a function
-  function changeClass(elementClass) {
-    //Se saca en una función aparte el "darle la vuelta a las cartas" para que cuando haga click solo tenga que invocarla.
-    
-    $(elementClass).toggleClass("front");
-    $(elementClass).toggleClass("back");
-    $(elementClass).siblings().toggleClass("front");
-    $(elementClass).siblings().toggleClass("back");
-    // Las dos primeras funciones añade la funcion front y quita la función back. Dándole la vuelta
-    //las dos siguientes hacen efectos en los hermanos.
 
-    $(elementClass).toggleClass("control");
-    //Le metemos una clase "control" que es la que verifica que si la segunda no es correcta deben volver a darse la vuelta.
-  }
+  setTimeout (function () {
+    $(".front").switchClass("front","back",100);
+    $(".back").switchClass("back","front",100);
+    },3000);
+    $(".front").switchClass("front","back",100);
+    $(".back").switchClass("back","front",100);
 
   $('.back').click(function () {
     memoryGame.pickedCards.push($(this).attr("name"));
-    //Añade a pickedCards las cartas clicadas
     
-    /*
-    $(elementClass).addClass("front").removeClass("back");
-    $(elementClass).siblings().addClass("back").removeClass("front");
-    */
-
-    changeClass(this);
+    console.log(memoryGame.pickedCards);
+    
+    $(this).addClass("front")
+      .removeClass("back");
+    $(this).siblings()
+      .addClass("back")
+      .removeClass("front");
+    $(this).addClass("control");
 
     if (memoryGame.pickedCards.length === 2) {
-      var clicked = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+      var check = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
       //Creamos una variable para chequear si las dos cartas son iguales. Es un booleano.
       $("#pairs_clicked").text(memoryGame.pairsClicked);
       $("#pairs_guessed").text(memoryGame.pairsGuessed);
-      //Edita el texto del Score
 
-    if ( clicked ) {
-      debugger;
-      $('.control').toggleClass("control");
-      //si son pareja, la clase control se quita.
+      if (check == true) {
+        $(".control").removeClass("control");
+
+      } else {
+        console.log ("Aquí llega tambien");
+        setTimeout( function () {
+          $(".control").addClass("back");
+          $(".control").removeClass("front");
+          $(".control").siblings().addClass("front");
+          $(".control").siblings().removeClass("back")
+          $(".control").removeClass("control");
+        },200);
+      };
+      memoryGame.pickedCards = [];
       if ( memoryGame.isFinished()) {
         setTimeout(function() {
-          alert("You Win!");
-        },1000);
-      }      
-    } else {
-      setTimeout(function() {
-        changeClass('.control');
-      },500);
-      //Si no es acertada la pareja, se quita el control. Pero se le deja medio segundo para que se pueda ver la carta.
-        }
-    memoryGame.pickedCards = [];
-    //Vacía el array de cartas seleccionadas
-    }
+          alert ("you win!");
+        }) 
+      };
+      //Vacía el array de cartas seleccionadas
+      }
   });
+
 });
 

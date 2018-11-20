@@ -25,11 +25,9 @@ if (firstCard === secondCard) {
 }
 
 MemoryGame.prototype.isFinished = function () {
-  if (this.pairsGuessed < 8 ) {
+  if (this.pairsGuessed < this.cards.length / 2 ) {
     return false;
   } else  if(this.pairsGuessed === this.cards.length / 2) {
     return true;
   }
 };
-
-//PISTA PARA BLOQUEAR CARTAS .blocked
