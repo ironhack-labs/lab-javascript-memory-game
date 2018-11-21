@@ -39,54 +39,63 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  memoryGame.pairsClicked = 1; //no se por que pero poniendo esto se evita un bug (--> el primer click no lo cuenta)
+setTimeout(function(){
+  $(".front").switchClass( "front", "back", 100 );
+  $(".back").switchClass( "back", "front", 100 );
+}, 3000);
+
+  $(".front").switchClass( "front", "back", 100 );
+  $(".back").switchClass( "back", "front", 100 );
+
+  memoryGame.pairsClicked = 0; //no se por que pero poniendo esto se evita un bug (--> el primer click no lo cuenta)
 
     // Bind the click event of each element to a function
   $('.back').click(function () {
-
-    memoryGame.pickedCards.push($(this).attr("name"));
+    memoryGame.pickedCards.push(this);
     
     $("#pairs_clicked").html ("<span id=" + "pairs_clicked" + ">" + memoryGame.pairsClicked + "</span>");
 
-    console.log(memoryGame.pickedCards);
 
-    $(this).toggleClass("front");
-    $(this).toggleClass("back");
-    $(this).siblings().toggleClass("front");
-    $(this).siblings().toggleClass("back");
+    flipCard(this)
 
     if( memoryGame.pickedCards.length === 2){
+        memoryGame.pairsClicked ++;
 
-      if(memoryGame.checkIfPair (memoryGame.pickedCards[0],memoryGame.pickedCards[1])) {
-        console.log (memoryGame.checkIfPair (memoryGame.pickedCards[0],memoryGame.pickedCards[1]));
-        $(this).addClass(".card .front.blocked"); //deberia de bloquear el que se puedan dar la vuelta
-
-        if (memoryGame.isFinished){
-          
+      if(memoryGame.checkIfPair ($(memoryGame.pickedCards[0]).attr('name'),$(memoryGame.pickedCards[1]).attr('name'))) {
+        
+        
+        if (memoryGame.isFinished()){
             setTimeout(function() {
               alert("You Win!");
-            },1000);
+            },500);
         }
-          
+        
         $("#pairs_guessed").html ("<span id=" + "pairs_clicked" + ">" + memoryGame.pairsGuessed + "</span>"); //pintamos la pantalla
+        
         memoryGame.pickedCards = [];
-        memoryGame.pairsClicked = 0;
+      
+      } else {
+        turnBack(memoryGame.pickedCards[0])
+        turnBack(memoryGame.pickedCards[1])
+        memoryGame.pickedCards = [];
+       
+
       }
-
-      // setTimeout(function() {
- 
-      // },500);
-
-      $(this).toggleClass("front");
-      $(this).toggleClass("back");
-      $(this).siblings().toggleClass("front");
-      $(this).siblings().toggleClass("back"); 
-      memoryGame.pickedCards = [];
-      memoryGame.pairsClicked = 0;
-
     }
-    memoryGame.pairsClicked ++; //dejando esta linea aqui tb se evita el bug
+    
   });
+
+  $('#pairs_clicked').text(memoryGame.pairsClicked)
 });
 
+function flipCard(card) {
+  $(card).toggleClass('back front')
+  $(card).siblings().toggleClass('front back')
+}
 
+function turnBack(card) {
+  setTimeout(function() {
+    $(card).toggleClass('front back')
+    $(card).siblings().toggleClass('back front')
+  }, 300)  
+}
