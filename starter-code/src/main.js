@@ -47,7 +47,7 @@ setTimeout(function(){
   $(".front").switchClass( "front", "back", 100 );
   $(".back").switchClass( "back", "front", 100 );
 
-  memoryGame.pairsClicked = 0; //no se por que pero poniendo esto se evita un bug (--> el primer click no lo cuenta)
+  memoryGame.pairsClicked = 0; 
 
     // Bind the click event of each element to a function
   $('.back').click(function () {
