@@ -37,43 +37,55 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-
+  //las barajeo
+  memoryGame.shuffleCards();
   // Bind the click event of each element to a function
   $('.back').click(function() {
-    //coge una carta de card
+    //coge la carta hemos pinchado y la da la vuelta
     $(this).addClass('front');
     $(this).removeClass('back');
     $(this).siblings().addClass('back');
-    $(this).siblings().addClass('front');
-    //checkeo si la carta es igual a la siguente
+    $(this).siblings().removeClass('front');
+    //meto la carta en el array de cartgas cogidas
     memoryGame.pickedCards.push($(this).parent());
-    memoryGame.pickedCards.push($(this).parent());
+    
     if (memoryGame.pickedCards.length === 2){
-      if (!memoryGame.checkIfPair(this.pickedCards[0].attr('name'), this.pickedCards[1].attr('name'))){
-        setTimeout(function(){
-        //si son distintas las vuelvo a dar la vuelta al segundo
-        memoryGame.pickedCards[0].addClass('back');
-        memoryGame.pickedCards[0].removeClass('front');
-        memoryGame.pickedCards[0].addClass('front');
-        memoryGame.pickedCards[0].addClass('back');
+      setTimeout(function(){
 
-        memoryGame.pickedCards[1].addClass('back');
-        memoryGame.pickedCards[1].removeClass('front');
-        memoryGame.pickedCards[1].addClass('front');
-        memoryGame.pickedCards[1].addClass('back');
-        },1000);
-        
-        //y sumo una al contador de pares vistos
-        memoryGame.pairsClicked++;
-      }
-      else {
+        //compruebo si son iguales
+        if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].html(), memoryGame.pickedCards[1].html())){
+          //sumo una al contador de pares vistos
+          console.log(memoryGame.pairsClicked,'clicked');
+          console.log($('.pairs_clicked'));
+          //$('pairs_clicked').text(memoryGame.pairsClicked);
+          document.querySelector('#pairs_clicked').innerText=memoryGame.pairsClicked;
+          //si son distintas las vuelvo a dar la vuelta al segundo
+          var card = memoryGame.pickedCards[0].children();
+          card[0].className ='back';
+          card[1].className ='front';
+                   
+          var card1 = memoryGame.pickedCards[1].children();
+          card1[0].className ='back';
+          card1[1].className = 'front';
+                           
+        } else {
+        //si son iguales
         //aumento el contador de pares adivinados y los dejo dados la vuelta
-        memoryGame.pairsGuessed++;
-      }
+          document.querySelector('#pairs_guessed').innerText=memoryGame.pairsGuessed;
+          document.querySelector('#pairs_clicked').innerText=memoryGame.pairsClicked;
+          //$('.pairs_guessed').append(memoryGame.pairsGuessed);
+        }
+        //vacío el array para empezar de nuevo
+        memoryGame.pickedCards = [];
+        
+      },500);  
     }
-    //vacío el acumulador de cartas para volver a empezar
-    memoryGame.pickedCards = [];
+    if (memoryGame.isFinished()){
+      prompt('You win!!');
+    }
   });
+  
+  
 });
 
 

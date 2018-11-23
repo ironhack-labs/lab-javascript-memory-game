@@ -12,9 +12,9 @@ MemoryGame.prototype.shuffleCards = function () {
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  this.pairsClicked = 1;
+  this.pairsClicked += 1;
   if (firstCard === secondCard){
-    this.pairsGuessed = 1; 
+    this.pairsGuessed += 1; 
     return true;
   } else {
     return false;
