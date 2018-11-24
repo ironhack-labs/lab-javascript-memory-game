@@ -6,24 +6,23 @@ var MemoryGame = function(cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function(cards) {
-
   if (cards === undefined) {
     return cards;
-  } 
+  }
 
   let length = cards.length;
 
-  while(length > 0){
+  while (length > 0) {
     //issue random number
     let r = Math.floor(Math.random() * length);
-    //decrement 
-    --length
+    //decrement
+    --length;
     // place current element index in temp var
     let tempVar = cards[length];
     // swap current element in random array index
-    cards[length] = cards[r]
+    cards[length] = cards[r];
     // swap random element in array with current index
-    cards[r] = tempVar
+    cards[r] = tempVar;
   }
   return cards;
 };
@@ -31,14 +30,12 @@ MemoryGame.prototype.shuffleCards = function(cards) {
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
   // Pairs clicked...
   this.pairsClicked++;
-  $("#pairs_clicked").html(this.pairsClicked)
+  
   // check if pairs are the same
   var checkIfTheSame = Object.is(firstCard, secondCard);
   if (checkIfTheSame) {
     this.pairsGuessed++;
-    $("#pairs_guessed").html(this.pairsGuessed)
   }
-  this.pickedCards = []
   this.isFinished();
   return checkIfTheSame;
 };
