@@ -36,7 +36,6 @@ $(document).ready(function(){
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
  
 
   // Add all the div's to the HTML
@@ -44,28 +43,35 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-      const newCardPicked = this; 
+     const newCardPicked = this; 
      console.log(newCardPicked);
-      const nameofImage = $(this).attr("name");
-       //console.log($(".back").toggleClass('card front'));
-      // firstCard.
+     const nameofImage = $(newCardPicked).attr("name");
+     console.log("imagen",nameofImage);
+     
+     //add class block to clicked elements
+     $(newCardPicked).addClass("blocked");
+     //add class "justclicked" to clicked
+     $(newCardPicked).addClass("justClicked");
+     //change background of clickedcard using css method
      $(newCardPicked).css("background" , "url(img/" + nameofImage + ")");
-    //let secondCard = $(this).attr("name");
-    //newCardPicked.pickedCards.push(nameofImage) ;
-    console.log(MemoryGame.pickedCards.push(nameofImage));
+     memoryGame.pickedCards.push(nameofImage) ;
    
-   
- console.log(newCardPicked.pickedCards);
+    if(memoryGame.pickedCards.length === 2)
+    {
+      const firstCard= memoryGame.pickedCards[0];
+      const secondCard= memoryGame.pickedCards[1];
+      memoryGame.checkIfPair(firstCard, secondCard);
+      
+      /*if (validation){
+        console.log("igual");
+      }else {
+        console.log("differnete");
+        $(newCardPicked).css("backgroundColor" , "green");
+        
+      } */
+    }
 
-if(  newCardPicked.pickedCards.length === 2)
-{
-
-}
-      // console.log(firstCard);
-  //   this.pickedCards.push(firstCard);
-   //  this.pickedCards.push(secondCard);
-
-    // TODO: write some code here
+  
   });
 });
 
