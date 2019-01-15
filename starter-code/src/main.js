@@ -87,5 +87,10 @@ $(document).ready(function() {
     // 3. Update the scores
     $('#pairs_clicked').text(memoryGame.pairsClicked);
     $('#pairs_guessed').text(memoryGame.pairsGuessed);
+
+    // 4. Win
+    if (memoryGame.isFinished()) {
+      $('#pairs_guessed').text('You Win!');
+    }
   });
 });
