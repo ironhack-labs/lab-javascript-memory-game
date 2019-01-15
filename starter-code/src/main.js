@@ -39,9 +39,36 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
-  });
+
+  $('.card').click(function(){
+    $(this).children().toggleClass('front back');
+    memoryGame.pickedCards.push($(this));
+
+    if (memoryGame.pickedCards.length==2){
+      if (memoryGame.checkIfPair(memoryGame.pickedCards[0].attr("data-card-name"),memoryGame.pickedCards[1].attr("data-card-name"))){ 
+        $(memoryGame.pickedCards[0]).addClass('front blocked');
+        $(memoryGame.pickedCards[0]).addClass('front blocked');
+        memoryGame.pickedCards=[];
+
+      } else {
+        setTimeout(function(){
+          $(memoryGame.pickedCards[0]).children().toggleClass('back front');
+          $(memoryGame.pickedCards[1]).children().toggleClass('back front');
+          memoryGame.pickedCards=[];
+        },200);
+ 
+      }
+    }  
+
+    $("#pairs_clicked").text(memoryGame.pairsClicked)
+    $("pairs_Guessed").children(memoryGame.pairsGuessed)
+  })
+
+//  setTimeout (functtion(){
+//    $(memoryGame.pickedCards).toggleClass('blocked');
+//    $(memoryGame.pickedCards[0]).toggleClass('blocked');
+//  },300);
+
 });
 
 
