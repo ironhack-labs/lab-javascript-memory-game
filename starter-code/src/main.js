@@ -1,3 +1,6 @@
+var prev = undefined;
+var current = undefined;
+
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -38,10 +41,35 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
+    // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    var cardName = $(this).attr('name');
+    memoryGame.pickedCards.push(cardName);
+    console.log(memoryGame.pickedCards)
+    $(this).hide();
+    $(this).next('.front').toggle()
+    $(this).addClass('blocked');
+    if (memoryGame.pickedCards.length === 2) {
+      if (memoryGame.checkIfPair() === true) {
+        memoryGame.pairsGuessed++;
+        memoryGame.pairsClicked++;
+        $('#pairs_clicked').html(memoryGame.pairsClicked);
+        $('#pairs_guessed').html(memoryGame.pairsGuessed);
+        if(memoryGame.isFinished() === true) {
+          alert('You won!')
+        }
+      }
+      else { 
+        memoryGame.pairsClicked++;
+        $('#pairs_clicked').html(memoryGame.pairsClicked);
+        current = $(this);
+        setTimeout(function() {
+          $('.back:hidden').next('.front').toggle();
+          $('.back:hidden').removeClass('blocked');
+          $('.back:hidden').toggle();
+        }, 1000);  
+        prev = undefined;
+      }
+    }   
   });
-});
-
-
+})
