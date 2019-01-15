@@ -25,23 +25,56 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+var memoryGame 
+
+function flipCard(card){
+  if($(card).hasClass("back")){
+    $(card).switchClass("back", "front", 0)
+    $(card).next().switchClass("front", "back", 0)
+  }else{
+    setTimeout(function(){
+      $(card).switchClass("font", "back", 0)
+      $(card).next().switchClass("back", "front", 0)
+    }, 2000)
+    
+  }
+  
+}
+
+function blockCard(card){
+  $(card).toggleClass("blocked")
+  $(card).next().toggleClass("blocked")
+}
+
+
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards()
   var html = '';
-  memoryGame.cards.forEach(function (pic) {
+
+  memoryGame.shuffled.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    var picked = $(this)
+
+    // console.log($(piked).attr("name"))
+    memoryGame.pickedCards.push(picked)
+    flipCard(picked)
+    blockCard(picked)
+    if(memoryGame.pickedCards.length == 2){
+      memoryGame.checkIfPair(memoryGame.pickedCards)
+    }
+    memoryGame.isFinished()
   });
+
 });
 
 
