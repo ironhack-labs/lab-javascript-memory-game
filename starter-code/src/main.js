@@ -27,7 +27,9 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards()
   var html = '';
+  var flipedCards = 0;
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -40,8 +42,26 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    memoryGame.pickedCards.push($(this))
+    $(this).toggleClass("back front");
+    $(this).next().toggleClass("back front");
+    if(memoryGame.pickedCards.length >= 2){
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().attr("data-card-name"), memoryGame.pickedCards[1].parent().attr("data-card-name"))){
+        memoryGame.pickedCards = [];
+      } else {
+        setTimeout(function(){
+          $(memoryGame.pickedCards[0]).toggleClass("back front");
+          $(memoryGame.pickedCards[0]).next().toggleClass("back front");
+          $(memoryGame.pickedCards[1]).toggleClass("back front");
+          $(memoryGame.pickedCards[1]).next().toggleClass("back front");
+          memoryGame.pickedCards = [];
+        },500)
+      }
+      $("#pairs_clicked").html(memoryGame.pairsClicked)
+      $("#pairs_guessed").html(memoryGame.pairsGuessed)
+    }
   });
+
 });
 
 
