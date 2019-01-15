@@ -35,7 +35,7 @@ function flipCard(card){
     setTimeout(function(){
       $(card).switchClass("font", "back", 0)
       $(card).next().switchClass("back", "front", 0)
-    }, 2000)
+    }, 1000)
     
   }
   
