@@ -37,7 +37,7 @@ html {
   width:200px;
   padding: 20px;
   padding-top: 0;
-  margin-left: 75%;
+  margin: 0 auto 20px auto;
 }
 
 .container {
