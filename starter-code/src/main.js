@@ -28,6 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -39,9 +40,71 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.card').click(function () {
+   
+  //turn the card
+    $.each($(this).children(),function(idx, value){
+      $(value).toggleClass('back')
+      $(value).toggleClass('front')
+    })
+    
+    //push object with name and div card turned
+    memoryGame.pickedCards.push({name:$(this).children(":first").attr("name"), div:$(this)})
+    
+    //2 cards picked
+    if(memoryGame.pickedCards.length===2){
+      
+      
+      
+     //pair guessed
+     if(memoryGame.checkIfPair(memoryGame.pickedCards[0].name,memoryGame.pickedCards[1].name)){
+       
+       
+       
+
+       $("#pairs_guessed").text(""+memoryGame.pairsGuessed)
+       $("#pairs_clicked").text(""+memoryGame.pairsClicked)
+       if(memoryGame.isFinished()){alert("YOU WIN")}
+       memoryGame.pickedCards=[]
+       
+     } 
+     else
+     //if NOT pair guessed
+     {$("#pairs_clicked").text(""+memoryGame.pairsClicked)
+       var that = memoryGame.pickedCards
+      timerid = setTimeout(() => {
+        
+        
+        
+        
+        $.each(that[0].div.children(),function(idx, value){
+          $(value).toggleClass('front')
+          $(value).toggleClass('back')
+          
+        })
+        
+        
+        $.each(that[1].div.children(),function(idx, value){
+          $(value).toggleClass('front')
+          $(value).toggleClass('back')
+          
+        })
+      }, 300);
+   
+      memoryGame.pickedCards=[]
+
+
+      
+     
+     }
+    }
+    
   });
+
+
+  
 });
+
+
 
 
