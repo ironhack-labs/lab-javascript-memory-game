@@ -40,8 +40,26 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).parent().children().toggleClass('back front');
+    var pickedCards = memoryGame.pickedCards
+    pickedCards.push($(this).parent());
+    debugger
+    if(pickedCards.length == 2) {
+      if(memoryGame.checkIfPair(pickedCards[0].attr('data-card-name'), pickedCards[1].attr('data-card-name'))) {
+      } else {
+        setTimeout(function() {
+          $(pickedCards[0]).children().toggleClass('back front');
+          $(pickedCards[1]).children().toggleClass('back front');
+        }, 1000)
+      }
+    }
+    $('#pairs_clicked').text(memoryGame.pairsClicked);
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+    if (memoryGame.isFinished()) {
+      setTimeout(() => alert("Congratulation, YOU WON!"), 300)
+      $(".card").children().toggleClass('back front')
+      $('#pairs_clicked').text(memoryGame.pairsClicked);
+      $('#pairs_guessed').text(memoryGame.pairsGuessed);
+    }
   });
 });
-
-
