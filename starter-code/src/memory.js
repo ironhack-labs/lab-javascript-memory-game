@@ -31,7 +31,6 @@ class MemoryGame {
     alert('You completed the game in ' + this.pairsClicked + ' guesses')  
     return true    
     } else {
-      console.log("not yet!")
       return false
     }
   }
