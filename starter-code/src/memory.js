@@ -6,9 +6,7 @@ class MemoryGame {
     this.pairsGuessed = 0
   }
   shuffleCards (cards) {
-    this.cards = cards.sort(function() {
-      return 0.5 - Math.random() 
-    })
+    this.cards = cards.sort(() => 0.5 - Math.random())
   }
   checkIfPair (card1, card2) {
     this.pairsClicked++
