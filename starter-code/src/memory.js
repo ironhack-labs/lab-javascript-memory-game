@@ -13,6 +13,7 @@ class MemoryGame {
     if (card1.name === card2.name) {
       this.pairsGuessed++
       this.pickedCards = []
+      this.isFinished()
       return true
     } else {
     setTimeout(function () {
@@ -27,9 +28,10 @@ class MemoryGame {
   }
   isFinished () {
     if (this.pairsGuessed === this.cards.length / 2) {
-    alert('You won! Your score is' + this.pairsClicked)  
+    alert('You completed the game in ' + this.pairsClicked + ' guesses')  
     return true    
     } else {
+      console.log("not yet!")
       return false
     }
   }
