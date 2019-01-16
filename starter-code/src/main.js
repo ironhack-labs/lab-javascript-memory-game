@@ -49,10 +49,10 @@ function blockCard(card){
 
 $(document).ready(function(){
   memoryGame = new MemoryGame(cards);
-  memoryGame.shuffleCards()
+  // memoryGame.shuffleCards()
   var html = '';
 
-  memoryGame.shuffled.forEach(function (pic) {
+  memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
@@ -65,14 +65,20 @@ $(document).ready(function(){
   $('.back').click(function () {
     var picked = $(this)
 
-    // console.log($(piked).attr("name"))
     memoryGame.pickedCards.push(picked)
     flipCard(picked)
     blockCard(picked)
+
     if(memoryGame.pickedCards.length == 2){
-      memoryGame.checkIfPair(memoryGame.pickedCards)
+      if(!memoryGame.checkIfPair($(memoryGame.pickedCards[0]).attr("name"), $(memoryGame.pickedCards[1]).attr("name"))){
+        blockCard(memoryGame.pickedCards[0])
+        blockCard(memoryGame.pickedCards[1])
+        flipCard(memoryGame.pickedCards[0])
+        flipCard(memoryGame.pickedCards[1])
+      }
+      memoryGame.pickedCards = []
     }
-    memoryGame.isFinished()
+    if(memoryGame.isFinished()) alert("You won!")
   });
 
 });
