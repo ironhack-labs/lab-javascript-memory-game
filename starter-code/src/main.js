@@ -27,7 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  memoryGame.shuffleCards();
+  // memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -41,34 +41,36 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // $(this).parent().find("div:first").addClass("front").removeClass("back");
-    // $(this).parent().find("div:nth-child(2)").addClass("back").removeClass("front");
+    let nameOfClickedCard = $(this).attr("name");
+    let clickedCard = {
+      that: this,
+      name: nameOfClickedCard
+    };
+    memoryGame.pickedCards.push(clickedCard);
+    console.log(memoryGame.pickedCards);
+        if (memoryGame.pickedCards[1]) {
+
+          let card1 = memoryGame.pickedCards[0].name;
+          let card2 = memoryGame.pickedCards[1].name;
     
-    // memoryGame.pickedCards.push($(this).attr("name"));
+          if (memoryGame.checkIfPair(card1, card2)){
+            let equalPairName = $(this).attr("name");
+            
+          } else {
 
-    // if (memoryGame.pickedCards[1]) {
-    //   console.log("Before" +memoryGame.pickedCards)
-    //   let card1 = memoryGame.pickedCards[0];
-    //   console.log("Card1: "+card1);
-    //   let card2 = memoryGame.pickedCards[1];
-    //   console.log("Card2: "+card2);
-    //   if (memoryGame.checkIfPair(card1, card2)){
-    //     console.log("equal");
-    //   } else {
-    //     console.log("not equal");
-    //   }
-    //   memoryGame.pickedCards = [];
+// T O D O --- setTimeout!
+            switchCards(this);
+            switchCards(memoryGame.pickedCards[0].that);
+          
+          }
+          memoryGame.pickedCards = [];
 
-    //   console.log("after: " +memoryGame.pickedCards)
-      
-    // } 
-    switchCards(this);
+        } 
+    switchCards(this);  
+    
   });
 
   $('.front').click(function () {
-    // $(this).parent().find("div:nth-child(2)").addClass("front").removeClass("back");
-    // $(this).parent().find("div:first").addClass("back").removeClass("front");
-    
     switchCards(this);
   });
 
