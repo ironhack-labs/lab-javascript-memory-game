@@ -70,6 +70,10 @@ $(document).ready(function(){
     blockCard(picked)
 
     if(memoryGame.pickedCards.length == 2){
+      $("body").css("pointer-events", "none");
+      setTimeout(function(){
+        $("body").css("pointer-events", "auto");
+      },1000)
       if(!memoryGame.checkIfPair($(memoryGame.pickedCards[0]).attr("name"), $(memoryGame.pickedCards[1]).attr("name"))){
         blockCard(memoryGame.pickedCards[0])
         blockCard(memoryGame.pickedCards[1])
