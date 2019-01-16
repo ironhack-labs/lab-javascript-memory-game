@@ -44,7 +44,20 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+if (memoryGame.pickedCard.length == 2){
+if(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
+  $("#pairs_clicked").text(memoryGame.pairsClicked)
+  $("#pairs_guessed").text(memoryGame.pairsGuessed)
+  memoryGame.pickedCards =[]
+}
 
+
+}
+else {
+  memoryGame.pickedCards =[]
+  $(this.addClass(".back").removeClass(".front"))
+  
+}
   });
 });
 
