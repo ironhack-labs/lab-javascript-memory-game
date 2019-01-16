@@ -40,7 +40,8 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).toggleClass("back front");
+    $(this).next().toggleClass("back front");
   });
 });
 
