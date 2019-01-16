@@ -49,7 +49,7 @@ function blockCard(card){
 
 $(document).ready(function(){
   memoryGame = new MemoryGame(cards);
-  // memoryGame.shuffleCards()
+  memoryGame.shuffleCards()
   var html = '';
 
   memoryGame.cards.forEach(function (pic) {
