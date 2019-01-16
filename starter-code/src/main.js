@@ -27,7 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
-  // memoryGame.shuffleCards();
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -47,27 +47,25 @@ $(document).ready(function(){
       name: nameOfClickedCard
     };
     memoryGame.pickedCards.push(clickedCard);
-    console.log(memoryGame.pickedCards);
+        // test if there are 2 cards
         if (memoryGame.pickedCards[1]) {
-
           let card1 = memoryGame.pickedCards[0].name;
           let card2 = memoryGame.pickedCards[1].name;
-    
-          if (memoryGame.checkIfPair(card1, card2)){
-            let equalPairName = $(this).attr("name");
-            
-          } else {
-
-// T O D O --- setTimeout!
-            switchCards(this);
-            switchCards(memoryGame.pickedCards[0].that);
           
+          //if yes, are they equal?
+          if (memoryGame.checkIfPair(card1, card2)){
+            memoryGame.pickedCards = [];
+          } else {
+            // if not, let the cards stay open for 2 seconds, then close
+            setTimeout(function() {
+              switchCards(memoryGame.pickedCards[0].that);
+              switchCards(memoryGame.pickedCards[1].that);
+              memoryGame.pickedCards = [];
+            }, 1000); 
+            
           }
-          memoryGame.pickedCards = [];
-
         } 
     switchCards(this);  
-    
   });
 
   $('.front').click(function () {
