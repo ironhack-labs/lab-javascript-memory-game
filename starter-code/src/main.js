@@ -63,7 +63,7 @@ $(document).ready(function () {
           switchCards(memoryGame.pickedCards[0].that);
           switchCards(memoryGame.pickedCards[1].that);
           memoryGame.pickedCards = [];
-        }, 1000);
+        }, 500);
 
       }
     }
@@ -75,13 +75,7 @@ $(document).ready(function () {
   });
 
   function switchCards(x) {
-    if ($(x).parent().find("div:first").hasClass("back")) {
-      $(x).parent().find("div:first").addClass("front").removeClass("back");
-      $(x).parent().find("div:nth-child(2)").addClass("back").removeClass("front");
-    } else if ($(x).parent().find("div:first").hasClass("front")) {
-      $(x).parent().find("div:nth-child(2)").addClass("front").removeClass("back");
-      $(x).parent().find("div:first").addClass("back").removeClass("front");
-    }
+    $(x).parent().children().toggleClass("front back");
   }
 
 });
