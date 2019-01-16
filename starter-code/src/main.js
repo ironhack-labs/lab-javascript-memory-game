@@ -27,6 +27,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -39,9 +40,43 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
+  // $('.card').click(function () {
+  //   // TODO: write some code here
+  //   $(this).children().toggleClass('front back');
+  //   memoryCards.pickedCards.push($(this));
+  //   if (memoryGame.pickedCards.length > 1){
+  //     if(memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('data-card-name'), memoryGame.pickedCards[1].attr('data-card-name'))) {
+  //     $(this).children.removeClass('back').addClass('blocked front');
+  //   } else {
+  //     $(this).children()
+  //   }
+  //   }
+  // });
+
   $('.back').click(function () {
-    // TODO: write some code here
-  });
+    memoryGame.pickedCards.push($(this));
+    if (memoryGame.pickedCards.length === 1) {
+      $(memoryGame.pickedCards[0]).toggleClass('back front');
+      $(memoryGame.pickedCards[0]).next().toggleClass('front back');
+    } else {
+      $(memoryGame.pickedCards[1]).toggleClass('back front');
+      $(memoryGame.pickedCards[1]).next().toggleClass('front back');
+    }
+    if(memoryGame.pickedCards.length > 1){
+      console.log(memoryGame.pickedCards[0].attr('name'));
+      if(!memoryGame.checkIfPair(memoryGame.pickedCards[0].attr('name'), memoryGame.pickedCards[1].attr('name'))){
+        setTimeout( function() { $(memoryGame.pickedCards[0]).toggleClass('front back');
+        $(memoryGame.pickedCards[0]).next().toggleClass('back front');
+        $(memoryGame.pickedCards[1]).toggleClass('front back');
+        $(memoryGame.pickedCards[1]).next().toggleClass('back front');
+      },2000);
+      }
+      memoryGame.pickedCards = [];
+    }
+    });
+
+
+  
 });
 
 
