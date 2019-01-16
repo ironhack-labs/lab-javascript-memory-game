@@ -25,6 +25,8 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+
+
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
@@ -40,8 +42,28 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+    
+    // while (!(MemoryGame.prototype.isFinished())) { este ciclo se repite hasta que adivinen todas las cartas
+      
+      //var cardFront = 0;
+
+      //while (cardFront < 2) { 
+        $('.back').click(function () {
+            $(this).toggleClass("back", "front");
+            $(this).next().toggleClass("back", "front");
+        });
+      //  cardFront ++;
+      // }
+     // $('.back').click(function () {
+     //   $(this).toggleClass("back", "front");
+     //   $(this).next().toggleClass("back", "front");
+     // });
+        //  if (MemoryGame.prototype.checkIfPair){
+        // no debo permitir que estar cartas se puedan voltear de nuevo
+        //}
+      
+   // }
+// Aqui debo empezar una nueva partida
   });
 });
-
-
+  
