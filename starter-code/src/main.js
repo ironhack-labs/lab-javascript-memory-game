@@ -30,6 +30,7 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -37,7 +38,6 @@ $(document).ready(function(){
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
@@ -45,13 +45,11 @@ $(document).ready(function(){
   $('.back').click(function () {
     var cardName = $(this).attr('name');
     memoryGame.pickedCards.push(cardName);
-    console.log(memoryGame.pickedCards)
     $(this).hide();
     $(this).next('.front').toggle()
     $(this).addClass('blocked');
     if (memoryGame.pickedCards.length === 2) {
       if (memoryGame.checkIfPair() === true) {
-        memoryGame.pairsGuessed++;
         memoryGame.pairsClicked++;
         $('#pairs_clicked').html(memoryGame.pairsClicked);
         $('#pairs_guessed').html(memoryGame.pairsGuessed);
