@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -25,14 +27,14 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+$(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
   memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '<div class="card" data-card-name="' + pic.name + '">';
+    html += '  <div class="back" name="' + pic.img + '"></div>';
+    html += '  <div class="front" style="background: url(img/' + pic.img + ') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -47,25 +49,25 @@ $(document).ready(function(){
       name: nameOfClickedCard
     };
     memoryGame.pickedCards.push(clickedCard);
-        // test if there are 2 cards
-        if (memoryGame.pickedCards[1]) {
-          let card1 = memoryGame.pickedCards[0].name;
-          let card2 = memoryGame.pickedCards[1].name;
-          
-          //if yes, are they equal?
-          if (memoryGame.checkIfPair(card1, card2)){
-            memoryGame.pickedCards = [];
-          } else {
-            // if not, let the cards stay open for 2 seconds, then close
-            setTimeout(function() {
-              switchCards(memoryGame.pickedCards[0].that);
-              switchCards(memoryGame.pickedCards[1].that);
-              memoryGame.pickedCards = [];
-            }, 1000); 
-            
-          }
-        } 
-    switchCards(this);  
+    // test if there are 2 cards
+    if (memoryGame.pickedCards[1]) {
+      let card1 = memoryGame.pickedCards[0].name;
+      let card2 = memoryGame.pickedCards[1].name;
+
+      //if yes, are they equal?
+      if (memoryGame.checkIfPair(card1, card2)) {
+        memoryGame.pickedCards = [];
+      } else {
+        // if not, let the cards stay open for 2 seconds, then close
+        setTimeout(function () {
+          switchCards(memoryGame.pickedCards[0].that);
+          switchCards(memoryGame.pickedCards[1].that);
+          memoryGame.pickedCards = [];
+        }, 1000);
+
+      }
+    }
+    switchCards(this);
   });
 
   $('.front').click(function () {
