@@ -41,6 +41,14 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    var memoryGame.pickedCards = memoryGame.shuffleCards;
+        console.log(".back")
+    $("this").toggleClass("back front"); // no consigo que las cartas cambien de class
+        
+
+
+    $("#pairs_clicked").text(memoryGame.pairsClicked);
+    $("#pairs_guessed").text(memoryGame.pairsGuessed);
   });
 });
 
