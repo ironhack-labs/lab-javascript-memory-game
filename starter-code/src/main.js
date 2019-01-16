@@ -44,8 +44,16 @@ $(document).ready(function(){
     $(this).toggleClass("back front")
     $(this).next().toggleClass("back front")
 
+    
     // TODO: write some code here
   });
+
+  $('.front').click(function () {
+
+    $(this).toggleClass("front back")
+    $(this).next().toggleClass("front back")
+  })
+  
 });
 
 
