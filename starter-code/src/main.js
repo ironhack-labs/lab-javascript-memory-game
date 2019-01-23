@@ -36,12 +36,24 @@ $(document).ready(function(){
   });
 
   // Add all the div's to the HTML
-  $('#memory_board').html(html);
+  $("#memory_board").html(html);
+let name=$(".div:first-Child")
+let img=$("div:last-child")
+let test=$("div div")
+let principal=$(".card")
 
+console.log(name)
+console.log(img)
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  
+  $(".back").click(function () {
+    $(this).removeClass("back")
+    $(name).addClass("back")
   });
+
+
+
+
 });
 
 
