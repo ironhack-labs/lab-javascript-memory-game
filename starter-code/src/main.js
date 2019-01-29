@@ -39,8 +39,23 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-  });
+  let guess = null
+  $('.card').click(function () {
+    let clickedCard = $(this).data('card-name')
+      $(this).addClass('correct')
+    if (guess){
+      if(guess == clickedCard ){
+        console.log('Guess correct', clickedCard);
+        $(`.card*[data-card-name="${clickedCard}"]`).addClass('correct')
+      }else{
+        console.log('No match');
+        $(`.card*[data-card-name="${clickedCard}"]`).removeClass('correct')
+        guess = null
+      }
+    }else{
+      guess = clickedCard
+    }
 
 
-});
+  })
+})

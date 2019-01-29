@@ -7,21 +7,17 @@ var MemoryGame = function (cards) {
 
 };
 
-MemoryGame.prototype.shuffleCards = function(cards) {
-  var currentIndex = cards.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+MemoryGame.prototype.shuffleCards = function(c) {
+  MemoryGame.prototype.shuffleCards = function shuffle(array) {
+    var m = array.length, t, i;
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+    return array;
+  };
 
 
 

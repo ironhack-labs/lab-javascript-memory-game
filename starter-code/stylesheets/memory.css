@@ -13,16 +13,26 @@ html {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
-
-
-.card .back {
-  background-color: #456783;
+.card.correct .front{
+  display: block;
+}
+.card.correct .back{
+  display: none;
+}
+.card .back, .card .front {
 	width:71px;
 	height:71px;
 	float:left;
 	margin:10px;
 	padding:20px;
 	font-size:64px;
+}
+.card .back{
+  background-color: #456783;
+  display:block;
+}
+.card .front{
+  display: none
 }
 .card .front.blocked,
 .card .back.blocked {
