@@ -41,6 +41,14 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    //let clickedCard = $(this).removeClass("back");
+    let picName = $(this).attr('name');
+    console.log(picName);
+
+    $(this).css("background-image", "url(img/" + picName + ")");
+
+    //clickedCard.removeClass("back");
+    //console.log(clickedCard);
   });
 });
 
