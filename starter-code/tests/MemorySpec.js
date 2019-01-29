@@ -129,4 +129,3 @@ describe('isFinished method', function () {
   });
 
 });
-
