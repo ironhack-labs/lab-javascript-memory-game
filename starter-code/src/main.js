@@ -37,18 +37,21 @@ $(document).ready(function(){
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
-
+  let cardOnBack = true;
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
-    //let clickedCard = $(this).removeClass("back");
     let picName = $(this).attr('name');
-    console.log(picName);
-
-    $(this).css("background-image", "url(img/" + picName + ")");
-
-    //clickedCard.removeClass("back");
-    //console.log(clickedCard);
+    if(cardOnBack == true){
+      $(this).css("background-image", "url(img/" + picName + ")");
+      cardOnBack = false;
+    }
+    else{
+      $(this).css("background-image", "");
+      $(this).css("background-color", "#456783");
+      cardOnBack = true;
+    }
+    
   });
 });
 
