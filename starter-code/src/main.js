@@ -41,6 +41,17 @@ $(document).ready(function(){
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    if(memoryGame.pickedCards.length < 2){
+    $(this).parent().children().toggleClass("back front");
+
+      memoryGame.pickedCards.push($(this).parent());
+    }
+    else if(memoryGame.pickedCards.length = 2){
+    
+    }
+    
+    
+      
   });
 });
 
