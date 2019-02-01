@@ -1,6 +1,7 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
 
+
 describe('MemoryGame constructor', function () {
   beforeEach(function () {
     memoryGame = new MemoryGame([]);
@@ -67,6 +68,8 @@ describe('shuffleCards method', function () {
   });
 
   it('Should return undefined', function () {
+    console.log(memoryGame)
+
     expect(typeof memoryGame.shuffleCards()).toBe('undefined');
   });
 
@@ -79,6 +82,8 @@ describe('shuffleCards method', function () {
 });
 
 describe('checkIfPair method', function () {
+  memoryGame = new MemoryGame(cardsArray);
+
   it('Should be declare', function () {
     expect(typeof memoryGame.checkIfPair).toBe('function');
   });
@@ -89,6 +94,7 @@ describe('checkIfPair method', function () {
   });
 
   it('It should return true when the comparing cards are the same', function () {
+    console.log(memoryGame)
     expect(memoryGame.checkIfPair('ironman','ironman')).toBe(true);
   });
 
@@ -110,6 +116,8 @@ describe('checkIfPair method', function () {
 });
 
 describe('isFinished method', function () {
+  memoryGame = new MemoryGame(cardsArray);
+
   it('Should be declare', function () {
     expect(typeof memoryGame.isFinished).toBe('function');
   });
@@ -119,6 +127,8 @@ describe('isFinished method', function () {
   });
 
   it('It should return false if there still some pairs to be guessed', function () {
+    console.log(memoryGame)
+
     memoryGame.pairsGuessed = 4;
     expect(memoryGame.isFinished()).toBe(false);
   });
