@@ -42,6 +42,7 @@ $(document).ready(function(){
   $('.back').click(function () {
     // TODO: write some code here
     let picName = $(this).attr('name');
+    memoryGame.pickedCards.push(picName);
     if(cardOnBack == true){
       $(this).css("background-image", "url(img/" + picName + ")");
       cardOnBack = false;
@@ -51,8 +52,6 @@ $(document).ready(function(){
       $(this).css("background-color", "#456783");
       cardOnBack = true;
     }
-    
+    console.log(memoryGame.pickedCards);
   });
 });
-
-
