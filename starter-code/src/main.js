@@ -26,22 +26,58 @@ var cards = [
 ];
 
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
-  var html = '';
+  let memoryGame = new MemoryGame(cards);
+  let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
+
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
+    html += '  <div class="back" name="'+ pic.name +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
+  
   // Add all the div's to the HTML
-  $('#memory_board').html(html);
+  $('#memory_board').html(html)
+ 
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  // var arrayTest = [];
+
+  
+  $('.back').click(function (e) {
+    let pickCard = $(this).attr('name');  
+    console.log(pickCard); 
+    if (!!memoryGame.firstCard) {
+      memoryGame.checkIfPair(memoryGame.firstCard, pickCard);
+    }
+    memoryGame.firstCard = pickCard;
   });
+  
 });
 
 
+// function newFunc(a, b) {
+//   console.log(arguments.__proto__);
+// }
+
+// console.log( $(this).attr('class')); // return the class name of the card we clicked
+// console.log(memoryGame.cards);
+
+// let  = false;
+// let firstCard, secondCard;
+// function flipCard(){
+//   let pickCard = $(this).attr('name');
+//   if (!hasFlipped){
+//     hasFlipped = true;
+//     firstCard = pickCard;
+//   }else{
+//     hasFlipped = false;
+//     secondCard = pickCard;
+//   }
+//   console.log(firstCard);
+//   console.log(secondCard);
+// }
+
+ 
+  //  cards.forEach(card => card.addEventListener, flipCard);
