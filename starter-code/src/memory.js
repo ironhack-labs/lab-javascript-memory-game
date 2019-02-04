@@ -49,15 +49,3 @@ MemoryGame.prototype.flipBack = function (name) {
 MemoryGame.prototype.isFinished = function () {
   return this.pairsGuessed === (this.cards.length / 2)
 };
-
-
-
-
-// const [secondCard, firstCard] = this.pickedCards;
-  
-// if (firstCard !== secondCard) setTimeout(() => {
-//   this.flipBack(firstCard);
-//   this.flipBack(secondCard);
-// }, 100)
-
-// else this.pairsGuessed++;
