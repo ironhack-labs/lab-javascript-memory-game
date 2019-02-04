@@ -28,10 +28,10 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
-  memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+  memoryGame.cards.forEach(function (card) {
+    html += '<div class="card" data-card-name="'+ card.name +'">';
+    html += '  <div class="back" name="'+ card.img +'"></div>';
+    html += '  <div class="front" style="background: url(img/'+ card.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -39,9 +39,30 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
+  $('.back').click(function (e) {
+
+    const name = e.target.parentElement.attributes['data-card-name'].value;
+    
+    for (let child of e.target.parentElement.children) {
+      if (child.className === 'front')
+        child.className = 'back';
+      else child.className = 'front'
+    }
+
+    memoryGame.pickedCards.unshift(name);
+
+    if (memoryGame.pickedCards.length % 2 === 0 && !memoryGame.checkIfPair(...memoryGame.pickedCards)) {
+      setTimeout(() => {
+        memoryGame.flipBack(memoryGame.pickedCards.shift());
+        memoryGame.flipBack(memoryGame.pickedCards.shift());
+      }, 100)
+    }
+
+    if (memoryGame.isFinished()) alert('done yo!!')
+
   });
+
+
 });
 
 
