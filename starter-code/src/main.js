@@ -25,8 +25,11 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
+//First I declare the global variable so I can reach it from the other js file
+var memoryGame = undefined;
+
 $(document).ready(function(){
-  var memoryGame = new MemoryGame(cards);
+  memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -40,8 +43,94 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
+      $(this).parent().children().toggleClass("front back");
+      var newCard = $(this).parent().attr("data-card-name");
+      //initialize pickedCards array for new pairs
+      if(memoryGame.pickedCards.length == 2) {
+          memoryGame.pickedCards = [];
+      };
+      //push picked cards into array
+      memoryGame.pickedCards.push(newCard);
+      memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+      var checkIfPairValue = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+      //si el valor de la función que llamo es true,
+      //dejar las cartas así
+      //si es false, girar las cartas de nuevo
+      var turnAround = function() {
+          var firstCard = $('[data-card-name="' + memoryGame.pickedCards[0] + '"]');
+          var secondCard = $('[data-card-name="' + memoryGame.pickedCards[1] + '"]');
+        //   debugger
+          var firstChildFirstCard = $(firstCard).children(".front[name]");
+          var secondChildFirstCard = $(firstCard).children(".front[name]").next();
+          firstChildFirstCard.toggleClass("front back");
+          secondChildFirstCard.toggleClass("front back");
+          var firstChildSecondCard = $(secondCard).children(".front[name]");
+          var secondChildSecondCard = $(secondCard).children(".front[name]").next();
+          firstChildSecondCard.toggleClass("front back");
+          secondChildSecondCard.toggleClass("front back");
+          console.log(firstCard);
+          console.log(secondCard);
+      };
+      if(memoryGame.pickedCards.length == 2) {
+          if (!checkIfPairValue) turnAround();
+        //   checkIfPairValue ? alert("You found a pair!") : turnAround();
+      };
   });
 });
 
+// $('[data-card-name="' + memoryGame.pickedCards[0] + '"]').children(".front[name]")
 
+//si no encuentro ninguna otra solución, puedo añadir un id numérico a cada carta y store eso en el array
+//de memory.pickedCards como un objeto en plan primer atributo el id y de segundo atributo
+//el atributo que ya he metido
+
+//$('[data-card-name="' + memoryGame.pickedCards[0] + '"]')
+
+
+// $(this).is(".active") ? priceObject.addPrice(3) : priceObject.reducePrice(3);
+
+
+// if(memoryGame.pickedCards.length == 2) {
+//     checkIfPairValue ? console.log("true") : console.log("false");
+// };
+
+
+
+//   // Bind the click event of each element to a function
+//   $('.back').click(function () {
+//     $(this).parent().children().toggleClass("front back");
+//     var newCard = $(this).parent().attr("data-card-name");
+//     //initialize pickedCards array for new pairs
+//     if(memoryGame.pickedCards.length == 2) {
+//         memoryGame.pickedCards = [];
+//     };
+//     //push picked cards into array
+//     memoryGame.pickedCards.push(newCard);
+//     memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+//     var checkIfPairValue = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+//     //si el valor de la función que llamo es true,
+//     //dejar las cartas así
+//     //si es false, girar las cartas de nuevo
+//     var turnAround = function() {
+//         //ver cómo selecciono cada carta para girarla
+//         var firstCard = $('[data-card-name="' + memoryGame.pickedCards[0] + '"]');
+//         var secondCard = $('[data-card-name="' + memoryGame.pickedCards[1] + '"]');
+//         if ($(firstCard).children().eq(0).hasClass("front")) {
+//             console.log(firstCard);
+//             console.log(secondCard);
+//             $(firstCard).children().eq(0).removeClass("front").addClass("back");
+//             $(firstCard).children().eq(1).removeClass("back").addClass("front");
+//           };
+//         if ($(secondCard).children().eq(0).hasClass("front")) {
+//           console.log(firstCard);
+//           console.log(secondCard);
+//           // debugger
+//             $(secondCard).children().eq(0).removeClass("front").addClass("back");
+//             $(secondCard).children().eq(1).removeClass("back").addClass("front");
+//           };
+//     };
+//     if(memoryGame.pickedCards.length == 2) {
+//         checkIfPairValue ? alert("You found a pair!") : turnAround();
+//     };
+// });
+// });
