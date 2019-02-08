@@ -1,3 +1,9 @@
+var guessCardOpen = "";
+var guessCardOpenTwo ="";
+var pairsGuessed = 0;
+var pairsClicked = 0;
+
+
 var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -25,7 +31,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+// $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -38,10 +44,38 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+
+  const toggleGuessCards = (card1, card2) => {
+    card1.toggleClass('back front');
+    card1.siblings().toggleClass('front back');
+    if (card2) {
+      card2.toggleClass('back front'); 
+      card2.siblings().toggleClass('front back');      
+      guessCardOpen = "" ;
+      guessCardOpenTwo = "";      
+  }}  
+
+  const clearGuessCards = () =>{
+    
+  }
+
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
-  });
-});
-
-
+  $('.back').click(function () {        
+    if (!guessCardOpenTwo) {      
+      toggleGuessCards($(this));
+      if ( guessCardOpen ) {        
+        guessCardOpenTwo = $(this);
+        if ( guessCardOpenTwo.parent().data('card-name') === guessCardOpen.parent().data('card-name'))   {          
+          pairsGuessed ++;
+          pairsClicked ++;
+          guessCardOpen = "" ;
+          guessCardOpenTwo = "";          
+        } else {
+          pairsClicked ++;
+          setTimeout( () => toggleGuessCards( guessCardOpenTwo, guessCardOpen), 1000);       
+        }
+      } else {        
+        guessCardOpen = $(this) ;        
+      }
+    }
+  })
