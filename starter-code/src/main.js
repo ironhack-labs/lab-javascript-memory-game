@@ -43,6 +43,8 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+      memoryGame.pairsClicked++;
+      $("#pairs_clicked").text(Math.floor(memoryGame.pairsClicked / 2));
       $(this).parent().children().toggleClass("front back");
       var newCard = $(this).parent().attr("data-card-name");
       //initialize pickedCards array for new pairs
@@ -51,30 +53,26 @@ $(document).ready(function(){
       };
       //push picked cards into array
       memoryGame.pickedCards.push(newCard);
-      memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
-      var checkIfPairValue = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
-      //si el valor de la función que llamo es true,
-      //dejar las cartas así
-      //si es false, girar las cartas de nuevo
       var turnAround = function() {
           var firstCard = $('[data-card-name="' + memoryGame.pickedCards[0] + '"]');
-          var secondCard = $('[data-card-name="' + memoryGame.pickedCards[1] + '"]');
-        //   debugger
           var firstChildFirstCard = $(firstCard).children(".front[name]");
           var secondChildFirstCard = $(firstCard).children(".front[name]").next();
-          firstChildFirstCard.toggleClass("front back");
-          secondChildFirstCard.toggleClass("front back");
+          var secondCard = $('[data-card-name="' + memoryGame.pickedCards[1] + '"]');
           var firstChildSecondCard = $(secondCard).children(".front[name]");
           var secondChildSecondCard = $(secondCard).children(".front[name]").next();
+          firstChildFirstCard.toggleClass("front back");
+          secondChildFirstCard.toggleClass("front back");
           firstChildSecondCard.toggleClass("front back");
           secondChildSecondCard.toggleClass("front back");
-          console.log(firstCard);
-          console.log(secondCard);
       };
       if(memoryGame.pickedCards.length == 2) {
-          if (!checkIfPairValue) turnAround();
-        //   checkIfPairValue ? alert("You found a pair!") : turnAround();
+          var checkIfPairValue = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+        //   //I used setTimout because javascript was executing too fast and you couldn't see the front of the second card
+        //   if (!checkIfPairValue) setTimeout(function() {turnAround()}, 500);
+        checkIfPairValue ? $("#pairs_guessed").text(memoryGame.pairsGuessed) : setTimeout(function() {turnAround()}, 500);
       };
+      console.log("pairs Guessed" + memoryGame.pairsGuessed);
+      memoryGame.isFinished();
   });
 });
 

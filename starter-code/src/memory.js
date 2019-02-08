@@ -10,13 +10,13 @@ var MemoryGame = function (cards) {
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     if (firstCard == secondCard) {
-        memoryGame.pairsClicked++;
-    } else { memoryGame.pairsGuessed++ };
+        memoryGame.pairsGuessed++;
+    };
     return (firstCard == secondCard);
 }
 
 MemoryGame.prototype.isFinished = function () {
-    if (pairsGuessed == (card.length / 2)) {
+    if (memoryGame.pairsGuessed == (memoryGame.cards.length / 2)) {
         alert("congrats! You've won!");
     };
 };
