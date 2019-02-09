@@ -94,12 +94,10 @@ $(document).ready(function() {
   // toggle classes to flip a card
   function flipCard(card) {
     // switch between back and front classes
-    $(card).toggleClass("back");
-    $(card).toggleClass("front");
+    $(card).toggleClass("back front");
     // get next div to also switch classes
     let nextDiv = $(card).next();
-    nextDiv.toggleClass("front");
-    nextDiv.toggleClass("back");
+    nextDiv.toggleClass("front back");
   }
 
   function flipBackCards() {
@@ -112,18 +110,14 @@ $(document).ready(function() {
     // retrieve children of parent div
     let firstCardChildren = firstCard.children();
     // select children and toggle class
-    $(firstCardChildren[0]).toggleClass("back");
-    $(firstCardChildren[0]).toggleClass("front");
-    $(firstCardChildren[1]).toggleClass("front");
-    $(firstCardChildren[1]).toggleClass("back");
+    $(firstCardChildren[0]).toggleClass("back front");
+    $(firstCardChildren[1]).toggleClass("front back");
 
     // retrieve children of parent div
     let secondCardChildren = secondCard.children();
     // select children and toggle class
-    $(secondCardChildren[0]).toggleClass("back");
-    $(secondCardChildren[0]).toggleClass("front");
-    $(secondCardChildren[1]).toggleClass("front");
-    $(secondCardChildren[1]).toggleClass("back");
+    $(secondCardChildren[0]).toggleClass("back front");
+    $(secondCardChildren[1]).toggleClass("front back");
 
     // removes these first two items in array
     memoryGame.pickedCards.shift();
