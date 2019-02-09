@@ -18,7 +18,7 @@ MemoryGame.prototype.shuffleCards = function () {
 
 //check if cards are pairs
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  this.pairsClicked +=1 //first to if, a card is clicked
+  this.pairsClicked +=1 // prior to if/else all cards are already clicked
   if(firstCard === secondCard){
     this.pairsGuessed +=1
     return true;
