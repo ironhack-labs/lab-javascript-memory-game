@@ -18,21 +18,21 @@ MemoryGame.prototype.shuffleCards = function () {
 
 //check if cards are pairs
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  this.pairsClicked +=1 // prior to if/else all cards are already clicked
+  // prior to if/else all cards are already clicked
+  this.pairsClicked ++
   if(firstCard === secondCard){
-    this.pairsGuessed +=1
+    this.pairsGuessed ++
     return true;
-  }else{
+  }else 
     return false;
-  }
+  
 }
 
 //game finished
 MemoryGame.prototype.isFinished = function () {
   if(this.pairsGuessed === this.cards.length/2){
     return true;
-  }else{
-    return false;
-  }
+  }else return false;
+  
 };
   

@@ -62,21 +62,21 @@ $(document).ready(function(){
           //save cards clicked and change score board
           $("#pairs_clicked").text(memoryGame.pairsClicked);
           
-          var card = memoryGame.pickedCards[0].children();
+          var card=memoryGame.pickedCards[0].children()
           card[0].className = "back";
           card[1].className = "front";
 
-          var card1 = memoryGame.pickedCards[1].children();
+          var card1 = memoryGame.pickedCards[1].children()
           card1[0].className = "back";
           card1[1].className = "front";
 
         }else{ //if the cards are the same, refresh score board with clicked and guessed cards
           $("#pairs_clicked").text(memoryGame.pairsClicked);
-          $("#pairs_guessed").text(memoryGame.pairsClicked);
+          $("#pairs_guessed").text(memoryGame.pairsGuessed);
         }
         memoryGame.pickedCards=[];
 
-      },1000);
+      },500);
     }
     if(memoryGame.isFinished()){
       $("#memory_board").html("You win");
