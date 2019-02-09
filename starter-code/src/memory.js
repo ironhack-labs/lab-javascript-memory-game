@@ -45,3 +45,8 @@ MemoryGame.prototype.isFinished = function() {
     return false;
   }
 };
+
+var Card = function(cardId, name){
+  this.cardId = cardId;
+  this.name = name;
+}

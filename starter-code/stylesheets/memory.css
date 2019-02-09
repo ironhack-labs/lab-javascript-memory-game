@@ -22,7 +22,7 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
 }
 .card .front.blocked,
 .card .back.blocked {
@@ -66,4 +66,20 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.win{
+  display: none;
+  position: absolute;
+  left: 29.5vw;
+  top: 60vh;
+  background-color: black;;
+  color: rgb(255,197,140);
+  font-size: 30px;
+  font-style: italic;
+  font-family: 'Permanent Marker', cursive;
+  width: calc(40% - 70px);
+  text-align: center;
+  border: 30px solid rgba(230,78,77,0.7);
+  border-radius: 100px;
 }
