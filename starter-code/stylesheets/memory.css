@@ -67,3 +67,21 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#win {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#win img{
+    width: 50vw;
+}
