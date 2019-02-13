@@ -28,6 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -38,9 +39,30 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+  var firstClicked;
+  var secondClicked;
+
   // Bind the click event of each element to a function
   $('.back').click(function () {
     // TODO: write some code here
+    console.log("No me quiero ir señor Stark")
+    $(this).toggle('front')
+
+    if (firstClicked !== undefined) {
+      secondClicked === $(this)
+    } else {
+      firstClicked === $(this)
+    }
+
+    console.log(firstClicked)
+    
+    if (firstClicked !== undefined && secondClicked !== undefined) {
+      memoryGame(firstClicked, secondClicked);
+      if (memoryGame(firstClicked, secondClicked)) {
+        $(this).toggle('.blocked')
+      }
+    }
+    
   });
 });
 
