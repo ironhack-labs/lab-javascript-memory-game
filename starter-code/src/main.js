@@ -27,7 +27,10 @@ var cards = [
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  console.log(memoryGame)
+
   var html = '';
+
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -39,9 +42,78 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
-  });
-});
 
 
+  var card = document.querySelectorAll(".card")
+  // var clicked = document.getElementById("pairs_clicked").textContent
+
+  clicked = 1
+
+  var pairs = document.getElementById("pairs_guessed").textContent
+
+  pairs = parseInt(pairs)
+
+  console.log(pairs)
+
+
+  card.forEach(function(elm){
+
+    elm.onclick = function (e) {
+
+      elm.firstElementChild.classList.add('front')
+      elm.firstElementChild.classList.remove('back')
+
+
+      elm.lastChild.classList.add('back')
+      elm.lastChild.classList.remove('front')
+
+      console.log(elm)
+
+    
+
+      for(var i = 0; i < memoryGame.cards.length; i++) {
+
+        if(memoryGame.pickedCards.indexOf(elm.getAttribute("data-card-name")) === -1 ) {
+
+          memoryGame.pickedCards.push(elm.getAttribute("data-card-name"))
+
+
+          memoryGame.checkIfPair(memoryGame.pickedCards[i -1], memoryGame.pickedCards[i])
+
+          document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked
+
+          console.log(memoryGame.pairsGuessed)
+
+         
+
+        } else {
+
+          console.log(memoryGame.pairsGuessed)
+
+          // memoryGame.pairsClicked ++
+
+          // memoryGame.pairsGuessed ++
+          
+          // document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked
+
+          // document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed
+
+
+
+
+          // setInterval(function () {
+
+          //   memoryGame.shuffleCards()
+
+          // },3000)
+
+        } 
+  
+    }
+
+  }
+
+})
+
+
+})
