@@ -34,18 +34,16 @@ MemoryGame.prototype.shuffleCards = function() {
 
 
 }
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
 
-MemoryGame.prototype.checkIfPair = function(pairsClicked, pairsGuessed) {
     this.pairsClicked++
-
-        if (pairsClicked === pairsGuessed) {
+        if (firstCard === secondCard) {
             this.pairsGuessed++
-                return true
-        } else {
-            return false
-
         }
+    return (firstCard === secondCard)
 }
+
+
 
 MemoryGame.prototype.isFinished = function() {
     return (this.pairsGuessed === this.cards.length / 2)

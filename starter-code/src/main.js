@@ -39,18 +39,35 @@ $(document).ready(function() {
     // Add all the div's to the HTML
     $('#memory_board').html(html);
 
+
+    // Bind the click event of each element to a function
+    //$('.back').click(function() {
+
+    var nameCards = []
+    var cardsSelected = []
+
     // Bind the click event of each element to a function
     $('.back').click(function() {
-
         // TODO: write some code here
-        //$('.back').toggleClass('front', heckIfPair())
-
+        nameCards.push($(this).attr('name'))
+        cardsSelected.push($(this))
+        $(this).attr('class', 'front')
+        $(this).next().attr('class', 'back')
+        if (nameCards.length === 2) {
+            memoryGame.checkIfPair(nameCards[0], nameCards[1])
+            console.log(memoryGame.pairsClicked)
+            console.log(memoryGame.pairsGuessed)
+            nameCards = []
+            cardsSelected = []
+        }
 
     });
 });
+/*
 cards.forEach(function(elm) {
-    elm = $("back").prepend("fantastic-four.jpg")
-    console.log(elm)
+    elm = $(".back").prepend("fantastic-four.jpg")
+
 })
 var oooo = $(".back").toggleClass('front')
 console.log(oooo)
+*/
