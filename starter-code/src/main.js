@@ -30,8 +30,8 @@ $(document).ready(function(){
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '  <div class="front" name="'+ pic.img +'"></div>';
+    html += '  <div class="back" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -39,9 +39,7 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
-    // TODO: write some code here
-  });
+  $('.card').flip();
 });
 
 
