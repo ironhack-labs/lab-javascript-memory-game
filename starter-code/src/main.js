@@ -38,9 +38,15 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
+
   // Bind the click event of each element to a function
+    var backDiv = $(".back")
+    var frontDiv = $(".front")
   $('.back').click(function () {
-    // TODO: write some code here
+    $(this).toggleClass("back");
+    $(this).toggleClass("front");
+    $(this).siblings().toggleClass("front");
+    $(this).siblings().toggleClass("back");
   });
 });
 
