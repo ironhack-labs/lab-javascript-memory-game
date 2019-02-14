@@ -13,10 +13,6 @@ MemoryGame.prototype.shuffleCards = function (cards) {
     this.cards[i] = this.cards[cardMixed];
   }
 };
-
-  
-
-
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked = this.pairsClicked +1
   if(firstCard == secondCard){
@@ -27,15 +23,12 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     return false;
   }
 }
-
 MemoryGame.prototype.isFinished = function () {
   //dividir el length de las cartas entre dos para saber los pares
-  var middle = this.cards / 2;
   //saber si pairGuessed
   if(this.pairsGuessed == this.cards.length/2){
     return true;
   } else{
     return false;
   }
-  return false;
 };
