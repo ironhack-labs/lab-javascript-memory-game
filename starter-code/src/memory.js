@@ -29,4 +29,13 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 }
 
 MemoryGame.prototype.isFinished = function () {
+  //dividir el length de las cartas entre dos para saber los pares
+  var middle = this.cards / 2;
+  //saber si pairGuessed
+  if(this.pairsGuessed == this.cards.length/2){
+    return true;
+  } else{
+    return false;
+  }
+  return false;
 };
