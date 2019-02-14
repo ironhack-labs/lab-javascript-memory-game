@@ -6,12 +6,19 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function () {
+  var i, j, aux;
+  for (i = this.cards.length - 1; i >= 0; i--) {
+    j = Math.round( Math.random() * i );
+    aux = this.cards[j];
+    this.cards[j] = this.cards[i];
+    this.cards[i] = aux;
+  }
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   var pair = false;
   this.pairsClicked ++;
-  if (firstCard.name == secondCard.name && firstCard.img == secondCard.img) {
+  if ( firstCard.localeCompare(secondCard) === 0 ) {
     this.pairsGuessed ++;
     pair = true;
   }
@@ -20,6 +27,6 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
 MemoryGame.prototype.isFinished = function () {
   var end = false;
-  if (this.pairsGuessed === 12) { end = true; }
+  if ( this.pairsGuessed === 8 ) { end = true; } // Debería ser 12???
   return end;
 };
