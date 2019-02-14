@@ -5,8 +5,10 @@ var MemoryGame = function(cards) {
     this.pairsGuessed = 0;
 };
 
+
 MemoryGame.prototype.shuffleCards = function() {
-    var array = this.cards
+
+    // inicio algoritmo
     var shuffle = function(array) {
 
         var currentIndex = array.length;
@@ -27,7 +29,8 @@ MemoryGame.prototype.shuffleCards = function() {
         return array;
 
     };
-
+    return shuffle(this.cards);
+    // fin algoritmo
 };
 
 MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
@@ -45,5 +48,6 @@ MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
 
 
 MemoryGame.prototype.isFinished = function() {
-    return pairsGuessed == 12
+    pairsGuessed == 12
+    return alert("You WIN!")
 };
