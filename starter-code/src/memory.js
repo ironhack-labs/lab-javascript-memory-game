@@ -36,3 +36,11 @@ MemoryGame.prototype.isFinished = function () {
     return false;
   }
 };
+
+
+function flipCard(sel){
+  sel.toggleClass("back");
+  sel.toggleClass("front");
+  sel.siblings().toggleClass("front");
+  sel.siblings().toggleClass("back");
+}

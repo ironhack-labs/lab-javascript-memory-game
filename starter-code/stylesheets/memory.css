@@ -67,3 +67,13 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.end {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+.end h1 p{
+  text-align: center;
+}

@@ -24,9 +24,31 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
+function play(str1, str2, obj3, sel1, sel2){
+  setTimeout(function (){
+  var check = obj3.checkIfPair(str1, str2);
+  if(check === true){
+    var end = obj3.isFinished();
+    if(end === true){
+      var htmlEnd = '<div class="end">';
+      htmlEnd += '<h1>You won</h1>'
+      htmlEnd += '<p>Press F5 to play again</p>'
+      htmlEnd += '</div>'
+    }
+  }
+  else if(check === false){
+    $(sel1).toggleClass("front");
+    $(sel1).toggleClass("back");
+    $(sel2).toggleClass("back");
+    $(sel2).toggleClass("front");
+  }
+}, 2000);
+}
+
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -40,14 +62,17 @@ $(document).ready(function(){
 
 
   // Bind the click event of each element to a function
-    var backDiv = $(".back")
-    var frontDiv = $(".front")
   $('.back').click(function () {
-    $(this).toggleClass("back");
-    $(this).toggleClass("front");
-    $(this).siblings().toggleClass("front");
-    $(this).siblings().toggleClass("back");
+    var card1 = $(this)
+    var card2 = $(this).siblings()
+    flipCard($(this));
+    var a = $(this).parent().closest('div').attr('data-card-name')
+    $('.back').click(function () {
+      var b = $(this).parent().closest('div').attr('data-card-name')
+      play(a, b, memoryGame, card1, card2);
+    });
   });
 });
+
 
 
