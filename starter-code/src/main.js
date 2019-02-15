@@ -27,6 +27,8 @@ var cards = [
 function play(str1, str2, obj3, sel1, sel2){
   setTimeout(function (){
   var check = obj3.checkIfPair(str1, str2);
+  $("#pairs_clicked").html(obj3.pairsClicked);
+  $("#pairs_guessed").html(obj3.pairsGuessed);
   if(check === true){
     var end = obj3.isFinished();
     if(end === true){
@@ -34,15 +36,14 @@ function play(str1, str2, obj3, sel1, sel2){
       htmlEnd += '<h1>You won</h1>'
       htmlEnd += '<p>Press F5 to play again</p>'
       htmlEnd += '</div>'
+      $("body").html(htmlEnd);
     }
   }
   else if(check === false){
-    $(sel1).toggleClass("front");
-    $(sel1).toggleClass("back");
-    $(sel2).toggleClass("back");
-    $(sel2).toggleClass("front");
+    flipCard(sel1);
+    flipCard(sel2);
   }
-}, 2000);
+}, 750);
 }
 
 
@@ -62,15 +63,26 @@ $(document).ready(function(){
 
 
   // Bind the click event of each element to a function
+    var card1;
+    var card2;
+    var a;
+    var b;
+    var counter = 0;
+  
   $('.back').click(function () {
-    var card1 = $(this)
-    var card2 = $(this).siblings()
-    flipCard($(this));
-    var a = $(this).parent().closest('div').attr('data-card-name')
-    $('.back').click(function () {
-      var b = $(this).parent().closest('div').attr('data-card-name')
+    if (counter === 0){
+      card1 = $(this)
+      flipCard($(this));
+      a = $(this).parent().closest('div').attr('data-card-name')
+      counter++;
+    }
+    else if (counter === 1) {
+      flipCard($(this));
+      card2 = $(this)
+      b = $(this).parent().closest('div').attr('data-card-name')
       play(a, b, memoryGame, card1, card2);
-    });
+      counter--;
+    }
   });
 });
 

@@ -69,11 +69,22 @@ p {
 }
 
 .end {
+  background-color: green;
   position: absolute;
-  top: 25%;
-  left: 25%;
+  top: 35%;
+  left: 35%;
+  padding: 15px;
 }
 
 .end h1 p{
   text-align: center;
+  padding: 15px;
+}
+
+.end h1{
+  font-size: 5rem;
+}
+
+.end p{
+  font-size: 3rem;
 }
