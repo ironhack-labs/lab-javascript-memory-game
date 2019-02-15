@@ -1,4 +1,4 @@
-var MemoryGame = function (cards) {  //constructor is called with cards argument and it has 3 extra properties
+var MemoryGame = function (cards) { //constructor is called with cards argument and it has 3 extra properties
   this.cards = cards;
   this.pickedCards = []; //array
   this.pairsClicked = 0; //number
@@ -11,7 +11,7 @@ var MemoryGame = function (cards) {  //constructor is called with cards argument
 
 MemoryGame.prototype.shuffleCards = function (cards1) { //it takes current cards as argument
 
-  if (! cards1) {
+  if (!cards1) {
     return undefined; // in case that function is called without arguments return undefined
   }
 

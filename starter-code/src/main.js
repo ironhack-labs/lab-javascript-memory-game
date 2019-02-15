@@ -142,7 +142,7 @@ $(document).ready(function () {
       console.log(memoryGame.pairsGuessed);
       $("#pairs_clicked").text(memoryGame.pairsClicked); //"checkIfPair" method changes memoryGame properties, every time two cards are clicked. 
       //Every time properties are changed we should see it on page.
-      $("#pairs_guessed").text(memoryGame.pairsGuessed);//"checkIfPair" method changes memoryGame properties, every time two cards are clicked. 
+      $("#pairs_guessed").text(memoryGame.pairsGuessed); //"checkIfPair" method changes memoryGame properties, every time two cards are clicked. 
       //Every time properties are changed we should see it on page.
 
 
@@ -152,19 +152,19 @@ $(document).ready(function () {
           $(clicked[0]).show(); // display: block will be removed from HTML tag which is in clicked array on position 1 (index 0)
           $(clicked[1].next()).toggleClass("back"); // same story with next element in clicked array.
           $(clicked[1]).show();
-          clicked = [];// array should be empty before next user's click
-          picked = [];  // array should be empty before next user's click
+          clicked = []; // array should be empty before next user's click
+          picked = []; // array should be empty before next user's click
           console.log(clicked);
           $(".back").removeClass("blocked"); // remove class blocked from other cards so user can select new one.
         }, 1000);
 
       } else { // in the case it is true (two same cards are selected)
-        clicked = [];  // clean for next step
-        picked = [];  // clean for next step
+        clicked = []; // clean for next step
+        picked = []; // clean for next step
 
         $(".back").removeClass("blocked"); // remove .blocked claas from other cards.
         if (memoryGame.isFinished()) { // and check if the game is finished. if yes...insert new div with message below.
-          $( "#score" ).after( "<div id='winning-message'>You did it. Congrats!!!</div>" );
+          $("#score").after("<div id='winning-message'>You did it. Congrats!!!</div>");
         }
       }
 
