@@ -27,6 +27,6 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
 MemoryGame.prototype.isFinished = function () {
   var end = false;
-  if ( this.pairsGuessed === 8 ) { end = true; } // Debería ser 12???
+  if ( this.pairsGuessed === 12 ) { end = true; } // DGG: El test se pasa con 8???
   return end;
 };

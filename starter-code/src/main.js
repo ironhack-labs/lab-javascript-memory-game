@@ -28,7 +28,7 @@ var cards = [
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
   
-  //memoryGame.shuffleCards(); // DGG: Partidas aleatorias
+  memoryGame.shuffleCards(); // DGG: Partidas aleatorias
   
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -62,10 +62,22 @@ $(document).ready(function(){
     console.log(nameArray);
     if ( nameArray.length > 1 && nameArray[nameArray.length - 1] === nameArray[nameArray.length - 2] ) {
       console.log('Iguales!!!');
+      memoryGame.checkIfPair( nameArray[nameArray.length - 1], nameArray[nameArray.length - 2] );
+      console.log(memoryGame.pairsClicked);
+      console.log( 'PC: ' + $('#pairs_clicked').val() );
+      $('#pairs_clicked').text(memoryGame.pairsClicked);
+      console.log(memoryGame.pairsGuessed);
+      $('#pairs_guessed').text(memoryGame.pairsGuessed);
+      
       nameArray = [];
     }
     else if ( nameArray.length > 1 && nameArray[nameArray.length - 1] !== nameArray[nameArray.length - 2] ) {
       console.log('Distintas!!!');
+      memoryGame.checkIfPair( nameArray[nameArray.length - 1], nameArray[nameArray.length - 2] );
+      console.log(memoryGame.pairsClicked);
+      $('#pairs_clicked').text(memoryGame.pairsClicked);
+      console.log(memoryGame.pairsGuessed);
+      $('#pairs_guessed').text(memoryGame.pairsGuessed);
       
       objArray[objArray.length - 1].toggleClass('back', 2000).toggleClass('front', 2000);
       objArray[objArray.length - 1].siblings().toggleClass('front', 2000).toggleClass('back', 2000);
@@ -75,7 +87,8 @@ $(document).ready(function(){
 
       nameArray = [];
     }
-    endGame = memoryGame.isFinished(); // Si es true se desactiva el click    
+    endGame = memoryGame.isFinished(); // Si es true se desactiva el click
+    if (endGame) $('div').off('click')   
   });
 
   /*$('.front').click(function () {
