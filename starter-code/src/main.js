@@ -46,7 +46,8 @@ $(document).ready(function(){
   // Add all the div's to the HTML
   $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
+  // inicializamos variable de click a ceroo
+  var clickCount = 0;
   $('.back').click(function () {
     //coger el elemento y guardarlo en una var
     var currentCard = $(this).attr('data-card-name')
@@ -57,13 +58,19 @@ $(document).ready(function(){
     $(this).siblings().toggleClass('back')
     $(this).siblings().toggleClass('front');
   
-
-    //contamos el numero de clicks que se hace sobre el elemento PADRE
     //PRIMERO ACCEDER AL ELEMENTO PADRE --> CARDS!!
-    var cardParent = $(this).parent()
-    var i = 0;
-    var currentClicks = cardParent.html(i = i++);
-    console.log(i)
+    var cardParent = $(this).parent();
+    //contamos el numero de clicks que se hace sobre el elemento PADRE
+      $(cardParent).click(function(){
+        clickCount += 1;
+        console.log(clickCount)
+      });
+      //definimos que si el numero de click es igual a dos se vuelva a empezar
+      if(clickCount == 2){
+        console.log('has pinchado dos veces')
+      }
+    
+    
     // TODO: write some code here
   });
 });
