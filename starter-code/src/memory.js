@@ -6,11 +6,20 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function () {
-  for (i=0; i<this.cards.length; i++){
-  var s = Math.floor(Math.random() * (this.cards.length-i))+0;
-  this.cards[i] = this.cards[s]}
-}
+  var m = this.cards.length, t, i;
 
+   // While there remain elements to shuffle…
+  while (m) {
+
+     // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+     // And swap it with the current element.
+    t = this.cards[m];
+    this.cards[m] = this.cards[i];
+    this.cards[i] = t;
+  };
+};	
 
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
