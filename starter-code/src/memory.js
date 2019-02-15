@@ -8,18 +8,15 @@ var MemoryGame = function (cards) {
 };
 
 MemoryGame.prototype.shuffleCards = function () {
-  
-    const { cards } = this;
-    let m = cards, i;
-  
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-  
-      [pickedCards[m], pickedCards[i]] = [pickedCards[i], pickedCards[m]];
-    }
-  
-    return this;
-  
+  const { cards } = this;
+  let m = cards.length, i;
+
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+
+    [cards[m], cards[i]] = [cards[i], cards[m]];
+  }
+
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
@@ -42,3 +39,4 @@ MemoryGame.prototype.isFinished = function () {
   }
   return false
 };
+

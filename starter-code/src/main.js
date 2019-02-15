@@ -40,16 +40,10 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    //$('.front').removeClass('front').addClass('back')
-   //$('.back').removeClass('back').addClass('front')
-   //  $(this).siblings().addClass('back');
-
     $(this).css('display', 'none');
     $(this).siblings().toggleClass('back');
 
-    //$('.back').attr('.front')
     // TODO: write some code here
   });
 });
-
 
