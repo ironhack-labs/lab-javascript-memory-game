@@ -43,7 +43,7 @@ function play(str1, str2, obj3, sel1, sel2){
     flipCard(sel1);
     flipCard(sel2);
   }
-}, 750);
+}, 500);
 }
 
 
