@@ -4,6 +4,11 @@ html {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 #memory_board {
   background:#dddddd;
 	width:800px;
@@ -34,10 +39,23 @@ html {
   font-size:64px;
 }
 
-.hidden {
+.hidden {  
   display: none;
 }
+  
 
+/* animation */
+.correct { 
+  animation: cgreen 2s; 
+  animation-delay: 100ms;
+  /* remain at 100% state when finished */
+  animation-fill-mode: forwards; 
+}
+
+@keyframes cgreen {
+  100% { 
+    opacity: 0.5; 
+}}
 
 .card .front.blocked,
 .card .back.blocked {
@@ -50,9 +68,9 @@ html {
   font-size: 30px;
   font-family: Arial;
   width:200px;
-  padding: 20px;
+  padding: 10px;
   padding-top: 0;
-  margin-left: 75%;
+  /* margin-left: 75%; */
 }
 
 .container {
@@ -64,12 +82,12 @@ h1 {
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
+  text-shadow: 0px 0px 20px rgb(255, 255, 255);
 
 }
 
 h2 {
-  color: #456783;
+  color: #ffffff;
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
