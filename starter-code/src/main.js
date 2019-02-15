@@ -97,15 +97,16 @@ var cards = [{
 ];
 
 var picked = [];
-var clicked = [];
+var clicked = []; //
 
 
 $(document).ready(function () {
-  var memoryGame = new MemoryGame(cards, [], 0, 0);
+  var memoryGame = new MemoryGame(cards); //start point. create memoryGame object so we can applay memoryGame methods on it. It happens every time 
+  //when document is loaded.
 
-  memoryGame.cards = memoryGame.shuffleCards(memoryGame.cards);
+  memoryGame.shuffleCards(memoryGame.cards); // mix cards every time the document is loaded
 
-  console.log(memoryGame);
+  console.log(memoryGame); // it is for my revision of steps :)
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="' + pic.name + '">';
@@ -119,44 +120,50 @@ $(document).ready(function () {
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    console.log(clicked);
+    console.log(clicked); // for my revision
 
-    $(this).hide();
-    $(this).next().toggleClass("back");
-    $(this).toggleClass("blocked");
-    clicked.push($(this));
+    $(this).hide(); // hide div wit back function 
+    $(this).next().toggleClass("back"); // but also give .back class to div next to .back. So it has now background image + width and height
+    $(this).toggleClass("blocked"); // once it is revealed it can not be turned on back just like that...keep it open until next card is revealed.
+    clicked.push($(this)); //put "this" (complete HTML tag) in clicked array.
     console.log(clicked);
-    picked.push($(this).attr("name"));
+    picked.push($(this).attr("name")); // put in picked array only valeu of name attr.
     console.log(picked);
-    var checkedPicked = checkPickedLength(picked);
+    var checkedPicked = checkPickedLength(picked); // global function which checks if picked array has two elements. In that case compare it.
+    //if it is true go tu if statement defined below.
 
     if (checkedPicked == true) {
 
-      $(".back").toggleClass("blocked");
-      var checkedEqual = memoryGame.checkIfPair(picked[0], picked[1]);
+      $(".back").toggleClass("blocked"); // add class="blocked"  to all elements without it. 
+      var checkedEqual = memoryGame.checkIfPair(picked[0], picked[1]); // moment to check if to strings from picked array are the same.
+      //we call method defined in memoryGame prototype.
       console.log(checkedEqual);
       console.log(memoryGame.pairsClicked);
       console.log(memoryGame.pairsGuessed);
-      $("#pairs_clicked").text(memoryGame.pairsClicked);
-      $("#pairs_guessed").text(memoryGame.pairsGuessed);
-      if (checkedEqual == false) {
+      $("#pairs_clicked").text(memoryGame.pairsClicked); //"checkIfPair" method changes memoryGame properties, every time two cards are clicked. 
+      //Every time properties are changed we should see it on page.
+      $("#pairs_guessed").text(memoryGame.pairsGuessed);//"checkIfPair" method changes memoryGame properties, every time two cards are clicked. 
+      //Every time properties are changed we should see it on page.
+
+
+      if (checkedEqual == false) { //if checkIfEqual returns false flip cards to back after 1 sec.
         setTimeout(function () {
-          $(clicked[0].next()).toggleClass("back");
-          $(clicked[0]).show();
-          $(clicked[1].next()).toggleClass("back");
+          $(clicked[0].next()).toggleClass("back"); // it will remove .back from .front
+          $(clicked[0]).show(); // display: block will be removed from HTML tag which is in clicked array on position 1 (index 0)
+          $(clicked[1].next()).toggleClass("back"); // same story with next element in clicked array.
           $(clicked[1]).show();
-          clicked = [];
-          picked = [];
+          clicked = [];// array should be empty before next user's click
+          picked = [];  // array should be empty before next user's click
           console.log(clicked);
-          $(".back").removeClass("blocked");
+          $(".back").removeClass("blocked"); // remove class blocked from other cards so user can select new one.
         }, 1000);
 
-      } else {
-        clicked = [];
-        picked = [];
+      } else { // in the case it is true (two same cards are selected)
+        clicked = [];  // clean for next step
+        picked = [];  // clean for next step
 
-        $(".back").removeClass("blocked");
-        if (memoryGame.isFinished()) {
+        $(".back").removeClass("blocked"); // remove .blocked claas from other cards.
+        if (memoryGame.isFinished()) { // and check if the game is finished. if yes...insert new div with message below.
           $( "#score" ).after( "<div id='winning-message'>You did it. Congrats!!!</div>" );
         }
       }
@@ -164,6 +171,8 @@ $(document).ready(function () {
     }
   });
 });
+
+//check if array "picked" has two elements inside it so we can compare them.
 
 function checkPickedLength(arrayToCheck) {
   if (arrayToCheck.length == 2) {
