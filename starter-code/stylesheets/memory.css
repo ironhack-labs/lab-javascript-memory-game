@@ -76,7 +76,9 @@ p {
   padding: 15px;
 }
 
-.end h1 p{
+.end h1,.end p{
+  animation-name: myslidein;
+  animation-duration: 3s;
   text-align: center;
   padding: 15px;
 }
@@ -88,3 +90,23 @@ p {
 .end p{
   font-size: 3rem;
 }
+
+.end h1:before, .end p:before {
+  transform: scale(0.1)
+}
+
+.end p:after, .end h1:after {
+  transform: scale(5)
+}
+
+@keyframes myslidein {
+  0% {
+    transform: scale(0.1);
+  }
+
+  100% {
+    transform: scale(3);
+  }
+}
+
+
