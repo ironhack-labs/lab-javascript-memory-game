@@ -38,6 +38,8 @@ $(document).ready(function(){
     html += '</div>';
     //comprobar que trae las imágenes
     console.log(pic.img)
+    //guardamos las cartas donde se ha clicado en un array
+    var cardSelected = [];
   });
 
 
@@ -46,12 +48,22 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
+    //coger el elemento y guardarlo en una var
+    var currentCard = $(this).attr('data-card-name')
     //cuando hagas click en el elemento añadimos la calse front a back y eliminamos back.
-    $(this).toggleClass('front').toggleClass('back');
-  
+    $(this).toggleClass('front');
+    $(this).toggleClass('back')
     //Añadimos la clase back a front
-    $(this).siblings().toggleClass('back').toggleClass('front');
-    console.log('estou en el click')
+    $(this).siblings().toggleClass('back')
+    $(this).siblings().toggleClass('front');
+  
+
+    //contamos el numero de clicks que se hace sobre el elemento PADRE
+    //PRIMERO ACCEDER AL ELEMENTO PADRE --> CARDS!!
+    var cardParent = $(this).parent()
+    var i = 0;
+    var currentClicks = cardParent.html(i = i++);
+    console.log(i)
     // TODO: write some code here
   });
 });
