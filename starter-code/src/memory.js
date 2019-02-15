@@ -8,11 +8,14 @@ var MemoryGame = function (cards) {
 MemoryGame.prototype.shuffleCards = function (cards) {
   //this.cards.sort(function() { return 0.5 - Math.random() });
   //console.log(this.cards);
-  for (i = 0; i < this.cards.length; i++) { 
+  /* for (i = 0; i < this.cards.length; i++) { 
     var cardMixed = Math.floor(Math.random() * (this.cards.length -i));
     this.cards[i] = this.cards[cardMixed];
-  }
+  } */
+
+  
 };
+
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
   this.pairsClicked = this.pairsClicked +1
   if(firstCard == secondCard){
