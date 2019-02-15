@@ -1,6 +1,13 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
 
+
+$( document ).ready(function() {
+  $('hero_card').click(function(){
+    $(this).addClass('on');
+  });
+});
+
 describe('MemoryGame constructor', function () {
   beforeEach(function () {
     memoryGame = new MemoryGame([]);
