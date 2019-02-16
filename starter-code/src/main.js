@@ -14,7 +14,7 @@ var cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four',  img: 'fantastic-four.jpg' },
+  { name: 'fantastic four',  img: 'fantastic-four.jpg' }, 
   { name: 'flash',           img: 'flash.jpg' },
   { name: 'green arrow',     img: 'green-arrow.jpg' },
   { name: 'green lantern',   img: 'green-lantern.jpg' },
@@ -31,7 +31,7 @@ $(document).ready(function(){
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(/img/'+ pic.img +') no-repeat"></div>';
+    html += '  <div class="front" style="background: url(../starter-code/img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -40,11 +40,23 @@ $(document).ready(function(){
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    $(this).siblings().toggleClass('front');
-    $(this).siblings().toggleClass('back');
+    $(this).removeClass('back');
+    $(this).addClass('front');
+
+    $(this).next().removeClass('front');
+    $(this).next().addClass('back');
     
-    // cambiar la clase a .front
+    console.log('back')
   });
+  // $('.front').click(function () {
+  //   $(this).next().removeClass('back');
+  //   $(this).next().addClass('front');
+
+  //   $(this).removeClass('front');
+  //   $(this).addClass('back');
+  // });
+
 });
+
 
 
