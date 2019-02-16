@@ -30,8 +30,8 @@ $(document).ready(function(){
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="front" name="'+ pic.img +'"></div>';
-    html += '  <div class="back" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '  <div class="back" name="'+ pic.img +'"></div>';
+    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -39,7 +39,27 @@ $(document).ready(function(){
   $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.card').flip();
+  $('.back').click(function() {
+  
+    var name = $(this).attr("name").split('.')[0];
+    memoryGame.pickedCards.push(name)
+    if(memoryGame.pickedCards[1]){
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
+        console.log('entra')
+        $('#pairs_clicked').html(memoryGame.pairsClicked)
+        $('#pairs_guessed').html(memoryGame.pairsGuessed)
+      } else {
+        console.log('entra2')
+        $('#pairs_clicked').html(memoryGame.pairsClicked);
+        $('front').removeClass('back');
+        $('front').addClass('front');
+    
+        $('front').removeClass('front');
+        $('front').addClass('back');
+      }
+      memoryGame.pickedCards = []
+    }
+    
+  });
+
 });
-
-

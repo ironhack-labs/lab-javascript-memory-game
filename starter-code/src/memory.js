@@ -39,3 +39,13 @@ MemoryGame.prototype.isFinished = function () {
     return false;
   }
 };
+
+function flip(e) {
+  if ($(e).parent().first().attr('class', 'back')){
+    $(e).removeClass('back');
+    $(e).addClass('front');
+
+    $(e).next().removeClass('front');
+    $(e).next().addClass('back');
+  }
+}
