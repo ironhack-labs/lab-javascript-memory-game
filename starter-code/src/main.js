@@ -33,10 +33,10 @@ function compareCards (memoryGame,cardA,cardB) {
     $("#pairs_guessed").text(memoryGame.pairsGuessed);
     if(memoryGame.isFinished() === true) {
       setTimeout (function(){
-        $(".card").remove();
-        memoryGame.shuffleCards();
+        $(".back").removeAttr("style")
         $("#pairs_guessed").text(memoryGame.pairsGuessed);
         $("#pairs_clicked").text(memoryGame.pairsClicked);
+        alert("Press CMD + R to play again")
       },1000)
     }
   } else {
@@ -50,6 +50,7 @@ function compareCards (memoryGame,cardA,cardB) {
 
 $(document).ready(function(){
   var memoryGame = new MemoryGame(cards);
+  memoryGame.shuffleCards();
   var html = '';
 
   memoryGame.cards.forEach(function (pic) {
