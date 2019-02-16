@@ -42,7 +42,6 @@ $(document).ready(function(){
   $('#memory_board').html(html);
   
   // Bind the click event of each element to a function
-  var counterClick = 0;
   var nameArray = [], objArray = [];  
   var name, obj;
   var endGame = false;
@@ -56,48 +55,31 @@ $(document).ready(function(){
     objArray.push(obj);
     $(this).toggleClass('front').toggleClass('back');
     $(this).siblings().toggleClass('back').toggleClass('front');
-    counterClick++;
-    console.log('Clicks: ' + counterClick);
-    console.log('Card: ' + name);
-    console.log(nameArray);
     if ( nameArray.length > 1 && nameArray[nameArray.length - 1] === nameArray[nameArray.length - 2] ) {
-      console.log('Iguales!!!');
       memoryGame.checkIfPair( nameArray[nameArray.length - 1], nameArray[nameArray.length - 2] );
-      console.log(memoryGame.pairsClicked);
-      console.log( 'PC: ' + $('#pairs_clicked').val() );
       $('#pairs_clicked').text(memoryGame.pairsClicked);
-      console.log(memoryGame.pairsGuessed);
       $('#pairs_guessed').text(memoryGame.pairsGuessed);
       
       nameArray = [];
     }
     else if ( nameArray.length > 1 && nameArray[nameArray.length - 1] !== nameArray[nameArray.length - 2] ) {
-      console.log('Distintas!!!');
       memoryGame.checkIfPair( nameArray[nameArray.length - 1], nameArray[nameArray.length - 2] );
-      console.log(memoryGame.pairsClicked);
       $('#pairs_clicked').text(memoryGame.pairsClicked);
-      console.log(memoryGame.pairsGuessed);
       $('#pairs_guessed').text(memoryGame.pairsGuessed);
       
-      objArray[objArray.length - 1].toggleClass('back', 2000).toggleClass('front', 2000);
-      objArray[objArray.length - 1].siblings().toggleClass('front', 2000).toggleClass('back', 2000);
+      objArray[objArray.length - 1].toggleClass('back front', 1500);
+      objArray[objArray.length - 1].siblings().toggleClass('front back', 1500);
       
-      objArray[objArray.length - 2].toggleClass('back', 2000).toggleClass('front', 2000);
-      objArray[objArray.length - 2].siblings().toggleClass('front', 2000).toggleClass('back', 2000);
+      objArray[objArray.length - 2].toggleClass('back front', 1500);
+      objArray[objArray.length - 2].siblings().toggleClass('front back', 1500);
 
       nameArray = [];
     }
-    endGame = memoryGame.isFinished(); // Si es true se desactiva el click
-    if (endGame) $('div').off('click')   
+    endGame = memoryGame.isFinished(); // DGG: Si es true se desactiva el click
+    if (endGame) {
+      $('div').off('click');
+      alert('"Heroes are made by the path they choose, not the powers they are graced with -Iron Man"');
+    }
   });
 
-  /*$('.front').click(function () {
-    // TODO: write some code here
-    console.log( $(this).parent().attr('data-card-name') );
-    $(this).toggleClass('back').toggleClass('front');
-    $(this).siblings().toggleClass('front').toggleClass('back');
-  });*/
-
 });
-
-
