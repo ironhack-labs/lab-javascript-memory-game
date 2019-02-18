@@ -26,14 +26,19 @@ var cards = [
 ];
 
 $(document).ready(function(){
+
+
   var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" add-class-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
+
+  memoryGame.isFinished();
 
   // Add all the div's to the HTML
   $('#memory_board').html(html);
@@ -72,13 +77,13 @@ if(liso.attr("class")=="back"){
 
  
 
-    memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+    if(memoryGame.checkIfPair(memoryGame.pickedCards[0].attr("add-class-name"),memoryGame.pickedCards[1].attr("add-class-name"))){
 
-    if(memoryGame.pairsGuessed===1){
+    //memoryGame.pairsGuessed===1){
 
-    memoryGame.pairsGuessed=0;
+    //memoryGame.pairsGuessed=0;
     memoryGame.pickedCards=[];
-    }else if(memoryGame.pairsGuessed===0){ 
+    }else{ 
 
 var capa1;
 var capa2;
@@ -116,7 +121,7 @@ setTimeout(
 
  }, 1000); 
 
- memoryGame.pairsGuessed=0;
+ //memoryGame.pairsGuessed=0;
  memoryGame.pickedCards=[];
 
 }
