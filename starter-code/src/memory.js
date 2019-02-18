@@ -15,25 +15,7 @@ MemoryGame.prototype.shuffleCards = function (cards1) { //it takes current cards
     return undefined; // in case that function is called without arguments return undefined
   }
 
-  var i = 0;
-  var cardRandom = []; //this will be new array of cards we will play with. shuffled array
-
-  result = generateRandomIndex(); //it generates array of 24 random numbers (0-23). Elements in result are equal to card's indexes in cards1 arr.
-  // It is a global function defined below;
-
-
-  while (i < result.length) { // do steps for every element in result array. Idea was to find card with index equal to number from result. 
-    //When we find that card put it in cardRandom array.
-
-    newCard = cards1.find(card => cards1.indexOf(card) == result[i]);
-
-    cardRandom.push(newCard);
-
-    i++;
-  }
-
-  this.cards = cardRandom; // this functon should not return anything, but it should set cards property to be equal to shuffled array when it is calld on 
-  //memoryGame object (this).
+  this.cards = _.shuffle(cards1); //LoDash method to shuffle array
 };
 
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
@@ -59,13 +41,3 @@ MemoryGame.prototype.isFinished = function () {
 
 };
 
-function generateRandomIndex() {
-
-  var randomIndex = []
-  while (randomIndex.length <= 23) {
-    var num = Math.floor(Math.random() * 24);
-    if (randomIndex.indexOf(num) === -1) randomIndex.push(num);
-  }
-
-  return randomIndex; //array which contains numbers from 0-23 (equal to card indexes in array "cards")
-}
