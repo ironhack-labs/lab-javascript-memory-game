@@ -9,41 +9,48 @@ var MemoryGame = function (cards) {
     }
   };
 
-MemoryGame.prototype.shuffleCards = function () {
+  MemoryGame.prototype.shuffleCards = function() {
 
-  for(let i = this.cards.length - 1; i > 0; i--) {
-    let randomIndex = Math.floor(Math.random() * i);
+    // begin 
+    var shuffle = function(array) {
 
-    let temp = this.cards[i];
-    this.cards[i] = this.cards[randomIndex];
-    this.cards[randomIndex] = temp;
-  }
+        var currentIndex = array.length;
+        var temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+
+    };
+    return shuffle(this.cards);
+    // end
 };
 
-MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-  this.firstCard = firstCard;
-  this.secondCard = secondCard;
-  this.pairsClicked++
-
-  if (this.firstCard === this.secondCard){
-    this.pairsClicked++
-    this.pairsGuessed++
-    return true
-  }else{
-    return false
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
+  var firstCard = this.cards.name
+  var secondCard = this.cards.name
+  pairsClicked += 1
+  if (firstCard.name == secondCard.name) {
+      pairGuessed += 1
+      return true
   }
+  return false
+
 }
 
-MemoryGame.prototype.isFinished = function () {
-  if (undefined){
-    return false
-  }else if(this.pairsGuessed === 0) {
-   return false
-  }else if (this.pairsGuessed !== 0 ){
-   return true
-  }
- };
- $(document).ready(function) {
-
+MemoryGame.prototype.isFinished = function() {
+  pairsGuessed == 12
+  return alert("You WIN!")
+};
 
 };
