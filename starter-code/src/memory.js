@@ -6,17 +6,27 @@ var MemoryGame = function (cards) {
 };
 
 
-//where we will be storing the cards the user have clicked so we can compare them => pickedCards[]
-//clicked 1st, clicked 2cnd = push to pickedCards[]
+// where we will be storing the cards the user have clicked so we can compare them => pickedCards[]
+// clicked 1st, clicked 2cnd = push to pickedCards[]
 
-MemoryGame.prototype.picked = function () {
-    if ($('.selected').length == 2) {
-      var firstCard = $('.selected').first().data('pic.name');
-      var secondCard = $('.selected').last().data('pic.name');
-
-      this.pickedCards.push(firstCard);
-      this.pickedCards.push(secondCard);
+MemoryGame.prototype.picked = function (whatever) {
+    if (this.pickedCards.length == 2) {  
+      // toggle back cards  
+     
+    } else {
+      var pickedCard = whatever
+      this.pickedCards.push(pickedCard)
+      
     }
+
+    var firstCard = this.pickedCards[0];
+    var secondCard = this.pickedCards[1];
+    // //   var firstCard = $('.selected').first().data('pic.name');
+    // //   var secondCard = $('.selected').last().data('pic.name');
+
+    // //   this.pickedCards.push(firstCard);
+    // //   this.pickedCards.push(secondCard);
+    
   }
 
 
@@ -44,12 +54,12 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
             }, 1000);
           };
         }
-      }
+      
     
     
 
-    //we just need a 'Win' function, where we need to check if our property pairsGuessed reach the 
-    //numbers of pairs the game has.
+    // we just need a 'Win' function, where we need to check if our property pairsGuessed reach the 
+    // numbers of pairs the game has.
 
      MemoryGame.prototype.isFinished = function () {
        if($('.matched').length === 24){
@@ -59,6 +69,6 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
 
     //MemoryGame.prototype.shuffleCards = function () {};
 
-    this.picked();
-    this.checkIfPair();
-    this.isFinished();
+    // this.picked();
+    // this.checkIfPair();
+    // this.isFinished();
