@@ -1,74 +1,38 @@
 var MemoryGame = function (cards) {
   this.cards = cards;
-  this.pickedCards = []; //where we will be storing the cards the user have clicked so we can compare them.
+  this.pickedCards = [];
   this.pairsClicked = 0;
   this.pairsGuessed = 0;
 };
 
 
-// where we will be storing the cards the user have clicked so we can compare them => pickedCards[]
-// clicked 1st, clicked 2cnd = push to pickedCards[]
-
-MemoryGame.prototype.picked = function (whatever) {
-    if (this.pickedCards.length == 2) {  
-      // toggle back cards  
-     
-    } else {
-      var pickedCard = whatever
-      this.pickedCards.push(pickedCard)
-      
-    }
-
-    var firstCard = this.pickedCards[0];
-    var secondCard = this.pickedCards[1];
-    // //   var firstCard = $('.selected').first().data('pic.name');
-    // //   var secondCard = $('.selected').last().data('pic.name');
-
-    // //   this.pickedCards.push(firstCard);
-    // //   this.pickedCards.push(secondCard);
-    
-  }
-
-
 MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
-      if (firstCard == secondCard) {
-        // remove the cars
-        this.pairsGuessed += 1;
-        //dom manipulation
-        
-        $('.selected').each(function () {
-          $(this).animate({
-            opacity: 0
-          }).addClass('matched');
-          $(this).removeClass('selected');
-        })
-          } else {
-            // flip back over
-            this.pairsClicked += 1;
-                    //dom manipulation
+  if (firstCard === secondCard) {
+    this.pairsGuessed++;
+    $('#pairs_guessed').html(this.pairsGuessed);
+    this.pickedCards = [];
+    //opacity here
+    //$(this.pickedCards[0]).children().css('opacity', '0');
+    //$(this.pickedCards[1]).children().css('opacity', '0'); 
 
-            setTimeout(function() {
-              $('.selected').each(function () {
-                $(this).removeClass('selected'); // plus flip card on its back
-              });
-            }, 1000);
-          };
-        }
-      
-    
-    
 
-    // we just need a 'Win' function, where we need to check if our property pairsGuessed reach the 
-    // numbers of pairs the game has.
+  } else {
+    this.pairsClicked++;
+    $('#pairs_clicked').html(this.pairsClicked);
+    setTimeout(this.flipBackCards.bind(this), 1000);
+  }
+};
 
-     MemoryGame.prototype.isFinished = function () {
-       if($('.matched').length === 24){
-         $('#memory_board').html('<h1>You Won!!</h1>')
-       }
-     };
+MemoryGame.prototype.flipBackCards = function () {
 
-    //MemoryGame.prototype.shuffleCards = function () {};
+  this.pickedCards[0].children().toggleClass('front back');
+  this.pickedCards[1].children().toggleClass('front back');
+  //empty array for next round:
+  this.pickedCards = [];
+}
 
-    // this.picked();
-    // this.checkIfPair();
-    // this.isFinished();
+MemoryGame.prototype.isFinished = function () {
+  if (this.pairsGuessed === this.cards.length / 2) {
+    $('#memory_board').html("You won!!");
+  }
+}
