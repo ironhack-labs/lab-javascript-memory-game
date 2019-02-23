@@ -25,7 +25,7 @@ MemoryGame.prototype.shuffleCards = function (cards) {
     temp = cards[x];
     // make card[x] the same as the cards[randomIndex];
     cards[x] = cards[randomIndex];
-    //sw
+    //swap the last element with it;
     cards[randomIndex] = temp;
   }
  return cards 
