@@ -28,6 +28,10 @@ var cards = [
 $(document).ready(function () {
   var memoryGame = new MemoryGame(cards);
   var html = '';
+
+  // shuffle cards 
+  memoryGame.shuffleCards(memoryGame.cards);
+
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="' + pic.name + '">';
     html += '  <div class="back" name="' + pic.img + '"></div>';
@@ -40,12 +44,29 @@ $(document).ready(function () {
 
   // Bind the click event of each element to a function
   $('.back').click(function () {
-    // TODO: write some code here
-    $(this).toggleClass("front back");
-    $(this).siblings().toggleClass("front back");
-    memoryGame.cardsFlipped++
-    if (memoryGame.cardsFlipped === 2) {
-      memoryGame.checkIfPair()
+    //console.log($(this).siblings());
+    //console.log(this)
+    $(this).attr('class', "front")
+    $(this).next().attr("class", 'back')
+
+    // var pickedCard = $(this).parent(".card") -> another way of doing the same thing
+    // memoryGame.pickedCards.push
+    var pickedCard = $(this).parent(".card")
+    
+    memoryGame.pickedCards.push(pickedCard);
+  
+    if (memoryGame.pickedCards.length === 2) {
+
+      var firstCard = memoryGame.pickedCards[0].attr("data-card-name");
+      var secondCard = memoryGame.pickedCards[1].attr("data-card-name");
+
+      // console.log(firstCard)
+      // console.log(secondCard) -> log test will only work if you console log the second card. because of the logic we defined above
+
+      memoryGame.checkIfPair(firstCard, secondCard)
+
+      memoryGame.isFinished(); // after cheking if they are the same also checked if the game is Finished. 
+
     } else {
       setTimeout(function goBack() {
 
@@ -64,7 +85,11 @@ $(document).ready(function () {
 });
 
 
-
+// refering back to line 46: --> another way of doing it
+//  $('.card').click(function () {
+   
+    // $(this).children().toggleClass('front', "back");
+    // var pickedCard = $(this);
 
 
 
