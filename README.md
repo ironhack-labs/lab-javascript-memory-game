@@ -118,7 +118,7 @@ MemoryGame.prototype.isFinished = function() {
 
 Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
 
-- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `window.onload` method. Use jQuery to change the elements dynamically.
+- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `window.onload` method. Use Javascript to change the elements dynamically.
 
 ```javascript
 window.onload(function(){
@@ -152,7 +152,7 @@ To flip a card, there are different possibilities. One them is toggle the classe
 
 ## Summary
 
-In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used jQuery to listen to events and trigger the game. Also, learned a new useful shuffle algorithm.
+In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used Javascript to listen to events and trigger the game. Also, learned a new useful shuffle algorithm.
 
 ## Extra Resources
 
