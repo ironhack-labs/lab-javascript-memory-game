@@ -6,7 +6,7 @@
 After this learning unit, you will be able to:
 
 - Dynamically change the look of an HTML element
-- Use jQuery to select and trigger changes in your page
+- Use Javascript to select and trigger changes in your page
 - Understand the logic behind the Memory game
 - Show off a little bit for the first time with your recently acquired front-end abilities :wink:
 
