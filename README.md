@@ -33,7 +33,7 @@ The starter-code provides every resource you need to style your game. Please, pu
 
 ## Introduction
 
-Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles. 
+Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles.
 
 The game consists of an even number of tiles with images on one side and a generic back. Each image appears on precisely two tiles.
 
@@ -58,34 +58,28 @@ Remember: organization is the key. Keep the JavaScript related to your layout an
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Superhero Memory Game</title>
-    <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
-  </head>
-  <body>
-  </body>
+    <head>
+       <title>Superhero Memory Game</title>
+       <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
+    </head>
+    <body>
+        <div>
+          <h1>Superhero Memory Game</h1>
+        </div>
+        <div id="score">
+          <h2>Score</h2>
+          <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
+          <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+        </div>
+        <div id="memory_board"></div>
+        <script type="text/javascript" src="src/memory.js"></script>
+        <script type="text/javascript" src="src/main.js"></script>
+    </body>
 </html>
 ```
 
-Take a look above. We are not adding a **Start** button. If you think about it, we don't need it. We can render the tiles and create a listener to begin the game when the user clicks on an element. 
+Take a look above. We are not adding a **Start** button. If you think about it, we don't need it. We can render the tiles and create a listener to begin the game when the user clicks on an element.
 
-### Add your jQuery library
-
-- At the bottom of your `body` element, you can already add the CDN for your jQuery library:
-
-```html
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-```
-Also, link your `js` file. We already know how to do it :wink:.
-
-### Add your styles
-
-- In the `header` section, remember to add the link to your CSS file.
-
-```html
-<link type="text/css" rel="stylesheet" href="memory.css" media="screen">
-```
 
 ### The Logic
 
@@ -124,17 +118,17 @@ MemoryGame.prototype.isFinished = function() {
 
 Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
 
-- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `document.ready` method. Use jQuery to change the elements dynamically.
+- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `window.onload` method. Use jQuery to change the elements dynamically.
 
 ```javascript
-$(document).ready(function(){
+window.onload(function(){
 });
 ```
 
 - The other important interaction is the click listener. Remember to add the listeners when the document is loaded.
 
 ```javascript
-$('.back').click(function(){
+document.getElementsByClassName('back').click(function(){
 });
 ```
 
@@ -153,7 +147,7 @@ To flip a card, there are different possibilities. One them is toggle the classe
 <div class= "card" data-card-name="ironman">
   <div class="front" name="ironman.jpg"></div>
   <div class="back" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div
+</div>
 ```
 
 ## Summary
@@ -162,7 +156,4 @@ In this Learning Unit, you were able to separate the logic of the game from the 
 
 ## Extra Resources
 
-- [jQuery](https://jquery.com/)
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
-
-

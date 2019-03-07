@@ -25,7 +25,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-$(document).ready(function(){
+window.onload(function(){
   var memoryGame = new MemoryGame(cards);
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -36,10 +36,10 @@ $(document).ready(function(){
   });
 
   // Add all the div's to the HTML
-  $('#memory_board').html(html);
+  document.getElementById('memory_board').html(html);
 
   // Bind the click event of each element to a function
-  $('.back').click(function () {
+  document.getElementsByClassName('back').click(function () {
     // TODO: write some code here
   });
 });
