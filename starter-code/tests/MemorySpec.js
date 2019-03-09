@@ -5,9 +5,9 @@ describe('MemoryGame constructor', function () {
   beforeEach(function () {
     memoryGame = new MemoryGame([]);
   });
-
+   
   it('Create MemoryGame object', function () {
-    expect(typeof MemoryGame).toEqual('function');
+    expect(typeof MemoryGame).toBe('function');
   });
 
   it('MemoryGame should receive `cards` as a parameter and create it own `cards` property', function () {

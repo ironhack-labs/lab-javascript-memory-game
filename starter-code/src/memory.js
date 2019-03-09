@@ -10,6 +10,7 @@ var MemoryGame = function (cards) {
 };
 
 
+
 MemoryGame.prototype.shuffleCards = function () {
 
   this.cards.sort(function () {
