@@ -1,12 +1,8 @@
-var MemoryGame = function (cards) {
-  this.cards = cards;
-};
-
-MemoryGame.prototype.shuffleCards = function () {
-};
-
-MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
+class MemoryGame {
+  constructor(card){
+    this.cards = cards;
+  }
+  shuffleCards() {}
+  checkIfPair(card1, card2) {}
+  isFinished() {}
 }
-
-MemoryGame.prototype.isFinished = function () {
-};
