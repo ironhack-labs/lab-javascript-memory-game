@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '<div class="back" name="'+ pic.img +'"></div>';
+    html += '<div class="back visible" name="'+ pic.img +'"></div>';
     html += '<div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
 
@@ -42,10 +42,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
+  document.querySelectorAll('.card').forEach(function(card) {
     card.onclick = function () {
-      var front = document.querySelector('.front')
-      front.classList.toggle('back');
+      var back  = card.querySelector(".back");
+      var front = card.querySelector(".front");
+      
+      front.classList.toggle("visible")
+      back.classList.toggle("visible")
+
 
       console.log('Card clicked');
     }
