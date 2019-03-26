@@ -31,21 +31,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '<div class="back" name="'+ pic.img +'"></div>';
+    html += '<div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
+
   });
 
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
 
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+    card.onclick = function () {
+      console.log('Card clicked');
     }
   });
 });
+
 
 
