@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += '</div>';
 
   });
-
+ 
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
 
@@ -44,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function () {
+      var front = document.querySelector('.front')
+      front.classList.toggle('back');
+
       console.log('Card clicked');
     }
   });
