@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
+    html += '<div class="back" name="'+ pic.img +'"></div>';
+    html += '<div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -42,8 +42,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
+      card.className = "front"
+      card.nextSibling.className = "back"
+      console.log(card.name)
       console.log('Card clicked')
+
+      document.querySelector("#pairs_clicked").innerHTML = 
+      MemoryGame.checkIfPair();
+      console.log(checkIfPaire);
+      console.log("card")
+
     }
   });
 });
