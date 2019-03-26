@@ -139,12 +139,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
       if (arr.length === 2) {
         // if (MemoryGame.checkIfPair(arr[0], arr[1]))
         // ;
-        if (arr[0].innerHTML === arr[1].innerHTML) {
+        if (memoryGame.checkIfPair(arr[0].innerHTML, arr[1].innerHTML)) {
           contadorParejasClicadas++;
           emparejadas++;
           pairsguessed.innerHTML = emparejadas;
           pairsClicked.innerHTML = contadorParejasClicadas;
-          if (emparejadas >= 1){
+          if (emparejadas >= 8){
             setTimeout(() => {
             alert("Has ganado");
             }, 1000);
