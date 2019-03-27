@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     loadGame(memoryGame);
 });
 
-function loadGame(obj){
+function loadGame(){
 
     var html = '';
     memoryGame.shuffleCards();
