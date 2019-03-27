@@ -4,6 +4,7 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed= 0;
+   
   }
   shuffleCards() {
     for (let i = cards.length - 1; i > 0; i--) {
@@ -13,9 +14,11 @@ class MemoryGame {
     return undefined;
   }
   checkIfPair(firstCard, secondCard) {
+   
     this.pairsClicked++;
+ 
     if(firstCard === secondCard) {
-      this.pairsGuessed = 1;
+      this.pairsGuessed++;
       return true;
     } else {
       return false;

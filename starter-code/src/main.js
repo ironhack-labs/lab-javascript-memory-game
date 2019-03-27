@@ -25,6 +25,8 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
+var arr = [];
+
 
 
 document.addEventListener("DOMContentLoaded", function(event) { 
@@ -39,21 +41,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
 
+  // Variables
+
+
+  
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      card.className = "front"
-      card.nextSibling.className = "back"
-      console.log(card.name)
-      console.log('Card clicked')
+     card.className = "front"
+     card.nextSibling.className = "back"
+      // TODO: write some code here
+    
+      
+      arr.push(card.parentElement);
+    
+      console.log(arr[0].getAttribute("data-card-name"));
+      console.log(arr[1].getAttribute("data-card-name"))
+      var card1 = (arr[0].getAttribute("data-card-name"));
+      var card2 = (arr[1].getAttribute("data-card-name"));
 
-      document.querySelector("#pairs_clicked").innerHTML = 
-      MemoryGame.checkIfPair();
-      console.log(checkIfPaire);
-      console.log("card")
+      if(arr.length === 2) {
+        
+        if(memoryGame.checkIfPair(card1,card2)) {
+          document.querySelector("#pairs_clicked").innerHTML = memoryGame.pairsClicked;
 
+          console.log("array lleno")
+         
+          document.querySelector("#pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+          
+        
+          
+        } else {
+          document.querySelector("#pairs_clicked").innerHTML = memoryGame.pairsClicked;
+          
+          console.log("no coinciden")
+          arr= [];
+          console.log(arr)
+        }
+      }
     }
   });
 });
-
 
