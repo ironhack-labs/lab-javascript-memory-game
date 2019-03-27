@@ -83,7 +83,7 @@ function checkIfWon(){
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    loadGame(memoryGame);
+    loadGame();
 });
 
 function loadGame(){
