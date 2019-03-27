@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     html += '</div>';
   });
 
+  alert(" Tienes que adivinar 8 parejas de cartas para poder ganar el juego. ")
+
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
 
@@ -144,9 +146,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
           emparejadas++;
           pairsguessed.innerHTML = emparejadas;
           pairsClicked.innerHTML = contadorParejasClicadas;
+          
           if (emparejadas >= 8){
             setTimeout(() => {
-            alert("Has ganado");
+            alert("Has ganado Ironhacker");
             }, 1000);
             setTimeout(() => {
               location.reload();
@@ -154,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
           }
           
-          console.log("ganaste")
+          // console.log("ganaste")
         } else { 
           contadorParejasClicadas++;
           pairsClicked.innerHTML = contadorParejasClicadas; 
@@ -202,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       // }
 
       // TODO: write some code here
-      console.log('Card clicked ' + arr)
+      // console.log('Card clicked ' + arr)
     }
   });
 });
