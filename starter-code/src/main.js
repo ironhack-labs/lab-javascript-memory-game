@@ -46,39 +46,64 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // card is a div element with "back" class
   document.querySelectorAll(".back").forEach(function(card) {
     card.onclick = function() {
-      console.log("Card clicked");
       var cardParent = card.parentNode; //A div element containing front and back
-      console.log(cardParent);
-
       var cardName = cardParent.getAttribute("data-card-name"); //Get card name from data-card-name attribute
 
-      if (memoryGame.pickedCards.length <= 2) {
-        memoryGame.pickedCards = [];
-
-        card.className = "front"; //front
-        card.nextSibling.className = "back"; //back
-      }
       memoryGame.pickedCards.push(cardName);
-
-      if (
-        memoryGame.pickedCards.length === 2 &&
-        memoryGame.checkIfPair(
-          memoryGame.pickedCards[0],
-          memoryGame.pickedCards[1]
-        )
-      ) {
-        console.log("YEAH");
-        memoryGame.pickedCards = [];
-        console.log(memoryGame.pairsGuessed);
-        var flippedCards = document.querySelectorAll(`.card[data-card-name = ${memoryGame.pickedCards[0]}]`)
-        flippedCards.forEach(function (flippedCard) {
-          console.log(flippedCard);
-          flippedCard.childNodes.forEach((frontOrBack) => {
-            frontOrBack.classList.add('.blocked');
-          });
-        });
+      if (memoryGame.pickedCards.length <= 2) {
+        flipCard(card);
       }
       console.log(memoryGame.pickedCards);
+      if (memoryGame.pickedCards.length === 2) {
+        if (
+          memoryGame.checkIfPair(
+            memoryGame.pickedCards[0],
+            memoryGame.pickedCards[1]
+          )
+        ) {
+          blockCardsByName(cardName);
+          memoryGame.pickedCards = [];
+        } else {
+          unflipNonBlocked();
+          memoryGame.pickedCards = [];
+        }
+      }
+
+      if(memoryGame.pickedCards.length > 2) {
+        unflipNonBlocked();
+        memoryGame.pickedCards = [];
+      }
     };
   });
 });
+
+function flipCard(card) {
+  card.className = "front"; //front
+  card.nextSibling.className = "back"; //back
+}
+
+function unflipCard(card) {
+  card.className = "back"; //front
+  card.nextSibling.className = "front"; //back
+}
+
+function unflipNonBlocked() {
+  console.log("Unflip non blocked");
+  var allFronts = document.querySelectorAll('.front');
+
+  allFronts.forEach((card) => {
+    console.log(card.classList);
+    if(card.classList.contains("blocked") > 0){
+      unflipCard(card);
+    }
+  });
+}
+
+function blockCardsByName(name) {
+  console.log("Blocking cards by name " + name);
+  var desiredCards = document.querySelectorAll(`[data-card-name="${name}"]`);
+  desiredCards.forEach((card) => {
+    card.querySelector('.front').classList.add('blocked');
+    card.querySelector('.back').classList.add('blocked');
+  });
+}
