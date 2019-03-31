@@ -27,6 +27,7 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 
 
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -42,10 +43,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
+      // document.querySelectorAll('.back').addEventListener("click", function(){  
+      card.classList.toggle('front')
+      //card.classList.add('front')
       console.log('Card clicked')
     }
   });
 });
 
+
+document.querySelector('#pairs_clicked').innerText = `${memoryGame.pairsClicked}`
+document.querySelector('#pairs_guessed').innerText = `${memoryGame.pairsGuessed}`
 
