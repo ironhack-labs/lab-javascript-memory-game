@@ -40,11 +40,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
+  document.querySelectorAll('.back').forEach(function(card, i) {
     card.onclick = function() {
       // TODO: write some code here
+
+      
+      card.style.background= `url(img/${cards[i].img})`
+      
       console.log('Card clicked')
     }
+    memoryGame.shuffleCards()
   });
 });
 
