@@ -22,8 +22,8 @@ class MemoryGame {
     }
   }
 
-  checkIfPair(card1, card2) {
-    if (card1 == card2) {
+  checkIfPair(firstCard, secondCard) {
+    if (firstCard == secondCard) {
       this.pairsGuessed++;
       return true;
     } else {
