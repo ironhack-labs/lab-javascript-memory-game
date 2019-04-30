@@ -4,9 +4,11 @@ class MemoryGame {
     this.pickedCards = []
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
+    this.shuffleCards()
   }
 
   shuffleCards() {
+    console.table(this.cards)
     let m = this.cards.length
     let t, i
     // While there remain elements to shuffle…
@@ -18,6 +20,8 @@ class MemoryGame {
       this.cards[m] = this.cards[i]
       this.cards[i] = t
     }
+    console.table(cards)
+    this.cards = this.cards
 
   }
   checkIfPair(card1, card2) {
