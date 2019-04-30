@@ -67,3 +67,23 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+h3 {
+  font-size: 2.5em;
+  font-weight: 900;
+  background-color: rgba(245, 245, 245, .6);
+}
+.popUp {
+  padding: 40px 80px;
+  text-align: center
+}
+
+.popUpBtn {
+  display: inline-block;
+  width: 120px;
+  height: 30px;
+  padding: 40px 80px;
+  background-color: lightblue;
+  font-size: 1em;
+  text-decoration: none;
+}

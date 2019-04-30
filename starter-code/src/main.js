@@ -25,7 +25,13 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards()
 
+function popUp() {
+open("endGame.html", "Fin de Juego", "width=800px, height= 600px, top=200px, left=500px")
+}
+
+popUp()
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
@@ -34,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
+  
   });
 
   // Add all the div's to the HTML
@@ -41,11 +48,60 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
+    card.onclick = (event) => {
+      let front = event.currentTarget
+      let back = event.currentTarget.parentNode.lastChild 
+      let cardName = event.currentTarget.parentNode.getAttribute("data-card-name")
+      let buffer = memoryGame.pickedCards   
+      console.log(buffer)                                      //BUFFER PARA RECORDAR CARTA ANTERIOR
+      memoryGame.pairsClicked++
+      document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked
+
+      
+
+      if (buffer.length == 0) {
+        front.className =  "front"
+        back.className = "back"
+        buffer.push([cardName, front, back])                                  //PUSHEO LA CARTA ANTERIOR JUNTO A SUS POSICIONES EN EL BUFFER
+        console.log(buffer)
+      } else if (buffer.length == 1) {
+        front.className =  "front"
+        back.className = "back"
+        buffer.push([cardName, front, back])
+        console.log(buffer)
+        
+                                                                          //TIMEOUT PARA VOLVER A DAR LA VUELTA A LAS CARTAS
+        setTimeout( () => {
+          if (buffer[0][0] != buffer[1][0]) {
+            front.className = "back"
+            back.className = "front"
+            buffer[0][1].className = "back"
+            buffer[0][2].className = "front"
+            buffer = []
+            memoryGame.pickedCards = []
+            console.log(buffer)
+          } else {
+            buffer = []
+            memoryGame.pickedCards = []
+            memoryGame.pairsGuessed++
+            document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed
+            
+            if (memoryGame.pairsGuessed == memoryGame.cards.length/2) {       // FIN DE JUEGO
+              popUp()
+              return
+            }
+          }
+        } ,100)
+
+      }
+
+      
       // TODO: write some code here
       console.log('Card clicked')
     }
   });
 });
+
+document.getElementById("memory_board").parentNode.lastChild
 
 
