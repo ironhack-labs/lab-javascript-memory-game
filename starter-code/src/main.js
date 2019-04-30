@@ -27,11 +27,10 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards()
 
-function popUp() {
+function endGame() {
 open("endGame.html", "Fin de Juego", "width=800px, height= 600px, top=200px, left=500px")
 }
 
-popUp()
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = (event) => {
-      let front = event.currentTarget
+      let front = event.currentTarget                          //Almaceno temporalmente los divs front y back
       let back = event.currentTarget.parentNode.lastChild 
       let cardName = event.currentTarget.parentNode.getAttribute("data-card-name")
       let buffer = memoryGame.pickedCards   
@@ -59,10 +58,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       
 
-      if (buffer.length == 0) {
+      if (buffer.length == 0) {                           // Estructura de control para comparar pares de cartas
         front.className =  "front"
         back.className = "back"
-        buffer.push([cardName, front, back])                                  //PUSHEO LA CARTA ANTERIOR JUNTO A SUS POSICIONES EN EL BUFFER
+        buffer.push([cardName, front, back])                       //PUSHEO LA CARTA ANTERIOR JUNTO A SUS POSICIONES EN EL BUFFER
         console.log(buffer)
       } else if (buffer.length == 1) {
         front.className =  "front"
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed
             
             if (memoryGame.pairsGuessed == memoryGame.cards.length/2) {       // FIN DE JUEGO
-              popUp()
+              endGame()
               return
             }
           }
