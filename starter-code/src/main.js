@@ -41,11 +41,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
+    card.onclick = (event) => {
       // TODO: write some code here
       console.log('Card clicked')
+      console.log(event)
+      console.log(event.currentTarget.parentNode.lastChild)
+      event.currentTarget.className = "front"         
+      event.currentTarget.parentNode.lastChild.className = "back"      
+     }
+  });
+
+
+  document.querySelectorAll('.front').forEach(function(card) {
+    card.onclick = (event) => {
+      // TODO: write some code here
+      console.log('Card clicked')
+      console.log(event.currentTarget.parentNode.lastChild)
+
+        event.currentTarget.className = "back"         
+        event.currentTarget.parentNode.firstChild.className = "front"      
     }
   });
 });
 
 
+function showDetails(animal) {
+  var animalType = animal.getAttribute("data-animal-type");
+  alert("The " + animal.innerHTML + " is a " + animalType + ".");
+}
