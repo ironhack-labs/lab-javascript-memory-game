@@ -27,6 +27,7 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 
 
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -43,6 +44,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
       // TODO: write some code here
+      if (card == ""){
+        
+        
+      }
       console.log('Card clicked')
     }
   });
