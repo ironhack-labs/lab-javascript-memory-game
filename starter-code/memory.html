@@ -18,6 +18,7 @@
           v-for="(card, index) in cards"
           :single-card="card"
           :key="index"
+          @click.native="openCard"
           ></card>
         </div>
 

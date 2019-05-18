@@ -1,7 +1,11 @@
 
 Vue.component('card', {
-  props: ['single-cards'],
-  template: '<div class="back"></div>'
+  props: ['single-card'],
+  template: 
+  `<div class="card" data-card-name="'+ single-card.name +'">
+    <div class="back" name="'+ single-card.img +'"></div>
+    <div class="front" style="background: url(img/'+ single-card.img +') no-repeat"></div>
+   </div>`
 })
 
 var app = new Vue({
@@ -33,6 +37,11 @@ var app = new Vue({
       { name: 'the avengers',    img: 'the-avengers.jpg' },
       { name: 'thor',            img: 'thor.jpg' }
     ]
+  },
+  methods: {
+    openCard: function(event){
+      console.log(event, "card clicked");
+    }
   }
 })
 
