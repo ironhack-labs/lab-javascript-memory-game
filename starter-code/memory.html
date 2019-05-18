@@ -13,8 +13,15 @@
           <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
           <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
         </div>
-        <div id="memory_board"></div>
+        <div id="memory_board">
+          <card
+          v-for="(card, index) in cards"
+          :single-card="card"
+          :key="index"
+          ></card>
+        </div>
 
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="text/javascript" src="src/memory.js"></script>
         <script type="text/javascript" src="src/main.js"></script>
     </body>
