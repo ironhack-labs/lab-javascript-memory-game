@@ -5,17 +5,21 @@
        <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
     </head>
     <body>
-        <div>
-          <h1>Superhero Memory Game</h1>
+        <div id="appContenedor">
+            <div>
+                <h1>Superhero Memory Game</h1>
+            </div>
+            <div id="score">
+                <h2>Score</h2>
+                <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
+                <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+            </div>
+            <div id="memory_board"></div>
         </div>
-        <div id="score">
-          <h2>Score</h2>
-          <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-          <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
-        </div>
-        <div id="memory_board"></div>
 
-        <script type="text/javascript" src="src/memory.js"></script>
-        <script type="text/javascript" src="src/main.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="src/app.js"></script>
+
     </body>
 </html>
