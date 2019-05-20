@@ -2,9 +2,9 @@
 Vue.component('card', {
   props: ['single-card'],
   template: 
-  `<div class="card" data-card-name="'+ single-card.name +'">
-    <div class="back" name="'+ single-card.img +'"></div>
-    <div class="front" style="background: url(img/'+ single-card.img +') no-repeat"></div>
+  `<div class="card" :data-card-name="singleCard.name">
+    <div class="back" :name="singleCard.img"></div>
+    <div class="front" :style="{ background: 'url(img/' + singleCard.img + ') no-repeat' }"></div>
    </div>`
 })
 
@@ -41,7 +41,7 @@ var app = new Vue({
   methods: {
     openCard: function(index){
       let shuffled = this.cards;
-      console.log(shuffled[index].name);
+      return shuffled[index].img;
     }
   }
 })
