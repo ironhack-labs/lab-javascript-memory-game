@@ -39,13 +39,16 @@ var app = new Vue({
     ]
   },
   methods: {
-    openCard: function(event){
-      console.log(event, "card clicked");
+    openCard: function(index){
+      let shuffled = this.cards;
+      console.log(shuffled[index].name);
     }
   }
 })
 
 let memoryGame = new MemoryGame(app.cards);
+memoryGame.shuffleCards();
+
 
 // document.addEventListener("DOMContentLoaded", function(event) { 
 //   var html = '';

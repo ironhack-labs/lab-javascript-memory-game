@@ -5,6 +5,7 @@
        <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
     </head>
     <body>
+      
         <div>
           <h1>Superhero Memory Game</h1>
         </div>
@@ -18,7 +19,7 @@
           v-for="(card, index) in cards"
           :single-card="card"
           :key="index"
-          @click.native="openCard"
+          @click.native="openCard(index)"
           ></card>
         </div>
 
