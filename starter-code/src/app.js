@@ -190,7 +190,6 @@ const app = new Vue({
                 });
 
                 if (cartaPendiente) {
-                    console.log('x');
                     cartaPendiente.isDisplay = true;
                     app.ponerCartaEnTablero();
                 }
