@@ -12,7 +12,6 @@
         }
 
 
-
         /* ******************************************************************** */
 
         .flip-card {
@@ -65,28 +64,32 @@
     <div>
         <h1>Superhero Memory Game</h1>
     </div>
-    <div id="score">
-        <h2>Score</h2>
-        <p>Pairs Clicked: <span id="pairs_clicked">{{compNumJugadas}}</span></p>
-        <p>Pairs Guessed: <span id="pairs_guessed">{{compNumParejas}}</span></p>
+
+    <div id="score" style="margin:auto; width: 80%; color: #fff; display: flex">
+        <div style="color:#c3c3c3; flex-grow: 1; text-align: center">Score</div>
+        <div style="padding: 4px 25px">Pairs Clicked: <span id="pairs_clicked">{{compNumJugadas}}</span></div>
+        <div style="padding: 4px 25px">Pairs Guessed: <span id="pairs_guessed">{{compNumParejas}}</span></div>
+
     </div>
-    <div id="memory_board">
+
+
+    <div id="memory_board" style="margin-top: 30px">
 
         <div class="contenedorCartas">
 
             <div class="flip-card"
                  v-for="(item, index) in listaCartas"
                  :key="item.id"
-                 v-bind:class ="{'isShow': item.isShow}"
+                 v-bind:class="{'isShow': item.isShow}"
                  @click="onClickCarta($event,item)"
             >
                 <div class="flip-card-inner">
                     <div class="flip-card-back">
-<!--                        {{item.id}}  {{item.isShow}}-->
-<!--                        {{index}}-->
+                        <!--                        {{item.id}}  {{item.isShow}}-->
+                        <!--                        {{index}}-->
                     </div>
                     <div class="flip-card-front">
-                        <img :src="getUrlImgBgCarta(item)" alt="" />
+                        <img :src="getUrlImgBgCarta(item)" alt=""/>
                     </div>
                 </div>
             </div>

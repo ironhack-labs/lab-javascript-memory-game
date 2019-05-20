@@ -28,6 +28,7 @@ const ProcesoJugada = {
     reset: () => {
         ProcesoJugada.carta1 = null;
         ProcesoJugada.carta2 = null;
+        ProcesoJugada.isParesAbiertos = false;
     }
 };
 
@@ -93,14 +94,12 @@ const app = new Vue({
             jugada.mostrarCarta(carta);
 
             if (jugada.evaluarSiEsPrimeraCarta(carta)) {
-                /* si es la primer carta salimos y esperamos por la segunda carta*/
                 jugada.registrarCarta1(carta);
                 return;
             }
 
 
             if (jugada.validarSiSeRepiteCarta1(carta)) {
-                /* si  repite click en la priemr carta nos salimos a esperar una carta valida */
                 return;
             }
 
@@ -128,11 +127,9 @@ const app = new Vue({
                 setTimeout(() => {
                     ProcesoJugada.carta1.isShow = false;
                     ProcesoJugada.carta2.isShow = false;
-                    ProcesoJugada.isParesAbiertos = false;
                     ProcesoJugada.reset();
-                    console.log('ocultados');
                 }, 3000);
-                console.log('esperando ocultar');
+
             }
 
         }
@@ -141,6 +138,19 @@ const app = new Vue({
     },
     methods: {
         barajear() {
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    let temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+                return array;
+            }
+
+            this.listaCartas = shuffle(this.listaCartas);
+
 
             this.listaCartas.forEach(item => {
 
