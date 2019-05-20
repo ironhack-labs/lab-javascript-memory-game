@@ -43,37 +43,80 @@ const ProcesoCalificarJugada = {
         }
 
         return isPareja;
-    }
+    },
+
 };
 
 const app = new Vue({
     el: "#appContenedor",
     data: {
         listaCartas: [
-            {name: 'aquaman', img: 'aquaman.jpg', isShow: false, isResuelta: false, id: 1},
-            {name: 'batman', img: 'batman.jpg', isShow: false, isResuelta: false, id: 2},
-            {name: 'captain america', img: 'captain-america.jpg', isShow: false, isResuelta: false, id: 3},
-            {name: 'fantastic four', img: 'fantastic-four.jpg', isShow: false, isResuelta: false, id: 4},
-            {name: 'flash', img: 'flash.jpg', isShow: false, isResuelta: false, id: 5},
-            {name: 'green arrow', img: 'green-arrow.jpg', isShow: false, isResuelta: false, id: 6},
-            {name: 'green lantern', img: 'green-lantern.jpg', isShow: false, isResuelta: false, id: 7},
-            {name: 'ironman', img: 'ironman.jpg', isShow: false, isResuelta: false, id: 8},
-            {name: 'spiderman', img: 'spiderman.jpg', isShow: false, isResuelta: false, id: 9},
-            {name: 'superman', img: 'superman.jpg', isShow: false, isResuelta: false, id: 25},
-            {name: 'the avengers', img: 'the-avengers.jpg', isShow: false, isResuelta: false, id: 10},
-            {name: 'thor', img: 'thor.jpg', isShow: false, isResuelta: false, id: 11},
-            {name: 'aquaman', img: 'aquaman.jpg', isShow: false, isResuelta: false, id: 12},
-            {name: 'batman', img: 'batman.jpg', isShow: false, isResuelta: false, id: 13},
-            {name: 'captain america', img: 'captain-america.jpg', isShow: false, isResuelta: false, id: 14},
-            {name: 'fantastic four', img: 'fantastic-four.jpg', isShow: false, isResuelta: false, id: 33},
-            {name: 'flash', img: 'flash.jpg', isShow: false, isResuelta: false, id: 15},
-            {name: 'green arrow', img: 'green-arrow.jpg', isShow: false, isResuelta: false, id: 16},
-            {name: 'green lantern', img: 'green-lantern.jpg', isShow: false, isResuelta: false, id: 17},
-            {name: 'ironman', img: 'ironman.jpg', isShow: false, isResuelta: false, id: 18},
-            {name: 'spiderman', img: 'spiderman.jpg', isShow: false, isResuelta: false, id: 19},
-            {name: 'superman', img: 'superman.jpg', isShow: false, isResuelta: false, id: 20},
-            {name: 'the avengers', img: 'the-avengers.jpg', isShow: false, isResuelta: false, id: 21},
-            {name: 'thor', img: 'thor.jpg', isShow: false, isResuelta: false, id: 22}
+            {name: 'aquaman', img: 'aquaman.jpg', isShow: false, isResuelta: false, id: 1, isDisplay: false},
+            {name: 'batman', img: 'batman.jpg', isShow: false, isResuelta: false, id: 2, isDisplay: false},
+            {
+                name: 'captain america',
+                img: 'captain-america.jpg',
+                isShow: false,
+                isResuelta: false,
+                id: 3,
+                isDisplay: false
+            },
+            {
+                name: 'fantastic four',
+                img: 'fantastic-four.jpg',
+                isShow: false,
+                isResuelta: false,
+                id: 4,
+                isDisplay: false
+            },
+            {name: 'flash', img: 'flash.jpg', isShow: false, isResuelta: false, id: 5, isDisplay: false},
+            {name: 'green arrow', img: 'green-arrow.jpg', isShow: false, isResuelta: false, id: 6, isDisplay: false},
+            {
+                name: 'green lantern',
+                img: 'green-lantern.jpg',
+                isShow: false,
+                isResuelta: false,
+                id: 7,
+                isDisplay: false
+            },
+            {name: 'ironman', img: 'ironman.jpg', isShow: false, isResuelta: false, id: 8, isDisplay: false},
+            {name: 'spiderman', img: 'spiderman.jpg', isShow: false, isResuelta: false, id: 9, isDisplay: false},
+            {name: 'superman', img: 'superman.jpg', isShow: false, isResuelta: false, id: 25, isDisplay: false},
+            {name: 'the avengers', img: 'the-avengers.jpg', isShow: false, isResuelta: false, id: 10, isDisplay: false},
+            {name: 'thor', img: 'thor.jpg', isShow: false, isResuelta: false, id: 11, isDisplay: false},
+            {name: 'aquaman', img: 'aquaman.jpg', isShow: false, isResuelta: false, id: 12, isDisplay: false},
+            {name: 'batman', img: 'batman.jpg', isShow: false, isResuelta: false, id: 13, isDisplay: false},
+            {
+                name: 'captain america',
+                img: 'captain-america.jpg',
+                isShow: false,
+                isResuelta: false,
+                id: 14,
+                isDisplay: false
+            },
+            {
+                name: 'fantastic four',
+                img: 'fantastic-four.jpg',
+                isShow: false,
+                isResuelta: false,
+                id: 33,
+                isDisplay: false
+            },
+            {name: 'flash', img: 'flash.jpg', isShow: false, isResuelta: false, id: 15, isDisplay: false},
+            {name: 'green arrow', img: 'green-arrow.jpg', isShow: false, isResuelta: false, id: 16, isDisplay: false},
+            {
+                name: 'green lantern',
+                img: 'green-lantern.jpg',
+                isShow: false,
+                isResuelta: false,
+                id: 17,
+                isDisplay: false
+            },
+            {name: 'ironman', img: 'ironman.jpg', isShow: false, isResuelta: false, id: 18, isDisplay: false},
+            {name: 'spiderman', img: 'spiderman.jpg', isShow: false, isResuelta: false, id: 19, isDisplay: false},
+            {name: 'superman', img: 'superman.jpg', isShow: false, isResuelta: false, id: 20, isDisplay: false},
+            {name: 'the avengers', img: 'the-avengers.jpg', isShow: false, isResuelta: false, id: 21, isDisplay: false},
+            {name: 'thor', img: 'thor.jpg', isShow: false, isResuelta: false, id: 22, isDisplay: false}
         ],
         juego: {
             numJugadas: 0,
@@ -114,12 +157,15 @@ const app = new Vue({
                 this.juego.numParejas++;
 
                 if (this.juego.numParejas === this.listaCartas.length / 2) {
-                    alert('ya se termino el juego');
+                    this.terminarJuego();
+
+                } else {
+                    console.log('par encontrado');
+
+                    ProcesoJugada.reset();
                 }
 
-                console.log('par encontrado');
 
-                ProcesoJugada.reset();
             } else {
 
                 ProcesoJugada.isParesAbiertos = true;
@@ -137,6 +183,29 @@ const app = new Vue({
 
     },
     methods: {
+        ponerCartaEnTablero: function () {
+            setTimeout(function () {
+                let cartaPendiente = app.listaCartas.find(item => {
+                    return item.isDisplay === false;
+                });
+
+                if (cartaPendiente) {
+                    console.log('x');
+                    cartaPendiente.isDisplay = true;
+                    app.ponerCartaEnTablero();
+                }
+
+            }, 50);
+        },
+        terminarJuego() {
+            alert(`ya se termino el juego con ${this.juego.numJugadas}`);
+
+            this.barajear();
+
+            setTimeout(() => {
+                app.ponerCartaEnTablero();
+            }, 3000);
+        },
         barajear() {
 
             function shuffle(array) {
@@ -156,10 +225,15 @@ const app = new Vue({
 
                 item.isShow = false;
                 item.isResuelta = false;
+                item.isDisplay = false;
             });
 
 
             ProcesoJugada.reset();
+
+            /* las cartas no se ven , mostrar una por una
+              usando ponerCartasEnTablero*/
+
 
             //reset puntos
             this.juego.numJugadas = 0;
@@ -183,5 +257,11 @@ const app = new Vue({
     },
     created() {
         this.barajear();
+    },
+    mounted() {
+        console.log('xxxxxx');
+        setTimeout(() => {
+            app.ponerCartaEnTablero();
+        }, 500);
     }
 });

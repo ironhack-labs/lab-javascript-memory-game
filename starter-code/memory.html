@@ -14,6 +14,10 @@
 
         /* ******************************************************************** */
 
+        .noDisplay{
+            display: none;
+        }
+
         .flip-card {
             background-color: transparent;
             width: 120px;
@@ -80,13 +84,13 @@
             <div class="flip-card"
                  v-for="(item, index) in listaCartas"
                  :key="item.id"
-                 v-bind:class="{'isShow': item.isShow}"
+                 v-bind:class="{'isShow': item.isShow,'noDisplay':!item.isDisplay}"
                  @click="onClickCarta($event,item)"
             >
                 <div class="flip-card-inner">
                     <div class="flip-card-back">
-                        <!--                        {{item.id}}  {{item.isShow}}-->
-                        <!--                        {{index}}-->
+                        <!--  {{item.id}}  {{item.isShow}}-->
+                        <!--  {{index}}    {{item.name}}-->
                     </div>
                     <div class="flip-card-front">
                         <img :src="getUrlImgBgCarta(item)" alt=""/>
