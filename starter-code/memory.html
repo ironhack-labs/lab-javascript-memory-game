@@ -67,8 +67,8 @@
     </div>
     <div id="score">
         <h2>Score</h2>
-        <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-        <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+        <p>Pairs Clicked: <span id="pairs_clicked">{{compNumJugadas}}</span></p>
+        <p>Pairs Guessed: <span id="pairs_guessed">{{compNumParejas}}</span></p>
     </div>
     <div id="memory_board">
 
@@ -82,8 +82,8 @@
             >
                 <div class="flip-card-inner">
                     <div class="flip-card-back">
-                        {{item.id}}  {{item.isShow}}
-                        {{index}}
+<!--                        {{item.id}}  {{item.isShow}}-->
+<!--                        {{index}}-->
                     </div>
                     <div class="flip-card-front">
                         <img :src="getUrlImgBgCarta(item)" alt="" />

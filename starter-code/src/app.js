@@ -43,18 +43,6 @@ const ProcesoCalificarJugada = {
         if (isPareja) {
             carta1.isResuelta = true;
             carta2.isResuelta = true;
-
-        } else {
-            /* ocultar las cartas en 4 segundos */
-
-            ProcesoJugada.esperandoOcultarPar = true;
-
-            setTimeout(() => {
-                ProcesoJugada.carta1.isShow = false;
-                ProcesoJugada.carta2.isShow = false;
-                ProcesoJugada.esperandoOcultarPar = false;
-                console.log('ocultados');
-            },3000);
         }
 
         return isPareja;
@@ -91,7 +79,7 @@ const app = new Vue({
             {name: 'thor', img: 'thor.jpg', isShow: false, isResuelta: false, id: 22}
         ],
         juego: {
-            numClicks: 0,
+            numJugadas: 0,
             numParejas: 0
         },
         onClickCarta(event, carta) {
@@ -109,9 +97,7 @@ const app = new Vue({
             jugada.mostrarCarta(carta);
 
             if (jugada.evaluarSiEsPrimeraCarta(carta)) {
-                /* si es la primer carta salimos y esperamos por la segunda carta*/
-
-                this.juego.numClicks++;
+               /* si es la primer carta salimos y esperamos por la segunda carta*/
                 return;
             }
 
@@ -123,7 +109,7 @@ const app = new Vue({
 
             /*aqui ya sabemos que fue una carta 2 valdia*/
             jugada.registrarCarta2(carta);
-            this.juego.numClicks++;
+            this.juego.numJugadas++;
 
 
             let isParejaEncontrada = ProcesoCalificarJugada.validarSiSonPareja(jugada.carta1, jugada.carta2);
@@ -134,6 +120,22 @@ const app = new Vue({
                 if (this.juego.numParejas === this.listaCartas.length / 2) {
                     alert('ya se termino el juego');
                 }
+
+                console.log('par encontrado');
+
+                ProcesoJugada.reset();
+            }else{
+
+                ProcesoJugada.esperandoOcultarPar = true;
+
+                setTimeout(() => {
+                    ProcesoJugada.carta1.isShow = false;
+                    ProcesoJugada.carta2.isShow = false;
+                    ProcesoJugada.esperandoOcultarPar = false;
+                    ProcesoJugada.reset();
+                    console.log('ocultados');
+                },3000);
+                console.log('esperando ocultar');
             }
 
         }
@@ -153,7 +155,7 @@ const app = new Vue({
             ProcesoJugada.reset();
 
             //reset puntos
-            this.juego.numClicks = 0;
+            this.juego.numJugadas = 0;
             this.juego.numParejas = 0;
 
             //msg de debug
@@ -165,8 +167,8 @@ const app = new Vue({
 
     },
     computed: {
-        compNumClicks() {
-            return this.juego.numClicks;
+        compNumJugadas() {
+            return this.juego.numJugadas;
         },
         compNumParejas() {
             return this.juego.numParejas;
