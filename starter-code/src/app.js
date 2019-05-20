@@ -1,30 +1,26 @@
 const ProcesoJugada = {
-    esperandoOcultarPar: false,
+    isParesAbiertos: false,
     carta1: null,
     carta2: null,
     validarSiHayParesAbiertos: () => {
-        return ProcesoJugada.esperandoOcultarPar === true;
+        return ProcesoJugada.isParesAbiertos === true;
     },
-    validarSiCartaEsJugable: (carta) => {
-        return carta.isResuelta === false;
+    validarSiCartaEsResuelta: (carta) => {
+        return carta.isResuelta === true;
     },
     mostrarCarta: (carta) => {
         carta.isShow = true;
     },
     evaluarSiEsPrimeraCarta: (carta) => {
-        let isEsperandoCarta1 = ProcesoJugada.carta1 === null;
-
-        if (isEsperandoCarta1) {
-            ProcesoJugada.carta1 = carta
-        }
-
-        return isEsperandoCarta1;
-
+        return ProcesoJugada.carta1 === null;
     },
     validarSiSeRepiteCarta1: (carta) => {
 
         return carta.id === ProcesoJugada.carta1.id;
 
+    },
+    registrarCarta1: (carta) => {
+        ProcesoJugada.carta1 = carta;
     },
     registrarCarta2: (carta) => {
         ProcesoJugada.carta2 = carta;
@@ -90,14 +86,15 @@ const app = new Vue({
                 return;
             }
 
-            if (!jugada.validarSiCartaEsJugable(carta)) {
+            if (jugada.validarSiCartaEsResuelta(carta)) {
                 return;
             }
 
             jugada.mostrarCarta(carta);
 
             if (jugada.evaluarSiEsPrimeraCarta(carta)) {
-               /* si es la primer carta salimos y esperamos por la segunda carta*/
+                /* si es la primer carta salimos y esperamos por la segunda carta*/
+                jugada.registrarCarta1(carta);
                 return;
             }
 
@@ -124,17 +121,17 @@ const app = new Vue({
                 console.log('par encontrado');
 
                 ProcesoJugada.reset();
-            }else{
+            } else {
 
-                ProcesoJugada.esperandoOcultarPar = true;
+                ProcesoJugada.isParesAbiertos = true;
 
                 setTimeout(() => {
                     ProcesoJugada.carta1.isShow = false;
                     ProcesoJugada.carta2.isShow = false;
-                    ProcesoJugada.esperandoOcultarPar = false;
+                    ProcesoJugada.isParesAbiertos = false;
                     ProcesoJugada.reset();
                     console.log('ocultados');
-                },3000);
+                }, 3000);
                 console.log('esperando ocultar');
             }
 
