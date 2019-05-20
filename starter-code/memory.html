@@ -1,25 +1,113 @@
 <!DOCTYPE html>
 <html>
-    <head>
-       <title>Superhero Memory Game</title>
-       <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
-    </head>
-    <body>
-        <div id="appContenedor">
-            <div>
-                <h1>Superhero Memory Game</h1>
+<head>
+    <title>Superhero Memory Game</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
+
+    <style>
+
+        .contenedorCartas {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
+
+        /* ******************************************************************** */
+
+        .flip-card {
+            background-color: transparent;
+            width: 120px;
+            height: 120px;
+            perspective: 1000px; /* Remove this if you don't want the 3D effect */
+            padding: 5px;
+        }
+
+        /* This container is needed to position the front and back side */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        /* Do an horizontal flip when you move the mouse over the flip box container */
+        .flip-card.isShow .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Position the front and back side */
+        .flip-card-back, .flip-card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        /* Style the front side (fallback if image is missing) */
+        .flip-card-back {
+            background-color: #456783;
+            color: black;
+        }
+
+        /* Style the back side */
+        .flip-card-front {
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+    </style>
+</head>
+<body>
+<div id="appContenedor">
+    <div>
+        <h1>Superhero Memory Game</h1>
+    </div>
+    <div id="score">
+        <h2>Score</h2>
+        <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
+        <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+    </div>
+    <div id="memory_board">
+
+        <div class="contenedorCartas">
+
+            <div class="flip-card"
+                 v-for="(item, index) in listaCartas"
+                 :key="item.id"
+                 v-bind:class ="{'isShow': item.isShow}"
+                 @click="onClickCarta($event,item)"
+            >
+                <div class="flip-card-inner">
+                    <div class="flip-card-back">
+                        {{item.id}}  {{item.isShow}}
+                        {{index}}
+                    </div>
+                    <div class="flip-card-front">
+                        <img :src="getUrlImgBgCarta(item)" alt="" />
+                    </div>
+                </div>
             </div>
-            <div id="score">
-                <h2>Score</h2>
-                <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-                <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
-            </div>
-            <div id="memory_board"></div>
+
+
+
+
+            <!--                    <div class="carta">-->
+            <!--                        <div class="vistaBack" style="display: none"></div>-->
+            <!--                        <div class="vistaFront" style="background-image: url('img/aquaman.jpg')"></div>-->
+            <!--                    </div>-->
+
+
         </div>
 
+    </div>
+</div>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script type="text/javascript" src="src/app.js"></script>
 
-    </body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="src/app.js"></script>
+
+</body>
 </html>
