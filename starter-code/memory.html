@@ -8,20 +8,21 @@
         <div>
           <h1>Superhero Memory Game</h1>
         </div>
-        <div id="score">
-          <h2>Score</h2>
-          <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-          <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+        <div id="game">
+          <div id="score">
+            <h2>Score</h2>
+            <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
+            <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
+          </div>
+          <div id="memory_board">
+            <card-square
+              v-for="(element, index) in cards"
+              v-bind:e="element"
+              v-bind:key="element.id"
+              >
+            </card-square>
+          </div> 
         </div>
-        <div id="memory_board">
-          <card-square
-            v-for="(square, index) in cards"
-            v-bind:e="square"
-            >
-            <!-- v-bind:style="{background: 'url(' + square.img +') no-repeat'}" -->
-
-          </card-square>
-        </div> 
         <!-- development version, includes helpful console warnings -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="text/javascript" src="src/memory.js"></script>
