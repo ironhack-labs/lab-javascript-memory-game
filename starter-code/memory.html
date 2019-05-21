@@ -16,7 +16,9 @@
         <div id="memory_board">
           <card-square
             v-for="(square, index) in cards"
-          >
+            v-bind:e="square"
+            >
+            <!-- v-bind:style="{background: 'url(' + square.img +') no-repeat'}" -->
 
           </card-square>
         </div> 
