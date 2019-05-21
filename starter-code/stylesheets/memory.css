@@ -30,7 +30,7 @@ html {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(151, 147, 147, 0.8);;
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
@@ -38,6 +38,15 @@ html {
   padding: 20px;
   padding-top: 0;
   margin-left: 75%;
+}
+/* #score:hover{
+  background-color: rgba(255, 0, 0, 0.74);
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+} */
+
+#score:hover{
+  background-color: rgba(45, 192, 118, 0.74);
+  animation: nod 0.82s cubic-bezier(.36,.07,.19,.97) both;
 }
 
 .container {
@@ -66,4 +75,40 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes nod {
+  10%, 90% {
+    transform: translate3d(0, -1px, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(0, 2px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(0, -4px, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(0, 4px, 0);
+  }
 }
