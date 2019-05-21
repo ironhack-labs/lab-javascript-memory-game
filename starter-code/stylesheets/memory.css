@@ -21,14 +21,14 @@ html {
 	float:left;
 	margin:10px;
 	padding:20px;
-	font-size:64px;
+  font-size:64px;
 }
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
-#score {
+.score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
   font-size: 30px;
