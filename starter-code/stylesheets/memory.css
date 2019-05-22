@@ -29,7 +29,7 @@ html {
   pointer-events: none;
 }
 
-#score {
+.score-class {
   background-color: rgba(151, 147, 147, 0.8);;
   border-radius: 8px;
   font-size: 30px;
@@ -39,12 +39,12 @@ html {
   padding-top: 0;
   margin-left: 75%;
 }
-/* #score:hover{
+.wrong{
   background-color: rgba(255, 0, 0, 0.74);
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-} */
+}
 
-#score:hover{
+.right{
   background-color: rgba(45, 192, 118, 0.74);
   animation: nod 0.82s cubic-bezier(.36,.07,.19,.97) both;
 }

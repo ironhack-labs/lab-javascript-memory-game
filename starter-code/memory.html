@@ -9,11 +9,13 @@
           <h1>Superhero Memory Game</h1>
         </div>
         <div id="game">
-          <div id="score">
+          <div id="score" class="score-class"
+          :class="[attemptSuccess ? 'right' : 'wrong']"
+          >
             <h2>Score</h2>
-            <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
-            <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
-          </div>
+            <p>Pairs Clicked: <span id="pairs_clicked">{{ pairsClicked }}</span></p>
+            <p>Pairs Guessed: <span id="pairs_guessed">{{ pairsGuessed }}</span></p>
+            </div>
           <div id="memory_board">
             <card-square
               v-for="(element, index) in cards"
