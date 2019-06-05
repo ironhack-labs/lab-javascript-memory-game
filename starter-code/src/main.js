@@ -62,8 +62,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
           memoryGame.pickedCards[0],
           memoryGame.pickedCards[1]
         );
-        memoryGame.pickedCards = [];
-        //changer chiffres affichés sur le jeu
+
+        //resterait : quand la paire est cliquée et qu'elle est checkée, if true, les card gardent leurs classes et le score s'incrémente, if false, elles flippent +
+        //pickedCars est vidé
+        //si la partie n'est pas fini, on recommence
       }
     };
   });
