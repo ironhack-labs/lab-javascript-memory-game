@@ -1,5 +1,5 @@
 class MemoryGame {
-  constructor(card) {
+  constructor(cards) {
     this.cards = cards;
     this.pickedCards = [];
     this.pairsClicked = 0;
@@ -22,12 +22,12 @@ class MemoryGame {
     // }
     // return;
 
-    let m = cards.length, i;
+    let m = this.cards.length, i;
 
       while(m) {
         i = Math.floor(Math.random() * m--);
 
-       [cards[m], cards[i]] = [cards[i], cards[m]]  
+       [this.cards[m], this.cards[i]] = [this.cards[i], this.cards[m]]  
       } 
 
   }
@@ -35,18 +35,17 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     this.pairsClicked += 1
-    if (card1.name == card2.name){
+    if (card1 === card2){
       this.pairsGuessed += 1
-      this.pairsClicked = 0
       return true
     } else {
-      this.pairsClicked = 0
       return false
     } 
 
   }
   isFinished() {
-    window.onload()
+      return this.pairsGuessed === (this.cards.length/2)
+      
 
   }
 }
