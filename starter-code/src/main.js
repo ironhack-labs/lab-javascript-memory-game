@@ -27,10 +27,15 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", function(event) { 
+  
+  
   var html = '';
   memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
+    html += '<div class="card" data-card-name="'+ pic.name +'">' ;
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
@@ -42,7 +47,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
+         let cardsShuffled =  memoryGame.shuffleCards();
+         document.getElementsByClassName("card").innerHTML = cardsShuffled;
+         let checkPair = memoryGame.checkIfPair();
+         document.getElementById("pairs_clicked").innerHTML = checkPair;
+         document.getElementById("pairs_guessed").innerHTML = checkPair;
+    
+    
       console.log('Card clicked')
     }
   });

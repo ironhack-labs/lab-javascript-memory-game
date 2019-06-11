@@ -5,7 +5,7 @@ html {
 }
 
 #memory_board {
-  background:#dddddd;
+  background;
 	width:800px;
 	height:540px;
 	padding:70px;
@@ -13,6 +13,8 @@ html {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
+
+
 
 
 .card .back {
@@ -28,7 +30,13 @@ html {
 .card .back.blocked {
   pointer-events: none;
 }
+.card .back:hover {
+background-color: #c94747;
+transform: rotate(15deg);
+transition: 0.2s;
 
+
+}
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
