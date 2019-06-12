@@ -26,6 +26,16 @@ var cards = [
 ];
 var memoryGame = new MemoryGame(cards);
 
+const flipCard = card => {
+    let cardSelected = card.children[0]
+    let frontCart = cardSelected.classList[0]
+    let backCart = cardSelected.nextSibling.classList[0]
+
+
+    //flips the cards
+    cardSelected.classList = backCart
+    cardSelected.nextSibling.classList = frontCart
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
     var html = '';
@@ -38,64 +48,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Add all the div's to the HTML
     document.querySelector('#memory_board').innerHTML = html;
-    var swapped = false;
+    // var swapped = false;
 
     // Bind the click event of each element to a function
-    document.querySelectorAll('.back').forEach(function(card) {
+    document.querySelectorAll('.card').forEach(function(card) {
         card.onclick = function() {
             // TODO: write some code here
-            console.log(card)
 
-            var x = card.innerHTML;
-            console.log(x);
-            var y = card.nextElementSibling.innerHTML;
-            console.log(y);
-
-            if (swapped == false) {
-
-                card.innerHTML = "" + y;
-                document.card.nextElementSibling.innerHTML = "" + x;
-                swapped = true;
-            } else {
-                card.innerHTML = "" + x;
-                document.card.nextElementSibling.innerHTML = "" + y;
-                swapped = false;
-            }
-
+            flipCard(card)
             console.log('Card clicked')
         }
     });
 })
-
-// function flipCard(cardPosition, card) {
-//     console.log(cardPosition)
-//     if (cardPosition == "back") {
-//         nextCard = card.nextElementSibling
-
-//         let temp = document.createElement("div");
-//         card.parentNode.insertBefore(temp, card);
-
-//         // move obj1 to right before obj2
-//         nextCard.parentNode.insertBefore(card, nextCard);
-
-//         // move obj2 to right before where obj1 used to be
-//         temp.parentNode.insertBefore(nextCard, temp);
-
-//         // remove temporary marker node
-//         temp.parentNode.removeChild(temp);
-//     } else {
-//         nextCard = card.firstElementChild
-//         console.log(nextCard)
-//         let temp = document.createElement("div");
-//         card.parentNode.insertBefore(temp, card);
-
-//         // move obj1 to right before obj2
-//         nextCard.parentNode.insertBefore(card, nextCard);
-
-//         // move obj2 to right before where obj1 used to be
-//         temp.parentNode.insertBefore(nextCard, temp);
-
-//         // remove temporary marker node
-//         temp.parentNode.removeChild(temp);
-
-//     }
