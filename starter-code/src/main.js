@@ -27,6 +27,8 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 
 
+
+
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
