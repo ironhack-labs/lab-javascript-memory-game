@@ -29,12 +29,13 @@ var memoryGame = new MemoryGame(cards);
 const flipCard = card => {
     let cardSelected = card.children[0]
     let frontCart = cardSelected.classList[0]
-    let backCart = cardSelected.nextSibling.classList[0]
-
+    console.log(cardSelected)
+    console.log(card.children[1])
+    let backCart = card.children[1].classList[0]
 
     //flips the cards
     cardSelected.classList = backCart
-    cardSelected.nextSibling.classList = frontCart
+    card.children[1].classList = frontCart
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Add all the div's to the HTML
     document.querySelector('#memory_board').innerHTML = html;
-    // var swapped = false;
 
     // Bind the click event of each element to a function
     document.querySelectorAll('.card').forEach(function(card) {
