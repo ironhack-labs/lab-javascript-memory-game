@@ -28,12 +28,15 @@ let memoryGame = new MemoryGame(cards);
 // console.log(memoryGame.shuffleCards());
 memoryGame.shuffleCards()
 
-// function flipCard(card) {
-//   if (card.className === 'back') {
-//     card.className = 'front'
-//   } else if (card.className === 'front') {
-//     card.className = 'back'
-//   }}
+function flipCard(card) {
+  let clickedCard = card.children[0]
+  let divBack = clickedCard.classList[0]
+  let divFront = card.children[1].classList[0]
+   
+   clickedCard.classList  = divFront
+   card.children[1].classList = divBack  
+
+}
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -52,14 +55,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector("#memory_board").innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
+  document.querySelectorAll('.card').forEach(function(card) {
     card.onclick = (action) => {
         // let divClass = action.children[0]
         // let divFront = divClass.className[0]
         // let divBack = divClass.nextSibling.className[0]
         // divBack.style.display == `none`;
 
-
+        memoryGame.pairsClicked++
+        flipCard(card)
         // let cardDivs = [...action.currentTarget.children]
         // cardDivs.forEach(div => flipCard(div))
   
