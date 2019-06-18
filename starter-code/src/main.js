@@ -24,15 +24,23 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-var memoryGame = new MemoryGame(cards);
 
+let lastCard = {
+  element: null,
+  nameValue: null
+}
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+let pairsGuessed = 0;
+let counter = 0;
+let pairsClicked = 0;
+
+function initializeGame() {
   var html = '';
-  memoryGame.cards.forEach(function (pic) {
+  // const newCards = shuffle(cards);
+
+  cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
 
@@ -40,12 +48,81 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+  $('.back').click(function() {
+    if(counter === 2) return
+    counter++
+
+    $(this).addClass("block-card");
+
+    const newCard = {}
+    newCard.element = $(this);
+    newCard.nameValue = newCard.element[0].attributes.name.value;
+    $(this).css("background-image", `url(img/${newCard.nameValue})`);
+    
+    if(lastCard.nameValue) {
+      checkCards(lastCard, newCard)
+    } else {
+      lastCard.element = newCard.element;
+      lastCard.nameValue = newCard.nameValue;
     }
   });
-});
+}
 
+function checkCards(card1, card2) {
+  if(card1.nameValue === card2.nameValue) {
+    pairsGuessed++
+    pairsClicked ++;
+    $('#pairs_guessed').text(pairsGuessed);
+    card1.element.off();
+    card2.element.off();
+    lastCard = {};
+    counter = 0;
+  } else {
+    lastCard = {};
+    pairsClicked ++;
+    setTimeout(() => {
+      card1.element.css("background", "#456783");
+      card1.element.removeClass("block-card");
 
+      card2.element.css("background", "#456783");
+      card2.element.removeClass("block-card");
+
+      counter = 0;
+    }, 2000)
+  }
+
+  $('#pairs_clicked').text(pairsClicked);
+
+  if(pairsGuessed === 12) {
+    setTimeout(() => {
+      alert("You WOOON !")
+      initializeGame();
+      pairsClicked = 0;
+      pairsGuessed = 0;
+      $('#pairs_guessed').text(0);
+      $('#pairs_clicked').text(0);
+    }, 1000)
+  }
+}
+
+function shuffle(array) {
+  var copy = [], n = array.length, i;
+
+  // While there remain elements to shuffle…
+  while (n) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * array.length);
+
+    // If not already shuffled, move it to the new array.
+    if (i in array) {
+      copy.push(array[i]);
+      delete array[i];
+      n--;
+    }
+  }
+
+  return copy;
+}
+
+initializeGame()
