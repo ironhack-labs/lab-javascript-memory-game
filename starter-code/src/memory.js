@@ -1,9 +1,9 @@
 class MemoryGame {
   constructor(card){
     this.cards = cards;
-    this.pickedCards = pickedCards;
-    this.pairsClicked = pairsClicked;
-    this.pairsGuessed = pairsGuessed;
+    this.pickedCards = pickedCards;   // not sure if this is supposed to go here
+    this.pairsClicked = pairsClicked; // < this also
+    this.pairsGuessed = pairsGuessed; // < this as well
   };
   shuffleCards(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;  
@@ -17,7 +17,7 @@ class MemoryGame {
     return array;
   };
   checkIfPair(card1, card2) {
-    if(card1 === card2){
+    if(card1.name === card2.name){ // added .name to match on only the name values
       this.pairsClicked++;
       this.pairsGuessed++;
       return true;
