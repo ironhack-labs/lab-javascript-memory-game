@@ -36,9 +36,9 @@ let pairsClicked = 0;
 
 function initializeGame() {
   var html = '';
-  // const newCards = shuffle(cards);
+  const newCards = shuffle(cards);
 
-  cards.forEach(function (pic) {
+  newCards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '</div>';
