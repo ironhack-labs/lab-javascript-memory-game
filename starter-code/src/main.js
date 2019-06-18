@@ -57,30 +57,34 @@ $(document).ready(function () {
   let cardLog = [];
 
   $('.card').on("click", function () {
-    $(this).find('.back').toggle();
-    $(this).find('.front').css({
-      "width": "71px",
-      "height": "71px",
-      "float": "left",
-      "margin": "10px",
-      "padding": "20px",
-      "font-size": "64px"
-    })
-    cardLog.push($(this).data("card-name"));
-    console.log(cardLog);
-    if (cardLog.length === 2) {
-      if (memoryGame.checkIfPair(cardLog[0], cardLog[1])) {
-        $(`[data-card-name="${cardLog[0]}"]`).find('.back').remove();
-      } else {
-        console.log("try again");
-        // $(`[data-card-name="${cardLog[0]}"]`).find('.front').toggle();
-        // $(`[data-card-name="${cardLog[0]}"]`).find('.back').toggle();
-        // $(`[data-card-name="${cardLog[1]}"]`).find('.front').toggle();
-        // $(`[data-card-name="${cardLog[1]}"]`).find('.back').toggle();
+    if ($(this).find('.back').is(':visible') && cardLog.length < 2) {
+      $(this).find('.back').toggle();
+      $(this).find('.front').toggle();
+      cardLog.push($(this).data("card-name"));
+      console.log(cardLog);
+      if (cardLog.length === 2) {
+        if (memoryGame.checkIfPair(cardLog[0], cardLog[1])) {
+          console.log('match!')
+          $(`[data-card-name="${cardLog[0]}"]`).find('.back').remove();
+          cardLog = [];
+        } else {
+          console.log("try again");
+          let flipBack = function () {
+            $('.back:hidden').next().toggle();
+            $('.back:hidden').toggle();
+            cardLog = [];
+          }
+          setTimeout(flipBack, 2000)
+
+
+        }
+        $('#pairs_clicked').text(memoryGame.pairsClicked);
+        $('#pairs_guessed').text(memoryGame.pairsGuessed);
+        if (memoryGame.isFinished()) {
+          alert("You won!!!");
+        }
+
       }
-      $('#pairs_clicked').text(memoryGame.pairsClicked);
-      $('#pairs_guessed').text(memoryGame.pairsGuessed);
-      cardLog = [];
     }
   })
 });
