@@ -25,7 +25,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
@@ -40,12 +40,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
-    }
+  let cards  = $(".card")
+
+  cards.click(function() {
+    $(this).find("div").toggleClass('front').toggleClass('back');
+    memoryGame.pickedCards.push(this);
+    if(memoryGame.pickedCards.length === 2){
+      let result = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+      $('#pairs_clicked').text(memoryGame.pairsClicked);
+      setTimeout(() => {
+        if(result){
+          $('#pairs_guessed').text(memoryGame.pairsGuessed);
+        }
+        else{
+          // $(memoryGame.pickedCards[0]).find("div").toggleClass('front').toggleClass('back');
+          $(memoryGame.pickedCards[0]).find("div").toggleClass('front').toggleClass('back');
+          $(memoryGame.pickedCards[1]).find("div").toggleClass('front').toggleClass('back');
+        }
+        memoryGame.pickedCards = [];
+      }, 500)
+    } 
   });
 });
+
+
+
 
 
