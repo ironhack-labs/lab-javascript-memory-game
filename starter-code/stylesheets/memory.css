@@ -13,9 +13,14 @@ html {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
+.blah{
+  pointer-events: none;
+}
 
-
-.card .back {
+#new-game{
+  display: none;
+}
+.card .back{
   background-color: #456783;
 	width:71px;
 	height:71px;
