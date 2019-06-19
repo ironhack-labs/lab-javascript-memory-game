@@ -16,7 +16,7 @@ class MemoryGame {
   hideCards(){
     setTimeout(function(){
       $('.card:not(.paired)').find('div:first-of-type').addClass('back');
-    }, 500);
+    }, 200);
   }
 
   addToClickedCards(card){
