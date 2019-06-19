@@ -29,6 +29,14 @@ html {
   pointer-events: none;
 }
 
+/* .front {
+  z-index: 10;
+} */
+
+/* .display-none {
+  display: none;
+} */
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
