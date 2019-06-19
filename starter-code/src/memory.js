@@ -2,6 +2,8 @@ class MemoryGame {
   constructor(card){
     this.cards = cards;
     this.selectedCards = [];
+    this.pairsClicked = 0; 
+    this.pairsGuessed = 0;
   }
   shuffleCards() {}
 
@@ -11,10 +13,14 @@ class MemoryGame {
     // console.log(this.selectedCards)
     // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", card1.parent().data("cardName"), " === ", card2.parent().data("cardName"))
     if (card1.parent().data("cardName") === card2.parent().data("cardName")){
-      // console.log("its true ====")
+      memoryGame.pairsClicked += 1;
+      memoryGame.pairsGuessed += 1;
+      document.getElementById("pairs_clicked").innerHTML=this.pairsClicked;
+      document.getElementById("pairs_guessed").innerHTML=this.pairsGuessed;
       return true;
     } else{
-      // console.log("its false ----")
+      memoryGame.pairsClicked += 1;
+      document.getElementById("pairs_clicked").innerHTML=this.pairsClicked;
       return false;
     }
     

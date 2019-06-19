@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     cardOne.next().toggleClass('back front');
     memoryGame.selectedCards.push(cardOne);
 
-    console.log(">>>>> ", memoryGame.selectedCards)
+    
 
     if(memoryGame.selectedCards.length == 2){
       if (!memoryGame.checkIfPair(memoryGame.selectedCards[0],memoryGame.selectedCards[1])){
@@ -86,25 +86,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   
 });
-
-
-
-      // memoryGame.isFinished();
- 
-      // if(memoryGame.selectedCards.length % 2  === 0) {
-      //  if (memoryGame.selectedCards.length % 3 === 0 ){
-      //    test();
-      //    memoryGame.selectedCards = [];
-      //  }
-
-        // else {
-          
-        //   console.log("try again");
-          
-          
-        //   // memoryGame.selectedCards = [];
-        // }
-
-       
-      // }
-    // }
