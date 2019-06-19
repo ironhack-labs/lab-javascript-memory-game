@@ -45,13 +45,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
 	// Bind the click event of each element to a function
 	document.querySelectorAll('.back').forEach(function(card) {
 		card.onclick = function(e) {
-			$(e.target.parentNode.children[0]).toggleClass('back');
-			$(e.target.parentNode.children[0]).toggleClass('front');
-			$(e.target.parentNode.children[1]).toggleClass('back');
-			$(e.target.parentNode.children[1]).toggleClass('front');
-			memoryGame.pickedCards.push($(e.target.parentNode));
+			if (memoryGame.pickedCards.length < 2) {
+				$(e.target.parentNode.children[0]).toggleClass('back');
+				$(e.target.parentNode.children[0]).toggleClass('front');
+				$(e.target.parentNode.children[1]).toggleClass('back');
+				$(e.target.parentNode.children[1]).toggleClass('front');
+				memoryGame.pickedCards.push($(e.target.parentNode));
 
-			if (memoryGame.isFinished() === true) {
+				memoryGame.isFinished();
+				// if (
+				// 	;=== true) {
+				// }
 			}
 		};
 	});
