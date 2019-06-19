@@ -25,7 +25,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
@@ -42,8 +42,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+      $(this).addClass("front").removeClass("back")
+      .siblings().addClass("back").removeClass("front");
+      console.log();
     }
   });
 });
