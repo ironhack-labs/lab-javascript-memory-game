@@ -28,7 +28,7 @@ var memoryGame = new MemoryGame(cards);
 
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  memoryGame.shuffleCards(cards); //Shuffles cards 
+  // memoryGame.shuffleCards(cards); //Shuffles cards 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -46,18 +46,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       console.log(`You've choosen ${memoryGame.pairsClicked} pairs`);
       if(memoryGame.firstGuess == undefined){
+        memoryGame.firstGuessBackDiv = $(this);
+        memoryGame.firstGuessFrontDiv = $(this).next();
         memoryGame.firstGuess = $(this).parent().attr("data-card-name");//parent
         console.log(`Your first guess is ${memoryGame.firstGuess}`);
       }
       else if(memoryGame.firstGuess !== undefined && memoryGame.secondGuess == undefined){
+        $(".back").addClass("blocked");
+        memoryGame.secondGuessBackDiv = $(this);
+        memoryGame.secondGuessFrontDiv = $(this).next();
+        console.log(`this is --- ${this}`)
         memoryGame.secondGuess = $(this).parent().attr("data-card-name");
         memoryGame.pairsClicked += 1;
         console.log(`Your second guess is ${memoryGame.secondGuess}`);
         memoryGame.checkIfPair(memoryGame.firstGuess,memoryGame.secondGuess);
       }
       else{
+        console.log(`this is --- ${this}`)
         memoryGame.firstGuess = $(this).parent().attr("data-card-name");//parent
         memoryGame.secondGuess = undefined;
+        memoryGame.firstGuessBackDiv = $(this);
+        memoryGame.firstGuessFrontDiv = $(this).next();
         console.log(`Your first guess is ${memoryGame.firstGuess}`);
       }
     

@@ -3,6 +3,10 @@ class MemoryGame {
     this.cards = card;
     this.firstGuess;
     this.secondGuess;
+    this.firstGuessFrontDiv
+    this.firstGuessBackDiv
+    this.secondGuessFrontDiv
+    this.secondGuessBackDiv
     this.pairsClicked = 0;
     this.correctPairsClicked = 0;
   }
@@ -19,11 +23,31 @@ class MemoryGame {
   }
 
   checkIfPair(card1,card2) {
-    let firstGuess = card1;
-    let secondGuess = card2;
+    console.log(card1);
+    console.log(card2);
     if(card1 === card2 && card1 !== undefined){
       memoryGame.correctPairsClicked += 1;
       console.log(`You got ${memoryGame.correctPairsClicked} pairs correct`)
+    }
+    else{
+      setTimeout(function resetCard(){
+        memoryGame.firstGuessBackDiv.toggleClass("front back");
+        memoryGame.firstGuessFrontDiv.toggleClass("back front");
+        memoryGame.secondGuessBackDiv.toggleClass("front back");
+        memoryGame.secondGuessFrontDiv.toggleClass("back front");
+
+        // document.querySelectorAll('.front').forEach(function(card) {
+          // card.onclick = function() {
+            // console.log(`this is --- ${this}`);
+            // /*Need to add correct selector*/.toggleClass("back front");
+            // /*Need to add correct selector*/.prev().toggleClass("front back");
+        },500);
+        console.log('Card clicked');
+      }
+      setTimeout(function unblockCards(){
+        $(".back").removeClass("blocked");
+      },500)
+      
     }
     // let pairsClicked = 0;
     // let correctPairsClicked = 0
@@ -36,8 +60,9 @@ class MemoryGame {
   }
 
 
-  isFinished() {}
-}
+//   isFinished(){
+// }
+
 
 
 // // set time out to flip back if wrong 
