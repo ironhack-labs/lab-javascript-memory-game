@@ -28,6 +28,7 @@ var memoryGame = new MemoryGame(cards);
 
 
 document.addEventListener("DOMContentLoaded", function(event) { 
+  memoryGame.shuffleCards(cards); //Shuffles cards 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -42,8 +43,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
+
+      console.log(`You've choosen ${memoryGame.pairsClicked} pairs`);
+      if(memoryGame.firstGuess == undefined){
+        memoryGame.firstGuess = $(this).parent().attr("data-card-name");//parent
+        console.log(`Your first guess is ${memoryGame.firstGuess}`);
+      }
+      else if(memoryGame.firstGuess !== undefined && memoryGame.secondGuess == undefined){
+        memoryGame.secondGuess = $(this).parent().attr("data-card-name");
+        memoryGame.pairsClicked += 1;
+        console.log(`Your second guess is ${memoryGame.secondGuess}`);
+        memoryGame.checkIfPair(memoryGame.firstGuess,memoryGame.secondGuess);
+      }
+      else{
+        memoryGame.firstGuess = $(this).parent().attr("data-card-name");//parent
+        memoryGame.secondGuess = undefined;
+        console.log(`Your first guess is ${memoryGame.firstGuess}`);
+      }
+    
+
       // TODO: write some code here
-      console.log('Card clicked')
+      $(this).toggleClass("back front");//.toggleClass("front");
+      $(this).next().toggleClass("front back");
+      console.log('Card clicked');
+
     }
   });
 });
