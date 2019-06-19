@@ -23,11 +23,14 @@ class MemoryGame {
   }
 
   checkIfPair(card1,card2) {
-    console.log(card1);
-    console.log(card2);
+    // console.log(card1);
+    // console.log(card2);
     if(card1 === card2 && card1 !== undefined){
       memoryGame.correctPairsClicked += 1;
-      console.log(`You got ${memoryGame.correctPairsClicked} pairs correct`)
+      // console.log(memoryGame.correctPairsClicked);
+      $(`#pairs_guessed`).html(memoryGame.correctPairsClicked);
+      // console.log(`You got ${memoryGame.correctPairsClicked} pairs correct`)
+      $(".back").removeClass("blocked");
     }
     else{
       setTimeout(function resetCard(){
@@ -36,35 +39,21 @@ class MemoryGame {
         memoryGame.secondGuessBackDiv.toggleClass("front back");
         memoryGame.secondGuessFrontDiv.toggleClass("back front");
 
-        // document.querySelectorAll('.front').forEach(function(card) {
-          // card.onclick = function() {
-            // console.log(`this is --- ${this}`);
-            // /*Need to add correct selector*/.toggleClass("back front");
-            // /*Need to add correct selector*/.prev().toggleClass("front back");
         },500);
-        console.log('Card clicked');
+        setTimeout(function unblockCards(){
+          $(".back").removeClass("blocked");
+        },500)
       }
-      setTimeout(function unblockCards(){
-        $(".back").removeClass("blocked");
-      },500)
-      
     }
-    // let pairsClicked = 0;
-    // let correctPairsClicked = 0
-    // if(card1 !== card2){
-    //   pairsClicked ++;
-    // }else{
-    //   pairsClicked ++;
-    //   correctPairsClicked ++;
-    // }
+  
+  isFinished(){
+    if(memoryGame.correctPairsClicked === 12){
+      setTimeout(function(){
+        if(!alert('You are the Ultimate Memory Game Gangsta!!!!')){
+        window.location.reload();
+        }
+      },250)
+    }
   }
 
-
-//   isFinished(){
-// }
-
-
-
-// // set time out to flip back if wrong 
-
-// //can't break if you double click
+}

@@ -26,9 +26,8 @@ var cards = [
 ];
 var memoryGame = new MemoryGame(cards);
 
-
 document.addEventListener("DOMContentLoaded", function(event) { 
-  // memoryGame.shuffleCards(cards); //Shuffles cards 
+  memoryGame.shuffleCards(cards); //Shuffles cards 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -44,40 +43,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
 
-      console.log(`You've choosen ${memoryGame.pairsClicked} pairs`);
+      // console.log(`You've choosen ${memoryGame.pairsClicked} pairs`);
       if(memoryGame.firstGuess == undefined){
         memoryGame.firstGuessBackDiv = $(this);
         memoryGame.firstGuessFrontDiv = $(this).next();
-        memoryGame.firstGuess = $(this).parent().attr("data-card-name");//parent
-        console.log(`Your first guess is ${memoryGame.firstGuess}`);
+        memoryGame.firstGuess = $(this).parent().attr("data-card-name");
+        
       }
       else if(memoryGame.firstGuess !== undefined && memoryGame.secondGuess == undefined){
         $(".back").addClass("blocked");
         memoryGame.secondGuessBackDiv = $(this);
         memoryGame.secondGuessFrontDiv = $(this).next();
-        console.log(`this is --- ${this}`)
         memoryGame.secondGuess = $(this).parent().attr("data-card-name");
         memoryGame.pairsClicked += 1;
-        console.log(`Your second guess is ${memoryGame.secondGuess}`);
+
+        // console.log(memoryGame.pairsClicked);
+        $(`#pairs_clicked`).html(memoryGame.pairsClicked);
+
+
         memoryGame.checkIfPair(memoryGame.firstGuess,memoryGame.secondGuess);
+        memoryGame.isFinished();
       }
       else{
-        console.log(`this is --- ${this}`)
-        memoryGame.firstGuess = $(this).parent().attr("data-card-name");//parent
+        memoryGame.firstGuess = $(this).parent().attr("data-card-name");
         memoryGame.secondGuess = undefined;
         memoryGame.firstGuessBackDiv = $(this);
         memoryGame.firstGuessFrontDiv = $(this).next();
-        console.log(`Your first guess is ${memoryGame.firstGuess}`);
+
       }
-    
-
       // TODO: write some code here
-      $(this).toggleClass("back front");//.toggleClass("front");
+      $(this).toggleClass("back front");
       $(this).next().toggleClass("front back");
-      console.log('Card clicked');
-
     }
   });
 });
-
-
