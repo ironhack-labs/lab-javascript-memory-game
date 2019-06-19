@@ -10,18 +10,17 @@ class MemoryGame {
     this.cards.sort(() => Math.random() - 0.5);
   }
   checkIfPair(card1, card2) {
-    this.pairsClicked += 1;
     let result = false;
     if (card1 === card2) {
-      this.pairsGuessed += 1;
+      this.pairsGuessed++;
       result = true;
     }
+    this.pairsClicked++;
     return result;
   }
   isFinished() {
     if (this.pairsGuessed >= this.cards.length / 2) {
-      return true;
+      if(!alert('You ain\'t better than Thanos tho!')){window.location.reload();}
     }
-    return false;
   }
 }

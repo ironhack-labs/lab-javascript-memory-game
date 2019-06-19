@@ -40,12 +40,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      $(this).addClass("front").removeClass("back")
-      .siblings().addClass("back").removeClass("front");
-      console.log();
-    }
+  $('.back').each(function(index, card) {
+    $(card).on("click", function guess () {
+      let oneCard = $(this).parent('.card')
+
+      oneCard.children('.back, .front').toggleClass('back front');
+      let name = oneCard.attr("data-card-name");
+      let pair = memoryGame.pickedCards
+      pair.push(name);
+      if (pair.length === 2) {
+        $(".back").addClass("blocked");
+        if(memoryGame.checkIfPair(pair[0], pair[1]) === false) {
+          // Save the values to new variables, since they'll get spliced later
+          let guess1 = pair[0];
+          let guess2 = pair[1];
+          let checkedPair = $(`[data-card-name="${guess1}"], [data-card-name="${guess2}"]`);
+          oneCard.addClass("wrong-shake");
+          setTimeout(function(){ 
+            //The two guesses are selected here!
+            checkedPair.children('.back[style], .front[name]').toggleClass('back front');
+            oneCard.removeClass("wrong-shake");
+            $(".back").removeClass("blocked");
+           }, 1000);
+        }
+        else {
+          $(".back").removeClass("blocked");
+        }
+
+        pair.splice(0, 2);
+        $('#pairs_clicked').text(memoryGame.pairsClicked);
+        $('#pairs_guessed').text(memoryGame.pairsGuessed);
+        memoryGame.isFinished();
+      }
+      console.log(`Array: ${pair}`);
+      console.log(memoryGame.pairsClicked);
+      
+    })
   });
 });
 
