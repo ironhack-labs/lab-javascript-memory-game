@@ -3,25 +3,26 @@ class MemoryGame {
     this.cards = cards;
     this.selectedCards = [];
   }
-  shuffleCards(card) {
-    // for (i=0 ; i<this.cards.length; i--){
-    //   return i-2;
-    // }
-  }
+  shuffleCards() {}
+
+
+
   checkIfPair(card1, card2) {
+    // console.log(this.selectedCards)
+    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", card1.parent().data("cardName"), " === ", card2.parent().data("cardName"))
+    if (card1.parent().data("cardName") === card2.parent().data("cardName")){
+      // console.log("its true ====")
+      return true;
+    } else{
+      // console.log("its false ----")
+      return false;
+    }
     
   }
-//   isFinished() {
-//     console.log(this.selectedCards);
-//     if (this.selectedCards.length === 2){
-//       if (this.selectedCards[0].name === this.selectedCards[1].name){
-//        $(this).css('backgroundImage', `url(img/${currentCard})`);
-//       }
-//       else {
-//         $(this).unbind()
-//       }
-//       console.log(this.isFinished);
-//     }
-//     // every time click add, compare
-//   }
-// }
+
+  isFinished() {
+    if(this.selectedCards.length % 2 === 0) {
+      this.checkIfPair(this.selectedCards[0],this.selectedCards[1]);
+    }
+  }
+}

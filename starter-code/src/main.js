@@ -35,53 +35,76 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-  
-  
+
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
-  
+
   // Bind the click event of each element to a function
-  // $('.back').click(function() {
-  //   let currentCard = $(this)[0].attributes.name.value;
-  //   $(this).css('backgroundImage', `url(img/${currentCard})`)
-  // })
-  
-  // function checkIfPair(card, cardd){
-    // function flipFlap (front , back){
-    //    ($this).toggleClass(".back", 1000);
-    // }
-    $('.back').click(function() {
-      let currentCard = $(this)[0].attributes.name.value;
-      let anotherCard = $(this)[0].attributes.name.value;
-      
-      if (currentCard === anotherCard){
+  document.querySelectorAll('.back').forEach(function(card) {
+    card.onclick = function() {
 
-        $(this).css('backgroundImage', `url(img/${currentCard})`);
+    // TODO: write some code here
+    let cardOne = $(this);
+
+    cardOne.toggleClass('back front');
+    cardOne.next().toggleClass('back front');
+    memoryGame.selectedCards.push(cardOne);
+
+    console.log(">>>>> ", memoryGame.selectedCards)
+
+    if(memoryGame.selectedCards.length == 2){
+      if (!memoryGame.checkIfPair(memoryGame.selectedCards[0],memoryGame.selectedCards[1])){
+        console.log("the cards match");
+        //   cardOne.toggleClass('back front');
+        //   cardOne.next().toggleClass('back front');
+        test();
+      } else {
+        memoryGame.selectedCards = [];
       }
-    //     memoryGame.selectedCards.push(currentCard);
-    //     memoryGame.isFinished();
-    console.log(anotherCard);
+    }
+    } 
   });
-  
 
-      // function flapFlip(front, back){
-      //   (".back").toggleClass(".front",1000);
-      // }
+
+  function test(){
     
-  
+    setTimeout(function(){
+
+      memoryGame.selectedCards[0].toggleClass('back front');
+      memoryGame.selectedCards[0].next().toggleClass('back front');
+      
+      memoryGame.selectedCards[1].toggleClass('back front');
+      memoryGame.selectedCards[1].next().toggleClass('back front');
 
       
-  //   let card1= $(this)[0].attributes.name.value;
-  //   let card2= $(this)[0].attributes.name.value;
-  //   if ($card1.name === $card2.name){
-  //     $(this).css('backgroundImage', `url(img/${currentCard})`)
-  //   }
-  //   else {
-  //     $(this).css('background-color', ("#456783"))
-  //   }
-  // }
-    
-    
+      // console.log("setTimeout", memoryGame.selectedCards);
+      memoryGame.selectedCards = [];
+      // console.log("the card array after clearing -------- ", memoryGame.selectedCards)
+    }, 500);
+      
+  }
 
-
+  
 });
+
+
+
+      // memoryGame.isFinished();
+ 
+      // if(memoryGame.selectedCards.length % 2  === 0) {
+      //  if (memoryGame.selectedCards.length % 3 === 0 ){
+      //    test();
+      //    memoryGame.selectedCards = [];
+      //  }
+
+        // else {
+          
+        //   console.log("try again");
+          
+          
+        //   // memoryGame.selectedCards = [];
+        // }
+
+       
+      // }
+    // }
