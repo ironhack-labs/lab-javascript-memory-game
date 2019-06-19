@@ -21,7 +21,12 @@ class MemoryGame {
 
   addToClickedCards(card){
     let newCard = {name: $(card).attr('data-card-name'), index: $(card).attr('id')};
-    if(this.clickedCards.length < 2){
+    
+    if(this.clickedCards.length === 0){
+      this.clickedCards.push(newCard);
+    }
+
+    if(this.clickedCards.length == 1 && this.clickedCards[0].index !== newCard.index){
       this.clickedCards.push(newCard);
     }
   }
