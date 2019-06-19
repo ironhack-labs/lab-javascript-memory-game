@@ -67,3 +67,14 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.side {
+    background-image:url("../img/background.jpg");
+    /*background-color: #456783; */
+    width: 71px;
+    height: 71px;
+    float: left;
+    margin: 10px;
+    padding: 20px;
+    font-size: 64px;
+}

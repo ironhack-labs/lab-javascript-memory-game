@@ -26,8 +26,12 @@ var cards = [
 ];
 var memoryGame = new MemoryGame(cards);
 
+$(document).ready(function(){
+memoryGame.shuffleCards(cards);
+});
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function(event) {
+////here we need to shuffle
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -37,15 +41,60 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   // Add all the div's to the HTML
-  document.querySelector('#memory_board').innerHTML = html;
+document.querySelector('#memory_board').innerHTML = html;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+let pairsClicked =0;
+let correctGuess =0;
+let correct = $("#pairs_guessed");
+let pairs = $("#pairs_clicked");
+
+  $(".back").click(function(e){
+    if($(this).hasClass('clicked') || memoryGame.pickCards.length === 2){
+    
+      return;
     }
+   let image = $(this)[0].attributes.name.value;
+   $(this).css("background-image", `url(img/${image})`);
+   $(this).addClass('clicked');
+   memoryGame.pickCards.push(image);
+
+   //console.log(memoryGame.pickCards)
+
+   if(memoryGame.pickCards.length === 2){
+    pairs
+
+     if(memoryGame.checkIfPair(memoryGame.pickCards[0], memoryGame.pickCards[1])){
+      
+      correctGuess+=1;
+      pairsClicked +=1;
+      pairs.text(pairsClicked);
+     
+      correct.text(correctGuess);
+
+      $('.clicked').removeClass('clicked');
+
+      if(correctGuess == 12){
+       memoryGame.isFinished();
+      }
+
+
+     }else{
+
+
+
+$(this).css('style', 'inline');
+      setTimeout(function(){
+       pairsClicked +=1;
+       pairs.text(pairsClicked);
+        $('.clicked').css("background-image", 'none');
+        $('.clicked').removeClass('clicked');
+      },500);
+
+
+     }
+
+   }
+
   });
 });
-
 
