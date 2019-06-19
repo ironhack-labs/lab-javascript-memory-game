@@ -1,0 +1,35 @@
+//  console.log("they are the same name: " + card1.parent().attr('data-card-name'));
+      //  console.log('pairs guessed: ' + this.pairsGuessed);
+
+$(this).parent().attr('data-card-name') 
+// frontvar.addClass('back').removeClass('front');
+
+    //  $(this).addClass('front').removeClass('back');
+    //  $(this).siblings().addClass('back').removeClass('front');
+    // console.log( $(this).parent().attr('class'));
+
+
+    // var childrenCard1 = $(this).parent().children('front');
+    // var childrenCard2 = $(this).parent().children('back');
+
+    //   console.log("chil1 " + childrenCard1.addClass('back'));
+    //   console.log("child2 " + childrenCard2.addClass('front'));
+
+    frontvar.click(function() {
+      console.log('front origin');
+      
+  })
+
+  // document.querySelectorAll('.back').forEach(function(card) {
+  //   card.onclick = function() {
+  //     // TODO: write some code here
+  //     $('back').addClass('front').removeClass('back');
+  //     $('front').addClass('back').removeClass('front');
+  //     console.log('Card clicked ' + card.classList);
+  //   }
+  // });
+
+
+$('card').click(function(){
+    console.log('card clicked');
+  });
