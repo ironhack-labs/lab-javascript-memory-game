@@ -40,12 +40,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+  $('.back').click(function() {
+    $(this).removeClass('back').addClass('front');
+    $(this).siblings('.front').removeClass('front').addClass('back');
+    console.log('Card clicked')
+    
+    memoryGame.pickedCards.push(this); // Push to pickedCards Array
+
+    if (memoryGame.pickedCards.length === 2) {
+
+      console.log("+++", memoryGame.pickedCards);
+      
+      memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+      
+      if (!memoryGame.checkIfPair) {
+        console.log("not a pair ------- ", memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+        
+        $('.front').removeClass('front').addClass('back');
+        $('.front').siblings('.back').removeClass('back').addClass('front');
+      }
+      memoryGame.pickedCards = [];
     }
+  
   });
+
 });
 
 
