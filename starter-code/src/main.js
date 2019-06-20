@@ -26,7 +26,6 @@ var cards = [
 ];
 var memoryGame = new MemoryGame(cards);
 
-
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
@@ -40,12 +39,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+  $('.back').click(function(){
+
+    // flip the card, swap the invisibility of the divs
+    $(this).removeClass('back').addClass('front');
+    $(this).siblings().removeClass('front').addClass('back');
+
+    // push the picked card onto the currentPairs array 
+    
+    memoryGame.currentPair.push($(this).parent());
+    
+    if (memoryGame.currentPair.length === 2){
+      $('.back').addClass('blocked');
+    
+      if(memoryGame.checkIfPair() === false){
+    
+        setTimeout(()=>{
+          memoryGame.currentPair[0].children().toggleClass('front back');
+          memoryGame.currentPair[1].children().toggleClass('front back');
+          memoryGame.currentPair = [];
+          $('.back').removeClass('blocked');
+        }, 1500)
+
+      } else {
+        memoryGame.currentPair = [];
+      }
     }
-  });
-});
-
-
+    
+  })
+})

@@ -1,10 +1,11 @@
 class MemoryGame {
-  constructor(card){
+  constructor(cards){
     this.cards = cards;
-    this.pickedCards = pickedCards;   // not sure if this is supposed to go here
-    this.pairsClicked = pairsClicked; // < this also
-    this.pairsGuessed = pairsGuessed; // < this as well
+    this.currentPair = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   };
+  
   shuffleCards(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;  
     while (0 !== currentIndex) {
@@ -16,21 +17,26 @@ class MemoryGame {
       }
     return array;
   };
-  checkIfPair(card1, card2) {
-    if(card1.name === card2.name){ // added .name to match on only the name values
-      this.pairsClicked++;
+
+  checkIfPair() {
+    let firstCard = this.currentPair[0].data('card-name');
+    let secondCard = this.currentPair[1].data('card-name');
+    this.pairsClicked++;
+
+    if(firstCard === secondCard){ 
       this.pairsGuessed++;
       return true;
-    } else {
-      this.pairsClicked++;
-      return false;
-    }
+    } 
+
+    return false;
   };
+
   isFinished() {
-    if (this.pairsGuessed >= 12) {
+    if (this.pairsGuessed === 12) {
       return true;
     } else {
       return false;
     }
   };
 };
+
