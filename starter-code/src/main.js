@@ -25,7 +25,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
@@ -38,14 +38,61 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
+  
+  $('.back').click(function(){
+    let $this = $(this);
+    if(memoryGame.pickedCards.length <= 2){
+      $this.siblings().addClass('back');
+      $this.siblings().addClass('unmatch');
+      $this.removeClass('back');
+    memoryGame.pickedCards.push($this);
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
-    }
-  });
+   
+   // console.log($(this).parent().attr('data-card-name')); //TO LOCATE THE NAME
+    console.log(memoryGame.pickedCards.length);
+  }else{
+    console.log("YOU REACHED THE LIMIT DUMMY");
+  }
+  if(memoryGame.pickedCards.length > 1){
+    if(memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().attr('data-card-name'), memoryGame.pickedCards[1].parent().attr('data-card-name')) === true){
+      memoryGame.pickedCards[0].siblings().removeClass('unmatch');
+       memoryGame.pickedCards[1].siblings().removeClass('unmatch');
+      
+    }else{
+      setTimeout(function(){
+        flip();
+      }, 500);
+ 
+  }
+  memoryGame.isFinished();
+  memoryGame.pickedCards = [];
+}
+
+  })
+
 });
+
+function flip(){
+$('.unmatch').each(function(){
+  $(this).click();
+  $(this).removeClass('back');
+  $(this).prev().addClass('back');
+});
+}
+// document.querySelectorAll(".front").forEach(function(card) {
+      //   card.onclick = function(evt) {
+      //     evt.target.parentElement.children[0].className = "back";
+      //  evt.target.parentElement.children[1].className = "front";
+      //     console.log("Card clicked");
+      //   }
+      //   });
+
+
+    
+
+
+
+
+
 
 

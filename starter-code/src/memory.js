@@ -1,8 +1,49 @@
 class MemoryGame {
-  constructor(card){
+  constructor(cards){
     this.cards = cards;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
-  shuffleCards() {}
-  checkIfPair(card1, card2) {}
-  isFinished() {}
+  shuffleCards() {
+    var currIndex = this.cards.length, temp, randomIndex;
+
+    while (currIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currIndex);
+      currIndex -= 1;
+      temp = this.cards[currIndex];
+      this.cards[currIndex] = this.cards[randomIndex];
+      this.cards[randomIndex] = temp;
+    }
+  }
+
+checkIfPair(card1, card2) {
+if(card1 === card2){
+  this.pairsGuessed++;
+  this.pairsClicked++;
+  console.log("PAIR");
+  $('#pairs_guessed').html(this.pairsGuessed);
+  $('#pairs_clicked').html(this.pairsClicked);
+      return true;
+}else{
+  this.pairsClicked++;
+  $('#pairs_clicked').html(this.pairsClicked);
+  console.log("NO");
+  return false;
 }
+
+}
+
+isFinished() {
+    if(this.pairsGuessed === this.cards.length / 2){
+      console.log("YOU WON");
+      return true;
+    }else{
+      console.log("not yet");
+      return false;
+    }
+
+  }
+
+}
+
