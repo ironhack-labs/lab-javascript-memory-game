@@ -28,7 +28,6 @@ if(card1 === card2){
 }else{
   this.pairsClicked++;
   $('#pairs_clicked').html(this.pairsClicked);
-  console.log("NO");
   return false;
 }
 
@@ -36,10 +35,8 @@ if(card1 === card2){
 
 isFinished() {
     if(this.pairsGuessed === this.cards.length / 2){
-      console.log("YOU WON");
       return true;
     }else{
-      console.log("not yet");
       return false;
     }
 

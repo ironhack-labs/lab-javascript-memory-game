@@ -47,11 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $this.removeClass('back');
     memoryGame.pickedCards.push($this);
 
-   
-   // console.log($(this).parent().attr('data-card-name')); //TO LOCATE THE NAME
-    console.log(memoryGame.pickedCards.length);
   }else{
-    console.log("YOU REACHED THE LIMIT DUMMY");
   }
   if(memoryGame.pickedCards.length > 1){
     if(memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().attr('data-card-name'), memoryGame.pickedCards[1].parent().attr('data-card-name')) === true){
@@ -79,13 +75,7 @@ $('.unmatch').each(function(){
   $(this).prev().addClass('back');
 });
 }
-// document.querySelectorAll(".front").forEach(function(card) {
-      //   card.onclick = function(evt) {
-      //     evt.target.parentElement.children[0].className = "back";
-      //  evt.target.parentElement.children[1].className = "front";
-      //     console.log("Card clicked");
-      //   }
-      //   });
+
 
 
     
