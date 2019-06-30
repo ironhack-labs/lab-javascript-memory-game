@@ -6,7 +6,9 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards() {
-    var currIndex = this.cards.length, temp, randomIndex;
+    var currIndex = this.cards.length;
+    var temp;
+var randomIndex;
 
     while (currIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currIndex);
