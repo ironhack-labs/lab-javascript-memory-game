@@ -67,3 +67,12 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.winner {
+
+  color: red;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+
+}
