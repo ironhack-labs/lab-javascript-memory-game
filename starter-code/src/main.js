@@ -34,43 +34,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
     html += '  <div class="back" name="' + pic.img + '"></div>';
     html += '  <div class="front" style="background: url(img/' + pic.img + ') no-repeat"></div>';
     html += '</div>';
-  });
+    document.querySelector('#memory_board').innerHTML = html;
+    document.querySelectorAll('.back').forEach(function (card) {
+      card.onclick = function () {
+        let cardName = card.getAttribute('name')
 
-  // Add all the div's to the HTML
-  document.querySelector('#memory_board').innerHTML = html;
-  $('.back').click(function () {
-    let target = $(this)
-    if (memoryGame.pickedCards.length < 2) {
-      target.siblings().addClass('back')
-      target.siblings().addClass('unmatch')
-      target.removeClass('back')
-      memoryGame.pickedCards.push(target)
-    }
-    if (memoryGame.pickedCards.length > 1) {
-      if (memoryGame.checkIfPair(memoryGame.pickedCards[0].parent().attr('data-card-name'), memoryGame.pickedCards[1].parent().attr('data-card-name')) === true) {
-        memoryGame.pickedCards[0].siblings().removeClass('unmatch');
-        memoryGame.pickedCards[1].siblings().removeClass('unmatch');
+        console.log(cardName) // name of the card used to compare
 
-      } else {
-        setTimeout(function () {
-          reverseElement()
-          console.log(memoryGame.pickedCards)
+        card.style.background = `url(img/${cardName})`;
+        memoryGame.pickedCards.push(cardName)
 
-        }, 1000)
+        console.log(memoryGame.pickedCards) // see whats in picked cards array
+
+
+
 
       }
-      memoryGame.isFinished();
-      memoryGame.pickedCards = []
-    }
-  })
+    })
+
+
+
+
+  });
 })
 
 
 
-function reverseElement() {
-  $('.unmatch').each(function () {
-    $(this).click();
-    $(this).removeClass('back')
-    $(this).prev().addClass('back')
-  });
-}
+
