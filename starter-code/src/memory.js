@@ -13,6 +13,7 @@ class MemoryGame {
   }
 
   shuffleCards(cardsArr){
+    //shuffle the given cards
 
     let cardsLength = cardsArr.length;
 
@@ -36,19 +37,32 @@ class MemoryGame {
   
 
   checkIfPair(card1, card2){
+    //determines if two cards are the same or not. If they are the same, leave them flipped. If they are different, then flip them back over.
     this.pairsClicked++;
     $('#pairs_clicked').html(this.pairsClicked);
     if(card1 === card2){
+      console.log('did you make it to true')
       this.pairsGuessed++;
       $('#pairs_guessed').html(this.pairsGuessed);
+      memoryGame.pickedCards.forEach((card, index) => {
+        $(memoryGame.pickedCards[index]).children(":first").toggle()
+      })
       this.pickedCards = [];
-      return true;
     } else {
-      //set the timeout here for non matching pairs
-      return false;
+      cards = [...memoryGame.pickedCards]
+      setTimeout(function(){
+        cards.forEach((card, index) => {
+          console.log(card[0])
+          $(card[0]).children(":first").toggleClass("back front");
+          $(card[0]).children(":nth-child(2)").toggleClass("front back"); 
+        })
+      }, 1000)
+      this.pickedCards = [];
+     
     }
   }
   isFinished(){
+    //determines if the player has won the game. The game is over when the number of pairs guessed is half the number of cards on the board.
     if(this.pairsGuessed === (this.cards.length/2)){
       return true;
     } else {
@@ -56,4 +70,5 @@ class MemoryGame {
     }
   }
 }
+
 
