@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.querySelector('#memory_board').innerHTML = html;
     document.querySelectorAll('.back').forEach(function (card) {
       card.onclick = function () {
+        card.classList.add('just-clicked')
+        card.classList.add('blocked')
         let cardName = card.getAttribute('name')
 
         console.log(cardName) // name of the card used to compare
@@ -45,15 +47,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         memoryGame.pickedCards.push(cardName)
 
         console.log(memoryGame.pickedCards) // see whats in picked cards array
-
-
-
-
+        if (memoryGame.pickedCards.length === 2) {
+          let firstElementInArray = memoryGame.pickedCards[0]
+          let secondElementInArray = memoryGame.pickedCards[1]
+          console.log(firstElementInArray, secondElementInArray)
+          memoryGame.checkIfPair(firstElementInArray, secondElementInArray)
+        }
       }
     })
-
-
-
 
   });
 })
