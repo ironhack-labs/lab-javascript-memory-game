@@ -43,7 +43,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
       // TODO: write some code here
-      console.log('Card clicked')
+      // console.log('Card clicked', card);
+
+      // add a just-clicked class to the clicked card
+      card.classList.add("just-clicked");
+      // add a class blocked to the clicked card
+      card.classList.add("blocked");
+
+
+      let cardName = card.getAttribute("name");
+      // console.log('name is: ', cardName);
+
+      card.style.background = `url(img/${cardName})`;
+
+      memoryGame.pickedCards.push(cardName);
+      // console.log(memoryGame.pickedCards);
+
+      if(memoryGame.pickedCards.length === 2){
+        let firstInArr = memoryGame.pickedCards[0];
+        let secondInArr = memoryGame.pickedCards[1];
+        memoryGame.checkIfPair(firstInArr, secondInArr);
+      }
     }
   });
 });
