@@ -25,9 +25,10 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+let block = false;
 
-
-document.addEventListener("DOMContentLoaded", function(event) { 
+window.addEventListener("load", function(event) { 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -42,10 +43,40 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+      if(block) return;
+      turnCard(card.parentNode);
+      if(memoryGame.clickedCard(card.parentNode.dataset.cardName)) {
+        block = true;
+        setTimeout(function () {
+          turnCardsByName(memoryGame.pickedCards);
+          block = false;
+        }.bind(this), 1000);
+      }
+      updateCounts();
     }
   });
 });
 
+function updateCounts() {
+  document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked
+  document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed
+}
 
+function removeNameAttributes(cardNames) {
+  let cards = document.querySelectorAll(".card .front[name]");
+  cards[0].removeAttribute("name");
+  cards[1].removeAttribute("name");
+}
+
+function turnCardsByName(cardNames) {
+  let cards = document.querySelectorAll(".card .front[name]")
+  turnCard(cards[0].parentNode);
+  turnCard(cards[1].parentNode);
+}
+
+function turnCard(card) {
+  card.firstElementChild.classList.toggle("front")
+  card.firstElementChild.classList.toggle("back")
+  card.lastElementChild.classList.toggle("front")
+  card.lastElementChild.classList.toggle("back")
+}
