@@ -2,6 +2,9 @@ class MemoryGame {
 
   constructor(cards){
     this.cards = cards;
+    this.cardTurned1 = "";
+    this.cardTurned2 = "";
+    this.cardsTurned = 0;
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
