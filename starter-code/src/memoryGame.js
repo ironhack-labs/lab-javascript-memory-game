@@ -30,17 +30,9 @@ class MemoryGame {
     }
   };
 
-  isFinished = function() {
+  isFinished() {
     let numPairs = this.cards.length / 2;
     return (this.pairsGuessed === numPairs) ? true : false;    
   };
 
 };
-
-var cards = [1,2,3,4,5];
-someGame = new MemoryGame(cards);
-someGame.shuffleCards();
-console.log(someGame.cards);
-
-
-//  isFinished() {}
