@@ -5,7 +5,7 @@ $(document).ready(function(){
 // -------------------------------------------------------------------------------------------
 
 var memoryGame = new MemoryGame(cards);
-// memoryGame.shuffleCards();
+memoryGame.shuffleCards();
 
 // -------------------------------------------------------------------------------------------
 // Set up all cards
@@ -55,16 +55,24 @@ $(".back").on("click", () => {     // Don't need to iterate in jquery - can add 
           memoryGame.$card1Node.siblings().toggleClass("back front");
           memoryGame.$card2Node.toggleClass("back front");
           memoryGame.$card2Node.siblings().toggleClass("back front");
-        }, 1000);
+        }, 600);
       };
       memoryGame.cardsTurned = 0; // Reset
     };
 
+
+    // Update counters
+    $("#pairs_clicked").html(memoryGame.pairsClicked);
+    $("#pairs_found").html(memoryGame.pairsFound);
+
     // Check if finished each click - bit wasteful but keeps logic simpler
+    
+      // Define reset game function
+      
+    
     if(memoryGame.isFinished()) {
       console.log("Finished!");
-        setTimeout( () => {
-        alert(`Well done - you won in ${memoryGame.pairsClicked} guesses!`);}, 500);
+        setTimeout( () => {alert(`Well done - you won in ${memoryGame.pairsClicked} guesses!`);}, 500);
     }; 
 
   });
