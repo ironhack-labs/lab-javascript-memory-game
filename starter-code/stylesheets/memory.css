@@ -12,6 +12,7 @@ html {
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  
 }
 
 
@@ -24,6 +25,7 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
