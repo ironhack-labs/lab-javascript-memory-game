@@ -1,4 +1,4 @@
-var cards = [
+let cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -24,11 +24,11 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-var memoryGame = new MemoryGame(cards);
-
+let memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  var html = '';
+  let html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -40,12 +40,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+  
+  let theCards = $(".card");
+
+  theCards.click(function() {
+    if(!$(this).hasClass("paired")){      
+      $(this).toggleClass("picked");
+      $(this).find(".back, .front").toggleClass("back front"); 
+      if ($(".picked").length > 1){        
+        let card1 = $(".picked")[0].innerHTML;
+        let card2 = $(".picked")[1].innerHTML;
+        if(memoryGame.checkIfPair(card1, card2)){
+          $(".picked").toggleClass("paired");  
+        } else {
+            let pickedCards = $(".picked");
+            setTimeout(function() {
+              pickedCards.find(".back, .front").toggleClass("back front");           
+            }, 1000);                     
+        }        
+        $(".picked").toggleClass("picked");             
+      }
     }
+    memoryGame.isFinished();  
   });
+  
 });
 
 

@@ -67,3 +67,17 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#win {
+  position: absolute;
+  margin-left: 590px;
+  margin-top: 0;
+  animation-duration: 400ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes blink {
+  from {color: #ff0000;}  
+  to {color: green;}
+}
