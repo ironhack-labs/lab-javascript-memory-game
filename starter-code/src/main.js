@@ -41,8 +41,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
+    card.onclick = function () {
       // TODO: write some code here
+      let myCards = document.querySelectorAll('.back')
+      let clases = myCards.classList
+      let result = clases.togle('back')
+      if (result) {
+        clases.setAtribute('class', 'front')
+      }
+
+      console.log(document.querySelectorAll('.front'))
+
       console.log('Card clicked')
     }
   });
