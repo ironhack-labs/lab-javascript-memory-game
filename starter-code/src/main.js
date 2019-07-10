@@ -39,9 +39,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
 
+
   // Bind the click event of each element to a function
+
+  let moveCars = document.querySelectorAll('div.memory_board')
+
   document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
+    card.onclick = function(e) {
+      console.log (e)
+
+      document.getElementsByName('back').className = "front";
+
+
+
+
       // TODO: write some code here
       console.log('Card clicked')
     }
@@ -49,3 +60,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 
+//  CAMBIAR CLASS PARA EL EVENTO
+// document.getElementById("MyElement").className = "MyClass";
