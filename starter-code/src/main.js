@@ -41,11 +41,43 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
+    card.onclick = function(e) {
+      e.currentTarget.parentNode.querySelector('.front').className = 'back'
+      e.currentTarget.className = 'front'
+      e.currentTarget.parentNode.getAttribu = 'back'
+      let picture = e.currentTarget.parentNode.getAttribute('data-card-name')
+      memoryGame.pickedCards.push(picture)
+      console.log(memoryGame.pickedCards.length)
+      if (memoryGame.pickedCards.length > 1){
+        for (let i = 0; i<memoryGame.pickedCards.length-1; i++){
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[i],memoryGame.pickedCards[i+1])){
+            document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed
+            document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked
+          }
+          else {
+            document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked
+          }
+        }
+      }
+    }
+    console.log('Card clicked')
+  });
+
+  document.querySelectorAll('.front').forEach(function(carta) {
+    carta.onclick = function(elem) {
+      elem.currentTarget.parentNode.querySelector('.back').className = 'front'
+      elem.currentTarget.className = 'back'
+
+      //setTimeout(function () { alert('Soy la información') }, 3000)     
+      // e.currentTarget.parentNode.querySelector('.back').className = 'front'
+      // e.currentTarget.className = 'back'
+    
       console.log('Card clicked')
     }
   });
+
+
+
 });
 
 
