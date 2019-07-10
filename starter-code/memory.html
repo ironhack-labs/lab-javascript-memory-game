@@ -4,6 +4,9 @@
        <title>Superhero Memory Game</title>
        <link type="text/css" rel="stylesheet" href="stylesheets/memory.css" media="screen">
     </head>
+
+
+
     <body>
         <div>
           <h1>Superhero Memory Game</h1>
@@ -13,7 +16,23 @@
           <p>Pairs Clicked: <span id="pairs_clicked">0</span></p>
           <p>Pairs Guessed: <span id="pairs_guessed">0</span></p>
         </div>
-        <div id="memory_board"></div>
+
+        <div id="memory_board">
+          <!-- Only display the back that is blue -->
+          <div class= "card" data-card-name="ironman">
+            <div class="back" name="ironman.jpg"></div>
+            <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+          </div>
+
+          <!-- After flipping (back and front are reverted) -->
+
+          <!-- Only display the back that has a ironman backgroung image -->
+          <div class= "card" data-card-name="ironman">
+            <div class="front" name="ironman.jpg"></div>
+            <div class="back" style="background: url(img/ironman.jpg) no-repeat"></div>
+          </div>
+
+        </div>
 
         <script type="text/javascript" src="src/memory.js"></script>
         <script type="text/javascript" src="src/main.js"></script>

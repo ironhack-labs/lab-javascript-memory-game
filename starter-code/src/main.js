@@ -46,6 +46,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
       console.log('Card clicked')
     }
   });
+
+  document.querySelectorAll(".back").forEach(function(card) {
+    card.onclick = function(e) {
+      let clickedCardBack = e.currentTarget.parentNode.childNodes[1];
+      let clickedCardFront = e.currentTarget.parentNode.childNodes[3];
+      clickedCardBack.className = "front";
+      clickedCardFront.className = "back";
+    };
+  });
 });
+
 
 
