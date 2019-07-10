@@ -50,26 +50,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
       card.nextElementSibling.classList.toggle("front")
       card.nextElementSibling.classList.toggle("back")
       
-      //  if ((lastCard  ) && (memoryGame.checkIfPair(lastCard.getAttribute('data-card-name') , lastCard.getAttribute('data-card-name')){
+       if ((lastCard != undefined) && (memoryGame.checkIfPair(lastCard.getAttribute('name') , card.getAttribute('name')) === false )){
 
-        
-      // }
+
+        setTimeout(() => {
+          console.log("Ups, prueba otra vez")
+          //cardMove()
+        }, 1000)
+
+         
+        lastCard=card
+      }
+      else{
+        console.log("¡Enhorabuena, encontraste una pareja")
       lastCard = card
+      console.log(lastCard)
+      }
+      
     }
     
   });
   
-  //checkIfPair(card)
+  //function cardMove(){
   document.querySelectorAll('.front').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
+     // TODO: write some code here
       card.classList.toggle("back")
       card.classList.toggle("front")
       card.previousElementSibling.classList.toggle("front")
       card.previousElementSibling.classList.toggle("back")
     }
   });
-
+  //}
 });
 
 
