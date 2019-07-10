@@ -40,12 +40,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
+  let lastCard 
+  //console.log(lastCard)
+  document.querySelectorAll('.back').forEach(function(card,i) {
     card.onclick = function() {
       // TODO: write some code here
-      console.log('Card clicked')
+      card.classList.toggle("back")
+      card.classList.toggle("front")
+      card.nextElementSibling.classList.toggle("front")
+      card.nextElementSibling.classList.toggle("back")
+      
+      //  if ((lastCard  ) && (memoryGame.checkIfPair(lastCard.getAttribute('data-card-name') , lastCard.getAttribute('data-card-name')){
+
+        
+      // }
+      lastCard = card
+    }
+    
+  });
+  
+  //checkIfPair(card)
+  document.querySelectorAll('.front').forEach(function(card) {
+    card.onclick = function() {
+      // TODO: write some code here
+      card.classList.toggle("back")
+      card.classList.toggle("front")
+      card.previousElementSibling.classList.toggle("front")
+      card.previousElementSibling.classList.toggle("back")
     }
   });
+
 });
 
 
