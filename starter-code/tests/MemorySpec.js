@@ -110,6 +110,27 @@ describe('checkIfPair method', function () {
 });
 
 describe('isFinished method', function () {
+  beforeEach(function () {
+    var cardsArray = [
+      { name: 'aquaman',         img: 'aquaman.jpg' },
+      { name: 'batman',          img: 'batman.jpg' },
+      { name: 'captain america', img: 'captain-america.jpg' },
+      { name: 'fantastic four',  img: 'fantastic-four.jpg' },
+      { name: 'flash',           img: 'flash.jpg' },
+      { name: 'green arrow',     img: 'green-arrow.jpg' },
+      { name: 'green lantern',   img: 'green-lantern.jpg' },
+      { name: 'ironman',         img: 'ironman.jpg' },
+      { name: 'aquaman',         img: 'aquaman.jpg' },
+      { name: 'batman',          img: 'batman.jpg' },
+      { name: 'captain america', img: 'captain-america.jpg' },
+      { name: 'fantastic four',  img: 'fantastic-four.jpg' },
+      { name: 'flash',           img: 'flash.jpg' },
+      { name: 'green arrow',     img: 'green-arrow.jpg' },
+      { name: 'green lantern',   img: 'green-lantern.jpg' },
+      { name: 'ironman',         img: 'ironman.jpg' },
+    ]
+    memoryGame = new MemoryGame(cardsArray);
+  });
   it('Should be declare', function () {
     expect(typeof memoryGame.isFinished).toBe('function');
   });
