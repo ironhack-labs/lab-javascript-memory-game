@@ -25,7 +25,6 @@ class MemoryGame {
 
   }
   isFinished() {
-    console.log(cards.length)
     if(this.cards.length/2 === this.pairsGuessed) {
       
       return true;
