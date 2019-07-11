@@ -7,8 +7,11 @@ class MemoryGame {
   }
   shuffleCards() {
     for(let i = this.cards.length - 1; i > 0; i -= 1) {
+      
       let j = Math.floor(Math.random() * i);
+      let temp = this.cards[i];
       this.cards[i] = this.cards[j];
+      this.cards[j] = temp;
     }
   }
   checkIfPair(card1, card2) {
@@ -18,11 +21,13 @@ class MemoryGame {
       return true;
     } 
     return false;
-
+    
 
   }
   isFinished() {
+    console.log(cards.length)
     if(this.cards.length/2 === this.pairsGuessed) {
+      
       return true;
     }
     return false;
