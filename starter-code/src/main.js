@@ -42,45 +42,44 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(function(card, index) {
     card.onclick = function() {
-      memoryGame.pickedCards.push(card)
-      card.children[0].classList.toggle('back');
-      card.children[0].classList.toggle('front');
-      card.children[1].classList.toggle('front');
-      card.children[1].classList.toggle('back');
+      if (memoryGame.pickedCards.length !== 2) {
+        memoryGame.pickedCards.push(card)
+        card.children[0].classList.toggle('back');
+        card.children[0].classList.toggle('front');
+        card.children[1].classList.toggle('front');
+        card.children[1].classList.toggle('back');
 
-      if (memoryGame.pickedCards.length === 2) {
-        let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
-        let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
-        let guessed = memoryGame.checkIfPair(card1, card2)
-        console.log(guessed)
-        document.getElementById('pairs_clicked').innerHTML = memoryGame.pairsClicked
-        document.getElementById('pairs_guessed').innerHTML = memoryGame.pairsGuessed;
+        if (memoryGame.pickedCards.length === 2) {
+          let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+          let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+          let guessed = memoryGame.checkIfPair(card1, card2)
+          document.getElementById('pairs_clicked').innerHTML = memoryGame.pairsClicked
+          document.getElementById('pairs_guessed').innerHTML = memoryGame.pairsGuessed;
         
-        if (guessed) {
-          memoryGame.pickedCards[0].children[1].classList.add('blocked');
-          memoryGame.pickedCards[1].children[1].classList.add('blocked');
-          memoryGame.pickedCards = [];
-
-          let gameOver = memoryGame.isFinished()
-          if (gameOver) {
-            alert('Parabéns! Você terminou o jogo.')
-          }
-
-        } else {
-          setTimeout(() => {
-            memoryGame.pickedCards[0].children[0].classList.toggle('back');
-            memoryGame.pickedCards[0].children[0].classList.toggle('front');
-            memoryGame.pickedCards[0].children[1].classList.toggle('back');
-            memoryGame.pickedCards[0].children[1].classList.toggle('front');
-            memoryGame.pickedCards[1].children[0].classList.toggle('front');
-            memoryGame.pickedCards[1].children[0].classList.toggle('back');
-            memoryGame.pickedCards[1].children[1].classList.toggle('front');
-            memoryGame.pickedCards[1].children[1].classList.toggle('back');
+          if (guessed) {
+            memoryGame.pickedCards[0].children[1].classList.add('blocked');
+            memoryGame.pickedCards[1].children[1].classList.add('blocked');
             memoryGame.pickedCards = [];
-          }, 1000);
+
+            if (memoryGame.isFinished()) {
+              alert('Parabéns! Você terminou o jogo.')
+            }
+
+          } else {
+            setTimeout(() => {
+              memoryGame.pickedCards[0].children[0].classList.toggle('back');
+              memoryGame.pickedCards[0].children[0].classList.toggle('front');
+              memoryGame.pickedCards[0].children[1].classList.toggle('back');
+              memoryGame.pickedCards[0].children[1].classList.toggle('front');
+              memoryGame.pickedCards[1].children[0].classList.toggle('front');
+              memoryGame.pickedCards[1].children[0].classList.toggle('back');
+              memoryGame.pickedCards[1].children[1].classList.toggle('front');
+              memoryGame.pickedCards[1].children[1].classList.toggle('back');
+              memoryGame.pickedCards = [];
+            }, 1000);
+          }
         }
       }
-      console.log('Card clicked')
     }
   });
 });
