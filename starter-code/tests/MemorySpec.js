@@ -60,6 +60,7 @@ describe('shuffleCards method', function () {
       { name: 'ironman',         img: 'ironman.jpg' },
     ]
     memoryGame = new MemoryGame(cardsArray);
+    console.log(memoryGame)
   });
 
   it('Should be declare', function () {
@@ -122,9 +123,9 @@ describe('isFinished method', function () {
     memoryGame.pairsGuessed = 4;
     expect(memoryGame.isFinished()).toBe(false);
   });
-
   it('It should return true if all pairs were guessed', function () {
     memoryGame.pairsGuessed = 8;
+    console.log(memoryGame.isFinished())
     expect(memoryGame.isFinished()).toBe(true);
   });
 
