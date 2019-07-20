@@ -124,7 +124,7 @@ describe('isFinished method', function () {
   });
 
   it('It should return true if all pairs were guessed', function () {
-    memoryGame.pairsGuessed = 8;
+    memoryGame.pairsGuessed = 12;
     expect(memoryGame.isFinished()).toBe(true);
   });
 

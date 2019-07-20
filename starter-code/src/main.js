@@ -24,11 +24,11 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-var memoryGame = new MemoryGame(cards);
 
-
-document.addEventListener("DOMContentLoaded", function(event) { 
+$(document).ready(function(){
+  var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -37,15 +37,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   // Add all the div's to the HTML
-  document.querySelector('#memory_board').innerHTML = html;
+  $('#memory_board').html(html);
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+  $('.back').click(function () {
+    // TODO: write some code here
+    flipCard(this);
+    memoryGame.pickedCards.push({ 
+      reference: this, name: $(this).attr('name').replace('-').replace('.jpg')
+    });
+    if(memoryGame.pickedCards.length == 2) {
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0].name,memoryGame.pickedCards[1].name)) {
+        memoryGame.pickedCards = [];
+      } else {
+        setTimeout(function() {
+          flipCard(memoryGame.pickedCards[0].reference);
+          flipCard(memoryGame.pickedCards[1].reference);
+          memoryGame.pickedCards.splice(0,2);
+        },500)
+      }
     }
+    newScore(memoryGame);
   });
 });
+
+function flipCard(obj) {
+  $(obj).toggleClass("back front");
+  $(obj).next().toggleClass("back front");
+}
+
+function newScore(memoryGame) {
+  $(pairs_clicked).text(memoryGame.pairsClicked);
+  $(pairs_guessed).text(memoryGame.pairsGuessed);
+} 
 
 
