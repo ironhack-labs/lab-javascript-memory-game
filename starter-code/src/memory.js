@@ -18,23 +18,29 @@ class MemoryGame {
         }
 
     }
-    setPair(card) {
+    roundLength = () => { 
+    	return this.round.length;
+    }
+    setPair(card, callback) {
         this.round.push(card);
         if (this.round.length === 2) {
-            checkIfPair(this.round[0], this.round[1]);
+            let result = this.checkIfPair(this.round[0], this.round[1]);
+            if(callback) callback(result,this.round[0],this.round[1]);
             this.round = [];
         }
     }
-
 
     checkIfPair = (firstCard, secondCard) => {
 
         this.pairsClicked += 1;
         if (firstCard === secondCard) {
             this.pairsGuessed += 1;
+             console.log("yei");
             return true;
         } else {
+        	console.log("buen");
             return false;
+
         }
     }
     isFinished = () => {
