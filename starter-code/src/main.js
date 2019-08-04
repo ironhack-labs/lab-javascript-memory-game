@@ -27,8 +27,7 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 
 
-
-document.addEventListener("DOMContentLoaded", function(event) { 
+  document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
@@ -36,9 +35,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
     html += '</div>';
   });
-
+function notify() {
+  $( this ).text()
+}
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
+
+
+  $(document).ready(function(){
+    $('.back').on( "click", ()=>{
+       $( this ).hide();
+    } );
+});
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
@@ -48,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 });
+
+
+
+
 
 
 
