@@ -5,13 +5,14 @@ html {
 }
 
 #memory_board {
-  background:#dddddd;
+ background:#dddddd;
 	width:800px;
 	height:540px;
 	padding:70px;
 	margin:0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+
 }
 
 
