@@ -100,7 +100,8 @@ let updateScore = () => {
 
     }
 }
-let square = (index) => {
+
+let cardArea = (index) => {
     return $(`.card:nth-child(${index})`);
 }
 
@@ -122,8 +123,8 @@ let flipCard = (jCard, index) => {
         memoryGame.setPair(card, (ifPairs, card1, card2) => {
 
 
-            let jFirstCard = square(card1.position);
-            let jSecondCard = square(card2.position);
+            let jFirstCard = cardArea(card1.position);
+            let jSecondCard = cardArea(card2.position);
 
             if (ifPairs) {
                 blockCards(jFirstCard);

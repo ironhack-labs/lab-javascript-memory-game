@@ -7,6 +7,7 @@ class MemoryGame {
         this.pairsGuessed = 0;
         this.shuffleCards();
     }
+    
     shuffleCards = () => {
         for (let i = 0; i < (this.cards.length - 2); i++) {
             let j = Math.floor(Math.random() * this.cards.length);
