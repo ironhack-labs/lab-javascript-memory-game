@@ -39,10 +39,10 @@ var memoryGame = new MemoryGame(createCards(cards));
 
 var twoUnflip = [];
 
-let unflip = (item)=> {
-   let children = item.children();
-   children.last().removeClass('back');
-   children.first().addClass('back');
+let unflip = (item) => {
+    let children = item.children();
+    children.last().removeClass('back');
+    children.first().addClass('back');
 }
 
 let unflipItens = () => {
@@ -51,27 +51,31 @@ let unflipItens = () => {
     twoUnflip = [];
 }
 
-let unflipEveryBody = () =>{
+let unflipEveryBody = () => {
     $('.card').each(function(index) {
-     unflip($(this));
+        unflip($(this));
     });
 }
 
-let colorFinalGame = function () {
-  let defaultColor = "rgb(221, 221, 221)";
-  let winnerColor = "yellow";
-  let color = $('#memory_board').css("background-color");
-  (color === "rgb(221, 221, 221)") ? $('#memory_board').css("background-color", winnerColor): $('#memory_board').css("background-color", defaultColor); 
+let colorFinalGame = function() {
+    let defaultColor = "rgb(221, 221, 221)";
+    let winnerColor = "yellow";
+    let color = $('#memory_board').css("background-color");
+    (color === "rgb(221, 221, 221)") ? $('#memory_board').css("background-color", winnerColor): $('#memory_board').css("background-color", defaultColor);
 
-  }
+}
 
-let restarGame = () =>{
+let restarGame = () => {
+
     var id = setInterval(colorFinalGame, 200);
-    setTimeout( () => { 
-    clearInterval(id); 
-     $('#memory_board').css("background-color", "#dddddd"); 
-     memoryGame.shuffleCards(); }, 1200);
-    setTimeout(unflipEveryBody, 1210);
+    setTimeout(() => {
+        clearInterval(id);
+        $('#memory_board').css("background-color", "#dddddd");
+        memoryGame.shuffleCards();
+    }, 1200);
+    setTimeout(unflipEveryBody, 500);
+
+
 
 }
 
@@ -85,13 +89,13 @@ let blockCards = (cards) => {
 let updateScore = () => {
 
     $('#pairs_clicked').text(memoryGame.pairsClicked);
-    $('#pairs_guessed').text(memoryGame.pairsGuessed );
-    if (memoryGame.isFinished()){
-          restarGame();
-          memoryGame.pairsClicked = 0;
-          memoryGame.pairsGuessed  = 0;
-     $('#pairs_clicked').text(memoryGame.pairsClicked);
-     $('#pairs_guessed').text(memoryGame.pairsGuessed );
+    $('#pairs_guessed').text(memoryGame.pairsGuessed);
+    if (memoryGame.isFinished()) {
+        restarGame();
+        memoryGame.pairsClicked = 0;
+        memoryGame.pairsGuessed = 0;
+        $('#pairs_clicked').text(memoryGame.pairsClicked);
+        $('#pairs_guessed').text(memoryGame.pairsGuessed);
 
 
     }
@@ -134,7 +138,7 @@ let flipCard = (jCard, index) => {
         });
     } else {
         backCard.addClass('back');
-    }  
+    }
 
 }
 
