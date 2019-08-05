@@ -27,19 +27,6 @@ var cards = [
 var memoryGame = new MemoryGame(cards);
 var twoUnflip = [];
 
-// document.addEventListener("DOMContentLoaded", function(event) {
-//     var html = '';
-//     memoryGame.cards.forEach(function(pic) {
-//         html += '<div class="card" data-card-name="' + pic.name + '">';
-//         html += '  <div class="back" name="' + pic.img + '"></div>';
-//         html += '  <div class="front" style="background: url(img/' + pic.img + ') no-repeat"></div>';
-//         html += '</div>';
-//     });
-
-//     // Add all the div's to the HTML
-//     document.querySelector('#memory_board').innerHTML = html;
-// });
-
 function notify() {
     alert("clicked");
 }
@@ -55,7 +42,7 @@ let blockCards = (cards) => {
     second.children().last().addClass("blocked");
 
 }
-let flipCard = (card) => {
+let flipCard = (card,target) => {
 
 
     if (twoUnflip.length == 2) {
@@ -90,11 +77,17 @@ let flipCard = (card) => {
     }
     frontCard.toggleClass('back');
 
+    if(card.data("flipped") === "1") {
+      card.data("flipped", "0");
+    } else {
+      card.data("flipped", "1");
+    }
+
 }
 $(document).ready(() => {
     var html = '';
     memoryGame.cards.forEach(function(pic) {
-        html += '<div class="card" data-card-name="' + pic.name + '">';
+        html += '<div class="card" data-flipped="0" data-card-name="' + pic.name + '">';
         html += '  <div class="back" name="' + pic.img + '"></div>';
         html += '  <div class="front blocked" style="background: url(img/' + pic.img + ') no-repeat"></div>';
         html += '</div>';
@@ -103,8 +96,8 @@ $(document).ready(() => {
     $('#memory_board').html(html);
     $('.card').each(function(index) {
         //console.log( index + ": " + $( this ).text() );
-        $(this).on("click", () => {
-            flipCard($(this));
+        $(this).on("click", (target) => {
+            flipCard($(this), target);
         });
 
     });
