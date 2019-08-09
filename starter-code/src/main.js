@@ -1,4 +1,4 @@
-var cards = [
+const cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -24,12 +24,16 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-var memoryGame = new MemoryGame(cards);
+let memoryGame = new MemoryGame(cards);
+let selectedCards = [];
 
+
+
+//memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
-  memoryGame.cards.forEach(function (pic) {
+  memoryGame.shuffleCards().forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
     html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
@@ -42,10 +46,49 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach(function(card) {
     card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+      turnCard(this);
+
+      if ( selectedCards.length > 1 ) {
+        if (memoryGame.checkIfPair(...selectedCards)) {
+          document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+          if (memoryGame.isFinished()) {
+            setTimeout(function(){
+              const element = document.querySelector('#game_over');
+              element.style.visibility = "visible";
+              element.style.opacity = "0.9";
+
+            },500)
+          }
+        } else {
+          const copied = [...selectedCards];
+          setTimeout(function(){
+            resetCards(copied)
+          }, 500);
+        }
+        document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
+        selectedCards = [];
+      }
     }
   });
+
+  var el = document.getElementById("newgame");
+  el.addEventListener("click", reload, false);
+
 });
 
+const turnCard = card => {
+  selectedCards.push(card);
+  card.className = 'front';
+  card.nextElementSibling.className = "back";
+}
 
+const resetCards = selectedCardsCopy => {
+  for (i=0;i<selectedCardsCopy.length;i++) {
+    selectedCardsCopy[i].className = 'back';
+    selectedCardsCopy[i].nextElementSibling.className = "front";
+  }
+}
+
+const reload = () => {
+  location.reload(true);
+}

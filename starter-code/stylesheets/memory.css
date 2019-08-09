@@ -67,3 +67,54 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#game_over {
+  background-color: rgba(97,89,97,0.9);
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn {
+  float: left;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  margin: 0 7px 11px 0;
+  padding: 0 20px;
+  text-align: center;
+
+  /* Smoothing out hover using css3 transitions, if not, the pressed button effect looks a bit hard */
+  transition: all 0.2s ease;
+
+  /* Size */
+  line-height: 45px;
+  width: 250px;
+  height: 45px;
+  font-size: 120%;
+
+  /* Colors */
+  background: #f7f7f7;
+}
+
+.btn:hover {
+  background: #e6e6e6;
+}
+
+#game_over h2 {
+  color: #fff;
+  font-size: 55px;
+}
