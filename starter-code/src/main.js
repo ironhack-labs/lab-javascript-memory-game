@@ -25,7 +25,7 @@ var cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 var memoryGame = new MemoryGame(cards);
-
+memoryGame = memoryGame.shuffleCards;
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';

@@ -6,17 +6,16 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards(cards) {
-    /*function shuffle(sourceArray) {
-      for (var i = 0; i < sourceArray.length - 1; i++) {
-          var j = i + Math.floor(Math.random() * (sourceArray.length - i));
-  
-          var temp = sourceArray[j];
-          sourceArray[j] = sourceArray[i];
-          sourceArray[i] = temp;
-      }
-      return sourceArray;
-    }*/
+    for (let i = 0; i < cards.length - 1; i++) {
+      let chooseRandom = i + Math.floor(Math.random() * (cards.length - i));
+
+      let newArr = cards[chooseRandom];
+      cards[chooseRandom] = cards[i];
+      cards[i] = newArr;
+    }
+    return cards;
   }
+
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
 
@@ -28,11 +27,11 @@ class MemoryGame {
     }
   }
   isFinished() {
-    /*if (pairsGuessed == memoryGame.length - 1) {
+    if (pairsGuessed == memoryGame.length) {
       return true;
     } else {
       return false;
-    }*/
+    }
     return false;
   }
 }
