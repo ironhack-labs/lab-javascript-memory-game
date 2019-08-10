@@ -24,11 +24,23 @@ html {
 	padding:20px;
 	font-size:64px;
 }
+.card .front{
+  width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+  font-size:64px;
+  
+}
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
 }
 
+.no-display{
+  display: none;
+}
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
   border-radius: 8px;
