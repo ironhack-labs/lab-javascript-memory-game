@@ -76,6 +76,7 @@ describe("shuffleCards method", function() {
         return card.name;
       })
       .toString();
+    //console.log(memoryGame.cards);
     memoryGame.shuffleCards();
     var newCardsString = memoryGame.cards
       .map(function(card) {
