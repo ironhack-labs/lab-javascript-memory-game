@@ -26,9 +26,11 @@ var cards = [
 ];
 var memoryGame = new MemoryGame(cards);
 
+// Turn selected cards back
 function turnCardsBack(pickedCards) {
-  let parent1 = pickedCards[0], parent2 = pickedCards[1];
-  
+  let parent1 = pickedCards[0],
+    parent2 = pickedCards[1];
+
   parent1.firstElementChild.classList.add("back");
   parent1.firstElementChild.classList.remove("front");
   parent1.lastElementChild.classList.add("front");
@@ -41,6 +43,7 @@ function turnCardsBack(pickedCards) {
   pickedCards = [];
 }
 
+// Block unclicked cards to avoid turning more than 2 cards at a time
 function blockUnclickedCards() {
   document.querySelectorAll(".card").forEach(function(card) {
     card.firstElementChild.classList.add("blocked");
@@ -48,6 +51,7 @@ function blockUnclickedCards() {
   });
 }
 
+// Unblock the unclicked cards to allow continuation of the game
 function unblockNotPairs() {
   document.querySelectorAll(".card").forEach(function(card) {
     card.firstElementChild.classList.remove("blocked");
@@ -71,6 +75,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Add all the div's to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
+  // Change the Score setting the number of clicks
+  function changeScoreboard() {
+    document.getElementById("pairs_clicked").innerText =
+      memoryGame.pairsClicked;
+    document.getElementById("pairs_guessed").innerText =
+      memoryGame.pairsGuessed;
+  }
+
   // Bind the click event of each element to a function
   document.querySelectorAll(".back").forEach(function(card) {
     card.onclick = function() {
@@ -79,30 +91,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
       papa.firstElementChild.classList.remove("back");
       papa.lastElementChild.classList.add("back");
       papa.lastElementChild.classList.remove("front");
-      console.log("Card clicked");
       memoryGame.pairsClicked += 1;
-      console.log(memoryGame.pairsGuessed);
-      if ( memoryGame.pairsClicked % 2 !== 0 ) {
+      if (memoryGame.pairsClicked % 2 !== 0) {
         memoryGame.pickedCards[0] = papa;
       }
 
-      if ( memoryGame.pairsClicked % 2 === 0 ) {
+      if (memoryGame.pairsClicked % 2 === 0) {
         memoryGame.pickedCards[1] = papa;
-        console.log(memoryGame.pickedCards[0])
-        console.log(memoryGame.pickedCards[1])
-        let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1]);
+        let isPair = memoryGame.checkIfPair(
+          memoryGame.pickedCards[0],
+          memoryGame.pickedCards[1]
+        );
         blockUnclickedCards();
-        console.log(isPair);
-        if ( isPair ) {
-          console.log("encontrado we");
+        if (isPair) {
           unblockNotPairs();
-          console.log(memoryGame.pairsGuessed);
-        }
-        else {
-         setTimeout(function() {turnCardsBack(memoryGame.pickedCards)},3000);
-         setTimeout(function() {unblockNotPairs()},3000);
+        } else {
+          setTimeout(function() {
+            turnCardsBack(memoryGame.pickedCards);
+          }, 1000);
+          setTimeout(function() {
+            unblockNotPairs();
+          }, 1000);
         }
       }
+      changeScoreboard();
     };
   });
 });
