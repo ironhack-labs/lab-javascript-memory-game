@@ -26,6 +26,7 @@ var cards = [
 ];
 var memoryGame = new MemoryGame(cards);
 
+memoryGame.shuffleCards()
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   var html = '';
@@ -38,14 +39,60 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Add all the div's to the HTML
   document.querySelector('#memory_board').innerHTML = html;
-
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
+  
+  let oneTwo = []
+  
+  document.querySelectorAll('.back').forEach(function (card) {
     card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
-    }
-  });
-});
 
+      let name = card.parentNode.getAttribute('data-card-name')
+      let front = card.parentNode.querySelector('.front')
+        card.classList.toggle("front")
+        card.classList.toggle("back")
+        front.classList.toggle("back")
+        front.classList.toggle("front")
+
+      if (oneTwo.length == 0){
+        
+        oneTwo[0]=name;
+      }
+      
+      else if (oneTwo.length == 1){
+        let front = card.parentNode.querySelector('.front')
+        card.classList.toggle("front")
+        card.classList.toggle("back")
+        front.classList.toggle("back")
+        front.classList.toggle("front")
+        oneTwo[1] = name;
+        check(card,front);
+
+      }
+      console.log(oneTwo)
+
+  
+    }});
+  
+
+  function check(card,front){
+
+    if (memoryGame.checkIfPair(oneTwo[0],oneTwo[1]) == true){
+          
+      console.log("It's a pair")
+      console.log(`${memoryGame.pairsGuessed} pairs guessed!`)
+      
+    }
+    card.classList.toggle("front")
+    card.classList.toggle("back")
+    front.classList.toggle("back")
+    front.classList.toggle("front")
+        
+  }
+  
+
+});
+      
+
+
+      
+      
 
