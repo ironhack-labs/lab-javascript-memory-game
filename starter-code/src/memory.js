@@ -1,7 +1,7 @@
 class MemoryGame {
   constructor(cards){
     this.cards = cards;
-    this.pickedCards = {};
+    this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
@@ -17,17 +17,33 @@ class MemoryGame {
       return undefined;
    }
   
-  checkIfPair(card1, card2) {
+  
+
+  checkIfPair() {
+
+    let card1 = this.pickedCards[this.pickedCards.length-2]
+    let card2= this.pickedCards[this.pickedCards.length-1]
 
     this.pairsClicked +=1
+    
+    console.log(this.pairsGuessed)
 
     if (card1 == card2) {
       this.pairsGuessed += 1;
       console.log("it's a pair!")
-      return true;
+      while (this.pickedCards.length < 0) this.pickedCards.pop()
+      this.pairsClicked = 0;
+      return true; 
     }
+
+    
     console.log('no pair, here')
+    this.pickedCards.pop()
+    this.pickedCards.pop()
+    this.pairsClicked = 0;
     return false;
+  
+    
 
   }
 
