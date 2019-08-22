@@ -1,6 +1,7 @@
 class MemoryGame {
-  constructor(card){
+  constructor(cards){
     this.cards = cards;
+    // add the rest of the class properties here
   }
   shuffleCards() {}
   checkIfPair(card1, card2) {}

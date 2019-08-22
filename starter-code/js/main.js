@@ -1,4 +1,4 @@
-var cards = [
+const cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -24,27 +24,27 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-var memoryGame = new MemoryGame(cards);
 
+const memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  var html = '';
-  memoryGame.cards.forEach(function (pic) {
-    html += '<div class="card" data-card-name="'+ pic.name +'">';
-    html += '  <div class="back" name="'+ pic.img +'"></div>';
-    html += '  <div class="front" style="background: url(img/'+ pic.img +') no-repeat"></div>';
-    html += '</div>';
+  let html = '';
+  memoryGame.cards.forEach(pic => {
+    html += `<div class="card" data-card-name="${pic.name}">`;
+    html += `<div class="back" name="${pic.img}"></div>`;
+    html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
+    html += `</div>`;
   });
 
-  // Add all the div's to the HTML
+  // Add all the divs to the HTML
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
+  document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
-      console.log('Card clicked')
-    }
+      console.log('Card clicked: ', card);
+    };
   });
 });
 

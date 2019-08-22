@@ -1,37 +1,10 @@
-![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
-# JS | Memory Game
+![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-## Learning Goals
+# Lab | JS Memory Game
 
-After this learning unit, you will be able to:
-
-- Dynamically change the look of an HTML element
-- Use DOM manipulation to select and trigger changes in your page
-- Understand the logic behind the Memory game
-- Show off a little bit for the first time with your recently acquired front-end abilities :wink:
-
-## Requirements
-
-- [Fork this repo](https://guides.github.com/activities/forking/)
-- Clone this repo into your `~/code/labs`
-
-## Submission
-
-Upon completion, run the following commands
-```
-$ git add .
-$ git commit -m "done"
-$ git push origin master
-```
-Navigate to your repo and create a Pull Request from your master branch to the original repository master branch.
-
-In the Pull request name, add your name and last names separated by a dash "-"
-
-## Deliverables
-
-The starter-code provides every resource you need to style your game. Please, push every thing you need to make it work properly on GitHub before creating the pull request.
 
 ## Introduction
+We just learned how to use Vanilla JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
 
 Do you remember that game called Memory that you used to play in with actual paper tiles? To win, you needed to remember the position of tiles. 
 
@@ -39,98 +12,96 @@ The game consists of an even number of tiles with images on one side and a gener
 
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
-When the game starts, all tiles are turned face down. The player then flips over two cards, selecting them by clicking on them. If the two tiles have the same image, they remain face up. Otherwise, the tiles flip back over after a small period of time.
+When the game starts, all tiles are turned face down. The player then flips over two cards, selecting them by clicking on them. If the two tiles have the same image, they remain face up. Otherwise, the tiles flip back over after a short period of time.
 
-The goal of the game is to get all the tiles flipped face up in the least number of tries. That means that lower number of tries are better scores.
+The goal of the game is to get all the tiles flipped face-up in the least number of tries. That means that a lower number of attempts scores better.
 
-**Let's do this in JavaScript!**
+## Requirements
 
-## Plan your Game
+- Fork this repo
+- Clone this repo
+
+## Submission
+
+Upon completion, run the following commands:
+```
+$ git add .
+$ git commit -m "done"
+$ git push origin master
+```
+Create Pull Request so your TAs can check up your work.
+
+
+## Instructions
+First, you will do some routine work - connecting files to the `memory.html`, so we make sure styles and JS files are loading when we open the game in the browser. Then you will proceed to work on the game logic and making sure everything works properly just by printing all desired results in the console. When the logic is down, you will move forward to `js/main.js` and work on the interactions - what happens when user clicks on the card: how do we get the movement/flipping sides effect, how we keep the cards showing images if they are found to be the same and how we make cards flip back to blue background if the cards are not the same. All the time keep in mind, we need to work only with two cards at the same time.
+
+*Let's do this in JavaScript using DOM manipulation!*
+
+### Iteration 1: Plan your Game
 
 To code the game, on one hand we will need to re-create the physical parts of the game (the layout). On the other hand, we will implement the rules of the game (the logic). We will make a single-player version of the game, which will simplify some of the logic.
 
-Remember: organization is the key. Keep the JavaScript related to your layout and your user interface in one section of your file and the JavaScript related to the code in another section.
+Remember: organization is the key. Keep the JavaScript related to your layout and your user interface in one section of your file and the JavaScript related to the logic in another section (meaning in a separate file).
 
-### Think about the layout
+#### The layout and the logic files
 
-- Add to your html the parts you'll game will have. The board, the tiles and the score.
+Many things are already done for you. However, you need to properly link some files in the `memory.html` file to get the CSS and JS working for you. So let's see which files we are talking about:
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Superhero Memory Game</title>
-    <link type="text/css" rel="stylesheet" href="memory.css" media="screen">
-  </head>
-  <body>
-  </body>
-</html>
+- **the styles**: don't forget to add the link to the CSS file in the `header` section.
+- **the logic**: take a look at the `js/main.js` and `js/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation).
+
+After connecting them properly, you should be able to see the board, the tiles, and the score.
+
+### Iteration 2: The `MemoryGame` class
+
+We will test our game logic using Jasmine (at this point, you should be **Jasmine Masters!**). Actually, for this game the game logic is pretty simple, we only going to need a `MemoryGame` class, and some *methods* to shuffle and compare cards, and one to check if the game is finished.
+
+If you open `memory.js` file, you will see that it is preset for you:
+
+```js
+class MemoryGame {
+  constructor(cards){
+    this.cards = cards;
+    // add the rest of the class properties here
+  }
+  shuffleCards() {}
+  checkIfPair(card1, card2) {}
+  isFinished() {}
+}
 ```
 
-Take a look above. We are not adding a **Start** button. If you think about it, we don't need it. We can render the tiles and create a listener to begin the game when the user clicks on an element. 
+1. The `MemoryGame` class: we created a `MemoryGame` class and, as we can see in its constructor, it will receive an array of cards as a parameter and set this array to a `this.cards` property. 
+2. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. 
+3. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair. Go ahead and add these in the constructor.
 
-Also, link your `js` file. We already know how to do it :wink:.
+### Iteration 3: The class methods
 
-### Add your styles
+1. Create logic for the method `shuffleCards()` to shuffle the cards - every time you create a new game, the order of the cards changes. You will only need to change the `cards` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this method, you can skip it for the moment and go back to it later.
 
-- In the `header` section, remember to add the link to your CSS file.
+2. When a user picks 2 cards, we will need to check if they are the same. Let's create logic for the method `checkIfPair()`, that will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`. It should return `true` or `false` depending on the result of comparing both cards.
 
-```html
-<link type="text/css" rel="stylesheet" href="memory.css" media="screen">
-```
-
-### The Logic
-
-Take a look at the `src/main.js` and `src/memory.js` starter file. You already have one file for the logic and one file for the HTML/CSS interactions.
-
-### The Game Logic
-
-We will test our game logic using Jasmine (at this point you shold be **Jasmine Masters!**). Actually, for this game the game logic is pretty simple, we only going to need a `MemoryGame` constructor, and some methods to shuffle and compare cards, and one to check when the game finishes.
-
-- First things first: Create a `MemoryGame` constructor that will receive an array of cards as a parameter and set this array to a `this.cards` property. We also need a `this.pickedCards` array, where we will be storing the cards the user have clicked so we can compare them. Finally a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair.
-
-- Create a method to shuffle the cards, so every time you create a new game, the order of the cards changes. You will only need to change the `cards` property from your object. **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle on this function, you can skip for the moment and go back on it later.
-
-```javascript
-MemoryGame.prototype.shuffleCards = function() {
-};
-```
-- When a user pick 2 cards, we will need to check if they are the same. Let's create a method `checkIfPair`, that will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`.
-
-Finally it will return `true` or `false` depending on the result of comparing both cards.
-
-```javascript
-MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
-
-};
-```
-
-- As Memory doesn't have a 'Game Over', we just need a 'Win' function, where we need to check if our property `pairsGuessed` reach the numbers of pairs the game has.
-
-```javascript
-MemoryGame.prototype.isFinished = function() {
-};
-```
+3. Finally, we need to make sure our game ends, and for that, we can add some logic to the `isFinished()` method. Here we need to check if our property `pairsGuessed` has reached *the numbers of pairs the game has*.
 
 ### HTML/CSS Interactions
 
-Think about the interactions your user and the game will have: basically the user will click on elements of the page and receive a result - whether he guessed the pair or not.
+Think about the interactions your user and the game will have: basically, the user will click on elements of the page (cards) and receive some result - whether they guessed the pair or not.
 
-- The first thing we need to do is use the information to dynamically fill the tiles in the board element. As we want this behavior to be trigged as soon as the page loads, we need to wrap it under a `DOMContentLoaded` event.
+- The first thing that is done for us - each card's information is dynamically filled in the tiles, and the board is pre-filled with cards for us. As we want this behavior to be triggered as soon as the page loads, we need to wrap it under a `DOMContentLoaded` event. This is also already done for us.
 
 ```javascript
 document.addEventListener("DOMContentLoaded", function(event) { 
+  // some code goes here
 });
 ```
 
-- The other important interaction is the click listener. Remember to add the listeners when the document is loaded.
+- The other important interaction is the click listener. On click on every single card, we can get some information about that specific card. This code snippet, which is also already provided for us, serves for that.
 
 ```javascript
-document.querySelectorAll('.back').forEach(function(card) {
+document.querySelectorAll('.back').forEach( card => {
   card.onclick = function() {
     // TODO: write some code here
-    console.log('Card clicked')
-  }
+    console.log('Card clicked: ', card);
+  };
 });
 ```
 
@@ -145,19 +116,16 @@ To flip a card, there are different possibilities. One them is toggle the classe
 
 <!-- After flipping (back and front are reverted) -->
 
-<!-- Only display the back that has a ironman backgroung image -->
+<!-- Only display the back that has a ironman background image -->
 <div class= "card" data-card-name="ironman">
   <div class="front" name="ironman.jpg"></div>
   <div class="back" style="background: url(img/ironman.jpg) no-repeat"></div>
 </div
 ```
 
-## Summary
-
-In this Learning Unit, you were able to separate the logic of the game from the logic of the user interaction. You used DOM manipulation to listen to events and trigger the game. Also, learned a new useful shuffle algorithm.
-
 ## Extra Resources
 
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
 
+**Happy coding!** :heart: 
 
