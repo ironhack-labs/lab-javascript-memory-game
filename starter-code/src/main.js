@@ -27,12 +27,12 @@ var cards = [
 
 
 function createCards(arrayCards) {
-    let deck = [];
+    let dec = [];
     for (i = 0; i < arrayCards.length; i++) {
         let card = new Card(arrayCards[i].name, arrayCards[i].img, i + 1);
         deck.push(card);
     }
-    return deck;
+    return dec;
 }
 
 var memoryGame = new MemoryGame(createCards(cards));
