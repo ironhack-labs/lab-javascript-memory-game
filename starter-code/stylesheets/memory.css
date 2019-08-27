@@ -67,3 +67,26 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+
+.modal{
+ display:none;
+}
+
+.active-modal{
+  width: 40%;
+  top : calc(50vh - (200px / 2));
+  left : 40vh;
+  height: 200px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  display: flex; 
+  /* align-items: center;  */
+  /* flex-direction: column; */
+  justify-content: center; 
+  position: absolute; 
+}
