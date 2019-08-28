@@ -25,14 +25,16 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+console.log("h")
+
+const MemoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
-  let html = '';
-  memoryGame.cards.forEach(pic => {
-    html += `<div class="card" data-card-name="${pic.name}">`;
-    html += `<div class="back" name="${pic.img}"></div>`;
-    html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
+  let html = document.querySelectorAll("#memory_board")[0];
+  MemoryGame.cards.forEach(pic => {
+    html += `<div class="card" data-card-name="${MemoryGame.card.name}">`;
+    html += `<div class="back" name="${MemoryGame.card.img}"></div>`;
+    html += `<div class="front" style="background: url(img/${MemoryGame.card.img}) no-repeat"></div>`;
     html += `</div>`;
   });
 
