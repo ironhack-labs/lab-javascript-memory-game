@@ -78,12 +78,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll(".back").forEach(card => {
     card.onclick = function() {
       if (!twoCardsFlipped) {
-        pairsToCompare.push(card.parentElement.dataset.cardName);
+        pairsToCompare.push(card.getAttribute('name'));
 
-        card.classList.toggle("front");
-        card.classList.toggle("back");
-        card.nextElementSibling.classList.toggle("back");
-        card.nextElementSibling.classList.toggle("front");
+        card.className = "front";
+        card.nextElementSibling.className = "back";
 
         if (pairsToCompare.length === 2) {
           twoCardsFlipped = !twoCardsFlipped;
@@ -96,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                   `[data-card-name="${pairsToCompare[0]}"]`
                 )
               ];
-              cardsToDelete.forEach(card => card.remove());
+              // cardsToDelete.forEach(card => card.remove()); // Uncomment this line to delete the equal pairs
               twoCardsFlipped = !twoCardsFlipped;
               pairsToCompare = [];
               paisrGuessedDOMEl.textContent = memoryGame.pairsGuessed;
