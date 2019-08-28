@@ -43,6 +43,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+
+      /*if(card.classList.contains("front")){
+        card.classList.replace("front", "back");
+      }else{
+        card.classList.replace("back", "front");
+      }*/
+
+      
+
+      document.querySelector('.back').classList.replace(`back`, `front`);
+      document.querySelector('.front').classList.replace(`front`, `back`);
+     
+
       console.log('Card clicked: ', card);
     };
   });
