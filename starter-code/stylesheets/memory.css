@@ -4,26 +4,43 @@ html {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+body {
+  padding-bottom: 4rem;
+}
+
 #memory_board {
-  background:#dddddd;
-	width:800px;
-	height:540px;
+  background:#ddddddcc;
+	width:700px;
 	padding:70px;
-	margin:0px auto;
+	margin: 0 auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .card .back {
-  background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
+  width:71px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+  transition: box-shadow .5s, background-color .2s;
+  cursor: pointer;
+  background-color: #4567F3;
+  width: 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+	height:50px;
 	margin:10px;
-	padding:20px;
+  padding:20px;
+  border-radius: 50%;
 	font-size:64px;
 }
+
+.card .back:hover {
+  background-color: #456783EE;
+}
+
 .card .front.blocked,
 .card .back.blocked {
   pointer-events: none;
@@ -31,13 +48,13 @@ html {
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 30px;
   font-family: Arial;
-  width:200px;
-  padding: 20px;
-  padding-top: 0;
-  margin-left: 75%;
+  max-width: 250px;
+  padding: .5rem;
+  margin: 0 auto 3rem;
+  box-shadow: 0 6px 12px #ff000088;
 }
 
 .container {
@@ -54,16 +71,22 @@ h1 {
 }
 
 h2 {
-  color: #456783;
+  color: #FFFFFFDD;
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
   text-shadow: 1px #ff0000;
-  text-shadow: 1px #ff0000;
+  margin: 0;
+  margin-bottom: .5rem;
 }
 
 p {
-  font-weight: bolder;
   font-size: 20px;
   text-align: center;
+  margin: 0;
+  color: #FFFFFFDD;
+}
+
+p:first-of-type {
+  margin-bottom: .5rem;
 }
