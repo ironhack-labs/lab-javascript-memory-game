@@ -25,7 +25,7 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+let memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -42,10 +42,64 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked: ', card);
+      ++memoryGame.pickedCards;
+      card.nextSibling.className= "back";
+      card.className = "MyClass";
+      let cardA= document.querySelectorAll(".MyClass")[0];
+      let cardB= document.querySelectorAll(".MyClass")[1];
+      if(memoryGame.pickedCards == 2) {
+        ++memoryGame.pairsClicked;
+        document.querySelector("#pairs_clicked").innerText= memoryGame.pairsClicked;
+
+        if(memoryGame.checkIfPair(cardA, cardB)) {
+          ++memoryGame.pairsGuessed;
+          document.querySelector("#pairs_guessed").innerText= memoryGame.pairsGuessed;
+        }
+      
+
+
+
+        setTimeout(() => {
+            
+          document.querySelectorAll(".MyClass")[0].className = "back";
+          document.querySelectorAll(".MyClass")[0].nextElementSibling.className= "front";
+          document.querySelectorAll(".MyClass")[1].className = "back";
+          document.querySelectorAll(".MyClass")[1].nextElementSibling.className= "front";
+        }, 1000);
+        
+
+
+
+
+
+      }
+      
+     
+  //     card.nextSibling.className= "front";
+  //     // else {
+  //     //   if (memoryGame.isFinished(cardA, cardB)){
+          
+  //     //   }
+  //     // }
+       
     };
   });
 });
 
 
+// card.className = "MyClass"
+// let cardA= document.querySelectorAll(".MyClass")[0];
+// let cardB= document.querySelectorAll(".MyClass")[1];
+// if(document.querySelectorAll("MyClass").length==2 && cardA.getAttribute("name")==cardB.getAttribute("name")) {
+//   memoryGame.pairsClicked++;
+//   memoryGame.pairsGuessed++;
+//   
+
+// }
+
+// card.nextSibling.className= "back";
+// let cardName= card.getAttribute("name").substring(0, card.getAttribute("name").length-4);
+// let cardObj = [memoryGame.cards.filter(x=> x.name==cardName.replace("-", " "))];
+
+// console.log('Card clicked: ', cardObj, card);
+// cardObj.forEach(card=>memoryGame.pickedCards.push(card))
