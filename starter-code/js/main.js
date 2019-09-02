@@ -40,9 +40,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach( card => {
+  document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+      card.childNodes.forEach( node => {
+        node.classList.toggle("back")
+      })
       console.log('Card clicked: ', card);
     };
   });
