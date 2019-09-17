@@ -43,7 +43,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+      
       console.log('Card clicked: ', card);
+      event.currentTarget.removeAttribute("class", "back")
+      card.setAttribute("class", "front")
     };
   });
 });
