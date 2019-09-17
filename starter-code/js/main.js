@@ -11,7 +11,7 @@ const cards = [
   { name: 'superman',        img: 'superman.jpg' },
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' },
-  { name: 'aquaman',         img: 'aquaman.jpg' },
+  { name: 'aquçaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
   { name: 'fantastic four',  img: 'fantastic-four.jpg' },
