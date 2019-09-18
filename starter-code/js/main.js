@@ -25,7 +25,7 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+let memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -37,7 +37,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   // Add all the divs to the HTML
-  document.querySelector('#memory_board').innerHTML = html;
+let board =   document.querySelector('#memory_board');
+if(board) {
+  board.innerHTML = html;
+}
+  
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
