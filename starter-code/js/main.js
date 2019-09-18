@@ -28,6 +28,7 @@ const cards = [
 let memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
+  // memoryGame.shuffleCards()
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -41,9 +42,47 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
-    card.onclick = function() {
+    card.onclick = function(e) {
       // TODO: write some code here
       console.log('Card clicked: ', card);
+      console.log(e);
+
+      
+      card.classList.toggle('back')
+      card.classList.toggle('front')
+      e.target.nextSibling.classList.toggle('front')
+      e.target.nextSibling.classList.toggle('back')
+
+      
+      memoryGame.pickedCards.push(card)
+
+      if (memoryGame.pickedCards.length === 2){
+
+        if ( !memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
+          
+          console.log('cheguei');
+          setTimeout(()=>{
+            var pai = memoryGame.pickedCards[0].parentNode
+            var pai2 = memoryGame.pickedCards[1].parentNode
+  
+            pai.childNodes.forEach((elem)=> {
+              elem.classList.toggle('back')
+              elem.classList.toggle('front')
+            })
+            
+            pai2.childNodes.forEach((elem)=> {
+              elem.classList.toggle('back')
+              elem.classList.toggle('front')
+            })
+          }, 2000)
+
+      
+          
+
+        }
+
+      }
+
     };
   });
 });

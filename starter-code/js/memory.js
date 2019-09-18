@@ -8,8 +8,6 @@ class MemoryGame {
   shuffleCards() {
     for (let i = 0; i < this.cards.length - 2; i++) {
       let j = Math.floor(Math.random() * (this.cards.length - 1 - i + 1) + i);
-      console.log(j);
-
       let temp = this.cards[j];
       this.cards[j] = this.cards[i];
       this.cards[i] = temp;
