@@ -44,13 +44,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
     card.onclick = function() {
       let parentCard = card.parentNode
       let front = parentCard.querySelector(".front")
-      card.classList.toggle("back")  
+      card.classList.toggle("back")
+      card.classList.toggle("front")   
       front.classList.toggle("back") 
-
-      card.classList.toggle("front")  
       front.classList.toggle("front") 
-      // TODO: write some code here
+      
       console.log('Card clicked: ', card);
+      
+      memoryGame.pickedCards.push(card.parentNode)
+      if (memoryGame.pickedCards.length === 2 ) {
+        const isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
+        console.log(memoryGame.pickedCards)
+        console.log(isPair)
+        if(!isPair){
+          memoryGame.pickedCards[0].classList.toggle("back");
+          memoryGame.pickedCards[1].classList.toggle("back");
+        }
+      }  
+    
     };
   });
 });
