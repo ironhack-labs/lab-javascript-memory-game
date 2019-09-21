@@ -7,18 +7,12 @@ class MemoryGame {
     // add the rest of the class properties here
   }
   shuffleCards() {
-    var copy = [], n = this.cards.length, i;
-
-    // While there remain elements to shuffle…
-    while (n) {
-  
-      // Pick a remaining element…
-      i = Math.floor(Math.random() * n--);
-  
-      // And move it to the new array.
-      copy.push(this.cards.splice(i, 1)[0]);
-    }
-    return copy;
+     //cards.sort(() => Math.random * -0.5)
+     
+     for (let i = cards.length - 1; i>=0; i--) {
+      let j = Math.floor(Math.random() * i);
+      [cards[i], cards[j]] = [cards[j], cards[i]]
+     }
   }
   checkIfPair(card1, card2) {
     this.pairsClicked++
@@ -32,6 +26,8 @@ class MemoryGame {
   isFinished() {
     if (this.pairsGuessed === this.cards.length/2) {
       return true
+    } else {
+      return false
     }
   }
 }
