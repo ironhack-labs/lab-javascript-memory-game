@@ -4,6 +4,7 @@ class MemoryGame {
     this.pickedCards = []
     this.pairsClicked = 0
     this.pairsGuessed = 0
+    this.shuffleCards()
     // add the rest of the class properties here
   }
   shuffleCards() {
@@ -18,9 +19,10 @@ class MemoryGame {
       // And move it to the new array.
       copy.push(this.cards.splice(i, 1)[0]);
     }
-    return copy;
+    this.cards = copy;
   }
   checkIfPair(card1, card2) {
+    console.log(card1 , card2)
     this.pairsClicked++
     if (card1 === card2){
       this.pairsGuessed++
@@ -30,8 +32,10 @@ class MemoryGame {
     }
   }
   isFinished() {
-    if (this.pairsGuessed === this.cards.length/2) {
+    if (this.pairsGuessed === 12) {
       return true
+    }else{
+      return false
     }
   }
 }

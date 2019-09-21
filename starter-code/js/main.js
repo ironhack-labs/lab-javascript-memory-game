@@ -45,8 +45,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // TODO: write some code here
       
       console.log('Card clicked: ', card);
-      event.currentTarget.removeAttribute("class", "back")
-      card.setAttribute("class", "front")
+      const parent = card.parentNode
+      const items = parent.querySelectorAll('div')
+      items[0].classList.toggle('back')
+      items[0].classList.toggle('front')
+      items[1].classList.toggle('back')
+      items[1].classList.toggle('front')
+
+      const selected = memoryGame.pickedCards
+      selected.push(card)
+
+      setTimeout(()=>{
+        if (selected.length === 2){
+          
+          if(memoryGame.checkIfPair(selected[0].getAttribute("name"), selected[1].getAttribute("name"))){
+            document.querySelector('#pairs_guessed').innerHTML = memoryGame.pairsGuessed
+            
+            if(memoryGame.isFinished()){
+              alert('Congratulations')
+            }
+          }else{
+            selected.forEach(card =>{
+              const cardSelelcted = card.parentNode
+              const itemSelected = cardSelelcted.querySelectorAll('div')
+              itemSelected[0].classList.toggle('back')
+              itemSelected[0].classList.toggle('front')
+              itemSelected[1].classList.toggle('back')
+              itemSelected[1].classList.toggle('front')
+            })
+          }
+          document.querySelector('#pairs_clicked').innerHTML = memoryGame.pairsClicked
+          selected.splice(0,2)
+        }
+      },2000)
+      
+      
     };
   });
 });
