@@ -43,6 +43,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+
+      function flipCard(card){
+        const parentCard = card.parentNode
+        const frontCard = parentCard.querySelector(".front")
+        
+        // card.classList.toggle("front")
+        // front.classList.toggle("back")
+
+        console.log(card.classList)
+      }
+      flipCard(card);
+
+      function pickCards(card){card.classList}
+
+      function flipCardReverse(card) {
+        const parentCard = card.parentNode
+        const backCard = parentCard.querySelector(".back")
+
+      }
+
       console.log('Card clicked: ', card);
     };
   });

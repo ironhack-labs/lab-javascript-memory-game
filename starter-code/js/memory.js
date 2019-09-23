@@ -21,6 +21,12 @@ class MemoryGame {
   }
 
   isFinished() {
-    return this.cards.length / 2 === this.pairsGuessed
+    return this.cards.length
+      / 2 === this.pairsGuessed
   }
 }
+
+/*
+settimeout - si no son iguales se cambia la clase
+
+*/
