@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
+
   });
 
   // Add all the divs to the HTML
@@ -41,10 +42,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
-    card.onclick = function() {
+    card.onclick = function(e) {
+      let up = card.nextSibling
+      card.classList.toggle("front")
+      card.setAttribute("class", "front")
+      up.removeAttribute("back")
+      up.setAttribute("class", "back")
+
       // TODO: write some code here
-      console.log('Card clicked: ', card);
-    };
+      //console.log('Card clicked: ', card);
+    }; 
   });
 });
 
