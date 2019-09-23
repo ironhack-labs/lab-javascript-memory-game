@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
-      let parentCard = card.parentNode
-      let front = parentCard.querySelector(".front")
+      const parentCard = card.parentNode
+      const front = parentCard.querySelector(".front")
       
       flipCard(card, front);  
       console.log('Card clicked: ', card);
@@ -52,42 +52,44 @@ document.addEventListener("DOMContentLoaded", function(event) {
       memoryGame.pickedCards.push(card)
 
       if (memoryGame.pickedCards.length === 2 ) {
-        const isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("name"),memoryGame.pickedCards[1].getAttribute("name"))
+
+        toggleBlockClicks();
+        
+        const isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("name"),
+           memoryGame.pickedCards[1].getAttribute("name"))
 
         if(!isPair){
-
           ifNotPair();
-          
         }
-        memoryGame.pickedCards.splice(0,2);
 
+        memoryGame.pickedCards.splice(0,2);
+        setTimeout(toggleBlockClicks, 1500);
+        
         document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
         document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed;
 
         if(memoryGame.isFinished()){
           setTimeout(()=>{
-            const newGame = confirm("Congratulations!! Would you like to play again?")
-            
-            if(newGame){
-              window.location.reload()
+            const newGame = "Congratulations!! Would you like to play again?";
+
+            if(confirm(newGame)){
+              window.location.reload();
             }
 
           },500);
         }
-
       }  
-    
     };
   });
 
-  function flipCard(cardBack, cardFront) {
+  const flipCard = (cardBack, cardFront) => {
     cardBack.classList.toggle("back")
     cardBack.classList.toggle("front")   
     cardFront.classList.toggle("back") 
     cardFront.classList.toggle("front") 
   }
 
-  function delayedFlipCard(cardBack, cardFront) {
+  const delayedFlipCard = (cardBack, cardFront) => {
     setTimeout(function(){
         cardBack.classList.toggle("back")
         cardBack.classList.toggle("front")   
@@ -96,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     },1500)
   }
 
-  function ifNotPair(){
+  const ifNotPair = () => {
     const card1Father = memoryGame.pickedCards[0].parentNode;
     const card2Father = memoryGame.pickedCards[1].parentNode;
     const frontCard1 = card1Father.querySelector(".front");
@@ -104,13 +106,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const frontCard2 = card2Father.querySelector(".front");
     const backCard2 = card2Father.querySelector(".back");
     
-    //setTimeout((backcard1,frontCard1)=>flipCard(backcard1,frontCard1),2000);
-    //setTimeout((backcard2,frontCard2)=>flipCard(backcard2,frontCard2),2000);
     delayedFlipCard(backCard1, frontCard1);
     delayedFlipCard(backCard2, frontCard2);
   }
 
+  const toggleBlockClicks = () => {
+    
+    const cards = document.querySelectorAll(".front, .back");
+    
+    cards.forEach( card => {
+      card.classList.toggle("blocked");
+    })
 
+  }
 
 });
 
