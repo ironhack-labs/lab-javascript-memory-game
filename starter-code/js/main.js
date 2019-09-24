@@ -25,7 +25,7 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+let memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -34,15 +34,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
+    
   });
 
   // Add all the divs to the HTML
   document.querySelector('#memory_board').innerHTML = html;
+  console.log("prueba")
+
+
+  
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
-      // TODO: write some code here
+      
+      const cardPr = this.nodeName;
+
+      
+       
+
+      
+      
       console.log('Card clicked: ', card);
     };
   });
