@@ -7,10 +7,12 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
+  //barajeo
   shuffleCards() {
     this.cards.sort(() => Math.random() - 0.5)
   }
 
+  //check for equals
   checkIfPair(card1, card2) {
     this.pairsClicked++
     if (card1 === card2) {
@@ -20,6 +22,7 @@ class MemoryGame {
     return false
   }
 
+  //check the number of guessed
   isFinished() {
     return this.cards.length
       / 2 === this.pairsGuessed

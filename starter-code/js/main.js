@@ -25,7 +25,7 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+const memoryGame = new MemoryGame(cards); 
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -41,31 +41,98 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
-    card.onclick = function() {
-      // TODO: write some code here
-
-      function flipCard(card){
-        const parentCard = card.parentNode
-        const frontCard = parentCard.querySelector(".front")
-        
-        // card.classList.toggle("front")
-        // front.classList.toggle("back")
-
-        console.log(card.classList)
-      }
+    card.onclick = function(event) {
+      
+      let cardClicked = event.target;
+      
+      //damos vuelta on click
       flipCard(card);
 
-      function pickCards(card){card.classList}
+      if (memoryGame.pickedCards.length < 2) {
+        //add to array new items
+        memoryGame.pickedCards.push(card);
+        cardClicked.classList.toggle('active');
 
-      function flipCardReverse(card) {
-        const parentCard = card.parentNode
-        const backCard = parentCard.querySelector(".back")
+        //console.log(memoryGame.pickedCards.length);
 
+        if (memoryGame.pickedCards.length === 1) {
+          firstGuess = cardClicked.getAttribute('name');
+          cardClicked.classList.toggle('active');
+          console.log(firstGuess);
+
+        } else {
+          secondGuess = cardClicked.getAttribute('name');
+          cardClicked.classList.toggle('active');
+          console.log(secondGuess);
+        }
       }
 
-      console.log('Card clicked: ', card);
+      matchCard(card);
+
+      //contamos los pairs 
+      const clickedCount = document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
+      
+      console.log(memoryGame.pickedCards.length);
     };
   });
+
+  firstGuess = "";
+  secondGuess = "";
+  count = 0;
+
+  //Volteamos las cartas
+  function flipCard(card) {
+    const cardParent = card.parentNode;
+    const frontCard = cardParent.querySelector(".back");
+    const backCard = cardParent.querySelector(".front");
+    
+    frontCard.classList.toggle("front");
+    frontCard.classList.remove("back");
+    backCard.classList.toggle("back");
+    backCard.classList.remove("front");
+  }
+
+  function matchCard(card){
+
+    if(memoryGame.pickedCards.length === 2){
+      if(memoryGame.checkIfPair(firstGuess, secondGuess)){
+        console.log('iguales');
+        const score = document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+        reset(card);
+      } else {
+        console.log('no iguales');
+        setTimeout(function(){
+          memoryGame.pickedCards.forEach(card => flipCardReverse(card));
+          reset(card);
+        }, 1000); 
+      }
+    }
+
+    //juego terminado
+    if(memoryGame.isFinished()){
+      setTimeout(function(){
+        alert(`Felicidades!! Juego terminado`);
+        window.location.reload();
+      }, 1000); 
+    }
+  }
+
+  //original position - classes
+  function flipCardReverse(card) {
+    const cardParent = card.parentNode;
+    const frontCard = cardParent.querySelector(".front");
+    const backCard = cardParent.querySelector(".back");
+
+    frontCard.classList.toggle("back");
+    frontCard.classList.remove("front");
+    backCard.classList.toggle("front");
+    backCard.classList.remove("back");
+
+  }
+
+  function reset(card) {
+    firstGuess = "";
+    secondGuess = "";
+    memoryGame.pickedCards = [];
+  }    
 });
-
-
