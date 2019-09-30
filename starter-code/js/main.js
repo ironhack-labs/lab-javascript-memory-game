@@ -41,55 +41,49 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 
   document.querySelector('#memory_board').innerHTML = html;
-  
-
-
-  
+    
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.back').forEach( card => {
     card.onclick = function() {
       
       const cardNode= card.parentNode
-      const frontCard=cardNode.querySelector(".front")
-      const backCard=cardNode.querySelector(".back")
+      const items = cardNode.querySelectorAll('div')
+      items[0].classList.toggle('back')
+      items[0].classList.toggle('front')
+      items[1].classList.toggle('back')
+      items[1].classList.toggle('front')
       
-      frontCard.classList.remove("front")
-      frontCard.classList.toggle("back")
-      backCard.classList.remove("back")
-      backCard.classList.toggle("front")
+      
+      const checkCard = memoryGame.pickedCards
+      checkCard.push(card)
 
-                
-        
         setTimeout(() => {
-          frontCard.classList.remove("back")
-          frontCard.classList.toggle("front")
-          backCard.classList.remove("front")
-          backCard.classList.toggle("back")    
-               
-          debugger
-          console.log(`card1${card1}, card2${card2}`)  
-          }, 2000);
-    
-      
-
-      memoryGame.checkIfPair(card1,card2)
-
-
-
+          if(checkCard.length===2){
+            if(memoryGame.checkIfPair(checkCard[0].getAttribute("name"),checkCard[1].getAttribute("name"))){
+              document.querySelector('#pairs_guessed').innerHTML = memoryGame.pairsGuessed
+              if(memoryGame.isFinished()){
+                alert('Congratulations')
+              }
+            
           
-      
-      
-
-      //console.log(cardNode)
-      //console.log(frontCard)
-      //console.log(backCard)
-      
-       
-
-      
-      
-      console.log('Card clicked: ', card);
+          }else{
+            checkCard.forEach(card =>{
+              const cardSelelcted = card.parentNode
+              const itemSelected = cardSelelcted.querySelectorAll('div')
+              itemSelected[0].classList.toggle('back')
+              itemSelected[0].classList.toggle('front')
+              itemSelected[1].classList.toggle('back')
+              itemSelected[1].classList.toggle('front')
+            })
+          }
+            document.querySelector('#pairs_clicked').innerHTML = memoryGame.pairsClicked
+            checkCard.splice(0,2)
+          
+          }   
+               
+          
+          }, 1000);
     };
   });
 });
