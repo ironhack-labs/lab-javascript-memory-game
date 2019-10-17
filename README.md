@@ -47,7 +47,7 @@ Remember: organization is the key. Keep the JavaScript related to your layout an
 
 Many things are already done for you. However, you need to properly link some files in the `memory.html` file to get the CSS and JS working for you. So let's see which files we are talking about:
 
-- **the styles**: don't forget to add the link to the CSS file in the `header` section.
+- **the styles**: don't forget to add the link to the CSS file in the `<head>` of your page.
 - **the logic**: take a look at the `js/main.js` and `js/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation).
 
 After connecting them properly, you should be able to see the board, the tiles, and the score.
