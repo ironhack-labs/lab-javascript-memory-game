@@ -1,6 +1,6 @@
 body {
   margin:0;
-  
+
   background: url("../img/background.jpg") no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -22,6 +22,8 @@ body {
 
   position:relative;
 }
+
+.card.turned {pointer-events:none;}
 
 .card.turned .front {transform:rotateY(0deg);}
 .card.turned .back {transform:rotateY(180deg)}
