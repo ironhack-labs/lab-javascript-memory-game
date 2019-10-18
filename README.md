@@ -47,7 +47,7 @@ Remember: organization is the key. Keep the JavaScript related to your layout an
 
 Many things are already done for you. However, you need to properly link some files in the `memory.html` file to get the CSS and JS working for you. So let's see which files we are talking about:
 
-- **the styles**: don't forget to add the link to the CSS file in the `header` section.
+- **the styles**: don't forget to add the link to the CSS file in the `<head>` of your page.
 - **the logic**: take a look at the `js/main.js` and `js/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation).
 
 After connecting them properly, you should be able to see the board, the tiles, and the score.
@@ -105,22 +105,20 @@ document.querySelectorAll('.back').forEach( card => {
 });
 ```
 
-To flip a card, there are different possibilities. One them is toggle the classes `front` and `back`, like in the following example:
+To flip a card, you have to add the class `turned` to the `div` of class `card`:
 
 ```html
 <!-- Only display the back that is blue -->
-<div class= "card" data-card-name="ironman">
+<div class="card" data-card-name="ironman">
   <div class="back" name="ironman.jpg"></div>
   <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
 </div>
 
-<!-- After flipping (back and front are reverted) -->
-
-<!-- Only display the back that has a ironman background image -->
-<div class= "card" data-card-name="ironman">
-  <div class="front" name="ironman.jpg"></div>
-  <div class="back" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div
+<!-- After flipping -->
+<div class="card turned" data-card-name="ironman">
+  <div class="back" name="ironman.jpg"></div>
+  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+</div>
 ```
 
 ## Extra Resources
