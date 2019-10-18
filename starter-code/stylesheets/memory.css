@@ -1,4 +1,6 @@
-html {
+body {
+  margin:0;
+  
   background: url("../img/background.jpg") no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -14,19 +16,35 @@ html {
   box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
 }
 
+.card {
+  display:inline-block;
+  perspective:300px; transform-style:preserve-3d;
+
+  position:relative;
+}
+
+.card.turned .front {transform:rotateY(0deg);}
+.card.turned .back {transform:rotateY(180deg)}
+
+.card .back,
+.card .front {
+  width:71px;
+  height:71px;
+  margin:10px;
+	padding:20px;
+  font-size:64px;
+  
+  transition:transform .6s;
+}
 
 .card .back {
   background-color: #456783;
-	width:71px;
-	height:71px;
-	float:left;
-	margin:10px;
-	padding:20px;
-	font-size:64px;
 }
-.card .front.blocked,
-.card .back.blocked {
-  pointer-events: none;
+
+.card .front {
+  position:absolute;
+  left:0;top:0;
+  transform:rotateY(-180deg) translateZ(1px); backface-visibility:hidden;
 }
 
 #score {
