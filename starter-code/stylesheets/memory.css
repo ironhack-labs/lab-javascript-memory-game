@@ -1,42 +1,48 @@
 body {
-  margin:0;
-
+  margin: 0;
   background: url("../img/background.jpg") no-repeat;
   background-size: cover;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory_board {
-  background:#dddddd;
-	width:800px;
-	height:540px;
-	padding:70px;
-	margin:0px auto;
+  background: #dddddd;
+  width: 800px;
+  height: 540px;
+  padding: 70px;
+  margin: 0px auto;
   border-radius: 84px;
-  box-shadow: inset 0px 0px 20px -6px rgba(97,89,97,1);
+  box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
 }
 
 .card {
-  display:inline-block;
-  perspective:300px; transform-style:preserve-3d;
+  display: inline-block;
+  perspective: 300px;
+  transform-style: preserve-3d;
 
-  position:relative;
+  position: relative;
 }
 
-.card.turned {pointer-events:none;}
+.card.turned {
+  pointer-events: none;
+}
 
-.card.turned .front {transform:rotateY(0deg);}
-.card.turned .back {transform:rotateY(180deg)}
+.card.turned .front {
+  transform: rotateY(0deg);
+}
+.card.turned .back {
+  transform: rotateY(180deg);
+}
 
 .card .back,
 .card .front {
-  width:71px;
-  height:71px;
-  margin:10px;
-	padding:20px;
-  font-size:64px;
-  
-  transition:transform .6s;
+  width: 71px;
+  height: 71px;
+  margin: 10px;
+  padding: 20px;
+  font-size: 64px;
+
+  transition: transform 0.6s;
 }
 
 .card .back {
@@ -44,17 +50,19 @@ body {
 }
 
 .card .front {
-  position:absolute;
-  left:0;top:0;
-  transform:rotateY(-180deg) translateZ(1px); backface-visibility:hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotateY(-180deg) translateZ(1px);
+  backface-visibility: hidden;
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);;
+  background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
-  width:200px;
+  width: 200px;
   padding: 20px;
   padding-top: 0;
   margin-left: 75%;
@@ -70,7 +78,6 @@ h1 {
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
-
 }
 
 h2 {
@@ -86,4 +93,49 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+#modal {
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  padding: 3rem 1rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal_finish {
+  background: #fff;
+  border-radius: 10px;
+  width: 25rem;
+  height: fit-content;
+  padding: 2rem;
+}
+
+.modal_image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.modal_text {
+  font-family: "Fredoka One", cursive;
+  font-size: 1rem;
+}
+
+button.modal_close {
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: #697373;
 }
