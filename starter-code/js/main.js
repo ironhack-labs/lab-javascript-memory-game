@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -43,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+      //Estoy muy bloqueado, no se por donde comenzar...
+      //Veo algún ejemplo de esto resuelto y me peta la cabeza en vez de ayudarme
       console.log('Card clicked: ', card);
     };
   });
