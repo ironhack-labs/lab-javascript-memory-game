@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-document.addEventListener('load', event => {
+window.addEventListener('load', event => {
   // Add all the div to the HTML
   for (let pic of memoryGame.cards) {
     document.querySelector('#memory_board').innerHTML += `
