@@ -28,6 +28,6 @@ class MemoryGame {
   }
 
   isFinished() {
-    return this.pairsGuessed >= this.cards.length/2;
+    return this.pairsGuessed >= this.cards.length / 2;
   }
 }
