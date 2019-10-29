@@ -3,7 +3,8 @@
     <head>
        <title>Superhero Memory Game</title>
       <!-- LINK THE STYLES HERE -->
-      
+      <link rel="stylesheet" href="../starter-code/stylesheets/memory.css">
+
       </head>
     <body>
         <div>
@@ -16,6 +17,20 @@
         </div>
         <div id="memory_board"></div>
 
+        <!-- Only display the back that is blue -->
+        <div class="card" data-card-name="ironman">
+          <div class="back" name="ironman.jpg"></div>
+          <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+        </div>
+        
+        <!-- After flipping -->
+        <div class="card turned" data-card-name="ironman">
+          <div class="back" name="ironman.jpg"></div>
+          <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+        </div>
+
        <!-- LINK THE JAVASCRIPT FILES HERE (keep in mind that the order in which you link them MATTERS) -->
+       <link rel="stylesheet" href="../starter-code/js/memory.js">
+      <link rel="stylesheet" href="../starter-code/js/main.js">
     </body>
 </html>
