@@ -1,9 +1,18 @@
 class MemoryGame {
-  constructor(cards){
+  constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
+    // Add the rest of the properties here
   }
-  shuffleCards() {}
-  checkIfPair(card1, card2) {}
-  isFinished() {}
+
+  shuffleCards() {
+    // ...
+  }
+
+  checkIfPair(card1, card2) {
+    // ...
+  }
+
+  isFinished() {
+    // ...
+  }
 }
