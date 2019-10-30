@@ -8,12 +8,12 @@ class MemoryGame {
 
   }
   shuffleCards() {
-    console.log(this.pickedCards)
-    for (let i = this.pickedCards.length - 1; i > 0; i--) {
+    console.log(this.cards)
+    for (let i = this.cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i)
-      const temp = this.pickedCards[i]
-      this.pickedCards[i] = this.pickedCards[j]
-      this.pickedCards[j] = temp
+      const temp = this.cards[i]
+      this.cards[i] = this.cards[j]
+      this.cards[j] = temp
       console.log(temp)
 
     }
