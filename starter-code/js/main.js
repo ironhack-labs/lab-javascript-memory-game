@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelectorAll('.card').forEach(card => {
     card.onclick = function () {
       // TODO: write some code here
-      //card.classList.add("turned")
+      card.classList.add("turned")
       //memoryGame.checkIfPair()
 
       console.log(card)
