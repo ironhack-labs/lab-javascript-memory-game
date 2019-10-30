@@ -26,8 +26,10 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-
+let firstCard = "";
+let result = 0;
 document.addEventListener("DOMContentLoaded", function(event) { 
+
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -43,9 +45,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
-      console.log('Card clicked: ', card);
+      let num_picked = memoryGame.pickedCards.push(card);
+      card.className= "card turned";
+      if(num_picked%2===0){
+        let clicked = document.getElementById("pairs_clicked");
+        clicked.innerText = num_picked/2;
+        result = memoryGame.checkIfPair(firstCard,card);
+        console.log(firstCard);
+        console.log(card);
+        if(result === true){
+          console.log(true);
+        }else{
+          console.log(false);
+        }
+      }else{
+        firstCard = card;
+        console.log(firstCard);
+      }
+
+     
+
     };
   });
 });
-
 
