@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+      card.className+=" turned"
       console.log('Card clicked: ', card);
     };
   });
