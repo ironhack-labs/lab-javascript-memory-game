@@ -41,11 +41,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach( card => {
+    count = 0
     card.onclick = function() {
-      // TODO: write some code here
+      // Quiero que me la gire, le añado le meto una clase turned.
+      card.className += " turned"
+      // Quiero que me cuente 1 cada vez que clicko sobre dos cartas
+        count++
+        if (count % 2 == 0) {
+        document.getElementById('pairs_clicked').textContent = count / 2
+      }
+        
+
+      
+
+
       console.log('Card clicked: ', card);
+
     };
   });
 });
-
-
