@@ -5,6 +5,7 @@ class MemoryGame {
     this.pairsClicked=0
     this.pickedCards=[]
     this.pairsGuessed = 0;
+    this.cardsGuessed = []
     
         // add the rest of the class properties here
   }
@@ -24,7 +25,6 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     this.pairsClicked++
-    memoryGame.pickedCards = [];
   if (card1 == card2){
     this.pairsGuessed++
     return true
