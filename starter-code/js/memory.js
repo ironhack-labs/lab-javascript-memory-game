@@ -13,6 +13,13 @@ class MemoryGame {
       [this.cards[i], this.cards[newIndex]] = [this.cards[newIndex], this.cards[i]];
     }
   }
-  checkIfPair(card1, card2) {}
+  checkIfPair(card1, card2) {
+    this.pairsClicked += 1;
+    if (card1 == card2){
+      this.pairsGuessed += 1;
+      return true;
+    }
+    return false;
+  }
   isFinished() {}
 }
