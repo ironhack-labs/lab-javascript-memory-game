@@ -21,5 +21,11 @@ class MemoryGame {
     }
     return false;
   }
-  isFinished() {}
+  isFinished() {
+    let numberOfCards = this.cards.length;
+    if (this.pairsGuessed == numberOfCards / 2){
+      return true;
+    }
+    return false;
+  }
 }
