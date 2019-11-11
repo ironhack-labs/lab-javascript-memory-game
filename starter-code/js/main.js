@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -44,6 +45,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     card.onclick = function() {
       // TODO: write some code here
       console.log('Card clicked: ', card);
+      card.classList.toggle('turned')
+
+      memoryGame.clicks++;
+      memoryGame.pickedCards.push(card)
+
+      if (memoryGame.pickedCards.length = 2){
+        let isequal = memoryGame.checkIfPair(memoryGame.pickedCards[0].name, memoryGame.pickedCards[1].name)
+        
+      }
+      if (isequal){
+
+      }
+
     };
   });
 });
