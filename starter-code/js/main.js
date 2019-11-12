@@ -28,9 +28,8 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 document.addEventListener("DOMContentLoaded", function(event) {
-
-  memoryGame.shuffleCards()
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -40,15 +39,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Add all the divs to the HTML
   document.querySelector('#memory_board').innerHTML = html;
+  let turnedCard
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach( card => {
-    card.onclick = function() {
-      card.classList.toggle('turned');
+    card.onclick =  function() {
+      // TODO: write some code here
+      console.log('Card clicked: ', card);
+      card.classList.toggle('turned')
+
       memoryGame.clicks++;
-      memoryGame.pickedCards.push(card);
-      if (memoryGame.pickedCards.length == 2) {
-        let isEqual = memoryGame.checkIfPair(memoryGame.pickedCards[0].name, memoryGame.pickedCards[1].name);
+      memoryGame.pickedCards.push(card)
+      turnedCard = memoryGame.pickedCards[0]
+      //console.log("validacion si son pares " + memoryGame.pickedCards.length)
+      console.log(memoryGame.pickedCards.length)
+      //console.log(memoryGame.pickedCards)
+      if (memoryGame.pickedCards.length >= 2){
+        //console.log(memoryGame.pickedCards[0].getAttribute('data-card-name') + " vs " + memoryGame.pickedCards[1].getAttribute('data-card-name'))
+       setTimeout(function() {
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))){
+          memoryGame.pickedCards.splice(0,memoryGame.pickedCards.length);
+          document.getElementById('pairs_guessed').innerHTML = memoryGame.pairsGuessed
+          if (memoryGame.pairsGuessed == 12) {
+            alert("Haz ganado la partida en " + (memoryGame.pairsClicked + memoryGame.pairsGuessed) + " intentos")
+          }
+        } else {
+          // console.log('entre a desvoltear')
+          document.getElementById('pairs_clicked').innerHTML = memoryGame.pairsClicked
+          memoryGame.pickedCards.splice(0,memoryGame.pickedCards.length);
+           card.classList.toggle('turned')
+           turnedCard.classList.toggle('turned')
+           turnedCard.length=0
+        }},900)
       }
     };
   });
