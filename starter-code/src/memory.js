@@ -1,32 +1,55 @@
 class MemoryGame {
-  constructor(card){
-    this.cards = cards;
-    this.pickedCards=[]
-    this.pairsClicked=0
-    this.pairsGuessed=0
+  constructor(card) {
+    this.cards = card;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
   shuffleCards() {
-    let newstack=[]
-    let card;
-    while(cards>0){
-      let pick=Math.floor(Math.random()*cards.length)
-      card=cards[pick]
-      cards.splice(pick,1)
-      newstack.push(card)
+    console.log("Before: ", this.cards);
+    for (const card of this.cards) {
+      let currentIndex = this.cards.indexOf(card);
+
+      let randIndex = ~~(
+        Math.random() * (this.cards.length - currentIndex) +
+        currentIndex
+      );
+      let buffer = this.cards[randIndex];
+      this.cards[randIndex] = card;
+      this.cards[currentIndex] = buffer;
     }
-    cards=newstack
+    console.log("After: ", this.cards);
+    /*
+    let newstack = [];
+    let failsafe = this.cards.length;
+    while (this.cards.length > 0) {
+      let pick = ~~(Math.random() * this.cards.length);
+      let card = this.cards[pick];
+      this.cards = this.cards
+        .slice(0, pick)
+        .concat(
+          this.cards.slice(
+            pick === this.cards.length - 1 ? pick : pick + 1,
+            this.cards.length
+          )
+        );
+      newstack.push(card);
+      if (failsafe <= this.cards.length) {
+        console.log("Fialed shuffling: ", cards, card, pick);
+        break;
+      }
+    }
+    */
   }
   checkIfPair(card1, card2) {
-    this.pairsClicked++
-    if(card1.name===card2.name){
-      this.pairsGuessed++
-      return true
+    this.pairsClicked++;
+    if (card1 === card2) {
+      this.pairsGuessed++;
+      return true;
     }
-    return false
+    return false;
   }
   isFinished() {
-    if(this.pairsGuessed===this.cards.length)
-      return true
-    return false
+    return this.pairsGuessed === this.cards.length / 2;
   }
 }
