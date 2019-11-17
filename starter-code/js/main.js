@@ -24,14 +24,10 @@ const cards = [
   { name: 'the avengers', img: 'the-avengers.jpg' },
   { name: 'thor', img: 'thor.jpg' },
 ];
-// for (let i = 0; i < cards.length; i++) {
-//   cards[i].name;
-// }
-const memoryGame = new MemoryGame(cards);
 
+const memoryGame = new MemoryGame(cards);
 document.addEventListener('DOMContentLoaded', function(event) {
   let html = '';
-
   memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -46,46 +42,48 @@ document.addEventListener('DOMContentLoaded', function(event) {
   let pairsGuessed = document.getElementById('pairs_guessed');
   let allCards = document.querySelectorAll('.card');
   let countClicks = 0;
-  let pairCount = 0;
+  let pickedCards = [];
 
   function updateStatus() {
-    let pickedCards = [];
-    memoryGame.pickedCard = pickedCards;
-    allCards.forEach((card, i) => {
+    allCards.forEach(card => {
       let name = card.getAttributeNode('data-card-name').value;
-      card.classList;
       if (card.classList.contains('turned')) {
         pickedCards.push(name);
-        // console.log(name);
       }
     });
     for (let i = pickedCards.length - 1; i > pickedCards.length - 2; i--) {
       let name1 = pickedCards[pickedCards.length - 1];
       let name2 = pickedCards[pickedCards.length - 2];
       memoryGame.checkIfPair(name1, name2);
+      if (name1 !== name2) {
+        allCards.forEach(card => {
+          if (card.classList.contains('turned')) {
+            setTimeout(() => {
+              card.classList.remove('turned');
+            }, 2000);
+          }
+        });
+      }
     }
-    // console.log(memoryGame.pairsClicked);
+
+    pairsGuessed.innerHTML = memoryGame.pairsGuessed;
     clickedPairs.innerHTML = memoryGame.pairsClicked;
   }
 
-  allCards.forEach((card, i) => {
+  allCards.forEach(card => {
     card.onclick = callOnClickFunction;
-
-    function callOnClickFunction(e) {
-      let cardName = e.target.parentElement.getAttribute('data-card-name');
-
-      let currentCardClassList = e.target.parentElement.classList;
-      let classBack = e.target.classList.contains('back');
-      if (classBack) {
-        currentCardClassList.add('turned');
-        countClicks += 1;
-        let clicks = countClicks;
-        if (clicks % 2 === 0) updateStatus();
-      }
-      // TODO: write some code here
-    }
   });
+  function callOnClickFunction(e) {
+    let currentCardClassList = e.target.parentElement.classList;
+    let classBack = e.target.classList.contains('back');
+    if (classBack) {
+      currentCardClassList.add('turned');
+      countClicks += 1;
+      let clicks = countClicks;
+      if (clicks % 2 === 0) {
+        updateStatus();
+      }
+    }
+  }
 });
-
-// console.log('connected');
 // // ======================== // //
