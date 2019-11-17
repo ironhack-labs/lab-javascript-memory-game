@@ -31,6 +31,7 @@ const memoryGame = new MemoryGame(cards);
 
 document.addEventListener('DOMContentLoaded', function(event) {
   let html = '';
+
   memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -46,45 +47,44 @@ document.addEventListener('DOMContentLoaded', function(event) {
   let allCards = document.querySelectorAll('.card');
   let countClicks = 0;
   let pairCount = 0;
-  let pickedCard = [];
-  memoryGame.pickedCard = pickedCard;
+
+  function updateStatus() {
+    let pickedCards = [];
+    memoryGame.pickedCard = pickedCards;
+    allCards.forEach((card, i) => {
+      let name = card.getAttributeNode('data-card-name').value;
+      card.classList;
+      if (card.classList.contains('turned')) {
+        pickedCards.push(name);
+        // console.log(name);
+      }
+    });
+    for (let i = pickedCards.length - 1; i > pickedCards.length - 2; i--) {
+      let name1 = pickedCards[pickedCards.length - 1];
+      let name2 = pickedCards[pickedCards.length - 2];
+      memoryGame.checkIfPair(name1, name2);
+    }
+    // console.log(memoryGame.pairsClicked);
+    clickedPairs.innerHTML = memoryGame.pairsClicked;
+  }
 
   allCards.forEach((card, i) => {
     card.onclick = callOnClickFunction;
 
     function callOnClickFunction(e) {
       let cardName = e.target.parentElement.getAttribute('data-card-name');
-      pickedCard.push(cardName);
+
       let currentCardClassList = e.target.parentElement.classList;
       let classBack = e.target.classList.contains('back');
       if (classBack) {
         currentCardClassList.add('turned');
         countClicks += 1;
-        if (countClicks % 2 === 0) {
-          pairCount++;
-        }
+        let clicks = countClicks;
+        if (clicks % 2 === 0) updateStatus();
       }
-
-      memoryGame.pairsClicked = pairCount;
-      console.log(
-        'Output for: callOnClickFunction -> memoryGame.pairsClicked',
-        memoryGame.pairsClicked
-      );
-      clickedPairs.innerHTML = pairCount;
-      // memoryGame.checkIfPair(cardName, cardName);
-
-      // for (let i = 0; i < pickedCard.length; i++) {
-      //   // console.log(pickedCard[i]);
-      //   if (pickedCard[0] !== pickedCard[1]) {
-      //     memoryGame.checkIfPair(pickedCard[0], pickedCard[1]);
-      //   } else {
-      //     memoryGame.checkIfPair(pickedCard[0], pickedCard[1]);
-      //   }
-      // }
       // TODO: write some code here
     }
   });
-  console.log(memoryGame.pairsClicked);
 });
 
 // console.log('connected');
