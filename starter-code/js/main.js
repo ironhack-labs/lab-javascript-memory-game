@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   });
 
   // Add all the divs to the HTML
+  document.querySelector('#memory_board').innerHTML = html;
   let clickedPairs = document.getElementById('pairs_clicked');
   let pairsGuessed = document.getElementById('pairs_guessed');
   let allCards = document.querySelectorAll('.card');
