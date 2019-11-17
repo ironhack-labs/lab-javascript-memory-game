@@ -51,6 +51,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   document.querySelector('#memory_board').innerHTML = html;
 
+  //fancy 5 second card preview
+  document.querySelectorAll('.card').forEach( (card, i) => {
+    setTimeout(() => card.classList.add("turned"), (50 * i));
+    setTimeout(() => card.classList.remove("turned"), (Math.random() * 2000) + 5000);
+  });
+
   document.querySelectorAll('.card').forEach( (card, i) => {
     card.onclick = function() {
       if (!noClickSpam) {
