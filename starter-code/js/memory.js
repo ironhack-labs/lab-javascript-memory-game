@@ -22,8 +22,7 @@ class MemoryGame {
     if (card1 == card2) {
       noClickSpam = false;
       pickedCards[1].push(card1)
-      document.getElementById("pairs_guessed").innerText = pairsGuessed + 1;
-    return true;
+      document.getElementById("pairs_guessed").innerText = (pairsGuessed += 1);
     } else {
       // sexy function
       pairsClicked = setTimeout(() => document.querySelectorAll('.card').forEach((card, i) => { 
@@ -31,7 +30,6 @@ class MemoryGame {
           document.getElementById("pairs_clicked").innerText = pairsClicked;
           noClickSpam = false;
         }), 1000) - 48
-      return false;
     }
   }
 
