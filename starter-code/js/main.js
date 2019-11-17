@@ -54,28 +54,33 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     function callOnClickFunction(e) {
       let cardName = e.target.parentElement.getAttribute('data-card-name');
+      pickedCard.push(cardName);
       let currentCardClassList = e.target.parentElement.classList;
       let classBack = e.target.classList.contains('back');
       if (classBack) {
         currentCardClassList.add('turned');
-        pickedCard.push(cardName);
         countClicks += 1;
         if (countClicks % 2 === 0) {
           pairCount++;
         }
       }
+
       memoryGame.pairsClicked = pairCount;
+      console.log(
+        'Output for: callOnClickFunction -> memoryGame.pairsClicked',
+        memoryGame.pairsClicked
+      );
       clickedPairs.innerHTML = pairCount;
       // memoryGame.checkIfPair(cardName, cardName);
 
-      for (let i = 0; i < pickedCard.length; i++) {
-        // console.log(pickedCard[i]);
-        if (pickedCard[0] !== pickedCard[1]) {
-          memoryGame.checkIfPair(pickedCard[0], pickedCard[1]);
-        } else {
-          memoryGame.checkIfPair(pickedCard[0], pickedCard[1]);
-        }
-      }
+      // for (let i = 0; i < pickedCard.length; i++) {
+      //   // console.log(pickedCard[i]);
+      //   if (pickedCard[0] !== pickedCard[1]) {
+      //     memoryGame.checkIfPair(pickedCard[0], pickedCard[1]);
+      //   } else {
+      //     memoryGame.checkIfPair(pickedCard[0], pickedCard[1]);
+      //   }
+      // }
       // TODO: write some code here
     }
   });
