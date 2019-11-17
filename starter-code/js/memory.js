@@ -31,7 +31,7 @@ class MemoryGame {
           if (!pickedCards[1].includes(card.getAttribute("data-card-name"))) card.classList.remove("turned");
           document.getElementById("pairs_clicked").innerText = pairsClicked;
           noClickSpam = false;
-        }), 1000)
+        }), 1000) - 48
       return false;
     }
   }
