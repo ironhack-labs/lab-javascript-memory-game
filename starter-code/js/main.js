@@ -1,3 +1,5 @@
+let difficulty = confirm("Easy mode?")
+
 const cards = [
   { name: 'aquaman',         img: 'aquaman.jpg' },
   { name: 'batman',          img: 'batman.jpg' },
@@ -51,10 +53,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   document.querySelector('#memory_board').innerHTML = html;
 
+  
+
   //fancy 5 second card preview
   document.querySelectorAll('.card').forEach( (card, i) => {
     setTimeout(() => card.classList.add("turned"), (50 * i));
-    setTimeout(() => card.classList.remove("turned"), (Math.random() * 2000) + 5000);
+    setTimeout(() => [card.classList.remove("turned"), (difficulty) ? [alert("Memorize the things."), difficulty = false]:""],(Math.random() * 2000) + 4000);
   });
 
   document.querySelectorAll('.card').forEach( (card, i) => {
@@ -68,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             pickedCards[0] = [];
             numGuesses = 0;
             }
-        (memoryGame.isFinished() == true) ? ((confirm("Mazal tov! You won with " + pairsClicked + " incorrect guesses! \n \n Restart the game?")) ? location.reload(): "") : "";   
+        memoryGame.isFinished() ? confirm("Mazal tov! You won with " + pairsClicked + " incorrect guesses! \n \n Restart the game?") ? location.reload(): "": "";   
       };
     };
   });

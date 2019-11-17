@@ -21,9 +21,8 @@ class MemoryGame {
     noClickSpam = true;
     if (card1 == card2) {
       noClickSpam = false;
-      pairsGuessed += 1
       pickedCards[1].push(card1)
-      document.getElementById("pairs_guessed").innerText = pairsGuessed;
+      document.getElementById("pairs_guessed").innerText = pairsGuessed + 1;
     return true;
     } else {
       // sexy function
