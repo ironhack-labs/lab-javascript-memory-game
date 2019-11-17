@@ -38,10 +38,27 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   // Add all the divs to the HTML
   document.querySelector('#memory_board').innerHTML = html;
-  let clickedPairs = document.getElementById('pairs_clicked');
-  let pairsGuessed = document.getElementById('pairs_guessed');
   let allCards = document.querySelectorAll('.card');
   let countClicks = 0;
+
+  allCards.forEach(card => {
+    card.onclick = callOnClickFunction;
+  });
+  function callOnClickFunction(e) {
+    let currentCardClassList = e.target.parentElement.classList;
+    let classBack = e.target.classList.contains('back');
+    if (classBack) {
+      currentCardClassList.add('turned');
+      countClicks += 1;
+      let clicks = countClicks;
+      if (clicks % 2 === 0) {
+        updateStatus();
+      }
+    }
+  }
+
+  let clickedPairs = document.getElementById('pairs_clicked');
+  let pairsGuessed = document.getElementById('pairs_guessed');
   let pickedCards = [];
 
   function updateStatus() {
@@ -68,22 +85,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     pairsGuessed.innerHTML = memoryGame.pairsGuessed;
     clickedPairs.innerHTML = memoryGame.pairsClicked;
-  }
-
-  allCards.forEach(card => {
-    card.onclick = callOnClickFunction;
-  });
-  function callOnClickFunction(e) {
-    let currentCardClassList = e.target.parentElement.classList;
-    let classBack = e.target.classList.contains('back');
-    if (classBack) {
-      currentCardClassList.add('turned');
-      countClicks += 1;
-      let clicks = countClicks;
-      if (clicks % 2 === 0) {
-        updateStatus();
-      }
-    }
   }
 });
 // // ======================== // //

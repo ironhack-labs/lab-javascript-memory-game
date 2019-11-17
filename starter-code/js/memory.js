@@ -5,7 +5,6 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
-    this.status = false;
   }
   shuffleCards() {
     for (let i = this.cards.length - 1; i > 0; i--) {
@@ -17,10 +16,10 @@ class MemoryGame {
     if (name1 === name2) {
       this.pairsGuessed++;
       this.pairsClicked++;
-      return (this.status = true);
+      return true;
     } else {
       this.pairsClicked++;
-      return (this.status = false);
+      return false;
     }
   }
   isFinished() {
