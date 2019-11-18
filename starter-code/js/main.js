@@ -43,6 +43,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
+      if (memoryGame.pickedCards.length < 2 && !card.classList.contains('turned')) {
+        card.classList.add('turned');
+        memoryGame.pickedCards.push( card );        
+      }
+
+      if (memoryGame.pickedCards.length == 2) {
+        memoryGame.pairsClicked ++;
+        document.getElementById('pairs_clicked').innerText = memoryGame.pairsClicked;
+
+        if (memoryGame.pickedCards[0].dataset.cardName == memoryGame.pickedCards[1].dataset.cardName) {
+          memoryGame.pairsGuessed ++;
+          document.getElementById('pairs_guessed').innerText = memoryGame.pairsGuessed;
+          memoryGame.pickedCards = [];
+        }
+      }
       console.log('Card clicked: ', card);
     };
   });
