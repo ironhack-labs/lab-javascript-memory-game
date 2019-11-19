@@ -25,7 +25,9 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+const game = () => new MemoryGame(cards);
+let memoryGame = game();
+memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -43,19 +45,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
       // TODO: write some code here
-      if (memoryGame.pickedCards.length < 2 && !card.classList.contains('turned')) {
+      if (!card.classList.contains('turned')) {
+
         card.classList.add('turned');
-        memoryGame.pickedCards.push( card );        
-      }
-
-      if (memoryGame.pickedCards.length == 2) {
-        memoryGame.pairsClicked ++;
-        document.getElementById('pairs_clicked').innerText = memoryGame.pairsClicked;
-
-        if (memoryGame.pickedCards[0].dataset.cardName == memoryGame.pickedCards[1].dataset.cardName) {
-          memoryGame.pairsGuessed ++;
-          document.getElementById('pairs_guessed').innerText = memoryGame.pairsGuessed;
-          memoryGame.pickedCards = [];
+        memoryGame.pickedCards.push( card );
+        
+        if (memoryGame.pickedCards.length == 2) {
+          memoryGame.pairsClicked ++;
+          document.getElementById('pairs_clicked').innerText = memoryGame.pairsClicked;
+          
+          if (memoryGame.pickedCards[0].dataset.cardName === memoryGame.pickedCards[1].dataset.cardName) {
+            memoryGame.pairsGuessed ++;
+            document.getElementById('pairs_guessed').innerText = memoryGame.pairsGuessed;
+            memoryGame.pickedCards = [];
+            if (memoryGame.pairsGuessed === memoryGame.cards.length / 2) location.reload();
+          } 
+          else {
+            setTimeout( function() {
+              memoryGame.pickedCards.map( el => {
+                el.classList.remove('turned');
+                memoryGame.pickedCards = [];
+              })              
+            }, 500)
+          }
         }
       }
       console.log('Card clicked: ', card);
