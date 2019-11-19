@@ -65,8 +65,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             setTimeout( function() {
               memoryGame.pickedCards.map( el => {
                 el.classList.remove('turned');
-                memoryGame.pickedCards = [];
               })              
+              memoryGame.pickedCards = [];
             }, 500)
           }
         }
