@@ -24,11 +24,11 @@ var cards = [
   { name: 'the avengers',    img: 'the-avengers.jpg' },
   { name: 'thor',            img: 'thor.jpg' }
 ];
-var memoryGame = new MemoryGame(cards);
 
-
-document.addEventListener("DOMContentLoaded", function(event) { 
+$(document).ready(function(){
+  var memoryGame = new MemoryGame(cards);
   var html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(function (pic) {
     html += '<div class="card" data-card-name="'+ pic.name +'">';
     html += '  <div class="back" name="'+ pic.img +'"></div>';
@@ -36,16 +36,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
     html += '</div>';
   });
 
-  // Add all the div's to the HTML
-  document.querySelector('#memory_board').innerHTML = html;
+  // Toma el Div del HTML
+  $('#memory_board').html(html);
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.back').forEach(function(card) {
-    card.onclick = function() {
-      // TODO: write some code here
-      console.log('Card clicked')
+  // Voltea la carta, con un click
+  $('.back').click(function () {
+    //REmueve la clase al voltear la carta y l regresa sino concuerda con la condicion
+    $(this).removeClass('back')
+    $(this).siblings().addClass('back')
+    $(this).siblings().removeClass('front')
+    $(this).siblings().addClass('picked')
+    let card = $(this).parent().attr('data-card-name')
+    memoryGame.pickedCards.push(card)
+    if (memoryGame.pickedCards.length === 2) {
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])) {
+        $('.picked').addClass('found')
+        $('.picked').removeClass('picked')
+        if(memoryGame.isFinished()){
+          setTimeout(function(){
+             alert(`Congratulations, you completed the game in ${memoryGame.pairsClicked} moves.`)
+            }, 500);
+        }
+      } else {
+        $('.back').addClass('blocked')
+        setTimeout(function(){
+          $('.picked').siblings().addClass('back')
+          $('.picked').removeClass('back')
+          $('.picked').removeClass('picked')
+          $('.blocked').removeClass('blocked')
+        }, 1000);
+      
+      }
+      $('#pairs_clicked').text(memoryGame.pairsClicked)
+      $('#pairs_guessed').text(memoryGame.pairsGuessed)    
+      
+      //console.log(memoryGame.pickedCards)
+      memoryGame.pickedCards=[]
     }
   });
 });
+
+
 
 

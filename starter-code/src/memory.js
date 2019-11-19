@@ -1,21 +1,29 @@
 // Juego Memorma
 
-class MemoryGame {
-  constructor(card){
-    this.cards = cards;
-    this.pickedCards = [];
-    this.pairsClicked = 0;
-    this.pairsGuessed = 0;
+var MemoryGame = function(cards) {
+  this.cards = cards;
+  this.pickedCards = [];
+  this.pairsClicked = 0;
+  this.pairsGuessed = 0;
+};
+
+MemoryGame.prototype.shuffleCards = function() {
+  let counter = this.cards.length;
+  while (counter > 0) {
+    let i = Math.floor(Math.random() * counter);
+    counter--;
+    let temp = this.cards[counter];
+    this.cards[counter] = this.cards[i];
+    this.cards[i] = temp;
   }
-  shuffleCards(cardsArr) {
-    var i, j;
-    for (i = cardsArr.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-      
-       
-    }
-    return; 
-  }
-  checkIfPair(card1, card2) {}
-  isFinished() {}
-}
+};
+
+MemoryGame.prototype.checkIfPair = function(firstCard, secondCard) {
+  this.pairsClicked++;
+  if (firstCard === secondCard) this.pairsGuessed++;
+  return firstCard === secondCard;
+};
+
+MemoryGame.prototype.isFinished = function() {
+  return (this.pairsGuessed === this.cards.length/2)
+};
