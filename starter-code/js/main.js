@@ -25,8 +25,7 @@ const cards = [
   { name: 'thor',            img: 'thor.jpg' }
 ];
 
-const game = () => new MemoryGame(cards);
-let memoryGame = game();
+let memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
@@ -58,7 +57,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             memoryGame.pairsGuessed ++;
             document.getElementById('pairs_guessed').innerText = memoryGame.pairsGuessed;
             memoryGame.pickedCards = [];
-            if (memoryGame.pairsGuessed === memoryGame.cards.length / 2) location.reload();
+            if (memoryGame.pairsGuessed === memoryGame.cards.length / 2) {
+              setTimeout( function(){location.reload()}, 1000)
+            }
           } 
           else {
             setTimeout( function() {
