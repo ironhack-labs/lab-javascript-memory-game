@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         countClicks += 1;
         let clicks = countClicks;
         if (clicks % 2 === 0) {
-          // updateStatus();
           let name1 = memoryGame.pickedCards[0].getAttributeNode(
             'data-card-name'
           ).value;
@@ -64,11 +63,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
           ).value;
           if (memoryGame.checkIfPair(name1, name2)) {
             memoryGame.pickedCards = [];
-            // if (memoryGame.isFinished) {
-            //   alert(
-            //     `Congrats you won in ${memoryGame.pairsClicked} pairs of clicks!!!`
-            //   );
-            // }
           } else {
             memoryGame.pickedCards.forEach(card => {
               if (card.classList.contains('turned')) {
@@ -84,33 +78,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
         if (memoryGame.isFinished()) {
           congrats();
-          // let h1 = document.createElement('h1');
-          // h1.style.alignSelf = 'center';
-          // h1.style.fontSize = '25px';
-          // document.body.appendChild(h1);
         }
-        // memoryGame.isFinished()
-        //   ? confirm(
-        //       'Congrats! You won with ' +
-        //         memoryGame.pairsClicked +
-        //         ' pairs of clicks!!! \n \n Restart the game?'
-        //     )
-        //     ? location.reload()
-        //     : ''
-        //   : '';
       }
     };
   });
+  function congrats() {
+    let msg = document.querySelector('body h1');
+    msg.innerHTML = `Yeahhhh, you are Superhero winner!!! You won with ${memoryGame.pairsClicked} pairs of clicks.`;
+
+    setTimeout(() => {
+      memoryGame.isFinished()
+        ? confirm('Would you like to restart the game?')
+          ? location.reload()
+          : ''
+        : '';
+    }, 5000);
+  }
 });
 // // ======================== // //
-function congrats() {
-  let msg = document.querySelector('body h1');
-  msg.innerHTML = `Yeahhhh, you are Superhero winner!!! You won with ${memoryGame.pairsClicked} pairs of clicks.`;
-  setTimeout(() => {
-    memoryGame.isFinished()
-      ? confirm('Would you like to restart the game?')
-        ? location.reload()
-        : ''
-      : '';
-  }, 5000);
-}
