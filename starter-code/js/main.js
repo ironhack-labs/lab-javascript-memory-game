@@ -39,52 +39,78 @@ document.addEventListener('DOMContentLoaded', function(event) {
   // Add all the divs to the HTML
   document.querySelector('#memory_board').innerHTML = html;
   let allCards = document.querySelectorAll('.card');
+  let clickedPairs = document.getElementById('pairs_clicked');
+  let pairsGuessed = document.getElementById('pairs_guessed');
   let countClicks = 0;
 
   allCards.forEach(card => {
-    card.onclick = callOnClickFunction;
-  });
-  function callOnClickFunction(e) {
-    let currentCardClassList = e.target.parentElement.classList;
-    let classBack = e.target.classList.contains('back');
-    if (classBack) {
-      currentCardClassList.add('turned');
-      countClicks += 1;
-      let clicks = countClicks;
-      if (clicks % 2 === 0) {
-        updateStatus();
-      }
-    }
-  }
-
-  let clickedPairs = document.getElementById('pairs_clicked');
-  let pairsGuessed = document.getElementById('pairs_guessed');
-  let pickedCards = [];
-
-  function updateStatus() {
-    allCards.forEach(card => {
-      let name = card.getAttributeNode('data-card-name').value;
-      if (card.classList.contains('turned')) {
-        pickedCards.push(name);
-      }
-    });
-    for (let i = pickedCards.length - 1; i > pickedCards.length - 2; i--) {
-      let name1 = pickedCards[pickedCards.length - 1];
-      let name2 = pickedCards[pickedCards.length - 2];
-      memoryGame.checkIfPair(name1, name2);
-      if (name1 !== name2) {
-        allCards.forEach(card => {
-          if (card.classList.contains('turned')) {
-            setTimeout(() => {
-              card.classList.remove('turned');
-            }, 2000);
+    card.onclick = function() {
+      if (memoryGame.pickedCards.length < 2) {
+        card.classList.add('turned');
+        memoryGame.pickedCards.push(card);
+        console.log(
+          'Output for: callOnClickFunction -> memoryGame.pickedCards',
+          memoryGame.pickedCards
+        );
+        countClicks += 1;
+        let clicks = countClicks;
+        if (clicks % 2 === 0) {
+          // updateStatus();
+          let name1 = memoryGame.pickedCards[0].getAttributeNode(
+            'data-card-name'
+          ).value;
+          let name2 = memoryGame.pickedCards[1].getAttributeNode(
+            'data-card-name'
+          ).value;
+          if (memoryGame.checkIfPair(name1, name2)) {
+            memoryGame.pickedCards = [];
+            // if (memoryGame.isFinished) {
+            //   alert(
+            //     `Congrats you won in ${memoryGame.pairsClicked} pairs of clicks!!!`
+            //   );
+            // }
+          } else {
+            memoryGame.pickedCards.forEach(card => {
+              if (card.classList.contains('turned')) {
+                setTimeout(() => {
+                  card.classList.remove('turned');
+                }, 2000);
+                memoryGame.pickedCards = [];
+              }
+            });
           }
-        });
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+          clickedPairs.innerHTML = memoryGame.pairsClicked;
+        }
+        if (memoryGame.isFinished()) {
+          congrats();
+          // let h1 = document.createElement('h1');
+          // h1.style.alignSelf = 'center';
+          // h1.style.fontSize = '25px';
+          // document.body.appendChild(h1);
+        }
+        // memoryGame.isFinished()
+        //   ? confirm(
+        //       'Congrats! You won with ' +
+        //         memoryGame.pairsClicked +
+        //         ' pairs of clicks!!! \n \n Restart the game?'
+        //     )
+        //     ? location.reload()
+        //     : ''
+        //   : '';
       }
-    }
-
-    pairsGuessed.innerHTML = memoryGame.pairsGuessed;
-    clickedPairs.innerHTML = memoryGame.pairsClicked;
-  }
+    };
+  });
 });
 // // ======================== // //
+function congrats() {
+  let msg = document.querySelector('body h1');
+  msg.innerHTML = `Yeahhhh, you are Superhero winner!!! You won with ${memoryGame.pairsClicked} pairs of clicks.`;
+  setTimeout(() => {
+    memoryGame.isFinished()
+      ? confirm('Would you like to restart the game?')
+        ? location.reload()
+        : ''
+      : '';
+  }, 5000);
+}

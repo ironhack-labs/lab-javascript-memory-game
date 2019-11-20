@@ -23,7 +23,7 @@ class MemoryGame {
     }
   }
   isFinished() {
-    if (this.pairsGuessed === 8) return true;
+    if (this.pairsGuessed === 12) return true;
     return false;
   }
 }
