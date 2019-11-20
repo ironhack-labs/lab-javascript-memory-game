@@ -18,9 +18,11 @@ class MemoryGame {
     if (card1 === card2) {
       this.pairsClicked++;
       this.pairsGuessed++;
+      console.log("Test successful");
       return true;
     } else {
       this.pairsClicked += 1;
+      console.log("Test unsuccessful");
       return false;
     };
   };
