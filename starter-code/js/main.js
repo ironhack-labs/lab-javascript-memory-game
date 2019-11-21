@@ -44,13 +44,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.card').forEach(card => {
     card.onclick = function() {
       console.log('Card clicked: ', card);
-      memoryGame.pickedCards.push(card)
+      memoryGame.pickedCards.push(card.getAttribute("data-card-name"))
       if (memoryGame.pickedCards.length >= 2) {
         if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]) === true) {
-          console.log("test3");
         }  
-        memoryGame.pickedCards = [];
-        console.log("Test2"); 
+        memoryGame.pickedCards = []; 
       };
     };
   });
