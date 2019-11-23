@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards();
+memoryGame.pairsClicked = document.getElementById("pairs_clicked");
+memoryGame.pairsGuessed = document.getElementById("pairs_guessed");
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   let html = '';
@@ -51,5 +53,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         memoryGame.pickedCards = []; 
       };
     };
+    memoryGame.isFinished();
   });
 });

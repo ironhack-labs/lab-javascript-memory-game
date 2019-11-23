@@ -16,12 +16,12 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     if (card1 === card2) {
-      this.pairsClicked++;
-      this.pairsGuessed++;
+      this.pairsClicked.innerHTML++;
+      this.pairsGuessed.innerHTML++;
       console.log("Test successful");
       return true;
     } else {
-      this.pairsClicked += 1;
+      this.pairsClicked.innerHTML++;
       console.log("Test unsuccessful");
       return false;
     };
