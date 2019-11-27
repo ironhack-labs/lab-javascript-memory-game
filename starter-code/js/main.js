@@ -43,16 +43,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('#memory_board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
+  document.querySelectorAll('.card').forEach( card => {
     card.onclick = function() {
-      console.log('Card clicked: ', card);
-      memoryGame.pickedCards.push(card.getAttribute("data-card-name"))
-      if (memoryGame.pickedCards.length >= 2) {
-        if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]) === true) {
-        }  
-        memoryGame.pickedCards = []; 
-      };
+      // TODO: write some code here
+      if (!card.classList.contains('turned')) {
+        card.classList.add('turned');
+        memoryGame.pickedCards.push(card);
+        console.log('Card clicked: ', card)
+        if (memoryGame.pickedCards.length === 2) {
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name")) === true) {
+            memoryGame.pickedCards = [];
+            if (memoryGame.isFinished === true) {
+              setTimeout( function(){location.reload()}, 1000)
+            }
+          } 
+          else {
+            setTimeout( function() {
+              memoryGame.pickedCards.map( el => {
+                el.classList.remove('turned');
+              })              
+              memoryGame.pickedCards = [];
+            }, 2000)
+          }
+        }
+        memoryGame.isFinished();
+      }
     };
-    memoryGame.isFinished();
   });
 });

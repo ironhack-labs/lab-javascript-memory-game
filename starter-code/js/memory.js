@@ -16,8 +16,8 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     if (card1 === card2) {
-      this.pairsClicked.innerHTML++;
       this.pairsGuessed.innerHTML++;
+      this.pairsClicked.innerHTML++;
       console.log("Test successful");
       return true;
     } else {
@@ -29,7 +29,8 @@ class MemoryGame {
 
   isFinished() {
     if (this.pairsGuessed === (this.cards.length/2)) {
-      return true;
+      window.alert("You've won!");
+      return true
     } else {
       return false;
     };
