@@ -5,6 +5,7 @@ class MemoryGame {
     this.pairsGuessed = 0;
     this.pairsClicked = 0;
     this.shuffleCards();
+    this.isFinished();
   }
   shuffleCards() {
     let len = this.cards.length;
@@ -27,12 +28,15 @@ class MemoryGame {
   }
 
   isFinished() {
-    if (this.pairsGuessed === 2) {
-      document.querySelector("#memory_board").innerHTML = "";
-      let h1 = document.createElement("h1");
-      h1.style.color = "pink";
-      h1.innerHTML = "YOU WON!!!";
-      document.querySelector("#memory_board").appendChild(h1);
+    if (this.pairsGuessed > this.cards.length/2) {
+      return false
+    } else {
+      return true;
     }
   }
 }
+      // document.querySelector("#memory_board").innerHTML = "";
+      // let h1 = document.createElement("h1");
+      // h1.style.color = "pink";
+      // h1.innerHTML = "YOU WON!!!";
+      // document.querySelector("#memory_board").appendChild(h1);
