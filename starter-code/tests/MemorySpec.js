@@ -66,13 +66,14 @@ describe("shuffleCards method", () => {
     expect(typeof memoryGame.shuffleCards).toBe("function");
   });
 
-  it("should return undefined if argument (cards array) is not passed", () => {
+  it("should return undefined", () => {
     expect(typeof memoryGame.shuffleCards()).toBe("undefined");
   });
 
   it("should return the shuffled (mixed) array of cards", () => {
     let formerCardsString = memoryGame.cards.map(card => card.name).toString();
     memoryGame.shuffleCards();
+
     let newCardsString = memoryGame.cards.map(card => card.name).toString();
     expect(formerCardsString === newCardsString).toBe(false);
   });
@@ -124,7 +125,7 @@ describe("isFinished method", () => {
   });
 
   it("should return true if all pairs are guessed", () => {
-    memoryGame.pairsGuessed = 8;
+    memoryGame.pairsGuessed = 12;
     expect(memoryGame.isFinished()).toBe(true);
   });
 });
