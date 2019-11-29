@@ -39,11 +39,57 @@ window.addEventListener("load", event => {
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
+  function flipCards(e){
+    e.currentTarget.classList.toggle("turned", true);
+    var card = e.currentTarget;
+    memoryGame.pickedCards.push(card);
+    console.log(memoryGame.pickedCards)
+  }
+  
+  function unflipCards(){
+    console.log("unflipcalled")
+       setTimeout(function(){
+        memoryGame.pickedCards[0].className = "card";
+        memoryGame.pickedCards[1].className = "card";
+        console.log("unflip triggered");
+        memoryGame.pickedCards = [];
+    }, 1000);}
+
+
+    function processCards(){
+      var card1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+      var card2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
+      console.log(card1, card2)
+     if (memoryGame.checkIfPair(card1, card2) === false){
+        unflipCards();
+      } else if (memoryGame.checkIfPair(card1, card2) === true){
+        memoryGame.pickedCards = [];
+      }
+    }
+
+  function checkPairs(){
+    if (memoryGame.pickedCards.length == 2){
+        processCards();
+      }
+      document.getElementById("pairs_clicked").innerHTML = String(memoryGame.pairsClicked);
+      document.getElementById("pairs_guessed").innerHTML = String(memoryGame.pairsGuessed);
+    }
+  
+  function checkGameOver(isOver){
+     if (isOver === true){
+      alert("You found all matches!");
+    }
+  }
+
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (e) => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      flipCards(e);
+      checkPairs();
+      checkGameOver(memoryGame.isFinished());
     });
   });
 });
+
+memoryGame.shuffleCards();
