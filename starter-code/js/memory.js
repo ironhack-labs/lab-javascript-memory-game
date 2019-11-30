@@ -7,25 +7,27 @@ class MemoryGame {
     this.pairsGuessed = 0
   }
   shuffleCards() {
-   
-    let a = 24
-    let random = Math.floor(Math.random()*a)
-    let newArr = []
 
-    for(let i = 0; i <= a; i++){
-      a-- 
-      console.log(a)
-      newArr.push(this.cards[random])
-      this.cards.splice(this.cards.indexOf(this.cards[random]), 1)
-      // a = this.cards[i]
-      // this.cards[i] = this.cards[random]
-      // this.cards[random] = a
+    var currentIndex = this.cards.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = this.cards[currentIndex];
+      this.cards[currentIndex] = this.cards[randomIndex];
+      this.cards[randomIndex] = temporaryValue;
     }
-   
-    this.cards = newArr
-    return this.cards
-
+  
+    return this.cards;
   }
+   
+
+  
   checkIfPair(card1, card2) {
     if( card1 === card2){
       this.pairsClicked++
