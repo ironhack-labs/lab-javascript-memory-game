@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
   let html = "";
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -38,12 +39,59 @@ window.addEventListener("load", event => {
 
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
-
+  
+  
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      let parsCardsClick = document.getElementById('pairs_clicked')
+      let parsCardsClickGessed = document.getElementById('pairs_guessed')
+      card.classList.toggle('turned');
+
+      memoryGame.pickedCards.push(card)
+
+      console.log(memoryGame.pickedCards)
+
+
+      if(memoryGame.pickedCards.length%2 === 0){
+
+        let cardA = memoryGame.pickedCards[memoryGame.pickedCards.length-1];
+        let cardB = memoryGame.pickedCards[memoryGame.pickedCards.length-2];
+
+        let cardDataA = cardA.getAttribute('data-card-name');
+        let cardDataB = cardB.getAttribute('data-card-name');
+      
+        let memoryResult = memoryGame.checkIfPair(cardDataA,cardDataB);
+
+        //console.log('cardA', cardA, 'cardDataA', cardDataA )
+        //console.log('cardB', cardB, 'cardDataB', cardDataB)
+        //console.log('memoryResult', memoryResult)
+
+        parsCardsClick.innerText = memoryGame.pairsClicked
+
+        setTimeout(function(){
+          if(memoryResult === false){
+            cardA.classList.toggle('turned')        
+            cardB.classList.toggle('turned')   
+          } else {
+            parsCardsClickGessed.innerText = memoryGame.pairsGuessed
+          }
+
+          let finish = memoryGame.isFinished();
+          if(finish === true){
+            alert('YOU WON!')
+            location.reload();
+          }
+
+        }, 500)
+        
+      }
+
     });
+
+
+
+
   });
 });

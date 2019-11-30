@@ -43,7 +43,7 @@ body {
   background-color: #456783;
 }
 
-.card .front {
+.card .front {  
   position:absolute;
   left:0;top:0;
   transform:rotateY(-180deg) translateZ(1px); backface-visibility:hidden;

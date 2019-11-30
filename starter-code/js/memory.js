@@ -4,18 +4,18 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
+    console.log( this.pairsGuessed)
     // add the rest of the class properties here
   }
   shuffleCards() {
-    function shuffle(arr){
-      arr.sort(function(a,b){
-        return  Math.random() - 0.5
-      })
-    }
+      function shuffle(arr){
+        arr.sort(function(a,b){
+          return  Math.random() - 0.5
+        })
+      }
     shuffle(this.cards)
   }
   checkIfPair(card1, card2) {
-
     this.pairsClicked++;
     if(card1 === card2){
       this.pairsGuessed++;
