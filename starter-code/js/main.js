@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards();
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -49,22 +50,32 @@ window.addEventListener("load", event => {
       console.log(`Card clicked: ${card}`);
 
       if (memoryGame.pickedCards.length === 2){
-        console.log("OK -> " + memoryGame.pickedCards)
         setTimeout (function(){
           if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name"))){
             console.log("Son iguales, llevas " + memoryGame.pairsGuessed + " parejas")
             memoryGame.pickedCards[0].classList.add("blocked");
             memoryGame.pickedCards[1].classList.add("blocked");
             memoryGame.pickedCards = [];
+            let clicked = document.getElementById("pairs_clicked")
+            clicked.innerHTML= memoryGame.pairsClicked;
+            let guessed = document.getElementById("pairs_guessed")
+            guessed.innerHTML= memoryGame.pairsGuessed;
           } else {
-              console.log("Son Distintas")
+              console.log("Son distintas, llevas " + memoryGame.pairsGuessed + " parejas")
               memoryGame.pickedCards[0].classList.remove("turned");
               memoryGame.pickedCards[1].classList.remove("turned");
               memoryGame.pickedCards = [];
+              let clicked = document.getElementById("pairs_clicked")
+              clicked.innerHTML= memoryGame.pairsClicked;
             }
-        }, 1000)
-        
+          if (memoryGame.isFinished() === true){
+              console.log(memoryGame.isFinished())
+              alert('MENUDA SUPERMEMORIA TIENES')
+              location.reload();
+          } 
+        }, 300)
       } 
+      console.log(memoryGame.isFinished())
     });
   });
 });
