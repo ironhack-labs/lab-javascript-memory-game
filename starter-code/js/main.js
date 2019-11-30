@@ -43,6 +43,28 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+    card.classList.add("turned");
+    
+  
+    memoryGame.pickedCards.push(card)
+    if (memoryGame.pickedCards.length === 2){
+      setTimeout(function(){
+
+    
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name") ,memoryGame.pickedCards[1].getAttribute("data-card-name"))){
+
+      console.log("es true");
+      memoryGame.pickedCards[0].classList.add("blocked");
+      memoryGame.pickedCards[1].classList.add("blocked");
+      memoryGame.pickedCards = [];
+      } else {      
+        console.log("es false")
+        memoryGame.pickedCards[0].classList.remove("turned");
+        memoryGame.pickedCards[1].classList.remove("turned");
+        memoryGame.pickedCards = [];
+      }
+    },1000)
+    }    
       console.log(`Card clicked: ${card}`);
     });
   });
