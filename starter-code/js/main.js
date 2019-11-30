@@ -43,6 +43,15 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+      if (card.length > 2){
+        card.setAttribute("class", "card");
+      } else {
+        card.setAttribute("class", "card turned");
+      }
+console.log(card.length);
+
+      
+      
       console.log(`Card clicked: ${card}`);
     });
   });
