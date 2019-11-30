@@ -1,5 +1,6 @@
 const cards = [
   { name: "aquaman", img: "aquaman.jpg" },
+  { name: "aquaman", img: "aquaman.jpg" },
   { name: "batman", img: "batman.jpg" },
   { name: "captain america", img: "captain-america.jpg" },
   { name: "fantastic four", img: "fantastic-four.jpg" },
@@ -11,7 +12,6 @@ const cards = [
   { name: "superman", img: "superman.jpg" },
   { name: "the avengers", img: "the-avengers.jpg" },
   { name: "thor", img: "thor.jpg" },
-  { name: "aquaman", img: "aquaman.jpg" },
   { name: "batman", img: "batman.jpg" },
   { name: "captain america", img: "captain-america.jpg" },
   { name: "fantastic four", img: "fantastic-four.jpg" },
@@ -43,7 +43,38 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add("turned");
+      memoryGame.pickedCards.push(card);
+      console.log(memoryGame.pickedCards.length);
+      //setTimeout(function() {
+
+      if (memoryGame.pickedCards.length === 2) {
+        let checkIfPaired = memoryGame.checkIfPair(
+          memoryGame.pickedCards[0].getAttribute("data-card-name"),
+          memoryGame.pickedCards[1].getAttribute("data-card-name")
+        );
+        document.getElementById("pairs_clicked").innerHTML =
+          memoryGame.pairsClicked;
+        if (checkIfPaired) {
+          memoryGame.pickedCards[0].classList.add("blocked");
+          memoryGame.pickedCards[1].classList.add("blocked");
+          memoryGame.pickedCards = [];
+          document.getElementById("pairs_guessed").innerHTML =
+            memoryGame.pairsGuessed;
+        } else {
+          memoryGame.pickedCards[0].classList.remove("turned");
+          memoryGame.pickedCards[1].classList.remove("turned");
+          memoryGame.pickedCards = [];
+        }
+      }
+      //}, 1000);
+      if (memoryGame.isFinished()) {
+        setTimeout(function() {
+          alert("G A N A S T E ! ! !");
+        }, 1000);
+      }
+      //console.log(`Card clicked: ${card}`);
+      console.log(card);
     });
   });
 });
