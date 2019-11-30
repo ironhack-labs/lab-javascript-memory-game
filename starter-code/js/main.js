@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards();
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -68,8 +69,13 @@ window.addEventListener("load", event => {
         document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;        
         document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
       }
-    },1000)
-    }    
+      if(memoryGame.isFinished() === true){
+        console.log("hecho")
+        alert("CRAAAACK")
+        location.reload()
+      }
+    },500)
+    }   
       console.log(`Card clicked: ${card}`);
     });
   });
