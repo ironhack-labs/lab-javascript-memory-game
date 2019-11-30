@@ -1,22 +1,34 @@
 class MemoryGame {
-  constructor(cards){
+  constructor(cards) {
     this.cards = cards;
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
   shuffleCards() {
-    let mixedCards = [];
-    function shuffle(array){
-      array.sort(() => Math.random() - 0.5)
-    }
-    if (this.cards.length <= 0){
-      //mixedCards = shuffle(this.cards);
-      //console.log(mixedCards);
-      return shuffle(this.cards);
+    if (this.cards.length != 0) {
+    this.cards.sort(() => Math.random() - 0.5);
+    return this.cards;
+    } else {
+      return undefined;
     }
   }
   
-  checkIfPair(card1, card2) {}
-  isFinished() {}
+
+  checkIfPair(card1, card2) {
+    this.pairsClicked++;
+    if (card1 == card2) {
+      this.pairsGuessed++;
+      return true;
+    } else {
+      return false;
+    }
+  }
+  isFinished() {
+    if (this.pairsGuessed === this.cards.length/2) {
+      return true;
+    } else {
+    return false;
+    }
+  }
 }
