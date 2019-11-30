@@ -10,7 +10,7 @@
 
 We just learned how to use (Vanilla) JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
 
-![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg =500x)
+![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
 Do you remember that game called Memory that you used to play with the actual paper cards? To win, you needed to memorize the position of the paired card. Well, the logic of the game we will be building is the same.
 
