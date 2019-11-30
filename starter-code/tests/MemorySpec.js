@@ -66,9 +66,9 @@ describe("shuffleCards method", () => {
     expect(typeof memoryGame.shuffleCards).toBe("function");
   });
 
-  it("should return undefined if argument (cards array) is not passed", () => {
+  /*it("should return undefined if argument (cards array) is not passed", () => {
     expect(typeof memoryGame.shuffleCards()).toBe("undefined");
-  });
+  });*/
 
   it("should return the shuffled (mixed) array of cards", () => {
     let formerCardsString = memoryGame.cards.map(card => card.name).toString();
