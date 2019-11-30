@@ -1,6 +1,9 @@
 class MemoryGame {
-  constructor(cards){
+  constructor(cards) {
     this.cards = cards;
+    this.pickedCards;
+    this.pairsClicked;
+    this.pairGuessed;
     // add the rest of the class properties here
   }
   shuffleCards() {}
