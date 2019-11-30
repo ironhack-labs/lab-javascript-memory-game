@@ -46,13 +46,13 @@ window.addEventListener("load", event => {
       var flippedCards = memoryGame.pickedCards
       flippedCards = document.getElementsByClassName("card turned")
       if(flippedCards.length == 2){
-        var card1 = flippedCards[0]
-        var card2 = flippedCards[1]
+        let card1 = flippedCards[0]
+        let card2 = flippedCards[1]
+        console.log(card1, card2)
         setTimeout(function(){
-          if(memoryGame.checkIfPair(card1, card2)){
-            console.log(card1, card2)
-          card1.className = "blocked"
-          card2.className = "blocked"
+          if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
+          card1.className = "card blocked"
+          card2.className = "card blocked"
           } else {
           card1.className = "card"
           card2.className = "card"
