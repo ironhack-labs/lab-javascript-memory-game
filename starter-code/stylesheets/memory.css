@@ -57,8 +57,10 @@ body {
   height: 100%;
   text-align: center;
   line-height: 600px;
-  font-size: 60px;
+  font-size: 120px;
   font-weight: bold;
+  backdrop-filter: blur(10px);
+  border-radius: 84px;
 }
 
 #score {
