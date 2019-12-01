@@ -43,12 +43,8 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
 
-      card.classList.toggle('turned');
+      card.classList.toggle('turned', !card.classList.contains('turned'));
       memoryGame.pickedCards.push(card.getAttribute('data-card-name'));
-      setTimeout(() => {
-        card.classList.toggle('turned');
-      }, 2000);
-
       if (memoryGame.pickedCards.length === 2) checkPair();
 
     });
@@ -60,12 +56,22 @@ function checkPair(){
   if (areTheSame){
     memoryGame.pickedCards.forEach(picked => {
       document.querySelectorAll(".card").forEach(card => {
-        if (card.getAttribute('data-card-name') === picked) card.classList.add('blocked');
+        if (card.getAttribute('data-card-name') === picked) card.classList.replace('turned', 'blocked');
       })
     });
+  } else {
+    setTimeout(() => {
+      document.querySelectorAll(".turned").forEach(card => {
+        card.classList.remove('turned');
+      });
+    }, 1000);
   }
   memoryGame.pickedCards = [];
   document.querySelector('#pairs_clicked').innerHTML = memoryGame.pairsClicked;
   document.querySelector('#pairs_guessed').innerHTML = memoryGame.pairsGuessed;
-  if (memoryGame.isFinished()) alert('You won!!!');
+  if (memoryGame.isFinished()){
+    let scoreMsg = document.querySelector('#score h2');
+    scoreMsg.classList.add('yellow');
+    scoreMsg.innerHTML = 'YOU WON!!!';
+  }
 }
