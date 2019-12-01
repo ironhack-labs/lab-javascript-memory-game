@@ -46,23 +46,24 @@ window.addEventListener("load", event => {
 
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      card.className += " turned"
-      flippedCards = document.getElementsByClassName("card turned")
-      if(flippedCards.length == 2){
-        let card1 = flippedCards[0]
-        let card2 = flippedCards[1]
-        setTimeout(function(){
-          if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
-          card1.className = "card blocked"
-          card2.className = "card blocked"
-          } else {
-          card1.className = "card"
-          card2.className = "card"
-          }
-          console.log(clicked, guessed)
-          clickedScore.innerHTML = memoryGame.pairsClicked
-          guessedScore.innerHTML = memoryGame.pairsGuessed
-        }, 1000)
+      if(card.className != "card blocked"){
+        card.className += " turned"
+        flippedCards = document.getElementsByClassName("card turned")
+        if(flippedCards.length == 2){
+          let card1 = flippedCards[0]
+          let card2 = flippedCards[1]
+          setTimeout(function(){
+            if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
+            card1.className = "card blocked"
+            card2.className = "card blocked"
+            } else {
+            card1.className = "card"
+            card2.className = "card"
+            }
+            clickedScore.innerHTML = memoryGame.pairsClicked
+            guessedScore.innerHTML = memoryGame.pairsGuessed
+          }, 1000)
+        }
       }
     });
   })
