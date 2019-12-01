@@ -34,30 +34,52 @@ window.addEventListener("load", event => {
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
+    memoryGame.shuffleCards();
   });
 
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
+  //html += document.querySelector("#score").innerHTML;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll(".card").forEach(card => {
+  document.querySelectorAll(".card").forEach(card => {  //, #pairs_clicked, #pairs_guessed
+
     card.addEventListener("click", () => {
-      card.className += " turned"
-      var flippedCards = memoryGame.pickedCards
-      flippedCards = document.getElementsByClassName("card turned")
-      if(flippedCards.length == 2){
-        let card1 = flippedCards[0]
-        let card2 = flippedCards[1]
-        console.log(card1, card2)
+
+      card.className += " turned";
+
+      memoryGame.pickedCards.push(card);
+      //document.getElementsByClassName("card turned")
+
+      if(memoryGame.pickedCards.length == 2){
+
+        let card1 = memoryGame.pickedCards[0]
+        let card2 = memoryGame.pickedCards[1]
+
         setTimeout(function(){
+
           if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
-          card1.className = "card blocked"
-          card2.className = "card blocked"
+          card1.classList.add("blocked");
+          card2.classList.add("blocked");
+          document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
+          document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+          //card2.className = "card blocked"
           } else {
-          card1.className = "card"
-          card2.className = "card"
+          card1.classList.remove("turned")
+          card2.classList.remove("turned")
+          document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
+          //card2.className = "card"
           }
+
+          memoryGame.pickedCards = [];
+
         }, 1000)
+
+        if(memoryGame.isFinished){
+          window.alert("Congratulations! You have beaten the game! ")
+          location.reload();
+        }
+        
       }
     });
   })
