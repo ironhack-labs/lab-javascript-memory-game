@@ -26,7 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards(); //shuffle the cards
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
@@ -35,33 +35,41 @@ window.addEventListener("load", event => {
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
   });
-
+  //store the span containing the score
+  let clicked = document.getElementById("pairs_clicked");
+  let guessed = document.getElementById("pairs_guessed");
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
-
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      if (memoryGame.pickedCards.length<2) {
-        memoryGame.pickedCards.push(card)
-        card.classList.toggle("turned");
-      } 
+      card.classList.toggle("turned"); // turn the card
+      memoryGame.pickedCards.push(card); //select the picked card to manipulate
       if (memoryGame.pickedCards.length == 2) {
-        let compare = memoryGame.checkIfPair(memoryGame.pickedCards[0].name,memoryGame.pickedCards[1].name);
-
-        if (compare) {
-          memoryGame.pairsGuessed++;
-          
+        /*let compare = memoryGame.checkIfPair(
+          (memoryGame.pickedCards[0].getAttribute("data-card-name")),
+          (memoryGame.pickedCards[1].getAttribute("data-card-name"))
+        );*/
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        let compare = memoryGame.checkIfPair(
+          card1.getAttribute("data-card-name"),
+          card2.getAttribute("data-card-name")
+        );
+        if (compare === true) {
+          guessed.innerHTML = memoryGame.pairsGuessed.toString();
+          memoryGame.pickedCards.splice(0,2);
         } else {
-          memoryGame.pickedCards[0].toggle("turned");
-          memoryGame.pickedCards[1].toggle("turned");
-        }
+          setTimeout(function() {
+            card1.classList.toggle("turned");
+            card2.classList.toggle("turned");
+            memoryGame.pickedCards.splice(0,2)
+          }, 600)
+        } 
       }
-      
-      console.log(memoryGame.pickedCards)
-
-
+      clicked.innerHTML = memoryGame.pairsClicked.toString()  //refresh the score
+      if (memoryGame.isFinished()) {alert("You Won!")}
       console.log(`Card clicked: ${card}`);
     });
   });
