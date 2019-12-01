@@ -59,18 +59,19 @@ window.addEventListener("load", event => {
         );
         if (compare === true) {
           guessed.innerHTML = memoryGame.pairsGuessed.toString();
-          memoryGame.pickedCards.splice(0,2);
+          memoryGame.pickedCards.splice(0, 2);
         } else {
           setTimeout(function() {
             card1.classList.toggle("turned");
             card2.classList.toggle("turned");
-            memoryGame.pickedCards.splice(0,2)
-          }, 600)
-        } 
+            memoryGame.pickedCards.splice(0, 2);
+          }, 600);
+        }
       }
-      clicked.innerHTML = memoryGame.pairsClicked.toString()  //refresh the score
-      if (memoryGame.isFinished()) {alert("You Won!")}
-      console.log(`Card clicked: ${card}`);
+      clicked.innerHTML = memoryGame.pairsClicked.toString(); //refresh the score
+      if (memoryGame.isFinished()) {
+        alert("You Won!");
+      }
     });
   });
 });
