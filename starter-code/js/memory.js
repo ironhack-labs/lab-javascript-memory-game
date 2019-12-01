@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
@@ -27,14 +29,16 @@ class MemoryGame {
   }
   checkIfPair(card1, card2) {
     this.pairsClicked++;
-    if(card1 === card2){
+    console.log("suma a clicked");
+    if (card1 === card2) {
       this.pairsGuessed++;
+      console.log("suma a guessed");
       return true;
     }
     return false;
   }
   isFinished() {
-    if (this.pairsGuessed === this.cards.length/2){
+    if (this.pairsGuessed === this.cards.length / 2) {
       return true;
     }
     return false;
