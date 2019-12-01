@@ -40,10 +40,13 @@ window.addEventListener("load", event => {
   document.querySelector("#memory_board").innerHTML = html;
 
   // Bind the click event of each element to a function
+  let clickedScore = document.getElementById("pairs_clicked")
+  let guessedScore = document.getElementById("pairs_guessed")
+  let flippedCards = memoryGame.pickedCards
+
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       card.className += " turned"
-      var flippedCards = memoryGame.pickedCards
       flippedCards = document.getElementsByClassName("card turned")
       if(flippedCards.length == 2){
         let card1 = flippedCards[0]
@@ -56,6 +59,9 @@ window.addEventListener("load", event => {
           card1.className = "card"
           card2.className = "card"
           }
+          console.log(clicked, guessed)
+          clickedScore.innerHTML = memoryGame.pairsClicked
+          guessedScore.innerHTML = memoryGame.pairsGuessed
         }, 1000)
       }
     });
