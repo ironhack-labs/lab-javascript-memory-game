@@ -28,7 +28,8 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', () => {
-	memoryGame.shuffleCards(cards);
+	memoryGame.shuffleCards();
+
 	let html = '';
 	memoryGame.cards.forEach(pic => {
 		html += `<div class="card" data-card-name="${pic.name}">`;
@@ -45,21 +46,19 @@ window.addEventListener('load', () => {
 		card.addEventListener('click', () => {
 			card.classList.add('turned');
 			memoryGame.pickedCards.push(card);
-			let card1 = memoryGame.pickedCards[0];
-			let card2 = memoryGame.pickedCards[1];
+
 			if (memoryGame.pickedCards.length === 2) {
-				if (
-					memoryGame.checkIfPair(card1.getAttribute('data-card-name'), card2.getAttribute('data-card-name'))
-				) {
-					card1.classList.add('blocked');
-					card2.classList.add('blocked');
+				let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+				let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+
+				if (memoryGame.checkIfPair(card1, card2)) {
+					memoryGame.pickedCards.forEach(card => card.classList.add('blocked'));
 					memoryGame.pickedCards = [];
 				} else {
 					setTimeout(() => {
-						card1.classList.remove('turned');
-						card2.classList.remove('turned');
+						memoryGame.pickedCards.forEach(card => card.classList.remove('turned'));
 						memoryGame.pickedCards = [];
-					}, 1000);
+					}, 500);
 				}
 			}
 
@@ -68,10 +67,9 @@ window.addEventListener('load', () => {
 
 			if (memoryGame.isFinished()) {
 				setTimeout(() => {
-					alert('winning');
-				}, 500);
+					alert('You won! :)');
+				}, 1000);
 			}
-			console.log('Card clicked: ', card);
 		});
 	});
 });
