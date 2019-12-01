@@ -10,7 +10,7 @@ class MemoryGame {
 		if (!this.cards) return undefined;
 
 		for (let i = 0; i < this.cards.length; i++) {
-			let j = Math.floor(Math.random() * (i + 1));
+			let j = Math.floor(Math.random() * i);
 			let card = this.cards[i];
 			this.cards[i] = this.cards[j];
 			this.cards[j] = card;
