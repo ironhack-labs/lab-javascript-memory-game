@@ -63,6 +63,9 @@ window.addEventListener('load', () => {
 				}
 			}
 
+			document.getElementById('pairs_clicked').textContent = memoryGame.pairsClicked;
+			document.getElementById('pairs_guessed').textContent = memoryGame.pairsGuessed;
+
 			if (memoryGame.isFinished()) {
 				setTimeout(() => {
 					alert('winning');
