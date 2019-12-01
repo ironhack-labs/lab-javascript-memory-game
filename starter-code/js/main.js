@@ -38,6 +38,7 @@ window.addEventListener("load", event => {
   //store the span containing the score
   let clicked = document.getElementById("pairs_clicked");
   let guessed = document.getElementById("pairs_guessed");
+  let finish = document.getElementById("finish")
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
   // Bind the click event of each element to a function
@@ -70,7 +71,7 @@ window.addEventListener("load", event => {
       }
       clicked.innerHTML = memoryGame.pairsClicked.toString(); //refresh the score
       if (memoryGame.isFinished()) {
-        alert("You Won!");
+        finish.style.display = "initial";
       }
     });
   });
