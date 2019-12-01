@@ -7,6 +7,7 @@ body {
 }
 
 #memory_board {
+  position: relative;
   background:#dddddd;
 	width:800px;
 	height:540px;
@@ -18,15 +19,16 @@ body {
 
 .card {
   display:inline-block;
-  perspective:300px; transform-style:preserve-3d;
+  perspective:300px; 
+  transform-style:preserve-3d;
 
   position:relative;
 }
 
 .card.turned {pointer-events:none;}
 
-.card.turned .front {transform:rotateY(0deg);}
-.card.turned .back {transform:rotateY(180deg)}
+.card.turned .front, .card.blocked .front {transform:rotateY(0deg);}
+.card.turned .back, .card.blocked .back {transform:rotateY(180deg)}
 
 .card .back,
 .card .front {
@@ -47,6 +49,18 @@ body {
   position:absolute;
   left:0;top:0;
   transform:rotateY(-180deg) translateZ(1px); backface-visibility:hidden;
+}
+#win {
+  position: absolute;
+  top: 0;left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 600px;
+  font-size: 120px;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  border-radius: 84px;
 }
 
 #score {

@@ -25,10 +25,10 @@ class MemoryGame {
     }
   }
   isFinished() {
-    var isFinished = false;
     if(this.pairsGuessed == this.cards.length/2){
-      isFinished = true;
+      return true;
+    } else {
+     return false;
     }
-    return isFinished;
   }
 }
