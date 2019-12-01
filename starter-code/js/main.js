@@ -48,7 +48,6 @@ window.addEventListener("load", event => {
       if(flippedCards.length == 2){
         let card1 = flippedCards[0]
         let card2 = flippedCards[1]
-        console.log(card1, card2)
         setTimeout(function(){
           if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
           card1.className = "card blocked"
