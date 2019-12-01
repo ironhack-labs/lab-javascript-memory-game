@@ -57,7 +57,7 @@ window.addEventListener("load", event => {
             if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
               card1.className = "card blocked"
               card2.className = "card blocked"
-              if(memoryGame.isFinished){
+              if(memoryGame.isFinished()){
                 document.querySelector("#memory_board").innerHTML += gameOver
               }
             } else {
