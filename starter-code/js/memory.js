@@ -22,21 +22,22 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     if (card1 === card2) {
-      this.pairsClicked ++;
-      this.pairsGuessed ++;
+      this.pairsClicked++;
+      this.pairsGuessed++;
+      this.isFinished();
       return true;
     } else {
-      this.pairsClicked ++;
+      this.pairsClicked++;
       return false;
     }
   }
 
   isFinished() {
     if (this.pairsGuessed === 8) {
-    // console.log("done");
-    return true;
+      alert("You won!!!");
+      return true;
     } else {
-    return false;
+      return false;
     }
   }
 }
