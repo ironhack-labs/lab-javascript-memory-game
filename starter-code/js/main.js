@@ -28,13 +28,13 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards();
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
-    memoryGame.shuffleCards();
   });
 
   // Add all the divs to the HTML
@@ -63,6 +63,10 @@ window.addEventListener("load", event => {
           card2.classList.add("blocked");
           document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
           document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+          if(memoryGame.isFinished()){
+            window.alert("Congratulations! You have beaten the game! ")
+            location.reload();
+          }
           //card2.className = "card blocked"
           } else {
           card1.classList.remove("turned")
@@ -70,16 +74,9 @@ window.addEventListener("load", event => {
           document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
           //card2.className = "card"
           }
-
           memoryGame.pickedCards = [];
-
-        }, 1000)
-
-        if(memoryGame.isFinished){
-          window.alert("Congratulations! You have beaten the game! ")
-          location.reload();
-        }
-        
+          //console.log(memoryGame.isFinished());
+        }, 1000);       
       }
     });
   })
