@@ -5,19 +5,12 @@ class MemoryGame {
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
+
   shuffleCards() {
     for (let i = 0; i < this.cards.length; i++) {
-      this.randomN = this.cards[Math.floor(Math.random() * this.cards.length)];
-      for (let j = 0; j < this.cards.length; j++) {
-        if (this.cards[i] < this.cards[j]) {
-          this.cardIdx = this.cards.indexOf(this.randomN);
-          this.extracted = this.cards[this.cardIdx];
-          this.cards.splice(this.cardIdx, 1);
-          this.cards.push(this.extracted);
-        }
-      }
+      this.cards[Math.floor(Math.random() * this.cards.length)];
     }
-    return this.cards;
+    return this.cards.sort(() => Math.random() - 0.5);
   }
 
   checkIfPair(card1, card2) {
