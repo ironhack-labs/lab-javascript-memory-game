@@ -87,3 +87,16 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#finish {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(69, 103, 131, 0.9);
+  width: 30%;
+  text-align: center;
+  font-size: 67px;
+  display: none;
+
+}
