@@ -59,23 +59,29 @@ window.addEventListener("load", event => {
         setTimeout(function(){
 
           if(memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name"))){
-          card1.classList.add("blocked");
-          card2.classList.add("blocked");
-          document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
-          document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
-          if(memoryGame.isFinished()){
-            window.alert("Congratulations! You have beaten the game! ")
-            location.reload();
-          }
-          //card2.className = "card blocked"
+
+            card1.classList.add("blocked");
+            card2.classList.add("blocked");
+            document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
+            document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+            if(memoryGame.isFinished()){
+              window.alert("Congratulations! You have beaten the game! ")
+              location.reload();
+            }
+            //card2.className = "card blocked"
+
           } else {
+
           card1.classList.remove("turned")
           card2.classList.remove("turned")
           document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
           //card2.className = "card"
+
           }
+
           memoryGame.pickedCards = [];
           //console.log(memoryGame.isFinished());
+          
         }, 1000);       
       }
     });
