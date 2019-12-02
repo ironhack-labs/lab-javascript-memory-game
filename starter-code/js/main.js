@@ -26,6 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+//!!COMMENT NEXT LINE TO GET INITIAL ORDER
+memoryGame.shuffleCards(); //each time the page is refreshed the cards are shuffled
 
 window.addEventListener("load", event => {
   let html = "";
@@ -39,20 +41,42 @@ window.addEventListener("load", event => {
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
+
   // Bind the click event of each element to a function
+
+  var selectedCards = []; // stores the two selected cards to compare them
+
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
-      if (card.length > 2){
-        card.setAttribute("class", "card");
-      } else {
-        card.setAttribute("class", "card turned");
-      }
-console.log(card.length);
-
-      
       
       console.log(`Card clicked: ${card}`);
+
+      card.setAttribute("class","card turned");   //turn clicked card
+      selectedCards.push(card);                   //add to selectedCards array
+      if (selectedCards.length==2) {              //after selecting card no.2, compare them
+        let card1 = selectedCards[0].getAttribute("data-card-name"); 
+        let card2 = selectedCards[1].getAttribute("data-card-name");
+        let result = memoryGame.checkIfPair(card1,card2);
+        if (result == false) {                    //if there is no match, turn the cards after 1.5s
+          setTimeout(()=>{selectedCards.forEach(e => {e.setAttribute("class","card")});
+          selectedCards =[];},1000);              //clear selectedCards array
+        } else {                                  //if there is match, leave the cards turned
+          selectedCards =[];                      //clear selectedCards array
+        }
+      }
+
+      //refresh displayed counters after each click
+      document.getElementById("pairs_clicked").textContent=memoryGame.pairsClicked;
+      document.getElementById("pairs_guessed").textContent=memoryGame.pairsGuessed;
+
+      //check if game is finished
+      if (memoryGame.isFinished()){
+        document.getElementById("win").style.display = "flex";
+      };
+
+      
+
+
     });
   });
 });
