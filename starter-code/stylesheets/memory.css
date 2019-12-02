@@ -23,10 +23,10 @@ body {
   position:relative;
 }
 
-.card.turned {pointer-events:none;}
+.card.turned, .card.blocked {pointer-events:none;}
 
-.card.turned .front {transform:rotateY(0deg);}
-.card.turned .back {transform:rotateY(180deg)}
+.card.turned .front, .card.blocked .front {transform:rotateY(0deg);}
+.card.turned .back, .card.blocked .back {transform:rotateY(180deg)}
 
 .card .back,
 .card .front {
