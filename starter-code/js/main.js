@@ -43,7 +43,13 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+     let card1 = card.setAttribute("class", "card turned");
+    console.log(cards[0])
       console.log(`Card clicked: ${card}`);
+     let card2;
+      setTimeout(function () {
+      card2 = card.setAttribute("class", "card");
+      }, 2000);
     });
   });
 });
