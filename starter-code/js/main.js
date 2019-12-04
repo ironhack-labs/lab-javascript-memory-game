@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards();
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -38,27 +39,41 @@ window.addEventListener("load", event => {
 
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
-
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
       card.setAttribute("class", "card turned");
       console.log(`Card clicked: ${card}`);
-      if (memoryGame.pickedCards.length < 2) {
-        memoryGame.pickedCards.push(card);
-      
-      setTimeout(function() {
-        card.setAttribute("class", "card");
-      }, 2000);
-    }
-      let card_1 = memoryGame.pickedCards[0];
-      let card_2 = memoryGame.pickedCards[1];
-      let a1 = card_1.getAttribute("data-card-name");
-      let a2 = card_2.getAttribute("data-card-name");
-      memoryGame.checkIfPair(a1, a2);
+      memoryGame.pickedCards.push(card);
 
-      memoryGame.pickedCards.splice(0, 2);
+      let card1 = memoryGame.pickedCards[0];
+      let a1 = card1.getAttribute("data-card-name");
+
+      if (memoryGame.pickedCards.length > 1) {
+        let card2 = memoryGame.pickedCards[1];
+        let a2 = card2.getAttribute("data-card-name");
+
+        if (memoryGame.checkIfPair(a1, a2) === true) {
+          pairs_clicked.innerHTML = memoryGame.pairsClicked;
+          pairs_guessed.innerHTML = memoryGame.pairsGuessed;
+        } else {
+          pairs_clicked.innerHTML = memoryGame.pairsClicked;
+        }
+
+        if (a1 !== a2) {
+          setTimeout(function() {
+            card1.setAttribute("class", "card");
+            card2.setAttribute("class", "card");
+          }, 1500);
+        }
+
+        memoryGame.pickedCards.splice(0, 2);
+      }
+
+      if (memoryGame.isFinished() === true) {
+        alert("You won!!!");
+      }
     });
   });
 });
