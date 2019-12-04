@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards(cards);
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -37,19 +38,12 @@ window.addEventListener("load", event => {
     html += `</div>`;
   });
 
-  function restartGame() {
-    memoryGame.shuffleCards(cards);
-    
-    document.querySelectorAll(".card").forEach(card => {
-      card.classList.toggle("blocked");
-    });
-    document.getElementById("youwin").classList.toggle("visible");
-  }
-
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
+
+  // Restart function
   document.getElementById("restart").addEventListener("click", () => {
-    restartGame();
+    location.reload();
   });
   
   // Bind the click event of each element to a function
