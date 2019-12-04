@@ -10,9 +10,9 @@ class MemoryGame {
     if (!this.cards) {
       return undefined;
     }
-    let currentIndex = this.cards.length,
-      temporaryValue,
-      randomIndex;
+    let currentIndex = this.cards.length;
+    let temporaryValue;
+    let randomIndex;
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
       // Pick a remaining element...

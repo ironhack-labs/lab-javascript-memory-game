@@ -27,6 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
@@ -36,26 +37,39 @@ window.addEventListener("load", event => {
     html += `</div>`;
   });
 
+  function restartGame() {
+    memoryGame.shuffleCards(cards);
+    
+    document.querySelectorAll(".card").forEach(card => {
+      card.classList.toggle("blocked");
+    });
+    document.getElementById("youwin").classList.toggle("visible");
+  }
+
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
+  document.getElementById("restart").addEventListener("click", () => {
+    restartGame();
+  });
   
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+    if (memoryGame.pickedCards.length < 3) {
       card.classList.toggle("turned");
       memoryGame.pickedCards.push(card.dataset.cardName);
-      // let selected = document.getElementsByClassName(".turned");
       let cardone = memoryGame.pickedCards[0];
       let cardtwo = memoryGame.pickedCards[1];
       if (memoryGame.pickedCards.length === 2) {
         if (memoryGame.checkIfPair(cardone, cardtwo)) {
           document.querySelectorAll(".turned").forEach(selected => {
-            selected.className += " blocked";
+            selected.classList.toggle("turned");
+            selected.classList.toggle("blocked");
           }); 
           memoryGame.pickedCards.splice(0, 2);
           if (memoryGame.isFinished()) {
-            alert("You won!!!");
+            document.getElementById("youwin").classList.toggle("visible");
           }
         } else {
           const timeoutId = setTimeout(function() {
@@ -63,12 +77,12 @@ window.addEventListener("load", event => {
               selected.classList.toggle("turned");
             }); 
             memoryGame.pickedCards.splice(0, 2);
-          }, 1000);
+          }, 700);
         } 
       }
       document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
       document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed;
-     
+    };
     });
    
   });
