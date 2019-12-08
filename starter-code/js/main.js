@@ -43,26 +43,33 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      if (memoryGame.pickedCards.length<2) {
-        memoryGame.pickedCards.push(card)
-        card.classList.toggle("turned");
-      } 
-      if (memoryGame.pickedCards.length == 2) {
-        let compare = memoryGame.checkIfPair(memoryGame.pickedCards[0].name,memoryGame.pickedCards[1].name);
 
-        if (compare) {
-          memoryGame.pairsGuessed++;
-          
+      card.classList.toggle("turned");
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length == 2) {
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        let compare = memoryGame.checkIfPair(
+          card1.getAttribute("data-card-name"),
+          card2.getAttribute("data-card-name")
+        );
+        if (compare === true) {
+          pairsGuessed = memoryGame.pairsGuessed.toString();
+          memoryGame.pickedCards.splice(0, 2);
         } else {
-          memoryGame.pickedCards[0].toggle("turned");
-          memoryGame.pickedCards[1].toggle("turned");
+          setTimeout(function() {
+            card1.classList.toggle("turned");
+            card2.classList.toggle("turned");
+            memoryGame.pickedCards.splice(0, 2);
+          }, 600);
         }
       }
-      
-      console.log(memoryGame.pickedCards)
-
-
-      console.log(`Card clicked: ${card}`);
+     document.getElementById("pairs_clicked").textContent = memoryGame.pairsClicked;
+		document.getElementById("pairs_guessed").textContent = memoryGame.pairsGuessed;
+      if (memoryGame.isFinished()) {
+       
+      }
     });
   });
 });

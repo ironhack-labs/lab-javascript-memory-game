@@ -1,9 +1,9 @@
 class MemoryGame {
   constructor(cards) {
-    (this.cards = cards),
-      (this.pickedCards = []),
-      (this.pairsClicked = 0),
-      (this.pairsGuessed = 0);
+    this.cards = cards,
+      this.pickedCards = [],
+      this.pairsClicked = 0,
+      this.pairsGuessed = 0;
   }
 
   shuffleCards() {
@@ -12,7 +12,6 @@ class MemoryGame {
     let e;
     while (cardsNumbers) {
       i = Math.floor(Math.random() * cardsNumbers--);
-
       e = this.cards[cardsNumbers];
       this.cards[cardsNumbers] = this.cards[i];
       this.cards[i] = e;
