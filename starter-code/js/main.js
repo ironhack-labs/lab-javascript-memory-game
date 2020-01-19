@@ -26,6 +26,12 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards(memoryGame.cards)
+
+function updateMark(){
+  document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked
+  document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed
+}
 
 window.addEventListener("load", event => {
   let html = "";
@@ -42,8 +48,29 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add("turned")
+      memoryGame.pickedCards.push(card)
+      if(memoryGame.pickedCards.length === 2){
+        document.getElementById("memory_board").style="pointer-events: none"
+        setTimeout(function(){
+          let card1Name = memoryGame.pickedCards[0].getAttribute('data-card-name')
+          let card2Name = memoryGame.pickedCards[1].getAttribute('data-card-name')
+          let same = memoryGame.checkIfPair(card1Name, card2Name)
+          if(same){
+            if(memoryGame.isFinished()){
+              if (confirm("You won!! Restart?")) {
+                location.reload()
+              }
+            }
+          } else {
+            memoryGame.pickedCards[0].classList.remove("turned")
+            memoryGame.pickedCards[1].classList.remove("turned")
+          }
+          memoryGame.pickedCards = [];
+          updateMark()
+          document.getElementById("memory_board").style=""
+        }, 2000);
+      }
     });
   });
 });
