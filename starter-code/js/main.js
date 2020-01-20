@@ -66,14 +66,12 @@ window.addEventListener("load", event => {
               let clicked = document.getElementById("pairs_clicked");
               clicked.innerHTML= memoryGame.pairsClicked;
             }
-          if (memoryGame.isFinished() === true){
-              console.log(memoryGame.isFinished());
+          if (memoryGame.isFinished()){
               alert('You won!!!');
               location.reload();
           }
         }, 300);
       }
-      console.log(memoryGame.isFinished());
     });
   });
 });

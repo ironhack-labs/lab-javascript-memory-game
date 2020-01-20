@@ -7,11 +7,12 @@ class MemoryGame {
     // add the rest of the class properties here
   }
   shuffleCards() {
-    for (let i = this.cards.length -1; i > 0; i--){
-      let j = Math.floor(Math.random() * i);
-      let cardsJ = this.cards[j];
+    let i, j, g;
+    for (i = this.cards.length -1; i > 0; i--) {
+      j = Math.floor(Math.random() * i);
+      g  = this.cards[j];
       this.cards[j] = this.cards[i];
-      this.cards[i] = cardsJ;
+      this.cards[i] = g;
     }
     return undefined;
   }
@@ -27,7 +28,6 @@ class MemoryGame {
   isFinished() {
     let endGame = false;
     if(this.pairsGuessed === this.cards.length/2){
-      console.log("a");
       endGame = true;
     }
     return endGame;
