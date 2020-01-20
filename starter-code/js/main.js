@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards(memoryGame.cards);
 
 window.addEventListener("load", event => {
   let html = "";
@@ -69,7 +70,7 @@ window.addEventListener("load", event => {
               console.log(memoryGame.isFinished());
               alert('You won!!!');
               location.reload();
-          } 
+          }
         }, 300);
       }
       console.log(memoryGame.isFinished());

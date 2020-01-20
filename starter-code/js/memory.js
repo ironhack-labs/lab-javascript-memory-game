@@ -8,7 +8,7 @@ class MemoryGame {
   }
   shuffleCards() {
     for (let i = this.cards.length -1; i > 0; i--){
-      let j = Math.floor(Math.random() * (i + 1));
+      let j = Math.floor(Math.random() * i);
       let cardsJ = this.cards[j];
       this.cards[j] = this.cards[i];
       this.cards[i] = cardsJ;
@@ -25,7 +25,7 @@ class MemoryGame {
     return areSame;
   }
   isFinished() {
-    let endGame = false
+    let endGame = false;
     if(this.pairsGuessed === this.cards.length/2){
       console.log("a");
       endGame = true;
