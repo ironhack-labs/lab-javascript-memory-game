@@ -4,8 +4,10 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0; 
     this.pairsGuessed = 0;
+    this.shuffleCards(cards);
   }
   shuffleCards(a) {
+    if(!a){return undefined}
     let j, x, i;
     for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
@@ -13,6 +15,7 @@ class MemoryGame {
         a[i] = a[j];
         a[j] = x;
     }
+    return a  
   }
   checkIfPair(card1, card2) {
     this.pairsClicked++;
@@ -26,7 +29,6 @@ class MemoryGame {
   isFinished() {
     let endGame = false
     if(this.pairsGuessed === this.cards.length/2){
-      console.log("a")
       endGame = true
     }
     return endGame
