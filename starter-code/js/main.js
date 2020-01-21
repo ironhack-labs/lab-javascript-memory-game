@@ -43,7 +43,27 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
+      memoryGame.pickedCards++;
+      returnCard(card);
+      if (memoryGame.pickedCards.length === 2) {
+        if (checkIfPair = true) {
+          console.log("Dos cartas picadas")
+        } else {console.log("Sigue intentandolo")}
+      } else {
+    }
+      console.log('Card clicked: ', card);
 });
+});
+});
+
+function returnCard(card) {
+  card.classList.toggle("turned")
+  card.childNodes.forEach((Element) => {
+    if (Element.classList.contains("back")) {
+      Element.classList.replace("back", "front")
+    }
+    else {
+      Element.classList.replace("front", "back")
+    }
+  });
+}
