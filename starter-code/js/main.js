@@ -43,6 +43,9 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+
+      event.target.className('.card .front');
+      
       console.log(`Card clicked: ${card}`);
     });
   });
