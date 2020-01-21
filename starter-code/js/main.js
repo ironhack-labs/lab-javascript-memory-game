@@ -1,49 +1,80 @@
 const cards = [
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-  { name: "spiderman", img: "spiderman.jpg" },
-  { name: "superman", img: "superman.jpg" },
-  { name: "the avengers", img: "the-avengers.jpg" },
-  { name: "thor", img: "thor.jpg" },
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-  { name: "spiderman", img: "spiderman.jpg" },
-  { name: "superman", img: "superman.jpg" },
-  { name: "the avengers", img: "the-avengers.jpg" },
-  { name: "thor", img: "thor.jpg" }
+    { name: "aquaman", img: "aquaman.jpg" },
+    { name: "batman", img: "batman.jpg" },
+    { name: "captain america", img: "captain-america.jpg" },
+    { name: "fantastic four", img: "fantastic-four.jpg" },
+    { name: "flash", img: "flash.jpg" },
+    { name: "green arrow", img: "green-arrow.jpg" },
+    { name: "green lantern", img: "green-lantern.jpg" },
+    { name: "ironman", img: "ironman.jpg" },
+    { name: "spiderman", img: "spiderman.jpg" },
+    { name: "superman", img: "superman.jpg" },
+    { name: "the avengers", img: "the-avengers.jpg" },
+    { name: "thor", img: "thor.jpg" },
+    { name: "aquaman", img: "aquaman.jpg" },
+    { name: "batman", img: "batman.jpg" },
+    { name: "captain america", img: "captain-america.jpg" },
+    { name: "fantastic four", img: "fantastic-four.jpg" },
+    { name: "flash", img: "flash.jpg" },
+    { name: "green arrow", img: "green-arrow.jpg" },
+    { name: "green lantern", img: "green-lantern.jpg" },
+    { name: "ironman", img: "ironman.jpg" },
+    { name: "spiderman", img: "spiderman.jpg" },
+    { name: "superman", img: "superman.jpg" },
+    { name: "the avengers", img: "the-avengers.jpg" },
+    { name: "thor", img: "thor.jpg" }
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+
+const clickBlock = document.querySelector('#clickBlock');
 
 window.addEventListener("load", event => {
-  let html = "";
-  memoryGame.cards.forEach(pic => {
-    html += `<div class="card" data-card-name="${pic.name}">`;
-    html += `<div class="back" name="${pic.img}"></div>`;
-    html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
-    html += `</div>`;
-  });
-
-  // Add all the divs to the HTML
-  document.querySelector("#memory_board").innerHTML = html;
-
-  // Bind the click event of each element to a function
-  document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    let html = "";
+    memoryGame.cards.forEach(pic => {
+        html += `<div class="card" data-card-name="${pic.name}">`;
+        html += `<div class="back" name="${pic.img}"></div>`;
+        html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
+        html += `</div>`;
     });
-  });
+
+    // Add all the divs to the HTML
+    document.querySelector("#memory_board").innerHTML = html;
+
+
+    // Bind the click event of each element to a function
+    document.querySelectorAll(".card").forEach(card => {
+        let result;
+        card.addEventListener("click", () => {
+            card.classList.add('turned');
+            memoryGame.pickedCards.push(card);
+            if(memoryGame.pickedCards.length === 2) { 
+                clickBlock.style.display = 'block';
+                let arePair = memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName);
+                document.querySelector('#pairs_clicked').innerHTML = memoryGame.pairsClicked;
+                if(arePair) {
+                    memoryGame.pickedCards.forEach((card) => card.classList.add('blocked'));
+                    document.querySelector('#pairs_guessed').innerHTML = memoryGame.pairsGuessed;
+                    emptyPickedCards(memoryGame);
+                    clickBlock.style.display = 'none';
+                    if(memoryGame.isFinished()) {
+                        window.alert('You have won! Good job!');
+                    };
+                } else {
+                    setTimeout(_ => {
+                        memoryGame.pickedCards.forEach((card) => card.classList.remove('turned'));
+                        emptyPickedCards(memoryGame);
+                        clickBlock.style.display = 'none';
+                    }, 2000);
+                }
+            }
+            console.log(`Card clicked: ${card}`);
+        });
+    });
 });
+
+function emptyPickedCards(memoryGame) {
+    memoryGame.pickedCards.pop();
+    memoryGame.pickedCards.pop();
+}
