@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+// memoryGame.shuffleCards(); //para desordenar las cartas
+
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
@@ -43,7 +45,32 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add("turned");
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length == 2) {
+
+        setTimeout(function () {
+
+         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name"))) {
+           memoryGame.pickedCards[0].classList.remove("turned");
+           memoryGame.pickedCards[1].classList.remove("turned");
+          }
+        console.log(memoryGame.pairsGuessed);
+         memoryGame.pickedCards = [];
+         let pairsClick = document.querySelector('#pairs_clicked');
+         pairsClick.innerHTML = memoryGame.pairsClicked;
+         let pairsCorrect = document.querySelector('#pairs_guessed');
+         pairsCorrect.innerHTML = memoryGame.pairsGuessed;
+        }, 50);
+      }
+      memoryGame.isFinished();        
+
+
     });
   });
 });
+
+
+
+
