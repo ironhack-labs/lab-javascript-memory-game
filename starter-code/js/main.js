@@ -37,6 +37,7 @@ window.addEventListener("load", event => {
   });
 
   // Add all the divs to the HTML
+  
   document.querySelector("#memory_board").innerHTML = html;
 
   // Bind the click event of each element to a function
