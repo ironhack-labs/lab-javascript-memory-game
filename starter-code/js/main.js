@@ -43,7 +43,22 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+      card.toggle('front back')
+
+      //card.setAttribute("class","turned");
+
+      // this.classList.toggle('back');
+      // this.classList.toggle('front');
+      //classToggle();
+      // card.classList.toggleClass('back').toggleClass('front');
+
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+function classToggle() {
+  this.classList.toggle('back');
+  this.classList.toggle('front');
+}
+// btnRight.setAttribute("class","btn split");
