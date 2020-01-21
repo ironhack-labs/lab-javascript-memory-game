@@ -6,6 +6,7 @@ class MemoryGame {
     this.pairsClicked = 0
     this.pairsGuessed = 0
   }
+
   shuffleCards(cards) {
     cards = this.cards;
     for (let i = cards.length - 1; i > 0; i--) {
@@ -24,10 +25,10 @@ class MemoryGame {
       return false
     }
   }
-  isFinished(cards) {
-    let numberCards = this.cards.length / 2
+  isFinished() {
+    // let numberCards = this.cards.length / 2
     // console.log(numberCards)
-    if (this.pairsGuessed === numberCards) {
+    if (this.pairsGuessed === this.cards.length / 2) {
       return true
     } else {
       return false
