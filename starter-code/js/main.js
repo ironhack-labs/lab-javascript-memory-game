@@ -44,22 +44,6 @@ window.addEventListener("load", event => {
     card.addEventListener("click", () => {
       // TODO: write some code here
 
-      // if (memoryGame.pickedCards.length < 2) {
-      //   card.classList.add('turned');
-      //   memoryGame.pickedCards.push(card.dataset.cardName);
-
-      //   setTimeout( () => {
-      //     if (memoryGame.pickedCards.length >= 2) {
-      //         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
-      //           memoryGame.pickedCards.forEach ( name => {
-      //           document.querySelector(".card.turned.[data-card-name="+name+"]").classList.remove("turned");
-      //         });
-      //       }
-      //       document.querySelector('#pairs_clicked').innerHTML = memoryGame.pairsClicked;
-      //       document.querySelector('#pairs_guessed').innerHTML = memoryGame.pairsGuessed;
-      //     }
-      //     },2000);
-      // }
       if (memoryGame.pickedCards.length < 2) {
         card.classList.add("turned");
         memoryGame.pickedCards.push(card.dataset.cardName);
