@@ -42,7 +42,25 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
+      let checked = false;
+      card.classList.toggle("turned");
+      if (memoryGame.pickedCards.length < 2) {
+        memoryGame.pickedCards.push(card);
+      }
+      if (memoryGame.pickedCards.length === 2) {
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        checked = memoryGame.checkIfPair(card1, card2);
+        console.log(checked);
+        if (checked == false) {
+          setTimeout(function() {
+            card1.classList.toggle("turned")
+            card2.classList.toggle("turned");
+          }, 2000);
+        }
+        memoryGame.pickedCards = [];
+      }
+
       console.log(`Card clicked: ${card}`);
     });
   });
