@@ -24,9 +24,10 @@ const cards = [
   { name: "the avengers", img: "the-avengers.jpg" },
   { name: "thor", img: "thor.jpg" }
 ];
-
+let pClicked = document.getElementById('pairs_clicked')
+let pGuessed = document.getElementById('pairs_guessed')
 const memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards();
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
@@ -43,7 +44,25 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+      card.className="card turned"
+      memoryGame.pickedCards.push(card)
+      console.log(memoryGame.pickedCards)  
       console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards.length==3){
+        if(memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML,memoryGame.pickedCards[1].innerHTML)){
+          memoryGame.pickedCards[2].className="card"
+          console.log("pareja encontrada")
+          memoryGame.pickedCards = []
+        }else{
+          memoryGame.pickedCards[0].className="card"
+          memoryGame.pickedCards[1].className="card"
+          memoryGame.pickedCards[2].className="card"
+          memoryGame.pickedCards = []
+        }
+      }
+      pClicked.innerText=memoryGame.pairsClicked
+      pGuessed.innerText=memoryGame.pairsGuessed
     });
   });
 });
+
