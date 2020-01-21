@@ -42,7 +42,21 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
+      card.classList.toggle("turned", !card.classList.contains("turned"));
+      card.classList.add("option");
+      if (document.querySelectorAll(".option").length === 2){
+        if (memoryGame.checkIfPair(document.querySelectorAll(".option")[0], document.querySelectorAll(".option")[1])){
+          document.querySelectorAll(".option").forEach(function(option){
+            option.classList.remove("option");
+            option.classList.add("matched");
+          }); 
+        } else {
+          document.querySelectorAll(".option").forEach(function(option){
+            option.classList.remove("option");
+            option.classList.remove("turned");
+          }); 
+        }
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
