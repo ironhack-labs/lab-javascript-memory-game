@@ -27,10 +27,13 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+let scoreClicked = document.getElementById('pairs_clicked')
+let scoreGuessed = document.getElementById('pairs_guessed')
+
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
-    html += `<div class="card" data-card-name="${pic.name}">`;
+    html += `<div class="card" data-cardname="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
@@ -42,8 +45,15 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
+      card.className="card turned"
+      memoryGame.pickedCards.push(card)
+      console.log(memoryGame.pickedCards)  
       console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards.length === 3){
+        
+      }
+      scoreClicked.innerText=memoryGame.pairsClicked
+      scoreGuessed.innerText=memoryGame.pairsGuessed
     });
   });
 });
