@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
   let html = "";
+  memoryGame.cards = memoryGame.shuffleCards(memoryGame.cards);
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -50,10 +51,13 @@ window.addEventListener("load", event => {
             option.classList.remove("option");
             option.classList.add("matched");
           }); 
+          if (isFinished()){
+            window.alert("YOU WON!!!");
+          }
         } else {
           document.querySelectorAll(".option").forEach(function(option){
             option.classList.remove("option");
-            option.classList.remove("turned");
+            setTimeout(function(){option.classList.remove("turned")}, 1500);
           }); 
         }
       }
