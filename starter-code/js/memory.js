@@ -28,7 +28,6 @@ class MemoryGame {
     return false;
   }
 
-
   isFinished() {
     if (this.pairsGuessed === this.cards.length / 2) {
       return true;
