@@ -30,8 +30,8 @@ class MemoryGame {
   checkIfPair(card1, card2) {
 
     this.pairsClicked++
-    document.getElementById(pairs_clicked).innerText = this.pairsClicked
-    document.getElementById(pairs_guessed).innerText = this.pairsGuessed
+    document.getElementById("pairs_clicked").innerText = this.pairsClicked
+    document.getElementById("pairs_guessed").innerText = this.pairsGuessed
 
 
     if (card1 == card2) {
