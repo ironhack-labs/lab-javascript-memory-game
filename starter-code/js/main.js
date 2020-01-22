@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
   let html = "";
+
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -36,14 +37,17 @@ window.addEventListener("load", event => {
     html += `</div>`;
   });
 
-  // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
-  // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      if(card.classList.contains('turned')){
+          card.classList.remove('turned');
+      }
+      else{
+        card.classList.add('turned');
+      }
     });
   });
 });
