@@ -44,6 +44,23 @@ window.addEventListener("load", event => {
     card.addEventListener("click", () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
+      if (memoryGame.pickedCards.length === 2) {
+        var isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0].data('card-name'), memoryGame.pickedCards[1].data('card-name'));
+        
+        if (!isPair) {
+          var firstCard = memoryGame.pickedCards[0];
+          var secondCard = memoryGame.pickedCards[1];
+          $("body").css("pointer-events", "none");
+          setTimeout(() => {
+            $(firstCard).children().toggleClass("front").toggleClass("back");
+            $(secondCard).children().toggleClass("front").toggleClass("back");
+            $("body").css("pointer-events", "auto");
+          }, 1000);
+        }
+  
+        memoryGame.pickedCards = [];
+      }
     });
   });
 });
