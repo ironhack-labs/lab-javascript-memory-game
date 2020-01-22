@@ -45,30 +45,32 @@ window.addEventListener("load", event => {
 
 
       // TODO: write some code here
-      let theCards = [...document.getElementsByClassName("card")];
+      console.log(card);
+      if (card.className == "card") {
+        card.className = "card turned";
+        memoryGame.pickedCards++
+        console.log(memoryGame.pickedCards)
+        console.log(card)
 
-
-      theCards.forEach(item => {
-
-        //   console.log();
-        item.onclick = elm => {
-          if (document.getElementById("memory_board").childNodes[theCards.indexOf(item)].className = "card") {
-            document.getElementById("memory_board").childNodes[theCards.indexOf(item)].className = "card turned";
-          } else {
-            document.getElementById("memory_board").childNodes[theCards.indexOf(item)].className = "card";
-          }
+        if (memoryGame.pairsClicked == 2) {
+          card.className = "card"
+          memoryGame.pairsClicked = 0
         }
-      });
+
+      }
 
 
-
-
-
-
-
-
-
-      console.log(`Card clicked: ${card}`);
     });
+
+
+
+
+
+
+
+
+
+    console.log(`Card clicked: ${card}`);
   });
 });
+

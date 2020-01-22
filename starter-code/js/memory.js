@@ -6,24 +6,14 @@ class MemoryGame {
     this.pairsClicked = pairsClicked;
     this.pairsGuessed = pairsGuessed;
   }
-  shuffleCards() {
-    let newCards = [], n = this.cards.length, i;
+  shuffleCards(cards) {
+    cards = this.cards;
 
-    if (!n) {
-      return undefined
-    } else {
-      while (n) {
-        i = Math.floor(Math.random() * n);
-        if (i in n) {
-          newCards.push(this.cards[i]);
-          delete this.cards[i];
-          n--;
-        }
-      }
-      console.log(newCards)
-      return newCards;
-
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
     }
+
   }
   checkIfPair(card1, card2) {
     this.pairsClicked++
@@ -37,10 +27,10 @@ class MemoryGame {
   isFinished() {
     let totalPairs = this.cards.length / 2
 
-    if (this.pairsGuessed == totalPairs) {
-      return true
-    } else {
+    if (this.pairsGuessed != totalPairs) {
       return false
+    } else {
+      return true
     }
   }
 }
