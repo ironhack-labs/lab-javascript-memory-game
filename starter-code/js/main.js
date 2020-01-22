@@ -42,7 +42,32 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
+
+
       // TODO: write some code here
+      let theCards = [...document.getElementsByClassName("card")];
+
+
+      theCards.forEach(item => {
+
+        //   console.log();
+        item.onclick = elm => {
+          if (document.getElementById("memory_board").childNodes[theCards.indexOf(item)].className = "card") {
+            document.getElementById("memory_board").childNodes[theCards.indexOf(item)].className = "card turned";
+          } else {
+            document.getElementById("memory_board").childNodes[theCards.indexOf(item)].className = "card";
+          }
+        }
+      });
+
+
+
+
+
+
+
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
