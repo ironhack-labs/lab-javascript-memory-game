@@ -40,10 +40,50 @@ window.addEventListener("load", event => {
   document.querySelector("#memory_board").innerHTML = html;
 
   // Bind the click event of each element to a function
+  let counter = 0
+  let card1
+  let card2
+  let cardSelect1
+  let cardSelect2
+
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+
+      counter += 1
+
+
+      if (counter == 1) {
+        card.classList.toggle("turned")
+        card1 = card.getAttribute("data-card-name")
+        console.log(card.getAttribute("data-card-name"))
+        cardSelect1 = card
+
+      }
+
+      if (counter == 2) {
+        card.classList.toggle("turned")
+        card2 = card.getAttribute("data-card-name")
+        let cardsIqual = memoryGame.checkIfPair(card1, card2)
+        console.log(card2)
+        counter = 0
+
+        if (cardsIqual) {
+          let endGame = memoryGame.isFinished()
+
+          if (endGame) {
+            alert("Gano")
+
+          }
+        } else {
+          card.classList.toggle("turned")
+          cardSelect1.classList.toggle("turned")
+        }
+      }
+
       console.log(`Card clicked: ${card}`);
+
+
     });
   });
 });
