@@ -114,9 +114,10 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.onclick = e => {
-      e.currentTarget.classList.toggle('turned')
+      e.currentTarget.classList.toggle('turned', 'unturned')
 
       memoryGame.pickedCards.push(e.currentTarget)
+
       console.log(this.pickedCards)
     }
     // TODO: write some code here
