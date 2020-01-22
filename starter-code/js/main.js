@@ -43,6 +43,18 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
+      card.setAttribute("class", "card turned")
+
+
+      // let cards1 = MemoryGame.pickedCards[0]
+      // let cards2 = MemoryGame.pickedCards[1]
+      console.log(MemoryGame.pickedCards)
+      if (memoryGame.pickedCards.length === 2) {
+        console.log("hay doss")
+      }
+      // if (MemoryGame.checkIfPair()) {
+      //   card.setAttribute("class turned", "card")
+      // }
       console.log(`Card clicked: ${card}`);
     });
   });
