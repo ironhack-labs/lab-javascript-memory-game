@@ -27,7 +27,9 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener("load", event => {
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+// window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;

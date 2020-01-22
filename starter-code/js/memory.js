@@ -20,21 +20,20 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    this.pairsClicked ++;
-    if (card1.name === card2.name) {
-      this.pairsGuessed ++;
+    this.pairsClicked++;
+    if (card1 === card2) {
+      this.pairsGuessed++;
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
+
   isFinished() {
-    if (this.pairsGuessed === !12) {
-      return false;
-    } else {
+    if (this.pairsGuessed === this.cards.length / 2) {
       return true;
-    }
+    } 
+    return false;
   }
 }
 
