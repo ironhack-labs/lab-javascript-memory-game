@@ -9,21 +9,21 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    if (this.cards == null) {
-      return undefined
-    }
-    let newCards = []
-    let copyCards = [...this.cards]
-    let n = this.cards.length
+    let length = this.cards.length
     let i, t
 
-    while (n) {
-      i = Math.floor(Math.random() * n--)
+    while (length) {
+      i = Math.floor(Math.random() * length--)
 
-      newCards.push(copyCards.splice(i, 1)[0])
+      t = this.cards[length]
+      this.cards[length] = this.cards[i]
+      this.cards[i] = t
     }
-    console.log(newCards)
-    return newCards
+    console.log(this.cards)
+    return
+    if (!this.cards) {
+      this.cards
+    }
   }
 
   showStatus() {
@@ -32,25 +32,16 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    console.log(card1.innerHTML, card2.innerHTML)
-    if (card1.innerHTML == card2.innerHTML) {
-      this.pairsGuessed++
-      this.pairsClicked++
-      this.showStatus()
-      this.pickedCards = []
-      this.isFinished()
+    if (card1 == card2) {
+      memoryGame.pairsGuessed++
+      memoryGame.pairsClicked++
       return true
     } else {
-      this.pairsClicked++
-      this.showStatus()
-      this.pickedCards = []
-      setTimeout(() => card1.classList.remove("turned"), 500)
-      setTimeout(() => card2.classList.remove("turned"), 500)
+      memoryGame.pairsClicked++
       return false
     }
   }
   turnCard(card) {
-    console.log(this.status)
     card.classList.add("turned")
     if (!this.status) {
       this.status = true
@@ -60,8 +51,6 @@ class MemoryGame {
       this.pickedCards.push(card)
       this.status = false
     }
-    this.checkIfPair(this.pickedCards[0], this.pickedCards[1])
-
   }
 
   isFinished() {

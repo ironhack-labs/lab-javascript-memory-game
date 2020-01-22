@@ -99,8 +99,9 @@ const cards = [{
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards()
   let html = "";
-  memoryGame.shuffleCards().forEach(pic => {
+  memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
@@ -113,10 +114,30 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-
+      //console.log(`Card clicked: ${card}`);
       memoryGame.turnCard(card)
+      console.log(memoryGame.status)
+      if (!memoryGame.status) {
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML)) {
+          console.log("igual")
+          memoryGame.pickedCards = []
+          memoryGame.showStatus()
+          memoryGame.isFinished()
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards[0].classList.remove('turned')
+          }, 500)
+          setTimeout(() => {
+            memoryGame.pickedCards[1].classList.remove('turned')
+          }, 500)
+          memoryGame.showStatus()
+          setTimeout(() => {
+            memoryGame.pickedCards = []
+          }, 550)
+        }
+      }
     });
+
   });
 
 
