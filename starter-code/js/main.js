@@ -49,24 +49,23 @@ window.addEventListener("load", event => {
       memoryGame.pickedCards.push(card);
 
       if (memoryGame.pickedCards.length == 2) {
-
-        setTimeout(function () {
-
-         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name"))) {
-           memoryGame.pickedCards[0].classList.remove("turned");
-           memoryGame.pickedCards[1].classList.remove("turned");
-          }
-        console.log(memoryGame.pairsGuessed);
-         memoryGame.pickedCards = [];
-         let pairsClick = document.querySelector('#pairs_clicked');
-         pairsClick.innerHTML = memoryGame.pairsClicked;
-         let pairsCorrect = document.querySelector('#pairs_guessed');
-         pairsCorrect.innerHTML = memoryGame.pairsGuessed;
-        }, 50);
+      setTimeout(function () {
+        if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name"))) {
+          let elm1 = memoryGame.pickedCards[0]
+          let elm2 = memoryGame.pickedCards[1]
+          setTimeout(function () {
+            elm1.classList.remove("turned");
+            elm2.classList.remove("turned");
+          }, 750)
+        }
+        memoryGame.pickedCards = [];
+        let pairsClick = document.querySelector('#pairs_clicked');
+        pairsClick.innerHTML = memoryGame.pairsClicked;
+        let pairsCorrect = document.querySelector('#pairs_guessed');
+        pairsCorrect.innerHTML = memoryGame.pairsGuessed;
+        memoryGame.isFinished();
+      }, 50);
       }
-      memoryGame.isFinished();        
-
-
     });
   });
 });
