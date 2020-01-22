@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let cardsPicked=[];
 
 window.addEventListener("load", event => {
   let html = "";
@@ -43,7 +44,48 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (card.childNodes[0].classList=='back') {
+        card.childNodes.forEach(div =>{
+          div.classList.toggle("back");
+          div.classList.toggle("front");
+          
+        })
+      cardsPicked.push(card);  
+      if (cardsPicked.length ===2){
+          console.log(memoryGame.checkIfPair(cardsPicked[0].dataset.cardName,cardsPicked[1]).dataset.cardName)
+          console.log(cardsPicked[0].dataset.cardName);
+
+        }
+      
+        
+          
+
+        // card.classList.add('turned');
+        
+         
+        
+        
+        
+
+
+
+        // console.log(`Card clicked: ${card.childNodes[0].classList} ${card.dataset}`);
+      }
+      
+
+
+
+
+      
+      
     });
   });
 });
+
+
+// var cars = document.querySelector("[data-list='cars']");
+
+// cars.addEventListener("click", function(e)
+// {
+//   alert("Available colors: " + e.target.dataset.colors);
+// });
