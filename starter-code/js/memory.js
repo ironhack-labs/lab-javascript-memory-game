@@ -30,26 +30,27 @@ class MemoryGame {
   checkIfPair(card1, card2) {
 
     this.pairsClicked++
+    document.getElementById(pairs_clicked).innerText = this.pairsClicked
+    document.getElementById(pairs_guessed).innerText = this.pairsGuessed
 
 
     if (card1 == card2) {
       this.pairsGuessed++
       return true
     } else {
-      return false
+      return send(false)
     }
   }
 
 
-  send() {
-    if (this.pickedCards.length <= 2) {
+  send(x) {
+    console.log(this.pairsClicked)
+    if (this.pickedCards.length == 2) {
       this.checkIfPair(this.pickedCards[0], this.pickedCards[1])
-      if (this.checkIfPair(this.pickedCards[0], this.pickedCards[1]) == false) {
-        console.log("yay")
-        this.pickedCards[0].className = "card"
-        this.pickedCards[1].className = "card"
-      }
     } else if (this.pickedCards.length > 2) {
+      this.pickedCards[0].className = "card"
+      this.pickedCards[1].className = "card"
+      this.pickedCards[2].className = "card"
       this.pickedCards = []
     } else {
       return

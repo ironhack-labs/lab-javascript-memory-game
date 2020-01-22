@@ -121,7 +121,6 @@ window.addEventListener("load", event => {
 
     card.onclick = e => {
       e.currentTarget.className = "card turned"
-
       memoryGame.pickedCards.push(e.currentTarget)
       memoryGame.send()
     }
