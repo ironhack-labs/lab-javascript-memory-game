@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+memoryGame.shuffleCards()
+
 let scoreClicked = document.getElementById('pairs_clicked')
 let scoreGuessed = document.getElementById('pairs_guessed')
 
@@ -48,7 +50,7 @@ window.addEventListener("load", event => {
       card.className="card turned"
       memoryGame.pickedCards.push(card)
       console.log(memoryGame.pickedCards)  
-      console.log(`Card clicked: ${card}`);
+      console.log(`Card clicked: ${getAttribute(`cardname`)}`);
       if(memoryGame.pickedCards.length === 3){
         
       }
