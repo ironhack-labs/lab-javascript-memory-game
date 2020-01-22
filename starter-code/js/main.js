@@ -48,18 +48,20 @@ window.addEventListener("load", event => {
         card.classList.add("turned");
         memoryGame.pickedCards.push(card.dataset.cardName);
 
-        setTimeout(() => {
-          if (memoryGame.pickedCards.length >= 2) {
+        
+          if (memoryGame.pickedCards.length === 2) {
+            clickBlock.style.display = 'block';
             if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
-              memoryGame.pickedCards.forEach(name => {
-                document.querySelector(".card.turned[data-card-name").classList.remove("turned");
-              });
-            }
-            document.querySelector("#pairs_clicked").innerHTML = memoryGame.pairsClicked;
-            document.querySelector("#pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+              document.querySelector("#pairs_guessed").innerHTML = memoryGame.pairsGuessed;
+              clickBlock.style.display = 'none';
+            } else {
+              setTimeout(() => {
+                memoryGame.pickedCards.forEach((card) => card.classList.remove('turned'));
+                clickBlock.style.display = 'none';
+              }, 2000);
           }
-        }, 2000);
+        
+        }
       }
-    });
   });
 });
