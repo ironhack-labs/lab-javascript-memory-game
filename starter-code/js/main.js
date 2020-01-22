@@ -1,32 +1,103 @@
-const cards = [
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-  { name: "spiderman", img: "spiderman.jpg" },
-  { name: "superman", img: "superman.jpg" },
-  { name: "the avengers", img: "the-avengers.jpg" },
-  { name: "thor", img: "thor.jpg" },
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-  { name: "spiderman", img: "spiderman.jpg" },
-  { name: "superman", img: "superman.jpg" },
-  { name: "the avengers", img: "the-avengers.jpg" },
-  { name: "thor", img: "thor.jpg" }
+const cards = [{
+    name: "aquaman",
+    img: "aquaman.jpg"
+  },
+  {
+    name: "batman",
+    img: "batman.jpg"
+  },
+  {
+    name: "captain america",
+    img: "captain-america.jpg"
+  },
+  {
+    name: "fantastic four",
+    img: "fantastic-four.jpg"
+  },
+  {
+    name: "flash",
+    img: "flash.jpg"
+  },
+  {
+    name: "green arrow",
+    img: "green-arrow.jpg"
+  },
+  {
+    name: "green lantern",
+    img: "green-lantern.jpg"
+  },
+  {
+    name: "ironman",
+    img: "ironman.jpg"
+  },
+  {
+    name: "spiderman",
+    img: "spiderman.jpg"
+  },
+  {
+    name: "superman",
+    img: "superman.jpg"
+  },
+  {
+    name: "the avengers",
+    img: "the-avengers.jpg"
+  },
+  {
+    name: "thor",
+    img: "thor.jpg"
+  },
+  {
+    name: "aquaman",
+    img: "aquaman.jpg"
+  },
+  {
+    name: "batman",
+    img: "batman.jpg"
+  },
+  {
+    name: "captain america",
+    img: "captain-america.jpg"
+  },
+  {
+    name: "fantastic four",
+    img: "fantastic-four.jpg"
+  },
+  {
+    name: "flash",
+    img: "flash.jpg"
+  },
+  {
+    name: "green arrow",
+    img: "green-arrow.jpg"
+  },
+  {
+    name: "green lantern",
+    img: "green-lantern.jpg"
+  },
+  {
+    name: "ironman",
+    img: "ironman.jpg"
+  },
+  {
+    name: "spiderman",
+    img: "spiderman.jpg"
+  },
+  {
+    name: "superman",
+    img: "superman.jpg"
+  },
+  {
+    name: "the avengers",
+    img: "the-avengers.jpg"
+  },
+  {
+    name: "thor",
+    img: "thor.jpg"
+  }
 ];
 
 const memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards();
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
@@ -43,7 +114,42 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+
+
+      if (memoryGame.pickedCards.length < 2) {
+
+        card.className = 'card turned'
+        memoryGame.pairsClicked++;
+        document.getElementById('pairs_clicked').innerText = memoryGame.pairsClicked
+        memoryGame.pickedCards.push(card);
+        console.log(memoryGame.pickedCards)
+
+      } else if (memoryGame.checkIfPair(memoryGame.pickedCards[0].attributes[1].value, memoryGame.pickedCards[1].attributes[1].value)) {
+        console.log('HOLA');
+        document.getElementById('pairs_guessed').innerText = memoryGame.pairsGuessed
+        console.log(memoryGame.pickedCards.length)
+        memoryGame.pairsGuessed++;
+        memoryGame.pickedCards = [];
+
+        if (memoryGame.isFinished()) {
+
+          alert("Has ganado")
+        }
+
+
+
+      } else {
+
+        memoryGame.pickedCards[0].className = "card";
+        memoryGame.pickedCards[1].className = "card";
+        memoryGame.pickedCards = [];
+
+
+
+      }
+
+      console.log(`Card clicked: ${card.attributes[1].value}`);
     });
   });
 });
