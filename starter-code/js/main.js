@@ -111,10 +111,10 @@ sonido3 = new Howl({
 let secondClick = false
 let firstCard;
 let secondCard = null
-const nameAttr = "data-card-name";
+const className = "data-card-name";
 const memoryGame = new MemoryGame(cards);
-memoryGame.shuffleCards(cards) //Esto no me funciona :(
 
+memoryGame.shuffleCards(cards) //Esto no me funciona :(
 //No tocar nada de abajo !!!!
 window.addEventListener("load", event => {
   let html = "";
@@ -142,7 +142,7 @@ window.addEventListener("load", event => {
           secondClick = false;
           secondCard = card;
           setTimeout(() => {
-            if (memoryGame.checkIfPair(firstCard.getAttribute(nameAttr), secondCard.getAttribute(nameAttr))) {
+            if (memoryGame.checkIfPair(firstCard.getAttribute(className), secondCard.getAttribute(className))) {
               // Mostrar en pantalla los clicks y las parejas cuando hace match
               document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
               document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed;
@@ -169,8 +169,6 @@ window.addEventListener("load", event => {
           firstCard = card;
         }
       }
-
-      // TODO: write some code here
       console.log(`Card clicked: ${card}`);
     });
   });
