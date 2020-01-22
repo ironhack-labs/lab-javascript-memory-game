@@ -102,6 +102,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
   let html = "";
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -127,11 +128,9 @@ window.addEventListener("load", event => {
           document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
           document.getElementById("pairs_guessed").innerHTML = memoryGame.pairsGuessed;
 
-          console.log("son iguales");
           memoryGame.pickedCards = [];
 
         } else {
-          console.log("son distintos");
           document.getElementById("pairs_clicked").innerHTML = memoryGame.pairsClicked;
           memoryGame.pickedCards = [];
 
