@@ -119,7 +119,6 @@ window.addEventListener("load", event => {
       console.log(memoryGame.status)
       if (!memoryGame.status) {
         if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML)) {
-          console.log("igual")
           memoryGame.pickedCards = []
           memoryGame.showStatus()
           memoryGame.isFinished()
