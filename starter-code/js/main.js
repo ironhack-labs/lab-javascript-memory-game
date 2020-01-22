@@ -45,23 +45,23 @@ window.addEventListener("load", event => {
       // TODO: write some code here
 
       if (memoryGame.pickedCards.length < 2) {
-        card.classList.add("turned");
+        card.classList.add('turned');
         memoryGame.pickedCards.push(card.dataset.cardName);
-
         
-          if (memoryGame.pickedCards.length === 2) {
-            clickBlock.style.display = 'block';
+        setTimeout( () => {
+          if (memoryGame.pickedCards.length >= 2) {
             if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
-              document.querySelector("#pairs_guessed").innerHTML = memoryGame.pairsGuessed;
-              clickBlock.style.display = 'none';
-            } else {
-              setTimeout(() => {
-                memoryGame.pickedCards.forEach((card) => card.classList.remove('turned'));
-                clickBlock.style.display = 'none';
-              }, 2000);
+              memoryGame.pickedCards.forEach( name => {
+                document.querySelector(".card.turned").classList.remove('turned');
+              });
+            }
+            document.querySelector('#pairs_clicked').innerHTML = memoryGame.pairsClicked;
+            document.querySelector('#pairs_guessed').innerHTML = memoryGame.pairsGuessed;
+            
           }
-        
-        }
+        },1500);
+
       }
+    });
   });
 });
