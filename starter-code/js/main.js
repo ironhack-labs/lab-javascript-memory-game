@@ -39,10 +39,33 @@ window.addEventListener("load", event => {
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
+  let contCliked = 0
+  let contGuessed = 0
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
+      
+      let cardCliked = document.getElementById('pairs_clicked')
+      let cardGuessed = document.getElementById('pairs_guessed')
+      contCliked++
+      //Invocar shuffle
+      memoryGame.shuffleCards()
+      //Dar la vuelta
+      card.className = "card turned"
+      
+      
+      if (memoryGame.pairsClicked){
+
+        contGuessed++
+        cardGuessed.innerHTML = contGuessed
+        memoryGame.pairsGuessed
+          
+      }else{
+
+      }
+  
+      cardCliked.innerText = contCliked
+
       console.log(`Card clicked: ${card}`);
     });
   });
