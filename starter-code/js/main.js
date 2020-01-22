@@ -45,8 +45,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       card.classList.add('turned');
+      memoryGame.pickedCards.push(card);
+      console.log(memoryGame.pickedCards.length);
+      if (memoryGame.pickedCards.length >= 2) {
+        memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+        
+        console.log('now');
+        // card.cardList.toggle('turned');
+      }
     });
   });
+
+
+  
+    
 });
 
 
