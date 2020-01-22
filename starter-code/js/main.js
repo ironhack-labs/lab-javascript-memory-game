@@ -36,14 +36,49 @@ window.addEventListener("load", event => {
     html += `</div>`;
   });
 
+
+  let turnedCards = []
+  let pairedCards
+
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
+      
+      card.classList.add("turned")
+      
+      
+      if(turnedCards.length == 0){
+        turnedCards.push(card.innerHTML)
+      } else{
+
+        if(`are they paired? ${memoryGame.checkIfPair(card.innerHTML, turnedCards[0])}`){
+
+          pairedCards.push(card.innerHTML)
+          pairedCards.push(turnedCards[0])
+
+          
+        }
+        turnedCards = []
+
+        document.querySelectorAll(".card.turned").forEach((elm)=> elm.classList.remove("turned"))
+
+      }
+      
+
       console.log(`Card clicked: ${card}`);
+
+      console.log(turnedCards)
+
+      // turnedCards = document.querySelectorAll(".card.turned")
+
+      // turnedCards.forEach(elm => console.log(elm.innerHTML))
+
+
+
+
     });
   });
 });
