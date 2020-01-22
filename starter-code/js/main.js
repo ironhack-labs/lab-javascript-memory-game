@@ -118,14 +118,23 @@ window.addEventListener("load", event => {
   });
 });
 
-
 function flipCard() {
+  //Aqui iría darle la vuelta a la carta
+  // No se como coger los datos de cada carta que es lo que va dentro del push
+  let pickedCards = memoryGame.pickedCards.push()
 
-  let pickedCards = memoryGame.pickedCards.length.push(card)
-
-  if (pickedCards % 2 == 0) {
+  if (pickedCards.length % 2 == 0) {
     memoryGame.turnedCard = false
   } else memoryGame.turnedCard = true
+
+  switch (memoryGame.turnedCard) {
+    case true:
+      memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+
+    case false:
+      memoryGame.pickedCards = []
+
+  }
 
 
   console.log(`Card clicked: ${card}`)
