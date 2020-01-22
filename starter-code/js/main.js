@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-// memoryGame.shuffleCards(); //para desordenar las cartas
+memoryGame.shuffleCards(); //para desordenar las cartas
 
 window.addEventListener("load", event => {
   let html = "";

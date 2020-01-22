@@ -22,9 +22,6 @@ class MemoryGame {
   }
   
   isFinished() {
-    console.log(this.pairsGuessed);
-    console.log(this.cards.length/2);
-
     if (this.pairsGuessed == (this.cards.length/2)){
       console.log("You won!")
       alert("You won!!");
