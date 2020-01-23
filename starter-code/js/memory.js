@@ -11,6 +11,7 @@ class MemoryGame {
 
   shuffleCards() {
     // from https://bost.ocks.org/mike/shuffle/
+    // except it appears to be broken: to fix!
     if (this.cards === undefined) {
       return undefined;
     } else {
