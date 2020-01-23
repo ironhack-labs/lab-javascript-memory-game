@@ -2,8 +2,8 @@ class MemoryGame {
   constructor(cards){ // matriz de tarjetas
     this.cards        = cards;
     this.pickedCards  = [];  // matriz == tarjetas clickleadas (para poder compararlas)
-    this.pairsClicked = 0;  // elija un par
-    this.pairsGuessed = 0;  // saber si a adivinado un par
+    this.pairsClicked = 0;   // elija un par
+    this.pairsGuessed = 0;   // saber si a adivinado un par
   }
 
   shuffleCards() {
@@ -18,8 +18,8 @@ class MemoryGame {
         count--;
       }
     }
-
-    if(shuffle !== []){
+    this.cards = shuffle;
+    if(this.cards !== []){
       return shuffle;
     }
     else
@@ -39,10 +39,16 @@ class MemoryGame {
   }
 
   isFinished() {
-    if((this.cards.length / 2) == this.pairsGuessed){
+    if((this.cards.length) == this.pairsGuessed){
       return true;
     }
     else
       return false;
+  }
+
+  remove(){
+    this.pickedCards[0].classList.remove('turned');
+    this.pickedCards[0] = memoryGame.pickedCards[1];
+    this.pickedCards[1] = "";
   }
 }
