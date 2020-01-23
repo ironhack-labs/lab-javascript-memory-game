@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 const cards = [
   { name: "aquaman", img: "aquaman.jpg" },
   { name: "batman", img: "batman.jpg" },
