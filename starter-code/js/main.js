@@ -44,21 +44,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      card.classList.add('turned');
-      memoryGame.pickedCards.push(card);
-      console.log(memoryGame.pickedCards.length);
-      if (memoryGame.pickedCards.length >= 2) {
-        memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
-        
-        console.log('now');
-        // card.cardList.toggle('turned');
-      }
+      // card.classList.add('turned');
+      // memoryGame.pickedCards.push(card);
+      card.classList.toggle("turned", !card.classList.contains("turned"));
+   console.log(`Card clicked: ${card}`);
+  
+
+      // if (memoryGame.pickedCards.length === 2) {
+      //   let guessedOrNot = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name')); 
+      //   if (guessedOrNot === true) {
+
+      //   } else {
+    
+
+      //   }
+      
     });
   });
-
-
-  
-    
 });
-
 

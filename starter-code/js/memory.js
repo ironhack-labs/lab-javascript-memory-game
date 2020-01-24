@@ -7,7 +7,7 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
-  shuffleCards() {
+  shuffleCards() { // function fisher yates copied from Google
     let i = 0;
     let j = 0;
     let temp = null;
@@ -21,7 +21,7 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     this.pairsClicked++;
-    if (card1.name === card2.name) {
+    if (card1 === card2) {
       this.pairsGuessed++;
       return true;
     }
