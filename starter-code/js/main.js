@@ -43,7 +43,64 @@ window.addEventListener("load", event => {
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle("turned");
+
+      let card1;
+      let card2;
+      let card1Att;
+      let card2Att;
+
+      if(memoryGame.pickedCards.length < 1) {
+        card1 = document.querySelectorAll(".turned")[0];
+        card1Att = document.querySelectorAll(".turned")[0].getAttribute('data-card-name');
+
+        console.log(card1);
+        console.log(card1Att);
+
+        memoryGame.pickedCards.push(card1Att);
+
+      } else if (memoryGame.pickedCards.length < 2){
+        card2 = document.querySelectorAll(".turned")[1];
+        card2Att = document.querySelectorAll(".turned")[1].getAttribute('data-card-name');
+
+        console.log(card2);
+        console.log(card2Att);
+
+        memoryGame.pickedCards.push(card2Att);
+
+        console.log(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]));
+        console.log("checkIfPair",memoryGame.checkIfPair("a", "a"));
+        console.log("card1Att == card2Att",card1Att == card2Att);
+
+      } else {
+        
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+          console.log('ígual');
+
+          document.querySelectorAll(".turned")[0].classList.add('blocked');
+          document.querySelectorAll(".turned")[1].classList.add('blocked');
+
+          document.querySelectorAll(".turned")[0].classList.remove('turned');
+          document.querySelectorAll(".turned")[1].classList.remove('turned');
+          // document.querySelectorAll(".turned")[0].classList.replace('turned', 'blocked');
+          // document.querySelectorAll(".turned")[1].classList.replace('turned', 'blocked');
+        } else {
+          console.log('nao ígual');
+          document.querySelectorAll(".turned")[0].classList.remove('turned');
+          document.querySelectorAll(".turned")[1].classList.remove('turned');
+      }
+
+      }
+
+
+
+      
+
+      console.log(memoryGame.pickedCards);
+
+      memoryGame.checkIfPair(card1Att, card2Att);
+
+      // console.log(`Card clicked: ${card}`);
     });
   });
 });
