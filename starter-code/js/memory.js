@@ -7,29 +7,47 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards() {
+    let array = JSON.parse(JSON.stringify(this.cards)); 
     //if (this.cards===undefined){
       //return 'undefined'; }
-    let currentIndex = this.cards.length, temporaryValue, randomIndex;
+    // let currentIndex = this.cards.length, temporaryValue, randomIndex;
   
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+    // // While there remain elements to shuffle...
+    // while (0 !== currentIndex) {
   
-      // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+    //   // Pick a remaining element...
+    // randomIndex = Math.floor(Math.random() * currentIndex);
+    // currentIndex -= 1;
   
-      // And swap it with the current element.
-    temporaryValue = this.cards[currentIndex];
-    this.cards[currentIndex] = this.cards[randomIndex];
-    this.cards[randomIndex] = temporaryValue;
-    }
+    //   // And swap it with the current element.
+    // temporaryValue = this.cards[currentIndex];
+    // this.cards[currentIndex] = this.cards[randomIndex];
+    // this.cards[randomIndex] = temporaryValue;
+    // }
+
+    var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+    while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
   
+    this.cards = array;
+    
   }
+}
+  
+  
 
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
-    console.log(card1);
-    console.log(card2);
+
     if (card1 === card2){
       this.pairsGuessed += 1;
       

@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener("load", event => {
+  memoryGame.shuffleCards();
   let html = "";
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -38,25 +39,41 @@ window.addEventListener("load", event => {
 
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
-  let clickedCards = [];
+  
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     
     card.addEventListener("click", () => {
-      
-      clickedCards.push(card)
-      card.classList.toggle("turned");
-      console.log(clickedCards)
-      if(clickedCards.length===2){
+      console.log(memoryGame.pickedCards.length)
+      if(memoryGame.pickedCards.length>2){
         
-        if(memoryGame.checkIfPair(clickedCards[0].attributes[1].value,clickedCards[1].attributes[1].value)){
-          clickedCards = [];
+        memoryGame.pickedCards = [];
+        
+       }
+      
+      memoryGame.pickedCards.push(card);
+      card.classList.toggle("turned");
+      if(memoryGame.pickedCards.length>2){
+        
+        memoryGame.pickedCards = [];
+        
+       }
+
+      if(memoryGame.pickedCards.length===2){
+        
+        if(memoryGame.checkIfPair(memoryGame.pickedCards[0].attributes[1].value, memoryGame.pickedCards[1].attributes[1].value)){
+          memoryGame.pickedCards = [];
           
-        } else {const timeoutId = setTimeout(() => {
-                clickedCards[0].classList.toggle("turned");
-                clickedCards[1].classList.toggle("turned"); 
-                clickedCards = [];
-                console.log('1 seconds delay');
+        } else {
+          const body = document.querySelector('body');
+          const blockCards = document.createElement('div');
+          body.appendChild(blockCards);
+          blockCards.setAttribute('class', 'block-field')
+          setTimeout(() => {
+            memoryGame.pickedCards[0].classList.toggle("turned");
+            memoryGame.pickedCards[1].classList.toggle("turned"); 
+            memoryGame.pickedCards = [];
+            blockCards.remove();
                 }, 1000);
                             
                 
