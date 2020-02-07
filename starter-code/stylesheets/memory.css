@@ -87,3 +87,10 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#end {
+  visibility: hidden;
+  background-color: white;
+  font-size: 35px;
+  color: green;
+}
