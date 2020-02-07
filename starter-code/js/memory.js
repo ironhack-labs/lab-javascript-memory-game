@@ -23,9 +23,11 @@ class MemoryGame {
       return true;
     }
     return false;
+
   }
 
   isFinished() {
+    console.log(this.pairsGuessed, this.cards.length / 2);
     return this.pairsGuessed >= this.cards.length / 2;
   }
 }

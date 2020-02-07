@@ -87,3 +87,5 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.blocked {pointer-events:none;}
