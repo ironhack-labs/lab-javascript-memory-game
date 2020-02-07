@@ -43,19 +43,17 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
+      
+      turnCard(card);
+      memoryGame.pickedCards.push(card.getAttribute('data-card-name'));
 
-      if (memoryGame.pickedCards.length < 2) {
-        turnCard(card);
-        memoryGame.pickedCards.push(card.getAttribute('data-card-name'));
-
-        if (memoryGame.pickedCards.length == 2) {
-          lock();
-          checkPickedCards();
-          checkGameFinished();
-          memoryGame.pickedCards = [];
-          document.querySelector('#pairs_clicked').innerText = memoryGame.pairsClicked;
-          document.querySelector('#pairs_guessed').innerText = memoryGame.pairsGuessed;
-        }
+      if (memoryGame.pickedCards.length == 2) {
+        lock();
+        checkPickedCards();
+        checkGameFinished();
+        memoryGame.pickedCards = [];
+        document.querySelector('#pairs_clicked').innerText = memoryGame.pairsClicked;
+        document.querySelector('#pairs_guessed').innerText = memoryGame.pairsGuessed;
       }
     });
   });
