@@ -1,3 +1,4 @@
+
 const cards = [
   { name: "aquaman", img: "aquaman.jpg" },
   { name: "batman", img: "batman.jpg" },
@@ -25,25 +26,47 @@ const cards = [
   { name: "thor", img: "thor.jpg" }
 ];
 
+let holdCard = [];
+let countClick = 0;
+
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+
 
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
-    html += `<div class="card" data-card-name="${pic.name}">`;
+    html += `<div class="card back" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
   });
 
+
+
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll(".card").forEach(card => {
+  document.querySelectorAll(".card").forEach((card, idx) => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      memoryGame.pickedCards.push(card);
+      card.classList.toggle('turned');
+
+      if (memoryGame.pickedCards.length === 3){
+        memoryGame.pickedCards.forEach((e, idx) => {
+          if(idx<2) e.classList.toggle('turned');
+        });
+        memoryGame.pickedCards.splice(0,2);
+      }
+
+      if (memoryGame.pickedCards.length === 2){
+        if(memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))){
+          memoryGame.pickedCards = [];
+        }
+      }
+      
     });
   });
 });
+
