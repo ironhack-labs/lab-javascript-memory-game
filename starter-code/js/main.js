@@ -47,7 +47,7 @@ window.addEventListener("load", event => {
   // Add all the divs to the HTML
   document.querySelector("#memory_board").innerHTML = html;
 
-  document.querySelectorAll(".card").forEach((card, idx) => {
+  document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
 
       memoryGame.pickedCards.push(card);

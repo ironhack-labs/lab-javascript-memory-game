@@ -23,10 +23,8 @@ class MemoryGame {
     this.pairsClicked++;
     if (card1 === card2) {
       this.pairsGuessed++;
-      // console.log(true);
       return true;
     } else {
-      // console.log(false);
       return false;
     }
   }
