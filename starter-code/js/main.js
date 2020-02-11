@@ -26,8 +26,6 @@ const cards = [
   { name: "thor", img: "thor.jpg" }
 ];
 
-let holdCard = [];
-let countClick = 0;
 
 const memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards();
@@ -41,7 +39,6 @@ window.addEventListener("load", event => {
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
   });
-
 
 
   // Add all the divs to the HTML
@@ -61,11 +58,17 @@ window.addEventListener("load", event => {
       }
 
       if (memoryGame.pickedCards.length === 2){
-        if(memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))){
+        let c1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        let c2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+
+        if (memoryGame.checkIfPair(c1,c2)){
+          document.getElementById('pairs_guessed').innerHTML = memoryGame.pairsGuessed;
+          memoryGame.isFinished();
           memoryGame.pickedCards = [];
         }
+          document.getElementById('pairs_clicked').innerHTML = memoryGame.pairsClicked;
+
       }
-      
     });
   });
 });

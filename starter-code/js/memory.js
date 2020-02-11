@@ -29,11 +29,9 @@ class MemoryGame {
     }
   }
   isFinished() {
-    //isFinished method should return false at the beginning of the game
-    //isFinished method should return false if there's still some pairs to be guessed
-    //isFinished method should return true if all pairs are guessed
-    if((this.cards.lenght)/2 === this.pairsGuessed){
+    if((this.cards.length)/2 === this.pairsGuessed){
       return true;
     }
+    return false;
   }
 }
