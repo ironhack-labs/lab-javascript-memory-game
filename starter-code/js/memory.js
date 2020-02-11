@@ -56,7 +56,7 @@ class MemoryGame {
     return false; 
   }
   isFinished() {
-    if(this.pairsGuessed == 8){
+    if(this.pairsGuessed === 12){
       return true;
       } return false;
   }
