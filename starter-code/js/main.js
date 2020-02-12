@@ -46,13 +46,13 @@ window.addEventListener("load", event => {
       memoryGame.turned(card)
       memoryGame.pickedCards.push(card)
       if(memoryGame.pickedCards.length>=2){
-        document.getElementById('pairs_clicked').innerText = this.pairsClicked
+        document.getElementById('pairs_clicked').innerText = memoryGame.pairsClicked
 
         let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
         let card2 =memoryGame.pickedCards[1].getAttribute('data-card-name')
         
         if(memoryGame.checkIfPair(card1,card2)){
-          document.getElementById('pairs_guessed').innerText = this.pairsGuessed
+          document.getElementById('pairs_guessed').innerText = memoryGame.pairsGuessed
         }
       }
       // TODO: write some code here

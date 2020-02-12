@@ -1,6 +1,7 @@
 class MemoryGame {
   constructor(cards){
     this.cards = cards;
+    console.log(cards)
     this.shuffleCards() ;
     this.pickedCards = [];
     this.pairsClicked = 0;
@@ -12,12 +13,13 @@ class MemoryGame {
       let randomCards = [];
       for(let i = 0; i<this.cards.length; i++){
         let randomNumber = Math.floor( Math.random() * this.cards.length );
-        while(randomCards.indexOf( randomNumber )!==-1){
+        while(randomCards.indexOf(this.cards[randomNumber])!==-1){
           randomNumber = Math.floor( Math.random() * this.cards.length )
         }
-        randomCards.push( this.cards [ randomNumber ] ) 
+        randomCards.push(this.cards[randomNumber]) 
       }
       this.cards = randomCards
+      console.log(randomCards)
     }
   }
   checkIfPair(card1,card2) {
