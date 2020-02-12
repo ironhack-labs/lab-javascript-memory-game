@@ -27,6 +27,10 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+console.log(memoryGame.isFinished());
+memoryGame.shuffleCards();
+console.log(memoryGame);
+
 window.addEventListener("load", event => {
   let html = "";
   memoryGame.cards.forEach(pic => {
@@ -42,8 +46,43 @@ window.addEventListener("load", event => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      // card.onclick = () => {
+      //   card.setAttribute('class', 'card turned');
+      //   memoryGame.pickedCards.push(card);
+      //   if(memoryGame.pickedCards.length===2){
+      //     memoryGame.checkIfPair();
+      //     if(memoryGame.checkIfPair()){
+      //       document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
+      //       document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed;
+      //     }else{
+      //       document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
+      //       memoryGame.pickedCards[0].setAttribute('class', 'card');
+      //       memoryGame.pickedCards[1].setAttribute('class', 'card');
+      //       memoryGame.pickedCards = [];
+      //     }
+      //   }
+      // }
+      card.setAttribute('class', 'card turned');
+      memoryGame.pickedCards.push(card);
+      if(memoryGame.pickedCards.length===2){
+        const card1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+        const card2 =memoryGame.pickedCards[1].getAttribute("data-card-name");;
+        if(memoryGame.checkIfPair(card1, card2)){
+          document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
+          document.getElementById("pairs_guessed").innerText = memoryGame.pairsGuessed;
+        }else{
+          document.getElementById("pairs_clicked").innerText = memoryGame.pairsClicked;
+          setTimeout(() => {
+            memoryGame.pickedCards[0].setAttribute('class', 'card');
+            memoryGame.pickedCards[1].setAttribute('class', 'card');
+            memoryGame.pickedCards = [];
+          }, 500);
+        }
+      }
+      // console.log(`Card clicked: ${card}`);
+      // if(document.querySelector("#pairs_clicked")===2){
+      // //   checkIfPair()
+      // }
     });
   });
 });
