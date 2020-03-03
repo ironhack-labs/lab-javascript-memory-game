@@ -99,7 +99,8 @@ const cards = [{
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
-  // memoryGame.shuffleCards(cards)
+  memoryGame.shuffleCards(cards)
+
   let clickedCards = []
   const pairsGuessed = document.getElementById('pairs-guessed')
   const pairsClicked = document.getElementById('pairs-clicked')
