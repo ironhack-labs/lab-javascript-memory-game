@@ -99,6 +99,8 @@ const cards = [{
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+  // memoryGame.shuffleCards(cards)
+
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -114,7 +116,23 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card.getAttribute('data-card-name'))
+
+      if (memoryGame.pickedCards.length === 2) {
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+          memoryGame.pickedCards = []
+          memoryGame.isFinished()
+        } else {
+          memoryGame.pickedCards = []
+          setTimeout(() => {
+            card.classList.toggle('turned')
+          }, 850)
+        }
+      }
+
       console.log(`Card clicked: ${card}`);
+      console.log(memoryGame.pickedCards)
     });
   });
 });
