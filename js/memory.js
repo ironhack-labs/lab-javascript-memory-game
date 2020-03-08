@@ -23,8 +23,10 @@ class MemoryGame {
   checkIfPair(card1, card2) {
 
     this.pairsClicked ++;
+    //document.getElementById('#pairs-clicked').innerHTML = this.pairsClicked;
     if (card1 === card2) {
       this.pairsGuessed ++;
+      //document.getElementById('#pairs-guessed').innerHTML = this.pairsGuessed;
       return true
     } else {
       return false
