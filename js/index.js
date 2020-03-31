@@ -42,7 +42,8 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.querySelector(".back").style.backgroundColor = "rgba(0, 0, 0, 0)"
+      card.querySelector(".front").style.backfaceVisibility = "visible"
       console.log(`Card clicked: ${card}`);
     });
   });
