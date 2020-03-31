@@ -16,5 +16,12 @@ class MemoryGame {
       return false
     }
   }
-  isFinished() {}
+  isFinished() {
+    const comparisonFactor = this.cards.length / 2
+    if (this.pairsGuessed === comparisonFactor) {
+      return true
+    } else {
+      return false
+    }
+  }
 }
