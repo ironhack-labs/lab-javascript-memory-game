@@ -66,6 +66,29 @@ describe("shuffleCards method", () => {
     expect(typeof memoryGame.shuffleCards).toBe("function");
   });
 
+  it("[CUSTOM] testing on full array", () => {
+    expect(typeof memoryGame.shuffleCards([1, 2, 3, 4])).toBe("object");
+    expect(typeof memoryGame.shuffleCards([
+      { name: "aquaman", img: "aquaman.jpg" },
+      { name: "batman", img: "batman.jpg" },
+      { name: "captain america", img: "captain-america.jpg" },
+      { name: "fantastic four", img: "fantastic-four.jpg" },
+      { name: "flash", img: "flash.jpg" },
+      { name: "green arrow", img: "green-arrow.jpg" },
+      { name: "green lantern", img: "green-lantern.jpg" },
+      { name: "ironman", img: "ironman.jpg" },
+      { name: "aquaman", img: "aquaman.jpg" },
+      { name: "batman", img: "batman.jpg" },
+      { name: "captain america", img: "captain-america.jpg" },
+      { name: "fantastic four", img: "fantastic-four.jpg" },
+      { name: "flash", img: "flash.jpg" },
+      { name: "green arrow", img: "green-arrow.jpg" },
+      { name: "green lantern", img: "green-lantern.jpg" },
+      { name: "ironman", img: "ironman.jpg" }
+    ])).toBe("object");
+  });
+  
+
   it("should return undefined if argument (cards array) is not passed", () => {
     expect(typeof memoryGame.shuffleCards()).toBe("undefined");
   });

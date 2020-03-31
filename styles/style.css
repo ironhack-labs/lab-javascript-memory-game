@@ -4,6 +4,7 @@ body {
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+
 }
 
 #memory-board {
@@ -94,4 +95,22 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+#finishedGameContainer { 
+  height: 50%;
+  width: 100%;
+  z-index: 900;
+  position: fixed;
+  position: absolute;
+  top: 400px;
+  background-color: tomato;
+  display: flex;
+  
+}
+
+#finishedGameContainer h1 {
+  margin: auto;
+  color: #456783;
+  align-items: center;
 }
