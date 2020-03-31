@@ -38,12 +38,48 @@ window.addEventListener('load', event => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  document.querySelector(`#pairs-clicked`).innerHTML = memoryGame.pairsClicked;
+  document.querySelector(`#pairs-guessed`).innerHTML = memoryGame.pairsGuessed;
+
+
+  memoryGame.shuffleCards();
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle("turned")
+      memoryGame.pickedCards.push(card.getAttribute("data-card-name"))
+      if (memoryGame.pickedCards.length == 2) {
+        let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+        if (!isPair) {
+          const interval = setInterval(() => {
+            console.log('entra')
+            card.classList.toggle("turned")
+            document.querySelectorAll(`[data-card-name='${memoryGame.pickedCards[0]}']`).forEach(selectedCard => {
+              selectedCard.classList.toggle("turned", false)
+            })
+            clearInterval(interval)
+            memoryGame.pickedCards = []
+          }, 800)
+        } else {
+          memoryGame.pickedCards = []
+          if (memoryGame.isFinished()) {
+            const victoryInterval = setInterval(() => {
+              alert("You won!!!")
+              clearInterval(victoryInterval)
+            }, 1000)
+
+          }
+        }
+
+        document.querySelector(`#pairs-clicked`).innerHTML = memoryGame.pairsClicked;
+        document.querySelector(`#pairs-guessed`).innerHTML = memoryGame.pairsGuessed;
+
+
+      }
+
+      //console.log(`Card clicked: ${card}`);
     });
+
   });
 });
