@@ -100,6 +100,7 @@ const memoryGame = new MemoryGame(cards);
 
 
 window.addEventListener('load', event => {
+  // He añadido aquí el shuffle para que cada vez que se cargue, se 'shufleen' las cartas
   memoryGame.shuffleCards()
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -116,6 +117,7 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      
       card.setAttribute('class', 'card turned')
 
       memoryGame.pickedCards.push(card)
