@@ -53,6 +53,9 @@ window.addEventListener('load', event => {
         .forEach(card => (card.classList = 'card'))
     }
     memoryGame.pickedCards = []
+    if (memoryGame.isFinished()) {
+      alert('You won!')
+    }
   }
 
   // Bind the click event of each element to a function
@@ -62,9 +65,6 @@ window.addEventListener('load', event => {
       memoryGame.pickedCards.push(card.dataset.cardName)
       if (memoryGame.pickedCards.length === 2) {
         pairCheck(memoryGame.pickedCards)
-        console.log(
-          `el valor del array de cartas elegidas del objeto es: ${memoryGame.pickedCards}`
-        )
       }
     })
   })
