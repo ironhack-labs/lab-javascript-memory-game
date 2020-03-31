@@ -31,6 +31,7 @@ const pairsClicked = document.getElementById('pairs-clicked')
 const pairsGuessed = document.getElementById('pairs-guessed')
 
 window.addEventListener('load', event => {
+  memoryGame.cards = memoryGame.shuffleCards()
   let html = ''
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`
@@ -46,11 +47,18 @@ window.addEventListener('load', event => {
     if (memoryGame.checkIfPair(pickedCardsArray[0], pickedCardsArray[1])) {
       pairsClicked.innerText = memoryGame.pairsClicked
       pairsGuessed.innerText = memoryGame.pairsGuessed
+      document.querySelectorAll('.card').forEach(card => {
+        if (card.classList.contains('turned')) {
+          card.classList.add('fixed')
+        }
+      })
     } else {
       pairsClicked.innerText = memoryGame.pairsClicked
-      document
-        .querySelectorAll('.card')
-        .forEach(card => (card.classList = 'card'))
+      document.querySelectorAll('.card').forEach(card => {
+        if (!card.classList.contains('fixed')) {
+          card.classList = 'card'
+        }
+      })
     }
     memoryGame.pickedCards = []
     if (memoryGame.isFinished()) {
