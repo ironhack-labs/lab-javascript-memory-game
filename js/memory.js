@@ -7,14 +7,19 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards() {
-    this.cards.forEach((element, idx) => {
-      let j = Math.floor(Math.random() * this.cards.length);
-      if (idx != j) {
-        let tmpValue = element;
-        element = this.cards[j];
-        this.cards[j] = tmpValue;
+    var suffledCards = [],
+      n = this.cards.length,
+      i;
+    while (n) {
+      i = Math.floor(Math.random() * this.cards.length);
+      if (i in this.cards) {
+        suffledCards.push(this.cards[i]);
+        delete this.cards[i];
+        n--;
       }
-    });
+    }
+
+    this.cards = [...suffledCards];
   }
   checkIfPair(card1, card2) {
     this.pairsClicked++;
