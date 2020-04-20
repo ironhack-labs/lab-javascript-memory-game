@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener('load', event => {
   let html = '';
@@ -64,7 +65,7 @@ window.addEventListener('load', event => {
           // Increment clicked counter
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
           // Apply a timeout in order to have time to see the second card turned before turning again the selected cards and restart pickedCards array
-          setTimeout(restartPickedCards, 1000);
+          setTimeout(restartPickedCards, 500);
           function restartPickedCards() {
             memoryGame.pickedCards.forEach(card => card.classList.remove('turned'));
             memoryGame.pickedCards = [];
