@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards()
 
 window.addEventListener('load', event => {
   let html = '';
@@ -42,8 +43,30 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      if (memoryGame.pickedCards.length < 2)
+        card.classList.toggle('turned');
       console.log(`Card clicked: ${card}`);
-    });
+      if (card.classList.contains('turned')) {
+        memoryGame.pickedCards.push(card);
+        if (memoryGame.pickedCards.length === 2) {
+          let equal = memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)
+          if (equal) {
+            memoryGame.pickedCards = [];
+          } else {
+            setTimeout(function () {
+              memoryGame.pickedCards[0].classList.remove('turned');
+              memoryGame.pickedCards[1].classList.remove('turned');
+              memoryGame.pickedCards = [];
+            }, 1000);
+          }
+        }
+      }
+      document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
+      document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+
+      memoryGame.isFinished()
+    }
+    );
   });
+
 });
