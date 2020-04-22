@@ -43,6 +43,7 @@ window.addEventListener('load', event => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
+
     card.addEventListener('click', () => {
       card.classList.add('turned');
       memoryGame.pickedCards.push(card);
@@ -51,18 +52,20 @@ window.addEventListener('load', event => {
         let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
         let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
 
+
         if (memoryGame.checkIfPair(card1, card2)) {
           let turnedCards = document.querySelectorAll('.card.turned');
           turnedCards.forEach(turned => {
             turned.classList.add('front')
           })
+
         } else {
           let wrong1 = memoryGame.pickedCards[0]
           let wrong2 = memoryGame.pickedCards[1]
           setTimeout(function () {
             wrong1.classList.remove('turned')
             wrong2.classList.remove('turned')
-          }, 2000);
+          }, 900);
         }
         memoryGame.pickedCards = [];
         document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
@@ -71,11 +74,9 @@ window.addEventListener('load', event => {
         if (memoryGame.isFinished()) {
           alert('Good work! You win! Play again?')
           window.location.reload();
-
         }
       }
     });
   });
-
 });
 
