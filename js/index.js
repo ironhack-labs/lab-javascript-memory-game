@@ -57,17 +57,24 @@ window.addEventListener('load', event => {
             turned.classList.add('front')
           })
         } else {
+          let wrong1 = memoryGame.pickedCards[0]
+          let wrong2 = memoryGame.pickedCards[1]
           setTimeout(function () {
-            let wrongCards = document.querySelectorAll('.card.turned');
-            wrongCards.forEach(wrong => {
-              wrong.classList.remove('turned')
-            })
-          }, 3000);
+            wrong1.classList.remove('turned')
+            wrong2.classList.remove('turned')
+          }, 2000);
         }
         memoryGame.pickedCards = [];
-      }
+        console.log(memoryGame.pairsClicked)
+        document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
+        document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
 
+        if (memoryGame.isFinished()) {
+          alert('Good work! You win!')
+        }
+      }
     });
   });
+
 });
 
