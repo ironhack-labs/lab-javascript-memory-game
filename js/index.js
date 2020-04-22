@@ -65,12 +65,13 @@ window.addEventListener('load', event => {
           }, 2000);
         }
         memoryGame.pickedCards = [];
-        console.log(memoryGame.pairsClicked)
         document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
         document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
 
         if (memoryGame.isFinished()) {
-          alert('Good work! You win!')
+          alert('Good work! You win! Play again?')
+          window.location.reload();
+
         }
       }
     });
