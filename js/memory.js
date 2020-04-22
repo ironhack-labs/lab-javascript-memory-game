@@ -15,17 +15,14 @@ class MemoryGame {
     }
   }
   checkIfPair(card1, card2) {
-    this.pairsClicked += 1;
+    this.pairsClicked++;
     if(card1 === card2){
-      this.pairsGuessed +=1;
+      this.pairsGuessed++;
       return true;
     } else return false;
   }
   isFinished() {
-    if (this.pairsGuessed === this.cards.length / 2){
-      this.cards = "";
-      return true;
-    }else return false;
+    return (this.cards.length / 2) === this.pairsGuessed;
   }
 
 }
