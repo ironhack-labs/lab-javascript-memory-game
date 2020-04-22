@@ -118,10 +118,8 @@ window.addEventListener("load", event => {
     card.addEventListener('click', () => {
       card.classList.add('turned');
       memoryGame.pickedCards.push(card);
-
       // Check is selected 2 cards
       if (memoryGame.pickedCards.length === 2) {
-
         // Check is a Pair
         if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
           let turnedCards = document.querySelectorAll('.card.turned');
@@ -141,7 +139,6 @@ window.addEventListener("load", event => {
         memoryGame.pickedCards = [];
         document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
         document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
-
         // Message if is Finished
         if (memoryGame.isFinished()) {
           alert("YOU WON!!!!");
