@@ -13,7 +13,6 @@ class MemoryGame {
       [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
     }
     return cards
-
   }
 
   checkIfPair(card1, card2) {
