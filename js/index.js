@@ -28,6 +28,8 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+  //We shuffle the cards
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -37,23 +39,30 @@ window.addEventListener('load', event => {
   });
 
   // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
-  let counter = 0;
-  // Bind the click event of each element to a function
+  document.querySelector('#memory-board').innerHTML = html
+
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      counter += 1;
-      console.log(`Card clicked: ${card}`);
-      memoryGame.pickedCards.push(card);
       card.classList.add('turned')
-      console.log(memoryGame.pickedCards);
-      while (memoryGame.pickedCards.length === 2) {
-        setInterval(function () {
-          memoryGame.pickedCards = []
-          counter = 0
-        }(), 2000)
-      }
-    })
-  });
-});
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2) {
+        //cardNames stores the names of existing cards at pickedCards
+        let cardNames = memoryGame.pickedCards.map(e => e.getAttribute('data-card-name'))
+        if (memoryGame.checkIfPair(cardNames[0], cardNames[1])) {
+          memoryGame.pickedCards = [];
+          if (memoryGame.isFinished()) {
+            memoryGame.congrats()
+          };
+        } else {
+          //Resets the pickedCards array and erase 'turned' class from the card after 700ms
+          setTimeout(function () {
+            memoryGame.pickedCards.forEach(e => e.classList.remove('turned'))
+            memoryGame.pickedCards = []
+          }, 700);
+
+        }//else line 51
+      }//if  line 46
+    })//addEventListener line 43
+  })//line 41
+})//line 30
