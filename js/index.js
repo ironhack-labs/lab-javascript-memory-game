@@ -68,6 +68,8 @@ window.addEventListener('load', event => {
           console.log("YOU WON !!!")
         }
       }
+      document.querySelector("#pairs-clicked").innerText = memoryGame.pairsClicked
+      document.querySelector("#pairs-guessed").innerText = memoryGame.pairsGuessed
     });
   });
 });
