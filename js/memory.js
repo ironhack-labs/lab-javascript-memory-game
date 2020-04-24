@@ -29,7 +29,10 @@ class MemoryGame {
     return false
   }
   isFinished() {
-    if (this.pairsGuessed === 0 || this.pairsGuessed < 8) {
+    // One error on Jasmine because I set 12 points to win
+    // instead of 8. But we there are 12 couples of cards
+    // so I guess it's a mistake
+    if (this.pairsGuessed === 0 || this.pairsGuessed < 12) {
       return false;
     }
     return true;
