@@ -43,6 +43,12 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      if (memoryGame.pickedCards.length < 2){
+      memoryGame.pickedCards.push();
+    } else {
+      memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+    }
+
       console.log(`Card clicked: ${card}`);
     });
   });
