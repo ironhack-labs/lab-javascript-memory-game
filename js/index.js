@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -42,8 +43,29 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2) {
+        let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+
+        if (memoryGame.checkIfPair(card1, card2)) {
+          document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed
+          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
+          memoryGame.pickedCards = []
+
+        } else {
+          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
+          memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'))
+          memoryGame.pickedCards = []          
+        }
+
+        if (memoryGame.isFinished()) {
+          console.log('Good game, you defeated Thanos')
+        }
+        
+      }
+    })
+  })
+})

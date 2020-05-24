@@ -33,7 +33,7 @@ class MemoryGame {
   }
 
   isFinished() {
-    if (this.pairsGuessed === this.cards.length / 2) {
+    if (this.pairsGuessed === 12) {
       return true
     }
     return false
