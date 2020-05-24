@@ -28,7 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
-  // cada vez que se recarga la página, llamamos a la función que baraja las cartas.
+  // cada vez que se recarga la página, llamamos a la función que baraja las cartas y reinicia el tablero
 
   memoryGame.shuffleCards()
 
@@ -50,34 +50,27 @@ window.addEventListener('load', event => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
 
-      // cada vez que hacemos click, hacemos toggle en la clase 'turned' de la carta clickada.
 
       card.classList.toggle('turned');
 
-      // metemos la carta clickada en nuestro array pickedCards
 
       memoryGame.pickedCards.push(card);
 
-      // comprobamos que hay dos cartas en pickedCards
 
       if (memoryGame.pickedCards.length === 2) {
 
-        // asignamos a una variable "cardN" el nombre de los elementos clickados (2)
 
         const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
         const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
 
-        // comprobamos si son iguales y añadimos a los marcadores en función de si se cumple o no la coincidencia
 
         if (memoryGame.checkIfPair(card1, card2)) {
         
           document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
-
-        // reiniciamos el array pickedCards
+          console.log('chekIfPairs')
           memoryGame.pickedCards = [];
 
-        // comprobamos si el ljuego ha terminado
           if (memoryGame.isFinished()) {
             setTimeout(() => {
               alert("You're a real SUPERHERO!")
@@ -86,10 +79,12 @@ window.addEventListener('load', event => {
 
         } else {
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
+          console.log('last pre forEach')
           setTimeout(() => {
             memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'));
             memoryGame.pickedCards = [];
           }, 1000)
+          console.log('last last forEach')
         }
       }
 
