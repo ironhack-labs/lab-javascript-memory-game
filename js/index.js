@@ -47,21 +47,25 @@ window.addEventListener('load', event => {
       memoryGame.pickedCards.push(card);
 
       if (memoryGame.pickedCards.length === 2) {
-        let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
-        let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
 
-        if (memoryGame.checkIfPair(card1, card2)) {
+        const guessed = memoryGame.checkIfPair(card1, card2)
+        if (guessed) {
           document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed
           document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
           memoryGame.pickedCards = []
 
         } else {
           document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
-          memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'))
-          memoryGame.pickedCards = []          
+          setTimeout(() => {
+            memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'))
+            memoryGame.pickedCards = []
+          }, 1500)       
         }
 
-        if (memoryGame.isFinished()) {
+        const finished = memoryGame.isFinished()
+        if (finished) {
           console.log('Good game, you defeated Thanos')
         }
         

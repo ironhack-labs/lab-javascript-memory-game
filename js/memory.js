@@ -7,10 +7,7 @@ class MemoryGame {
     // add the rest of the class properties here
   }
   shuffleCards() {
-    if (!this.cards) {
-      return undefined
-    }
-
+   
     const shuffledCards = []
     while (this.cards.length) {
       const randomNumber = Math.floor(Math.random() * this.cards.length)
