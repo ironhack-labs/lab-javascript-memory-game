@@ -24,7 +24,7 @@ const cards = [
   { name: 'the avengers', img: 'the-avengers.jpg' },
   { name: 'thor', img: 'thor.jpg' }
 ];
-
+ 
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
