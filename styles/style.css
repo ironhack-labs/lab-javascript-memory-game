@@ -24,8 +24,9 @@ body {
   position: relative;
 }
 
-.card.turned {
+.card.blocked {
   pointer-events: none;
+  opacity: 0.5;
 }
 
 .card.turned .front {
