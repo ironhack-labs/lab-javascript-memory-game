@@ -43,25 +43,28 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      card.classList.toggle('turned')
+      card.classList.add('turned')
       memoryGame.pickedCards.push(card);
 
       if (memoryGame.pickedCards.length === 2) {
-        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
-        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+        const firstCard = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        const secondCard = memoryGame.pickedCards[1].getAttribute('data-card-name')
+        const pairsGuessed = document.getElementById('pairs-guessed')
+        const pairsClicked = document.getElementById('pairs-clicked')
 
-        const guessed = memoryGame.checkIfPair(card1, card2)
-        if (guessed) {
-          document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed
-          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
-          memoryGame.pickedCards = []
+        const guessed = memoryGame.checkIfPair(firstCard, secondCard)
 
-        } else {
-          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
+        pairsClicked.innerText = memoryGame.pairsClicked
+
+        if (!guessed) {
           setTimeout(() => {
-            memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'))
+            memoryGame.pickedCards.forEach(wrongCard => wrongCard.classList.remove("turned"))
             memoryGame.pickedCards = []
-          }, 1500)       
+          }, 1500)
+          return
+        } else {
+          pairsGuessed.innerText = memoryGame.pairsGuessed
+          memoryGame.pickedCards = []
         }
 
         const finished = memoryGame.isFinished()
