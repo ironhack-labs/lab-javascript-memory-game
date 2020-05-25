@@ -6,18 +6,18 @@ class MemoryGame {
     this.pairsGuessed = 0
     // add the rest of the class properties here
   }
-
-  shuffleCards(cards) {
-   
+  shuffleCards() {
+        
     const shuffledCards = []
-    while (cards.length) {
-      const randomNumber = Math.floor(Math.random() * cards.length)
-      const randomCard = cards[randomNumber]
+    while (this.cards.length) {
+      const randomNumber = Math.floor(Math.random() * this.cards.length)
+      const randomCard = this.cards[randomNumber]
       shuffledCards.push(randomCard)
-      cards.splice(randomNumber, 1)
+      this.cards.splice(randomNumber, 1)
     }
+
     this.cards = shuffledCards
-    return  this.cards
+    
   }
 
   checkIfPair(card1, card2) {
