@@ -41,4 +41,16 @@ class MemoryGame {
       return false
     }
   }
+
+  newGameButton() {
+    const resetButton = document.createElement('button')
+    const btnText = document.createTextNode('Press to start again!')
+    resetButton.appendChild(btnText)
+    const newGame = document.getElementById('new-game')
+    newGame.appendChild(resetButton)
+    const startAgain = document.querySelector('#new-game button')
+    startAgain.onclick = () => {
+      window.location.reload()
+    }
+  }
 }

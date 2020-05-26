@@ -95,3 +95,18 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#new-game {
+  text-align: center;
+}
+
+#new-game button {
+  font-size: 30px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+

@@ -69,11 +69,13 @@ window.addEventListener('load', event => {
           document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
           console.log('chekIfPairs')
+          debugger
           memoryGame.pickedCards = [];
 
           if (memoryGame.isFinished()) {
             setTimeout(() => {
               alert("You're a real SUPERHERO!")
+              memoryGame.newGameButton()
             }, 1000);
           }
 
