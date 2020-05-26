@@ -3,7 +3,7 @@
 
 describe("MemoryGame class", () => {
   beforeEach(() => {
-    memoryGame = new MemoryGame([]);
+    const memoryGame = new MemoryGame([]);
   });
 
   it("Create MemoryGame object", () => {
@@ -59,7 +59,7 @@ describe("shuffleCards method", () => {
       { name: "green lantern", img: "green-lantern.jpg" },
       { name: "ironman", img: "ironman.jpg" }
     ];
-    memoryGame = new MemoryGame(cardsArray);
+    const memoryGame = new MemoryGame(cardsArray);
   });
 
   it("should be declared", () => {

@@ -1,5 +1,3 @@
-import MemoryGame from './memory.js';
-
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -53,7 +51,6 @@ function play() {
     card2.classList.add('blocked')
     setTimeout(() => { alert('Yeeeah, you won!!!') }, 500)
   }
-  
 }
 
 
