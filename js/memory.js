@@ -24,6 +24,7 @@ class MemoryGame {
     
     this.pairsClicked += 1
     if (card1 === card2) {
+      setTimeout(function(){ document.querySelector('#pair').play() }, 1000);
       this.pairsGuessed += 1
       return true
     } else {
@@ -35,7 +36,7 @@ class MemoryGame {
 
   isFinished() {
 
-    if (this.pairsGuessed === this.cards.length / 2) {
+    if (this.pairsGuessed === /*this.cards.length / 2*/2) {
       return true
     } else {
       return false

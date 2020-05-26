@@ -16,6 +16,16 @@ body {
   box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
 }
 
+#start button{
+  background-color: orangered;
+  color: white;
+  font-size: 80px;
+  border-radius: 20px;
+  border: 10px solid white;
+  padding: 20px 20px;
+  margin: 300px;
+}
+
 .card {
   display: inline-block;
   perspective: 300px;
@@ -96,7 +106,7 @@ p {
   text-align: center;
 }
 
-#new-game {
+#new-game, #start{
   text-align: center;
 }
 

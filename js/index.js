@@ -41,7 +41,13 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
- 
+  const newGame =  document.getElementById('start')
+  newGame.onclick = () => {
+    const musicAmbient = document.querySelector("#music");
+    musicAmbient.play()
+    musicAmbient.volume = 0.1
+    newGame.remove()
+  }
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
@@ -52,9 +58,7 @@ window.addEventListener('load', event => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
 
-      // Cuando hacemos click en la primera carta, empieza la música
-
-      document.querySelector("audio").play();
+      document.querySelector('#flip').play()
 
       card.classList.toggle('turned');
 
@@ -74,11 +78,12 @@ window.addEventListener('load', event => {
           document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
           console.log('chekIfPairs')
-          debugger
+         
           memoryGame.pickedCards = [];
 
           if (memoryGame.isFinished()) {
             setTimeout(() => {
+              document.querySelector('#you-win').play()
               alert("You're a real SUPERHERO!")
               memoryGame.newGameButton()
             }, 1000);
@@ -88,6 +93,7 @@ window.addEventListener('load', event => {
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
           console.log('last pre forEach')
           setTimeout(() => {
+            document.querySelector('#flip').play()
             memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'));
             memoryGame.pickedCards = [];
           }, 1000)

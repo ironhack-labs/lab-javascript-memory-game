@@ -9,12 +9,27 @@
     <link rel="stylesheet" href="./styles/style.css">
   </head>
   <body>
-    <audio autoplay>
+    <audio id="music" >
       <source src="./music/the-decline-official-full-album-version.mp3" type="audio/mpeg" loop="loop">
+    </audio>
+    <audio id="flip" >
+      <source src="./music/flip-card-sound-effect.mp3" type="audio/mpeg" loop="loop">
+    </audio>
+    <audio id="pair" >
+      <source src="./music/coin-sound-effect.mp3" type="audio/mpeg" loop="loop">
+    </audio>
+    <audio id="no-pair" >
+      <source src="./music/wrong-buzzer-sound-effect.mp3" type="audio/mpeg" loop="loop">
+    </audio>
+    <audio id="you-win" >
+      <source src="./music/you-win-perfect-and-laugh.mp3" type="audio/mpeg" loop="loop">
     </audio>
     <div>
       <h1>Superhero Memory Game</h1>
-        <div id="new-game"></div>
+      <div id="start">
+        <button>PRESS START</button>
+      </div>
+      <div id="new-game"></div>
     </div>
     <div id="score">
       <h2>Score</h2>
