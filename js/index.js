@@ -102,7 +102,7 @@ let pairsGuessed = 0
 let pairsGuessedSpan = document.getElementById('pairs-guessed')
 
 const memoryGame = new MemoryGame(cards);
-// memoryGame.shuffleCards()
+memoryGame.shuffleCards()
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
