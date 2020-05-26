@@ -41,6 +41,8 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
+ 
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
   
@@ -50,6 +52,9 @@ window.addEventListener('load', event => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
 
+      // Cuando hacemos click en la primera carta, empieza la música
+
+      document.querySelector("audio").play();
 
       card.classList.toggle('turned');
 
