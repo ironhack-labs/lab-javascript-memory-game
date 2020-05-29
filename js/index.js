@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+  memoryGame.shuffleCards()
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -42,8 +43,43 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card)
+
+        if (memoryGame.pickedCards.length === 2) {
+          const card1 = memoryGame.pickedCards[0]
+          const card2 = memoryGame.pickedCards[1]
+          const attribute1 = card1.getAttribute('data-card-name')
+          const attribute2 = card2.getAttribute('data-card-name')
+
+          if (attribute1, attribute2) {
+            card1.classList.add('blocked')
+            card2.classList.add('blocked')
+            setTimeout(() => {
+              if (memoryGame.checkIfPair(attribute1, attribute2)) {
+              
+                memoryGame.pickedCards = []
+                document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked
+                document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed
+                if (memoryGame.isFinished()) {
+                  alert("You win!");
+              }
+              } else {
+                memoryGame.pickedCards = []
+                card1.classList.remove('turned')
+                card2.classList.remove('turned')
+                document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked
+                document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed
+              }
+            }, 1000);
+
+           
+          }
+          
+          
+        }
+
+      //console.log(`Card clicked: ${card}`);
     });
   });
 });
