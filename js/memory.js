@@ -8,6 +8,7 @@ class MemoryGame {
 
 
   shuffleCards() {
+    /*
     let rand = null;
     let temp = null;
 
@@ -18,14 +19,38 @@ class MemoryGame {
       this.cards[i] = this.cards[rand];
       this.cards[rand] = temp;
     }
+    */
   }
 
   clickCard(card) {
-    card.classList.toggle('turned')
-    memoryGame.clickedCards.push(card.getAttribute('data-card-name'))
-    if (memoryGame.clickedCards.length > 2) {
-      memoryGame.clickedCards = []
-      document.querySelectorAll('.turned').forEach(turnedCard => turnedCard.classList.toggle('turned'))
+    this.turnCard(card)
+    this.clickedCards.push(card)
+
+    if (this.clickedCards.length === 2) {
+      let card1 = this.clickedCards[0];
+      let card2 = this.clickedCards[1];
+
+      let card1Name = card1.getAttribute('data-card-name') 
+      let card2Name = card2.getAttribute('data-card-name')
+
+      if (this.checkIfPair(card1Name, card2Name)) {
+        this.clickedCards.forEach(card => card.classList.add('blocked'))
+      } else {
+          this.clickedCards.forEach(card => setTimeout(this.turnCard(card), 1500))
+      }
+
+
+      pairsClickedCounter.innerText = this.pairsClicked;
+      pairsGuessedCounter.innerText = this.pairsGuessed;
+      this.clickedCards = [];
+    }
+
+    if (this.isFinished()) alert('YOU WON!!')
+  }
+turnCard(card) {
+
+      if (!card.classList.contains('blocked')) {
+      card.classList.toggle('turned')
     }
   }
 

@@ -1,3 +1,6 @@
+let pairsClickedCounter = document.getElementById('pairs-clicked')
+let pairsGuessedCounter = document.getElementById('pairs-guessed')
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -28,6 +31,8 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+  memoryGame.shuffleCards();
+
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -41,6 +46,7 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       memoryGame.clickCard(card)
+      memoryGame.isFinished()
     });
   });
 });
