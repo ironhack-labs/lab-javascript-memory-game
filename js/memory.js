@@ -9,9 +9,6 @@ class MemoryGame {
 
   shuffleCards() {
 
-    if (!this.cards) {
-      return undefined;
-    }
 
       let newPosition;
       let temp;
@@ -23,7 +20,6 @@ class MemoryGame {
         this.cards[newPosition] = temp;
       }
       
-    return this.cards;
   }
 
   checkIfPair(card1, card2) {
