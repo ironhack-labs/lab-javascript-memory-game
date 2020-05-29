@@ -119,4 +119,8 @@ p {
   width: 300px;
 }
 
+.pointer-state {
+  pointer-events: none;
+}
+
 

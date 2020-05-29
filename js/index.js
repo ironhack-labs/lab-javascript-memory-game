@@ -67,19 +67,20 @@ window.addEventListener('load', event => {
 
 
       if (memoryGame.pickedCards.length === 2) {
-
-
+     
         const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
         const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
-
+       
+        const stopClickCards = document.querySelectorAll('.card')
+        
+        stopClickCards.forEach(elem => elem.classList.toggle('pointer-state'))
 
         if (memoryGame.checkIfPair(card1, card2)) {
         
           document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
-          console.log('chekIfPairs')
-         
-          memoryGame.pickedCards = [];
+          
+          memoryGame.pickedCards = []
 
           if (memoryGame.isFinished()) {
             setTimeout(() => {
@@ -91,13 +92,18 @@ window.addEventListener('load', event => {
 
         } else {
           document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
-          console.log('last pre forEach')
+          
           setTimeout(() => {
             document.querySelector('#flip').play()
-            memoryGame.pickedCards.forEach(card => card.classList.toggle('turned'));
-            memoryGame.pickedCards = [];
+            memoryGame.pickedCards.forEach(card => {
+              // card.classList.toggle('pointer-state')
+              card.classList.toggle('turned')
+            });
+            stopClickCards.forEach(elem => elem.classList.toggle('pointer-state'))
+            memoryGame.pickedCards = []
+
           }, 1000)
-          console.log('last last forEach')
+          
         }
       }
 
