@@ -1,7 +1,7 @@
 class MemoryGame {
-  constructor(cards){
+  constructor(cards) {
     this.cards = cards;
-    this.pickedCards = null;
+    this.clickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
@@ -20,7 +20,15 @@ class MemoryGame {
     }
   }
 
-  
+  clickCard(card) {
+    card.classList.toggle('turned')
+    memoryGame.clickedCards.push(card.getAttribute('data-card-name'))
+    if (memoryGame.clickedCards.length > 2) {
+      memoryGame.clickedCards = []
+      document.querySelectorAll('.turned').forEach(turnedCard => turnedCard.classList.toggle('turned'))
+    }
+  }
+
   checkIfPair(card1, card2) {
     this.pairsClicked++;
     if (card1 === card2) {
@@ -32,9 +40,7 @@ class MemoryGame {
   }
 
 
-
-
   isFinished() {
-    return (this.pairsGuessed === this.cards.length/2 ? true : false);
+    return (this.pairsGuessed === this.cards.length / 2 ? true : false);
   }
 }
