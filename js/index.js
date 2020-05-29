@@ -90,6 +90,10 @@ window.addEventListener('load', event => {
             const scorePairsGuessed = document.getElementById('pairs-guessed');
             scorePairsGuessed.innerText = memoryGame.pairsGuessed;
 
+            if (memoryGame.isFinished()) {
+              alert('Congrats! You won!!!')
+            }
+
           } else {
 
             memoryGame.pickedCards = [];
@@ -106,9 +110,9 @@ window.addEventListener('load', event => {
           
         }
 
-        if (memoryGame.isFinished()) {
-          alert('You won!!!')
-        }
+        // if (memoryGame.isFinished()) {
+        //   alert('You won!!!')
+        // }
 
       });
 
