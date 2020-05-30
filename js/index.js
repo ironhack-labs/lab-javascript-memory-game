@@ -29,12 +29,13 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
-  });
+  
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
@@ -43,7 +44,39 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add('turned')
+      memoryGame.pickedCards.push(card)
+
+      if (memoryGame.pickedCards.length === 2) {
+        if (memoryGame.pickedCards.length === 2) {
+        	      const firstPick = memoryGame.pickedCards[0].getAttribute('data-card-name')
+                const secondPick = memoryGame.pickedCards[1].getAttribute('data-card-name')
+                const pairsGuessed = document.getElementById('pairs-guessed')
+                const pairsClicked = document.getElementById('pairs-clicked')
+        
+                const guessed = memoryGame.checkIfPair(firstPick, secondPick)
+        
+                pairsClicked.innerText = memoryGame.pairsClicked
+        
+                if (!guessed) {
+                  setTimeout(() => {
+                    memoryGame.pickedCards.forEach(incorrectCard => incorrectCard.classList.remove("turned"))
+                    memoryGame.pickedCards = []
+                  }, 1500)
+                  return
+                } else {
+                  pairsGuessed.innerText = memoryGame.pairsGuessed
+                  memoryGame.pickedCards = []
+                }
+        
+                const finished = memoryGame.isFinished()
+                if (finished) {
+                  console.log('Good game, you defeated Thanos')
+                }
+        
+              }
+            } 
     });
   });
-});
+})
+})
