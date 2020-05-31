@@ -8,7 +8,7 @@ class MemoryGame {
 
 
   shuffleCards() {
-    /*
+    
     let rand = null;
     let temp = null;
 
@@ -19,7 +19,7 @@ class MemoryGame {
       this.cards[i] = this.cards[rand];
       this.cards[rand] = temp;
     }
-    */
+   
   }
 
   clickCard(card) {
