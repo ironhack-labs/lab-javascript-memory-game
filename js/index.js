@@ -69,7 +69,6 @@ function ClickedCard(card) {
       if(!isPair) {
         memoryGame.pickedCards[0].classList.remove('turned')
         memoryGame.pickedCards[1].classList.remove('turned')
-        memoryGame.pickedCards = []
 
       } else {
 
@@ -77,6 +76,7 @@ function ClickedCard(card) {
           alert('You Won!')
         }
       }
+      memoryGame.pickedCards = []
     },1000)    
 
   }
