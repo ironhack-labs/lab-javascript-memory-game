@@ -71,7 +71,7 @@ window.addEventListener('load', event => {
         
                 const finished = memoryGame.isFinished()
                 if (finished) {
-                  console.log('Good game, you defeated Thanos')
+                  console.log('Congratulations, you win!')
                 }
         
               }
