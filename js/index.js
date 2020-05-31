@@ -71,7 +71,11 @@ window.addEventListener('load', event => {
         
                 const finished = memoryGame.isFinished()
                 if (finished) {
+<<<<<<< HEAD
                   alert('You won!!!!')
+=======
+                  console.log('Congratulations, you win!')
+>>>>>>> 6390e1762d4e9c34e166ac078737c206ec54d5b5
                 }
         
               }
