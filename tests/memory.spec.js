@@ -123,6 +123,7 @@ describe("isFinished method", () => {
     expect(memoryGame.isFinished()).toBe(false);
   });
 
+
   it("should return true if all pairs are guessed", () => {
     memoryGame.pairsGuessed = 8;
     expect(memoryGame.isFinished()).toBe(true);
