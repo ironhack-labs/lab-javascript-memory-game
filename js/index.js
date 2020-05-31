@@ -43,7 +43,41 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      ClickedCard(card)
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+function ClickedCard(card) {
+  if ( memoryGame.pickedCards.length === 2) {
+    return
+  }
+  memoryGame.pickedCards.push(card)
+
+  card.classList.add('turned')
+  
+  if ( memoryGame.pickedCards.length === 2) {
+
+    const isPair = memoryGame.checkIfPair(
+      memoryGame.pickedCards[0].getAttribute('data-card-name')
+      ,memoryGame.pickedCards[1].getAttribute('data-card-name')
+    )
+
+    setTimeout(() => {
+
+      if(!isPair) {
+        memoryGame.pickedCards[0].classList.remove('turned')
+        memoryGame.pickedCards[1].classList.remove('turned')
+        memoryGame.pickedCards = []
+
+      } else {
+
+        if (memoryGame.isFinished()) {
+          alert('You Won!')
+        }
+      }
+    },1000)    
+
+  }
+}
