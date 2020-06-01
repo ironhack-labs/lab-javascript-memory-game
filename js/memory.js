@@ -36,7 +36,8 @@ class MemoryGame {
       if (this.checkIfPair(card1Name, card2Name)) {
         this.clickedCards.forEach(card => card.classList.add('blocked'))
       } else {
-          this.clickedCards.forEach(card => setTimeout(this.turnCard(card), 1500))
+          this.clickedCards.forEach(card => setTimeout(() => {
+            this.turnCard(card)}, 1000))
       }
 
 
