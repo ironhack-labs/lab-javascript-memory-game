@@ -1,0 +1,3 @@
+tests 
+"should return undefined if argument (cards array) is not passed" is contradictory with the next test as that one tests the function without passing it any arguments
+
