@@ -47,3 +47,4 @@ window.addEventListener('load', event => {
     });
   });
 });
+
