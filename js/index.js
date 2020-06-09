@@ -97,8 +97,11 @@ const cards = [{
 ];
 
 const memoryGame = new MemoryGame(cards);
-let counter = 0
-let arr = []
+
+//Shuffles cards everytime they are executed:
+memoryGame.shuffleCards();
+
+//Loads cards
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -111,28 +114,31 @@ window.addEventListener('load', event => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  const cardsArr = [...document.querySelectorAll('.card')]
+  //New WINNER GIF
+  const gif = document.querySelector(".gif")
+
+  let cardsArr = [];
 
   // Bind the click event of each element to a function
 
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', (e) => {
+      if (cardsArr.length > 1) return
       e.target.parentNode.classList.add("turned");
-      arr.push(e.target.parentNode, e.target.parentNode.getAttribute("data-card-name"));
-      setTimeout(() => {
-        if (arr.length === 4) {
-          if (!memoryGame.checkIfPair(arr[1], arr[3])) {
-            arr[0].classList.remove("turned");
-            arr[2].classList.remove("turned");
-          } else {
-
+      cardsArr.push(e.target.parentNode)
+      if (cardsArr.length === 2) {
+        setTimeout(() => {
+          if (!memoryGame.checkIfPair(cardsArr[0].getAttribute("data-card-name"), cardsArr[1].getAttribute("data-card-name"))) {
+            cardsArr[0].classList.remove("turned");
+            cardsArr[1].classList.remove("turned");
           }
-          arr = []
+          cardsArr = []
+          document.querySelector("#pairs-clicked").innerHTML = memoryGame.pairsClicked;
+          document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed;
+          if (memoryGame.isFinished()) gif.style.display = "block";
+        }, 500)
+      }
 
-        }
-      }, 1000)
-      document.querySelector("#pairs-clicked").innerHTML = memoryGame.pairsClicked;
-      document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed;
     });
   });
 });

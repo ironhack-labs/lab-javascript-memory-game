@@ -31,6 +31,7 @@ body {
 .card.turned .front {
   transform: rotateY(0deg);
 }
+
 .card.turned .back {
   transform: rotateY(180deg);
 }
@@ -94,4 +95,13 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.gif {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)
 }
