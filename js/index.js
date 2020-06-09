@@ -61,11 +61,8 @@ window.addEventListener('load', event => {
           memoryGame.pickedCards = []
         }
 
-      } else {
-
-        continue
-
-      } console.log(`Card clicked: ${card}`)
+      }
+      console.log(`Card clicked: ${card}`)
     }
     )
   }
