@@ -110,6 +110,7 @@ window.addEventListener('load', event => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+
   const cardsArr = [...document.querySelectorAll('.card')]
 
   // Bind the click event of each element to a function
@@ -118,18 +119,20 @@ window.addEventListener('load', event => {
     card.addEventListener('click', (e) => {
       e.target.parentNode.classList.add("turned");
       arr.push(e.target.parentNode, e.target.parentNode.getAttribute("data-card-name"));
-      console.log(arr)
-      counter++
-      if (arr.length === 4) {
-        if (!memoryGame.checkIfPair(arr[1], arr[3])) {
+      setTimeout(() => {
+        if (arr.length === 4) {
+          if (!memoryGame.checkIfPair(arr[1], arr[3])) {
+            arr[0].classList.remove("turned");
+            arr[2].classList.remove("turned");
+          } else {
 
-        } else {
+          }
+          arr = []
 
         }
-        arr = []
-
-      }
-
+      }, 1000)
+      document.querySelector("#pairs-clicked").innerHTML = memoryGame.pairsClicked;
+      document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed;
     });
   });
 });
