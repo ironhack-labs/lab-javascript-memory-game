@@ -36,6 +36,7 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
+
   // Adds all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -44,24 +45,29 @@ window.addEventListener('load', event => {
     card.addEventListener('click', () => {
 
       card.classList.toggle('turned')
+
       memoryGame.pickedCards.push(cards.getAttribute("data-card-name"))
 
-      if (memoryGame.checkIfPair(card, ?)) {
+      if (pickedCards.length > 1) {
 
+        if (memoryGame.checkIfPair((pickedCards[pickedCards.length - 1]), (pickedCards[pickedCards.length - 2]))) {
+
+          card.classList.toggle('front')
+
+        } else {
+
+          card.classList.toggle('turned')
+
+          memoryGame.pickedCards = []
+        }
 
       } else {
 
-        card.classList.toggle('turned')
-      }
+        continue
 
-
-
-
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-
-
-
-});
+      } console.log(`Card clicked: ${card}`)
+    }
+    )
+  }
+  )   // TODO: write some code here
+})
