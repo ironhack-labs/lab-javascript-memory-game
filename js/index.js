@@ -43,7 +43,38 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+      console.log(`Card clicked: `, card );
+      card.classList.toggle('turned');
+     
+      const cardName = card.getAttribute('data-card-name');
+
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2){
+        const card1Name = memoryGame.pickedCards[0].getAttribute('data-card-name');;
+        const card2Name = memoryGame.pickedCards[1].getAttribute('data-card-name');;
+        console.log(card1Name, card2Name)
+        const isMatch = memoryGame.checkIfPair(card1Name, card2Name);
+        updateScore();
+        if (isMatch) {
+          console.log(`I'ts a match!`);
+          if (memoryGame.isFinished()) {
+            setTimeOut(() => window.alert(`YOU WIN`), 500)
+          }
+          memoryGame.pickedCards = [];
+        } else {
+            console.log('its NOT a match')
+            setTimeout(() => {
+            console.log('inside timeout')
+            memoryGame.pickedCards.forEach(card => card.classList.remove('turned'))
+          }, 1000)
+          memoryGame.pickedCards = [];
+        }  
+      }
+    };
   });
 });
+
+function updateScore () {
+
+}
