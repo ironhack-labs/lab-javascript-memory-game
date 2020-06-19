@@ -1,9 +1,22 @@
-body {
-  margin: 0;
+@font-face {
+  font-family: "SuperHero";
+  src: url("./superhero.ttf") format("truetype");
+}
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: "SuperHero";
+  /* text-shadow: 3px 3px 1px black; */
 }
 
 #memory-board {
@@ -14,14 +27,19 @@ body {
   margin: 0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
+  position: relative;
+}
+
+.hide {
+  opacity: 0;
 }
 
 .card {
   display: inline-block;
   perspective: 300px;
   transform-style: preserve-3d;
-
   position: relative;
+  transition: opacity 1s;
 }
 
 .card.turned {
@@ -78,7 +96,7 @@ h1 {
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
-  text-shadow: 0px 0px 20px rgba(150, 150, 150, 1);
+  text-shadow: 2px 2px 20px rgba(150, 150, 150, 1);
 }
 
 h2 {
@@ -94,4 +112,34 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+#end-game-box {
+  transition: opacity 3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(215, 44, 44, 0.8);
+  width: 400px;
+  height: 180px;
+  box-shadow: 8px -5px 3px lightslategray;
+}
+
+#end-game-box p{
+  font-size: 3em;
+  color: #456783;
+  font-weight: bolder;
+  margin: 20px;
+}
+
+#end-game-box button {
+  width: 150px;
+  height: 50px;
+  font-size: 1.5em;
+  border-radius: 50%;
 }
