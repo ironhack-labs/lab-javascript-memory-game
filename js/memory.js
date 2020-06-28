@@ -6,14 +6,14 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards() {
-    let shuffledArr = [...this.cards];
-    for (let i = shuffledArr.length - 1; i > 0; i--) {
+    // Fisher-Yates shuffle algorithm
+    for (let i = this.cards.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * i);
-      const temp = shuffledArr[i];
-      shuffledArr[i] = shuffledArr[j];
-      shuffledArr[j] = temp;
+      const temp = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = temp;
     }
-    return shuffledArr;
+    return this.cards;
   }
   checkIfPair(card1, card2) {
     if (card1 === card2) {
@@ -21,7 +21,7 @@ class MemoryGame {
       this.pairsGuessed++;
       return true;
     } else {
-      this.pairsGuessed++;
+      this.pairsClicked++;
       return false;
     }
   }

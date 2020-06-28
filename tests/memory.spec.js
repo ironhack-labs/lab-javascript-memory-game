@@ -41,23 +41,70 @@ describe("MemoryGame class", () => {
 
 describe("shuffleCards method", () => {
   beforeEach(() => {
-    const cardsArray = [
-      { name: "aquaman", img: "aquaman.jpg" },
-      { name: "batman", img: "batman.jpg" },
-      { name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four", img: "fantastic-four.jpg" },
-      { name: "flash", img: "flash.jpg" },
-      { name: "green arrow", img: "green-arrow.jpg" },
-      { name: "green lantern", img: "green-lantern.jpg" },
-      { name: "ironman", img: "ironman.jpg" },
-      { name: "aquaman", img: "aquaman.jpg" },
-      { name: "batman", img: "batman.jpg" },
-      { name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four", img: "fantastic-four.jpg" },
-      { name: "flash", img: "flash.jpg" },
-      { name: "green arrow", img: "green-arrow.jpg" },
-      { name: "green lantern", img: "green-lantern.jpg" },
-      { name: "ironman", img: "ironman.jpg" }
+    const cardsArray = [{
+        name: "aquaman",
+        img: "aquaman.jpg"
+      },
+      {
+        name: "batman",
+        img: "batman.jpg"
+      },
+      {
+        name: "captain america",
+        img: "captain-america.jpg"
+      },
+      {
+        name: "fantastic four",
+        img: "fantastic-four.jpg"
+      },
+      {
+        name: "flash",
+        img: "flash.jpg"
+      },
+      {
+        name: "green arrow",
+        img: "green-arrow.jpg"
+      },
+      {
+        name: "green lantern",
+        img: "green-lantern.jpg"
+      },
+      {
+        name: "ironman",
+        img: "ironman.jpg"
+      },
+      {
+        name: "aquaman",
+        img: "aquaman.jpg"
+      },
+      {
+        name: "batman",
+        img: "batman.jpg"
+      },
+      {
+        name: "captain america",
+        img: "captain-america.jpg"
+      },
+      {
+        name: "fantastic four",
+        img: "fantastic-four.jpg"
+      },
+      {
+        name: "flash",
+        img: "flash.jpg"
+      },
+      {
+        name: "green arrow",
+        img: "green-arrow.jpg"
+      },
+      {
+        name: "green lantern",
+        img: "green-lantern.jpg"
+      },
+      {
+        name: "ironman",
+        img: "ironman.jpg"
+      }
     ];
     memoryGame = new MemoryGame(cardsArray);
   });
@@ -124,7 +171,7 @@ describe("isFinished method", () => {
   });
 
   it("should return true if all pairs are guessed", () => {
-    memoryGame.pairsGuessed = 8;
+    memoryGame.pairsGuessed = 12;
     expect(memoryGame.isFinished()).toBe(true);
   });
 });
