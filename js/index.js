@@ -98,10 +98,11 @@ const cards = [{
 let card1 = "";
 let card2 = "";
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener('load', event => {
   let html = '';
-  memoryGame.shuffleCards().forEach(pic => {
+  memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
