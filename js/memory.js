@@ -26,6 +26,6 @@ class MemoryGame {
     }
   }
   isFinished() {
-    return this.pairsGuessed === 12;
+    return this.pairsGuessed === this.cards.length / 2;
   }
 }
