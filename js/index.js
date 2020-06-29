@@ -43,9 +43,28 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (!card.classList.contains('blocked')) card.classList.toggle("turned");
+      memoryGame.pickedCards.push(card);
+      console.log (memoryGame.pickedCards);
+      if (memoryGame.pickedCards.length % 2 === 0) {
+      setTimeout(function() {
+        //your code to be executed after 2 seconds        
+          //console.log(memoryGame.checkIfPair(memoryGame.pickedCards[memoryGame.pickedCards.length-1].dataset.cardName, memoryGame.pickedCards[memoryGame.pickedCards.length-2].dataset.cardName));
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[memoryGame.pickedCards.length-1].dataset.cardName, memoryGame.pickedCards[memoryGame.pickedCards.length-2].dataset.cardName)) {
+            memoryGame.pickedCards[memoryGame.pickedCards.length-1].classList.add("blocked");
+            memoryGame.pickedCards[memoryGame.pickedCards.length-2].classList.add("blocked");
+          }else{
+          memoryGame.pickedCards[memoryGame.pickedCards.length-1].classList.remove("turned");
+          memoryGame.pickedCards[memoryGame.pickedCards.length-2].classList.remove("turned");         
+          }
+          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
+          document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed;                 
+      }, 2000);
+    }
     });
   });
 });
 
-//memoryGame.shuffleCards();
+
+
+memoryGame.shuffleCards();

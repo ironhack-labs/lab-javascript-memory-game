@@ -18,13 +18,16 @@ class MemoryGame {
     }
     this.cards = newArr;
   }
+
   checkIfPair(card1, card2) {
     this.pairsClicked++;
+    console.log(card1, " ", card2);
     if (card1 === card2) {
       this.pairsGuessed++;
       return true;
     }return false;
   }
+  
   isFinished() {
     return this.pairsGuessed === this.numberOfCards / 2 ? true : false;
     }
