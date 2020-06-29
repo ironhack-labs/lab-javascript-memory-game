@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards(cards)
 
 window.addEventListener('load', event => {
   let html = '';
@@ -42,8 +43,33 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    card.classList.toggle('turned'); //turns card over on every click
+    memoryGame.pickedCards.push(card);
+    console.log(`Card clicked: ${card}`);
+
+      //wrote a simple function to see if two cards are in the pickedCards array, prob not necessary
+      if(memoryGame.checkIfTwoCards()) {
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        let card1Attribute = card1.getAttribute('data-card-name'); //gets the attribute 'data-card-name'
+        let card2Attribute = card2.getAttribute('data-card-name');
+       
+        setTimeout(function() {
+          if(!memoryGame.checkIfPair(card1Attribute, card2Attribute)) {
+         card1.className = 'card'; // turns the cards back over if the two flipped cards are not a match
+         card2.className = 'card';
+        }
+        }, 1000);
+        
+        memoryGame.pickedCards = []; //clears out the pickedCards if the two cards are not a match
+      }
+
+      memoryGame.isFinished();
     });
   });
+
 });
+
+
+
+
