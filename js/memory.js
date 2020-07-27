@@ -31,6 +31,6 @@ class MemoryGame {
   }
 //check if guessed pairs are equal to number of pairs
   isFinished() {
-return this.pairsGuessed = this.cards.length / 2;
+return this.pairsGuessed === (this.cards.length) / 2;
   }
 }
