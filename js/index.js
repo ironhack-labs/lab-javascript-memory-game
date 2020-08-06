@@ -41,8 +41,24 @@ window.addEventListener('load', event => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
+    card.addEventListener('click', (e) => {
+
+      if (memoryGame.pickedCards.length === 0) {
+        memoryGame.pickedCards.push(card);
+      } else {
+        memoryGame.pickedCards.push(card);
+      }
+      // ! we need to work only with two cards at the same time
+
+      // TODO: keep the cards showing images if they are found to be the same
+
+      // TODO: cards flip back to the blue background if the cards are not the same
+
+
+
+
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
