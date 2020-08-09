@@ -39,11 +39,65 @@ window.addEventListener('load', event => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+  // Toggle
+  function toggle(index, classes) {
+    classes.forEach(className => {
+      index.classList.toggle(className)
+    });
+  }
+
+
+  function flip() { 
+    if ( data-card-name.length > 2 ) {
+      return false;
+    }
+  
+    // do your thing [...]
+  }
+
+    // Bind the click event of each element to a function
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', flip => {
+        // TODO: write some code here
+        const clicked = document.getElementById("pairs_clicked");
+        const guessed = document.getElementById("pairs_guessed");
+  
+        toggle(card.children[0],["back", "front"])
+        toggle(card.children[1],["back", "front"])
+  
+        memoryGame.pickedCards.push(card)
+  
+        if(memoryGame.pickedCards.length === 2) {
+          const firstCard = memoryGame.pickedCards[0];
+          const secondCard = memoryGame.pickedCards[1];
+          let card1= firstCard.getAttribute('data-card-name'); 
+          let card2 = secondCard.getAttribute('data-card-name');
+          console.log(card1);
+          console.log(card2);
+
+
+
+          // I was stuck here //
+          //if it is a match remove the eventListener 
+          if (memoryGame.checkIfPair(card1, card2)) {
+
+            console.log(true);
+            card1.removeEventListener('click', toggle);
+            card2.removeEventListener('click', toggle);  
+
+          } else {
+            card1.classList.remove('flip');
+            card2.classList.remove('flip');
+          }
+          
+          // TODO: run check pair 
+          
+        }
+        
+        
+     
+        console.log(`Card clicked: ${card}`);
+      });
     });
   });
-});
