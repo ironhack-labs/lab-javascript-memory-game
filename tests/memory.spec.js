@@ -71,9 +71,9 @@ describe("shuffleCards method", () => {
   });
 
   it("should return the shuffled (mixed) array of cards", () => {
-    let formerCardsString = memoryGame.cards.map(card => card.name).toString();
-    memoryGame.shuffleCards();
-    let newCardsString = memoryGame.cards.map(card => card.name).toString();
+    let formerCardsString = memoryGame.cards.map(card => card.name);
+    memoryGame.shuffleCards(formerCardsString);
+    let newCardsString = memoryGame.cards.map(card => card.name);
     expect(formerCardsString === newCardsString).toBe(false);
   });
 });

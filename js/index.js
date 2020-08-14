@@ -26,9 +26,11 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -43,23 +45,30 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', (e) => {
 
-      if (memoryGame.pickedCards.length === 0) {
-        memoryGame.pickedCards.push(card);
-      } else {
-        memoryGame.pickedCards.push(card);
-      }
-      // ! we need to work only with two cards at the same time
+        if (memoryGame.pickedCards.length > 1) return
 
-      // TODO: keep the cards showing images if they are found to be the same
+        card.classList.add("turned");
 
-      // TODO: cards flip back to the blue background if the cards are not the same
+        memoryGame.pickedCards.push(card)
 
+        if (memoryGame.pickedCards.length === 2) {
 
+          setTimeout(() => {
 
+              if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name"))) {
+                memoryGame.pickedCards[0].classList.remove("turned");
+                memoryGame.pickedCards[1].classList.remove("turned");
+              }
 
+              memoryGame.pickedCards = []
 
+              document.querySelector("#pairs-clicked").innerHTML = memoryGame.pairsClicked;
 
-      console.log(`Card clicked: ${card}`);
+              document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed;
+
+              if (memoryGame.isFinished()) window.alert('winner!');
+          }, 500)
+        }
     });
   });
 });

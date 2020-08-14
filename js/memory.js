@@ -8,22 +8,23 @@ class MemoryGame {
     // add the rest of the class properties here
   }
 
-  shuffleCards(cards) {
+  shuffleCards(array) {
 
-    if (!cards) { return undefined }
+    if (!array) { return undefined }
 
-    var currentIndex = cards.length, temporaryValue, randomIndex;
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
 
-      temporaryValue = cards[currentIndex];
-      cards[currentIndex] = cards[randomIndex];
-      cards[randomIndex] = temporaryValue;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+
     }
-    
-    return cards;
+
+    return array;
   }
 
   checkIfPair(card1, card2) {
@@ -40,11 +41,13 @@ class MemoryGame {
   }
 
   isFinished() {
-    if ( this.pairsGuessed = cards.length / 2 ) {
-      return true
+
+    if ( this.pairsGuessed === 0 ) { return false; }
+
+    if ( this.pairsGuessed === this.cards.length / 2 ) {
+      return true;
     } else {
-      return false
-    }
-  }
+      return false;
+    }  }
 
 }
