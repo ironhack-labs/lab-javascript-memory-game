@@ -39,11 +39,59 @@ window.addEventListener('load', event => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+  // Toggle
+  function toggle(index, classes) {
+    classes.forEach(className => {
+      index.classList.toggle(className)
+    });
+  }
+
+   // Bind the click event of each element to a function
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        // TODO: write some code here
+        const clicked = document.getElementById("pairs_clicked");
+        const guessed = document.getElementById("pairs_guessed");
+  
+        toggle(card.children[0],["back", "front"])
+        toggle(card.children[1],["back", "front"])
+  
+        memoryGame.pickedCards.push(card)
+  
+        if(memoryGame.pickedCards.length <= 2) {
+          const firstCard = memoryGame.pickedCards[0];
+          const secondCard = memoryGame.pickedCards[1];
+          let card1= firstCard.getAttribute('data-card-name'); 
+          let card2 = secondCard.getAttribute('data-card-name');
+          console.log(card1)
+          console.log(card2)
+
+          // clicked.length === 2;
+          if (memoryGame.checkIfPair(card1, card2)) {
+            console.log(true)
+          } else {
+            console.log(false)
+          }
+  
+          // TODO: run check pair 
+          
+        } 
+        
+        // function flip() { 
+        //   if ( $('.flipped').length > 2 ) {
+        //     return false;
+        //   }
+
+  // do your thing [...]
+  
+        
+     
+        console.log(`Card clicked: ${card}`);
+      });
     });
   });
-});
+   
+      
+ 
+ 
+
