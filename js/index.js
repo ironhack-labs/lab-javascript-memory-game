@@ -1,3 +1,4 @@
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -26,6 +27,9 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+console.log(memoryGame.cards);
+let pickedCards = memoryGame.pickedCards;
 
 window.addEventListener('load', event => {
   let html = '';
@@ -36,14 +40,40 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  function checkForMatch(cards) {
+    let isMatch = false;
+    if(pickedCards.length === 2) {
+      let checkMatch = memoryGame.checkIfPair(cards[0].getAttribute('data-card-name'), cards[1].getAttribute('data-card-name'));
+      document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked;
+      if(checkMatch) {
+        cards[0].classList.add('matched');
+        cards[1].classList.add('matched');    
+        document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed;
+        console.log(memoryGame.cards.length);
+        return isMatch = true;
+      }
+      ;
+    }
+  }
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
+      if(pickedCards.length === 2) {
+        if(!pickedCards[0].classList.contains('matched')) {
+          pickedCards.forEach(card => {
+            card.classList.remove('turned');
+            });
+        }
+        pickedCards = []
+      }
+      card.classList.add('turned');
+      pickedCards.push(card);
+      checkForMatch(pickedCards);
+      setTimeout(memoryGame.isFinished(), 3000);
+      });
+  })
 });
