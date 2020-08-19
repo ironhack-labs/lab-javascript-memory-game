@@ -7,20 +7,13 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
-  shuffleCards(cards) {
-    // implementation of Fisher and Yates Algorithem
-    if(!cards || cards.length === 0) return undefined;
-
-    const shaffled = JSON.parse(JSON.stringify(cards));
-    for(let i = shaffled.length-1; i > 1; i--) {
+  shuffleCards() {
+    for (let i = this.cards.length - 1; i > 1; i--) {
       let j = Math.round(Math.random() * i);
-
-      let tempCard = shaffled[i];
-      shaffled[i] = shaffled[j];
-      shaffled[j] = tempCard;
+      let tempCard = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = tempCard;
     }
-
-    return shaffled;
   }
 
   checkIfPair(card1, card2) {
@@ -33,7 +26,7 @@ class MemoryGame {
   }
 
   isFinished() {
-    return this.pairsGuessed >= cards.length;
+    return this.pairsGuessed >= (this.cards.length / 2);
   }
 
 }
