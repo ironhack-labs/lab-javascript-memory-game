@@ -36,14 +36,34 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+document.querySelector('#memory-board').innerHTML = html;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', (event) => {
+    card.classList.add("turned");
+    // console.log(event.target.parentNode)
+    memoryGame.pickedCards.push(event.target.parentNode);
+    if(memoryGame.pickedCards.length === 2) {
+      setTimeout(() => {
+        let card1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+        let card2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
+        
+        if(memoryGame.checkIfPair(card1, card2)) {
+          memoryGame.pickedCards.forEach(card => {
+            card.classList.add("blocked");
+          })
+          // check if the game is finished
+          // memoryGame.isFinished
+        } else {
+          memoryGame.pickedCards.forEach(card => {
+            card.classList.remove("turned");
+          })
+        }
+
+        memoryGame.pickedCards = [];
+      }, 1000)
+    }
+    
   });
+});
 });
