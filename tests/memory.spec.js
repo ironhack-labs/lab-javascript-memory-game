@@ -72,7 +72,7 @@ describe("shuffleCards method", () => {
 
   it("should return the shuffled (mixed) array of cards", () => {
     let formerCardsString = memoryGame.cards.map(card => card.name).toString();
-    memoryGame.shuffleCards();
+    memoryGame.shuffleCards();        //aquí se está invocando sin parámetro, por lo que resultará en undefined
     let newCardsString = memoryGame.cards.map(card => card.name).toString();
     expect(formerCardsString === newCardsString).toBe(false);
   });
