@@ -38,12 +38,18 @@ window.addEventListener('load', event => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle("turned")
+      memoryGame.pickedCards.push(cards)
+      if(memoryGame.pickedCards.length === 2){
+      const card1 = pickedCards[0].getAttribute("data-card-name")
+      const card2 = pickedCards[1].getAttribute("data-card-name")
+      }
       console.log(`Card clicked: ${card}`);
+      
     });
   });
 });
