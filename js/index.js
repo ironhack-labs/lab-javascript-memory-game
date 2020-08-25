@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+let firstFlipped
+
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -42,8 +44,57 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
+
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      // We flip de card
+      card.classList.toggle('turned')
+
+      // We store the name of the flipped card
+      const cardName = card.getAttribute('data-card-name')
+
+      // We add the card to the comparing array
+      memoryGame.pickedCards.push(cardName)
+
+      // If we already picked two cards
+      if (memoryGame.pickedCards.length === 2) {
+
+        // If they are different
+        if (!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+
+          console.log(memoryGame.pickedCards)
+
+          // We turn the first card
+          firstFlipped.classList.toggle('turned')
+
+          // We turn the second card
+          setTimeout(() => card.classList.toggle('turned'), 700)
+
+        } else {  // If they are the same
+
+          // We update the guessed text
+          document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed
+
+        }
+
+        // We update the Clicked text
+        document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked
+
+        if (memoryGame.isFinished()) {
+
+          setTimeout(() => window.alert('You are a machine!!!'), 600)
+
+        }
+
+      }
+
+      // If we just picked one card we store it
+      if (memoryGame.pickedCards.length === 1) {
+
+        firstFlipped = card
+
+      }
+
     });
   });
 });
