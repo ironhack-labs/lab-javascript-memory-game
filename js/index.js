@@ -42,8 +42,15 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+       card.classList.add("turned")
+      console.log(`Card clicked: ${card}`)
+      let array = []
+      array.push(card)
+      if (array.length === 2) {
+        array.checkIfPair(card1, card2)
+        array.splice(0, 2)
+        array.isFinished()
+      }
     });
   });
 });
