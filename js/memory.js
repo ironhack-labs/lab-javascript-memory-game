@@ -29,40 +29,6 @@ class MemoryGame {
 
     return cards
 
-
-    // if (!array) {
-
-    //   return undefined
-
-    // }
-
-    // const hatArray = [...this.cards]
-
-    // console.log(hatArray)
-
-
-    // const playArray = []
-
-    // while (hatArray.length !== 0) {
-
-    //   // We choose a card randomly from hat array
-
-    //   let choosenCardIndex = Math.floor(Math.random() * hatArray.length)
-
-    //   // We add it to our pickedCards array
-
-    //   playArray.push(hatArray[choosenCardIndex])
-
-    //   // We remove it from the hat array
-
-    //   hatArray.splice(choosenCardIndex, 1)
-
-    // }
-
-    // array = hatArray
-
-    // return array
-
   }
 
   checkIfPair(card1, card2) {

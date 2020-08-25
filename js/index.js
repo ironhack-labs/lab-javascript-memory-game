@@ -62,8 +62,6 @@ window.addEventListener('load', event => {
         // If they are different
         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
 
-          console.log(memoryGame.pickedCards)
-
           // We turn the first card
           firstFlipped.classList.toggle('turned')
 
