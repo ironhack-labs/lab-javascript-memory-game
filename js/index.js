@@ -29,7 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
-  memoryGame.cards.forEach(pic => {
+  memoryGame.shuffleCards(cards).forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
@@ -42,7 +42,39 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+
+      // .dataset.cardName
+      card.classList.toggle("turned")
+      memoryGame.pickedCards.push(card)
+      
+      if(memoryGame.pickedCards.length===2)
+      {
+        
+        document.querySelector("#pairs-clicked").innerHTML=memoryGame.pairsClicked
+          if(memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName,memoryGame.pickedCards[1].dataset.cardName))
+          {
+            
+            memoryGame.pickedCards=[]
+            document.querySelector("#pairs-guessed").innerHTML=memoryGame.pairsGuessed
+            
+          }else{
+            setTimeout(()=>{
+              console.log(card.classList)
+              memoryGame.pickedCards.forEach(elem=>elem.classList.remove('turned'))
+              memoryGame.pickedCards=[]
+            },700)
+            
+          }
+
+      }
+
+      
+       
+    
+    
+      if(memoryGame.isFinished()) alert("Juego Terminado")
+      
+        
       console.log(`Card clicked: ${card}`);
     });
   });
