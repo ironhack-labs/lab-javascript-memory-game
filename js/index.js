@@ -28,12 +28,16 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+
   let html = '';
-  memoryGame.cards.forEach(pic => {
+
+  memoryGame.shuffleCards(cards).forEach(pic => {
+
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
+
   });
 
   // Add all the divs to the HTML
@@ -41,9 +45,63 @@ window.addEventListener('load', event => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
+
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      // Add turned class
+      card.classList.add('turned')
+
+      // Array for card's name
+      let pickedCardsName = memoryGame.pickedCards
+
+      // Add card's name
+      pickedCardsName.push(card)      
+      
+      if (pickedCardsName.length === 2) {
+
+        const firstCard = pickedCardsName[0].getAttribute('data-card-name')
+        const secondCard = pickedCardsName[1].getAttribute('data-card-name')
+
+        if (memoryGame.checkIfPair(firstCard, secondCard)) {
+
+          // Add pairs clicked on HTML
+          document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked
+          
+          // Add pairs guessed on HTML
+          document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed
+
+          // Empty the array
+          memoryGame.pickedCards = []
+          
+
+        } else {
+
+          // Remove 'turned' class after a specific time
+          setTimeout(() => {
+
+            memoryGame.pickedCards.forEach(element => element.classList.remove('turned'))
+            
+            // Empty the array
+            memoryGame.pickedCards = []
+
+          }, 700)
+
+        }
+
+        // Add pairs clicked on HTML
+        document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked
+
+      } 
+
+      if (memoryGame.isFinished()) {
+
+        alert('Tu ganaste! - Al creador de este alert le costó mucho llegar hasta aquí... El juego comenzará de nuevo')
+        location.reload()
+        
+      }
+
     });
+
   });
+
 });
