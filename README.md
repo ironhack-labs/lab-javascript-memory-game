@@ -5,6 +5,7 @@
 ## Introduction
 
 We just learned how to use (Vanilla) JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
+It would increase our understanding of DOM.
 
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
