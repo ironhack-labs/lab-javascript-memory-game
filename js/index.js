@@ -43,7 +43,41 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      let card1;
+      let card2;
+      card.querySelectorAll('.card > div').forEach(div => {
+        div.classList.toggle('front');
+        div.classList.toggle('back');
+      });
+
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2) {
+        card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+        console.log('2 cards');
+        
+        if (memoryGame.checkIfPair(card1, card2)) {
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+        } else {
+            memoryGame.pickedCards.forEach(card => {
+              card.querySelectorAll('.card > div').forEach(div => {
+                div.classList.toggle('front');
+                div.classList.toggle('back');
+              });
+            });
+        }
+        memoryGame.pickedCards = [];
+        document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
+        document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+        if (memoryGame.isFinished()) {
+          window.alert('Game finished: YOU WON!!!!');
+        }
+        
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
