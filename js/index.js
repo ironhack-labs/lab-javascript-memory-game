@@ -45,13 +45,11 @@ window.addEventListener('load', event => {
     card.addEventListener('click', () => {
       console.log(`Card clicked: ${card}`);
       if (memoryGame.pickedCards.length === 0){
-        if(!card.classList.contains("blocked")){
-          document.querySelectorAll(".turned").forEach(card =>{
-            if(!card.classList.contains("blocked")){
-              card.classList.remove("turned");
-            }
-          });
-        }
+        document.querySelectorAll(".turned").forEach(card =>{
+          if(!card.classList.contains("blocked")){
+            card.classList.remove("turned");
+          }
+        });
       }
       memoryGame.pickedCards.push(card.getAttribute("data-card-name"));
       card.classList.add("turned");
