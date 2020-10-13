@@ -140,25 +140,40 @@ document.querySelectorAll('.card').forEach(card => {
 
 To flip a card, you can have multiple approaches. We will give you two possible ways (but you can find even more than that):
 
-- on click, add the class `turned` to the `div` of class `card` like in the following example:
+- Option 1: on click, add the class `turned` to the `div` of class `card` like in the following example:
 
-```html
-<!-- Only display the back that is blue -->
-<div class="card" data-card-name="ironman">
-  <div class="back" name="ironman.jpg"></div>
-  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div>
+  ```html
+  <!-- Only display the back that is blue -->
+  <div class="card" data-card-name="ironman">
+    <div class="back" name="ironman.jpg"></div>
+    <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+  </div>
 
-<!-- After flipping -->
-<div class="card turned" data-card-name="ironman">
-  <div class="back" name="ironman.jpg"></div>
-  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div>
-```
+  <!-- After flipping -->
+  <div class="card turned" data-card-name="ironman">
+    <div class="back" name="ironman.jpg"></div>
+    <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+  </div>
+  ```
 
-- on click, toggle the classes _back_ and _front_. To get more familiar how [`element.classList.toggle()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList). Keep in mind that the method `.toggle()` can receive two parameters - the HTML element on which we want to toggle the classes and the array of two classes we want to toggle on click event.
+- Option 2: another alternative is to toggle the classes _back_ and _front_ when the user clicks on a card. For this functionality, the method `element.classList.toggle()` can be very helpful. This method receives a string as the first argument (the class to toggle). [It can also receive a second *optional* argument with a boolean expression](https://stackoverflow.com/questions/23663151/whats-the-point-of-the-second-argument-in-element-classlist-toggle/23663302#23663302) (in that case, the class is added when the expression is true, and removed when the expression is false):
 
-- Now when you have cards flipping from back to front and vice versa, you have to make sure you call `.checkIfPair(card1, card2)` method. If the two cards are the same, they should get class _blocked_, which is going to keep them flipped so we can see images.
+  ```javascript
+
+    /* one argument */
+    el.classList.toggle('foobar');
+    // if it doesn't have the class 'foobar' --> add the class 'foobar'
+    // if it already has the class 'foobar' --> remove the class 'foobar'
+    
+
+    /* two arguments */
+    el.classList.toggle('abc', someBool);
+    // if someBool evaluates to true -> add the class 'abc'
+    // if someBool evaluates to false -> remove the class 'abc'
+
+  ```
+
+Now when you have cards flipping from back to front and vice versa, you have to make sure you call `.checkIfPair(card1, card2)` method. If the two cards are the same, they should get class _blocked_, which is going to keep them flipped so we can see images.
 
 _Hint 1_: The array of picked cards can't ever hold more than two cards.
 _Hint 2_: Make sure you call `isFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, or be more creative and add some text on the canvas - displaying _You won!!!_
