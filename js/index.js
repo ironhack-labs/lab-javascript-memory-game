@@ -29,12 +29,14 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
-  });
+  })
+  ;
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
@@ -45,7 +47,9 @@ window.addEventListener('load', event => {
       // TODO: write some code here
       let card1;
       let card2;
+      //card.classList.add('turned');
       card.querySelectorAll('.card > div').forEach(div => {
+        console.log(div);
         div.classList.toggle('front');
         div.classList.toggle('back');
       });
@@ -55,24 +59,32 @@ window.addEventListener('load', event => {
       if (memoryGame.pickedCards.length === 2) {
         card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
         card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
-        console.log('2 cards');
         
         if (memoryGame.checkIfPair(card1, card2)) {
           memoryGame.pickedCards[0].classList.add('blocked');
           memoryGame.pickedCards[1].classList.add('blocked');
+          memoryGame.pickedCards = [];
         } else {
+          console.log(memoryGame.pickedCards);
+          setTimeout(() => {
+            console.log(memoryGame.pickedCards);
             memoryGame.pickedCards.forEach(card => {
               card.querySelectorAll('.card > div').forEach(div => {
+                console.log(div);
                 div.classList.toggle('front');
                 div.classList.toggle('back');
               });
-            });
+            })
+            memoryGame.pickedCards = [];
+          },1000);
         }
-        memoryGame.pickedCards = [];
+        //setTimeout(() => {memoryGame.pickedCards = [];}, 2000);
         document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
         document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
         if (memoryGame.isFinished()) {
-          window.alert('Game finished: YOU WON!!!!');
+          setTimeout(() => {
+            window.alert('Game finished: YOU WON!!!!');
+          },1000);
         }
         
       }
