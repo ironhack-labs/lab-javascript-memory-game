@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -60,14 +61,7 @@ window.addEventListener('load', (event) => {
             if(memoryGame.isFinished() === true ){
               alert("You've won the game!")
               setTimeout(function(){
-                document.querySelectorAll('.card > div').forEach(div=>{
-                  div.classList.toggle('front')
-                  div.classList.toggle('back')
-                })
-                memoryGame.pairsGuessed = 0
-                memoryGame.pairsClicked = 0
-                pairsGuessedHTML.textContent = 0
-                pairsClickedHTML.textContent = 0
+                location.reload()
               },1000)
               
             }
