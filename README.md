@@ -140,7 +140,7 @@ document.querySelectorAll('.card').forEach(card => {
 
 To flip a card, you can have multiple approaches. We will give you two possible ways (but you can find even more than that):
 
-- Option 1: on click, add the class `turned` to the `div` of class `card` like in the following example:
+- Option 1: on click, add the class `turned` next to the class `card` to the `div` that represents each card - like in the following example:
 
   ```html
   <!-- Only display the back that is blue -->
