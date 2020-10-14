@@ -40,10 +40,32 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+document.querySelectorAll(`.card`).forEach(card => {
+  card.addEventListener('click', () => {
+
+    card.classList.toggle('turned');
+    memoryGame.pickedCards.push(card);
+
+    if (memoryGame.pickedCards.length === 2){
+      const pair = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'));
+      if (!pair){
+        setTimeout(function () {
+          memoryGame.pickedCards.forEach((card) => {
+            card.classList.toggle('turned');
+          });
+          memoryGame.pickedCards=[];
+        }, 800);
+      } else {
+        memoryGame.pickedCards=[];
+      }
+      pairsClicked.innerHTML = memoryGame.pairsClicked;
+      pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+    }
+    if ( memoryGame.isFinished() ) {
+      setTimeout(function () {
+        alert('Congrats!');
+        printCards();
+      }, 600);
+    }
+  }
+})
