@@ -28,7 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
-  
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -47,33 +47,27 @@ window.addEventListener('load', event => {
 
       memoryGame.pickedCards.push(card);
       
-      console.log(memoryGame.pickedCards)
-
-      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
-        
-      };
-
-      console.log(memoryGame.pairsGuessed);
-      console.log(memoryGame.pairsClicked);
-
-      // if (memoryGame.pickedCards.length >= 2) {
-      //   memoryGame.pickedCards = [];
-      // }
-
-      // let clickedCards = document.getElementsByClassName('turned');
-
-      // memoryGame.checkIfPair(clickedCards, clickedCards);
-
-      // console.log(memoryGame.pickedCards);
-
-      // let clicked = document.getElementById('pairs-clicked');
-      // let guessed = document.getElementById('pairs-guessed');
-
-      // if (memoryGame.checkIfPair(clickedCards, clickedCards) === false) {
-      //   clicked.innerHTML = memoryGame.pairsClicked; 
-      // } else if (memoryGame.checkIfPair(clickedCards, clickedCards) === true) {
-      //   guessed.innerHTML = memoryGame.pairsGuessed;
-      // }
+      if (memoryGame.pickedCards.length === 2) {
+        let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+        if (memoryGame.checkIfPair(card1, card2)) {
+          document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed;
+          memoryGame.pickedCards = [];
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards.forEach(cardPicked => {
+              cardPicked.classList.toggle('turned');
+            });
+            memoryGame.pickedCards = [];
+          }, 1000);
+        }
+        document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
+      }
+      if (memoryGame.isFinished()) {
+        setTimeout(() => {
+          alert('You won! Click ok and refresh to start again.')
+        }, 1500);
+      }
 
 
 
