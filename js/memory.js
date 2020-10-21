@@ -30,10 +30,6 @@ class MemoryGame {
         return true
       }
     } else {
-      card1.classList.toggle('front')
-      card2.classList.toggle('front')
-      card1.classList.toggle('back')
-      card2.classList.toggle('back')
       return false
     }
   }
