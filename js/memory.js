@@ -2,40 +2,38 @@
 class MemoryGame {
   constructor(cards, pickedCards,pairsClicked, pairsGuessed){
     this.cards = cards;
-    this.pickedCards = pickedCards;
-    this.pairsClicked = pairsClicked;
-    this.pairsGuessed = pairsGuessed;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
     // add the rest of the class properties here
   }
   shuffleCards(cards) {
     if (!cards){
-      return undefined
+      return undefined;
     }
-      for (let i = cards.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var temp = cards[i];
-          cards[i] = cards[j];
-          cards[j] = temp;
-      }
-      return cards
+    var currentIndex = this.cards.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = this.cards[currentIndex];
+    this.cards[currentIndex] = this.cards[randomIndex];
+    this.cards[randomIndex] = temporaryValue;
+    }
+    return this.cards;
   }
   checkIfPair(card1, card2) {
-    this.pairsClicked =+ 1
+    this.pairsClicked =+ 1;
     if (card1 === card2){
-      this.pairsClicked =+ 1
-      this.pairsGuessed =+ 1
-      return true
+      this.pairsClicked =+ 1;
+      this.pairsGuessed =+ 1;
+      return true;
     }
-    return false
+    return false;
   }
   isFinished() {
-    if (cards.length === 0){
-    return true
-    }if (this.pickedCards === 0){
-      return false
-    }else if (cards.length - 2 === 0){
-      return false
-    }else if(cards.length > 2){
+    if (this.pairsClicked.length === (this.cards.length/2)){
+    return true;
+    }else {
       return false
     }
   }
