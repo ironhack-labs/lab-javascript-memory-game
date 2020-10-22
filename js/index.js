@@ -26,7 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-//memoryGame.shuffleCards(cards);
+memoryGame.shuffleCards(cards);
 let counter = 0;
 let firstCard;
 let secondCard;
