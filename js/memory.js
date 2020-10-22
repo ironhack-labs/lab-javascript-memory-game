@@ -6,26 +6,25 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards() {
-    let j, x, i;
+    let card, shuffle, i;
 
     if (!this.cards) {
       return undefined;
     }
     for (i = this.cards.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = this.cards[i];
-      this.cards[i] = this.cards[j];
-      this.cards[j] = x;
+      card = Math.floor(Math.random() * (i + 1));
+      shuffle = this.cards[i];
+      this.cards[i] = this.cards[card];
+      this.cards[card] = shuffle;
     }
   }
 
   checkIfPair(card1, card2) {
+    this.pairsClicked += 1;
     if (card1 === card2) {
       this.pairsGuessed += 1;
-      this.pairsClicked += 1;
       return true;
     } else {
-      this.pairsClicked += 1;
       return false;
     }
   }
