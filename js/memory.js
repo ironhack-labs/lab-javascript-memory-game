@@ -28,6 +28,9 @@ class MemoryGame {
     return false;
   }
   isFinished() {
-    return (this.pairsGuessed === 12 ? true : false);
+    if (this.pairsGuessed === 12) {
+      return true
+    }
+    return false;
   }
 }
