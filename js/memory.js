@@ -1,9 +1,9 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards; //array of cards
-    this.pickedCards = [""]; // array where the clicked cards will be stored so that they can be compared
-    this.pairsClicked = 0; // array of cards chosen
-    this.pairsGuessed = 0; // array of cards guessed
+    this.pickedCards = []; // array where the clicked cards will be stored so that they can be compared
+    this.pairsClicked = 0; //  cards chosen
+    this.pairsGuessed = 0; // cards guessed
 
   }
   /* Create logic for the method shuffleCards() to shuffle the cards - every time you create a new game, the order of the cards should change.
@@ -12,9 +12,7 @@ class MemoryGame {
   */
 
   shuffleCards() {
-    if (!this.cards) {
-      return undefined;
-    }
+
 
     let currentIndex = this.cards.length, temporaryValue, randomIndex;
 
