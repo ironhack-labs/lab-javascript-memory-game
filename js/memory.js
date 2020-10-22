@@ -10,11 +10,9 @@ class MemoryGame {
     if (!cards) {
       return
     }
-    for (let counter = cards.length - 1; counter > 0; counter--) {
-      const shuffleIndex = Math.floor(Math.random() * counter)
-      const tempIndex = cards[counter]
-      cards[counter] = cards[shuffleIndex]
-      cards[shuffleIndex] = tempIndex
+    for (let i = cards.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1))
+      [cards[i], cards[j]] = [cards[j], cards[i]]
     }
     return cards
   }

@@ -118,6 +118,7 @@ window.addEventListener('load', event => {
     card.addEventListener('click', () => {
       let card1
       let card2
+      let timeout
 
       card.querySelectorAll('.card div').forEach(div => {
         div.classList.toggle('front')
@@ -126,19 +127,32 @@ window.addEventListener('load', event => {
 
       memoryGame.pickedCards.push(card)
 
+      memoryGame.pickedCards.forEach(card => {
+        timeout = setTimeout(function () {
+          card.querySelectorAll('.card div').forEach(div => {
+            div.classList.toggle('front')
+            div.classList.toggle('back')
+          })
+        }, 3000)
+      })
+
       if (memoryGame.pickedCards.length === 2) {
         card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
         card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
 
         if (memoryGame.checkIfPair(card1, card2)) {
+          memoryGame.pickedCards.forEach(card => {
+            clearTimeout(timeout)
+          })
           if (memoryGame.isFinished()) {
             alert('YOU WON!!!!🎆')
           }
           return memoryGame.pickedCards = []
-        } else {
+        } else if (!memoryGame.checkIfPair(card1, card2)) {
           return memoryGame.pickedCards = []
         }
       }
+
       clickedPairCounter.innerHTML = memoryGame.pairsClicked
       guessedPairCounter.innerHTML = memoryGame.pairsGuessed
     })
