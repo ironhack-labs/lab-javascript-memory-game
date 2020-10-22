@@ -28,7 +28,7 @@ class MemoryGame {
     this.pairsClicked++
     if (card1 === card2) {
       this.pairsGuessed++
-      if (this.pairsGuessed === this.cards.length / 2) {
+      if (this.pairsGuessed === (this.cards.length / 2)) {
         this.isFinished()
         return true
       } else {
@@ -42,7 +42,7 @@ class MemoryGame {
   isFinished() {
     if (this.pairsClicked === 0) {
       return false
-    } else if (this.pairsGuessed !== this.cards.length / 2) {
+    } else if (this.pairsGuessed !== (this.cards.length / 2)) {
       return false
     } else {
       return true

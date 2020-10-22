@@ -102,7 +102,7 @@ const clickedPairCounter = document.querySelector('#pairs-clicked')
 
 window.addEventListener('load', event => {
   let html = ''
-  //memoryGame.shuffleCards(cards)
+  memoryGame.shuffleCards(cards)
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -133,9 +133,11 @@ window.addEventListener('load', event => {
         card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
 
         if (memoryGame.checkIfPair(card1, card2)) {
-
+          guessedPairCounter.innerHTML = memoryGame.pairsGuessed
           if (memoryGame.isFinished()) {
-            alert('YOU WON!!!!🎆')
+            setTimeout(function () {
+              alert(`✨✨✨YOU WON✨✨✨`)
+            }, 1000)
           }
           return memoryGame.pickedCards = []
         } else if (!memoryGame.checkIfPair(card1, card2)) {
@@ -150,9 +152,7 @@ window.addEventListener('load', event => {
           return memoryGame.pickedCards = []
         }
       }
-
       clickedPairCounter.innerHTML = memoryGame.pairsClicked
-      guessedPairCounter.innerHTML = memoryGame.pairsGuessed
     })
   })
 })
