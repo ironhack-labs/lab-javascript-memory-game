@@ -6,15 +6,22 @@ class MemoryGame {
     this.pairsClicked = 0
   }
 
-  shuffleCards(cards) {
-    if (!cards) {
+  shuffleCards(array) {
+    if (!array) {
       return
+    } else {
+      let ctr = array.length,
+        temp, index
+
+      while (ctr > 0) {
+        index = Math.floor(Math.random() * ctr)
+        ctr--
+        temp = array[ctr]
+        array[ctr] = array[index]
+        array[index] = temp
+      }
+      return array
     }
-    for (let i = cards.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1))
-      [cards[i], cards[j]] = [cards[j], cards[i]]
-    }
-    return cards
   }
 
   checkIfPair(card1, card2) {
