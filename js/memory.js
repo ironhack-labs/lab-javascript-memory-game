@@ -17,9 +17,9 @@ class MemoryGame {
       this.cards.splice(rand, 1);
     }
   }
-  checkIfPair(cardsArr) {
+  checkIfPair(card1, card2) {
     this.pairsClicked++;
-    if (cardsArr[0].dataset.cardName === cardsArr[1].dataset.cardName) {
+    if (card1.dataset.cardName === card2.dataset.cardName) {
       this.pairsGuessed++;
       return true;
     } else {

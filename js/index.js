@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let clickable = true;
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -46,31 +47,36 @@ window.addEventListener("load", (event) => {
   let guessed = document.querySelector("#pairs-guessed");
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", function () {
-      card.classList.toggle("turned");
-      console.log(`Card clicked: ${card}`);
-      if (pickedCards.length === 0) {
-        pickedCards.push(card);
-      } else {
-        pickedCards.push(card);
-        if (memoryGame.checkIfPair(pickedCards)) {
-          pickedCards.splice(0, 2);
-          guessed.innerText = memoryGame.pairsGuessed;
-          clicked.innerText = memoryGame.pairsClicked;
+      if (clickable) {
+        card.classList.add("turned");
+        console.log(`Card clicked: ${card}`);
+        if (pickedCards.length === 0) {
+          pickedCards.push(card);
         } else {
-          clicked.innerText = memoryGame.pairsClicked;
-          setTimeout(() => {
-            pickedCards[0].classList.remove("turned");
-            pickedCards[1].classList.remove("turned");
-            pickedCards.splice(0, 2);
-          }, 1000);
+          pickedCards.push(card);
+          clickable = false;
+          if (memoryGame.checkIfPair(pickedCards[0], pickedCards[1])) {
+            guessed.innerText = memoryGame.pairsGuessed;
+            clicked.innerText = memoryGame.pairsClicked;
+            clickable = true;
+            pickedCards.splice(0, pickedCards.length);
+          } else {
+            clicked.innerText = memoryGame.pairsClicked;
+            setTimeout(() => {
+              pickedCards[0].classList.remove("turned");
+              pickedCards[1].classList.remove("turned");
+              pickedCards.splice(0, pickedCards.length);
+              clickable = true;
+            }, 700);
+          }
         }
-      }
-      if (memoryGame.isFinished()) {
-        setTimeout(
-          () =>
-            alert(`You won the game after ${memoryGame.pairsClicked} tries!`),
-          300
-        );
+        if (memoryGame.isFinished()) {
+          setTimeout(
+            () =>
+              alert(`You won the game after ${memoryGame.pairsClicked} tries!`),
+            300
+          );
+        }
       }
     });
   });
