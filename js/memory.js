@@ -6,7 +6,7 @@ class MemoryGame {
         this.pairsGuessed = 0;
     }
     shuffleCards(array) {
-        const currentIndex = array.length;
+        let currentIndex = array.length;
         let tempValue, randomIndex;
 
         while (0 !== currentIndex) {
