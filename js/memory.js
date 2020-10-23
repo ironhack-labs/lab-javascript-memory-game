@@ -1,5 +1,5 @@
 class MemoryGame {
-  constructor(cards){
+  constructor(cards) {
     this.cards = cards;
     this.pickedCards = [];
     this.pairsClicked = 0;
@@ -7,24 +7,39 @@ class MemoryGame {
   }
   
   shuffleCards(cards) {
-    // for(let i = this.cards.length — 1; i > 0; i--){
-    //   const j = Math.floor(Math.random() * i)
-    //   const temp = this.cards[i]
-    //   this.cards[i] = this.cards[j]
-    //   this.cards[j] = temp
-    // } 
-    // return temp;
-    
+
+    if (!cards) {
+      return undefined
+    }
+    var currentIndex = this.cards.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle.
+    while (0 !== currentIndex) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = this.cards[currentIndex];
+    this.cards[currentIndex] = this.cards[randomIndex];
+    this.cards[randomIndex] = temporaryValue;
   }
 
+  return this.cards;
+  
+    
+  }
 
   checkIfPair(card1, card2) {
     this.pairsClicked++
     if (card1 === card2) {
       this.pairsGuessed++
+      // this.pickedCards = [];
       return true;
 
     } else {
+      // this.pickedCards = [];
       return false;
     }
   }
