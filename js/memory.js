@@ -1,27 +1,32 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // this.pickedCards = pickedCards;
-    // this.pairsClicked = pairsClicked;
-    // this.pairsGuessed = pairsGuessed;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
-  shuffleCards(cardsObj) {
-    if (!cardsObj) {
+  shuffleCards() {
+    if (!this.cards) {
       return undefined;
     }
-    for (let i = 0; i < cardsObj.length; i++) {
-      let rand = Math.floor(Math.random() * cardsObj.length);
-      cardsObj.push(cardsObj[rand]);
-      cardsObj.splice(rand, 1);
+    for (let i = 0; i < this.cards.length; i++) {
+      let rand = Math.floor(Math.random() * this.cards.length);
+      this.cards.push(this.cards[i]);
+      this.cards.splice(i, 1);
+      this.cards.push(this.cards[rand]);
+      this.cards.splice(rand, 1);
     }
   }
-  checkIfPair(card1, card2) {}
-  isFinished() {}
-}
-
-let cardsArrTemp = cardsArr;
-for (let i = 0; i < cardsArrTemp.length; i++) {
-  let rand = Math.floor(Math.random() * cardsArrTemp.length);
-  cardsArrTemp.push(cardsArr[rand]);
-  cardsArr.splice(rand, 1);
+  checkIfPair(card1, card2) {
+    this.pairsClicked++;
+    if (card1.toString() === card2.toString()) {
+      this.pairsGuessed++;
+      return true;
+    } else {
+      return false;
+    }
+  }
+  isFinished() {
+    return this.pairsGuessed === this.cards.length / 2;
+  }
 }
