@@ -6,16 +6,16 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
   shuffleCards() {
-    let card, shuffle, i;
+    let cardGame, shuffle, i;
 
     if (!this.cards) {
       return undefined;
     }
     for (i = this.cards.length - 1; i > 0; i--) {
-      card = Math.floor(Math.random() * (i + 1));
+      cardGame = Math.floor(Math.random() * (i + 1));
       shuffle = this.cards[i];
-      this.cards[i] = this.cards[card];
-      this.cards[card] = shuffle;
+      this.cards[i] = this.cards[cardGame];
+      this.cards[cardGame] = shuffle;
     }
   }
 
