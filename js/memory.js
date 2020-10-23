@@ -7,27 +7,33 @@ class MemoryGame {
     
     // add the rest of the class properties here
   }
-  shuffleCards(array){}
+  shuffleCards(){
+    let card, shuffle, i; 	    
+
+    if (!this.cards) {
+        return undefined;
+      }
+   for (i = this.cards.length - 1; i > 0; i--) {
+        card = Math.floor(Math.random() * (i + 1));
+        shuffle = this.cards[i];
+        this.cards[i] = this.cards[card];
+        this.cards[card] = shuffle;
+      }
+}
 
   checkIfPair(card1, card2) {
-    this.pairsClicked ++;
+    this.pairsClicked +=1;
     if (card1 === card2) {
-      this.pairsGuessed ++;
+      this.pairsGuessed +=1;
       return true
     } else {
       return false
     }
   }
   isFinished() {
-    if(this.pairsGuessed === 12) {
-      //You Win
-      return true }
-    if(this.pairsClicked === 12) {
-      //You lose?
-    return false
+    if (this.pairsGuessed === (this.cards.length /2)) {
+      return true
     } else {
-    return false
-    //The games continues
-    }
+      return false
+    }}
   }
-}
