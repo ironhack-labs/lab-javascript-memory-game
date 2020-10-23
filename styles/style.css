@@ -95,3 +95,16 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#youwon {
+  margin-left: 29%;
+  text-align: center;
+  height: 450px;
+  width: 700px;
+  position: absolute;
+  
+  color:#2ECC71 ;
+  font-size: 10rem;
+  z-index: 100;
+  background-color:rgba(125, 60, 152, 0.9 ) ;
+}

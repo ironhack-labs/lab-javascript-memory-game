@@ -31,7 +31,6 @@ let counter = 0;
 let firstCard;
 let secondCard;
 let blockClick = true;
-let unturn = document.querySelectorAll('card');
 
 window.addEventListener('load', event => {
   let html = '';
@@ -68,10 +67,10 @@ window.addEventListener('load', event => {
             pairsClicked.innerHTML = memoryGame.pairsClicked; 
             pairsGuessed.innerHTML = memoryGame.pairsGuessed;
             blockClick = true;
-          }, 1000);
-          if(memoryGame.isFinished) {
-            
-          }
+            if(memoryGame.isFinished()) {
+              document.getElementById('youwon').innerHTML = 'you have won!';
+            }
+          }, 700);
         }
       }
     });
