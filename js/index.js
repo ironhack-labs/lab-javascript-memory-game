@@ -69,6 +69,9 @@ window.addEventListener('load', event => {
             pairsGuessed.innerHTML = memoryGame.pairsGuessed;
             blockClick = true;
           }, 1000);
+          if(memoryGame.isFinished) {
+            
+          }
         }
       }
     });

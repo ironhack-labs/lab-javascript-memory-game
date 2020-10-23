@@ -5,18 +5,18 @@ class MemoryGame {
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
-  shuffleCards(arrayOfCards) {
-    if (!arrayOfCards) {
+  shuffleCards() {
+    if (!this.cards) {
       return 
     }
     var j, x, i;
-    for (i = arrayOfCards.length - 1; i > 0; i--) {
+    for (i = this.cards.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
-        x = arrayOfCards[i];
-        arrayOfCards[i] = arrayOfCards[j];
-        arrayOfCards[j] = x;
+        x = this.cards[i];
+        this.cards[i] = this.cards[j];
+        this.cards[j] = x;
     }
-    return arrayOfCards;
+    //return arrayOfCards;
   }
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
