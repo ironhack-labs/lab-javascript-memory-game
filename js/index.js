@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -40,17 +41,27 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      turnCards(card)
-      console.log(`Card clicked: ${card.name}`);
+      
+      if (memoryGame.pickedCards.length === 2) {
+      let same = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"), memoryGame.pickedCards[1].getAttribute("data-card-name"));
+        if (!same) {
+          memoryGame.pickedCards[0].classList.remove("turned");
+          memoryGame.pickedCards[1].classList.remove("turned");
+        } else {
+          document.querySelector("#pairs-guessed").innerText = memoryGame.pairsGuessed;
+        }
+        memoryGame.pickedCards = []
+      }
+      memoryGame.pickedCards.push(card);
+      card.classList.add("turned")
+      console.log(`Card clicked: ${card.getAttribute("data-card-name")}`);
+      if (memoryGame.isFinished()) alert("All pairs reunited")
+      document.querySelector("#pairs-clicked").innerText = memoryGame.pairsClicked;
     });
   });
 });
 
-function turnCards(supe) {
-  supe.classList.toggle("turned")
-  memoryGame.pickedCards.push(supe.getAttribute("data-card-name"));
-  if (memoryGame.pickedCards.length === 2) memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
-  else if()
-}
+  
