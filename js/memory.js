@@ -10,14 +10,14 @@ class MemoryGame {
     if (!array) {
       return
     } else {
-      let ctr = array.length,
+      let counter = array.length,
         temp, index
 
-      while (ctr > 0) {
-        index = Math.floor(Math.random() * ctr)
-        ctr--
-        temp = array[ctr]
-        array[ctr] = array[index]
+      while (counter > 0) {
+        index = Math.floor(Math.random() * counter)
+        counter--
+        temp = array[counter]
+        array[counter] = array[index]
         array[index] = temp
       }
       return array
@@ -28,8 +28,7 @@ class MemoryGame {
     this.pairsClicked++
     if (card1 === card2) {
       this.pairsGuessed++
-      if (this.pairsGuessed === (this.cards.length / 2)) {
-        this.isFinished()
+      if (this.isFinished()) {
         return true
       } else {
         return true
@@ -40,9 +39,7 @@ class MemoryGame {
   }
 
   isFinished() {
-    if (this.pairsClicked === 0) {
-      return false
-    } else if (this.pairsGuessed !== (this.cards.length / 2)) {
+    if (this.pairsGuessed !== (this.cards.length / 2)) {
       return false
     } else {
       return true
