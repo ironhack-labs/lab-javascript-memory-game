@@ -38,7 +38,7 @@ $ git push origin master
 
 Create Pull Request so your TAs can check up your work.
 
-## Test, tets, test!
+## Test, test, test!
 
 We will test our game logic using Jasmine (at this point, you should be **Jasmine Masters**).
 
