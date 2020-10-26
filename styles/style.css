@@ -6,6 +6,7 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+
 #memory-board {
   background: #dddddd;
   width: 800px;
@@ -16,11 +17,11 @@ body {
   box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
 }
 
+
 .card {
   display: inline-block;
   perspective: 300px;
   transform-style: preserve-3d;
-
   position: relative;
 }
 

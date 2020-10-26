@@ -27,7 +27,9 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+
 window.addEventListener('load', event => {
+  memoryGame.shuffleCards()
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -35,15 +37,45 @@ window.addEventListener('load', event => {
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
   });
-
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
-
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    document.querySelector('#memory-board').innerHTML = html;
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.querySelectorAll('.card div').forEach(div =>{
+          div.classList.toggle("front")
+          div.classList.toggle("back")
+        })
+        memoryGame.pickedCards.push(card)
+        if(memoryGame.pickedCards.length === 2){
+          let carta1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+          let carta2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
+          if (memoryGame.checkIfPair(carta1, carta2)){
+              memoryGame.pickedCards[0].style.visibility = "hidden"
+              memoryGame.pickedCards[1].style.visibility = "hidden"
+            let pairsGuessedText = document.getElementById("pairs-guessed")
+            pairsGuessedText.innerHTML++;
+            let pairsClickedText= document.getElementById("pairs-clicked") ;
+            pairsClickedText.innerHTML++
+            memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
+            //memoryGame.pickedCards =[];
+          }else if (!memoryGame.checkIfPair(carta1, carta2)){
+            let pairsClickedText= document.getElementById("pairs-clicked") ;
+            pairsClickedText.innerHTML++
+            memoryGame.pickedCards.forEach(div =>{
+              div.querySelectorAll(".card div").forEach(div =>{
+                div.classList.toggle("front")
+                div.classList.toggle("back")
+              })
+            })
+            memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
+            }
+          }
+        let cardName = card.getAttribute("data-card-name");
+        console.log(`Card clicked: ${cardName}`);
+        if(memoryGame.isFinished()){
+          setTimeout(() => {
+            alert("You win!");
+          }, 1000);
+        }
+      });
     });
-  });
-});
+  })
