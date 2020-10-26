@@ -5,7 +5,7 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
-    
+    this.shuffleCards();
   }
   shuffleCards() {
     let numRandom =0;
@@ -15,7 +15,7 @@ class MemoryGame {
          aux = this.cards[i];
          this.cards[i] = this.cards[numRandom];
          this.cards[numRandom] =aux;
-         console.log(this.cards);
+         
        }
      
      }
