@@ -17,7 +17,7 @@ class MemoryGame {
         this.cards[j] = k
     }
   }
-/*
+
   checkIfPair(card1, card2) {
     this.pairsClicked++
   if(card1===card2){
@@ -36,5 +36,5 @@ class MemoryGame {
     return true
   } 
   return false
-}*/
+}
 }
