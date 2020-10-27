@@ -9,14 +9,16 @@ class MemoryGame {
 
 
   shuffleCards() {
-    let i,j,k;
+    let i,j,k
+    let cardsMixed
     for (i = this.cards.length; i=0; i--) {
-        j = Math.floor(Math.random() * i);
-        k = this.cards[i - 1];
-        this.cards[i - 1] = this.cards[j];
-        this.cards[j] = k;
+        j = Math.floor(Math.random() * i)
+        k = this.cards[i - 1]
+        this.cards[i - 1] = this.cards[j]
+        this.cards[j] = k
     }
-    return this.cards
+    cardsMixed=this.cards
+    return cardsMixed
   }
 /*
   checkIfPair(card1, card2) {
