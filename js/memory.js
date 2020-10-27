@@ -27,9 +27,10 @@ class MemoryGame {
       return false
   }
   isFinished() {
-   if(this.cards.length=24)
+   let pairss=this.cards.length/2
+   if(this.cards.length = 24)
     return false
-   if(this.pairsGuessed = this.cards.length/2)
+   if(this.pairsGuessed = pairss)
       return true
     else
       return false

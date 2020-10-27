@@ -71,7 +71,7 @@ window.addEventListener('load', event => {
           memoryGame.pickedCards = []
         }
       }else
-        memoryGame.isFinished
+        memoryGame.isFinished()
     });
   });
 });
