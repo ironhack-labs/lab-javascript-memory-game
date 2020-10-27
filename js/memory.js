@@ -36,6 +36,7 @@ class MemoryGame {
     }
     else if (this.pairsGuessed === (this.cards.length/2)){
       return true
+      alert ("HAS GANADO")
     }
     else {
       return false
