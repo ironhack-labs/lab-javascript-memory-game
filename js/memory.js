@@ -29,7 +29,7 @@ class MemoryGame {
   isFinished() {
    if(this.cards.length=24)
     return false
-   else if(this.pairsGuessed = this.cards.length/2)
+   if(this.pairsGuessed = 12)
       return true
     else
        return false
