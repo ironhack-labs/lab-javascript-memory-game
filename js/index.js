@@ -49,7 +49,7 @@ window.addEventListener('load', event => {
       card.classList.toggle('turned')
       memoryGame.pickedCards.push(card)
 
-      if(memoryGame.pickedCards.length===2){
+      if(memoryGame.pickedCards.length===2 && memoryGame.pairGuessed!==memoryGame.cards.length/2){
         let card1 = memoryGame.pickedCards[0].getAttribute("data-card-name")
         let card2 = memoryGame.pickedCards[1].getAttribute("data-card-name")
 
@@ -70,7 +70,8 @@ window.addEventListener('load', event => {
           })
           memoryGame.pickedCards = []
         }
-      }
+      }else
+        memoryGame.isFinished
     });
   });
 });
