@@ -34,12 +34,3 @@ class MemoryGame {
   }
 }
 
-  isFinished() {
-
-    let pairs = this.cards.length/2
-    
-    if(this.pairsGuessed = pairs){
-    return true
-  } 
-  return false
-} 
