@@ -8,14 +8,25 @@ class MemoryGame {
   }
 
 
-  shuffleCards() {
-    let  ramdo
+  shuffleCards() {}
+
+
+  checkIfPair(card1, card2) {
+    this.pairsClicked++
+  if(card1===card2){
+    this.pairsGuessed++
+    return true
+
+  } else {
+    return false
 
   }
+  }
+  isFinished() {
+  let pairs = this.cards.length/2
 
-
-
-
-  checkIfPair(card1, card2) {}
-  isFinished() {}
+  if(this.pairsGuessed = pairs){
+    return true
+  } 
+  return false
 }
