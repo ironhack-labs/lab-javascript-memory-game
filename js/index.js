@@ -75,18 +75,6 @@ window.addEventListener('load', event => {
 
         }
 
-
-        //   if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name') ,memoryGame.pickedCards[1].getAttribute('data-card-name')) {
-        //     memoryGame.pickedCards[0].classList.add('bloqued')
-        //     memoryGame.pickedCards[1].classList.add('bloqued')
-        //     memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length)
-        //   } else {
-        //     memoryGame.pickedCards[0].classList.add('back')
-        //     memoryGame.pickedCards[1].classList.add('back')
-        //     memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length)
-        //   }
-
-        // } else {
       } else {
 
         console.log('finished')
