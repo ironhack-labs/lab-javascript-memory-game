@@ -38,12 +38,31 @@ window.addEventListener('load', event => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
+      
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2) {
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML)) {
+          if (memoryGame.isFinished()) {
+            alert("PARTIDA TERMINADA, GANASTE!!");
+          }
+        }
+        else {
+          memoryGame.pickedCards[0].classList.toggle('turned');
+          memoryGame.pickedCards[1].classList.toggle('turned');
+        }
+        memoryGame.pickedCards.pop();
+        memoryGame.pickedCards.pop();
+      } 
+
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      console.log(memoryGame.pickedCards);
     });
   });
 });
