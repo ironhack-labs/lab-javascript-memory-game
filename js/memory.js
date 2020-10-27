@@ -9,19 +9,13 @@ class MemoryGame {
 
 
   shuffleCards() {
-  }
-
-
-
-  checkIfPair(card1, card2) {
-    this.pairsClicked++
-    if(card1===card2){
-      this.pairsGuessed++
-      return true
-  
-    } else {
-      return false
+    let  ramdo
 
   }
+
+
+
+
+  checkIfPair(card1, card2) {}
+  isFinished() {}
 }
-
