@@ -15,8 +15,56 @@ body {
   margin: 0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
+
+}
+/* .restart {
+  margin-left: 50%;
+  position: absolute;
+  margin-top: 13%;
+  height: 40px;
+  width: 100px;
+} */
+
+.playAgain {
+  margin-left: 33%;
+  position: absolute;
+  margin-top: 25%;
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  /* visibility: hidden; */
 }
 
+.playAgain:hover {
+background-color: #ff0000;
+color: #fff;
+border: 1px solid #fff;
+  /* visibility: hidden; */
+}
+
+#win{
+  margin-left: 39%;
+  position: absolute;
+  margin-top: 18%;
+  height: 150px;
+  width: 300px;
+  text-align: center;
+  background-color: red;
+  display: flex;
+  align-items: flex-start;
+  z-index: 1000;
+  border-radius: 20px;
+  color: #fff;
+  border: 1px solid #ff0000;
+  visibility: hidden;
+}
+#win p{
+font-weight: 200;
+font-size: 1em;
+}
 
 .card {
   display: inline-block;

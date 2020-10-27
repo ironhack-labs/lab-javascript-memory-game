@@ -1,3 +1,5 @@
+
+  
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -26,6 +28,22 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let divWin = document.querySelector("#win")
+
+let btnPlayAgain = document.querySelector(".playAgain")
+    btnPlayAgain.addEventListener("click", ()=>{
+      divWin.style.visibility = "hidden"
+      memoryGame.pairsClicked = 0
+      memoryGame.pairsGuessed = 0
+      document.getElementById("pairs-clicked").textContent = memoryGame.pairsClicked
+      document.getElementById("pairs-guessed").textContent = memoryGame.pairsGuessed
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.toggle("turned")
+      })
+      memoryGame.shuffleCards()
+    })
+
+
 
 
 window.addEventListener('load', event => {
@@ -40,17 +58,12 @@ window.addEventListener('load', event => {
     document.querySelector('#memory-board').innerHTML = html;
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
-        card.querySelectorAll('.card div').forEach(div =>{
-          div.classList.toggle("front")
-          div.classList.toggle("back")
-        })
+        card.classList.toggle("turned")
         memoryGame.pickedCards.push(card)
         if(memoryGame.pickedCards.length === 2){
           let carta1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
           let carta2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
           if (memoryGame.checkIfPair(carta1, carta2)){
-              memoryGame.pickedCards[0].style.visibility = "hidden"
-              memoryGame.pickedCards[1].style.visibility = "hidden"
             let pairsGuessedText = document.getElementById("pairs-guessed")
             pairsGuessedText.innerHTML++;
             let pairsClickedText= document.getElementById("pairs-clicked") ;
@@ -61,10 +74,9 @@ window.addEventListener('load', event => {
             let pairsClickedText= document.getElementById("pairs-clicked") ;
             pairsClickedText.innerHTML++
             memoryGame.pickedCards.forEach(div =>{
-              div.querySelectorAll(".card div").forEach(div =>{
-                div.classList.toggle("front")
-                div.classList.toggle("back")
-              })
+              setTimeout(()=>{
+                div.classList.toggle("turned")
+              },500)
             })
             memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
             }
@@ -73,9 +85,10 @@ window.addEventListener('load', event => {
         console.log(`Card clicked: ${cardName}`);
         if(memoryGame.isFinished()){
           setTimeout(() => {
-            alert("You win!");
+            divWin.style.visibility = "visible"
           }, 1000);
         }
       });
     });
   })
+
