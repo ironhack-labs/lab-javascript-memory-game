@@ -3,8 +3,8 @@ class MemoryGame {
     this.cards = cards;
     // add the rest of the class properties here
     this.pickedCards = []
-    this.pairClicked = 0
-    this.pairGuessed = 0
+    this.pairsClicked = 0
+    this.pairsGuessed = 0
   }
 
 
