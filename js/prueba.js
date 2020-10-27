@@ -25,42 +25,26 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-window.addEventListener('load', event => {
-  let html = '';
-  memoryGame.cards.forEach(pic => {
-    html += `<div class="card" data-card-name="${pic.name}">`;
-    html += `<div class="back" name="${pic.img}"></div>`;
-    html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
-    html += `</div>`;
-  });
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-  // Bind the click event of each element to a function
- let pepe = document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // let cards = document.querySelectorAll('.card');
-      // TODO: write some code here
-     
-     
-      card.setAttribute('class', 'card turned')
-      
-      // card.classList.toggle();
-      console.log(`Card clicked: ${card}`);
-    });
- });
-  
-   
-  
- 
- const cartas = document.querySelectorAll('.card');
-console.log(cartas);
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
+  return array;
+}
 
-
-
-
-
+// Used like so
+var arr = [2, 11, 37, 42];
+shuffle(arr);
+console.log(arr);
