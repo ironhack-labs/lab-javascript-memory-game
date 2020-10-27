@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+memoryGame.shuffleCards()
+
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -42,8 +44,57 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+
+      if (memoryGame.isFinished() === false) {
+
+        if (memoryGame.pickedCards.length < 2) {
+
+          memoryGame.pickedCards.push(card)
+          card.classList.add('turned')
+
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
+
+            memoryGame.pickedCards[0].classList.add('bloqued')
+
+            memoryGame.pickedCards[1].classList.add('bloqued')
+
+            memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length)
+          } else {
+
+            memoryGame.pickedCards[0].classList.add('back')
+
+            memoryGame.pickedCards[1].classList.add('back')
+
+            memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length)
+          }
+          // const fstCard = memoryGame.pickedCards[0]
+          // const sndCard = memoryGame.pickedCards[1]
+          // const fstCardName = fstCard.getAttribute('data-card-name')
+          // const sndCardName = sndCard.getAttribute('data-card-name')
+          // console.log(fstCardName, sndCardName)
+
+        }
+
+
+        //   if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name') ,memoryGame.pickedCards[1].getAttribute('data-card-name')) {
+        //     memoryGame.pickedCards[0].classList.add('bloqued')
+        //     memoryGame.pickedCards[1].classList.add('bloqued')
+        //     memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length)
+        //   } else {
+        //     memoryGame.pickedCards[0].classList.add('back')
+        //     memoryGame.pickedCards[1].classList.add('back')
+        //     memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length)
+        //   }
+
+        // } else {
+      } else {
+
+        console.log('finished')
+
+      }
+
+    })
+
   });
+
 });
