@@ -63,7 +63,7 @@ window.addEventListener('load', event => {
           memoryGame.pickedCards.forEach(elm => {
             setTimeout(() => {
               elm.classList.toggle('turned');
-            }, 1000);
+            }, 750);
           });
           memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
         }
