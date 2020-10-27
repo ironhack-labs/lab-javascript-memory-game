@@ -59,7 +59,7 @@ border: 1px solid #fff;
   border-radius: 20px;
   color: #fff;
   border: 1px solid #ff0000;
-  visibility: visible;
+  visibility: hidden;
 }
 #win p{
 font-weight: 200;
