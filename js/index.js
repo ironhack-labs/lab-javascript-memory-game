@@ -52,18 +52,20 @@ window.addEventListener('load', event => {
       } else if (memoryGame.pickedCards.length === 2) {
           if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML) === false) {
             console.log("no coinciden")
-            card.classList.remove("turned")
+            memoryGame.pickedCards[0].classList.remove("turned")
+            memoryGame.pickedCards[1].classList.remove("turned")
+            //card.classList.remove("turned")
             memoryGame.pickedCards = []
             
           } else if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML) === true){
             console.log("coinciden")
-            card.classList.add("blocked")
+            memoryGame.pickedCards[0].classList.add("blocked")
+            memoryGame.pickedCards[1].classList.add("blocked")
             memoryGame.pickedCards = []
+            memoryGame.pairsGuessed++
+
           }
-      } else if (memoryGame.pickedCards.length > 2) {
-        console.log("Te has pasao")
-        card.classList.remove("turned")
-      }
+      } 
       
       console.log(`Card clicked: ${card}`);
     });
