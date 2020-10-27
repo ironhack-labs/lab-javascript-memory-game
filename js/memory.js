@@ -19,7 +19,7 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    this.pairsClicked+=1
+    this.pairsClicked++
   if(card1===card2){
     this.pairsGuessed++
     return true
