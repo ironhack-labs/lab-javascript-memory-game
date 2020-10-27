@@ -20,21 +20,20 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     this.pairsClicked++
-  if(card1===card2){
+   if(card1===card2){
     this.pairsGuessed++
     return true
-
-  } else {
-    return false
-
-  }
+    } else {
+      return false
+   }
   }
   isFinished() {
-  let pairs = this.cards.length/2
-
-  if(this.pairsGuessed = pairs){
-    return true
-  } 
-  return false
-}
+   let pairs = this.cards.length/2
+   if(this.pairsGuessed = pairs){
+      return true
+    }
+    else{ 
+       return false
+   }
+  }
 }
