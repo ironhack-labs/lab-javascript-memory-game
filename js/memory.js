@@ -23,17 +23,15 @@ class MemoryGame {
    if(card1===card2){
     this.pairsGuessed++
     return true
-    } else {
+    } else
       return false
-   }
   }
   isFinished() {
-   let pairs = this.cards.length/2
-   if(this.pairsGuessed = pairs){
+   if(this.cards.length=24)
+    return false
+   else if(this.pairsGuessed = this.cards.length/2)
       return true
-    }
-    else{ 
+    else
        return false
-   }
   }
 }
