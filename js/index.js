@@ -43,6 +43,9 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle("turned") //Gira la carta pero no la vuelve a girar al volver a hacer click
+
+     
       console.log(`Card clicked: ${card}`);
     });
   });
