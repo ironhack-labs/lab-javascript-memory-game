@@ -8,9 +8,19 @@ class MemoryGame {
   }
 
 
-  shuffleCards() {}
+  shuffleCards() {
+    let i,j,k;
+    for (i = this.cards.length; i=0; i--) {
+        j = Math.floor(Math.random() * i);
+        k = this.cards[i - 1];
+        this.cards[i - 1] = this.cards[j];
+        this.cards[j] = k;
+    }
+  }
 
 
+
+/*
   checkIfPair(card1, card2) {
     this.pairsClicked++
   if(card1===card2){
@@ -29,4 +39,4 @@ class MemoryGame {
     return true
   } 
   return false
-}
+}*/
