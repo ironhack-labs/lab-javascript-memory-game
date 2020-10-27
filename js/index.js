@@ -29,7 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
-  memoryGame.cards.forEach(pic => {
+  memoryGame.shuffleCards(cards).forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
@@ -43,31 +43,35 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
 
-      // TODO: write some code here
+      // .dataset.cardName
+      card.classList.toggle("turned")
 
+      memoryGame.pickedCards.push(card)
 
+      if (memoryGame.pickedCards.length === 2) {
 
+        document.querySelector("#pairs-clicked").innerHTML = memoryGame.pairsClicked
 
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)) {
 
-      memoryGame.checkIfPair(card1, card2)
-      console.log(`Card clicked: ${card}`);
+          memoryGame.pickedCards = []
 
+          document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed
 
+        }
+
+        else {
+
+          setTimeout(() => {
+            memoryGame.pickedCards.forEach(elem => elem.classList.remove('turned'))
+          },
+
+            700)
+
+        }
+
+      }
 
     });
-    card.classList.toggle('turned')
-    const cardName = card.getAttribute('data-card-name')
-    memoryGame.pickedCards.push(cardName)
-    console.log(memoryGame.pickedCards)
-    console.log('leng is: ${memoryGame.pickedCards.length}')
-
-    if (memoryGame.pickedCards.length === 2) {
-
-      if (!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]))
-        console.log(memoryGame.pickedCards)
-
-      firstSwapCard.classList.toggle('turned')
-      setTimeout(() => card.classList.toggle('turned'), 700)
-    }
   });
 });
