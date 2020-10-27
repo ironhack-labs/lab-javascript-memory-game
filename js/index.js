@@ -44,30 +44,30 @@ window.addEventListener('load', event => {
     card.addEventListener('click', () => {
       //card.classList.add("turned")
       //card.classList.remove("turned")
-      
-      if (memoryGame.pickedCards.length < 2) {
-        card.classList.add("turned")
-        memoryGame.pickedCards.push(card)
-        console.log(memoryGame.pickedCards)
-      } else if (memoryGame.pickedCards.length === 2) {
+      if (memoryGame.pairsGuessed < 22) {
+        if (memoryGame.pickedCards.length < 2) {
+          card.classList.add("turned")
+          memoryGame.pickedCards.push(card)
+          console.log(memoryGame.pickedCards)
+        } else if (memoryGame.pickedCards.length === 2) {
           if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML) === false) {
             console.log("no coinciden")
             memoryGame.pickedCards[0].classList.remove("turned")
             memoryGame.pickedCards[1].classList.remove("turned")
             //card.classList.remove("turned")
             memoryGame.pickedCards = []
-            
-          } else if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML) === true){
+              
+          } else if (memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML) === true) {
             console.log("coinciden")
             memoryGame.pickedCards[0].classList.add("blocked")
             memoryGame.pickedCards[1].classList.add("blocked")
             memoryGame.pickedCards = []
-            memoryGame.pairsGuessed++
 
           }
-      } 
-      
-      console.log(`Card clicked: ${card}`);
+        }
+        
+        console.log(`Card clicked: ${card}`);
+      } else alert ("GAME COMPLETED")
     });
   });
 });
