@@ -68,7 +68,25 @@ window.addEventListener('load', event => {
       }
 
       if (memoryGame.isFinished()) {          //  IS FINISHED FUNCTION
+
+        setTimeout(() => {
+
+          //  RESET BOARD
+          document.querySelectorAll('.blocked').forEach(blockedCard => {
+            blockedCard.setAttribute('class', 'card')
+          })
+        }, 500)
+
+        //  WINNER MESSAGE
         setTimeout(() => { alert('YOU ARE A BEAST!!') }, 500)
+
+        //  RESET SCORES
+        memoryGame.pairsGuessed = 0
+        memoryGame.pairsClicked = 0
+        setTimeout(() => {
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+        }, 500)
 
       }
     })
