@@ -28,6 +28,9 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+
+  memoryGame.shuffleCards()   // SHUFFLE CARDS
+
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -42,8 +45,35 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+      card.classList.add('turned')
+
+      document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+      document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+
+      if (memoryGame.pickedCards.length < 2) { memoryGame.pickedCards.push(card) }
+
+      if (memoryGame.pickedCards.length === 2) {
+
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {     //  CHECK IF PAIR
+          memoryGame.pickedCards[0].classList.toggle('blocked')
+          memoryGame.pickedCards[1].classList.toggle('blocked')
+          memoryGame.pickedCards = []
+        }
+        else {
+          let firstCard = memoryGame.pickedCards[0]
+          let secondCard = memoryGame.pickedCards[1]
+          setTimeout(() => { firstCard.classList.remove('turned'); secondCard.classList.remove('turned') }, 700)
+          memoryGame.pickedCards = []
+        }
+      }
+
+      if (memoryGame.isFinished()) {          //  IS FINISHED FUNCTION
+        setTimeout(() => { alert('YOU ARE A BEAST!!') }, 500)
+
+      }
+    })
+
+  })
+
+})
+
