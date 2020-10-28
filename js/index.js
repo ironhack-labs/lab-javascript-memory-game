@@ -54,7 +54,8 @@ window.addEventListener('load', event => {
 
       if (memoryGame.pickedCards.length === 2) {
 
-        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {     //  CHECK IF PAIR
+        //  CHECK IF PAIR FUNCTION
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {     
           memoryGame.pickedCards[0].classList.toggle('blocked')
           memoryGame.pickedCards[1].classList.toggle('blocked')
           memoryGame.pickedCards = []
@@ -67,7 +68,8 @@ window.addEventListener('load', event => {
         }
       }
 
-      if (memoryGame.isFinished()) {          //  IS FINISHED FUNCTION
+      //  IS FINISHED FUNCTION
+      if (memoryGame.isFinished()) {          
 
         setTimeout(() => {
 
