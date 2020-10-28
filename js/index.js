@@ -25,7 +25,9 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+// create an instance of the MemoryGame class
 const memoryGame = new MemoryGame(cards);
+console.log('new game created: ', memoryGame);
 
 window.addEventListener('load', event => {
   let html = '';
@@ -38,6 +40,11 @@ window.addEventListener('load', event => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  // create a helper function that we will use to toggle classes "front" and "back" on the cards' children divs
+
+  //function toggle(element, classes) {
+  //classes.forEach(className => element.classList.toggle(className));
+  //}
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
@@ -46,7 +53,11 @@ window.addEventListener('load', event => {
       card.querySelectorAll('.card div').forEach(div => {
         div.classList.toggle('front');
         div.classList.toggle('back');
-      })
+      });
+      //const clicked = document.getElementById("pairs-clicked");
+      //const guessed = document.getElementById("pairs-guessed");
+      //toggle(card.children[0], ["back", "front"]);
+      //toggle(card.children[1], ["back", "front"]);
 
       memoryGame.pickedCards.push(card);
 
@@ -83,3 +94,22 @@ window.addEventListener('load', event => {
     });
   });
 });
+//if (memoryGame.pickedCards.length === 2) {
+//const firstInPair = memoryGame.pickedCards[0];
+//const secondInPair = memoryGame.pickedCards[1];
+//const cardName1 = firstInPair.getAttribute("data-card-name");
+//const cardName2 = secondInPair.getAttribute("data-card-name");
+// if they are not a pair
+//if (!memoryGame.checkIfPair(cardName1, cardName2)) {
+//setTimeout(() => {
+//toggle(firstInPair.children[0], ["back", "front"]);
+//toggle(firstInPair.children[1], ["back", "front"]);
+//toggle(secondInPair.children[0], ["back", "front"]);
+//toggle(secondInPair.children[1], ["back", "front"]);
+//}, 1000);
+//}
+// whether there are a pair or not, empty the pickedCards array, and update the "pairs clicked" and "pairs guessed" in the DOM
+//memoryGame.pickedCards = [];
+//clicked.innerHTML = memoryGame.pairsClicked;
+//guessed.innerHTML = memoryGame.pairsGuessed;
+//}
