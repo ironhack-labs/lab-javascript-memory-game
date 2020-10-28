@@ -54,17 +54,17 @@ window.addEventListener('load', event => {
 
       memoryGame.pickedCards.push(card);
      
-        if (memoryGame.pickedCards.length == 2) {
+         if (memoryGame.pickedCards.length == 2) {
           if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
-            memoryGame.pickedCards = []
+            memoryGame.pickedCards = [];
 
           } else {
             setTimeout(() => {
               memoryGame.pickedCards.forEach(pickedCard => {
-                pickedCard.classList.remove('turned')
+                pickedCard.classList.remove('turned');
               });
-              memoryGame.pickedCards = []
-            }, 1111)
+              memoryGame.pickedCards = [];
+            }, 1150);
           }
         document.querySelector('#pairs-clicked').textContent = memoryGame.pairsClicked;
         document.querySelector('#pairs-guessed').textContent = memoryGame.pairsGuessed;
@@ -72,7 +72,7 @@ window.addEventListener('load', event => {
       if (memoryGame.isFinished()) {
       document.getElementById("tada-sound").play()          
         }
-      })
+      });
   })
   })
 
