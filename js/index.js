@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -61,6 +62,20 @@ window.addEventListener("load", (event) => {
             card1.classList.remove("turned");
             card2.classList.remove("turned");
           }, 1000);
+        }
+
+        memoryGame.pickedCards = [];
+
+        const score1 = document.getElementById("pairs-clicked");
+        score1.innerText = memoryGame.pairsClicked;
+        const score2 = document.getElementById("pairs-guessed");
+        score2.innerText = memoryGame.pairsGuessed;
+
+        if (memoryGame.isFinished() === true) {
+          setTimeout(function () {
+            alert("Congrats! You won!");
+            memoryGame.shuffleCards();
+          }, 1500);
         }
       }
 
