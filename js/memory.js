@@ -16,6 +16,7 @@ class MemoryGame {
   checkIfPair(card1, card2) {
 
     if (card1, card2) {
+
       document.querySelector('.pairs-clicked')
       //add1
 
