@@ -49,21 +49,22 @@ window.addEventListener('load', event => {
       document.getElementById("pop-sound").play()   
        
       card.classList.add('turned');
+     
          
 
       memoryGame.pickedCards.push(card);
      
         if (memoryGame.pickedCards.length == 2) {
-          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
-            memoryGame.pickedCards = [];
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name') memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
+            memoryGame.pickedCards = []
 
           } else {
             setTimeout(() => {
               memoryGame.pickedCards.forEach(pickedCard => {
                 pickedCard.classList.remove('turned');
               });
-              memoryGame.pickedCards = [];
-            }, 1150);
+              memoryGame.pickedCards = []
+            }, 1111)
           }
         document.querySelector('#pairs-clicked').textContent = memoryGame.pairsClicked;
         document.querySelector('#pairs-guessed').textContent = memoryGame.pairsGuessed;
@@ -71,8 +72,8 @@ window.addEventListener('load', event => {
       if (memoryGame.isFinished()) {
       document.getElementById("tada-sound").play()          
         }
-      });
+      })
 
-  });
-  });
+  })
+  })
 
