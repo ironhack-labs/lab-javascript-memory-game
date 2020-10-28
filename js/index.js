@@ -43,7 +43,32 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      
+      if (memoryGame.isFinished()) {
+        alert('Congratulations, you won the game!')
+      }
+      
+      card.classList.add('turned')
+      memoryGame.pickedCards.push(card)
+      
+      if (memoryGame.pickedCards.length === 2) {
+        const isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0].innerHTML, memoryGame.pickedCards[1].innerHTML)
+        document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked
+        document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed
+        if (isPair) {
+          memoryGame.pickedCards[0].classList.add('blocked')
+          memoryGame.pickedCards[1].classList.add('blocked')
+          memoryGame.pickedCards = []
+        } else {
+          const currentPicks = memoryGame.pickedCards
+          setTimeout(() => currentPicks[0].classList.remove('turned'), 1000)
+          setTimeout(() => currentPicks[1].classList.remove('turned'), 1000)
+          memoryGame.pickedCards = []
+        }
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+
