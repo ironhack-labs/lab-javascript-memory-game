@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -43,6 +44,15 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      // Al parecer hay que sacar la card 1 fuera del eventlistener para que no la reinicie. 
+      // para seleccionar el nombre usar .getAttribute("class");
+
+      card.classList.toggle("turned")
+      if (memoryGame.checkIfPair(card1, card2) == true) {
+        card.classList.toggle("front")
+      } else {
+        card.classList.toggle("back")
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
