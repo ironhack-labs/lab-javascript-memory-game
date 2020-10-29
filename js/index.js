@@ -43,25 +43,26 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-
       card.classList.toggle("turned")
+      // Extraer las cartas del evento para evitar el reinicio.
       memoryGame.pickedCards.push(card)
-      if (memoryGame.pickedCards.lenght === 2){
-        const card1 = memoryGame.pickedCards[0]
 
-        console.log({...card1})
-        
-        const card2 = memoryGame.pickedCards[1]
-        const comparation = memoryGame.checkIfPair(card1.name,card2.name)
+      if (memoryGame.pickedCards.length === 2){
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name') 
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name') 
+        const comparation = memoryGame.checkIfPair(card1,card2)
         if (comparation === true) {
-          card1.classList.add("front")
-          card2.classList.add("front")
+          card.classList.add("blocked")
         } else {
-          card1.classList.remove("turned")
-          card2.classList.remove("turned")
+            memoryGame.pickedCards.forEach(card => {
+            setTimeout(() => {
+              card.classList.remove('turned')
+            }, 750)
+          })
         }
+        memoryGame.pickedCards = []
       } 
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+    })
+  })
+})
+
