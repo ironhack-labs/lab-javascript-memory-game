@@ -27,7 +27,6 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-
 window.addEventListener('load', event => {
   memoryGame.shuffleCards()
   let html = '';
@@ -41,8 +40,7 @@ window.addEventListener('load', event => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  let hero1 = ''
-  let hero2 = ''
+
   const cardsArr = []
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
@@ -53,7 +51,6 @@ window.addEventListener('load', event => {
         cardsArr.push(card.getAttribute('data-card-name'))
         let pair = false
 
-        setTimeout(() => {
 
           if(cardsArr.length === 2){
             pair = memoryGame.checkIfPair(cardsArr[0], cardsArr[1])
@@ -62,10 +59,12 @@ window.addEventListener('load', event => {
               const turnedArr = [...turned]
               turnedArr.forEach(turnedCard => {
                 if(!turnedCard.className.includes('blocked')){
-                  turnedCard.className = 'card'
+                  setTimeout(() => {
+                    turnedCard.className = 'card'
+                  },1000)
+                  
                 }
-                cardsArr.pop()
-                cardsArr.pop()
+                cardsArr.length = 0
               })
             }else {
               const turned = document.getElementsByClassName('card turned')
@@ -73,8 +72,7 @@ window.addEventListener('load', event => {
               turnedArr.forEach(turnedCard => {
                 turnedCard.className = 'card turned blocked'
               })
-              cardsArr.pop()
-              cardsArr.pop()
+              cardsArr.length = 0
             }
           }
 
@@ -87,18 +85,16 @@ window.addEventListener('load', event => {
           const turnedCards = document.getElementsByClassName('card turned')
           const turnedArr = [...turnedCards]
           turnedArr.forEach(card => {
-            card.className = 'card'
+            setTimeout(() => {
+              card.className = 'card'
+              
+            },1000)
+            
           })
-          memoryGame.shuffleCards()
-          memoryGame.pairsClicked = 0
-          memoryGame.pairsGuessed = 0
+              memoryGame.shuffleCards()
+              memoryGame.pairsClicked = 0
+              memoryGame.pairsGuessed = 0
         }
-
-        
-        },800)
-
-  
-
     });
   });
 
