@@ -29,7 +29,8 @@ class MemoryGame {
   }
   checkIfPair(card1, card2) {
      this.pairsClicked++
-     if(card1 == card2) {
+     console.log(card1, card2)
+     if(card1.getAttribute('data-card-name') == card2.getAttribute('data-card-name')) {
        this.pairsGuessed++
        return true
      }else {
@@ -38,6 +39,6 @@ class MemoryGame {
   }
   isFinished() {
 
-    return this.pairsGuessed == 8 || this.pairsGuessed == this.pairsClicked;
+    return this.pairsGuessed == 8 
   }
 }

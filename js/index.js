@@ -40,19 +40,53 @@ window.addEventListener('load', event => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-      if(memoryGame.pickedCards < 2) {
-        memoryGame.pickedCards.push(card)
-        card.classList.toggle('turned')
-      } else {
-        let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+      if(memoryGame.isFinished()) {alert('won')}
+      console.log(`Card clicked: ${card.getAttribute('data-card-name')}`)
+      document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked/2
+      if(memoryGame.pickedCards.length == 2) {
+       
+        let pairs = memoryGame.pickedCards;
+        console.log(memoryGame.checkIfPair(pairs[0], pairs[1]))
+        if(!memoryGame.checkIfPair(pairs[0], pairs[1])){
+
+               pairs.forEach(card => {card.classList.remove('turned')})
+               memoryGame.pickedCards = [];
+        } else {
+           document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed/2
+          pairs.forEach(card => {card.classList.add('turned')})
+          memoryGame.pickedCards = [];
+        console.log(memoryGame.pickedCards)
+      }
+      
+    } else {
+      
+      memoryGame.pickedCards.push(card)
+      card.classList.toggle('turned')
+      console.log(memoryGame.pickedCards)
+    }
+      
+      
+    
+      
+      /*
+      
+      else {
+        let pairs = memoryGame.pickedCards;
+        if(!memoryGame.checkIfPair(pairs[0], pairs[1])){
+               pairs.forEach(card => {card.classList.remove('turned')})
+               memoryGame.pickedCards = [];
+        } else {
+          pairs.forEach(card => {card.classList.add('turned')})
+          memoryGame.pickedCards = [];
+        }
         
       }
+      */
       
       
       
