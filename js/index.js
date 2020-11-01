@@ -25,7 +25,9 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+const memoryGame = new MemoryGame(cards)
+memoryGame.shuffleCards(memoryGame.cards)
+ 
 
 window.addEventListener('load', event => {
   let html = '';
@@ -44,6 +46,16 @@ window.addEventListener('load', event => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards < 2) {
+        memoryGame.pickedCards.push(card)
+        card.classList.toggle('turned')
+      } else {
+        let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+        
+      }
+      
+      
+      
     });
   });
 });
