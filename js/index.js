@@ -67,7 +67,7 @@ window.addEventListener('load', (event)=> {
       }
 
       if(memoryGame.isFinished()) {
-        document.body.innerHTML = '<h1>YOU WON!!!<h1>';
+        document.body.innerHTML = '<h1>YOU WON 🏆<h1>';
       }
     });
   });
