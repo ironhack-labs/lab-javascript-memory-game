@@ -22,14 +22,15 @@ const cards = [
   { name: 'spiderman', img: 'spiderman.jpg' },
   { name: 'superman', img: 'superman.jpg' },
   { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' }
+  { name: 'thor', img: 'thor.jpg' },
 ];
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', event => {
+window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards()
   let html = '';
-  memoryGame.cards.forEach(pic => {
+  memoryGame.cards.forEach((pic) => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
@@ -40,10 +41,34 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
+  document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card);
+      if (memoryGame.pickedCards.length === 2) {
+        if (
+          memoryGame.checkIfPair(
+            memoryGame.pickedCards[0].getAttribute('data-card-name'),
+            memoryGame.pickedCards[1].getAttribute('data-card-name')
+          ) === true
+        ) {
+          memoryGame.pickedCards.forEach(function (element) {
+            element.classList.add('blocked');
+          });
+        } else {
+          memoryGame.pickedCards.forEach((card) => {
+            setTimeout(function () {
+              card.classList.toggle('turned');
+            }, 900);
+          });
+        }
+        document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked
+        document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed
+        memoryGame.pickedCards = [];
+        if (memoryGame.isFinished() === true) {
+          alert('You won!');
+        }
+      }
     });
   });
 });
