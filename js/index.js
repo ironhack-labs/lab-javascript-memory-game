@@ -45,9 +45,6 @@ window.addEventListener("load", (event) => {
     card.addEventListener("click", () => {
       // TODO: write some code here
 
-      // console.log("card", card);
-      // card.classList.toggle("turned");
-
       card.querySelectorAll(".card div").forEach((square) => {
         square.classList.toggle("front");
         square.classList.toggle("back");
@@ -98,7 +95,6 @@ window.addEventListener("load", (event) => {
           }, 1500);
           memoryGame.pickedCards = [];
         }
-      } else {
       }
       // console.log(`Card clicked: ${card}`);
     });

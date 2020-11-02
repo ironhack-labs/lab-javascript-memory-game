@@ -13,6 +13,7 @@ class MemoryGame {
     for (let i = this.cards.length - 1; i > 0; i--) {
       let randomIndex = Math.floor(Math.random() * (i + 1));
       let temporary = this.cards[i];
+      // console.log(temporary);
       this.cards[i] = this.cards[randomIndex];
       this.cards[randomIndex] = temporary;
     }
