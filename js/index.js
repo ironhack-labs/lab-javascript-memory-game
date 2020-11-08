@@ -27,23 +27,49 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', event => {
-  let html = '';
-  memoryGame.cards.forEach(pic => {
-    html += `<div class="card" data-card-name="${pic.name}">`;
-    html += `<div class="back" name="${pic.img}"></div>`;
-    html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
-    html += `</div>`;
-  });
+window.addEventListener('load', (event) => {
+	memoryGame.shuffleCards();
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+	let html = '';
+	memoryGame.cards.forEach((pic) => {
+		html += `<div class="card" data-card-name="${pic.name}">`;
+		html += `<div class="back" name="${pic.img}"></div>`;
+		html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
+		html += `</div>`;
+	});
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
+	// Add all the divs to the HTML
+	document.querySelector('#memory-board').innerHTML = html;
+
+	// Bind the click event of each element to a function
+	document.querySelectorAll('.card').forEach((card) => {
+		card.addEventListener('click', () => {
+			card.classList.toggle('turned');
+
+			memoryGame.pickedCards.push(card);
+
+			if (memoryGame.pickedCards.length === 2) {
+				const firstCard = memoryGame.pickedCards[0].getAttribute('data-card-name');
+				const secondCard = memoryGame.pickedCards[1].getAttribute('data-card-name');
+
+				if (memoryGame.checkIfPair(firstCard, secondCard)) {
+					document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed;
+				} else {
+					memoryGame.pickedCards.forEach((card) => {
+						setTimeout(() => {
+							card.classList.toggle('turned');
+						}, 1000);
+					});
+				}
+
+				document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
+
+				memoryGame.pickedCards.length = 0;
+			}
+
+			if (memoryGame.isFinished()) {
+				document.body.innerHTML = '<h1>GAME OVER</h1>';
+			}
+		});
+	});
 });
