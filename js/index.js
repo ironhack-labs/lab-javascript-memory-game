@@ -1,3 +1,11 @@
+const cl = (...p) => console.log(...p)
+window.addEventListener('load', ()=>{
+  console.log("index.js connected")
+});
+
+const board = document.querySelector('#memory-board')
+
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -25,8 +33,10 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+//cl(cards)
 
+const memoryGame = new MemoryGame(cards);
+cl(memoryGame)
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -34,11 +44,12 @@ window.addEventListener('load', event => {
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
-  });
 
+  });
+ cl({e: event.currentTarget})
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
