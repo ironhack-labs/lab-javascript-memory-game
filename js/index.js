@@ -29,21 +29,48 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+
+
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
+
+
+
+
   });
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+  // document.querySelectorAll('.card').forEach(card => {
+  //   card.addEventListener('click', () => {
+  //     if (card.className === 'card turned') {
+  //       card.className = 'card';
+  //     } else {
+  //     card.className = 'card turned'; }
+  //   });
+  // });
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (card.className.includes('turned')) {
+        card.className = card.className.replace('turned', '');
+      } else {
+        card.className += ' turned';
+      }
     });
   });
+
+  
+  
 });
+
+
+var node = document.getElementsByTagName('div');
+var divLength = node.length;
+alert("There are " + divLength + " div tags in the html code");
+var randomDiv = Math.random() * divLength;
+

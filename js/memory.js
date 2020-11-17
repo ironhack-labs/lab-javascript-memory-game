@@ -6,6 +6,7 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
+    this.randomCards = [];
 
     // add the rest of the class properties here
   }
@@ -27,7 +28,7 @@ class MemoryGame {
       this.cards[currentIndex] = this.cards[randomIndex];
       this.cards[randomIndex] = temporaryValues;
     }
-    return cards;
+    return randomCards;
   }
 
   checkIfPair(card1, card2) {
@@ -46,7 +47,8 @@ class MemoryGame {
   }
 
   isFinished() {
-    if (this.pairsGuessed === 8) {
+    if (this.pairsGuessed == (this.cards.length / 2)) {
+
       return true
     }
     else { return false }
