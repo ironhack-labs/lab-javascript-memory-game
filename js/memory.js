@@ -15,7 +15,6 @@ class MemoryGame {
     } 
   }
   
-  
   checkIfPair(card1, card2) {
     this.pairsClicked++;
     if(card1 === card2) {
@@ -27,7 +26,8 @@ class MemoryGame {
   }
   isFinished() {
     if (this.pairsGuessed == (this.cards.length / 2)) {
-      setTimeout(() =>alert("YOU WON!!!!"), 1000)
+      setTimeout(() =>alert("YOU WON!!!!"), 500)
+      chronometer.stopClick()
       return true;
     } else {
       return false;
