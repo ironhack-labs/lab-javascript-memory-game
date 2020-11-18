@@ -69,6 +69,54 @@ body {
   margin-left: 75%;
 }
 
+#chrono {
+  background-color: rgba(44, 55, 215, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-size: 54px;
+  font-family: Arial;
+  width: 200px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* margin-left: 25%; */
+}
+
+#reset {
+  background-color: rgba(44, 55, 215, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-size: 24px;
+  font-family: Arial;
+  width: 120px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+
+}
+#reset button {
+  border: none;
+
+}
+
+#result p {
+  background-color: rgba(44, 55, 215, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-size: 24px;
+  font-family: Arial;
+  width: 600px;
+  margin-top: 40px;
+
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 .container {
   position: relative;
 }
