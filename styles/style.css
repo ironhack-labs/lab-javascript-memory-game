@@ -25,7 +25,7 @@ body {
 }
 
 .card.turned {
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .card.turned .front {
