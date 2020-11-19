@@ -8,19 +8,15 @@ class MemoryGame {
     // add the rest of the class properties here
   }
   shuffleCards() {
-
-    let shuffledImages = shuffle(imagElementsArray);
-    for ( i = 0 ; i < shuffledImages.length ; i++ ){
-      //add the shuffled images to each card
-      cardElements[i].appendChild(shuffledImages[i]);
-    }
-
+    this.cards = this.cards.sort((a, b)=>{
+      return 0.5 - Math.random()
+    })
   }
 
   checkIfPair(card1, card2) {
     this.pairsClicked ++;
     if (card1 === card2){
-      this.pairsClicked ++;
+      this.pairsGuessed ++;
       return true;
     }else{
       return false;
@@ -31,7 +27,7 @@ class MemoryGame {
     if(this.pairsGuessed === this.cards.length/2) {
         return true;
     }else{
-    return false;
+        return false;
     }
   }
 
