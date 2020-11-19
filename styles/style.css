@@ -102,7 +102,29 @@ body {
   border: none;
 
 }
+.time {
+  background-color: rgba(44, 55, 215, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Arial;
+  width: 90px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
 
+}
+
+.pressed {
+font-weight: 600;
+font-size: 18px;
+color:white;
+border: solid;
+
+
+}
 #result p {
   background-color: rgba(44, 55, 215, 0.8);
   color: white;
