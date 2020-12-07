@@ -40,10 +40,33 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
+  document.querySelectorAll('.card').forEach((card, idx) => {
     card.addEventListener('click', () => {
+      // Por cada click 
+      
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned'); // Al clickar la carta ésta se gira
+      cardName = card.getAttribute('data-card-name'); // Por cada click obtienes el nombre de la carta
+      memoryGame.pickedCards.push(cardName); // La clicada se añade al array pickedCards
+      console.log(memoryGame.pickedCards); // TEST      
+
+      if (memoryGame.pickedCards.length > 1) { // Solo se comprueban los arrays con más de dos elementos para evitar el false en la primera iteración
+        let card1 = memoryGame.pickedCards[memoryGame.pickedCards.length-1]; // La posición inicial es card1
+        let card2 = memoryGame.pickedCards[memoryGame.pickedCards.length-2]; // La siguiente posición es car2
+        console.log(card1, card2) // TEST
+        console.log(memoryGame.pickedCards) // TEST
+        
+        if (!memoryGame.checkIfPair(card1, card2)) {
+          setTimeout (() => {
+            card.classList.toggle('turned')
+            memoryGame.pickedCards.pop();
+          }, 1000);
+        } else {
+            memoryGame.pickedCards.splice(0,2);
+        }
+        console.log(memoryGame.checkIfPair(card1, card2));
+      }
+      
     });
   });
 });
