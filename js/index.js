@@ -25,10 +25,28 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+let cardsClicked = [];
+
+let waiting = false;
+
+function turnCard(card) {
+  card.classList.add("turned")
+}
+
+function turnCardBack(card) {
+  card.classList.remove("turned")
+}
+
+function updateCounter() {
+  document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+
+}
+
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -43,7 +61,33 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (waiting) {
+          //console.log('Waiting to unflip the cards')
+        } else {
+        let cardName = card.dataset.cardName;
+        cardsClicked.push(card);
+        if (cardsClicked.length === 1) {
+          turnCard(card);
+        } else {
+          turnCard(card);
+          if (memoryGame.checkIfPair(cardsClicked[0].dataset.cardName, cardsClicked[1].dataset.cardName)) {
+            cardsClicked = [];
+            updateCounter();
+            if (memoryGame.isFinished()) {
+              alert(`Game finished! You won!!! Attempts: ${memoryGame.pairsClicked/2}.`)
+            }
+          } else {
+            memoryGame.checkIfPair(cardsClicked[0].dataset.cardName, cardsClicked[1].dataset.cardName);
+            waiting = true;
+            setTimeout( () => {
+              turnCardBack(cardsClicked[0]);
+              turnCardBack(cardsClicked[1]);
+              cardsClicked = [];
+              waiting = false;
+              }, 1500);
+          }
+        }  
+      }
     });
   });
 });
