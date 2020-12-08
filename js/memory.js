@@ -11,12 +11,9 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    // if (this.pickedCards.length <= 1) {
-    //   return null;
-    // }
-    this.pairsClicked++;
+    this.pairsClicked += 1;
     if (card1 === card2) {
-      this.pairsGuessed++;
+      this.pairsGuessed += 1;
       return true;
     } else {
       return false;
@@ -24,6 +21,6 @@ class MemoryGame {
   }
 
   isFinished() {
-    return this.pairsGuessed === this.cards.length / 2 ? true : false;
+    return this.pairsGuessed === (this.cards.length) / 2 ? true : false;
   }
 }
