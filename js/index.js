@@ -99,6 +99,9 @@ const cards = [{
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+
+  memoryGame.shuffleCards();
+
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -132,8 +135,14 @@ window.addEventListener('load', event => {
           setTimeout(() => {
 
             card.classList.toggle('turned'); // La carta 2 se da la vuelta
-            // ¿Como localizo la carta 1 para poder darle la vuelta también si no se acierta?
-
+            // Inicio solución de Marcos
+            let turnedCards = document.querySelectorAll('.turned');
+            turnedCards.forEach(turnedCard => {
+              if (turnedCard.attributes['data-card-name'].nodeValue === card2) {
+                turnedCard.classList.toggle('turned');
+              }
+            })
+            //Fin solución de Marcos
           }, 1000);
 
         }
@@ -142,10 +151,10 @@ window.addEventListener('load', event => {
 
         const clicked = document.getElementById('pairs-clicked');
         const guessed = document.getElementById('pairs-guessed');
-        clicked.innerHTML = memoryGame.pairsClicked;
-        guessed.innerHTML = memoryGame.pairsGuessed;
+        clicked.innerHTML = Math.floor(memoryGame.pairsClicked / 3) + 1;
+        guessed.innerHTML = Math.floor(memoryGame.pairsGuessed / 2);
 
-        if (memoryGame.isFinished()) {
+        if (memoryGame.isFinished() == true && guessed.innerHTML === memoryGame.cards.length - 2) {
           return alert('Congratulations! You won the game!') // Si se cumple isFinished se notifica
         };
 
