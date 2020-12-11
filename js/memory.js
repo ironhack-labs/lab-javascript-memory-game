@@ -28,6 +28,6 @@ class MemoryGame {
 
   // Check if game is Finished
   isFinished() {
-    return this.pairsGuessed === 12 ? true : false
+    return this.pairsGuessed === this.cards.length/2 ? true : false
   }
 }
