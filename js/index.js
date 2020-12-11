@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+console.log(memoryGame.shuffleCards())
 
 window.addEventListener('load', event => {
   let html = '';
@@ -47,3 +48,4 @@ window.addEventListener('load', event => {
     });
   });
 });
+
