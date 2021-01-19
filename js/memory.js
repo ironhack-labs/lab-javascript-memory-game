@@ -9,16 +9,16 @@ class MemoryGame {
 
 
   shuffleCards() {
-    let baraja
     let cardout
-    let nuevabaraja
+    let posicionTemp
     
-    for (baraja = this.cards.length; baraja=0; baraja--) {
-        cardout = Math.floor(Math.random() * baraja)
-        nuevabaraja = this.cards[baraja - 1]
-        this.cards[baraja - 1] = this.cards[cardout]
-        this.cards[cardout] = nuevabaraja
+    for (let i = this.cards.length; i=0; i--) {
+        cardout = Math.floor(Math.random() * i)
+        posicionTemp = this.cards[i - 1]
+        this.cards[i - 1] = this.cards[cardout]
+        this.cards[cardout] = posicionTemp
     }
+   // return this.cards
   }
 
   checkIfPair(card1, card2) {
