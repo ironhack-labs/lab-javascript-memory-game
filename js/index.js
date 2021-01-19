@@ -27,6 +27,7 @@ const cards = [
 
 
 const memoryGame = new MemoryGame(cards)
+ 
 memoryGame.shuffleCards()
 
 window.addEventListener('load', event => {
@@ -53,6 +54,9 @@ window.addEventListener('load', event => {
 
 
   //TODO: write some code here
+
+
+
   
   console.log(`Card clicked: ${card}`)
 
