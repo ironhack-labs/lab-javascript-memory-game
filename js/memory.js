@@ -9,12 +9,15 @@ class MemoryGame {
 
 
   shuffleCards() {
-    let i,j,k
-    for (i = this.cards.length; i=0; i--) {
-        j = Math.floor(Math.random() * i)
-        k = this.cards[i - 1]
-        this.cards[i - 1] = this.cards[j]
-        this.cards[j] = k
+    let baraja
+    let cardout
+    let nuevabaraja
+    
+    for (baraja = this.cards.length; baraja=0; baraja--) {
+        cardout = Math.floor(Math.random() * baraja)
+        nuevabaraja = this.cards[baraja - 1]
+        this.cards[baraja - 1] = this.cards[cardout]
+        this.cards[cardout] = nuevabaraja
     }
   }
 
