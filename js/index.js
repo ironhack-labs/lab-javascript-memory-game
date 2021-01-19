@@ -27,10 +27,10 @@ const cards = [
 
 
 const memoryGame = new MemoryGame(cards)
+memoryGame.shuffleCards()
 
 window.addEventListener('load', event => {
-  memoryGame.shuffleCards() 
-  let html = '';  
+    let html = '';  
  memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -53,6 +53,7 @@ window.addEventListener('load', event => {
 
 
   //TODO: write some code here
+  
   console.log(`Card clicked: ${card}`)
 
 

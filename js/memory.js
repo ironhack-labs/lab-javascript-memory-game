@@ -7,18 +7,16 @@ class MemoryGame {
     this.pairsGuessed = 0
   }
 
-
   shuffleCards() {
-    let cardout
-    let posicionTemp
-    
-    for (let i = this.cards.length; i=0; i--) {
-        cardout = Math.floor(Math.random() * i)
-        posicionTemp = this.cards[i - 1]
-        this.cards[i - 1] = this.cards[cardout]
-        this.cards[cardout] = posicionTemp
-    }
-   // return this.cards
+    const copycards = this.cards.slice()
+    let newcards = []
+
+      while (copycards.length > 0) {
+        const randomIndex = Math.floor(Math.random() * copycards.length)
+        newcards.push(copycards[randomIndex])
+        copycards.splice(randomIndex, 1)
+      }
+      this.cards=newcards
   }
 
   checkIfPair(card1, card2) {
