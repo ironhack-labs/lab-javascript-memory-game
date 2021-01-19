@@ -55,7 +55,6 @@ window.addEventListener('load', event => {
                 if (result) {
                     if (memoryGame.isFinished()) {
                         const winMessage = document.createElement('div')
-                        const scoreMessage = document.querySelector('#score h2')
                         winMessage.textContent = 'You Won!'
                         document.getElementById('memory-board').appendChild(winMessage)
                         
