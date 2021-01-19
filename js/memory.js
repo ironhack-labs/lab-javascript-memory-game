@@ -11,7 +11,7 @@ class MemoryGame {
         if (this.cards) {
             let m = this.cards.length - 1
             while (m) {
-                const i = Math.floor(Math.random())
+                const i = Math.floor(Math.random()*m)
                 const randomElement = this.cards[i]
                 this.cards[i] = this.cards[m]
                 this.cards[m] = randomElement
