@@ -14,6 +14,26 @@ body {
   margin: 0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
+  position: relative
+}
+
+.win-message{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: rgb(215, 44, 44);
+  border-radius: 8px;
+  font-size: 30px;
+  font-family: Arial;
+  width: 500px;
+  padding: 20px;
+  margin-left: 75%;
+  text-align: center;
+}
+
+.win-message h1{
+  color: #456783;
 }
 
 .card {
