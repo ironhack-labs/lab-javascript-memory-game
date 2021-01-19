@@ -25,13 +25,13 @@ class MemoryGame {
   }
 
   isFinished() {
-    if (this.pairsGuessed === 8) {
-      return true
-    } else {
+    if (this.pairsGuessed !== this.cards.length / 2) {
       return false
+    } else {
+      return true
     }
   }
-    
+  
 }
 
 
