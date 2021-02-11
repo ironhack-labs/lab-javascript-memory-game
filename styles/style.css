@@ -95,3 +95,13 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+  color: #456783;
+}
+
+.a-container {
+  display: flex;
+  justify-content: center;
+}

@@ -26,8 +26,9 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards(cards);
 
-window.addEventListener('load', event => {
+// window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -42,8 +43,44 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add('turned');
+      memoryGame.pickedCards.push(card);
+      // console.log(memoryGame.pickedCards[0].getAttribute('data-card-name'));
+      if(memoryGame.pickedCards.length === 2) {
+        document.querySelectorAll('.card').forEach(card => card.style.pointerEvents = "none");
+
+
+        let card1Attribute = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        let card2Attribute = memoryGame.pickedCards[1].getAttribute('data-card-name');
+        let sameOrNot = memoryGame.checkIfPair(card1Attribute, card2Attribute);
+
+        if(sameOrNot) {
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+          memoryGame.pickedCards = [];
+          document.querySelectorAll('.card').forEach(card => card.style.pointerEvents = "auto");
+        } else if(sameOrNot === false) {
+          setTimeout(() => {
+            memoryGame.pickedCards[0].classList.remove('turned');
+            memoryGame.pickedCards[1].classList.remove('turned');
+            memoryGame.pickedCards = [];
+            document.querySelectorAll('.card').forEach(card => card.style.pointerEvents = "auto");
+          }, 1000);
+        }
+      }
+
+      if(memoryGame.isFinished()) {
+        document.querySelector('#memory-board').innerHTML = `
+        <h1> YOU QUEEN/KING <br>
+          YOU WOOOON </h1>
+        <div class="a-container">
+          <a href="./index.html"> click here if you want to play again </a>
+        </div>
+        `
+
+      }
     });
   });
-});
+
+
+// });
