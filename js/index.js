@@ -42,8 +42,52 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      addTurnedClass(card);
+      addCardToPickedCards(card);
+      if (memoryGame.pickedCards.length === 2) {
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        let itsAPair = memoryGame.checkIfPair(card1, card2);
+        if (itsAPair) {
+          block(card1, card2);
+        } else {
+          removeTurnedClass(card1, card2);
+        }
+      }
     });
   });
 });
+
+function addTurnedClass(item) {
+  item.classList.add("turned");
+}
+
+function addCardToPickedCards(item) {
+  let cardName = item.getAttribute("data-card-name");
+  for (let i = 0; i < cards.length; i++) {
+    var heroCard = cards[i];
+    if (heroCard.name === cardName) {
+      memoryGame.pickedCards.push(heroCard);
+      break;
+    }
+  }
+  console.log(memoryGame.pickedCards);
+}
+
+function block(item1, item2) {
+  console.log(item1);
+  console.log(item2);
+  let turnedCards = document.querySelectorAll('.card.turned');
+  console.log(turnedCards[0].classList);
+  turnedCards.forEach(n => n.classList.add('blocked'));
+  
+  
+}
+
+function removeTurnedClass(item1, item2) {
+  console.log(item1);
+  console.log(item2);
+  let turnedCards = document.querySelectorAll('.card.turned');
+  // set timeout for this.
+  turnedCards.forEach(n => n.classList.remove('turned'));
+}
