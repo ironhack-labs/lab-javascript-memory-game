@@ -43,6 +43,13 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      if (card.classList.contains("card")){
+      card.classList.add("turned")
+      
+      
+    } else if (card.classList.contains("card") && card.classList.contains("turned")){
+      card.classList.remove("turned")
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
