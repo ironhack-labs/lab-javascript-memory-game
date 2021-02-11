@@ -95,3 +95,14 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.card.blocked {
+  pointer-events: none;
+}
+
+.card.blocked .front {
+  transform: rotateY(0deg);
+}
+.card.blocked .back {
+  transform: rotateY(180deg);
+}
