@@ -43,23 +43,46 @@ memoryGame.shuffleCards(cards);
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
+      //turn the card clicked and push it to the pickedCards array
       card.classList.add('turned');
       memoryGame.pickedCards.push(card);
-      // console.log(memoryGame.pickedCards[0].getAttribute('data-card-name'));
+
+      //checking if there's a pair of cards turned
       if(memoryGame.pickedCards.length === 2) {
+
+        //show the number of pairs clicked on HTML
+        document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked;
+
+        //prevent from user to click on another card for now
         document.querySelectorAll('.card').forEach(card => card.style.pointerEvents = "none");
 
-
+        //the 2 cards user chose - stocking their name attribute to compare
         let card1Attribute = memoryGame.pickedCards[0].getAttribute('data-card-name');
         let card2Attribute = memoryGame.pickedCards[1].getAttribute('data-card-name');
+
+        //checking if those 2 cards are the same
         let sameOrNot = memoryGame.checkIfPair(card1Attribute, card2Attribute);
 
+        //if they are the same : 
+        //show the number of pairs guessed on HTML
+        //add blocked class so they stay turned
+        //reset the pickedCards array
+        //allow user to click next cards
         if(sameOrNot) {
+          document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed;
           memoryGame.pickedCards[0].classList.add('blocked');
           memoryGame.pickedCards[1].classList.add('blocked');
           memoryGame.pickedCards = [];
           document.querySelectorAll('.card').forEach(card => card.style.pointerEvents = "auto");
-        } else if(sameOrNot === false) {
+        } 
+        
+        //if they aren't the same : 
+        //setTimeOut 1 second to let user check the cards they turned
+        //after that 1 second : 
+        //remove turned class on those cards
+        //reset the pickedCards array
+        //allow user to click next cards
+        else if(sameOrNot === false) {
           setTimeout(() => {
             memoryGame.pickedCards[0].classList.remove('turned');
             memoryGame.pickedCards[1].classList.remove('turned');
@@ -69,6 +92,7 @@ memoryGame.shuffleCards(cards);
         }
       }
 
+      //if user won, winning message + link to reload the page
       if(memoryGame.isFinished()) {
         document.querySelector('#memory-board').innerHTML = `
         <h1> YOU QUEEN/KING <br>
