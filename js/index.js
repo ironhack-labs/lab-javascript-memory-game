@@ -43,15 +43,8 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      card.classList.toggle("turned");
-      if (card.classList = 2) {
-        let result = card.checkIfPair(card1, card2)
-        if (result = true) {
-          card.classList.add("blocked");
-          card.isFinished();
-        } else {
-
-        }
+      if (card.classList.contains("card")){
+        card.classList.add("turned");
       }
       console.log(`Card clicked: ${card}`);
     });
