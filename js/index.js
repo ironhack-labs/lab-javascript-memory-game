@@ -37,12 +37,14 @@ window.addEventListener('load', event => {
   });
 
   // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle("turned");
+      // card.classList.toggle('turned', true);
+      // memoryGame.checkIfPair(card1, card2);
       console.log(`Card clicked: ${card}`);
     });
   });
