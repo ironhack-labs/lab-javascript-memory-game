@@ -25,7 +25,7 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+let memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
@@ -49,11 +49,12 @@ window.addEventListener('load', event => {
         let card2 = memoryGame.pickedCards[1];
         let itsAPair = memoryGame.checkIfPair(card1, card2);
         if (itsAPair) {
-          block(card1, card2);
+          addBlockedClass(card1, card2);
         } else {
-          removeTurnedClass(card1, card2);
+          const timeoutId = setTimeout(removeTurnedClass, 1500);
         }
       }
+      memoryGame.isFinished();
     });
   });
 });
@@ -71,23 +72,20 @@ function addCardToPickedCards(item) {
       break;
     }
   }
-  console.log(memoryGame.pickedCards);
 }
 
-function block(item1, item2) {
-  console.log(item1);
-  console.log(item2);
+function addBlockedClass(item1, item2) {
   let turnedCards = document.querySelectorAll('.card.turned');
-  console.log(turnedCards[0].classList);
   turnedCards.forEach(n => n.classList.add('blocked'));
-  
-  
+  memoryGame.pickedCards = [];
 }
 
-function removeTurnedClass(item1, item2) {
-  console.log(item1);
-  console.log(item2);
+function removeTurnedClass() {
   let turnedCards = document.querySelectorAll('.card.turned');
-  // set timeout for this.
-  turnedCards.forEach(n => n.classList.remove('turned'));
+  for (let card of turnedCards) {
+    if (card.classList.value.indexOf("blocked") === -1) {
+      card.classList.remove('turned');
+    }
+  }
+  memoryGame.pickedCards = [];
 }
