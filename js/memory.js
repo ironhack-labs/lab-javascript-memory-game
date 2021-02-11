@@ -28,9 +28,9 @@ class MemoryGame {
 
   isFinished() {
     let halfCards = this.cards.length / 2;
-    if (this.pairsClicked === this.cards.length) {
-      return false;
-    } else if (this.pairsGuessed === halfCards) {
+    // if (this.pairsClicked === this.cards.length) {
+    //   return false;
+    if (this.pairsGuessed === halfCards) {
       return true;
     } else {
       return false;
