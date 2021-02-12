@@ -25,7 +25,7 @@ class MemoryGame {
     } return false;
   }
   isFinished() {
-    if (this.pairsGuessed===12) return true;
+    if (this.pairsGuessed===this.cards.length/2) return true;
     return false;
   }
 }
