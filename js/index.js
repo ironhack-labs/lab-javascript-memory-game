@@ -27,6 +27,9 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+
+console.log(memoryGame);
+
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -43,6 +46,17 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      if(card.classList.contains("card")){
+        card.classList.toggle("turned");
+      }else if(card.classList.contains("turned")){
+        card.classList.toggle("back");
+      }
+    
+
+
+   
+    
+  
       console.log(`Card clicked: ${card}`);
     });
   });
