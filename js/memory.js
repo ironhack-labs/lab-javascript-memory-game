@@ -12,7 +12,7 @@ class MemoryGame {
       { if(!array)
       { return undefined }
       for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (1+i));
+        let j = Math.floor(Math.random() * i);
         let random = array[i];
         array[i] = array[j];
         array[j] = random;
@@ -26,11 +26,9 @@ class MemoryGame {
       this.pairsClicked ++ ;
       if(card1 === card2){
         this.pairsGuessed ++;
-       return true;
+        return true;
    
       } else if(card1 !== card2){
-        this.pairsClicked -- ;
-        this.pairsGuessed --;
         return false;
       }
     }
@@ -44,7 +42,7 @@ class MemoryGame {
       if(this.pairsGuessed <= 6){
         return false;
       }
-      if(this.pairsGuessed <= 12){
+      if(this.pairsGuessed = 12){
         return true;
       }
       
