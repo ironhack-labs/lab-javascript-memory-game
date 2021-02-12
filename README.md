@@ -173,7 +173,7 @@ To flip a card, you can have multiple approaches. We will give you two possible 
 
   ```
 
-Now when you have cards flipping from back to front and vice versa, you have to make sure you call `.checkIfPair(card1, card2)` method. If the two cards are the same, they should get class _blocked_, which is going to keep them flipped so we can see images.
+Now when you have cards flipping from back to front and vice versa, you have to make sure you call `.checkIfPair(card1, card2)` method. If the two cards are the same, they should get class _bocked_, which is going to keep them flipped so we can see images.
 
 _Hint 1_: The array of picked cards can't ever hold more than two cards.
 _Hint 2_: Make sure you call `isFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, or be more creative and add some text on the canvas - displaying _You won!!!_

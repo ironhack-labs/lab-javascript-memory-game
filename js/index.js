@@ -25,7 +25,11 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+
+const memoryGame = new MemoryGame(cards); // ok c'est deja fait, load2 par notre constructor et le fait qu il y ait "new"
+
+
+
 
 window.addEventListener('load', event => {
   let html = '';
@@ -35,14 +39,24 @@ window.addEventListener('load', event => {
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
   });
+  
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+//??? pourquoi sa marche paaaas
+//ok a la place de cards, memoryGame.cards, car on va chercher les cards du doculent a
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
+  document.querySelectorAll('.card',).forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.add("turned");
+      if (memoryGame.checkIfPair(memoryGame.cards[0]), memoryGame.cards[1]=== true) {
+      //blocked class??? 
+      } else {
+        
+   
+        
+      }
+     
       console.log(`Card clicked: ${card}`);
     });
   });
