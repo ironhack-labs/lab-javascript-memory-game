@@ -43,7 +43,17 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+    //  const front = document.getElementsByClassName('.front');
+    //  const back = document.getElementsByClassName('.back');
+      // card.target.classList.toggle("front");
+
+     
+        card.classList.toggle("turned");
+     
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+
+// console.log();

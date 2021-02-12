@@ -1,5 +1,5 @@
-/* eslint no-undef: "off" */
-/* eslint jasmine/no-spec-dupes: "off" */
+// /* eslint no-undef: "off" */
+// /* eslint jasmine/no-spec-dupes: "off" */
 
 describe("MemoryGame class", () => {
   beforeEach(() => {
