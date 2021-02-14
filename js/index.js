@@ -43,28 +43,33 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click',() => {
 
-      // if (memoryGame.pickedCards.length < 2 && card.classList.contains("turned") === false) {
-      //     card.classList.add("turned");
-      //     memoryGame.pickedCards.push(card.getAttributes("data-card-name"));
-      // } else {
-      //     card.classList.remove("turned");
-      // };
-      if (memoryGame.pickedCards.length < 2 && card.classList.contains("turned") === false) {
+      if (memoryGame.pickedCards.length < 2 && card.classList.contains("turned") === false){
             card.classList.add("turned");
-            memoryGame.pickedCards.push(card.getAttribute("data-card-name"));
+            let cardName = card.getAttribute("data-card-name");
+            memoryGame.pickedCards.push(cardName);
             
-      if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]) === true) {
-          memoryGame.isFinished()
-            }
+          if (memoryGame.pickedCards.length === 2){
+            if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) { 
+              let pickedC = document.querySelectorAll(`[data-card-name="${cardName}"]`);
+              pickedC.forEach(card => card.classList.add("blocked"));
+              memoryGame.pickedCards = [];
 
-       } else if (card.classList.contains("turned") === true ) {
+                if (memoryGame.isFinished()){
+                  window.alert("You won!!!");
+                }
+            } else {
+              let cardT = document.querySelectorAll(".turned:not(.blocked)");
+              cardT.forEach(card => card.classList.remove("turned"))
+              memoryGame.pickedCards = [];
+
+            }
+          }
+
+      } else if (card.classList.contains("turned") === true ) {
             card.classList.remove("turned");
+          
       };
         
-
-
-   
-
     console.log(`Card clicked: ${card}`);
 
 
