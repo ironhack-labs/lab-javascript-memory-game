@@ -43,7 +43,38 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      gameExec(card)
+
     });
   });
 });
+
+
+function gameExec(card) {
+  card.classList.toggle('turned')
+
+  memoryGame.pickedCards.push(card)
+  if (memoryGame.pickedCards.length == 2) {
+
+    let name1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+    let name2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
+
+    if (!memoryGame.checkIfPair(name1, name2)) {
+      setTimeout(() => {
+        memoryGame.pickedCards[0].classList.toggle('turned');
+        memoryGame.pickedCards[1].classList.toggle('turned');
+        document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
+        memoryGame.pickedCards = [];
+      }, 1000)
+    } else {
+      memoryGame.pickedCards = [];
+      document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed
+      document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
+
+    }
+
+
+
+
+  }
+}
