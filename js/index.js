@@ -43,7 +43,27 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      card.classList.toggle('turned')
+      const cardName = document.querySelector('.card.turned').dataset.card.name
+      MemoryGame.pickedCards.push(cardName);
+      if (newMemoryGame.pickedCards.length === 2) {
+        let firstCard = MemoryGame.pickedCards[0];
+        let secondCard = MemoryGame.pickedCards[1];
+        newMemoryGame.checkIfPair(firstCard, secondCard);
+        //Si hubiera podido sacar el nombre de la carta hubiera tirado por este camino para
+        //comparar los nombres y actualizar los numeros... lo siento teo :(
+      }
+
+
+      console.log(cardName)
+
+
+
+
+
+
+
     });
   });
 });
