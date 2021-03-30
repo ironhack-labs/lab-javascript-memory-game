@@ -45,6 +45,10 @@ window.addEventListener('load', event => {
       // TODO: write some code here
       gameExec(card)
 
+      if (memoryGame.isFinished()) {
+        alert('Has ganado joven heroe')
+      }
+
     });
   });
 });
