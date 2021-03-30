@@ -36,14 +36,69 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+  
+  let countClicks = 0
+
+  function flipCard (event) {
+
+    if(memoryGame.pickedCards.length < 2) {
+    const board = event.target
+    const select = board.parentNode
+    
+       if(select.className === 'card') {
+        select.className = 'card turned'
+        memoryGame.pickedCards.push(select.dataset.cardName)
+        console.log(memoryGame.pickedCards)
+        return memoryGame.pickedCards
+        } 
+      
+      else if(memoryGame.pickedCards.length === 2) {
+      return memoryGame.pickedCards
+     }  
+    } 
+  }
+  
+  for (i = 0; i < memoryGame.pickedCards.length; i++) {
+    checkIfPair(memoryGame.pickedCards[i])
+      if(true) {
+
+      } else {
+        turnCardsBack()
+      }
+  }
+
+ function turnCardBack() {
+    select.className = 'card'
+  }
+
+  function printPairsClicked() {
+    countClicks ++
+    
+  }
+
+  function printPairsGuessed() {
+    if(card1.name === card2.name) {
+      this.pairsGuessed ++
+      let newPairsGuessedValue = this.pairsGuessed +1
+      document.querySelector('#pairs-guessed').value = newPairsGuessedValue
+    }
+  }
+
+document.addEventListener('click', flipCard)
+
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+        flipCard
+        
+      
+      
+      // console.log(`Card clicked: ${card}`);
     });
   });
 });
