@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', event => {
+window.addEventListener('load', () => {
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -42,8 +42,10 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned', true);
+      memoryGame.pickedCards.push(card);
+      let card1 = memoryGame.pickedCards[0];
+      let card2 = memoryGame.pickedCards[1];
     });
   });
 });
