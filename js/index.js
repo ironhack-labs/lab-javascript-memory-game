@@ -45,25 +45,27 @@ window.addEventListener('load', event => {
       // TODO: write some code here
 
       card.classList.toggle('turned')
-      const cardName = document.querySelector('.card.turned').dataset.card.name
-      MemoryGame.pickedCards.push(cardName);
-      if (newMemoryGame.pickedCards.length === 2) {
-        let firstCard = MemoryGame.pickedCards[0];
-        let secondCard = MemoryGame.pickedCards[1];
-        newMemoryGame.checkIfPair(firstCard, secondCard);
-        //Si hubiera podido sacar el nombre de la carta hubiera tirado por este camino para
-        //comparar los nombres y actualizar los numeros... lo siento teo :(
+      memoryGame.pickedCards.push(card);
+      if (memoryGame.pickedCards.length === 2) {
+        const firstCard = memoryGame.pickedCards[0].getAttribute("data-card-name");
+        const secondCard = memoryGame.pickedCards[1].getAttribute("data-card-name");
+        if (memoryGame.checkIfPair(firstCard, secondCard)) {
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+          memoryGame.pickedCards = [];
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards[0].classList.remove('turned');
+            memoryGame.pickedCards[1].classList.remove('turned');
+            memoryGame.pickedCards = [];
+          }, 500)
+        }
+        if (memoryGame.isFinished()) {
+          alert("Congratulations!!! you won!!")
+        }
+        document.querySelector('#pairs-clicked').innerHTML = `${memoryGame.pairsClicked}`
+        document.querySelector('#pairs-guessed').innerHTML = `${memoryGame.pairsGuessed}`
       }
-
-
-      console.log(cardName)
-
-
-
-
-
-
-
     });
   });
 });
