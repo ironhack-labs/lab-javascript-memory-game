@@ -2,6 +2,7 @@ class MemoryGame {
   constructor(cards){
     this.cards = cards;
     this.pickedCards = [];
+    this.firstCardClicked = false;
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
@@ -15,7 +16,7 @@ class MemoryGame {
   }
   checkIfPair = (card1, card2)=>{
     this.pairsClicked++
-    if (card1 === card2) {
+    if (card1.getAttribute('data-card-name') === card2.getAttribute('data-card-name')) {
       this.pairsGuessed++
       return true
     } else {
@@ -29,29 +30,28 @@ class MemoryGame {
       return false
     }
   }
+
+  turnCard(card) {
+    card.classList.add('turned')
+    this.pickedCards.push(card)
+  }
+
+  turnBackCards() {
+    this.pickedCards[0].classList.remove('turned')
+    this.pickedCards[1].classList.remove('turned')
+  }
+
+  clickCard(card) {
+    this.turnCard(card)
+    if (this.pickedCards.length === 2) {
+      if (this.checkIfPair(this.pickedCards[0], this.pickedCards[1])){
+        this.pickedCards = []
+      } else {
+        setTimeout(()=>{
+          this.turnBackCards()
+          this.pickedCards = []
+        }, 400)
+      }
+    }
+  }
 }
-
-let cardsArray = [
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" }
-];
-let memoryGame = new MemoryGame(cardsArray);
-
-console.log(array)
-const asdf = game.shuffleCards(game.cards)
-console.log(array, '&', asdf)
-console.log(array.toString() === asdf.toString())
