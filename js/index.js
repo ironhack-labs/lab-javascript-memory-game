@@ -36,7 +36,7 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
-
+console.log(memoryGame)
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -46,31 +46,38 @@ window.addEventListener('load', event => {
 
   function flipCard (event) {
 
-    if(memoryGame.pickedCards.length < 2) {
     const board = event.target
     const select = board.parentNode
-    
-       if(select.className === 'card') {
-        select.className = 'card turned'
-        memoryGame.pickedCards.push(select.dataset.cardName)
-        console.log(memoryGame.pickedCards)
-        return memoryGame.pickedCards
-        } 
+
+    if(select.className === 'card') {
+    select.className = 'card turned'
+    memoryGame.pickedCards.push(select.dataset.cardName)
+    console.log(memoryGame.pickedCards)
+    }
       
-      else if(memoryGame.pickedCards.length === 2) {
-      return memoryGame.pickedCards
+      if(memoryGame.pickedCards.length === 2) {
+    
+        let card1 = memoryGame.pickedCards[0]
+        let card2 = memoryGame.pickedCards[1]
+        console.log(card1)
+        console.log(card2)
+        if (memoryGame.checkIfPair(card1, card2)) {
+            document.querySelector('card turned div').className = 'blocked'
+          }
+          else {
+            document.querySelector('card turned div').className = 'card'
+          }
      }  
-    } 
   }
   
-  for (i = 0; i < memoryGame.pickedCards.length; i++) {
-    checkIfPair(memoryGame.pickedCards[i])
-      if(true) {
+  // for (i = 0; i < memoryGame.pickedCards.length; i++) {
+  //   checkIfPair(memoryGame.pickedCards[i])
+  //     if(true) {
 
-      } else {
-        turnCardsBack()
-      }
-  }
+  //     } else {
+  //       turnCardsBack()
+  //     }
+  // }
 
  function turnCardBack() {
     select.className = 'card'
