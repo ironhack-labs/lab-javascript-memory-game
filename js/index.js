@@ -26,6 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+
 
 window.addEventListener('load', event => {
   let html = '';
@@ -42,8 +44,40 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.add(`turned`)
+      memoryGame.pickedCards.push(card)
       console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+
+      if (memoryGame.pickedCards.length===2){
+
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+
+      if(memoryGame.checkIfPair(card1,card2)){
+        setTimeout(() => {
+        memoryGame.pickedCards.forEach(card => {
+          card.classList.add('blocked')
+          })
+          memoryGame.pickedCards = []
+        }) 
+      }else{
+
+        setTimeout(() => {
+          memoryGame.pickedCards.forEach(card => {
+            card.classList.remove('turned')
+          })
+          memoryGame.pickedCards = []
+        }, 500)
+
+      }
+      if (memoryGame.isFinished()){
+        alert(`¡¡Felicidades, solo has necesitado ${memoryGame.pairsClicked} intentos para acabar!!`)
+      }
+
+      document.querySelector('#pairs-clicked').innerHTML = `${memoryGame.pairsClicked}`
+      document.querySelector('#pairs-guessed').innerHTML = `${memoryGame.pairsGuessed}`
+    }
+  
+  })
+})
+})
