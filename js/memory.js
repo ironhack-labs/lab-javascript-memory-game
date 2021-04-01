@@ -13,21 +13,23 @@ class MemoryGame {
       this.cards[k] = temp; 
       } 
   }
-  checkIfPair(card1, card2) {
-    if(card1 == card2){
+  checkIfPair(card1Name, card2Name) {
+    this.pairsClicked ++
+    if(card1Name === card2Name){
       this.pairsGuessed ++
-     // return true
+    return true
     }else{
-      this.pairsClicked ++
-     // return false
+    return false
     }
   }
   isFinished() {
     if(this.pairsGuessed == (this.cards.length)/2){
+      alert `Is finished`
       return true
     }else{
       return false
     }
+    //return (this.pairsGuessed == this.cards.length/2)
   }
 }
 
