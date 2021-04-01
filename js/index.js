@@ -42,8 +42,33 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // console.log(`Card clicked: ${card}`)
       card.classList.toggle('turned')
+      const timeoutId = setTimeout(() => {
+        if (!card.classList.contains('blocked')) {
+          card.classList.toggle('turned')
+        }
+      }, 2000)
+      const turned = document.querySelectorAll('.turned:not(.blocked)')
+      if (turned.length % 2 === 0) {
+        if (
+          memoryGame.checkIfPair(
+            turned[0].getAttribute('data-card-name'),
+            turned[1].getAttribute('data-card-name')
+          )
+        ) {
+          // clearTimeout(timeoutId)
+          turned[0].classList.add('blocked')
+          turned[1].classList.add('blocked')
+        }
+      } else {
+      }
+      document.querySelector('#pairs-clicked').innerHTML =
+        memoryGame.pairsClicked
+      document.querySelector('#pairs-guessed').innerHTML =
+        memoryGame.pairsGuessed
+      if (memoryGame.isFinished()) {
+        alert('you won!')
+      }
     })
   })
 })

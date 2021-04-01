@@ -31,15 +31,7 @@ class MemoryGame {
   }
   isFinished() {
     if (this.pairsGuessed * 2 === this.cards.length) return true
-    return this.cards.length === this.pairsClicked * 2 &&
-      this.pairsClicked !== 0
-      ? true
-      : false
+
+    return this.pairsClicked !== 0 && false
   }
 }
-
-const game = new MemoryGame([1, 2, 3])
-
-console.log(typeof game.shuffleCards())
-
-// console.log(Game.checkIfPair('batman', 'badtman'))
