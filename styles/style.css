@@ -95,3 +95,12 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#scream {
+  width: 800px;
+  height: 540px;
+  margin: 0px auto;
+  
+  box-shadow: inset 0px 0px 20px -6px rgba(97, 89, 97, 1);
+}
+
