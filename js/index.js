@@ -34,6 +34,7 @@ window.addEventListener('load', event => {
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
+  
   });
 
   // Add all the divs to the HTML
@@ -42,7 +43,11 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.add("turned");
+      // Logic I'm trying to implement:
+      // if (memoryGame.checkIfPair(). === false) card.classList.remove("turned");
+      // if (memoryGame.checkIfPair() === true) card.classList.add("blocked");
+      // if (memoryGame.isFinished() === true) alert("Congratulations! You've won the game.");
       console.log(`Card clicked: ${card}`);
     });
   });
