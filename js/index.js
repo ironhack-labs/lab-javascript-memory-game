@@ -28,6 +28,8 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
+  memoryGame.shuffleCards();
+
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -42,8 +44,51 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      
+      // console.log(`Card clicked: ${card}`);
+      const pickedCards = memoryGame.pickedCards;
+      // toggle the class "turned"
+      card.classList.add('turned');
+
+      // fill up pickedCards with chosen cards
+      pickedCards.push(card);
+      
+      if(pickedCards.length === 2) {
+        // compare
+        const fistCard = pickedCards[0];
+        const secondCard = pickedCards[1];
+
+        const fistCardName = fistCard.getAttribute("data-card-name");
+        const secondCardName = secondCard.getAttribute("data-card-name");
+
+        if (memoryGame.checkIfPair(fistCardName, secondCardName)) {
+          // do something if cards are pairs
+            fistCard.classList.toggle('blocked');
+            secondCard.classList.toggle('blocked');
+            
+            pickedCards.length = 0;
+            
+          } else {
+          // do somethig if they are not
+            setTimeout(() => {
+              // toggle class turned
+              fistCard.classList.toggle('turned');
+              secondCard.classList.toggle('turned');
+            }, 1000);
+            // pickedCards = [];
+            pickedCards.length = 0;
+          }
+
+        const clickClicked = document.getElementById('pairs-clicked');
+        const clickGuessed = document.getElementById('pairs-guessed');
+
+        clickClicked.innerHTML = memoryGame.pairsClicked;
+        clickGuessed.innerHTML = memoryGame.pairsGuessed;
+      }
+
+      if(memoryGame.isFinished()) {
+        alert('Congratulations!!!');
+      }
     });
   });
 });
