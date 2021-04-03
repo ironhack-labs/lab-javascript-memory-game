@@ -65,7 +65,7 @@ window.addEventListener('load', event => {
       document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
       document.getElementById("pairs-guessed").innerHTML = memoryGame.pairsGuessed;
 
-      if(isFinished()){
+      if(memoryGame.isFinished()){
         alert("Congratulations You Won!")
       }
    
