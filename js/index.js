@@ -65,7 +65,10 @@ window.addEventListener('load', event => {
       document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
       document.getElementById("pairs-guessed").innerHTML = memoryGame.pairsGuessed;
 
-      console.log(`Card clicked: ${card}`);
+      if(isFinished()){
+        alert("Congratulations You Won!")
+      }
+   
     });
   });
 });
