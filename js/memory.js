@@ -14,6 +14,7 @@ class MemoryGame {
     for(let i = 0; i < shuffledCards.length - 1; i++) { 
       let tempCard = shuffledCards[i];
       let randomIndex = Math.floor(Math.random()* (i+1));
+      console.log(randomIndex)
       shuffledCards[i] = shuffledCards[randomIndex];
       shuffledCards[randomIndex] = tempCard;
       // How this works (for me to understand):
@@ -29,17 +30,51 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    console.log(card1)
+    console.log('checing cards')
+    console.log(card1.getAttribute("data-card-name"))
     console.log(card2)
     this.pairsClicked++;
-    if (card1 == card2) {
+    if (card1.getAttribute("data-card-name") == card2.getAttribute("data-card-name")) {
       this.pairsGuessed++;
       return true;
     }
+    console.log('not the same')
     return false;
   }
   isFinished() {
     if (this.pairsGuessed < this.cards.length / 2) return false;
-    else return true;
+    else {
+      alert("You Won!");
+    return true;
+    }
+  }
+
+  turnCardsFaceDown() {
+    document.querySelectorAll(".card").forEach(card => {
+      if (!card.classList.contains("blocked")) {
+        console.log('not blocked');
+        card.classList.remove("turned");
+      }
+    });
+  }
+
+  addBlockedClass() {
+    console.log('match');
+    console.log(memoryGame.pickedCards)
+    for (let matchingCard of memoryGame.pickedCards) {
+  
+      matchingCard.classList.add("blocked");
+    };
+  }
+
+  turnCardsOver(card) {
+    card.classList.toggle("turned");
+    memoryGame.pickedCards.push(card);
+    console.log(`Card clicked: ${card.classList}`);
+  }
+
+  updateScores() {
+    document.querySelector("#pairs-clicked").innerText = memoryGame.pairsClicked;
+    document.querySelector("#pairs-guessed").innerText = memoryGame.pairsGuessed;
   }
 }

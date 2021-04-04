@@ -54,9 +54,11 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  transform: rotateY(-180deg) translateZ(1px);
   backface-visibility: hidden;
+  transform: rotateY(-180deg) translateZ(1px);
+
 }
+
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);
