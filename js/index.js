@@ -43,7 +43,42 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      //console.log(`Card clicked: ${card}`);
+
+      card.querySelectorAll(".card div").forEach((square) => {
+        square.classList.toggle("front");
+        square.classList.toggle("back");
+      });
+
+      memoryGame.pickedCards.push(card);
+      console.log(memoryGame.pickedCards);
+
+      if (memoryGame.pickedCards.length === 2) {
+        // console.log("2 cards picked");
+        const card1 = memoryGame.pickedCards[0];
+        const card2 = memoryGame.pickedCards[1];
+
+        if (memoryGame.checkIfPair(card1.getAttribute("data-card-name"), card2.getAttribute("data-card-name")){
+          document.querySelector("#pairs-clicked").innerHTML = memoryGame.pairsClicked;
+          document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed;
+          card1.classList.add("blocked");
+          card2.classList.add("blocked");
+          memoryGame.pickedCards = [];
+        } else {
+          document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
+          setTimeout(() => {card1.querySelectorAll(".card div").forEach((div) => {
+              div.classList.toggle("front");
+              div.classList.toggle("back");
+            });
+          }, 1500);
+          setTimeout(() => {
+            card2.querySelectorAll(".card div").forEach((div) => {
+              div.classList.toggle("front");
+              div.classList.toggle("back");
+            });
+          }, 1500);
+          memoryGame.pickedCards = [];
+        }
     });
   });
 });
