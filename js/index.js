@@ -45,6 +45,7 @@ window.addEventListener('load', event => {
       
       card.classList.toggle("turned");
       memoryGame.pickedCards.push(card)
+      console.log(card.classList)
 
       let card1 = memoryGame.pickedCards[0];
       let card2 = memoryGame.pickedCards[1];
@@ -54,19 +55,22 @@ window.addEventListener('load', event => {
           card1.classList.add('blocked');
           card2.classList.add('blocked');
         } else {
-          setInterval(()=>{
+          setTimeout(()=>{
           card1.classList.remove('turned')
+          console.log(card1.classList)
           card2.classList.remove('turned')
+          console.log(card2.classList)
           }, 1000)
         }
       memoryGame.pickedCards = [];
       }
-      console.log(memoryGame.pickedCards.length)
+      
       document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
       document.getElementById("pairs-guessed").innerHTML = memoryGame.pairsGuessed;
 
       if(memoryGame.isFinished()){
         alert("Congratulations You Won!")
+       
       }
    
     });
