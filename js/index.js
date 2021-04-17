@@ -27,6 +27,13 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+function onClickCard(event){
+  const card = event.currentTarget
+  console.log(card)
+  memoryGame.pickedCards.push(card)
+  if (pickedCards.length )
+}
+
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -41,9 +48,6 @@ window.addEventListener('load', event => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+    card.addEventListener('click', onClickCard);
   });
 });
