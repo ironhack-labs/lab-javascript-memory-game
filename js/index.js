@@ -28,10 +28,42 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 function onClickCard(event){
-  const card = event.currentTarget
-  console.log(card)
-  memoryGame.pickedCards.push(card)
-  if (pickedCards.length )
+  const card = event.currentTarget;
+  console.log(card);
+
+  if (memoryGame.pickedCards.length < 2) {
+    memoryGame.pickedCards.push(card);
+    card.classList.toggle('turned');
+   
+    if (memoryGame.pickedCards.length === 2){
+      setTimeout(() => {
+          memoryGame.pickedCards.forEach(card => { 
+            const pickedCardNames = memoryGame.pickedCards.map(card => card.getAttribute('data-card-name'))
+
+            if (memoryGame.checkIfPair(pickedCardNames[0], pickedCardNames[1])){
+              card.classList.add('blocked');
+              } else {
+                card.classList.remove('turned');
+              }
+
+            memoryGame.pickedCards === [];
+
+          });
+          
+          updateScore();
+
+          if (memoryGame.isFinished()) {
+            alert(`You won! score: ${memoryGame.pairsClicked}`);
+          }
+      }, 900)
+    }
+  }
+
+}
+
+function updateScore() {
+  document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked;
+  document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed;
 }
 
 window.addEventListener('load', event => {
