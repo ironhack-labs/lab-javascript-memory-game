@@ -27,7 +27,45 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', event => {
+
+function onClickCard(event) {  // desde la solucion, nosotros llegamos hasta el punto de pickCard y nos bloqueamos
+  if (memoryGame.pickedCards.length < 2) {
+    const card = event.currentTarget;
+    card.classList.toggle('turned');
+
+    const equalAgainstLast = memoryGame.pickCard(card);
+    if (memoryGame.pickedCards.length === 2) {
+      setTimeout(() => {
+        memoryGame.pickedCards.forEach(card => {
+          if (equalAgainstLast) {
+            card.classList.add('blocked');
+          } else {
+            card.classList.remove('turned');
+          }
+        })
+        memoryGame.pickedCards = [];
+
+        updateScore();
+
+        if (memoryGame.isFinished()) {
+          alert(`You won!!! score: ${memoryGame.pairsClicked}`);
+        }
+      }, 900);
+    }
+  }
+}
+
+function updateScore() {
+  document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked;
+  document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed;
+}
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -40,10 +78,7 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
+  document.querySelectorAll('.card')
+    .forEach(card => card.addEventListener('click', onClickCard));
+
 });
