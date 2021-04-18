@@ -6,7 +6,7 @@ class MemoryGame {
     this.pairsGuessed = 0;
     // add the rest of the class properties here
   }
-  shuffleCards(array) {
+  shuffleCards(cards) {
     let currentIndex = this.cards.length, tempValue, randomIndex;
     while(0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -15,7 +15,7 @@ class MemoryGame {
       this.cards[currentIndex] = this.cards[randomIndex];
       this.cards[randomIndex] = tempValue;
     }
-    return array;
+    return cards;
   }
 
   // shuffle elements in array: https://www.codegrepper.com/code-examples/javascript/fisher-yates+shuffle+with+foreach+javascript
