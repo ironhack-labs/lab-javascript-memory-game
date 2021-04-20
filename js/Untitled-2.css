@@ -1,0 +1,16 @@
+.alert{
+    border: 1px solid grey;
+    padding: 15px 10px 15px 10px;
+    border-radius: 5px;
+}
+
+.alert-primary{
+    color: blue;
+    background-color: cornflowerblue;
+    border-color:darkblue
+}
+.alert-danger{
+ /*    color: red;
+    background-color: rgb(83, 8, 8);
+    border-color: red; */
+}
