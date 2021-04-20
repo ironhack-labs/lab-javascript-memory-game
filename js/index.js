@@ -27,13 +27,51 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+function onClickCard (event) {
+  if (memoryGame.pickedCards.length < 2) {
+    const card = event.currentTarget
+    card.classList.toggle('turned')
+
+    const equalAgainstLast = memoryGame.cardPick(card)
+    if (memoryGame.pickedCards.length === 2) {
+      setTimeout(() => {
+        memoryGame.pickedCards.forEach((card) => {
+          if (equalAgainstLast) {
+            console.log("equaal")
+            card.classList.add('blocked')
+          } else {
+            card.classList.remove('turned')
+          }
+        })
+        memoryGame.pickedCards = []
+
+        updateScore()
+
+        if (memoryGame.isFinished()) {
+          alert(`you won!! score: ${memoryGame.pairsClicked}`)
+        } 
+      }, 900)
+    }
+  }
+ 
+}
+
+function updateScore() {
+  document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked
+  document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed
+}
+
+
+
+
+
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
-    html += `</div>`;
+    html += `</div>`; 
   });
 
   // Add all the divs to the HTML
@@ -41,9 +79,6 @@ window.addEventListener('load', event => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+    card.addEventListener('click', onClickCard);
   });
 });
