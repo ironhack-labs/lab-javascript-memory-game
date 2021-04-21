@@ -1,46 +1,44 @@
 class MemoryGame {
-  constructor(cards, pickedCards, pairsClicked, pairsGuessed) {
+  constructor(cards) {
     this.cards = cards;
-    this.pickedCards = pickedCards;
-    this.pairsClicked = pairsClicked;
-    this.pairsGuessed = pairsGuessed;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
 
   shuffleCards() {
-    var currentIndex = this.cards.length,
-      temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = this.cards[currentIndex];
-      this.cards[currentIndex] = this.cards[randomIndex];
-      this.cards[randomIndex] = temporaryValue;
+    for (let i = this.cards.length - 1; i > 0; i--) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      const card = this.cards[i];
+      this.cards[i] = this.cards[randomIndex];
+      this.cards[randomIndex] = card;
     }
-
-    return this.cards;
   }
 
   checkIfPair(card1, card2) {
     this.pairsClicked++;
-    if (card1.name === card2.name) {
+    const areEquals = card1 === card2;
+    if (areEquals) {
       this.pairsGuessed++;
-      return true
-    } else {
-      return false
-    };
-
-
+    }
+    return areEquals;
   }
+
+  pickCard(htmlCard) {
+    let areEquals = false;
+    if (this.pickedCards.length < 2) {
+      this.pickedCards.push(htmlCard);
+      if (this.pickedCards.length === 2) {
+        const pickedCardNames = this.pickedCards.map((htmlCard) =>
+          htmlCard.getAttribute("data-card-name")
+        );
+        areEquals = this.checkIfPair(pickedCardNames[0], pickedCardNames[1]);
+      }
+    }
+    return areEquals;
+  }
+
   isFinished() {
-    if (this.pairsGuessed === this.cards / 2)
+    return this.pairsGuessed === this.cards.length / 2;
   }
 }
-
-shuffle(cards);
-console.log(cards);
