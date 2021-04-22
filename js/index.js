@@ -1,4 +1,5 @@
-import { MemoryGame } from "./memory.js";
+//const MemoryGame = require('./memory.js')
+//import { MemoryGame } from "./memory.js";
 
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
