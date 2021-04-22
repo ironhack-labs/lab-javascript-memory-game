@@ -1,5 +1,5 @@
 //const MemoryGame = require('./memory.js')
-//import { MemoryGame } from "./memory.js";
+import { MemoryGame } from "./memory.js";
 
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
@@ -45,7 +45,9 @@ window.addEventListener('load', event => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle('turned', !card.classList.contains('turned'));
+
+
       console.log(`Card clicked: ${card}`);
     });
   });

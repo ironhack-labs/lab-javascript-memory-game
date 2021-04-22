@@ -39,5 +39,5 @@ class MemoryGame {
   }
 }
 
-module.exports = MemoryGame;
-//export { MemoryGame };
+// module.exports = MemoryGame;
+export { MemoryGame };
