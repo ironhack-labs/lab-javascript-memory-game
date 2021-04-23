@@ -26,9 +26,41 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-memoryGame.shuffleCards();
 
-window.addEventListener('load', event => {
+function onClickCard(event) {
+  if (memoryGame.pickedCards.length < 2) {
+    const card = event.currentTarget;
+    card.classList.toggle('turned');
+
+    const equalAgainstLast = memoryGame.pickCard(card);
+    if (memoryGame.pickedCards.length === 2) {
+      setTimeout(() => {
+        memoryGame.pickedCards.forEach(card => {
+          if (equalAgainstLast) {
+          console.log('equaals');
+          card.classList.add('blocked');
+          } else {
+          card.classList.remove('turned');
+          }
+        })
+        memoryGame.pickedCards = [];
+        updateScore();
+
+        if (memoryGame.isFinished()) {
+          alert(`You won!!! score: ${memoryGame.pairsClicked}`);
+        }
+      }, 900);
+    }
+  }
+}
+
+function updateScore() {
+  document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked;
+  document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed;
+}
+
+window.addEventListener('load', () => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -41,33 +73,7 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
+  document.querySelectorAll('.card')
+    .forEach(card => card.addEventListener('click', onClickCard));
 
-
-     card.classList.add('turned')
-     memoryGame.pickedCards.push(card)
-     if (memoryGame.pickedCards.length === 2) {
-        
-      if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].cardName, memoryGame.pickedCards[1].cardName)) {
-        setTimeout(() => {
-          memoryGame.pickedCards[0].classList.remove('turned')
-          memoryGame.pickedCards[1].classList.remove('turned')
-          memoryGame.pickedCards.length = 0
-        }, 1000)
-      } else {
-        memoryGame.pickedCards.length = 0
-        document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed
-        if(memoryGame.isFinished()){
-           alert('you won :)')
-        }
-      }
-    }
-    document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
-
-
-      ;
-    });
-  });
 });

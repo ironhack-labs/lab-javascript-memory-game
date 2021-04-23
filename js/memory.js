@@ -25,6 +25,18 @@ class MemoryGame {
       return false
     }
   }
+ 
+  pickCard(htmlCard) {
+    let areEquals = false;
+    if (this.pickedCards.length < 2) {
+      this.pickedCards.push(htmlCard);
+      if (this.pickedCards.length === 2) {
+        const pickedCardNames = this.pickedCards.map(htmlCard => htmlCard.getAttribute('data-card-name'));
+        areEquals = this.checkIfPair(pickedCardNames[0], pickedCardNames[1]);
+      }
+    }
+    return areEquals;
+  }
 
   isFinished() {
     return (this.pairsGuessed== this.cards.length/2)
