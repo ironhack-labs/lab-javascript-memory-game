@@ -48,13 +48,18 @@ window.addEventListener('load', event => {
       card.firstElementChild.classList.remove("back")
       card.lastElementChild.classList.add("back")
       card.lastElementChild.classList.remove("front")
-      
       memoryGame.pickedCards.push(card)
-        if(memoryGame.pickedCards.length === 2) {
-          let result = memoryGame.checkIfPaired(memoryGame.pickedCards[0].name,memoryGame.pickedCards[1].name)
+    
+        if(memoryGame.pickedCards.length % 2 === 0) {
+          let result = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute("data-card-name"),memoryGame.pickedCards[1].getAttribute("data-card-name"))
+          console.log(result)
+          console.log(memoryGame.pickedCards[0])
+          console.log(memoryGame.pickedCards[1])
+        
           if(result === true) {
             memoryGame.pickedCards = []
           } else {
+            setTimeout( () => {
             memoryGame.pickedCards.forEach( (card) => {
               card.firstElementChild.classList.add("back")
               card.firstElementChild.classList.remove("front")
@@ -62,9 +67,12 @@ window.addEventListener('load', event => {
               card.lastElementChild.classList.remove("back")
             })
             memoryGame.pickedCards = []
+            }, 1000)
+          
           }
+        
         }
-
+    
 
       
     });
