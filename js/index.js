@@ -24,9 +24,7 @@ const cards = [
   { name: 'the avengers', img: 'the-avengers.jpg' },
   { name: 'thor', img: 'thor.jpg' }
 ];
-
 const memoryGame = new MemoryGame(cards);
-
 window.addEventListener('load', event => {
   let html = '';
   memoryGame.cards.forEach(pic => {
@@ -35,15 +33,31 @@ window.addEventListener('load', event => {
     html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
     html += `</div>`;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
   // Bind the click event of each element to a function
+  function turnCardsBack(pickedCards{
+    let card1 = pickedCards[0],
+    
+  })
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.firstElementChild.classList.remove("back")
+      card.firstElementChild.classList.add("front")
+
+      card.lastElementChild.classList.remove("front")
+      card.lastElementChild.classList.add("back")
+      
+      if(memoryGame.pairsClicked.lengngth < 2){
+        memoryGame.pickedCards.push (card)
+      }
+      if (memoryGame.pickedCards.length === 2){
+        let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
+        if(isPair)
+      }
+  
+
+      }
     });
   });
 });
