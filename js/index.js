@@ -44,6 +44,29 @@ window.addEventListener('load', event => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
+      card.firstElementChild.classList.add("front")
+      card.firstElementChild.classList.remove("back")
+      card.lastElementChild.classList.add("back")
+      card.lastElementChild.classList.remove("front")
+
+      memoryGame.pickedCards.push(card)
+      
+      if (memoryGame.pickedCards.length === 2){
+        let = memoryGame.checkIfPaired(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
+        if(result === true) {
+          memoryGame.pickedCards = []
+        } else {
+          memoryGame.pickedCards.forEach( (card) => {
+            card.firstElementChild.classList.add("back")
+            card.firstElementChild.classList.remove("front")
+            card.lastElementChild.classList.add("front")
+            card.lastElementChild.classList.remove("back")
+          })
+          memoryGame.pickedCards = []
+        }
+    }
+
     });
   });
 });
