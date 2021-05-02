@@ -15,7 +15,6 @@ class MemoryGame {
     }
   }
 
-     // this.pickedCards.push(1)
   
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
@@ -30,7 +29,7 @@ class MemoryGame {
   isFinished() {
 if(this.pairsGuessed == this.cards.length / 2){
   return true;
-} else{
+} else {
   return false;
 }
   }
