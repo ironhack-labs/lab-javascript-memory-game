@@ -29,6 +29,10 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   let html = '';
+
+  //para modificar el score
+  let guessed = document.getElementById("pairs-guessed")
+  //
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
     html += `<div class="back" name="${pic.img}"></div>`;
@@ -40,20 +44,65 @@ window.addEventListener('load', event => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+  function turnCardsBack(pickedCards){
+    let card1 = pickedCards[0],
+        card2 = pickedCards[1] 
+      card1.firstElementChild.classList.remove("front")
+      card1.firstElementChild.classList.add("back")
+      card1.lastElementChild.classList.remove("back")
+      card1.lastElementChild.classList.add("front")
+
+      card2.firstElementChild.classList.remove("front")
+      card2.firstElementChild.classList.add("back")
+      card2.lastElementChild.classList.remove("back")
+      card2.lastElementChild.classList.add("front")
+
+    memoryGame.pickedCards = []
+
+  }
+
+/*function blockClickedCards (){
+    document.querySelectorAll(".cards").forEach((card)=>{
+      card.firstElementChild.classList.add("blocked")
+      card.lastElementChild.classList.add("blocked")
+    })
+}*/
+
+  //
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
-
-      card.firstElementChild.classList.add("front")
-      card.firstElementChild.classList.remove("back")
-      card.lastElementChild.classList.add("back")
-      card.lastElementChild.classList.remove("front")
+        //se puede realizar con .toggle por igual, es necesario voltear de vuelta
+        card.firstElementChild.classList.remove("back")
+        card.firstElementChild.classList.add("front")
+        card.lastElementChild.classList.remove("front")
+        card.lastElementChild.classList.add("back")
 
       memoryGame.pickedCards.push(card)
+
+        
+
+        if (memoryGame.pickedCards.length %2 === 0){
+          let isPair = memoryGame.checkIfPair(
+            memoryGame.pickedCards[0].getAttribute("data-card-name"),
+            memoryGame.pickedCards[1].getAttribute("data-card-name"))
+          
+          
+          if(isPair){
+              guessed.innerText = memoryGame.pairsGuessed
+              memoryGame.pickedCards = []
+          }else {
+            setTimeout(()=>{
+              turnCardsBack(memoryGame.pickedCards)
+            },2000)
+            
+          }
+        }
+      /*memoryGame.pickedCards.push(card)
       
       if (memoryGame.pickedCards.length === 2){
-        let = memoryGame.checkIfPaired(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
+        let = memoryGame.checkIfPair(memoryGame.pickedCards[0],memoryGame.pickedCards[1])
         if(result === true) {
           memoryGame.pickedCards = []
         } else {
@@ -65,7 +114,7 @@ window.addEventListener('load', event => {
           })
           memoryGame.pickedCards = []
         }
-    }
+      }*/
 
     });
   });
