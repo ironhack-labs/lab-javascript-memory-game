@@ -43,32 +43,57 @@ window.addEventListener("load", (event) => {
     let card = document.createElement("div");
     card.classList.add("memory-board");
   }
+  const cardsTurned = [];
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("click", () => {
-      // TODO: write some code here
-      card.classList.toggle("turned");
-      console.log(card.attributes[1].textContent);
-      const cardsTurned = Array.from(document.querySelectorAll(".turned"));
-      console.log(cardsTurned);
-      if (cardsTurned.length % 2) {
-        if (
-          cardsTurned[cardsTurned.length - 2].attributes[1].textContent ==
-          cardsTurned[cardsTurned.length - 1].attributes[1].textContent
-        ) {
-          console.log("iguales");
-          cardsTurned[cardsTurned.length - 2].classList.toggle("blocked");
-          cardsTurned[cardsTurned.length - 1].classList.toggle("blocked");
-          //cardsTurned[0].classList.remove("turned");
-          //cardsTurned[1].classList.remove("turned");
-        } else {
-          cardsTurned[cardsTurned.length - 2].classList.toggle("turned");
-          cardsTurned[cardsTurned.length - 1].classList.toggle("turned");
-          console.log("diferentes");
+    card.addEventListener(
+      "click",
+      () => {
+        // TODO: write some code here
+        card.classList.toggle("turned");
+        memoryGame.pairsClicked += 1;
+        const click = document.getElementById("pairs-clicked");
+        console.log(click);
+        click.textContent = memoryGame.pairsClicked;
+        console.log(memoryGame.pairsClicked);
+        console.log(card.attributes[1].textContent);
+        cardsTurned.push(card);
+        console.log(cardsTurned);
+        if (cardsTurned.length % 2 === 0) {
+          if (
+            memoryGame.checkIfPair(
+              cardsTurned[0].attributes[1].textContent,
+              cardsTurned[1].attributes[1].textContent
+            )
+          ) {
+            //console.log("iguales");
+            cardsTurned[0].classList.add("blocked");
+            cardsTurned[1].classList.add("blocked");
+            const guessed = document.getElementById("pairs-guessed");
+            guessed.textContent = memoryGame.pairsGuessed;
+            cardsTurned.pop();
+            cardsTurned.pop();
+            //console.log(cardsTurned);
+          } else {
+            console.log(cardsTurned);
+            setTimeout(function () {
+              console.log(cardsTurned);
+              cardsTurned[0].classList.remove("turned");
+              cardsTurned[1].classList.remove("turned");
+              memoryGame.pairsClicked -= 1;
+            }, 500);
+            setTimeout(function () {
+              cardsTurned.pop();
+              cardsTurned.pop();
+            }, 500);
+
+            //console.log(cardsTurned);
+            //console.log("diferentes");
+          }
+          //console.log("Hay juego");
         }
-        console.log("Hay juego");
-      }
-      console.log(`Card clicked: ${card}`);
-    });
+        //console.log(`Card clicked: ${card}`);
+      },
+    );
   });
 });
