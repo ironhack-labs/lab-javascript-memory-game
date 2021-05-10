@@ -95,3 +95,27 @@ p {
   font-size: 20px;
   text-align: center;
 }
+.finished{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #dddddd;
+  color: black;
+  position: absolute;
+  top: 470px; left: 265px;
+  border: 10px double red;
+  z-index: 1;
+  padding: 5%;
+}
+.finished button{
+  margin-top: 30px;
+  padding: 2%;
+  border-radius: 30%;
+  background-color: red;
+  color: white;
+  font-size: x-large;
+}
+.hide{
+  display: none;
+}
