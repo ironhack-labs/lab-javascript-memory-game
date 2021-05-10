@@ -71,8 +71,10 @@ window.addEventListener("load", (event) => {
           cardsTurned.pop();
           cardsTurned.pop();
           if (memoryGame.isFinished()) {
-            const finish = document.querySelector(".finished");
-            finish.classList.remove("hide");
+            setTimeout(function () {
+              const finish = document.querySelector(".finished");
+              finish.classList.remove("hide");
+            }, 500);
           }
         } else {
           setTimeout(function () {

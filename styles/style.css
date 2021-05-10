@@ -103,7 +103,7 @@ p {
   background-color: #dddddd;
   color: black;
   position: absolute;
-  top: 470px; left: 265px;
+  top: 445px; left: 470px;
   border: 10px double red;
   z-index: 1;
   padding: 5%;
