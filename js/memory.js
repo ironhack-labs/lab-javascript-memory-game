@@ -52,5 +52,11 @@ class MemoryGame {
         }
     }
     //comprobar si el juego esta terminado
-    isFinished() { }
+    isFinished() {
+        if (this.pairsGuessed === this.cards.length / 2) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
