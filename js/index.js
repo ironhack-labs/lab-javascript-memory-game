@@ -30,7 +30,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   //Cada vez que se cree un nuevo juego debemos invoco el metodo barajar (suffleCards)
-  memoryGame.suffleCards()
+  //memoryGame.suffleCards()
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -44,8 +44,16 @@ window.addEventListener('load', event => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach(card => {
+    // let div = document.querySelector("div")
+    //let classes = div.classList
     card.addEventListener('click', () => {
+      card.classList.toggle('.turned')
       // TODO: write some code here
+      //Cuando el numero de cartas clickeadas es igual a 2 , las comparamos
+      /*     
+            if (memoryGame.pickedCards.length === 2) {
+              const card1 = memoryGame.pickedCards[]
+          }*/
       console.log(`Card clicked: ${card}`);
     });
   });
