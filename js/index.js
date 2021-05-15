@@ -29,7 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 
 window.addEventListener('load', event => {
-  //Cada vez que se cree un nuevo juego debemos ¿llamar/ejecutar? el metodo barajar (suffleCards)
+  //Cada vez que se cree un nuevo juego debemos invoco el metodo barajar (suffleCards)
   memoryGame.suffleCards()
   let html = '';
   memoryGame.cards.forEach(pic => {
