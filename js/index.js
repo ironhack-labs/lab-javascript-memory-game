@@ -48,20 +48,48 @@ window.addEventListener('load', event => {
   document.querySelectorAll('.card').forEach(card => {
     // let div = document.querySelector("div")
     //let classes = div.classList
+
     card.addEventListener('click', () => {
       //OPCION A: Cuando hagamos click en un elemento se añadira a su clase la clase turned
-      card.classList.toggle('turned')
+      //card.classList.toggle('turned')
 
-      //OPCION B: card.classList.add('turned')
+      //OPCION B: 
+      card.classList.add('turned')
       //Acumulamos 2 cards clickeadas en el array que definimos vacio gracias al metodo push
-      const cardOne = memoryGame.pickedCards.push(card)
-      const cardTwo = memoryGame.pickedCards.push(card)
+      const cardName = card.getAttribute('data-card-name')
+
+      // memoryGame.pickedCards.slice(i,0,card)
+      memoryGame.pickedCards.push(card)
+      //const cardTwo = memoryGame.pickedCards.push(card)
 
       //LLamamos al metodo setTimeout() que ejecutara el metodo toggle por segunda veces 
       if (memoryGame.pickedCards.length === 2) {
-        setTimeout(() => {
-          card.classList.toggle('turned')
-        }, 1500)
+
+        //const cardOne = memoryGame.pickedCards[memoryGame.pickedCards.length-1]
+        //  const cardTwo = memoryGame.pickedCards[memoryGame.pickedCards.length]
+        const cardOne = memoryGame.pickedCards[0]
+        const cardTwo = memoryGame.pickedCards[1]
+        //if (memoryGame.checkIfPair(cardOne.data-card-name, cardTwo.data-card-name)) {
+        if (memoryGame.checkIfPair(cardOne.getAttribute('data-card-name'), cardTwo.getAttribute('data-card-name'))) {
+          document.querySelector(' #pairs-guessed').textContent = memoryGame.pairsGuessed
+          console.log("true")
+
+          if (memoryGame.isFinished()) {
+            alert("---GOOG JOB! GAME IS FINISHED---")
+            console.log("true")
+          }
+        } else {
+
+          console.log("false")
+          setTimeout(() => {
+            cardOne.classList.remove('turned')
+            cardTwo.classList.remove('turned')
+            // cardTwo.classList.toggle('turned')
+          }, 1500)
+        }
+
+        memoryGame.pickedCards.length = 0;
+        document.querySelector(' #pairs-clicked').textContent = memoryGame.pairsClicked + 1
       }
 
 
