@@ -33,8 +33,8 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     this.pairsClicked +=1
-    if (card1 == card2) {
-      this.pairsGuessed += 1;
+    if (card1.attributes[1].value == card2.attributes[1].value) {
+      this.pairsGuessed += 0.5;
       return true;
     } else {
       return false;
