@@ -5,31 +5,46 @@ class MemoryGame {
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
-  shuffleCards(array) {
-    var m = array.length, t, i;
+
+  shuffleCards() {
+
+    let newCards = [...this.cards]
+
+    if (!newCards) {
+      return undefined
+    } else {
+    if (newCards.length == 0) {
+      return undefined
+    } else {
+
+    var m = newCards.length, t, i;
 
     while (m) {
       i = Math.floor(Math.random() * m--);
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
+      t = newCards[m];
+      newCards[m] = newCards[i];
+      newCards[i] = t;
     }
-  
-    return array;
+
+    this.cards = [...newCards];
+    return undefined;
+  }}
   }
 
-  checkIfPair() {
-    this.pairsClicked += 1;
-    if (this.pickedCards[0] == this.pickedCards[1]) {
+  checkIfPair(card1, card2) {
+    this.pairsClicked +=1
+    if (card1 == card2) {
       this.pairsGuessed += 1;
       return true;
     } else {
       return false;
-    }
-  }
+    }}
+  
   isFinished() {
     if (this.pairsGuessed == this.cards.length / 2) {
       return true
+    } else {
+      return false
     }
   }
 }
