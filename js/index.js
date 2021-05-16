@@ -30,7 +30,9 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', event => {
   //Cada vez que se cree un nuevo juego debemos invoco el metodo barajar (suffleCards)
-  //memoryGame.suffleCards()
+  memoryGame.shuffleCards()
+  //Declaramos la variable html que contendra un string vacío
+  //Se irá rellenando de 3 div por carta. OJO! Ejemplo: html:"sirenita2offpocahontas3onvaiana1off" pero con divs
   let html = '';
   memoryGame.cards.forEach(pic => {
     html += `<div class="card" data-card-name="${pic.name}">`;
@@ -39,7 +41,7 @@ window.addEventListener('load', event => {
     html += `</div>`;
   });
 
-  // Add all the divs to the HTML
+  //Añadimos el string de divs al HTML como contenido HTML gracias a la propiedad innerHTML
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
@@ -47,7 +49,23 @@ window.addEventListener('load', event => {
     // let div = document.querySelector("div")
     //let classes = div.classList
     card.addEventListener('click', () => {
-      card.classList.toggle('.turned')
+      //OPCION A: Cuando hagamos click en un elemento se añadira a su clase la clase turned
+      card.classList.toggle('turned')
+
+      //OPCION B: card.classList.add('turned')
+      //Acumulamos 2 cards clickeadas en el array que definimos vacio gracias al metodo push
+      const cardOne = memoryGame.pickedCards.push(card)
+      const cardTwo = memoryGame.pickedCards.push(card)
+
+      //LLamamos al metodo setTimeout() que ejecutara el metodo toggle por segunda veces 
+      if (memoryGame.pickedCards.length === 2) {
+        setTimeout(() => {
+          card.classList.toggle('turned')
+        }, 1500)
+      }
+
+
+
       // TODO: write some code here
       //Cuando el numero de cartas clickeadas es igual a 2 , las comparamos
       /*     
