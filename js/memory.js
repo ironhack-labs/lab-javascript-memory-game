@@ -18,4 +18,4 @@ class MemoryGame {
 }
 
 // The following is required for automated testing. Please, ignore it.
-module.exports = MemoryGame;
+if (typeof module !== 'undefined') module.exports = MemoryGame;
