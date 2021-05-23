@@ -12,7 +12,10 @@ class MemoryGame {
     // ... write your code here
   }
 
-  isFinished() {
+  checkIfFinished() {
     // ... write your code here
   }
 }
+
+// The following is required for automated testing. Please, ignore it.
+module.exports = MemoryGame;

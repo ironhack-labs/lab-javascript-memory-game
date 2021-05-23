@@ -1,130 +1,124 @@
-/* eslint no-undef: "off" */
-/* eslint jasmine/no-spec-dupes: "off" */
+const MemoryGame = require('./../js/memory');
+const cardsArray = [
+  { name: 'aquaman', img: 'aquaman.jpg' },
+  { name: 'batman', img: 'batman.jpg' },
+  { name: 'captain america', img: 'captain-america.jpg' },
+  { name: 'fantastic four', img: 'fantastic-four.jpg' },
+  { name: 'flash', img: 'flash.jpg' },
+  { name: 'green arrow', img: 'green-arrow.jpg' },
+  { name: 'green lantern', img: 'green-lantern.jpg' },
+  { name: 'ironman', img: 'ironman.jpg' },
+  { name: 'aquaman', img: 'aquaman.jpg' },
+  { name: 'batman', img: 'batman.jpg' },
+  { name: 'captain america', img: 'captain-america.jpg' },
+  { name: 'fantastic four', img: 'fantastic-four.jpg' },
+  { name: 'flash', img: 'flash.jpg' },
+  { name: 'green arrow', img: 'green-arrow.jpg' },
+  { name: 'green lantern', img: 'green-lantern.jpg' },
+  { name: 'ironman', img: 'ironman.jpg' }
+];
 
-describe("MemoryGame class", () => {
+let memoryGame;
+
+describe('MemoryGame', () => {
   beforeEach(() => {
-    memoryGame = new MemoryGame([]);
-  });
-
-  it("Create MemoryGame object", () => {
-    expect(typeof MemoryGame).toBe("function");
-  });
-
-  it("MemoryGame should receive `cards` as a parameter and create it as its own `cards` property", () => {
-    expect(memoryGame.cards).toBeDefined();
-  });
-
-  it("MemoryGame should have a pickedCards property", () => {
-    expect(memoryGame.pickedCards).toBeDefined();
-  });
-
-  it("pickedCards property should be an array", () => {
-    expect(typeof memoryGame.pickedCards).toBe("object");
-  });
-
-  it("MemoryGame should have a pairsClicked property", () => {
-    expect(memoryGame.pairsClicked).toBeDefined();
-  });
-
-  it("pairsClicked property should be a number", () => {
-    expect(typeof memoryGame.pairsClicked).toBe("number");
-  });
-
-  it("MemoryGame should have a pairsGuessed property", () => {
-    expect(memoryGame.pairsGuessed).toBeDefined();
-  });
-
-  it("pairsGuessed property should be a number", () => {
-    expect(typeof memoryGame.pairsGuessed).toBe("number");
-  });
-});
-
-describe("shuffleCards method", () => {
-  beforeEach(() => {
-    const cardsArray = [
-      { name: "aquaman", img: "aquaman.jpg" },
-      { name: "batman", img: "batman.jpg" },
-      { name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four", img: "fantastic-four.jpg" },
-      { name: "flash", img: "flash.jpg" },
-      { name: "green arrow", img: "green-arrow.jpg" },
-      { name: "green lantern", img: "green-lantern.jpg" },
-      { name: "ironman", img: "ironman.jpg" },
-      { name: "aquaman", img: "aquaman.jpg" },
-      { name: "batman", img: "batman.jpg" },
-      { name: "captain america", img: "captain-america.jpg" },
-      { name: "fantastic four", img: "fantastic-four.jpg" },
-      { name: "flash", img: "flash.jpg" },
-      { name: "green arrow", img: "green-arrow.jpg" },
-      { name: "green lantern", img: "green-lantern.jpg" },
-      { name: "ironman", img: "ironman.jpg" }
-    ];
     memoryGame = new MemoryGame(cardsArray);
   });
 
-  it("should be declared", () => {
-    expect(typeof memoryGame.shuffleCards).toBe("function");
+  it('should be declared', () => {
+    expect(typeof MemoryGame).toBe('function');
   });
 
-  it("should return undefined if argument (cards array) is not passed", () => {
-    expect(typeof memoryGame.shuffleCards()).toBe("undefined");
+  describe('constructor method', () => {
+    it('should receive `cards` as a parameter and store the cards in its own `cards` property', () => {
+      expect(MemoryGame.constructor.length).toBe(1);
+      expect(memoryGame.cards instanceof Array).toBe(true);
+    });
+
+    it('should have a pickedCards property starting off as an empty array', () => {
+      expect(memoryGame.pickedCards).toBeDefined();
+      expect(memoryGame.pickedCards instanceof Array).toBe(true);
+      expect(memoryGame.pickedCards.length).toBe(0);
+    });
+
+    it('should have a pairsClicked property starting off as 0', () => {
+      expect(memoryGame.pairsClicked).toBe(0);
+    });
+
+    it('should have a pairsGuessed property starting off as 0', () => {
+      expect(memoryGame.pairsGuessed).toBeDefined();
+    });
   });
 
-  it("should return the shuffled (mixed) array of cards", () => {
-    let formerCardsString = memoryGame.cards.map(card => card.name).toString();
-    memoryGame.shuffleCards();
-    let newCardsString = memoryGame.cards.map(card => card.name).toString();
-    expect(formerCardsString === newCardsString).toBe(false);
-  });
-});
+  describe('shuffleCards method', () => {
+    beforeEach(() => {
+      memoryGame = new MemoryGame(cardsArray);
+    });
 
-describe("checkIfPair method", () => {
-  it("should be declared", () => {
-    expect(typeof memoryGame.checkIfPair).toBe("function");
-  });
+    it('should be declared', () => {
+      expect(typeof memoryGame.shuffleCards).toBe('function');
+    });
 
-  it("should add 1 to `pairsClicked` when we call it", () => {
-    memoryGame.checkIfPair("batman", "ironman");
-    expect(memoryGame.pairsClicked).toBe(1);
-  });
+    it('should return undefined if argument (cards array) is not passed', () => {
+      expect(typeof memoryGame.shuffleCards()).toBe('undefined');
+    });
 
-  it("should return true when comparing cards are the same", () => {
-    expect(memoryGame.checkIfPair("ironman", "ironman")).toBe(true);
-  });
-
-  it("should return false when the comparing cards are not the same", () => {
-    expect(memoryGame.checkIfPair("ironman", "flash")).toBe(false);
+    it('should return the shuffled (mixed) array of cards', () => {
+      const formerCards = memoryGame.cards.map((card) => card.name).toString();
+      memoryGame.shuffleCards();
+      const newCards = memoryGame.cards.map((card) => card.name).toString();
+      expect(formerCards === newCards).toBe(false);
+    });
   });
 
-  it("should add 1 to pairsGuessed if they are the same card", () => {
-    memoryGame.pairsGuessed = 0;
-    memoryGame.checkIfPair("ironman", "ironman");
-    expect(memoryGame.pairsGuessed).toBe(1);
+  describe('checkIfPair method', () => {
+    it('should be declared', () => {
+      expect(typeof memoryGame.checkIfPair).toBe('function');
+    });
+
+    it('should add 1 to `pairsClicked` when we call it', () => {
+      memoryGame.checkIfPair('batman', 'ironman');
+      expect(memoryGame.pairsClicked).toBe(1);
+    });
+
+    it('should return true when comparing cards that are the same', () => {
+      expect(memoryGame.checkIfPair('ironman', 'ironman')).toBe(true);
+    });
+
+    it('should return false when the comparing cards are not the same', () => {
+      expect(memoryGame.checkIfPair('ironman', 'flash')).toBe(false);
+    });
+
+    it('should add 1 to pairsGuessed if they are the same card', () => {
+      memoryGame.pairsGuessed = 0;
+      memoryGame.checkIfPair('ironman', 'ironman');
+      expect(memoryGame.pairsGuessed).toBe(1);
+    });
+
+    it('should not add to pairsGuessed if the cards are not the same', () => {
+      memoryGame.pairsGuessed = 0;
+      memoryGame.checkIfPair('ironman', 'green lantern');
+      expect(memoryGame.pairsGuessed).toBe(0);
+    });
   });
 
-  it("should not add to pairsGuessed if the cards are not the same", () => {
-    memoryGame.pairsGuessed = 0;
-    memoryGame.checkIfPair("ironman", "green lantern");
-    expect(memoryGame.pairsGuessed).toBe(0);
-  });
-});
+  describe('checkIfFinished method', () => {
+    it('should be declared', () => {
+      expect(typeof memoryGame.checkIfFinished).toBe('function');
+    });
 
-describe("isFinished method", () => {
-  it("should be declared", () => {
-    expect(typeof memoryGame.isFinished).toBe("function");
-  });
+    it('should return false at the beginning of the game', () => {
+      expect(memoryGame.checkIfFinished()).toBe(false);
+    });
 
-  it("should return false at the beginning of the game", () => {
-    expect(memoryGame.isFinished()).toBe(false);
-  });
+    it("should return false if there's still some pairs to be guessed", () => {
+      memoryGame.pairsGuessed = 4;
+      expect(memoryGame.checkIfFinished()).toBe(false);
+    });
 
-  it("should return false if there's still some pairs to be guessed", () => {
-    memoryGame.pairsGuessed = 4;
-    expect(memoryGame.isFinished()).toBe(false);
-  });
-
-  it("should return true if all pairs are guessed", () => {
-    memoryGame.pairsGuessed = 8;
-    expect(memoryGame.isFinished()).toBe(true);
+    it('should return true if all pairs are guessed', () => {
+      memoryGame.pairsGuessed = 8;
+      expect(memoryGame.checkIfFinished()).toBe(true);
+    });
   });
 });
