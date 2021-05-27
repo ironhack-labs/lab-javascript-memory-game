@@ -23,16 +23,17 @@ The goal of the game is to get all the cards flipped face-up in the least number
 
 ## Requirements
 
-- Fork this repo
-- Clone this repo
+- Fork this repo.
+- Clone this repo.
+- Visit the "actions" tab in your fork, and enable workflows.
 
 ## Submission
 
 Upon completion, run the following commands:
 
-```
+```bash
 $ git add .
-$ git commit -m "done"
+$ git commit -m "Solved lab"
 $ git push origin master
 ```
 
@@ -80,9 +81,15 @@ class MemoryGame {
     this.cards = cards;
     // add the rest of the class properties here
   }
-  shuffleCards() {}
-  checkIfPair(card1, card2) {}
-  isFinished() {}
+  shuffleCards() {
+    // ...
+  }
+  checkIfPair(card1, card2) {
+    // ...
+  }
+  checkIfFinished() {
+    // ...
+  }
 }
 ```
 
@@ -94,13 +101,13 @@ class MemoryGame {
 
 1. Create logic for the method `shuffleCards()` to shuffle the cards - every time you create a new game, the order of the cards should change.
 
-**Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle with this method, you can skip it for the moment and go back to it later.
+   **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle with this method, you can skip it for the moment and go back to it later.
 
 2. When a user picks 2 cards, we will need to check if they are the same. Let's create logic for the method `checkIfPair()`, which will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`. It should return `true` or `false` depending on the result of comparing both cards.
 
    So, to summarize, we will have to update _pairsClicked_ on every two open cards by a user - it doesn't matter if the cards are the same. If two cards that we are comparing are the same, then _pairsGuessed_ gets updated with +1.
 
-3. Finally, we need to make sure our game ends, and for that, we can add some logic to the `isFinished()` method. Here we need to check if our property `pairsGuessed` has reached _the numbers of pairs the game has_.
+3. Finally, we need to make sure our game ends, and for that, we can add some logic to the `checkIfFinished()` method. Here we need to check if our property `pairsGuessed` has reached _the numbers of pairs the game has_.
 
 #### The layout and the logic files
 
@@ -119,7 +126,7 @@ Think about the interactions your user and the game will have: basically, the us
 ```javascript
 // js/index.js
 
-window.addEventListener('load', event => {
+window.addEventListener('load', (event) => {
   // some code goes here
 });
 ```
@@ -130,11 +137,11 @@ window.addEventListener('load', event => {
 // js/index.js
 
 // Bind the click event of each element to a function
-document.querySelectorAll('.card').forEach(card => {
-  card.onclick = function() {
+document.querySelectorAll('.card').forEach((card) => {
+  card.addEventListener('click', () => {
     // TODO: write some code here
     console.log('Card clicked: ', card);
-  };
+  });
 });
 ```
 
@@ -142,44 +149,41 @@ To flip a card, you can have multiple approaches. We will give you two possible 
 
 - Option 1: on click, add the class `turned` next to the class `card` to the `div` that represents each card - like in the following example:
 
-  ```html
-  <!-- Only display the back that is blue -->
-  <div class="card" data-card-name="ironman">
-    <div class="back" name="ironman.jpg"></div>
-    <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-  </div>
+```html
+<!-- Only display the back that is blue -->
+<div class="card" data-card-name="ironman">
+  <div class="back" name="ironman.jpg"></div>
+  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+</div>
 
-  <!-- After flipping -->
-  <div class="card turned" data-card-name="ironman">
-    <div class="back" name="ironman.jpg"></div>
-    <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-  </div>
-  ```
+<!-- After flipping -->
+<div class="card turned" data-card-name="ironman">
+  <div class="back" name="ironman.jpg"></div>
+  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
+</div>
+```
 
-- Option 2: another alternative is to toggle the classes _back_ and _front_ when the user clicks on a card. For this functionality, the method `element.classList.toggle()` can be very helpful. This method receives a string as the first argument (the class to toggle). [It can also receive a second *optional* argument with a boolean expression](https://stackoverflow.com/questions/23663151/whats-the-point-of-the-second-argument-in-element-classlist-toggle/23663302#23663302) (in that case, the class is added when the expression is true, and removed when the expression is false):
+- Option 2: another alternative is to toggle the classes _back_ and _front_ when the user clicks on a card. For this functionality, the method `element.classList.toggle()` can be very helpful. This method receives a string as the first argument (the class to toggle). [It can also receive a second _optional_ argument with a boolean expression](https://stackoverflow.com/questions/23663151/whats-the-point-of-the-second-argument-in-element-classlist-toggle/23663302#23663302) (in that case, the class is added when the expression is true, and removed when the expression is false):
 
-  ```javascript
+```javascript
+/* one argument */
+el.classList.toggle('foobar');
+// if it doesn't have the class 'foobar' --> add the class 'foobar'
+// if it already has the class 'foobar' --> remove the class 'foobar'
 
-    /* one argument */
-    el.classList.toggle('foobar');
-    // if it doesn't have the class 'foobar' --> add the class 'foobar'
-    // if it already has the class 'foobar' --> remove the class 'foobar'
-    
-
-    /* two arguments */
-    el.classList.toggle('abc', someBool);
-    // if someBool evaluates to true -> add the class 'abc'
-    // if someBool evaluates to false -> remove the class 'abc'
-
-  ```
+/* two arguments */
+el.classList.toggle('abc', someBool);
+// if someBool evaluates to true -> add the class 'abc'
+// if someBool evaluates to false -> remove the class 'abc'
+```
 
 Now when you have cards flipping from back to front and vice versa, you have to make sure you call `.checkIfPair(card1, card2)` method. If the two cards are the same, they should get class _blocked_, which is going to keep them flipped so we can see images.
 
 _Hint 1_: The array of picked cards can't ever hold more than two cards.
-_Hint 2_: Make sure you call `isFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, or be more creative and add some text on the canvas - displaying _You won!!!_
+_Hint 2_: Make sure you call `checkIfFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, or be more creative and add some text on the canvas - displaying _You won!!!_
 
 ## Extra Resources
 
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
 
-**Happy coding!** :heart:
+**Happy coding!** 💙
