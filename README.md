@@ -2,22 +2,28 @@
 
 # LAB | DOM Memory Game
 
+<br>
+
 ## Introduction
 
 We just learned how to use (Vanilla) JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
 
+<br>
+
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
+
+<br>
 
 Do you remember that game called Memory that you used to play with the actual paper cards? To win, you needed to memorize the position of the paired card. Well, the logic of the game we will be building is the same.
 
-- The game consists of an even number of cards (precisely, 24) with a specific image on one side and a generic blue background on the other side.
+- The game consists of an even number of cards (precisely, **24**) with a specific image on one side and a generic blue background on the other side.
 - Each image appears on two cards.
 
 **The game rules:**
 
 - When the game starts, all cards are turned face down.
 - The player then flips over two cards, selecting them by clicking on them.
-- If the selected two cards have the same image, they remain face up. Otherwise, the cards flip back over after a short period of time.
+- If the selected two cards have the same image, they remain face up. Otherwise, the cards flip back over after a short time.
 
 The goal of the game is to get all the cards flipped face-up in the least number of tries. That means that a lower number of attempts scores better.
 
@@ -39,21 +45,31 @@ $ git push origin master
 
 Create Pull Request so your TAs can check up your work.
 
-## Test, tets, test!
+<br>
 
-We will test our game logic using Jasmine (at this point, you should be **Jasmine Masters**).
+## Automated Tests
+
+This lab includes an automated testing suite. For DOM-related labs, our automated tests should be seen as a secondary tool, that helps you to programmatically understand whether your solution is correct and allows the educational team to track your progress.
+
+To run the automated tests, please, open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Now, you can run the `npm run test:watch` command to run automated tests in watch mode. Open the resulting `lab-solution.html` file with the "Live Server" VSCode extension to always see the most up-to-date test results.
+
+<br>
 
 ## Instructions
 
+<br>
+
 ### Iteration 1: Initial set up
 
-First, you will do some routine work: we need to make sure that all files we need are actually connected to the file that is rendering cards in the browser.
+First, you will do some routine work: we need to make sure that all files we need are connected to the file that is rendering cards in the browser.
 The file that is rendering cards is actually `index.html`, so we have to **make sure that the _styles_ and _JS files_ are loading** when we open the game in the browser:
 
 - **styles**: don't forget to add the link to the CSS file in the `<head>` of your page,
 - **the logic**: take a look at the `js/index.js` and `js/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation).
 
 After connecting them properly, you should be able to see the board, the cards, and the score.
+
+<br>
 
 ### Iteration 2: Plan your game
 
@@ -70,6 +86,8 @@ The game logic for this game is pretty simple:
 _Side note:_ We will make a single-player version of the game, which will simplify some of the logic.
 
 Let's do this step by step.
+
+<br>
 
 #### Iteration 2.1: The `MemoryGame` class
 
@@ -97,6 +115,8 @@ class MemoryGame {
 2. We also need a `this.pickedCards` array, where we will be storing the cards the user has clicked so we can compare them.
 3. Finally, a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair. Go ahead and add these to the constructor.
 
+<br>
+
 #### Iteration 2.2: The class methods
 
 1. Create logic for the method `shuffleCards()` to shuffle the cards - every time you create a new game, the order of the cards should change.
@@ -109,6 +129,8 @@ class MemoryGame {
 
 3. Finally, we need to make sure our game ends, and for that, we can add some logic to the `checkIfFinished()` method. Here we need to check if our property `pairsGuessed` has reached _the numbers of pairs the game has_.
 
+<br>
+
 #### The layout and the logic files
 
 When the logic is down, you will move forward to `js/index.js` and work on the interactions. What do we consider as interaction is what happens when the user clicks on the card:
@@ -116,6 +138,8 @@ When the logic is down, you will move forward to `js/index.js` and work on the i
 
 - how we keep the cards showing images if they are found to be the same and
   -how do we make cards flip back to the blue background if the cards are not the same? All the time, keep in mind, we need to work only with two cards at the same time.
+  
+<br>
 
 ### HTML/CSS Interactions
 
@@ -182,8 +206,12 @@ Now when you have cards flipping from back to front and vice versa, you have to 
 _Hint 1_: The array of picked cards can't ever hold more than two cards.
 _Hint 2_: Make sure you call `checkIfFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, or be more creative and add some text on the canvas - displaying _You won!!!_
 
+<br>
+
 ## Extra Resources
 
 - [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
+
+<br>
 
 **Happy coding!** 💙
