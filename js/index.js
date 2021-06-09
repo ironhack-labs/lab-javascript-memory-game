@@ -48,8 +48,9 @@ window.addEventListener('load', (event) => {
       // card.id = 'card1'
       // card.id = 'card2'
       console.log(`Card clicked: ${card}`);
-      const cardTurnedName = card.getAttribute('name')
-      
+      const cardTurnedName = card.getAttribute('data-card-name')
+      memoryGame.pickCards.push(cardTurnedName)
+      console.log(pickCards);
     });
   });
 });
