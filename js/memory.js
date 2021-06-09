@@ -5,12 +5,12 @@ class MemoryGame {
     this.pairsClicked = 0
     this.pairsGuessed = 0
   }
-  
+
   shuffleCards(array) {
-    if (!array) {
+    if (array === undefined) {
       return undefined
     }
-    array.reduce((a, v) => a.splice(Math.floor(Math.random() * array.length), 0, v) && a, [])
+    return array.reduce((a, v) => a.splice(Math.floor(Math.random() * array.length), 0, v) && a, [])
 
   }
 
@@ -26,10 +26,10 @@ class MemoryGame {
   }
 
   checkIfFinished() {
- this.shuffleCards()
- if()
+    let guessed = false
+    if (this.pairsGuessed === this.cards.length / 2) { guessed = true }
+    return guessed
   }
 }
-
 // The following is required for automated testing. Please, ignore it.
 if (typeof module !== 'undefined') module.exports = MemoryGame;
