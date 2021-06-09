@@ -65,7 +65,7 @@ describe('MemoryGame', () => {
 
     it('should return the shuffled (mixed) array of cards', () => {
       const formerCards = memoryGame.cards.map((card) => card.name).toString();
-      memoryGame.shuffleCards();
+      memoryGame.shuffleCards(); //I thought .shuffledCards() had to have an argument
       const newCards = memoryGame.cards.map((card) => card.name).toString();
       expect(formerCards === newCards).toBe(false);
     });

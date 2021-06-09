@@ -6,6 +6,10 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+h1.winner{
+  color: green;
+}
+
 #memory-board {
   background: #dddddd;
   width: 820px;
@@ -14,6 +18,10 @@ body {
   margin: 0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px #615961;
+}
+
+#memory-board.winner{
+  background-color: green;
 }
 
 .card {
@@ -64,6 +72,10 @@ body {
   width: 200px;
   padding: 20px;
   margin-left: 75%;
+}
+
+#score.winner{
+  background-color: green;
 }
 
 h1 {
