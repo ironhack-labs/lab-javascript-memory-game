@@ -1,19 +1,33 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
+    // Card format: { name: 'ironman', img: 'ironman.jpg' }
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
 
+  // Fisher-Yates Shuffle algorithm
   shuffleCards() {
-    // ... write your code here
+    let range = this.cards.length - 1;
+    const result = [];
+
+    for (let i = 0; i < this.cards.length; i++) {
+      let roll = Math.floor(Math.random() * range);
+      result.push(...this.cards.splice(roll, 1, this.cards[range--]));
+    }
+
+    this.cards = result;
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
+    this.pairsClicked++;
+    if (card1 === card2) this.pairsGuessed++;
+    return card1 == card2;
   }
 
   checkIfFinished() {
-    // ... write your code here
+    return this.pairsGuessed === this.cards.length / 2;
   }
 }
 

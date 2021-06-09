@@ -25,7 +25,60 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+const pairsClickedValue = document.getElementById('pairs-clicked');
+const pairsGuessedValue = document.getElementById('pairs-guessed');
+
 const memoryGame = new MemoryGame(cards);
+
+memoryGame.shuffleCards();
+
+function flipCard(card) {
+  if (!card) return null;
+
+  let pair = false;
+
+  card.classList.add('turned');
+
+  if (memoryGame.pickedCards.length >= 2) {
+    clearFlipped(memoryGame.pickedCards);
+    memoryGame.pickedCards.splice(0, 2);
+  }
+
+  memoryGame.pickedCards.push(card);
+
+  if (memoryGame.pickedCards.length == 2) {
+    printPairsClicked();
+
+    if (
+      memoryGame.checkIfPair(
+        memoryGame.pickedCards[0].getAttribute('data-card-name'),
+        memoryGame.pickedCards[1].getAttribute('data-card-name')
+      )
+    ) {
+      memoryGame.pickedCards.forEach((card) => card.classList.add('blocked'));
+      printPairsGuessed();
+      if (memoryGame.checkIfFinished()) alert('YOU WON!');
+    }
+  }
+}
+
+function clearFlipped(cards) {
+  if (!cards) return null;
+
+  cards.forEach((card) => {
+    if (!card.classList.contains('blocked')) {
+      card.classList.remove('turned');
+    }
+  });
+}
+
+function printPairsClicked() {
+  pairsClickedValue.textContent = memoryGame.pairsClicked;
+}
+
+function printPairsGuessed() {
+  pairsGuessedValue.textContent = memoryGame.pairsGuessed;
+}
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -45,7 +98,8 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      flipCard(card);
     });
   });
 });
