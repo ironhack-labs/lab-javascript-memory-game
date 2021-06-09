@@ -1,3 +1,4 @@
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -43,9 +44,20 @@ window.addEventListener('load', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (event) => {
       // TODO: write some code here
+
+      if (card.className != 'turned') {
+        card.classList.toggle('turned')
+      } else {
+        card.classList.remove('turned')
+      }
+
+      
+      
       console.log(`Card clicked: ${card}`);
     });
   });
+
+  
 });
