@@ -29,13 +29,15 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
-  memoryGame.cards.forEach((pic) => {
+  memoryGame.cards.forEach((pic) => { //recorre todas las cartas clase cards.
     html += `
       <div class="card" data-card-name="${pic.name}">
+      
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    //console.log(pic.name) // muestra en consola todas las cartas
   });
 
   // Add all the divs to the HTML
@@ -44,7 +46,14 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
+
       // TODO: write some code here
+      //card.name.replace("back") //  no hace nada
+      card.classList.toggle("frotn") //cambia la clase del div donde estan contenidos los otros dos div ?????
+      //const girarcard = document.querySelector('back');
+      //girarcard.classList.toggle("front")
+      // const girarcard = back.textContent
+      //girarcard.toggle("front")
       console.log(`Card clicked: ${card}`);
     });
   });
