@@ -36,10 +36,7 @@ const memoryGame = new MemoryGame(cards);
 // console.log("HEEEEEEEEEEEEIIIIIIIIIII: ",formerCards === newCards);
 
 
-
-
-
-// memoryGame.shuffleCards(memoryGame.cards)
+memoryGame.shuffleCards(memoryGame.cards)
 
 
 function turnCardAndPlay(card){
