@@ -45,10 +45,8 @@ class MemoryGame {
   checkIfFinished() {
     // ... write your code here
     if (this.pairsGuessed === (this.cards.length / 2)) {
-      console.log('Game finished')
       return true
     } else {
-      console.log('The Game is still on!')
       return false
     }
   }
@@ -56,3 +54,4 @@ class MemoryGame {
 
 // The following is required for automated testing. Please, ignore it.
 if (typeof module !== 'undefined') module.exports = MemoryGame;
+
