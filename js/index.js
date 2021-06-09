@@ -30,12 +30,15 @@ const memoryGame = new MemoryGame(cards);
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
-    html += `
-      <div class="card" data-card-name="${pic.name}">
-        <div class="back" name="${pic.img}"></div>
-        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
-      </div>
-    `;
+    html += <div class="card" data-card-name="${pic.name}">
+      <div class="back" name="${pic.img}"></div>
+      <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+    </div>
+      ;
+    html += <div class="card turned" data-card-name="${pic.name}">
+      <div class="back" name="${pic.img}"></div>
+      <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+    </div>
   });
 
   // Add all the divs to the HTML
