@@ -35,6 +35,8 @@ window.addEventListener('load', (event) => {
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
+
+
     `;
   });
 
@@ -43,9 +45,16 @@ window.addEventListener('load', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
+    
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+      const blueCard = document.querySelector('.card .back')
+      const newCard = document.querySelector('.card .front')
+      blueCard.innerHTML = newCard
+      turn.checkIfPair(card1, card2)
+
+      console.log(`Card clicked: ${card}`)
+    }, 1000);
+    
+  })
+  card.checkIfFinished()
+})
