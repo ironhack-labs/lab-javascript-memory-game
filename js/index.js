@@ -45,7 +45,12 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+     // card.classList.toggle(.front);
+      //checkIfPair(card1, card2)
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+
+//x.style.display = "block";
