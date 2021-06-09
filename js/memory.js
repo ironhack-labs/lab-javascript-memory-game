@@ -11,16 +11,16 @@ class MemoryGame {
   shuffleCards() {
     // ... write your code here
     // console.log(cards)
-    // if (!cards) {
-    //   return undefined
-    // }
-    //   var i = cards.length, randomIndex;
-    //   while (i > 0) {
-    //     randomIndex = Math.floor(Math.random()*(i));
-    //     i--;
-    //     [cards[i], cards[randomIndex]] = [cards[randomIndex], cards[i]];
-    //   }
-    //  return cards;
+    if (!this.cards) {
+    return undefined
+     }
+     var i = this.cards.length, randomIndex;
+     while (i > 0) {
+       randomIndex = Math.floor(Math.random()*(i));
+       i--;
+       [this.cards[i], this.cards[randomIndex]] = [this.cards[randomIndex], this.cards[i]];
+     }
+     return this.cards;
     //return cards;
   }
  

@@ -45,7 +45,9 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-     // card.classList.toggle(.front);
+     // card.classList.toggle("front");
+    // card.classList.toggle("back");
+
       //checkIfPair(card1, card2)
       console.log(`Card clicked: ${card}`);
     });
