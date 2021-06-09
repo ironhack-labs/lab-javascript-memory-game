@@ -68,6 +68,7 @@ describe('MemoryGame', () => {
       memoryGame.shuffleCards(); //I thought .shuffledCards() had to have an argument
       const newCards = memoryGame.cards.map((card) => card.name).toString();
       expect(formerCards === newCards).toBe(false);
+      console.log(formerCards, newCards)
     });
   });
 

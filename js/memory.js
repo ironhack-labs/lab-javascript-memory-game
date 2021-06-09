@@ -4,12 +4,8 @@ class MemoryGame {
     this.pickedCards = []
     this.pairsClicked = 0
     this.pairsGuessed = 0
-    // add the rest of the class properties here
   }
 
-  // let arr = [1,2,3]
-  // let ame = new MemoryGame()
-  // console.log(ame.shuffleCards(arr))
   shuffleCards(array) {
     if(!array){
       return undefined
@@ -21,12 +17,27 @@ class MemoryGame {
     while (n) {  
       i = Math.floor(Math.random() * n--);
       copy.push(array.splice(i, 1)[0]);
-      // console.log(array.splice(i, 1)[0])
     }  
     this.cards = [...copy]
-    return copy
-    
+    return copy    
   }
+
+  // shuffleCards() {
+  //   console.log(this.cards.map((card) => card.name).toString())
+  //   let array = this.cards
+  //   const copy = []
+  //   let n = array.length
+  //   let i;
+  
+  //   while (n) {  
+  //     i = Math.floor(Math.random() * n--);
+  //     copy.push(array.splice(i, 1)[0]);
+  //   }  
+  //   console.log(this.cards.map((card) => card.name).toString())
+  //   this.cards = [...copy]
+  //   console.log(this.cards.map((card) => card.name).toString())
+  //   return undefined    
+  // }
 
 
   checkIfPair(card1, card2) {

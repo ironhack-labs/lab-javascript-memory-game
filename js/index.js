@@ -30,8 +30,16 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+// const formerCards = memoryGame.cards.map((card) => card.name).toString();
+// memoryGame.shuffleCards(); //I thought .shuffledCards() had to have an argument
+// const newCards = memoryGame.cards.map((card) => card.name).toString();
+// console.log("HEEEEEEEEEEEEIIIIIIIIIII: ",formerCards === newCards);
 
-memoryGame.shuffleCards(memoryGame.cards)
+
+
+
+
+// memoryGame.shuffleCards(memoryGame.cards)
 
 
 function turnCardAndPlay(card){
@@ -55,11 +63,9 @@ function checkPair(){
   
     if(memoryGame.checkIfPair( memoryGame.pickedCards[0], memoryGame.pickedCards[1] )){
       console.log("Pana acum am ghicit ", memoryGame.pairsGuessed)
-      // const card1 = document.getElementById(memoryGame.pickedCards[0])
-      // const card2 = document.getElementById(memoryGame.pickedCards[1])
       refreshScore()
       eraseTracks( memoryGame.pickedCards[0], memoryGame.pickedCards[1] )
-      // memoryGame.pickedCards=[]
+
       if( memoryGame.checkIfFinished()){
         finish()
       }
@@ -84,9 +90,6 @@ function finish(){
 function eraseTracks(card1, card2){  
   let div1 = document.getElementById(card1)
   let div2 = document.getElementById(card2)
-  // console.log(div1)
-  // div1.id=''
-  // div2.id=''
   div1.removeAttribute('id')
   div2.removeAttribute('id')
   memoryGame.pickedCards=[]
@@ -102,13 +105,9 @@ function hidePickedCards(){
   card2.classList.toggle("turned")
   refreshScore()
   eraseTracks(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
-  // card1.id=''
-  // card2.id=''
-  // memoryGame.pickedCards=[]
 
   console.log(card1)
   console.log(card2)
-  // console.log(memoryGame.pickedCards[0])
 }
 
 function refreshScore(){
@@ -129,22 +128,12 @@ window.addEventListener('load', (event) => {
     `;
   });
 
-  // Add all the divs to the HTML
+
   document.querySelector('#memory-board').innerHTML = html;
 
-  // Bind the click event of each element to a function
-  // document.querySelectorAll('.card').forEach((card) => {
-  //   card.addEventListener('click', () => {
-  //     // TODO: write some code here
-  //     console.log(`Card clicked: ${card}`);
-  //     turnCard(card)
-  //     // card.classList.toggle('turned')
-  //   });
-  // });
 
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
       console.log(`Card clicked: ${card}`);
       turnCardAndPlay(card)
     });
