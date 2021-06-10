@@ -63,6 +63,15 @@ window.addEventListener('load', (event) => {
   function updateScoreDOM() {
     // Code to update score board
     // look onto the memoryGame object for values
+    let pairsClickedReference = document.querySelector("#pairs-clicked");
+    pairsClickedReference.innerText = memoryGame.pairsClicked;
+
+    let pairsGuessedReference = document.querySelector("#pairs-guessed");
+    pairsGuessedReference.innerText = memoryGame.pairsGuessed;
+
+    let scoreReference = document.querySelector("#total-score");
+    let score = (10 * pairsGuessedReference.innerText) - (pairsClickedReference.innerText - pairsGuessedReference.innerText);
+    scoreReference.innerText = score;
   }
 
   // Bind the click event of each element to a function
@@ -75,17 +84,18 @@ window.addEventListener('load', (event) => {
         const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
         const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
         const pairGuessed = memoryGame.checkIfPair(card1, card2);
-        if (pairGuessed) {
-          freezeCards();
+        updateScoreDOM();
+      if (pairGuessed) {
+        freezeCards();
+        memoryGame.resetClickedPair();
+        
+      } else {
+        setTimeout(() => {
+          flipCards();
           memoryGame.resetClickedPair();
-          updateScoreDOM();
-        } else {
-          setTimeout(() => {
-            flipCards();
-            memoryGame.resetClickedPair();
-            updateScoreDOM();
-          }, 1000);
-        }
+          
+        }, 1000);
+      }
       }
     });
   });
