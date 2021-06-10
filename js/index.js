@@ -63,11 +63,13 @@ window.addEventListener('load', (event) => {
           memoryGame.pickedCards.forEach(
             (card) => (card.style.pointerEvents = 'none')
           );
+          memoryGame.resetClickedPair();
         } else {
           setTimeout(() => {
             memoryGame.pickedCards.forEach((card) =>
               card.classList.toggle('turned')
             );
+            memoryGame.resetClickedPair();
           }, 1000);
         }
       }

@@ -22,8 +22,13 @@ class MemoryGame {
       this.pairsGuessed++;
       this.checkIfFinished();
       return true;
+    } else {
+      return false;
     }
-    return false;
+  }
+
+  resetClickedPair() {
+    this.pickedCards = [];
   }
 
   checkIfFinished() {
