@@ -7,13 +7,14 @@ class MemoryGame {
     // add the rest of the class properties here
   }
 
-  shuffleCards(cards) {
+  shuffleCards() {
     // ... write your code here
+    const cardsCopy = JSON.parse(JSON.stringify(this.cards));
 
     // shuffle(this.cards);
     // function shuffle(array) {
 
-    var m = cards.length,
+    var m = cardsCopy.length,
       t,
       i;
 
@@ -23,14 +24,14 @@ class MemoryGame {
       i = Math.floor(Math.random() * m--);
 
       // And swap it with the current element.
-      t = cards[m];
-      cards[m] = cards[i];
-      cards[i] = t;
+      t = cardsCopy[m];
+      cardsCopy[m] = cardsCopy[i];
+      cardsCopy[i] = t;
     }
 
-    return cards;
-
+    this.cards = cardsCopy;
     // }
+    // return array;
   }
 
   checkIfPair(card1, card2) {
