@@ -63,13 +63,11 @@ window.addEventListener('load', (event) => {
           memoryGame.pickedCards.forEach(
             (card) => (card.style.pointerEvents = 'none')
           );
-          memoryGame.pickedCards = [];
         } else {
           setTimeout(() => {
             memoryGame.pickedCards.forEach((card) =>
               card.classList.toggle('turned')
             );
-            memoryGame.pickedCards = [];
           }, 1000);
         }
       }
