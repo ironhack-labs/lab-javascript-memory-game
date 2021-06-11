@@ -8,26 +8,22 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    // ... write your code here
+    // Fisher-Yates Shuffle algorithm
+    let currentIndex = this.cards.length,
+      temporaryValue,
+      randomIndex;
+    // While there remain elements to shuffle
+    while (currentIndex) {
+      // Pick a remaing element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
 
-    let currentIndex = this.cards.length;
-    let randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [this.cards[currentIndex], this.cards[randomIndex]] = [
-      this.cards[randomIndex], this.cards[currentIndex]
-    ];
+      // And swap it with the current element
+      temporaryValue = this.cards[currentIndex];
+      this.cards[currentIndex] = this.cards[randomIndex];
+      this.cards[randomIndex] = temporaryValue;
+    }
   }
-
-  return this.cards;
-}
 
   checkIfPair(card1, card2) {
     // ... write your code here
