@@ -9,7 +9,7 @@ class MemoryGame {
 
   shuffleCards() {
    
-    var currentIndex = this.cards.length,  randomIndex;
+    let currentIndex = this.cards.length,  randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -26,8 +26,10 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
       this.pairsClicked+=1;
+      
       if(card1 === card2){
       this.pairsGuessed+=1
+      this.pairsClicked+=1;
         return true
       }
       else return false
@@ -35,7 +37,7 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    if (this.pairsGuessed === this.cards.length/2)
+    if (this.pairsGuessed == this.cards.length)
     return true
     else return false
     // ... write your code here
