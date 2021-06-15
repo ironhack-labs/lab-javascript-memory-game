@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+memoryGame.shuffleCards();
+
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -46,6 +48,83 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
+        let boundFunc = starting.bind(card);
     });
   });
 });
+
+      const showScore = () =>{
+        document.querySelector('#pairs-clicked').textContent = 
+            memoryGame.pairsClicked;
+        document.querySelector('#pairs-guessed').textContent = 
+            memoryGame.pairsGuessed;
+      };
+
+      const deleteCounters = () =>{
+        memoryGame.pickedCards = [];
+      };
+
+      const fixingCards = () =>{
+        const fixedCards = document.querySelectorAll('.checking');
+
+        fixedCards.forEach((card) => {
+          card.classList.replace('.checking', 'fixed');
+        });
+        deleteCounters();
+      }
+
+      const checkPair = () =>{
+        let checked = memoryGame.checkPair(
+          memoryGame.pickedCards[0],
+          memoryGame.pickedCards[1]
+        );
+
+        if(checked){
+          fixingCards();
+          memoryGame.checkIfFinished() ? winner () : '';
+         }else{
+           deleteCounters();
+           turningCardsDown();
+         }
+
+         showScore();
+      };
+
+      const turningCardsDown = () =>{
+        const allNonFix = document.querySelector('.checking');
+
+        allNonFix.forEach((card) =>
+          setTimeout(()=>{
+          card.classList,remove('turned', 'checking');
+      }, 1000);
+      });
+    };
+  
+    
+
+      const turningCard = (wichOne) =>{
+        wichOne.classList.toggle('turned');
+        wichOne.classList.add('checking');
+      };
+
+      function starting(){
+        turningCard(this);
+
+        if(memoryGame.pickedCards.lenght <= 2) {
+          memoryGame.pickedCards.push(this.getAttribute('data-card-name'));
+        }
+        if(memoryGame.pickedCards.lenght === 2){
+          checkPair();
+        }
+      }
+
+      const winner = () =>{
+        document.querySelector(
+          '#memory-board'
+        ).innerHTML = '<img src="./img/winner.png" alt="winner cup" />';
+
+        document.querySelector('#memory-board').style.height = '500px';
+        document.querySelector('#memory-board img').style.height = '100%';
+        document.querySelector('#memory-board img').style.height = '500px';
+      }
