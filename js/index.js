@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  console.log("memory game has loaded")
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -43,9 +44,33 @@ window.addEventListener('load', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (event) => {//this event is referred above
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      if (memoryGame.pickedCards.length <= 2){event.currentTarget.classList.toggle("turned")//toggle the class, we don't need an IF statement. classList is a string in here.the object
+      memoryGame.pickedCards.push(event.currentTarget);
+      //we don't acces this.pickedCards instead of memoryGame because the eventlistener is called by the browser, not 
+      }else{
+        console.log(`You cannot pick more than two cards`)
+      }
+      if (memoryGame.pickedCards.length === 2) {
+        const card1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+        const card2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
+        const pairGuessed = memoryGame.checkIfPair(card1, card2);
+        if (pairGuessed) {
+          // they are a pair
+          memoryGame.pickedCards.forEach(
+            (card) => (card.style.pointerEvents = "none")
+          );
+        } else {
+          setTimeout(() =>{ 
+            memoryGame.pickedCards.forEach((card) =>
+                card.classList.toggle('turned')
+              );
+              memoryGame.pickedCards = [];
+          },1000);
+        }
+      }
     });
   });
 });
