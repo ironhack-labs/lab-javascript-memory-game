@@ -26,7 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-const pairsClicked = memoryGame.pairsClicked.innerHTML
+const pairsClicked = document.getElementById('pairs-clicked')
+const pairsGuessed = document.getElementById('pairs-guessed')
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -72,7 +73,11 @@ window.addEventListener('load', (event) => {
           },1000)
           }
           }
+          pairsClicked.innerHTML = memoryGame.pairsClicked
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed 
         }
     });
   });
+  return pairsClicked.innerHTML, pairsGuessed.innerHTML
+
 });
