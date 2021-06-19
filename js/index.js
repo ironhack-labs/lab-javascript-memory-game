@@ -37,7 +37,6 @@ window.addEventListener('load', (event) => {
       </div>
     `;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -46,6 +45,11 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      flipCard(card);
     });
   });
 });
+
+function flipCard (card) {
+  card.classList.toggle ( 'abc', someBool ) ;
+}
