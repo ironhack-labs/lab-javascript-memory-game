@@ -60,7 +60,14 @@ window.addEventListener('load', (event) => {
     memoryGame.pickedCards.forEach((card) => card.classList.toggle('turned'));
   }
 
-  function updateScoreDOM() {
+  function updateScoreDOM(winOrLose) {
+    const currentScore = document.querySelector('#total-score')
+    if (winOrLose === 'win') {
+      memoryGame.score += 10;
+    } else if (winOrLose === 'lose') {
+      memoryGame.score -= 1;
+    }
+      currentScore.innerHTML = memoryGame.score;
     // Code to update score board
     // look onto the memoryGame object for values
   }
@@ -78,12 +85,12 @@ window.addEventListener('load', (event) => {
         if (pairGuessed) {
           freezeCards();
           memoryGame.resetClickedPair();
-          updateScoreDOM();
+          updateScoreDOM('win');
         } else {
           setTimeout(() => {
             flipCards();
             memoryGame.resetClickedPair();
-            updateScoreDOM();
+            updateScoreDOM('lose');
           }, 1000);
         }
       }
