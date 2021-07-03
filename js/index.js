@@ -44,7 +44,21 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card);
+      console.log(memoryGame.pickedCards);
+      if (memoryGame.pickedCards.length === 2) {
+        if (memoryGame.pickedCards[0] !== memoryGame.pickedCards[1]) {
+          card.classList.remove('turned');
+        }
+      }
+      // can only turn 2 cards at a time
+
+      // after turning 2 cards it should check if they are a pair
+      // if not, turn back the card
+
+      // if yes, add class "blocked" and add 1 to checkifpair
+
       console.log(`Card clicked: ${card}`);
     });
   });
