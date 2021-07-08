@@ -26,6 +26,10 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards()
+//memoryGame.cards.sort((a,b) => a.name.localeCompare(b.name))
+const clicked = document.getElementById('pairs-clicked')
+const guessed = document.getElementById('pairs-guessed')
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,8 +48,40 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+      
+      memoryGame.pickedCards.push(card);
+
+      toggleFunction(card)
+
+      if(memoryGame.pickedCards.length === 2){
+        const card1 = memoryGame.pickedCards[0]
+        const card2 = memoryGame.pickedCards[1]
+        
+        if(memoryGame.checkIfPair(card1, card2)){
+          card1.classList.add('turned')
+          card2.classList.add('turned')
+  
+          guessed.innerText = memoryGame.pairsGuessed
+          if(memoryGame.checkIfFinished()) return document.querySelector('.win').innerText = "YOU WON !!!"
+         
+        }
+        else{
+          memoryGame.pickedCards.forEach(card => setTimeout(() => toggleFunction(card), 1000))
+        }
+       
+        clicked.innerText = memoryGame.pairsClicked
+        memoryGame.pickedCards = []
+      }
+
+    }); 
+
   });
 });
+
+
+function toggleFunction(parentElem){
+  [...parentElem.children].forEach(child => {
+    child.classList.toggle('front')
+    child.classList.toggle('back')
+  })
+}

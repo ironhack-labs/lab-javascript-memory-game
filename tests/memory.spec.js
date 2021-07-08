@@ -60,7 +60,7 @@ describe('MemoryGame', () => {
     });
 
     it('should return undefined if argument (cards array) is not passed', () => {
-      expect(typeof new MemoryGame().shuffleCards()).toBe('undefined');
+      expect(typeof memoryGame.shuffleCards()).toBe('undefined');
     });
 
     it('should return the shuffled (mixed) array of cards', () => {

@@ -1,6 +1,6 @@
 body {
   margin: 0;
-
+  position: relative;
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -87,4 +87,14 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.win{
+  position: absolute;
+  z-index:  100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 90px;
+  color: red;
 }
