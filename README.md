@@ -1,6 +1,6 @@
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# LAB | DOM Memory Game
+# LAB | DOM Memory Game PizzaBytes
 
 <br>
 
@@ -138,7 +138,7 @@ When the logic is down, you will move forward to `js/index.js` and work on the i
 
 - how we keep the cards showing images if they are found to be the same and
   -how do we make cards flip back to the blue background if the cards are not the same? All the time, keep in mind, we need to work only with two cards at the same time.
-  
+
 <br>
 
 ### HTML/CSS Interactions

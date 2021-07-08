@@ -18,8 +18,7 @@ body {
 
 .card {
   display: inline-block;
-  perspective: 300px;
-  transform-style: preserve-3d;
+  peansform-style: preserve-3d;
   position: relative;
 }
 
@@ -73,8 +72,7 @@ h1 {
   text-align: center;
   text-shadow: 0px 0px 20px #969696;
 }
-
-h2 {
+u h2 {
   margin-top: 0;
   color: #456783;
   font-weight: bolder;
