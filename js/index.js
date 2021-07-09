@@ -26,8 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-
 window.addEventListener('load', (event) => {
+  console.log('memoryGame is loaded');
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -41,11 +41,52 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  function playRound(playedCard) {
+    if (memoryGame.pickedCards.length < 2) {
+      playedCard.classList.toggle('turned');
+      memoryGame.pickedCards.push(playedCard);
+    } else {
+      console.log(`You cannot pick more than two cards`);
+    }
+  }
+
+  function freezeCards() {
+    memoryGame.pickedCards.forEach(
+      (card) => (card.style.pointerEvents = 'none')
+    );
+  }
+
+  function flipCards() {
+    memoryGame.pickedCards.forEach((card) => card.classList.toggle('turned'));
+  }
+
+  function updateScoreDOM() {
+    // Code to update score board
+    // look onto the memoryGame object for values
+  }
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (event) => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      playRound(event.currentTarget);
+      if (memoryGame.pickedCards.length === 2) {
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+        const pairGuessed = memoryGame.checkIfPair(card1, card2);
+        if (pairGuessed) {
+          freezeCards();
+          memoryGame.resetClickedPair();
+          updateScoreDOM();
+        } else {
+          setTimeout(() => {
+            flipCards();
+            memoryGame.resetClickedPair();
+            updateScoreDOM();
+          }, 1000);
+        }
+      }
     });
   });
 });
