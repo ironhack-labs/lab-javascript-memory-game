@@ -44,8 +44,52 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (
+        !card.classList.contains('turned') &&
+        !card.classList.contains('blocked')
+      ) {
+        if (memoryGame.pickedCards.length < 2) {
+          card.classList.toggle('turned');
+          memoryGame.pickedCards.push(card.getAttribute('data-card-name'));
+          console.log(memoryGame.pickedCards);
+        }
+        if (memoryGame.pickedCards.length === 2) {
+          const isMatch = memoryGame.checkIfPair(
+            memoryGame.pickedCards[0],
+            memoryGame.pickedCards[1]
+          );
+
+          const pairsClickedElement = document.getElementById('pairs-clicked');
+          memoryGame.pairsClicked++;
+          pairsClickedElement.innerHTML = memoryGame.pairsClicked / 2;
+
+          const turnedCards = document.querySelectorAll('.turned');
+
+          if (isMatch) {
+            console.log(turnedCards);
+            turnedCards.forEach((element) => {
+              element.classList.add('blocked');
+            });
+            const pairsGuessedElement =
+              document.getElementById('pairs-guessed');
+            memoryGame.pairsGuessed++;
+            pairsGuessedElement.innerHTML = memoryGame.pairsGuessed / 2;
+            memoryGame.checkIfFinished();
+          } else {
+            setTimeout(() => {
+              turnedCards.forEach((element) => {
+                if (!element.classList.contains('blocked')) {
+                  element.classList.toggle('turned');
+                }
+              });
+            }, 1000);
+          }
+          memoryGame.pickedCards = [];
+        }
+      }
+
+      // console.log(`Card clicked: ${card}`);
+      // console.log(`Card clicked: ${card.getAttribute('data-card-name')}`);
     });
   });
 });
