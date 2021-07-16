@@ -43,9 +43,38 @@ window.addEventListener('load', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+
+      console.log(card)
+      if (!card.classList.contains('turned') && !card.classList.contains('blocked')) {
+        card.classList.toggle('turned')
+        const alias = card.getAttribute("data-card-name");
+        memoryGame.pickedCards.push(alias)
+        if(memoryGame.pickedCards.length > 1){
+          const isMatch = checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]) 
+          if(isMatch){ 
+            let turnedCards = document.querySelectorAll('.turned')
+            turnedCards.forEach(function(element, index, cardsArr){
+              turnedCards.element()
+            })
+
+            
+          }
+        }
+      }
+
+
+      // [x] if the card is not turned nor blocked --> check if they have the class turned or blocked
+      // -- [x]flip (add to pickedCards + add className)
+      // -- [x] if array of picked cards contains 2 elms
+      //    --- [x]checkIfPair(pickedCards[0], pickedCards[1])
+      //        -- [ ] if they match: add the class blocked to both + add to pairsGuessed + checkeIfFinished()
+      //        -- [ ] if not, flip back both
+      // clear pickedCards
+
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      //console.log(`Card clicked: ${card}`);
+      //console.log(`Card clicked: ${card.getAttribute("data-card-name")}`);
     });
   });
 });
