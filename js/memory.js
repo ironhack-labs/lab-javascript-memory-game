@@ -19,7 +19,6 @@ class MemoryGame {
     }
     this.cards = JSON.parse(JSON.stringify(hatWithRandomCards));
     //this.cards = null
-    console.log(this.cards);
   }
 
   checkIfPair(card1, card2) {
@@ -33,8 +32,7 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    console.log(this.cards);
-    return this.pairsGuessed === this.cards.length / 2  
+    return this.pairsGuessed === this.cards.length / 2;
   }
 }
 
