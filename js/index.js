@@ -26,26 +26,51 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+console.log(memoryGame.shuffleCards())
 
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
-    html += `
-      <div class="card" data-card-name="${pic.name}">
-        <div class="back" name="${pic.img}"></div>
-        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
-      </div>
-    `;
+    html += `<div class="card" data-card-name="${pic.name}">`;
+    html += `<div class="back" name="${pic.img}"></div>`;
+    html += `<div class="front" style="background: url(img/${pic.img}) no-repeat"></div>`;
+    html += `</div>`;
   });
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards.length < 2){
+        card.classList.add('turned')
+
+        memoryGame.pickedCards.push(card)
+        if(memoryGame.pickedCards.length === 2){
+          const cardName1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+          const cardName2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+          console.log(cardName1)
+          console.log(cardName2)
+
+          const isPairGuessed = memoryGame.checkIfPair(cardName1,cardName2)
+
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+
+          if(!isPairGuessed){
+            setTimeout(()=>{
+              memoryGame.pickedCards[0].classList.remove('turned');
+              memoryGame.pickedCards[1].classList.remove('turned');
+              memoryGame.pickedCards = [];
+            },1000)
+          }else{
+            memoryGame.pickedCards=[]
+          }
+        }
+      }
     });
   });
 });
