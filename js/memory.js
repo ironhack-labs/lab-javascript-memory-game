@@ -1,30 +1,35 @@
 class MemoryGame {
-  constructor(cards, pickedCards, pairsClicked=0, pairGuessed=0) {
+  constructor(cards) {
     this.cards = cards;
-    this.pickedCards = pickedCards;
-    this.pairsClicked = pairsClicked;
-    this.pairGuessed = pairGuessed;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
     // add the rest of the class properties here
   }
   
-  shuffleCards(cards) {
-    if(cards.length === 0){
-      return null;
+  shuffleCards() {
+    if(!this.cards){
+      return undefined;
+    }else if(this.cards.length === 0 ){
+      return false;
     }
-    const shuffledCard = cards.map((card,index,array)=>{
-      let randomPos = Math.floor(Math.random()*(array.length-index)+index);
-      let aux = card[index];
-      card = card[randomPos];
-      card[randomPos]=aux;
-    })
+    
+    for( let i = 0; i < this.cards.length; i++){
+      let aux = this.cards[i];
+      let randomPosition = Math.floor(Math.random()*(this.cards.length-i)+i)
+      this.cards[i] = this.cards[randomPosition];
+      this.cards[randomPosition] = aux;
+    }
 
-    // ... write your code here
+        // ... write your code here
+    return this.cards;
   }
 
   checkIfPair(card1, card2) {
-    if(card1.name === card2.name){
+    if(card1 === card2){
       this.pairsClicked +=1;
-      this.pairGuessed +=1;
+      this.pairsGuessed +=1;
+      
       return true;
     }else{
       this.pairsClicked +=1;
@@ -33,7 +38,7 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    if(this.pairGuessed === 12){
+    if(this.pairsGuessed === 12){
       return true;
     }else{
       return false;
