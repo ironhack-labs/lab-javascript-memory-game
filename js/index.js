@@ -44,7 +44,11 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      if (!document.querySelectorAll('.turned')) {
+        document.querySelector().classList.add('.turned');
+      } else {
+        document.querySelector().classList.remove('.turned');
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
