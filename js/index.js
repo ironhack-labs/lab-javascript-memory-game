@@ -44,9 +44,41 @@ window.addEventListener('load', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      card.setAttribute('class', 'card turned');
-      console.log(`Card clicked: ${card}`);
+    card.addEventListener('click', () => {    
+      if (memoryGame.pickedCards.length < 2) {
+        card.classList.add('turned');
+  
+        memoryGame.pickedCards.push(card);
+  
+        if (memoryGame.pickedCards.length === 2) {
+          const cardName1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+          const cardName2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+  
+          const isPairGuessed = memoryGame.checkIfPair(cardName1, cardName2);
+          const isGameFinished = memoryGame.checkIfFinished();
+  
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+  
+          if (isPairGuessed) {
+            memoryGame.pickedCards[0].classList.add('blocked');
+            memoryGame.pickedCards[1].classList.add('blocked');
+            memoryGame.pickedCards = [];
+            if (isGameFinished){
+              setTimeout(() => {
+                alert ('You won!!!')
+              }, 500);
+                
+            }
+          } else {
+            setTimeout(() => {
+              memoryGame.pickedCards[0].classList.remove('turned');
+              memoryGame.pickedCards[1].classList.remove('turned');
+              memoryGame.pickedCards = [];
+            }, 2000);
+          }
+        }
+      }
     });
   });
 });
