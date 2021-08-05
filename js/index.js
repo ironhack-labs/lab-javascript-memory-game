@@ -44,12 +44,39 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      if (!document.querySelectorAll('.turned')) {
+/*       if (!document.querySelectorAll('.turned')) {
         document.querySelector().classList.add('.turned');
       } else {
         document.querySelector().classList.remove('.turned');
       }
-      console.log(`Card clicked: ${card}`);
+      console.log(`Card clicked: ${card}`); */
+/*       if (memoryGame.pickedCards.length < 2) {
+        card.classList.add('turned');
+  
+        memoryGame.pickedCards.push(card);
+  
+        if (memoryGame.pickedCards.length === 2) {
+          console.log(memoryGame.pickedCards)
+          const cardName1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+          const cardName2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+  
+          const isPairGuessed = memoryGame.checkIfPair(cardName1, cardName2);
+  
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked;
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+  
+          if (!isPairGuessed) {
+            setTimeout(() => {
+              memoryGame.pickedCards[0].classList.remove('turned');
+              memoryGame.pickedCards[1].classList.remove('turned');
+              memoryGame.pickedCards = [];
+            }, 2000);
+          } else {
+            memoryGame.pickedCards = [];
+          }
+        }
+      } */
+    });
     });
   });
-});
+memoryGame.shuffleCards;
