@@ -25,10 +25,9 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-
 const memoryGame = new MemoryGame(cards);
-
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -67,8 +66,7 @@ window.addEventListener('load', (event) => {
             if (isGameFinished){
               setTimeout(() => {
                 alert ('You won!!!')
-              }, 500);
-                
+              }, 500);              
             }
           } else {
             setTimeout(() => {
@@ -82,6 +80,3 @@ window.addEventListener('load', (event) => {
     });
   });
 });
-
-
-

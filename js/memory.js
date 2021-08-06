@@ -8,7 +8,16 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    
+    if (!this.cards){
+      return undefined
+    }else{
+      for (let i = 0 ; i < this.cards.length; i++){
+        const randomNumber = Math.floor(Math.random() * (this.cards.length));
+        const selectedCards = this.cards[randomNumber];
+        this.cards.splice(randomNumber , 1);
+        this.cards.push(selectedCards);
+      }
+    }
   }
 
   checkIfPair(card1, card2) {
@@ -29,8 +38,7 @@ class MemoryGame {
       return false;
     }
   }
-};
-
+}
 
 // The following is required for automated testing. Please, ignore it.
 if (typeof module !== 'undefined') module.exports = MemoryGame;
