@@ -46,11 +46,11 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       
       card.classList.add('turned');
-
-      // 1segundo
+      let pairsClicked = document.querySelector("#pairs-clicked")
+      let pairsGuessed = document.querySelector("#pairs-guessed")
+      
 
       memoryGame.pickedCards.push(card);
-      console.log(memoryGame.pickedCards);
 
       if (memoryGame.pickedCards.length === 2) {
         let card1Name =
@@ -58,19 +58,28 @@ window.addEventListener('load', (event) => {
         let card2Name =
           memoryGame.pickedCards[1].getAttribute('data-card-name');
 
+          //document.querySelector("#pairs-clicked").textContent = memoryGame.pairsClicked;
+
         setTimeout(()=>{
         if (memoryGame.checkIfPair(card1Name, card2Name)) {
-          memoryGame.pairsGuessed++;
           memoryGame.pickedCards[0].classList.add('blocked');
           memoryGame.pickedCards[1].classList.add('blocked');
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+          memoryGame.checkIfFinished();
+
         } else {
           memoryGame.pickedCards[0].classList.remove('turned');
           memoryGame.pickedCards[1].classList.remove('turned');
-          }  memoryGame.pickedCards = []
+          }  
+          memoryGame.pickedCards = []
+          pairsClicked.innerHTML = memoryGame.pairsClicked;
+
       },500)
       
-      }
+      
+    }
     });
+    
     console.log(`Card clicked: ${card}`);
   });
 });

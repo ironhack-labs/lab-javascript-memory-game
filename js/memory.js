@@ -9,9 +9,9 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    if (!arguments.length) {
-      return undefined;
-    }
+     if (!arguments) {
+       return undefined;
+     }
     // copia superficial
     // const cardsCopy = [...this.cards]
     // copia profunda ambas funcionarian
@@ -43,12 +43,12 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    let cardsLength = cards.length;
-    let cardsPairNumber = cards.length / 2;
+    let cardsPairNumber = this.cards.length;
 
-    if ((this.pairGuessed = cardsPairNumber)) {
-      return true;
-    }
+    if (this.pairsGuessed * 2 === cardsPairNumber) {
+      alert("YEAAAH");
+      return true
+    } else { return false}
   }
 }
 
