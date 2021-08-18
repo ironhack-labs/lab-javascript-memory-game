@@ -8,8 +8,7 @@ class MemoryGame {
   }
 
   shuffleCards() {
-
-    if(!this.cards) return undefined;
+    if (!this.cards) return undefined;
 
     let currentIndex = this.cards.length;
     let randomIndex;
@@ -21,19 +20,27 @@ class MemoryGame {
       currentIndex--;
 
       // And swap it with the current element.
-      [this.cards[currentIndex], this.cards[randomIndex]] = [ this.cards[randomIndex],this.cards[currentIndex]];
-      
+      [this.cards[currentIndex], this.cards[randomIndex]] = [
+        this.cards[randomIndex],
+        this.cards[currentIndex]
+      ];
     }
 
     return this.cards;
   }
 
-  checkIfPair(card1, card2) {
-    // ... write your code here
+  checkIfPair(cardName1, cardName2) {
+
+    this.pairsClicked++;
+
+    if(cardName1 === cardName2) this.pairsGuessed++
+
+    return cardName1 === cardName2;
   }
 
   checkIfFinished() {
-    // ... write your code here
+    
+    return (this.cards.length / 2)  ===  this.pairsGuessed;
   }
 }
 
