@@ -67,6 +67,8 @@ describe('MemoryGame', () => {
       const formerCards = memoryGame.cards.map((card) => card.name).toString();
       memoryGame.shuffleCards();
       const newCards = memoryGame.cards.map((card) => card.name).toString();
+      console.log(formerCards);
+      console.log(newCards);
       expect(formerCards === newCards).toBe(false);
     });
   });
