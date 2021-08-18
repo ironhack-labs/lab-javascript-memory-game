@@ -29,6 +29,7 @@ let lockBoard = false;
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
+    memoryGame.shuffleCards()
     html += `
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
@@ -49,6 +50,7 @@ window.addEventListener('load', (event) => {
           memoryGame.pickedCards[0].getAttribute('data-card-name');
         const cardTwoName =
           memoryGame.pickedCards[1].getAttribute('data-card-name');
+        
         let isPair = memoryGame.checkIfPair(cardOneName, cardTwoName);
         document.querySelector('#pairs-clicked').textContent =
           memoryGame.pairsClicked;
