@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let lockBoard = false;
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,8 +45,48 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      if (lockBoard) return
+     
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card);
+
+   
+
+      if (memoryGame.pickedCards.length > 1) {
+        const cardOneName =
+          memoryGame.pickedCards[0].getAttribute('data-card-name');
+        const cardTwoName =
+          memoryGame.pickedCards[1].getAttribute('data-card-name');
+
+        let isPair = memoryGame.checkIfPair(cardOneName, cardTwoName);
+
+        document.querySelector('#pairs-clicked').textContent =
+          memoryGame.pairsClicked;
+
+        if (isPair) {
+          document.querySelector('#pairs-guessed').textContent =
+            memoryGame.pairsGuessed;
+        }
+
+        lockBoard = true;
+        setTimeout(() => {
+          memoryGame.pickedCards[0].classList.toggle('turned', isPair);
+          memoryGame.pickedCards[1].classList.toggle('turned', isPair);
+          memoryGame.pickedCards = []
+          lockBoard = false;
+        }, 500);
+      }
+
+      if (memoryGame.checkIfFinished()) {
+        const playAgain = confirm(
+          'Congratulations, you won the game!!\n Do you want to play again?'
+        );
+
+        if (playAgain) {
+          location.reload();
+        }
+      }
     });
   });
 });
