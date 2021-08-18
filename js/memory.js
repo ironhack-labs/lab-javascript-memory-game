@@ -2,18 +2,54 @@ class MemoryGame {
   constructor(cards) {
     this.cards = cards;
     // add the rest of the class properties here
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
+
   }
 
-  shuffleCards() {
-    // ... write your code here
+   shuffleCards() {
+    if (!this.cards) return undefined;
+    // copia superficial
+    // const cardsCopy = [...this.cards]
+    // copia profunda ambas funcionarian
+    const cardsCopy = JSON.parse(JSON.stringify(this.cards))
+    var m = cardsCopy.length, t, i;
+    // While there remain elements to shuffle…
+    while (m) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+      // And swap it with the current element.
+      t = cardsCopy[m];
+      cardsCopy[m] = cardsCopy[i];
+      cardsCopy[i] = t;
+    }
+    this.cards = cardsCopy;
   }
-
+  
   checkIfPair(card1, card2) {
     // ... write your code here
+    this.pairsClicked++;
+    // (card1 === this.card2) ? true : false;
+    if(card1 === card2){
+      this.pairsGuessed = +1;
+      return true
+    }
+     return false
+    
+
+    
+
   }
 
   checkIfFinished() {
     // ... write your code here
+    if (this.cards.length / 2 === this.pairsGuessed) {
+      return true;
+    }
+    return false;
+
+
   }
 }
 
