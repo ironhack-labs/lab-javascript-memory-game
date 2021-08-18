@@ -41,11 +41,62 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+
+  // Update pairs clicked and guessed
+  function updateNumbers() {
+    let currentPairsClicked = memoryGame.pairsClicked;
+    let currentPairsGuessed = memoryGame.pairsGuessed;
+    let pairsClicked = document.getElementById('pairs-clicked');
+    let pairsGuessed = document.getElementById('pairs-guessed');
+    pairsClicked.innerHTML = `${currentPairsClicked}`;
+    pairsGuessed.innerHTML = `${currentPairsGuessed}`;
+  }
+
+
+  // Variable to block game until cards are turned down
+  let blocked = false;
+
+
+  // Check if two cards are equal or not
+  function checkTwoTurned() {
+
+    if (memoryGame.pickedCards.length === 2) {
+      const card1 = memoryGame.pickedCards[0];
+      const card2 = memoryGame.pickedCards[1];
+
+      // If clicked cards are equal
+      if (memoryGame.checkIfPair(card1.getAttribute('data-card-name'), card2.getAttribute('data-card-name'))) {
+        memoryGame.pickedCards = [];
+        if (memoryGame.checkIfFinished()) {
+          setTimeout(() => {
+            alert('You won!!!');
+          }, 1000);
+        }
+
+        // If clicked cards are not equal
+      } else {
+        blocked = true;
+        setTimeout(() => {
+          card1.setAttribute('class', 'card');
+          card2.setAttribute('class', 'card');
+          memoryGame.pickedCards = [];
+          blocked = false;
+        }, 1000);
+      }
+      updateNumbers();
+    }
+  }
+
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      if (blocked === false) {
+        card.setAttribute('class', 'card turned');
+        memoryGame.pickedCards.push(card);
+        checkTwoTurned();
+      }
     });
   });
 });
