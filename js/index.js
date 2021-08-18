@@ -49,3 +49,6 @@ window.addEventListener('load', (event) => {
     });
   });
 });
+//console.log(cards)
+const newCards = memoryGame.shuffleCards(cards)
+//console.log(newCards)
