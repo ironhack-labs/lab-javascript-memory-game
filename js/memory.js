@@ -8,24 +8,21 @@ class MemoryGame {
   }
 
   shuffleCards() {
-      if (this.cards){   
-        let currIndex = this.cards.length;
-        let randomIndex = 0;
-      
-        while (currIndex != 0) {
-      
-          randomIndex = Math.floor(Math.random() * currIndex);
-          currIndex--;
-      
-          this.cards[currIndex]= this.cards[randomIndex]
-          this.cards[randomIndex] = this.cards[currIndex];
-  
-        return this.cards;
+    if (this.cards) {
+      let currIndex = this.cards.length;
+      let randomIndex = 0;
+
+      while (currIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currIndex);
+        currIndex--;
+
+        this.cards[currIndex] = this.cards[randomIndex];
+        this.cards[randomIndex] = this.cards[currIndex];
       }
-      
-      } else {
-        return undefined
-      }
+      return this.cards;
+    } else {
+      return undefined;
+    }
     // Used like so
     var arr = [2, 11, 37, 42];
     shuffle(arr);
@@ -43,11 +40,11 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-   if (this.pairsGuessed === this.cards.length/2) {
-     return true;
-   } else {
-     return false;
-   }
+    if (this.pairsGuessed === this.cards.length / 2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
