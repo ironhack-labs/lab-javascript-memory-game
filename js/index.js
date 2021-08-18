@@ -25,7 +25,16 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+let pairsClickedBtn = document.getElementById('pairs-clicked')
+let pairsGuessedBtn = document.getElementById('pairs-guessed')
+
 const memoryGame = new MemoryGame(cards);
+
+function turnedCard (card){
+  card.setAttribute('class','card turned')
+}
+
+
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -45,6 +54,7 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      turnedCard(card)
       console.log(`Card clicked: ${card}`);
     });
   });
