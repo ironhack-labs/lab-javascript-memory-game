@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+// console.log(memoryGame.cards)
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,8 +45,70 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      if (memoryGame.pickedCards.length < 2) {
+        card.classList.add('turned')
+      }
+      memoryGame.pickedCards.push(card)
+
+      //if the length of picked cards is 2
+      if (memoryGame.pickedCards.length === 2) {
+
+        let card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        let card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+
+        let result = memoryGame.checkIfPair(card1, card2)
+
+        console.log(card1)
+        console.log(card2)
+        console.log(result)
+
+        if (!result) {
+          setTimeout(function () {
+
+            for (let card of memoryGame.pickedCards) {
+              card.classList.remove('turned')
+            }
+            memoryGame.pickedCards = []
+          }, 2000)
+
+        } else {
+          for (let card of memoryGame.pickedCards) {
+            card.classList.add('blocked')
+          }
+          memoryGame.pickedCards = []
+        }
+
+      }
+
+
+      if (memoryGame.checkIfFinished() === true) {
+
+        alert('Congratulations, You Win!')
+
+      }
+
+      const pairsClicked = document.getElementById('pairs-clicked')
+      const pairsGuessed = document.getElementById('pairs-guessed')
+      pairsClicked.innerHTML = memoryGame.pairsClicked
+      pairsGuessed.innerHTML = memoryGame.pairsGuessed
+
+
+
+
+
+
+      console.log(memoryGame.pickedCards)
+
+
+
+      //the memory game above is the object from which we need to extract logic
+
+
     });
   });
 });
+
+
+// console.log(memoryGame)
+
