@@ -29,7 +29,8 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
-  memoryGame.cards.forEach((pic) => {
+  const shuffled = memoryGame.shuffleCards(memoryGame.cards);
+  shuffled.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
@@ -40,12 +41,51 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+ 
   // Bind the click event of each element to a function
+  let targets = []; // to trun card if they are not match
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    card.addEventListener('click', (event) => {
+
+      // console.log(`Card clicked: ${card}`);
+      card.classList.add('turned');
+      let target = event.currentTarget;
+      const name = card.getAttribute('data-card-name');
+      if (memoryGame.pickedCards.length < 2){
+        memoryGame.pickedCards.push(name)
+        targets.push(target)
+      }
+      if (memoryGame.pickedCards.length === 2) {
+        const checkIfPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+        if (!checkIfPair) {
+          setTimeout(function () {
+            for (target of targets) {
+            target.classList.remove('turned');
+            } 
+          targets = [];
+          memoryGame.pickedCards = [];
+          }, 1000)
+        } else {
+          targets = [];
+          memoryGame.pickedCards = [];
+        }
+        // Problem ! => if click fast cannot turn the cards.
+      
+      }
+      // display
+      document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+      document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+      // Result
+      if (memoryGame.checkIfFinished()){
+        document.querySelector('body').innerHTML = "<h1>You Won!</h1>"
+      } else {
+        // console.log("Guess More!")
+      }
+       
+    
     });
   });
+
+
+
 });
