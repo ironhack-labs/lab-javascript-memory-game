@@ -67,10 +67,6 @@ window.addEventListener('load', (event) => {
 				let success = memoryGame.checkIfPair(name1, name2);
 				//si checkIfPair === true, añadir clase blocked a las dos cartas y pairGuessed++
 				if (success === true) {
-					//memoryGame.pairsGuessed++;
-					//card.className = 'card blocked';
-					// element1.className = 'card turned';
-					// element2.className = 'card turned';
 					memoryGame.pickedCards = [];
 				} else {
 					//card.className = 'card';
@@ -83,6 +79,11 @@ window.addEventListener('load', (event) => {
 				//element1.classList.remove("turned")
 				pairsClicked.innerHTML = memoryGame.pairsClicked;
 				pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+			}
+
+			if (memoryGame.checkIfFinished()) {
+				const audio = document.querySelector('audio');
+				audio.play();
 			}
 		});
 	});
