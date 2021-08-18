@@ -64,8 +64,10 @@ body {
   font-size: 30px;
   font-family: Arial;
   width: 200px;
-  padding: 20px;
+  padding: 5px 20px;
   margin-left: 75%;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -89,4 +91,14 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #2cc5fa;
 }

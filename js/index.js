@@ -83,6 +83,12 @@ window.addEventListener('load', (event) => {
 
 			if (memoryGame.checkIfFinished()) {
 				const audio = document.querySelector('audio');
+				let button = document.getElementById('score');
+				const newButton = document.createElement('button');
+				newButton.classList = 'btn btn-success';
+				newButton.innerHTML = 'Refresh page';
+				newButton.setAttribute('onclick', 'window.location.reload();');
+				button.appendChild(newButton);
 				audio.play();
 			}
 		});
