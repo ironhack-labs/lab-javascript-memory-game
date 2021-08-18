@@ -48,14 +48,17 @@ window.addEventListener('load', (event) => {
       if (memoryGame.pickedCards.length < 2) {
         card.classList.toggle('turned');
         memoryGame.pickedCards.push(card);
-      } else if (memoryGame.pickedCards.length === 2) {
-        console.log(
-          memoryGame.pickedCards[0].querySelector('data-card-name'),
-          memoryGame.pickedCards[1].querySelector('data-card-name')
-        );
-        // if (data card name coincide) {
-        //   console.log('Son iguales');
-        // }
+        if (memoryGame.pickedCards.length === 2) {
+          const card1 = memoryGame.pickedCards[0].name;
+          const card2 = memoryGame.pickedCards[1].name;
+          console.log(memoryGame.pickedCards[1].name);
+          if (card1 === card2) {
+            console.log('Son iguales!');
+          } else {
+            card1.classList.toggle('turned');
+            card2.classList.toggle('turned');
+          }
+        }
       }
     });
   });
