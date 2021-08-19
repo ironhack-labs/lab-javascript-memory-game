@@ -38,8 +38,8 @@ class MemoryGame {
   checkIfFinished() {
     // ... write your code here
    
-
-   return this.pairsGuessed == this.cards.length/2
+    let check = this.pairsGuessed == this.cards.length/2
+   return check
     
     }
 }

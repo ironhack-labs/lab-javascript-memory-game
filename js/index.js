@@ -49,8 +49,8 @@ window.addEventListener('load', (event) => {
         card.classList.add("turned");
         memoryGame.pickedCards.push(card);
       } else if(memoryGame.pickedCards[0] == memoryGame.pickedCards[1]){
-        card.classList.remove("turned")
-        card.classList.add("turned back")
+       
+        card.classList.add(" back")
       }
       console.log(`Card clicked: ${card}`);
     });
