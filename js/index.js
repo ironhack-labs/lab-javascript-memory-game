@@ -41,11 +41,50 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+
+//function to flip the cards
+function playRound(playedCard){
+  if (memoryGame.pickedCards.length <2){
+    playedCard.classList.toggle('turned');
+    memoryGame.pickedCards.push(playedCard);
+  } else{
+    console.log('not more than two cards can be picked');
+  }
+}
+
+function freezeCards() {
+    memoryGame.pickedCards.forEach(
+      (card) => (card.style.pointerEvents = 'none')
+    );
+  }
+
+
+function flipCards(){
+  memoryGame.pickedCards.forEach((card)=> card.classList.toggle('turned'));
+}
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (event) => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      playRound(event.currentTarget);
+      if (memoryGame.pickedCards.length === 2) {
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name');
+        const pairGuessed = memoryGame.checkIfPair(card1, card2);
+        if (pairGuessed) {
+          freezeCards();
+          memoryGame.resetClickedPairs();
+          updateScoreDOM();
+        } else {
+          setTimeout(() => {
+            flipCards();
+            memoryGame.resetClickedPairs();
+            updateScoreDOM();
+          }, 1000);
+        }
+      }
     });
   });
-});
+})
