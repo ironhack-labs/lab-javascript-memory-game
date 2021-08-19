@@ -1,32 +1,47 @@
 class MemoryGame {
   constructor(cards, pickedCards, pairsClicked, pairsGuessed) {
     this.cards = cards;
-    this.pickedCards = pickedCards;
-    this.pairsClicked = pairsClicked;
-    this.pairsGuessed = pairsGuessed;
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
   
   shuffleCards(cards) {
-    // Shuffle cardsArr using Fisher Yates Method
-    console.log(cards);
-    let shuffledCards = cards;
-    for(let i = cards.length-1; i >= 0; i--) {
+   // 
+    if (!this.cards) {
+      return undefined;
+    }
+     // Shuffle cardsArr using Fisher Yates Method
+     let shuffledCards = this.cards;
+    for(let i = this.cards.length - 1; i >= 0; i--) {
       let randomIndex = Math.floor(Math.random() * (i + 1));
       let randomCard = shuffledCards[randomIndex];
       shuffledCards[randomIndex] = shuffledCards[i];
       shuffledCards[i] = randomCard;
     }
-    return shuffledCards;
+    return cards;
   }
   
   
   
   checkIfPair(card1, card2) {
-    // ... write your code here
+    if (card1 && card2) {
+      this.pairsClicked ++;
+    }
+    if (card1 === card2) {
+      this.pairsGuessed ++;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkIfFinished() {
-    // ... write your code here
+    if ((this.pairsGuessed * 2) === this.cards.length) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
