@@ -80,8 +80,13 @@ window.addEventListener('load', (event) => {
         elementPairsClicked.innerText = memoryGame.pairsClicked
         elementPairsGuessed.innerText = memoryGame.pairsGuessed
       }
-     
-  
+        if(memoryGame.checkIfFinished()){
+          setTimeout(() => {
+            alert('has ganado')
+          }, 500);
+          
+        }
+      
       console.log(card);
       //let turnedCards = document.querySelector(".turned")
 
