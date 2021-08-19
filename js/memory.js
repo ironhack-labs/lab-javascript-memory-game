@@ -10,13 +10,17 @@ class MemoryGame {
 
   }
 
-  shuffleCards() {
+  shuffleCards(cards) {
 
-    if (this.cards === undefined) {
+    if (cards === undefined) {
 
       return undefined;
 
     }
+    const cardsCopy = [...cards]
+
+    //create card copy, apply the below to it and and return it at end
+    //it's this result that creates the shuffle of cards when called by
     // for (let i = shuffledCards.length - 1; i > 0; i--) {
     //   const j = Math.floor(Math.random() * (i + 1));
     //   [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
@@ -24,10 +28,12 @@ class MemoryGame {
 
     // return shuffledCards
 
-    for (let i = this.cards.length - 1; i > 0; i--) {
+    for (let i = this.cardsCopy.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+      [cardsCopy[i], cardsCopy[j]] = [cardsCopy[j], cardsCopy[i]];
     }
+
+    return cardsCopy
 
   }
 
