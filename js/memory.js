@@ -9,24 +9,24 @@ class MemoryGame {
 
   shuffleCards() {
     if (this.cards) {
-      let currIndex = this.cards.length;
+      let array = this.cards;
+      let currentIndex = array.length;
       let randomIndex = 0;
 
-      while (currIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currIndex);
-        currIndex--;
+      while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
 
-        this.cards[currIndex] = this.cards[randomIndex];
-        this.cards[randomIndex] = this.cards[currIndex];
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex]
+        ];
       }
-      return this.cards;
+
+      return array;
     } else {
       return undefined;
     }
-    // Used like so
-    var arr = [2, 11, 37, 42];
-    shuffle(arr);
-    console.log(arr);
   }
 
   checkIfPair(card1, card2) {

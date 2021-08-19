@@ -31,6 +31,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
+console.log(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
