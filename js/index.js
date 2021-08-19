@@ -45,7 +45,6 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   let targets = [];
   // to trun card if they are not match
-  let ids = [];
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
       let target = event.currentTarget; //get the target card
