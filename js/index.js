@@ -26,10 +26,11 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let blockedBoard = false;
 
 window.addEventListener('load', (event) => {
 	let html = '';
-	memoryGame.shuffleCards();
+	//memoryGame.shuffleCards();
 	memoryGame.cards.forEach((pic) => {
 		html += `
 		<div class="card" data-card-name="${pic.name}">
@@ -46,6 +47,7 @@ window.addEventListener('load', (event) => {
 	document.querySelectorAll('.card').forEach((card) => {
 		card.addEventListener('click', () => {
 			// TODO: write some code here
+			if (blockedBoard) return;
 
 			// cada vez que elegimos carta, push pickedCards + agregar class cardturned
 			//let thisCard = JSON.parse(JSON.stringify(card));
@@ -59,6 +61,7 @@ window.addEventListener('load', (event) => {
 
 			//si longitud de picketCards = 2, ejecutar checkIfPair() y pairsclicked ++
 			if (memoryGame.pickedCards.length === 2) {
+				blockedBoard = true;
 				let element1 = memoryGame.pickedCards[0];
 				let element2 = memoryGame.pickedCards[1];
 
@@ -69,12 +72,14 @@ window.addEventListener('load', (event) => {
 				//si checkIfPair === true, añadir clase blocked a las dos cartas y pairGuessed++
 				if (success === true) {
 					memoryGame.pickedCards = [];
+					blockedBoard = false;
 				} else {
 					//card.className = 'card';
 					setTimeout(() => {
 						element1.classList.remove('turned');
 						element2.classList.remove('turned');
 						memoryGame.pickedCards = [];
+						blockedBoard = false;
 					}, 1000);
 				}
 				//element1.classList.remove("turned")
@@ -85,6 +90,8 @@ window.addEventListener('load', (event) => {
 			if (memoryGame.checkIfFinished()) {
 				const audio = document.querySelector('audio');
 				let button = document.getElementById('score');
+				let title = document.getElementById('bigScreenTitle');
+				title.innerHTML = 'Congrats!!';
 				const newButton = document.createElement('button');
 				newButton.classList = 'btn btn-success';
 				newButton.innerHTML = 'Refresh page';
