@@ -8,7 +8,7 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    if (Object.keys(arguments).length === 0) return undefined;
+    
     // copia superficial
     // const cardsCopy = [...this.cards]
     // copia profunda ambas funcionarian
@@ -32,7 +32,8 @@ class MemoryGame {
       this.pairsClicked +=1;
       this.pairsGuessed +=1;
       return true
-    } else if(this.pairsClicked +=1){
+    } else {
+      this.pairsClicked +=1
       return false;
     }
   }
