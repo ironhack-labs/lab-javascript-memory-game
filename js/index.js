@@ -40,12 +40,15 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards.lenght<2){
+        card.classList.add('turned');
+        memoryGame.pickedCards.push(card);
+      }
+        console.log(`Card clicked: ${card}`);
     });
   });
 });
