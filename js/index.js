@@ -45,16 +45,16 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  const scoreSection = document.querySelector('#score');
 
   function disableCard(firstCard, secondCard) {
-
-      firstCard.removeEventListener('click', turnCard);
-      secondCard.removeEventListener('click', turnCard);
+    firstCard.removeEventListener('click', turnCard);
+    secondCard.removeEventListener('click', turnCard);
   }
 
-  function unturn(){
+  function unturn() {
     locked = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       firstCard.classList.remove('turned');
       secondCard.classList.remove('turned');
       locked = false;
@@ -73,34 +73,40 @@ window.addEventListener('load', (event) => {
       hasFlippedCard = true;
       firstCard = card;
     } else {
-    //Behaviour for the second card
+      //Behaviour for the second card
       secondCard = card;
       hasFlippedCard = false;
 
-      if (memoryGame.checkIfPair(firstCard.getAttribute('data-card-name'),secondCard.getAttribute('data-card-name'))){
+      if (
+        memoryGame.checkIfPair(
+          firstCard.getAttribute('data-card-name'),
+          secondCard.getAttribute('data-card-name')
+        )
+      ) {
         disableCard(firstCard, secondCard);
-        changeScore()
-        if (memoryGame.checkIfFinished()){
-          alert('Congratulations! You won!')
+        changeScore();
+        if (memoryGame.checkIfFinished()) {
+          scoreSection.innerHTML = `<p>Congratulations! <br> You won by guessing ${memoryGame.pairsClicked} pairs!</p>`;
         }
       } else {
         unturn();
-        changeScore()
+        changeScore();
       }
     }
   }
 
   function changeScore() {
-    document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed;
-    document.querySelector('#pairs-clicked').innerText = memoryGame.pairsClicked;
+    document.querySelector('#pairs-guessed').innerText =
+      memoryGame.pairsGuessed;
+    document.querySelector('#pairs-clicked').innerText =
+      memoryGame.pairsClicked;
   }
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-
-      if (memoryGame.checkIfFinished()){
-        window.alert('Congratulations! Game Finished')
+      if (memoryGame.checkIfFinished()) {
+        window.alert('Congratulations! Game Finished');
       }
       turnCard(card);
     });
