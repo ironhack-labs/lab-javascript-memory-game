@@ -13,15 +13,12 @@ class MemoryGame {
       return undefined
     }
     const cardsCopy = [...cards];
-     console.log(cardsCopy);
     for (let i = cardsCopy.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [cardsCopy[i], cardsCopy[j]] = [cardsCopy[j], cardsCopy[i]];
       }
-      console.log(cards[0]);
-      console.log(cardsCopy[0]);
     return cardsCopy
-    }
+    } // fail: return the shuffled (mixed) array of cards.
 
   checkIfPair(card1, card2) {
       if (card1 === card2) {
