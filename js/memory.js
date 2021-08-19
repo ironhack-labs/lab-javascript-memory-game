@@ -10,17 +10,17 @@ class MemoryGame {
 
   }
 
-  shuffleCards(cards) {
+  shuffleCards() {
 
-    if (cards === undefined) {
+    if (this.cards === undefined) {
 
       return undefined;
 
     }
-    const cardsCopy = [...cards]
+    // const cardsCopy = [...cards]
 
-    //create card copy, apply the below to it and and return it at end
-    //it's this result that creates the shuffle of cards when called by
+    // create card copy, apply the below to it and and return it at end
+    // it's this result that creates the shuffle of cards when called by
     // for (let i = shuffledCards.length - 1; i > 0; i--) {
     //   const j = Math.floor(Math.random() * (i + 1));
     //   [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
@@ -28,19 +28,17 @@ class MemoryGame {
 
     // return shuffledCards
 
-    for (let i = this.cardsCopy.length - 1; i > 0; i--) {
+    for (let i = this.cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [cardsCopy[i], cardsCopy[j]] = [cardsCopy[j], cardsCopy[i]];
+      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
     }
 
-    return cardsCopy
+    return this.cards
 
   }
 
   checkIfPair(card1, card2) {
-
     this.pairsClicked += 1
-
     if (card1 === card2) {
 
       this.pairsGuessed += 1;
@@ -51,7 +49,6 @@ class MemoryGame {
 
       return false;
     }
-
   }
 
   checkIfFinished() {

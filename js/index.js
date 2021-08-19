@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards()
 // console.log(memoryGame.cards)
 
 window.addEventListener('load', (event) => {
@@ -47,9 +48,7 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
 
       if (memoryGame.pickedCards.length < 2) {
-
         card.classList.add('turned')
-
       }
       memoryGame.pickedCards.push(card)
 
@@ -75,30 +74,23 @@ window.addEventListener('load', (event) => {
             }
             memoryGame.pickedCards = []
           }, 1500)
-
         } else {
           for (let card of memoryGame.pickedCards) {
             card.classList.add('blocked')
           }
           memoryGame.pickedCards = []
         }
-
       }
 
 
       if (memoryGame.checkIfFinished() === true) {
-
         document.querySelector('body > div > h1').innerHTML = "Congratulations"
-
         setTimeout(function () {
-
           window.location.reload()
           // for (let card of memoryGame.pickedCards) {
-
           //   card.classList.remove('turned blocked');
           // }
           // memoryGame.pickedCards = []
-
         }, 5000)
 
       }
