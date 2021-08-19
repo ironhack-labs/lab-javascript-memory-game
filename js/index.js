@@ -1,3 +1,4 @@
+const MemoryGame = require("./memory");
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -25,7 +26,17 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+const memoryGame = new MemoryGame(cards); 
+
+let turn  = ['robot', 'flash', 'mover']; 
+let turn2  = ['robot', 'flash', 'mover'];  
+ 
+turn.push(cards); 
+turn2.push(cards); 
+ 
+
+checkIfPair(turn,turn2);
+
 
 window.addEventListener('load', (event) => {
   let html = '';
