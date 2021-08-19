@@ -41,27 +41,32 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-
-//function to flip the cards
-function playRound(playedCard){
-  if (memoryGame.pickedCards.length <2){
-    playedCard.classList.toggle('turned');
-    memoryGame.pickedCards.push(playedCard);
-  } else{
-    console.log('not more than two cards can be picked');
+  //function to flip the cards
+  function playRound(playedCard) {
+    if (memoryGame.pickedCards.length < 2) {
+      playedCard.classList.toggle('turned');
+      memoryGame.pickedCards.push(playedCard);
+    } else {
+      console.log('not more than two cards can be picked');
+    }
   }
-}
 
-function freezeCards() {
+  function freezeCards() {
     memoryGame.pickedCards.forEach(
       (card) => (card.style.pointerEvents = 'none')
     );
   }
 
+  function flipCards() {
+    memoryGame.pickedCards.forEach((card) => card.classList.toggle('turned'));
+  }
 
-function flipCards(){
-  memoryGame.pickedCards.forEach((card)=> card.classList.toggle('turned'));
-}
+  const pairsClicked = document.querySelector('#pairs-clicked');
+  const pairsGuessed = document.querySelector('#pairs-guessed');
+  function updateScoreDOM() {
+    pairsClicked.innerHTML = memoryGame.pairsClicked;
+    pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+  }
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
@@ -87,4 +92,4 @@ function flipCards(){
       }
     });
   });
-})
+});
