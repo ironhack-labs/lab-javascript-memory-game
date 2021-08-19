@@ -8,10 +8,6 @@ class MemoryGame {
 
   shuffleCards() {
     if (!arguments) return undefined;
-
-    // copia superficial
-    // const cardsCopy = [...this.cards]
-    // copia profunda ambas funcionarian
     const cardsCopy = JSON.parse(JSON.stringify(this.cards))
     var m = cardsCopy.length, t, i;
 
