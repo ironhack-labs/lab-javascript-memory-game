@@ -27,7 +27,10 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+let blockedBoard = false;
+
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -44,8 +47,63 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      //////////////////////////////////////////////////////////////
+
+      if (blockedBoard) {
+        return;
+      }
+
+      let elementSumarPunto = document.querySelector('#pairs-guessed');
+      let elementSumarIntento = document.querySelector('#pairs-clicked');
+
+      if (memoryGame.pickedCards.length < 2) {
+        card.className = 'card turned';
+        memoryGame.pickedCards.push(card);
+      }
+      if (memoryGame.pickedCards.length === 2) {
+        let card1Name =
+          memoryGame.pickedCards[0].getAttribute('data-card-name');
+        let card2Name =
+          memoryGame.pickedCards[1].getAttribute('data-card-name');
+        blockedBoard = true;
+
+        if (memoryGame.checkIfPair(card1Name, card2Name)) {
+          memoryGame.pickedCards[0].classList.add('blocked'); //'card turned blocked sin add
+          memoryGame.pickedCards[1].classList.add('blocked');
+          memoryGame.pickedCards = [];
+          blockedBoard = false;
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards[0].classList.remove('turned');
+            memoryGame.pickedCards[1].classList.remove('turned');
+            memoryGame.pickedCards = [];
+            blockedBoard = false;
+          }, 500);
+        }
+        elementSumarPunto.innerHTML = memoryGame.pairsGuessed;
+        elementSumarIntento.innerHTML = memoryGame.pairsClicked;
+      }
+
+      if (memoryGame.checkIfFinished()) {
+        setTimeout(() => {
+          alert('HAS GANADO');
+        }, 500);
+      }
     });
   });
 });
+
+// let clickedCards = card.querySelectorAll('card turned');
+// if (clickedCards.length > 2)
+//   clickedCards.forEach((card) => {
+//     card.classList.remove('turned');
+//   });
+// // if ((pickedCards.length = 2)) {
+//   checkIfPair(pickedCards[0], pickedCards[1]);
+// }
+// if (checkIfPair(card1, card2) === false) {
+//   card.classList.remove('turned');
+// }
+// console.log(selectedCards);
+
+// memoryGame.pickedCards.push(card.getAttribute('data-card-name'));

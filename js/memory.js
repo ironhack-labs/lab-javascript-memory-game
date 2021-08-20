@@ -6,20 +6,25 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
-  shuffleCards(cards) {
-    if (!cards) return undefined;
-
-    let shuffledCards = JSON.parse(JSON.stringify(this.cards));
-
-    for (let i = shuffledCards.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      let temp = shuffledCards[i];
-      shuffledCards[i] = shuffledCards[j];
-      shuffledCards[j] = temp;
+  shuffleCards() {
+    if (!arguments) return undefined;
+    // copia superficial
+    // const cardsCopy = [...this.cards]
+    // copia profunda ambas funcionarian
+    const cardsCopy = JSON.parse(JSON.stringify(this.cards));
+    var m = cardsCopy.length,
+      t,
+      i;
+    // While there remain elements to shuffle…
+    while (m) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+      // And swap it with the current element.
+      t = cardsCopy[m];
+      cardsCopy[m] = cardsCopy[i];
+      cardsCopy[i] = t;
     }
-    this.cards = shuffleCards;
-
-    return this.cards;
+    this.cards = cardsCopy;
   }
 
   checkIfPair(card1, card2) {
