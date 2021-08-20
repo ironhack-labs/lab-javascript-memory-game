@@ -6,18 +6,16 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
-  shuffleCards(cards) {
+  shuffleCards() {
     // ... write your code here
     
-    if (!cards) {
+    if (!this.cards) {
       return undefined
     }
-    const cardsCopy = [...cards];
-    for (let i = cardsCopy.length - 1; i > 0; i--) {
+    for (let i = this.cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [cardsCopy[i], cardsCopy[j]] = [cardsCopy[j], cardsCopy[i]];
+      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
       }
-    return cardsCopy
     } // fail: return the shuffled (mixed) array of cards.
 
   checkIfPair(card1, card2) {

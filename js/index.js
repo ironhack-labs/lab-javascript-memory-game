@@ -29,8 +29,10 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
-  const shuffled = memoryGame.shuffleCards(memoryGame.cards);
-  shuffled.forEach((pic) => {
+  console.log(memoryGame.cards);
+  memoryGame.shuffleCards();
+  console.log(memoryGame.cards);
+  memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
