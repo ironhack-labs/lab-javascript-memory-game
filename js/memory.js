@@ -41,6 +41,7 @@ class MemoryGame {
   checkIfFinished() {
     if ((this.cards.length/2) === this.pairsGuessed) {
       return true;
+    
     }
     return false
   }

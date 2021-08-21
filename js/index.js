@@ -26,9 +26,11 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-// memoryGame.shuffleCards();
+memoryGame.shuffleCards();
+let blockedBoard = false
 
 window.addEventListener('load', (event) => {
+  
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -45,16 +47,47 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
+      if(blockedBoard){
+        return
+      }
       // TODO: write some code here
-      
-      card.classList.toggle('turned');
-      memoryGame.pickedCards.push(card);
-      memoryGame.checkIfPair(card, memoryGame.pickedCards());
+      let elementPairsClicked = document.querySelector('#first-clicked') //elemento del DOM
+      let elementPairsGuessed = document.querySelector('#pairs-guessed') //elemento del DOM
+
+
+      if(memoryGame.pickedCards.length < 2){
+        card.className = 'card turned'
+        memoryGame.pickedCards.push(card)
+      }
+
       if (memoryGame.pickedCards.length === 2){
-          if(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])){
-            memoryGame.pickedCards = [];
+          let card1Name = memoryGame.pickedCards[0].getAttribute('data-card-name');
+          let card2Name = memoryGame.pickedCards[1].getAttribute('data-card-name');
+          blockedBoard = true
+
+          if(memoryGame.checkIfPair(card1Name, card2Name)){
+            memoryGame.pickedCards[0].classList.add('blocked');
+            memoryGame.pickedCards[1].classList.add('blocked');
+            memoryGame.pickedCards = []
+            blockedBoard = false
+
+          }else{
+            setTimeout(() => {
+              memoryGame.pickedCards[0].classList.remove('turned');
+              memoryGame.pickedCards[1].classList.remove('turned');
+              memoryGame.pickedCards = []
+              blockedBoard = false
+            }, 500)
           }
-     }
+          elementPairsClicked.innerText = memoryGame.pairsClicked;
+          elementPairsGuessed.innerText = memoryGame.pairsGuessed;
+      }
+     
+      if(memoryGame.checkIfFiniched()){
+        setTimeout(() =>{
+          alert('Has Ganado!')
+        }, 500)
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
