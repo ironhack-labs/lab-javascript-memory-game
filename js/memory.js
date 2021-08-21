@@ -4,6 +4,7 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
+    this.pickedCards.includes(this.pairsClicked);
   }
   
   shuffleCards(cards) {
@@ -19,9 +20,10 @@ class MemoryGame {
       shuffledCards[randomIndex] = shuffledCards[i];
       shuffledCards[i] = randomCard;
     }
-    return cards;
+    return shuffledCards;
   }
   
+
   
   
   checkIfPair(card1, card2) {
