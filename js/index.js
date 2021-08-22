@@ -25,10 +25,17 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+
+
+
+
 const memoryGame = new MemoryGame(cards);
+
+
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -41,11 +48,52 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  // Bind the click event of each element to a function
+
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (memoryGame.pickedCards.length < 2){
+            memoryGame.pickedCards.push(card);
+            card.className = 'card turned';
+      }
+        
+      if (memoryGame.pickedCards.length === 2){
+            let firstCard = memoryGame.pickedCards[0];
+            let secondCard = memoryGame.pickedCards[1];
+      
+
+      let areTheyPair = memoryGame.checkIfPair(
+        firstCard.getAttribute('data-card-name'), 
+        secondCard.getAttribute('data-card-name'));
+            if (areTheyPair === true){
+              memoryGame.pickedCards = [];
+              console.log(memoryGame.pickedCards);
+            }else{
+              setTimeout(() => {
+
+                memoryGame.pickedCards = [];
+                firstCard.className = 'card';
+                secondCard.className = 'card';
+                console.log(firstCard)
+            }
+            , 500);
+        
+            }
+      }
+      
+      if(memoryGame.checkIfFinished()){
+        setTimeout(() => {
+          alert('You won')
+        }, 500)
+        }
+
+      const pairsClicked = document.getElementById('pairs-clicked');
+      const pairsGuessed = document.getElementById('pairs-guessed');
+      pairsClicked.innerHTML = memoryGame.pairsClicked;
+      pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+          
     });
   });
+    
 });
+
+      
