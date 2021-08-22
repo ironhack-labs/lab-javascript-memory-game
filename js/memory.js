@@ -7,10 +7,9 @@ class MemoryGame {
     // add the rest of the class properties here
   }
 
-  
   shuffleCards() {
     // ... write your code here
-    if (Object.keys(arguments).length === 0) return undefined;
+
     // copia superficial
     // const cardsCopy = [...this.cards]
     // copia profunda ambas funcionarian
@@ -27,7 +26,6 @@ class MemoryGame {
     }
     this.cards = cardsCopy;
   }
-  
 
   checkIfPair(card1, card2) {
     // ... write your code here
@@ -35,7 +33,8 @@ class MemoryGame {
       this.pairsClicked +=1;
       this.pairsGuessed +=1;
       return true
-    } else if(this.pairsClicked +=1){
+    } else {
+      this.pairsClicked +=1
       return false;
     }
   }
@@ -48,6 +47,8 @@ class MemoryGame {
       return false
     }
   }
+    // ... write your code here
+
 }
 
 // The following is required for automated testing. Please, ignore it.
