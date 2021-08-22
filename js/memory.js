@@ -7,6 +7,7 @@ class MemoryGame {
     // add the rest of the class properties here
   }
 
+  
   shuffleCards() {
     // ... write your code here
     if (Object.keys(arguments).length === 0) return undefined;
