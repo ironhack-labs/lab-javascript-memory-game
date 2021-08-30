@@ -53,7 +53,6 @@ window.addEventListener('load', (event) => {
 			//if (memoryGame.pickedCards.length < 2) {
 				card.classList.add('turned');
 				memoryGame.pickedCards.push(card);
-			//}
 
 			//si longitud de pickedCards = 2, ejecutar checkIfPair() 
 			if (memoryGame.pickedCards.length === 2) {
@@ -77,10 +76,20 @@ window.addEventListener('load', (event) => {
 				}
 				//preparar array para la siguiente ejecucion, vaciar --> hemos seleccionado el par
 				memoryGame.pickedCards = [];
-
+  
 				pairsClicked.innerHTML = memoryGame.pairsClicked;
 				pairsGuessed.innerHTML = memoryGame.pairsGuessed;
-			}
-		});
-	});
-});
+
+				let completado = checkIfFinished ();
+
+				//mensaje de juego completado
+				if (completado && (memoryGame.pairsClicked < 48)){
+                    alert(`Wow, only ${memoryGame.pairsClicked} movements! Congratulations!`)
+                    alert("This alert contains a genuine Marvel Comics NO-PRIZE which you have just won!");
+                } else if (completado) {
+                    alert(`Wow, ${memoryGame.pairsClicked} movements... You should work that memory!`);
+                }
+			  }
+		  });
+	  });
+  });

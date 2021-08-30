@@ -56,6 +56,11 @@ body {
   backface-visibility: hidden;
 }
 
+.card.blocked {
+  background: url(/img/dp-logo.png);
+  background-size: cover;
+}
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
