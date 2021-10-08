@@ -1,3 +1,5 @@
+// add this line to use the class
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
