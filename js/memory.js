@@ -44,7 +44,7 @@ class MemoryGame {
     // } else {
     //   return false;
     // }
-    return card1.name === card2.name ? ( // compare names
+    return card1 === card2 ? ( // compare names
       // pairGuessed is one match --> click/choose two cards
       this.pairsGuessed ++,
       true

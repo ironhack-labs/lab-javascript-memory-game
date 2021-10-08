@@ -88,3 +88,23 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.message {
+  visibility: hidden;
+  background: rgb(112 177 171 / 94%);
+  width: 80vw;
+  height: 10vh;
+  right: -150px;
+  position: absolute;
+  top: 20px;
+  border-radius: 20px;
+}
+
+.message h3 {
+  font-family: monospace;
+  text-align: center;
+  font-size: 45px;
+  color: #11282f;
+  margin: 0;
+  padding: 20px;
+}
