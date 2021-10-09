@@ -28,9 +28,6 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
-  let card1 = '';
-  let card1Element = '';
-  let card2 = '';
   let html = '';
   memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
@@ -41,46 +38,47 @@ window.addEventListener('load', (event) => {
       </div>
     `;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
+      // Add the turned class to the card
       const currentCard = event.currentTarget;
-      // if we already clicked on one card
-      if (card1 && !card2) {
+      // if the pickCard array hold 0 or 1 cards, then push the currently clicked card
+      if (memoryGame.pickedCards.length < 2) {
+        memoryGame.pickedCards.push(currentCard);
         currentCard.classList.add('turned');
-        card2 = currentCard.getAttribute('data-card-name');
-        console.log(card1, card2);
-        if (!memoryGame.checkIfPair(card1, card2)) {
+      }
+      //  If we have the 2 cards don't let click any of the cards
+      if (memoryGame.pickedCards.length === 2) {
+        // set the clicked pair's number
+        const cardName1 = memoryGame.pickedCards[0].dataset.cardName;
+        const cardName2 = memoryGame.pickedCards[1].dataset.cardName;
+        const card1 = memoryGame.pickedCards[0];
+        const card2 = memoryGame.pickedCards[1];
+        // if they are not matching, turn them back
+        const matching = memoryGame.checkIfPair(cardName1, cardName2);
+        document.getElementById('pairs-clicked').textContent =
+          memoryGame.pairsClicked;
+        if (!matching) {
           setTimeout(() => {
-            currentCard.classList.remove('turned');
-            card1Element.classList.remove('turned');
-            card1 = card2 = '';
-            document.getElementById('pairs-clicked').textContent =
-              memoryGame.pairsClicked;
+            card1.classList.remove('turned');
+            card2.classList.remove('turned');
           }, 1000);
         } else {
-          card1 = card2 = '';
           document.getElementById('pairs-guessed').textContent =
             memoryGame.pairsGuessed;
         }
+        // Check if the game is Finished
         if (memoryGame.checkIfFinished()) {
           setTimeout(() => {
             alert('You won!');
           }, 500);
         }
-      } else if (!card1 || !card2) {
-        currentCard.classList.add('turned');
-        card1 = currentCard.getAttribute('data-card-name');
-        card1Element = currentCard;
-      } else if (card1 && card2) {
-        // card1 = card2 = '';
-        return;
+        // empty the pickedCard array
+        memoryGame.pickedCards = [];
       }
-      // console.log(currentCard.getAttribute('data-card-name'));
       console.log(`Card clicked: ${card}`);
     });
   });
