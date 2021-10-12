@@ -29,15 +29,21 @@ class MemoryGame {
     if (card1 === card2) {
       this.pairsGuessed++;
       return true;
-    }
+    } else {
     return false;
+    }
   }
 
   checkIfFinished() {
-    if (this.pairsGuessed === this.cards.length / 2) {
-      return true;
+    if (this.pairsGuessed === 0) {
+      return false;
     }
-    return false;
+    if (this.pairsClicked < this.cards.length / 2) {
+      return false
+    }
+    if (this.pairsGuessed === this.cards.length / 2) {
+      return true
+    }
     }
   }
 
