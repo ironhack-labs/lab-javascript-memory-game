@@ -36,6 +36,7 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    memoryGame.shuffleCards();
   });
 
   // Add all the divs to the HTML
@@ -45,7 +46,9 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      console.log(card);
+      card.classList = 'card turned'
+      console.log(memoryGame.pairsClicked)
     });
   });
 });
