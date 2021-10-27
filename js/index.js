@@ -46,23 +46,21 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      // if same cards don't remove 'turned'
+      console.log(`Card clicked: ${card}`);
       card.classList.add('turned');
-      memoryGame.pickedCards.push(card.getAttribute('data-card-name'));
-      console.log(memoryGame.pickedCards)
+      memoryGame.pickedCards.push(card);
       if (memoryGame.pickedCards.length === 2) {
         const card1 = memoryGame.pickedCards[0]
         const card2 = memoryGame.pickedCards[1]
-        //FIX this undefined
-        console.log(memoryGame.checkIfPair(card1, card2))
-        if (memoryGame.checkIfPair(card1, card2)) {
+        if (card1.dataset.cardName === card2.dataset.cardName) {
           document.querySelectorAll('.card turned').forEach((card) => {
             card.classList.add('blocked')
-            console.log('card', card)
           }) 
+          memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName)
+          // FIX: should add 1 point
         } else { 
-          console.log('turn back')
           memoryGame.pickedCards.map((card) => {
+            console.log('card2', card)
             setTimeout(() => {
               card.classList.remove('turned');
             }, 2000);
@@ -71,7 +69,6 @@ window.addEventListener('load', (event) => {
         
         memoryGame.pickedCards = []
       }
-      console.log(`Card clicked: ${card}`);
     });
   });
 });
