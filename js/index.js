@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards)
 
 window.addEventListener("load", event => {
+    memoryGame.shuffleCards()
     let html = ""
     memoryGame.cards.forEach(pic => {
         html += `
@@ -40,43 +41,37 @@ window.addEventListener("load", event => {
 
     // Add all the divs to the HTML
     document.querySelector("#memory-board").innerHTML = html
-
-    let clickedCards = []
-    let guessedCards = []
-    let pairsGuessed = 0
-    let pairsClicked = 0
+    
 
     // Bind the click event of each element to a function
     document.querySelectorAll(".card").forEach(card => {
         card.addEventListener("click", () => {
-            // TODO: write some code here
-            // console.log(`Card clicked: ${card.getAttribute("data-card-name")}`)
-
             card.classList.add("turned")
 
-            const name = card.getAttribute("data-card-name")
+            memoryGame.pickedCards.push(card)
 
-            clickedCards.push(name)
-            console.log(card)
-            if (clickedCards.length === 2 && clickedCards[0] === clickedCards[1]) {
-                pairsGuessed += 1
-                document.querySelector("#pairs-guessed").innerText = pairsGuessed
-
-                guessedCards.push(clickedCards[0])
-
-            } else if (clickedCards.length === 2 && clickedCards[0] !== clickedCards[1]) {
-                console.log(card)
+            if (memoryGame.pickedCards.length === 2 && memoryGame.pickedCards[0] === memoryGame.pickedCards[1]) {
+                memoryGame.pairsGuessed += 1
+            } else if (memoryGame.pickedCards.length === 2 && memoryGame.pickedCards[0] !== memoryGame.pickedCards[1]) {
                 setTimeout(() => {
-                    card.classList.remove("turned")
+                    memoryGame.pickedCards[0].classList.remove("turned")
+                    memoryGame.pickedCards.shift()
+                    memoryGame.pickedCards[0].classList.remove("turned")
+                    memoryGame.pickedCards = []
                 }, 2000)
             }
 
-             if (clickedCards.length === 2) {
-                 pairsClicked += 1
-                 document.querySelector("#pairs-clicked").innerText =
-                     pairsClicked
-                 clickedCards = []
-             }
+            // if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+                
+            // }
+
+            document.querySelector("#pairs-clicked").innerText = memoryGame.pairsClicked
+            
+            document.querySelector("#pairs-guessed").innerText = memoryGame.pairsGuessed
+
+            // if (memoryGame.pickedCards.length === 2) {
+            //     memoryGame.pairsClicked += 1
+            // }
         })
     })
 })
