@@ -26,12 +26,14 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let canPlay = true;
 
 window.addEventListener('load', (event) => {
     let html = '';
     memoryGame.shuffleCards();
     memoryGame.pairsGuessed = 0;
     memoryGame.pairsClicked = 0;
+
     memoryGame.cards.forEach((pic) => {
         html += `
       <div class="card" data-card-name="${pic.name}">
@@ -50,6 +52,7 @@ window.addEventListener('load', (event) => {
 
             turnCard(card);
             if (memoryGame.pickedCards.length % 2 === 0) {
+                canPlay = false;
                 setTimeout(function () {
                     play();
                 }, 500)
@@ -73,14 +76,16 @@ function play() {
             }
         }
     }
-
+    canPlay = true;
     updateScreen();
     isGameOver();
 }
 
 function turnCard(card) {
-    card.classList.toggle('turned');
-    memoryGame.pickedCards.unshift(card.getAttribute('data-card-name'));
+    if (canPlay) {
+        card.classList.toggle('turned');
+        memoryGame.pickedCards.unshift(card.getAttribute('data-card-name'));
+    }
 }
 
 function updateScreen() {
@@ -90,6 +95,8 @@ function updateScreen() {
 
 function isGameOver() {
     if (memoryGame.checkIfFinished()) {
+        canPlay = false;
         alert('Game Over');
     }
+
 }
