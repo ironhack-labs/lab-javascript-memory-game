@@ -52,15 +52,18 @@ window.addEventListener('load', (event) => {
       if (memoryGame.pickedCards.length === 2) {
         const card1 = memoryGame.pickedCards[0]
         const card2 = memoryGame.pickedCards[1]
+        memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName)
+        console.log(memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName))
         if (card1.dataset.cardName === card2.dataset.cardName) {
           document.querySelectorAll('.card turned').forEach((card) => {
             card.classList.add('blocked')
           }) 
-          memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName)
-          // FIX: should add 1 point
+
+          if (memoryGame.checkIfFinished()) {
+            alert('You Won!!!')
+          }
         } else { 
           memoryGame.pickedCards.map((card) => {
-            console.log('card2', card)
             setTimeout(() => {
               card.classList.remove('turned');
             }, 2000);
