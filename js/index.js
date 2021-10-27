@@ -48,15 +48,28 @@ window.addEventListener('load', (event) => {
       // TODO: write some code here
       // if same cards don't remove 'turned'
       card.classList.add('turned');
-      memoryGame.pickedCards.push(card);
+      memoryGame.pickedCards.push(card.getAttribute('data-card-name'));
+      console.log(memoryGame.pickedCards)
       if (memoryGame.pickedCards.length === 2) {
-        memoryGame.pickedCards.map((card) => {
-          setTimeout(() => {
-            card.classList.remove('turned');
-          }, 2000);
-        });
-        let card1 = memoryGame.pickedCards.shift();
-        let card2 = memoryGame.pickedCards.shift();
+        const card1 = memoryGame.pickedCards[0]
+        const card2 = memoryGame.pickedCards[1]
+        //FIX this undefined
+        console.log(memoryGame.checkIfPair(card1, card2))
+        if (memoryGame.checkIfPair(card1, card2)) {
+          document.querySelectorAll('.card turned').forEach((card) => {
+            card.classList.add('blocked')
+            console.log('card', card)
+          }) 
+        } else { 
+          console.log('turn back')
+          memoryGame.pickedCards.map((card) => {
+            setTimeout(() => {
+              card.classList.remove('turned');
+            }, 2000);
+          });
+        }
+        
+        memoryGame.pickedCards = []
       }
       console.log(`Card clicked: ${card}`);
     });
