@@ -58,11 +58,13 @@ window.addEventListener('load', (event) => {
         if (memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)) {
           console.log("pareja")
           //memoryGame.pickedCards[0,1].classList.toggle('blocked');
-          let pairCards = memoryGame.pickedCards.slice(0,1);
-          let pairArray = [];
-          pairArray.push(pairCards);
-          memoryGame.checkIfFinished();
           console.log(memoryGame.pickedCards);
+          memoryGame.pairsGuessed + 0.5;
+          document.querySelector('#pairs-guessed').textContent = memoryGame.pairsGuessed;
+          memoryGame.pickedCards = [];
+          if (memoryGame.checkIfFinished()) {
+            alert("Kudos, you spotted all the pairs!")
+          }
         } 
         
         
@@ -75,42 +77,6 @@ window.addEventListener('load', (event) => {
           console.log(memoryGame.pickedCards);
         }
       }
-      
-      
-
-
-
-
-
-
-
-
-      /* card.classList.toggle("turned");
-       memoryGame.pickedCards.push(card)
-       if(memoryGame.pickedCards.length === 2)
-       {
-         if(memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName,memoryGame.pickedCards[1].dataset.cardName))
-         {
-           document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
-           if(memoryGame.checkIfFinished())
-           {
-             setTimeout(()=>{window.alert("YOU WON")},1000)
-
-           }
-          }
-         else{
-           memoryGame.pickedCards.forEach(element => {
-             setTimeout(()=>{element.classList.toggle("turned");  },1000)
-
-           });
-
-         }
-         document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
-         memoryGame.pickedCards = [];
-       } */
-
-
-
 
       console.log(`Card clicked: ${card}`);
     });
