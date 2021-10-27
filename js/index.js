@@ -25,9 +25,23 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+
+function printClicked (){
+  score.querySelector("#pairs-clicked").textContent =  memoryGame.pairsClicked;
+}
+
+function printGuessed (){
+  score.querySelector("#pairs-guessed").textContent =  memoryGame.pairsGuessed;
+}
+
+function setCardFlip(card) {
+  card.classList.toggle("turned");
+}
+
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -38,14 +52,37 @@ window.addEventListener('load', (event) => {
     `;
   });
 
+  
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+ 
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      
+      setCardFlip(card);
+      memoryGame.pushPickedCardToArray(card);
+      let cardsArePair = memoryGame.checkCardsClicked();
+      if (cardsArePair) {
+        memoryGame.clearPickedCards();
+      } else if (cardsArePair == false) {
+        let cardsToTurn = memoryGame.getPickedCards();
+        setTimeout(() => {
+          setCardFlip(cardsToTurn[0]);
+          setCardFlip(cardsToTurn[1]);
+        }, 750);
+        memoryGame.clearPickedCards();
+      }
+      let finishedGame = memoryGame.checkIfFinished();
+      if (finishedGame){
+        confetti.start()
+        audio.play();
+      }
+      printClicked();
+      printGuessed();
     });
   });
 });
+
+var audio = new Audio('../img/easteregg.mp3');
