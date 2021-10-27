@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <h1 class="title red">Soy el título</h1>
+        <a href="https://www.google.es" title="Ir a Google">Ir a Google</a>
+        <script>
+            //seleccionamos el h1 y el a
+            const header1 = document.querySelector('h1')
+            const link = document.querySelector('a')
+
+
+            // attribute manipulation
+            header1.setAttribute('title', 'Ahora tengo título')
+            link.setAttribute('id', 'yabadu')
+            link.setAttribute('title', 'Ir a Yahoo')
+            link.setAttribute('href', 'https://www.yahoo.es')
+
+            link.innerHTML = 'Ir a Yahooooo'
+
+
+            // class manipulation
+            header1.classList.add('big')
+            header1.classList.remove('red')
+
+
+        </script>
+    </body>
+
+</html>
