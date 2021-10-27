@@ -30,6 +30,7 @@ body {
 .card.turned .front {
   transform: rotateY(0deg);
 }
+
 .card.turned .back {
   transform: rotateY(180deg);
 }
@@ -87,4 +88,16 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.victoria {
+  font-size: 120px;
+  background-color: rgb(101, 101, 223);
+  color: black;
+  position: absolute;
+  top: 40%;
+  left: 28%;
+  font-family: Helvetica;
+
+
 }

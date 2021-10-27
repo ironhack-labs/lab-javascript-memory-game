@@ -40,12 +40,83 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  var pairsClicked = document.querySelector("#pairs-clicked");
+  var pairsGuessed = document.querySelector("#pairs-guessed");
+  var memoryBoard = document.querySelector("#memory-board")
 
+  
+  // Bind the click event of each element to a function
+  let card1;
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      
+      card.classList.add('turned');
       console.log(`Card clicked: ${card}`);
+      if (card1 === undefined) {
+        card1 = card;
+        console.log('relleno 1');
+      } else {
+        console.log('entro');
+        let valCard1= card1.dataset.cardName;
+        let valCard2= card.dataset.cardName;
+
+
+        console.log(valCard1,valCard2);
+        if(memoryGame.checkIfPair(valCard1, valCard2)){
+          console.log("Son iguales")
+          
+          card1.classList.add('blocked');
+          card1 = undefined;
+          card.classList.add('blocked');
+          
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+        
+           pairsClicked.innerHTML = memoryGame.pairsClicked;
+
+          console.log(memoryGame.checkIfFinished())
+
+          if(memoryGame.checkIfFinished()) {
+            memoryBoard.innerHTML += `<h1 class= "victoria"> HAS GANADO</h1>`
+
+          }
+
+        }
+        else {
+             pairsClicked.innerHTML = memoryGame.pairsClicked;
+       
+          
+          setTimeout(()=>{
+            card1.classList.remove('turned');
+              card1 = undefined;
+            card.classList.remove('turned');
+            
+          }
+            
+            ,1000)
+            
+           
+            
+
+          
+
+             console.log("No son iguales ")
+           
+
+
+
+
+
+
+
+        }
+         
+
+
+       
+        
+        console.log(card1);
+      }
     });
   });
 });
