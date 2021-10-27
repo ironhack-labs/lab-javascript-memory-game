@@ -15,14 +15,31 @@ body {
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px #615961;
 }
-
+.hidden {
+  display: none;
+}
+.display {
+  display: block;
+}
+.title {
+  font-size: 72px;
+  font-weight: 900;
+  color: rgb(199, 64, 64);
+}
+.img {
+  margin: 10px auto;
+  display: block;
+}
 .card {
   display: inline-block;
   perspective: 300px;
   transform-style: preserve-3d;
   position: relative;
 }
-
+#id {
+  width: 500px;
+  margin: auto;
+}
 .card.turned {
   pointer-events: none;
 }
