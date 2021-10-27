@@ -27,9 +27,9 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     console.log(card1, card2)
-    this.pairsClicked++;
+    document.querySelector('#pairs-clicked').innerHTML = ++this.pairsClicked;
     return card1 === card2 ? (
-      this.pairsGuessed++,
+      document.querySelector('#pairs-guessed').innerHTML = ++this.pairsGuessed,
       true
     ) : false
   }
