@@ -46,12 +46,12 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
       card.classList.add('turned');
       memoryGame.pickedCards.push(card);
       if (memoryGame.pickedCards.length === 2) {
         const card1 = memoryGame.pickedCards[0]
         const card2 = memoryGame.pickedCards[1]
+        
         memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName)
         if (card1.dataset.cardName === card2.dataset.cardName) {
           document.querySelectorAll('.card turned').forEach((card) => {
