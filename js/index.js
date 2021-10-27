@@ -40,11 +40,40 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  //Añadimos el nombre de la carta con dataset a cada carta card
+  for (let i = 0; i < memoryGame.length; i++) {
+     cards.dataset.cardName;
+  }
+  // console.log(memoryGame);
+  // console.log(cards[3].name);
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+        // TODO: write some code here
+        
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        //console.log(card1);
+
+        card.classList.toggle('turned');
+        memoryGame.pickedCards.push(card);
+        if (memoryGame.pickedCards.length === 2 ){
+          checkIfPair(card1, card2);
+          if(checkIfPair() == true) {
+
+          }
+        }
+        if (memoryGame.pickedCards.length > 2) {
+            card1.classList.remove("turned");
+            card2.classList.remove("turned");
+            card1.shift();
+            card2.shift();
+          }
+
+
+       
+
       console.log(`Card clicked: ${card}`);
     });
   });

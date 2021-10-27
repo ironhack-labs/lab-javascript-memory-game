@@ -11,12 +11,10 @@ class MemoryGame {
 
   shuffleCards() {
     // ... write your code here
-    
-
     if (!this.cards){
       return undefined;
     }
-   let cardsStack = this.cards.length;
+   let cardsStack = this.cards;
    let shuffleCardsStack = this.cards.sort(() => Math.random() - 0.5);
    return shuffleCardsStack;
   }
