@@ -36,6 +36,7 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    memoryGame.shuffleCards();
   });
 
   // Add all the divs to the HTML
@@ -45,7 +46,16 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      console.log('Card clicked:', card);
+      card.classList.add("turned")
+      memoryGame.pickedCards.push(card)
+      if (memoryGame.pickedCards.length > 2){
+
+        memoryGame.pickedCards[0].classList.remove("turned")
+        memoryGame.pickedCards[1].classList.remove("turned")
+        memoryGame.pickedCards.shift()
+        memoryGame.pickedCards.shift()
+      }
     });
   });
 });
