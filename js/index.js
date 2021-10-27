@@ -52,8 +52,8 @@ function cardClickHandler(card) {
     card.classList.add('turned');
     memoryGame.pickedCards.push(card);
     if (memoryGame.pickedCards.length === 2) {
-      const cardA = memoryGame.pickedCards[0].getAttribute('data-card-name');
-      const cardB = memoryGame.pickedCards[1].getAttribute('data-card-name');
+      const cardA = memoryGame.pickedCards[0].dataset.cardName;
+      const cardB = memoryGame.pickedCards[1].dataset.cardName;
       const result = memoryGame.checkIfPair(cardA, cardB);
       if (!result) {
         setTimeout(() => {
@@ -67,9 +67,9 @@ function cardClickHandler(card) {
       if (memoryGame.checkIfFinished()) {
         alert('Congradulation!');
         memoryGame.shuffleCards();
-        memoryGame.pickedCards=[];
-        memoryGame.pairsGuessed=0;
-        memoryGame.pairsClicked=0;
+        memoryGame.pickedCards = [];
+        memoryGame.pairsGuessed = 0;
+        memoryGame.pairsClicked = 0;
         const allCards = document.querySelectorAll('.turned');
         allCards.forEach((card) => {
           card.classList.remove('turned');
