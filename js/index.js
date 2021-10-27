@@ -46,7 +46,17 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      // onclick add class 'turned' 
+      // onclick add class 'turned'
+      card.classList.add('turned') 
+      memoryGame.pickedCards.push(card)
+      memoryGame.pickedCards.length > 2 && (
+      memoryGame.pickedCards.map((card) => {
+        // FIX setTimeout
+        setTimeout(() => {
+          card.classList.remove('turned')
+          pickedCards.shift()
+        }, 2000)
+      }))
       console.log(`Card clicked: ${card}`);
     });
   });
