@@ -6,10 +6,9 @@ class MemoryGame {
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
   }
-
+  
   shuffleCards() {
     // ... write your code here
-
     if (!this.cards) return undefined;
     this.cards.sort((a, b) => 0.5 - Math.random());
   }
@@ -29,7 +28,7 @@ class MemoryGame {
     //if we choose to extend the game to support higher number of cards
     const totalPairs = this.cards.length / 2;
     const guessed = this.pairsGuessed;
-    return totalPairs - this.pairsGuessed === 0;
+    return totalPairs - guessed === 0;
   }
 }
 

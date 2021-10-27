@@ -28,7 +28,9 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  //Chosing the Difficulty :
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -37,15 +39,46 @@ window.addEventListener('load', (event) => {
       </div>
     `;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+    card.addEventListener('click', cardClickHandler.bind(this, card));
   });
 });
+//Auxiliars :
+function cardClickHandler(card) {
+  if (memoryGame.pickedCards.length < 2) {
+    card.classList.add('turned');
+    memoryGame.pickedCards.push(card);
+    if (memoryGame.pickedCards.length === 2) {
+      const cardA = memoryGame.pickedCards[0].getAttribute('data-card-name');
+      const cardB = memoryGame.pickedCards[1].getAttribute('data-card-name');
+      const result = memoryGame.checkIfPair(cardA, cardB);
+      if (!result) {
+        setTimeout(() => {
+          memoryGame.pickedCards[0].classList.remove('turned');
+          memoryGame.pickedCards[1].classList.remove('turned');
+          memoryGame.pickedCards = [];
+        }, 1200);
+      } else {
+        memoryGame.pickedCards = [];
+      }
+      if (memoryGame.checkIfFinished()) {
+        alert('Congradulation!');
+        memoryGame.shuffleCards();
+        memoryGame.pickedCards=[];
+        memoryGame.pairsGuessed=0;
+        memoryGame.pairsClicked=0;
+        const allCards = document.querySelectorAll('.turned');
+        allCards.forEach((card) => {
+          card.classList.remove('turned');
+        });
+      }
+      document.querySelector('#pairs-clicked').innerText =
+        memoryGame.pairsClicked;
+      document.querySelector('#pairs-guessed').innerText =
+        memoryGame.pairsGuessed;
+    }
+  }
+}
