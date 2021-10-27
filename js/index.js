@@ -26,7 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-memoryGame.shuffleCards(cards)
+memoryGame.shuffleCards(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -47,16 +47,21 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       // onclick add class 'turned'
-      card.classList.add('turned') 
-      memoryGame.pickedCards.push(card)
-      memoryGame.pickedCards.length > 2 && (
-      memoryGame.pickedCards.map((card) => {
-        // FIX setTimeout
-        setTimeout(() => {
-          card.classList.remove('turned')
-          pickedCards.shift()
-        }, 2000)
-      }))
+      card.classList.add('turned');
+      memoryGame.pickedCards.push(card);
+      if (memoryGame.pickedCards.length === 2) {
+        memoryGame.pickedCards.map((card) => {
+          setTimeout(() => {
+            card.classList.remove('turned');
+          }, 1000);
+        });
+        if (memoryGame.pickedCards[0] !== memoryGame.pickedCards[1]) {
+          let card1 = memoryGame.pickedCards.shift();
+          let card2 = memoryGame.pickedCards.shift();
+          console.log(card1, card2);
+          console.log(memoryGame.pickedCards);
+        }
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
