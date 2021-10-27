@@ -65,8 +65,13 @@ describe('MemoryGame', () => {
 
     it('should return the shuffled (mixed) array of cards', () => {
       const formerCards = memoryGame.cards.map((card) => card.name).toString();
+      //console.log('before', memoryGame.cards);
       memoryGame.shuffleCards();
+      //console.log('after', memoryGame.cards);
+
       const newCards = memoryGame.cards.map((card) => card.name).toString();
+      // console.log("before",formerCards);
+      // console.log("after",newCards);
       expect(formerCards === newCards).toBe(false);
     });
   });
