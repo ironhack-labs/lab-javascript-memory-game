@@ -58,6 +58,9 @@ window.addEventListener('load', (event) => {
               card.dataset.cardName
             )
           ) {
+            memoryGame.pickedCards.push(card);
+            memoryGame.pickedCards.push(pikedCard);
+            console.log(memoryGame.pickedCards);
             pikedCard.classList.add('blocked');
             card.classList.add('blocked');
             pikedCard = undefined;
@@ -88,12 +91,13 @@ function winDisplay() {
     win.classList.add('hidden');
     play.classList.add('display');
     play.classList.remove('hidden');
+    memoryGame.pickedCards = [];
+    memoryGame.pairsGuessed = 0;
+    memoryGame.pairsClicked = 0;
   });
-  memoryGame.pickedCards = [];
-  memoryGame.pairsGuessed = 0;
-  memoryGame.pairsClicked = 0;
   const allCards = document.querySelectorAll('.turned');
   allCards.forEach((card) => {
     card.classList.remove('turned');
   });
+  dispatchEvent(new Event('load'));
 }
