@@ -26,8 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -88,5 +88,12 @@ function winDisplay() {
     win.classList.add('hidden');
     play.classList.add('display');
     play.classList.remove('hidden');
+  });
+  memoryGame.pickedCards = [];
+  memoryGame.pairsGuessed = 0;
+  memoryGame.pairsClicked = 0;
+  const allCards = document.querySelectorAll('.turned');
+  allCards.forEach((card) => {
+    card.classList.remove('turned');
   });
 }
