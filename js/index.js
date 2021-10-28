@@ -74,6 +74,7 @@ function cardClickHandler(card) {
         allCards.forEach((card) => {
           card.classList.remove('turned');
         });
+        dispatchEvent(new Event('load'));
       }
       document.querySelector('#pairs-clicked').innerText =
         memoryGame.pairsClicked;
