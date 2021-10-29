@@ -36,7 +36,13 @@ class MemoryGame {
       }else {
        return false
      }
-
+/**  if(card1.name.localeCompare(card2.name) === 0){
+      this.pairsGuessed +=1
+      return true
+      }else {
+       return false
+     }
+ */
 
     /*Finally, we need to make sure our game ends, and for 
     that, we can add some logic to the checkIfFinished() 

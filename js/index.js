@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -40,12 +41,52 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  const pairCounter = document.querySelector('#pairs-clicked')
+  const guessCounter = document.querySelector('#pairs-guessed')
+            
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+    
+      card.addEventListener('click', () => {
+          //allow only 2 cards to pe open at the same time
+          if(memoryGame.pickedCards.length<2){
+            card.classList.add('turned')
+          }
+          guessCounter.innerText = memoryGame.pairsGuessed
+          //καθε καρτουλα που ανοιγω την βαζω μεσα σε ενα πινακα με το ονομα
+          //picked cards
+          memoryGame.pickedCards.push(card)
+          //for every 2 cards i have to check if I have a pair
+          if(memoryGame.pickedCards.length===2){
+            
+            const checked = memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName,memoryGame.pickedCards[1].dataset.cardName)
+            pairCounter.innerText = memoryGame.pairsClicked
+            // console.log(memoryGame.pickedCards)
+            // console.log(checked)
+            
+            if (!checked){
+              setTimeout(function () {
+                memoryGame.pickedCards[0].classList.remove("turned")
+                memoryGame.pickedCards[1].classList.remove("turned")
+                memoryGame.pickedCards.shift()
+                memoryGame.pickedCards.shift()
+              
+            }, 900)
+            }
+            else {
+                setTimeout(function () {              
+                memoryGame.pickedCards.shift()
+                memoryGame.pickedCards.shift()              
+            }, 900)
+            }
+            
+          }
+          if(memoryGame.checkIfFinished()){
+            const finished = document.querySelector('#memory-board')
+            finished.setAttribute('id', 'finished')
+            finished.innerText = 'Congratulations! You have a strong memory!'
+          }
+          
+        });
   });
 });
