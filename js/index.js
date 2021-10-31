@@ -26,9 +26,14 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener('load', (event) => {
+  let roundPick = 0;
   let html = '';
+  let card1,
+    card2 = [];
+  let tempCard;
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -38,14 +43,45 @@ window.addEventListener('load', (event) => {
     `;
   });
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+  let board = document.querySelector('#memory-board');
+  board.innerHTML = html;
+  const pairsClicked = document.querySelector('#pairs-clicked');
+  const pairsGuessed = document.querySelector('#pairs-guessed');
 
-  // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    card.addEventListener('click', (event) => {
+      const target = event.currentTarget;
+      roundPick++;
+      target.classList.toggle('turned');
+
+      if (roundPick === 1) {
+        card1 = target.dataset.cardName;
+        tempCard = target;
+      }
+      if (roundPick === 2) {
+        card2 = target.dataset.cardName;
+        let match = memoryGame.checkIfPair(card1, card2);
+        roundPick = 0;
+        if (!match) {
+          board.style.pointerEvents = 'none';
+          setTimeout(() => {
+            tempCard.classList.toggle('turned');
+            target.classList.toggle('turned');
+            board.style.pointerEvents = '';
+          }, 1500);
+        } else {
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+          tempCard.style.pointerEvents = 'none';
+          target.style.pointerEvents = 'none';
+          setTimeout(() => {
+            if (memoryGame.checkIfFinished()) {
+              alert('GAME COMPLETED! CONGRATS!');
+              window.location.reload(false);
+            }
+          }, 1500);
+        }
+        pairsClicked.innerHTML = memoryGame.pairsClicked;
+      }
     });
   });
 });
