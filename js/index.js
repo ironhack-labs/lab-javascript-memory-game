@@ -50,12 +50,14 @@ window.addEventListener('load', (event) => {
 
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
+      console.log(card);
       const target = event.currentTarget;
       roundPick++;
       target.classList.toggle('turned');
 
       if (roundPick === 1) {
         card1 = target.dataset.cardName;
+        target.style.pointerEvents = 'none';
         tempCard = target;
       }
       if (roundPick === 2) {
