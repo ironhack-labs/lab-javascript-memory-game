@@ -25,9 +25,11 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -46,6 +48,8 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      
+      memoryGame.checkIfPair(card)
     });
   });
 });
