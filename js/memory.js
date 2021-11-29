@@ -10,12 +10,21 @@ class MemoryGame {
     if(!this.cards){
       return undefined;
     }
+
     for(let i = 0; i < this.cards.length; i++){
       const j = Math.floor(Math.random() * (this.cards.length));
       const card = this.cards[i];
       this.cards[i] = this.cards[j];
       this.cards[j] = card;
     }
+    /*for(let i = 0; i < this.cards.length; i++){
+      const j = Math.floor(Math.random() * (this.cards.length));
+      const k = Math.floor(Math.random() * (this.cards.length));
+      const card = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = this.cards[k];
+      this.cards[k] = card;
+    }*/
   }
 
   checkIfPair(card1, card2) {

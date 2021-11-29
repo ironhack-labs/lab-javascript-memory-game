@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -62,8 +63,10 @@ window.addEventListener('load', (event) => {
             document.getElementById('pairs-guessed').innerHTML++;
             memoryGame.pickedCards = [];
           } else {
-            card1.classList.remove('turned');
-            card2.classList.remove('turned');
+            setTimeout(() => {
+              card1.classList.remove('turned');
+              card2.classList.remove('turned');
+            }, 1000);
             memoryGame.pickedCards = [];
           }
         }
