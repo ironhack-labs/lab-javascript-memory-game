@@ -1,3 +1,4 @@
+/*jshint esversion:8 */
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -26,7 +27,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-
+memoryGame.shuffleCards();
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -41,10 +42,45 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+
+      if (card.classList.contains('blocked') || memoryGame.pickedCards.length === 2){
+        return;
+      } else { 
+        card.classList.toggle('turned');
+        memoryGame.pickedCards.push(card);
+        
+      }
+
+      if (memoryGame.pickedCards.length === 2) {
+
+        if (!memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
+          setTimeout(()=>{
+          
+            memoryGame.pickedCards[0].classList.toggle('turned');
+            memoryGame.pickedCards[1].classList.toggle('turned');
+            document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked.toString();
+            memoryGame.pickedCards = [];
+          }, 2000);
+        } else {
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked.toString();
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed.toString();
+          memoryGame.pickedCards = [];
+
+          if(memoryGame.checkIfFinished()) {
+            alert("The end!");
+          }
+        }
+        
+      }
+      
       console.log(`Card clicked: ${card}`);
     });
   });
