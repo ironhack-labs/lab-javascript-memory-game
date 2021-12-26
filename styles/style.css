@@ -14,6 +14,7 @@ body {
   margin: 0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px #615961;
+  z-index: 2;
 }
 
 .card {
@@ -87,4 +88,17 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+#you-win {
+  position: absolute;
+  margin-left: 30%;
+  margin-right: 30%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: black;
+  padding-bottom: 5em;
+  margin-top: 10em;
+  z-index: 1;
 }
