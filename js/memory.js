@@ -34,12 +34,7 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    if (this.pairsGuessed === this.cards.length / 2) {
-      return true;
-    } else {
-      return false;
-    }
-    // ... write your code here
+    return this.pairsGuessed === this.cards.length / 2 ? true : false;
   }
 }
 
