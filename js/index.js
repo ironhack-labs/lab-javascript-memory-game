@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,8 +45,24 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      const picked = memoryGame.pickedCards;
+      card.classList.add('turned');
+      picked.push(card);
+
+      if(picked.length === 2) {
+        const cardName1 = picked[0].dataset.cardName;
+        const cardName2 = picked[1].dataset.cardName;
+        const isPair = memoryGame.checkIfPair(cardName1, cardName2);
+        memoryGame.pickedCards = [];
+
+        if(!isPair) {
+          setTimeout(() => {
+            picked[0].classList.remove('turned');
+            picked[1].classList.remove('turned');
+          }, 1000);
+        }
+      }
+      
     });
   });
 });
