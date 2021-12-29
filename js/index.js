@@ -53,7 +53,8 @@ window.addEventListener('load', (event) => {
         const cardName1 = picked[0].dataset.cardName;
         const cardName2 = picked[1].dataset.cardName;
         const isPair = memoryGame.checkIfPair(cardName1, cardName2);
-        memoryGame.pickedCards = [];
+        document.querySelector('#pairs-clicked').textContent = memoryGame.pairsClicked;
+        document.querySelector('#pairs-guessed').textContent = memoryGame.pairsGuessed;
 
         if(!isPair) {
           setTimeout(() => {
