@@ -62,7 +62,10 @@ window.addEventListener('load', (event) => {
           }, 1000);
         }
       }
-      
+
+      if(memoryGame.checkIfFinished()) {
+        setTimeout(() => alert('Yaaay! You won!'), 200);
+      };
     });
   });
 });
