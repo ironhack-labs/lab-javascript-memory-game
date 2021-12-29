@@ -23,12 +23,11 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
+    this.pairsClicked += 1;
     if (card1 === card2) {
-      this.pairsClicked += 1;
       this.pairsGuessed += 1;
       return true;
     } else {
-      this.pairsClicked += 1;
       return false;
     }
   }
