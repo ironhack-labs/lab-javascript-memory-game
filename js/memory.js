@@ -7,23 +7,23 @@ class MemoryGame {
     this.checkResult = true;
   }
 
-  shuffleCards(array) {
-    if (!arguments.length) return
-    let m = array.length, t, i;
+  shuffleCards() {
+    if (!this.cards) return
+    let m = this.cards.length, t, i;
 
     // While there remain elements to shuffle…
     while (m) {
 
     // Pick a remaining element…
-    i = Math.floor(Math.random() * m--);
+      i = Math.floor(Math.random() * m--);
 
-    // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
+      // And swap it with the current element.
+      t = this.cards[m];
+      this.cards[m] = this.cards[i];
+      this.cards[i] = t;
     }
 
-    return array;
+    return this.cards;
   }
   
   
