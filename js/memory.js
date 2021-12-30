@@ -4,6 +4,7 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
+    this.checkResult = true;
   }
 
   shuffleCards() {
@@ -23,14 +24,16 @@ class MemoryGame {
     this.pairsClicked += 1;
     if (card1 === card2){
       this.pairsGuessed += 1;
-      return true
+      this.checkResult = true;
+      return true;
     }
-    return false
+    this.checkResult = false;
+    return false;
   }
 
   checkIfFinished() {
     if (this.pairsGuessed === (this.cards.length / 2)) return true;
-    return false
+    return false;
   }
 }
 
