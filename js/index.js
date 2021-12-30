@@ -31,6 +31,7 @@ const clickedScore = document.querySelector('#pairs-clicked')
 const guessedScore = document.querySelector('#pairs-guessed')
 
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards(cards)
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
