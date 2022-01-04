@@ -23,11 +23,18 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
+    let cardName1 = card1.getAttribute('data-card-name');
+    let cardName2 = card2.getAttribute('data-card-name');
+
     this.pairsClicked += 1;
-    if (card1 === card2) {
+    if (cardName1 === cardName2) {
       this.pairsGuessed += 1;
+      card1.classList.add('front');
+      card2.classList.add('front');
       return true;
     } else {
+      card1.classList.remove('turned');
+      card2.classList.remove('turned');
       return false;
     }
   }
