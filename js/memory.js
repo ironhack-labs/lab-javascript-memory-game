@@ -10,9 +10,9 @@ class MemoryGame {
   shuffleCards(arrCards) {
     if (!this.cards){return undefined}  
     for(let i = this.cards.length-1 ; i>0 ;i--){
-        const iBarajado = Math.floor( Math.random() * (i + 1) ); 
-      [this.cards[i],this.cards[iBarajado]]=[this.cards[iBarajado],this.cards[i]];
-      return iBarajado
+        const shuffled  = Math.floor( Math.random() * (i + 1) ); 
+      [this.cards[i],this.cards[shuffled ]]=[this.cards[shuffled ],this.cards[i]];
+      return shuffled 
   }
   }
 
