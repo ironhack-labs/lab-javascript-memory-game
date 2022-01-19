@@ -38,6 +38,7 @@ window.addEventListener('load', (event) => {
     `;
   });
 
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -45,6 +46,18 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+
+
+      if (memoryGame.pickedCards === 0) {
+
+        card.classList.toggle(`turned`)
+        memoryGame.pickedCards++
+      } else if (memoryGame.pickedcard > 1) {
+
+        card.classList.toggle(`turned`)
+      }
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
