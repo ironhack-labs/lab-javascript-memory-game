@@ -36,6 +36,7 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    memoryGame.shuffleCards()
   });
 
   // Add all the divs to the HTML
