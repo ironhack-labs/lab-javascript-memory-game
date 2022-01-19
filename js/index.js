@@ -59,10 +59,13 @@ window.addEventListener('load', (event) => {
           memoryGame.pickedCards.forEach(c => {
             c.classList.add('blocked');
           });
-
+          
           memoryGame.pickedCards = [];
           
-          if(memoryGame.checkIfFinished()) {
+          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
+          document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed;
+
+          if (memoryGame.checkIfFinished()) {
             setTimeout(() => {
               document.getElementById('memory-board').innerHTML = `<h1>Congrats - You Won!</h1>`
             }, 500)
@@ -77,10 +80,13 @@ window.addEventListener('load', (event) => {
 
               c.classList.remove('turned');
               memoryGame.pickedCards = [];
+
+              document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
             });
 
           }, 500);
         }
+      
       }
     });
   });
