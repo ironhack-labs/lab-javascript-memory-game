@@ -1,20 +1,30 @@
 class MemoryGame {
-  constructor(cards) {
-    this.cards = cards;
-    // add the rest of the class properties here
-  }
+    constructor(cards) {
+        this.cards = cards;
+        this.pickedCards = [];
+        this.pairsClicked = 0;
+        this.pairsGuessed = 0;
+    }
 
-  shuffleCards() {
-    // ... write your code here
-  }
+    shuffleCards() {
+        
+    }
 
-  checkIfPair(card1, card2) {
-    // ... write your code here
-  }
+    checkIfPair(card1, card2) {
+        if (card1 === card2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-  checkIfFinished() {
-    // ... write your code here
-  }
+    checkIfFinished() {
+        if (this.cards === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 // The following is required for automated testing. Please, ignore it.
