@@ -14,7 +14,7 @@ class MemoryGame {
       const array = [...this.cards];
       const randomArray = [];
       
-      array.forEach(() => {
+      this.cards.forEach(() => {
         
         randomIndex = Math.floor(Math.random() * array.length);
         randomArray.push(array[randomIndex]);
