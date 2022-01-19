@@ -91,7 +91,7 @@ window.addEventListener('load', (event) => {
 
 
 
-          }, 300);
+          }, 600);
 
           cardNamesArr.splice(0, 2)
           pairsClicked.innerHTML = memoryGame.pairsClicked
