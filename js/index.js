@@ -24,12 +24,13 @@ const cards = [
   { name: 'the avengers', img: 'the-avengers.jpg' },
   { name: 'thor', img: 'thor.jpg' }
 ];
-
+const pairsClicked = document.querySelector('#pairs-clicked');
+const pairsGuessed = document.querySelector('#pairs-guessed');
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
-  memoryGame.cards.forEach((pic) => {
+  memoryGame.shuffleCards(cards).forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
@@ -45,7 +46,28 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (memoryGame.pickedCards.length < 1) {
+        card.classList.toggle('turned');
+        memoryGame.pickedCards.push(card);
+      } else if (memoryGame.pickedCards.length === 1) {
+        memoryGame.pickedCards.push(card);
+        card.classList.toggle('turned');
+        const result = memoryGame.checkIfPair(
+          memoryGame.pickedCards[0],
+          memoryGame.pickedCards[1]
+        );
+        setTimeout(() => {
+          if (result) {
+            memoryGame.pickedCards = [];
+          } else {
+            memoryGame.pickedCards[0].classList.remove('turned');
+            memoryGame.pickedCards[1].classList.remove('turned');
+            memoryGame.pickedCards = [];
+          }
+          pairsClicked.textContent = memoryGame.pairsClicked;
+          pairsGuessed.textContent = memoryGame.pairsGuessed;
+        }, 1000);
+      }
     });
   });
 });
