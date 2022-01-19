@@ -31,7 +31,7 @@ window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
-      <div class="card" data-card-name="${pic.name}">
+      <div class="card" data-card="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
@@ -44,8 +44,18 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+      
+      console.log(`Card clicked: ${card.ge}`);
+
+      card.setAttribute("class", "card turned")
+      
+      
+      intervalID = setInterval(() => {
+        card.setAttribute("class" , "card")
+      }, 3000);
+      
+      
+
+    }, true);
   });
 });
