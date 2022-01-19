@@ -67,7 +67,10 @@ window.addEventListener('load', (event) => {
 
           if (memoryGame.checkIfFinished()) {
             setTimeout(() => {
-              document.getElementById('memory-board').innerHTML = `<h1>Congrats - You Won!</h1>`
+              document.getElementById('memory-board').innerHTML = `
+                <h1>Congrats - You Won!</h1>
+                <input id="btn-play-again" type="button" value="Play Again" onClick="window.location.reload(true)">
+                `;
             }, 500)
             
           };    

@@ -88,3 +88,16 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+#btn-play-again {
+  display:block;
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgba(215, 40, 40, 0.9);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 8px;
+  padding: 10px;
+}
