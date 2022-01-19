@@ -88,3 +88,10 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+
+#shuffle-btn {
+  padding: 20px;
+  background-color: aqua;
+  color: white;
+}
