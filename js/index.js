@@ -51,11 +51,12 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
 
-      card.classList.add('turned')
+
       const cardName = card.getAttribute('data-card-name');
       cardNamesArr.push(cardName)
       console.log(cardName)
-      if (!memoryGame.pickedCards.length < 2) {
+      if (memoryGame.pickedCards.length < 2) {
+        card.classList.add('turned')
         memoryGame.pickedCards.push(card)
       }
 
