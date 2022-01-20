@@ -20,6 +20,7 @@ class MemoryGame {
         // and move it to the new array
         copy.push(this.cards.splice(i, 1)[0])
       }
+      this.cards = copy
       return copy
     } else {
       return undefined
