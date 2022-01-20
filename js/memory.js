@@ -49,10 +49,12 @@ class MemoryGame {
       this.pairsClicked++
       this.pairsGuessed++
 
+      console.log('es pareja')
       return true
     }
     else {
       this.pairsClicked++
+
       console.log('no es pareja')
       return false
     }

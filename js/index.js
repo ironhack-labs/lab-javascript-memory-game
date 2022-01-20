@@ -30,17 +30,13 @@ const memoryGame = new MemoryGame(cards);
 window.addEventListener('load', (event) => {
 
   //memoryGame.shuffleCards(cards)
-  let card1
-  let card2
-  let card1Name = ''
-  let card2Name = ''
+
   let html = '';
   memoryGame.cards.forEach((pic) => {
     // en los renglones de abajo he tenido que convertir
     // 'data-cardname' en 'cardname'. De lo contrario no sabía referenciarlo
     //
-    // me he olvidado completamente del array de this.pickedCards. funciona sin usarlo
-    //cuando me di cuenta de eso, era demasiado tarde para cambiar toda la mecánica
+
 
     html += `
       <div class="card" data-cardname="${pic.name}">
@@ -63,42 +59,47 @@ window.addEventListener('load', (event) => {
 
       card.classList.toggle('turned')
 
-      if (card1Name === '') {
-        card1 = card
-        card1Name = card.dataset.cardname
-        console.log(card1Name)
-      }
-      else {
-        card2 = card
-        card2Name = card.dataset.cardname
-        console.log(card2Name)
-        if (memoryGame.checkIfPair(card1Name, card2Name)) {
-          card1Name = ''
-          card2Name = ''
-          card1.classList.add('blocked')
-          card2.classList.add('blocked')
 
-          console.log(card1)
-          console.log(card2)
-          document.getElementById("pairs-guessed").innerText = memoryGame.pairsGuessed
+      memoryGame.pickedCards.push(card)
+
+      if (memoryGame.pickedCards.length === 2) {
+        console.log(3)
+
+
+
+
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardname, memoryGame.pickedCards[1].dataset.cardname)) {
+          memoryGame.pickedCards[0].classList.toggle('blocked')
+          memoryGame.pickedCards[1].classList.toggle('blocked')
+
+          console.log("bien")
+
+
         }
         else {
 
+          let first = memoryGame.pickedCards[0]
+          let second = memoryGame.pickedCards[1]
 
-          card1.classList.toggle('turned')
-          card2.classList.toggle('turned')
-          document.getElementById("pairs-clicked").innerText = memoryGame.pairsClicked
-          console.log('fracaso')
-          card1Name = ''
-          card2Name = ''
+          setTimeout(() => first.classList.toggle('turned'), 1000)
+          setTimeout(() => second.classList.toggle('turned'), 1000)
+          console.log("muymal")
         }
+        memoryGame.checkIfFinished()
+
+
+        document.getElementById("pairs-clicked").innerText = memoryGame.pairsClicked
+        document.getElementById("pairs-guessed").innerText = memoryGame.pairsGuessed
+        memoryGame.pickedCards = []
+        console.log(4)
 
       }
 
 
     })
 
-    memoryGame.checkIfFinished()
+
+
 
 
   });
