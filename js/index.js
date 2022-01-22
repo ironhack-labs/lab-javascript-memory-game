@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+memoryGame.shuffleCards()
+
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -45,7 +47,42 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.add("turned")
       console.log(`Card clicked: ${card}`);
+
+      memoryGame.pickedCards.push(card)
+      console.log(memoryGame.pickedCards)
+      
+      if(memoryGame.pickedCards.length === 2) {
+        let firstCard = memoryGame.pickedCards[0]
+        let firstCardName = firstCard.getAttribute('data-card-name')
+
+        let secondCard = memoryGame.pickedCards[1]
+        let secondCardName = secondCard.getAttribute('data-card-name')
+        if (memoryGame.checkIfPair(firstCardName, secondCardName)) {
+          firstCard.classList.add('blocked')
+          secondCard.classList.add('blocked')
+        } else {
+          setTimeout(function() {
+            firstCard.classList.remove("turned")
+            secondCard.classList.remove("turned") 
+            }, 1000)
+        }
+        document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked
+        memoryGame.pickedCards = []
+
+        document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed
+      } 
+
+
+
+      if (memoryGame.checkIfFinished()) {
+        setTimeout(function() {
+          alert('Congrats!! Finally you can go for the next Lab.. or  not, because you already finished all of them MUAHAHAH')
+        }, 2000)
+        
+      }
+
     });
   });
 });
