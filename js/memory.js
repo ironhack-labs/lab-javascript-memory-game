@@ -9,12 +9,17 @@ class MemoryGame {
     }
 
     shuffleCards() {
+        if (typeof this.cards === "undefined") {
+            return undefined;
+        }
+
         for (let i = this.cards.length - 1; i > 0; i--) {
             // const j = Math.floor(Math.random() * 10000) % i;
             // [array[i], array[j]] = [array[j], array[i]];
             const j = Math.floor(Math.random() * (i + 1));
             [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
         }
+
     }
 
     checkIfPair(card1, card2) {
