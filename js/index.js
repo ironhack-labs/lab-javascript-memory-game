@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+console.log(memoryGame.cards);
+
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -45,7 +47,33 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      
+      
+      memoryGame.pickedCards.push(card);
+
+      // console.log(memoryGame.pickedCards);
+
+      if (memoryGame.pickedCards.length === 2){
+        const firstPicked = memoryGame.pickedCards[0];
+        const secondPicked = memoryGame.pickedCards[1];
+
+        // console.log(firstPicked, secondPicked);
+
+        const cardName1 = firstPicked.getAttribute("data-card-name");
+        const cardName2 = secondPicked.getAttribute("data-card-name");
+
+        // console.log(cardName1, cardName2);
+
+        if(memoryGame.checkIfPair(cardName1, cardName2)){
+          console.log("IT'S A MATCH!");
+
+          memoryGame.pickedCards = [];
+        } else {
+          console.log("if cards are not the same, flip them back")
+        }
+      }
+
+
     });
   });
 });
