@@ -38,6 +38,8 @@ class MemoryGame {
     if (card1 === card2){
       this.pairsGuessed ++;
 
+      this.checkIfFinished(); 
+
       return true;
     } 
 
@@ -47,7 +49,12 @@ class MemoryGame {
 
   checkIfFinished() {
     if (this.pairsGuessed === this.cards.length /2){
-      return true
+      document.getElementById("memory-board").innerHTML = ""; 
+      let h1 = document.createElement("h1"); 
+      h1.innerHTML = "Congradulations, you won!"
+      document.getElementById("memory-board").appendChild(h1)
+
+      return true;
     } 
     return false; 
   }

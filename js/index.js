@@ -29,6 +29,10 @@ const memoryGame = new MemoryGame(cards);
 
 console.log(memoryGame.cards);
 
+function toggleCards(element, classes){
+  classes.forEach(className => element.classList.toggle(className))
+}
+
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -47,8 +51,12 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      
-      
+      const clicked = document.getElementById("pairs-clicked");
+      const guessed = document.getElementById("pairs-guessed");
+
+      toggleCards(card.children[0], ["back", "front"])
+      toggleCards(card.children[1], ["back", "front"])
+
       memoryGame.pickedCards.push(card);
 
       // console.log(memoryGame.pickedCards);
@@ -65,12 +73,27 @@ window.addEventListener('load', (event) => {
         // console.log(cardName1, cardName2);
 
         if(memoryGame.checkIfPair(cardName1, cardName2)){
-          console.log("IT'S A MATCH!");
+          
+          firstPicked.children[1].classList.add("blocked")
+          secondPicked.children[1].classList.add("blocked")
 
           memoryGame.pickedCards = [];
+
+          guessed.innerHTML = memoryGame.pairsGuessed; 
+
         } else {
-          console.log("if cards are not the same, flip them back")
+
+          setTimeout(() => {
+            toggleCards(firstPicked.children[0], ["back", "front"])
+            toggleCards(firstPicked.children[1], ["back", "front"])
+            toggleCards(secondPicked.children[0], ["back", "front"])
+            toggleCards(secondPicked.children[1], ["back", "front"])
+          },1000)
+
+          memoryGame.pickedCards = [];
         }
+        
+        clicked.innerHTML = memoryGame.pairsClicked; 
       }
 
 
