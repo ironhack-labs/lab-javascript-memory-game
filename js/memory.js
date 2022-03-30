@@ -27,9 +27,11 @@ class MemoryGame {
 
 
   checkIfPair(card1, card2) {
-    pairsClicked += 1
-    if (card1 === card2) {
-      pairsGuessed += 1
+    this.pairsClicked += 1
+    document.getElementById('pairs-clicked').innerHTML = this.pairsClicked
+    if (card1.getAttribute('data-card-name') === card2.getAttribute('data-card-name')) {
+      this.pairsGuessed += 1
+      document.getElementById('pairs-guessed').innerHTML = this.pairsGuessed
       return true
     } else return false
   }
@@ -41,9 +43,9 @@ class MemoryGame {
 
 // TEST
 
-const testGame = new MemoryGame([1,2,3,4,5,6,7,8])
-const testCards = testGame.shuffleCards()
-console.log(testCards)
+// const testGame = new MemoryGame([1,2,3,4,5,6,7,8])
+// const testCards = testGame.shuffleCards()
+// console.log(testCards)
 
 // TEST END 
 
