@@ -62,7 +62,7 @@ To run the automated tests, please, open your terminal, change directories into 
 ### Iteration 1: Initial set up
 
 First, you will do some routine work: we need to make sure that all files we need are connected to the file that is rendering cards in the browser.
-The file that is rendering cards is actually `index.html`, so we have to **make sure that the _styles_ and _JS files_ are loading** when we open the game in the browser:
+The file that is rendering cards is actually `index.html`, so we have to **make sure that the _styles_ and _JS files_ are loading** when we open the game in the browse:
 
 - **styles**: don't forget to add the link to the CSS file in the `<head>` of your page,
 - **the logic**: take a look at the `js/index.js` and `js/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation).
