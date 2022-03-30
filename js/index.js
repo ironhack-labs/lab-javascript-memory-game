@@ -25,7 +25,11 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+
+
 const memoryGame = new MemoryGame(cards);
+
+memoryGame.shuffleCards(cards)
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,8 +48,69 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      
+    
+      card.classList.add("turned")
+
+      //memoryGame.pickedCards.push(card.dataset.cardName)
+      memoryGame.pickedCards.push(card)
+
+
+
+      if (memoryGame.pickedCards.length === 2) { 
+
+        let nameCard1 = memoryGame.pickedCards[0].dataset.cardName
+        let nameCard2 = memoryGame.pickedCards[1].dataset.cardName
+
+        const result = memoryGame.checkIfPair(nameCard1,nameCard2)
+        //console.log(result)
+        if (!result) {
+
+          memoryGame.pickedCards.forEach((eachCard) => {
+          
+            
+            setTimeout(() => {
+              eachCard.classList.remove("turned")
+            }, 1000)
+            
+            
+
+          })
+          document.querySelector('#pairs-clicked').textContent =  memoryGame.pairsClicked
+          memoryGame.pickedCards.length = 0
+          //console.log(document.querySelector('#pairs-guessed'))
+          
+
+        } else {
+          memoryGame.pickedCards.length = 0
+        
+          
+
+        document.querySelector('#pairs-guessed').textContent = memoryGame.pairsGuessed
+        
+          if (memoryGame.checkIfFinished()) {
+
+            alert('YOU WON!!!')
+
+
+             setTimeout(() => {
+              document.querySelectorAll('.card').forEach((card) => {
+                card.classList.remove("turned")
+                
+
+            
+
+             }) 
+             }, 2000)
+           
+           }
+        memoryGame.shuffleCards(cards)
+        }
+      }
+
+
+      //console.log(`Card clicked: ${card}`);
     });
   });
 });
+

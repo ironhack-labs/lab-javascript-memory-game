@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const cards = [
+        { name: 'aquaman', img: 'aquaman.jpg' },
+        { name: 'batman', img: 'batman.jpg' },
+        { name: 'captain america', img: 'captain-america.jpg' },
+        { name: 'fantastic four', img: 'fantastic-four.jpg' },
+        { name: 'flash', img: 'flash.jpg' },
+        { name: 'green arrow', img: 'green-arrow.jpg' },
+        { name: 'green lantern', img: 'green-lantern.jpg' },
+        { name: 'ironman', img: 'ironman.jpg' },
+        { name: 'spiderman', img: 'spiderman.jpg' },
+        { name: 'superman', img: 'superman.jpg' },
+        { name: 'the avengers', img: 'the-avengers.jpg' },
+        { name: 'thor', img: 'thor.jpg' },
+        { name: 'aquaman', img: 'aquaman.jpg' },
+        { name: 'batman', img: 'batman.jpg' },
+        { name: 'captain america', img: 'captain-america.jpg' },
+        { name: 'fantastic four', img: 'fantastic-four.jpg' },
+        { name: 'flash', img: 'flash.jpg' },
+        { name: 'green arrow', img: 'green-arrow.jpg' },
+        { name: 'green lantern', img: 'green-lantern.jpg' },
+        { name: 'ironman', img: 'ironman.jpg' },
+        { name: 'spiderman', img: 'spiderman.jpg' },
+        { name: 'superman', img: 'superman.jpg' },
+        { name: 'the avengers', img: 'the-avengers.jpg' },
+        { name: 'thor', img: 'thor.jpg' }
+    ];
+
+
+
+const original = [10,23,2]
+
+
+function shuffle(original){
+
+    const temp = []
+
+    const final=[]
+
+    while(temp.length < original.length){
+
+
+    let random = Math.floor(Math.random()* original.length+1)
+
+    if(!temp.includes(random)){
+
+    temp.push(random)
+
+    }
+
+
+
+
+    }
+        //console.log('original= ',original)
+        //console.log('temp= ', temp)
+
+    for(i=0; i< original.length; i++){
+
+        
+
+    final[temp[i]] = original[i]
+
+    // console.log('i=', i, ' - ', original[i], final[i])
+
+
+    }
+
+        final.shift()
+    console.log('final= ', final)
+    }
+
+
+    shuffle(cards)
+    </script>
+</body>
+</html>

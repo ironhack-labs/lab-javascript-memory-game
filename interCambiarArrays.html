@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+const test =[1, 2, 5]
+
+    function shuffle(original) {
+
+        const temp = []
+
+        const final = []
+
+        while (temp.length < original.length) {
+
+
+            let random = Math.floor(Math.random() * original.length + 1)
+
+            if (!temp.includes(random)) {
+
+                temp.push(random)
+
+            }
+
+
+
+
+        }
+        //console.log('original= ',original)
+        //console.log('temp= ', temp)
+
+        for (i = 0; i < original.length; i++) {
+
+
+
+            final[temp[i]] = original[i]
+
+            // console.log('i=', i, ' - ', original[i], final[i])
+
+
+        }
+
+        final.shift()
+        console.log('final= ', final)
+        return final
+    }
+
+    shuffle(test)
+    test =[]
+
+    test = shuffle(test).map(function (element) {
+            return element*10;
+        });
+
+        console.log('test',test)
+
+    </script>
+</body>
+</html>
