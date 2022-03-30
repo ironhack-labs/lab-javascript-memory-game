@@ -7,13 +7,11 @@ class MemoryGame {
 
   }
 
-  shuffleCards() {
-
+  shuffleCards(cardsArray) {
     if (typeof this.cards === 'undefined') {
       return undefined
     }
-    this.cards.sort(() => Math.random() - 0.5)
-
+    cardsArray.sort(() => Math.random() - 0.5)
   }
 
   checkIfPair(card1, card2) {
