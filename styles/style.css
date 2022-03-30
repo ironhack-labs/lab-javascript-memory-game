@@ -74,6 +74,23 @@ h1 {
   text-shadow: 0px 0px 20px #969696;
 }
 
+.win{
+  position: fixed;
+  top: 40%;
+  left: 22%;
+  color: rgba(29, 175, 0, 0.9);
+  font-weight: bolder;
+  font-size: 230px;
+  display: none;
+
+  text-shadow: 0px 0px 20px #969696;
+  z-index: 2;
+  
+  
+
+
+}
+
 h2 {
   margin-top: 0;
   color: #456783;
