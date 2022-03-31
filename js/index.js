@@ -46,6 +46,13 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
+      card.setAttribute("class", "card turned")
+      (memoryGame.pickedCards.length === 2) {
+        memoryGame.checkIPair/memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+        console.log(memoryGame.checkIPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]))
+      }
+      
     });
   });
 });
