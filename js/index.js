@@ -44,8 +44,19 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      const pairsClicked = document.querySelector('#pairs-clicked')
+      pairsClicked.innerHTML = memoryGame.pairsClicked
+      const pairsGuessed = document.querySelectorAll('#pairs-guessed')
+      pairsGuessed.innerHTML = memoryGame.pairGuessed
+      card.classList.toggle("turned");
+      memoryGame.pickedCards.push(card)
+      if (memoryGame.pickedCards.length === 2) {
+        memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+      }
+
+      if (memoryGame.checkIfFinished(memoryGame.pairGuessed) === true) {
+        alert("you Won!")
+      }
     });
   });
 });
