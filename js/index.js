@@ -1,3 +1,5 @@
+const MemoryGame = require("./memory");
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -44,7 +46,13 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+
+      card.classList.toggle("turned")
+      memoryGame.pickedCard.push(cards)
+      if (memoryGame.pickedCard.length == 2) {
+        checkIfPair(this.pickedCard)
+      }
+
       console.log(`Card clicked: ${card}`);
     });
   });
