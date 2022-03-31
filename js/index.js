@@ -58,7 +58,7 @@ window.addEventListener('load', (event) => {
         let card1 = memoryGame.pickedCards[0]
         let card2 = memoryGame.pickedCards[1]
 
-        if (memoryGame.checkIfPair(card1, card2) === true) {
+        if (memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName) === true) {
 
         } else {
           setInterval(function () {
