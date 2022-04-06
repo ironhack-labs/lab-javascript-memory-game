@@ -56,8 +56,8 @@ window.addEventListener('load', (event) => {
 
         if (memoryGame.pickedCards.length === 2) {
           let result = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))
-          document.getElementById('pairs-clicked').textContent = this.pairsClicked
-          document.getElementById('pairs-guessed').textContent = this.pairsGuessed
+          document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked
+          document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed
 
           if (result === false) {
             active = false
