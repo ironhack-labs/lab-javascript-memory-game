@@ -1,3 +1,4 @@
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -24,28 +25,49 @@ const cards = [
   { name: 'the avengers', img: 'the-avengers.jpg' },
   { name: 'thor', img: 'thor.jpg' }
 ];
-
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
-window.addEventListener('load', (event) => {
-  let html = '';
-  memoryGame.cards.forEach((pic) => {
-    html += `
-      <div class="card" data-card-name="${pic.name}">
-        <div class="back" name="${pic.img}"></div>
-        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
-      </div>
-    `;
-  });
+function runCard(card) {
+  console.log(card);
+}
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+function gamePlay(card) {
+  // Ensure we only pick two cards to compare
+  if (memoryGame.pickedCards.length < 2) {
+    memoryGame.pickedCards.push(card);
+  }
+  // turn over the selected card
+  card.classList.add('turned');
+  // When 2 cards have been selected, split the array into two variables.
+  if (memoryGame.pickedCards.length === 2) {
+    let card1 = memoryGame.pickedCards[0]
+    let card2 = memoryGame.pickedCards[1]
+    console.log(card1)
+    console.log(card2)
+    // Add 1 to pairs clicked count
+    document.getElementById('pairs-clicked').innerHTML++;
+    // If the cards are pairs... 
+    if (memoryGame.checkIfPair(card1, card2)) {
+      // Add 1 to pairs guessed
+      document.getElementById('pairs-guessed').innerHTML++;
+      // Block cards so they're not guessed again
+      card1.classList.add('blocked');
+      card2.classList.add('blocked');
+      // Reset picked cards to be empty
+      memoryGame.pickedCards = [];
+    } else {
+      // if cards are not pairs, remove turned class and reset array.
+      setTimeout(() => {
+        card1.classList.remove('turned');
+        card2.classList.remove('turned');
+      }, 500);
+      memoryGame.pickedCards = [];
+    }
+    // if game finishes, display alert.
+    if (memoryGame.checkIfFinished()) {
+      alert('You won!');
+    }
+  }
+}
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
