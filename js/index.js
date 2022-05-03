@@ -28,7 +28,12 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
-  //memoryGame.shuffleCards();
+
+  console.log(memoryGame)//sugerencia del profe Kain para ver que pasaba con shuffleCards
+
+memoryGame.shuffleCards();
+
+console.log(memoryGame) //sugerencia del profe Kain para ver que pasaba con shuffleCards
 
   let html = '';
   
