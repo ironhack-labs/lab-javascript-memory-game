@@ -31,8 +31,9 @@ class MemoryGame {
     };
   }
 
-  checkIfFinished() {
+  checkIfFinished = () => {
     // ... write your code here
+    return (this.pairsGuessed !== (this.cards.length / 2)) ? false : true;
   }
 }
 
