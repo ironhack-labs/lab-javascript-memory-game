@@ -1,3 +1,4 @@
+const MemoryGame = require('./memory');
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -26,6 +27,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+
+console.log(memoryGame.shuffleCards());
 
 window.addEventListener('load', (event) => {
   let html = '';
