@@ -29,6 +29,8 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('DOMContentLoaded', (event) => {
   let html = '';
+  let card1;
+  let card2;
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -43,16 +45,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      for (let individualCard of Array.from(card.querySelectorAll('div'))){
-        if (individualCard.className === 'front') {
-          individualCard.classList.add('back');
-          individualCard.classList.remove('front');
-        } else {
-          individualCard.classList.add('front');
-          individualCard.classList.remove('back');
+    card.addEventListener('click', (event) => {
+      if (card1) {
+        card2 = event.target.parentNode;
+      } else {
+        card1 = event.target.parentNode;
+      }
+      if (card1 && card2) {
+        const arePaired = memoryGame.checkIfPair(card1, card2)
+        if (!arePaired) {
+          setTimeout(() => {
+            movementCards(card1);
+            movementCards(card2);
+            card1 = undefined;
+            card2 = undefined; 
+          }, 750)
         }
       }
+      movementCards(card);
     });
   });
 });
+
+
+function movementCards(card) {
+  for (let individualCard of Array.from(card.querySelectorAll('div'))){
+    if (individualCard.className === 'front') {
+      individualCard.classList.add('back');
+      individualCard.classList.remove('front');
+    } else {
+      individualCard.classList.add('front');
+      individualCard.classList.remove('back');
+    }
+  }
+}
