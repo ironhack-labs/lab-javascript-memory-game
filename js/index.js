@@ -27,10 +27,11 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
   let html = '';
   let card1;
   let card2;
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -46,23 +47,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
-      if (card1) {
-        card2 = event.target.parentNode;
-      } else {
-        card1 = event.target.parentNode;
-      }
-      if (card1 && card2) {
-        const arePaired = memoryGame.checkIfPair(card1, card2)
-        if (!arePaired) {
-          setTimeout(() => {
-            movementCards(card1);
-            movementCards(card2);
-            card1 = undefined;
-            card2 = undefined; 
-          }, 750)
+      if (event.target.parentNode.className === 'card') {
+        if (card1) {
+          card2 = event.target.parentNode;
+          card2.classList.add('card-selected');
+        } else {
+          card1 = event.target.parentNode;
+          card1.classList.add('card-selected');
         }
+        if (card1 && card2) {
+          const arePaired = memoryGame.checkIfPair(card1, card2);
+          document.getElementById('pairs-clicked').innerText = memoryGame.pairClicked;
+          if (!arePaired) {
+            setTimeout(() => {
+              movementCards(card1);
+              movementCards(card2);
+              card1.classList.remove('card-selected');
+              card2.classList.remove('card-selected');
+              card1 = undefined;
+              card2 = undefined; 
+            }, 500)
+          } else {
+            card1 = undefined;
+            card2 = undefined;
+            document.getElementById('pairs-guessed').innerText = memoryGame.pairGuessed;
+            if (memoryGame.checkIfFinished()) {
+              alert('CRONGRATULATIONS!!!');
+            }
+          }
+        }
+        movementCards(card);
       }
-      movementCards(card);
     });
   });
 });
