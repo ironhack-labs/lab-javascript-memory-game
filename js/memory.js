@@ -7,8 +7,27 @@ class MemoryGame {
     // add the rest of the class properties here
   }
 
-  shuffleCards() {
-    // ... write your code here
+  shuffleCards(array) {
+
+    if(array.length === 0){
+      return undefined
+    } else {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle…
+      while (m) {
+  
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+  
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+  
+      return array;
+    }
   }
 
   checkIfPair(card1, card2, pairPickedCards) {
@@ -30,8 +49,16 @@ class MemoryGame {
 
   }
 
-  checkIfFinished() {
-    // ... write your code here
+  checkIfFinished(totalGuessed) {
+    if(totalGuessed === 12) {
+      setTimeout(() => {
+        alert("Juego Culminado")
+
+      }, 500);
+      return true
+    } else {
+      return false
+    }
   }
 }
 

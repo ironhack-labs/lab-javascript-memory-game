@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   memoryGame.pairsGuessed = 0;
   memoryGame.pairsClicked = 0;
 
+  memoryGame.shuffleCards(memoryGame.shuffleCards(memoryGame.cards))
 
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -41,7 +42,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       </div>
     `;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -79,14 +79,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     });
   }
-
+  
+  // Función para imprimir los Pairs guessed
   function calculateTotalGuessed(){
     memoryGame.pairsGuessed++
     document.querySelector('#pairs-guessed').innerText = memoryGame.pairsGuessed
-    console.log(memoryGame.pairsGuessed);
+    memoryGame.checkIfFinished(memoryGame.pairsGuessed)
   }
 
   pickedCards();
-
-  console.log(memoryGame.pickedCards);
 });
