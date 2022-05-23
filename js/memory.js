@@ -1,6 +1,9 @@
 class MemoryGame {
-  constructor(cards) {
+  constructor(cards, pickedCards, pairsGuessed, pairsClicked) {
     this.cards = cards;
+    this.pickedCards = pickedCards;
+    this.pairsClicked  = pairsClicked;
+    this.pairsGuessed = pairsGuessed;
     // add the rest of the class properties here
   }
 
@@ -8,8 +11,23 @@ class MemoryGame {
     // ... write your code here
   }
 
-  checkIfPair(card1, card2) {
-    // ... write your code here
+  checkIfPair(card1, card2, pairPickedCards) {
+
+
+    if (card1.attributes[1].value === card2.attributes[1].value){
+      pairPickedCards.pop()
+      pairPickedCards.pop()
+      return true
+    } else {
+        setTimeout(() => {
+          card1.classList.remove('turned')  
+          card2.classList.remove('turned')
+          pairPickedCards.pop()
+          pairPickedCards.pop()
+        }, 500); 
+        return false
+    }
+
   }
 
   checkIfFinished() {
