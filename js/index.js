@@ -47,21 +47,29 @@ window.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', (event) => {
       if (event.target.parentNode.className === 'card') {
         if (memoryGame.pickedCards[0]) {
-          memoryGame.pickedCards.push(event.target.parentNode);
-          memoryGame.pickedCards[1].classList.add('card-selected');
+          memoryGame.pickedCards.push(event.target.parentNode.getAttribute('data-card-name'));
+          event.target.parentNode.classList.add('card-selected');
         } else {
-          memoryGame.pickedCards.push(event.target.parentNode);
-          memoryGame.pickedCards[0].classList.add('card-selected');
+          memoryGame.pickedCards.push(event.target.parentNode.getAttribute('data-card-name'));
+          event.target.parentNode.classList.add('card-selected');
         }
         if (memoryGame.pickedCards[0] && memoryGame.pickedCards[1]) {
           const arePaired = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
           document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
           if (!arePaired) {
             setTimeout(() => {
-              movementCards(memoryGame.pickedCards[0]);
-              movementCards(memoryGame.pickedCards[1]);
-              memoryGame.pickedCards[0].classList.remove('card-selected');
-              memoryGame.pickedCards[1].classList.remove('card-selected');
+              for (let card of document.querySelectorAll(`[data-card-name="${memoryGame.pickedCards[0]}"]`)) {
+                if (card.className.includes('card-selected')) {
+                  movementCards(card);
+                }
+              }
+              for (let card of document.querySelectorAll(`[data-card-name="${memoryGame.pickedCards[1]}"]`)) {
+                if (card.className.includes('card-selected')) {
+                  movementCards(card);
+                }
+              }
+              removeSelectedCard(document.querySelectorAll(`[data-card-name="${memoryGame.pickedCards[0]}"]`));
+              removeSelectedCard(document.querySelectorAll(`[data-card-name="${memoryGame.pickedCards[1]}"]`));
               memoryGame.pickedCards = [];
             }, 500)
           } else {
@@ -90,5 +98,11 @@ function movementCards(card) {
       individualCard.classList.add('front');
       individualCard.classList.remove('back');
     }
+  }
+}
+
+function removeSelectedCard(cards) {
+  for (let superHero of cards) {
+    superHero.classList.remove('card-selected');
   }
 }
