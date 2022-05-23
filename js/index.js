@@ -72,7 +72,9 @@ window.addEventListener('DOMContentLoaded', () => {
             card2 = undefined;
             document.getElementById('pairs-guessed').innerText = memoryGame.pairGuessed;
             if (memoryGame.checkIfFinished()) {
-              alert('CRONGRATULATIONS!!!');
+              setTimeout(() => {
+                alert('¡¡¡CRONGRATULATIONS!!!');
+              }, 500)
             }
           }
         }
