@@ -29,8 +29,6 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('DOMContentLoaded', () => {
   let html = '';
-  let card1;
-  let card2;
   memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -48,29 +46,27 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
       if (event.target.parentNode.className === 'card') {
-        if (card1) {
-          card2 = event.target.parentNode;
-          card2.classList.add('card-selected');
+        if (memoryGame.pickedCards[0]) {
+          memoryGame.pickedCards.push(event.target.parentNode);
+          memoryGame.pickedCards[1].classList.add('card-selected');
         } else {
-          card1 = event.target.parentNode;
-          card1.classList.add('card-selected');
+          memoryGame.pickedCards.push(event.target.parentNode);
+          memoryGame.pickedCards[0].classList.add('card-selected');
         }
-        if (card1 && card2) {
-          const arePaired = memoryGame.checkIfPair(card1, card2);
-          document.getElementById('pairs-clicked').innerText = memoryGame.pairClicked;
+        if (memoryGame.pickedCards[0] && memoryGame.pickedCards[1]) {
+          const arePaired = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+          document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
           if (!arePaired) {
             setTimeout(() => {
-              movementCards(card1);
-              movementCards(card2);
-              card1.classList.remove('card-selected');
-              card2.classList.remove('card-selected');
-              card1 = undefined;
-              card2 = undefined; 
+              movementCards(memoryGame.pickedCards[0]);
+              movementCards(memoryGame.pickedCards[1]);
+              memoryGame.pickedCards[0].classList.remove('card-selected');
+              memoryGame.pickedCards[1].classList.remove('card-selected');
+              memoryGame.pickedCards = [];
             }, 500)
           } else {
-            card1 = undefined;
-            card2 = undefined;
-            document.getElementById('pairs-guessed').innerText = memoryGame.pairGuessed;
+            memoryGame.pickedCards = [];
+            document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed;
             if (memoryGame.checkIfFinished()) {
               setTimeout(() => {
                 alert('¡¡¡CRONGRATULATIONS!!!');
