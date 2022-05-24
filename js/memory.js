@@ -11,7 +11,7 @@ class MemoryGame {
       return undefined
     }
 
-    for (let i = this.cards.length - 1; i >= 0; i--) {
+    for (let i = this.cards.length - 1; i > 0; i--) {
       let randomPosition = Math.floor(Math.random() * (i + 1));
       let randomCard = this.cards[randomPosition];
       this.cards[randomPosition] = this.cards[i];
