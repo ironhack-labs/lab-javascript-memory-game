@@ -10,16 +10,13 @@ class MemoryGame {
     if (this.cards === undefined) {
       return undefined
     }
-    const lengthCard = this.cards.length;
-    const arrayShufle = [];
-    
-    while (lengthCard > arrayShufle.length) {
-      let randomPosition = Math.floor(Math.random() * this.cards.length);
-      arrayShufle.push(this.cards[randomPosition]);
-      this.cards.splice(randomPosition,1);
-    }
 
-    this.cards = arrayShufle;
+    for (let i = this.cards.length - 1; i >= 0; i--) {
+      let randomPosition = Math.floor(Math.random() * (i + 1));
+      let randomCard = this.cards[randomPosition];
+      this.cards[randomPosition] = this.cards[i];
+      this.cards[i] = randomCard;
+    }
   }
 
   checkIfPair(card1, card2) {
