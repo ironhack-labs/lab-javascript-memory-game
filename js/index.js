@@ -44,8 +44,27 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (memoryGame.pickedCards.length < 2) {                                        // COMPARAR SI HAY 2 CARTAS SELECCIONADAS PARA 
+                                                                                      // CORTAR EL EVENTO Y QUE NO SE PUEDAN SELECCIONAR MÁS 
+                                                     
+        /* if (!card.classList.contains('turned')){                                   // OTRA FORMA DE GIRAR LAS CARTAS
+        card.classList.add('turned')
+        } else {
+          card.classList.remove('turned')
+        }
+       */
+        card.classList.toggle('turned')                                               // GIRAR LAS CARTAS
+      
+        memoryGame.pickedCards.push(card)                                             // AÑADIR CARTAS A ARRAY VACÍO "pickedCards"
+
+        memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])  //comprobar si son iguales
+        console.log('clicked' + memoryGame.pairsClicked)
+        console.log('guessed' + memoryGame.pairsGuessed)
+        console.log('cards' + memoryGame.pickedCards)
+        console.log(`Card clicked: ${card}`);
+      }     
     });
+    
+    
   });
 });

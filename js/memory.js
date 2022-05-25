@@ -20,8 +20,8 @@ class MemoryGame {
 
     //PARA ENTENDER Y PROBAR A HACERLO FUNCIONAR CON ESTE SISTEMA
   for (let i = this.cards.length - 1; i > 0; i--) {
-    let shufflePosition = Math.floor(Math.random() * (i + 1));
-    return this.cards[i] = this.cards[shufflePosition];
+    let shuffled = Math.floor(Math.random() * (i + 1));
+    return this.cards[i] = this.cards[shuffled];
   }
 }
 
