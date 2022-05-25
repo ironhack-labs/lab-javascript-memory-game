@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
-      if (event.target.parentNode.className === 'card') {
+      if (event.target.parentNode.className === 'card' && memoryGame.pickedCards.length < 2) {
         if (memoryGame.pickedCards[0]) {
           memoryGame.pickedCards.push(event.target.parentNode.getAttribute('data-card-name'));
           event.target.parentNode.classList.add('card-selected');
