@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', (event) => {
+window.addEventListener('DOMContentLoaded', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -44,8 +44,35 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      toTurnCards(card);
+      if (memoryGame.pickedCars === undefined){
+        memoryGame.pickedCars = [card]
+      } else {
+        memoryGame.pickedCars.push(card)
+      }
+      
+      if (memoryGame.pickedCars.length === 2){
+          console.log('por fin lo entiendo')
+          memoryGame.pickedCars = []
+      }
+      //console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+function toTurnCards(marvel){
+  const cardsItem = marvel.querySelectorAll('div');
+
+  for (let cardItem of cardsItem) {
+
+    if (cardItem.classList.value === "back"){
+      cardItem.classList.add("front")
+      cardItem.classList.remove("back")
+    } else {
+      cardItem.classList.add("back")
+      cardItem.classList.remove("front")
+    }
+  }
+}
+
+
