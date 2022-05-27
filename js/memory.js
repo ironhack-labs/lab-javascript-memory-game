@@ -23,8 +23,9 @@ class MemoryGame {
       const currentValueOfCards = this.cards[randomIndex];
       this.cards[randomIndex] = this.cards[i];
       this.cards[i] = currentValueOfCards;
-    }  
+    } 
   }
+
   
   checkIfPair(card1, card2) {
     // ... write your code here

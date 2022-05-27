@@ -36,17 +36,30 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    //console.log() de referencia
+    console.log(cards)
   });
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-  document.querySelectorAll('#score#pairs-clicked').innerHTML = html;
-  document.querySelectorAll('#score#pairs-guessed').innerHTML = html;
+
+  //aqui
+  // document.querySelectorAll('.card')
+  
+  
+  
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.add('turned')
+      memoryGame.pickedCards.push(card)
+
+     
+     
+
+      
       console.log(`Card clicked: ${card}`);
     });
   });
