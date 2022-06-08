@@ -40,6 +40,8 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  document.querySelectorAll('#score#pairs-clicked').innerHTML = html;
+  document.querySelectorAll('#score#pairs-guessed').innerHTML = html;
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
