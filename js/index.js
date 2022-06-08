@@ -30,7 +30,7 @@ const memoryGame = new MemoryGame(cards);
 // let { pickedCards, pairsClicked, pairsGuessed, shuffleCards, checkIfPair, checkIfFinished } = memoryGame
 
 window.addEventListener('load', (event) => {
-  // memoryGame.shuffleCards()
+  memoryGame.shuffleCards()
 
   let html = '';
   memoryGame.cards.forEach((pic) => {
