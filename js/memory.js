@@ -13,7 +13,7 @@ class MemoryGame {
 
     return this.cards.sort((a, b) => 0.5 - Math.random());
 
-    // ... write your code here
+    
   }
 
   checkIfPair(card1, card2) {
@@ -36,10 +36,7 @@ class MemoryGame {
   }
 }
 
-    // if (this.pairsGuessed === 0 ) {
-    //   return false
-    // } if (this.pickedCards.length === 0){
-    //   return false }
+    
       
   
 
