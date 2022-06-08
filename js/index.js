@@ -35,6 +35,7 @@ window.addEventListener('load', (event) => {
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
+      
     `;
   });
 
@@ -45,7 +46,15 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned')
+
+      this.pickedCards.push(card)
+      if (this.pickedCards.length === 2) {
+        if (checkIfPair.card1 !== checkIfPair.card2) {
+          card.classList.toggle('turned')
+          checkIfFinished()
+        }
+      }
     });
   });
 });
