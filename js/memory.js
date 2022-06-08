@@ -12,22 +12,21 @@ class MemoryGame {
   return Math.floor(Math.random() * (max - min) + min);
   }
 
-  shuffleCards(cards) {
-    //TODO
-    // if(cards === undefined){return undefined};
-    // const shuffledCards = [];
-    
-    // for(let i = 0; i<this.cards.length ; i++){
-    //   //get random number between i and length
-    //   const r = this.getRandom(i, this.cards.length);
-    //   //swap i and r
-    //   shuffledCards[r] = {...cards[i]};
-    //   shuffledCards[i] = {...cards[r]};
-    // }
+  shuffleCards() {
+    if(this.cards === undefined){return undefined};
+    let auxCard;
+    for(let i = 0; i<this.cards.length ; i++){
+       //get random number between i and length
+       const r = this.getRandom(i, this.cards.length);
+       //swap i and r
+       auxCard = { ...this.cards[r]};
 
-    // this.cards = shuffledCards;
-    if (this.cards === undefined) { return undefined };
-    this.cards = this.cards.sort((a, b) => 0.5 - Math.random());
+       this.cards[r] = {...this.cards[i]};
+
+       this.cards[i] = {...auxCard};
+
+     }
+     return this.cards;
   }
   
 
