@@ -44,8 +44,34 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      memoryGame.pickedCards.push(card)
+      card.classList.add('turned');
+      // console.log(`Card clicked: ${card}`);
+      console.log(memoryGame.pickedCards[0])
+      console.log(memoryGame.pickedCards[1])
+      console.log(`pickedCars length: ${memoryGame.pickedCards.length}`)
+      if (memoryGame.pickedCards.length === 2) {
+        // console.log(`pairsClicked: ${memoryGame.pairsClicked}`)
+        // console.log(`pairsGuessed: ${memoryGame.pairsGuessed}`)
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+          console.log(memoryGame.pickedCards)
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+          document.querySelector('#pairs-clicked').innerText = `${memoryGame.pairsClicked}`
+          document.querySelector('#pairs-guessed').innerText = `${memoryGame.pairsGuessed}`
+          memoryGame.pickedCards.splice(0,2)
+          console.log(`pickedCard after splice equal to ${memoryGame.pickedCards.length}`)
+          checkIfFinished()
+        } else {
+          memoryGame.pickedCards[0].classList.remove('turned');
+          memoryGame.pickedCards[1].classList.remove('turned');
+          memoryGame.pickedCards.splice(0,2)
+          document.querySelector('#pairs-clicked').innerText = `${memoryGame.pairsClicked}`
+        }
+      } 
+      })
+
+      })
     });
-  });
-});
+  // });
+// });
