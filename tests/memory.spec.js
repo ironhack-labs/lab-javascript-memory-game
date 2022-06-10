@@ -1,4 +1,4 @@
-const MemoryGame = require('./../js/memory');
+const MemoryGame = require('../js/memory');
 const cardsArray = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
