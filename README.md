@@ -6,13 +6,59 @@
 
 ## Introduction
 
-We just learned how to use (Vanilla) JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
+We just learned how to use JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
 
 <br>
 
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
 <br>
+
+
+
+## Requirements
+
+- Fork this repo.
+
+- Clone this repo.
+
+  
+
+## Submission
+
+- Upon completion, run the following commands:
+
+```bash
+git add .
+git commit -m "Solved lab"
+git push origin master
+```
+
+- Create a Pull Request so that your TAs can check your work.
+
+
+
+<br>
+
+## Test Your Code
+
+This LAB is equipped with unit tests to provide automated feedback on your lab progress. In case you want to check the tests, they are in the `tests/memory.spec.js` file.
+
+
+
+To run the tests and your JavaScript code, open the `SpecRunner.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
+
+
+
+To see the outputs of the `console.log` in your JavaScript code, open the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console).
+
+<br>
+
+## Instructions
+
+
+
+### Iteration 0: The game rules
 
 Do you remember that game called Memory that you used to play with the actual paper cards? To win, you needed to memorize the position of the paired card. Well, the logic of the game we will be building is the same.
 
@@ -27,54 +73,36 @@ Do you remember that game called Memory that you used to play with the actual pa
 
 The goal of the game is to get all the cards flipped face-up in the least number of tries. That means that a lower number of attempts scores better.
 
-## Requirements
 
-- Fork this repo.
-- Clone this repo.
-- Visit the "actions" tab in your fork, and enable workflows.
 
-## Submission
 
-Upon completion, run the following commands:
-
-```bash
-$ git add .
-$ git commit -m "Solved lab"
-$ git push origin master
-```
-
-Create Pull Request so your TAs can check up your work.
-
-<br>
-
-## Automated Tests
-
-This lab includes an automated testing suite. For DOM-related labs, our automated tests should be seen as a secondary tool, that helps you to programmatically understand whether your solution is correct and allows the educational team to track your progress.
-
-To run the automated tests, please, open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Now, you can run the `npm run test:watch` command to run automated tests in watch mode. Open the resulting `lab-solution.html` file with the "Live Server" VSCode extension to always see the most up-to-date test results.
-
-<br>
-
-## Instructions
 
 <br>
 
 ### Iteration 1: Initial set up
 
 First, you will do some routine work: we need to make sure that all files we need are connected to the file that is rendering cards in the browser.
-The file that is rendering cards is actually `index.html`, so we have to **make sure that the _styles_ and _JS files_ are loading** when we open the game in the browser:
 
-- **styles**: don't forget to add the link to the CSS file in the `<head>` of your page,
-- **the logic**: take a look at the `js/index.js` and `js/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation).
+The file that is rendering the cards is actually `index.html`, so we have to **make sure that the _styles_ and _JS files_ are loading** when we open the game in the browser:
 
-After connecting them properly, you should be able to see the board, the cards, and the score.
+- **styles**: link the provided CSS file `styles/style.css` in the `<head>` of the `index.html` page,
+- **the logic**: take a look at the `src/index.js` and `src/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation). Link these two file at the bottom of the `index.html` page.
+
+After you linking the files in `index.html` page, you should be able to see the board, the cards, and the score.
 
 <br>
+
+
 
 ### Iteration 2: Plan your game
 
 In this iteration, you will work on the game logic. You can see this part, like defining the methods that will take care of the game logic. No visible result will be shown just yet, and we will make sure everything works properly just by printing everything in the console.
-You should be working in the `js/memory.js` file.
+
+
+
+You will be working in the `src/memory.js` file.
+
+
 
 The game logic for this game is pretty simple:
 
@@ -91,7 +119,7 @@ Let's do this step by step.
 
 #### Iteration 2.1: The `MemoryGame` class
 
-If you open `js/memory.js` file, you will see that it is preset for you:
+If you open `src/memory.js` file, you will see that it is preset for you:
 
 ```js
 class MemoryGame {
@@ -133,12 +161,13 @@ class MemoryGame {
 
 #### The layout and the logic files
 
-When the logic is down, you will move forward to `js/index.js` and work on the interactions. What do we consider as interaction is what happens when the user clicks on the card:
--how do we get the movement/flipping sides effect,
+When the logic is down, you will move forward to `src/index.js` and work on the DOM interactions. What do we consider as interaction is what happens when the user clicks on the card:
+
+- how do we get the movement/flipping sides effect,
 
 - how we keep the cards showing images if they are found to be the same and
   -how do we make cards flip back to the blue background if the cards are not the same? All the time, keep in mind, we need to work only with two cards at the same time.
-  
+
 <br>
 
 ### HTML/CSS Interactions
@@ -148,17 +177,17 @@ Think about the interactions your user and the game will have: basically, the us
 - The first thing that is done for us - each card's information is dynamically filled in the tiles, and the board is pre-filled with cards for us. As we want this behavior to be triggered as soon as the page loads, we need to wrap it under a `load` event. This is also already done for us.
 
 ```javascript
-// js/index.js
+// src/index.js
 
 window.addEventListener('load', (event) => {
   // some code goes here
 });
 ```
 
-- The other important interaction is the click listener. On click on every single card, we can get some information about that specific card. This code snippet, which is also already provided for us, serves for that.
+- The other important interaction is the click event listener. On click on every single card, we can get some information about that specific card. This code snippet, which is also already provided for us, serves for that.
 
 ```javascript
-// js/index.js
+// src/index.js
 
 // Bind the click event of each element to a function
 document.querySelectorAll('.card').forEach((card) => {
