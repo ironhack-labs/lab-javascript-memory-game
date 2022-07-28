@@ -58,6 +58,9 @@ window.addEventListener('load', (event) => {
         turn=[];
       }},700);
       console.log(`Card clicked: ${card}`);
+      if(memoryGame.checkIfFinished()){
+        alert('You Won!');
+      }
     });
   });
 });
