@@ -38,14 +38,61 @@ window.addEventListener('load', (event) => {
     `;
   });
 
+
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      //console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned');
+
+
+      memoryGame.pickedCards.push(card)
+
+      if (memoryGame.pickedCards.length === 2) {
+        let name1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        let name2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+
+        console.log(name1)
+        console.log(name2)
+
+        if (memoryGame.checkIfPair(name1, name2)) {
+
+          memoryGame.pickedCards[0].className += ' blocked'
+
+          memoryGame.pickedCards[1].className += ' blocked'
+
+
+          document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed
+          if (memoryGame.checkIfFinished()) {
+            console.log("has ganado")
+          }
+        } else {
+          console.log("no son")
+          memoryGame.pickedCards[0].setAttribute('class', 'card')
+          setTimeout(() => {
+
+
+          }, 1000)
+
+          memoryGame.pickedCards[1].setAttribute('class', 'card')
+
+
+        }
+
+        memoryGame.pickedCards = [];
+
+
+        //console.log(memoryGame.checkIfPair(name1, name2))
+        document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked
+
+      }
+      console.log(memoryGame.pickedCards);
+
     });
   });
 });
