@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+memoryGame.shuffleCards();
+
 window.addEventListener("load", (event) => {
   let html = "";
   memoryGame.cards.forEach((pic) => {
@@ -46,16 +48,47 @@ window.addEventListener("load", (event) => {
     card.addEventListener("click", () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
       card.classList.toggle("turned");
 
+      memoryGame.pickedCards.push(card);
+
       if (memoryGame.pickedCards.length === 2) {
-        let card1Name =
-          memoryGame.pickedCards[0].getAttribute("data-card-name");
-        let card2Name =
-          memoryGame.pickedCards[1].getAttribute("data-card-name");
-        let pair = memoryGame.checkIfPair(card1Name, card2Name);
-        console.log(memoryGame.pickedCards);
-        console.log(pair);
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        let name1 = card1.dataset.cardName;
+        let name2 = card2.dataset.cardName;
+
+        let pair = memoryGame.checkIfPair(name1, name2);
+
+        let pairsClicked = document.getElementById("pairs-clicked");
+        pairsClicked.textContent = memoryGame.pairsClicked;
+
+        if (pair) {
+          let pairsGuessed = document.getElementById("pairs-guessed");
+          pairsGuessed.textContent = memoryGame.pairsGuessed;
+
+          card1.className += " blocked";
+          card2.className += " blocked";
+
+          // card1.classList.add("blocked");
+          // card2.classList.add("blocked");
+
+          if (memoryGame.checkIfFinished()) {
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+            console.log("You Win!");
+          }
+        } else {
+          setTimeout(() => {
+            card1.setAttribute("class", "card");
+            card2.setAttribute("class", "card");
+
+            // card1.classList.toggle("turned");
+            // card2.classList.toggle("turned");
+          }, 1000);
+        }
         memoryGame.pickedCards = [];
       }
     });

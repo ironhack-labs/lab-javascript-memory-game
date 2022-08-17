@@ -10,7 +10,7 @@ class MemoryGame {
   shuffleCards() {
     // ... write your code here
     if (this.cards === undefined) return undefined;
-    return this.cards.sort(compare);
+    this.cards = this.cards.sort(compare);
     function compare(a, b) {
       return 0.5 - Math.random();
     }
