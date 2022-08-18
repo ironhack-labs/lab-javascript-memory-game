@@ -9,7 +9,7 @@ class MemoryGame {
 
   shuffleCards() {
     for (let i = this.cards.length -1; i >= 0; i--) {
-      let randomIndex = Math.floor(i * Math.random())+1
+      let randomIndex = Math.floor(i * Math.random())
       let randomCardSelected = this.cards[randomIndex]
       this.cards.splice(randomIndex,1)
       this.cards.push(randomCardSelected)

@@ -79,9 +79,13 @@ window.addEventListener('load', (event) => {
         allCards[lastPositions[1]].classList.remove('turned')
       }
       lastPositions = positionCard
-      if (memoryGame.checkIfFinished()) {
+
+      setTimeout(function () {
+        if (memoryGame.checkIfFinished()) {
         alert('You have Won the Game')
       }
+      },10)
+      
       
       
 
