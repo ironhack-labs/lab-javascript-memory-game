@@ -1,6 +1,6 @@
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
+  { name: 'batman', img: 'batman.jpg' }, 
   { name: 'captain america', img: 'captain-america.jpg' },
   { name: 'fantastic four', img: 'fantastic-four.jpg' },
   { name: 'flash', img: 'flash.jpg' },
