@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-memoryGame.shuffleCards();
+// memoryGame.shuffleCards();
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -75,6 +75,9 @@ window.addEventListener("load", (event) => {
           // card2.classList.add("blocked");
 
           if (memoryGame.checkIfFinished()) {
+            // let cards = document.querySelectorAll(".card turned blocked");
+            // console.log(cards);
+
             setTimeout(() => {
               location.reload();
             }, 3000);
