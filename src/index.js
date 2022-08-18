@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-// memoryGame.shuffleCards();
+memoryGame.shuffleCards();
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -79,9 +79,13 @@ window.addEventListener("load", (event) => {
             // console.log(cards);
 
             setTimeout(() => {
+              document.querySelectorAll(".card").forEach((card) => {
+                card.setAttribute("class", "card");
+                // card.classList.toggle("blocked");
+                // card.classList.toggle("turned");
+              });
               location.reload();
-            }, 3000);
-            console.log("You Win!");
+            }, 5000);
           }
         } else {
           setTimeout(() => {
