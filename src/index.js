@@ -38,8 +38,6 @@ window.addEventListener('load', (event) => {
     `;
   });
 
-
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -47,52 +45,43 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
 
-      //console.log(`Card clicked: ${card}`);
-      card.classList.toggle('turned');
-
-
+      card.classList.toggle('turned')
       memoryGame.pickedCards.push(card)
 
+      let card1 = memoryGame.pickedCards[0]
+      let card2 = memoryGame.pickedCards[1]
+
+
       if (memoryGame.pickedCards.length === 2) {
-        let name1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
-        let name2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+
+        let name1 = card1.getAttribute('data-card-name')
+        let name2 = card2.getAttribute('data-card-name')
 
         console.log(name1)
         console.log(name2)
 
         if (memoryGame.checkIfPair(name1, name2)) {
-
-          memoryGame.pickedCards[0].className += ' blocked'
-
-          memoryGame.pickedCards[1].className += ' blocked'
-
+          card1.className += ' blocked'
+          card2.className += ' blocked'
 
           document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed
           if (memoryGame.checkIfFinished()) {
-            console.log("has ganado")
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+            console.log("Has fanado");
           }
         } else {
-          console.log("no son")
-          memoryGame.pickedCards[0].setAttribute('class', 'card')
-          setTimeout(() => {
-
+          setTimeout(function () {
+            card1.setAttribute("class", "card");
+            card2.setAttribute("class", "card");
 
           }, 1000)
-
-          memoryGame.pickedCards[1].setAttribute('class', 'card')
-
-
         }
-
         memoryGame.pickedCards = [];
-
-
-        //console.log(memoryGame.checkIfPair(name1, name2))
         document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked
-
       }
       console.log(memoryGame.pickedCards);
-
     });
   });
 });
