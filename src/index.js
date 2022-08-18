@@ -69,7 +69,8 @@ window.addEventListener('load', (event) => {
             setTimeout(() => {
               location.reload();
             }, 3000);
-            console.log("Has fanado");
+            alert('¡Ha gando!')
+
           }
         } else {
           setTimeout(function () {
