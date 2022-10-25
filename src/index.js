@@ -63,8 +63,6 @@ window.addEventListener("load", (event) => {
 				const firstPick = memoryGame.pickedCards[0];
 				const secondPick = memoryGame.pickedCards[1];
 
-				// console.log(firstPick, secondPick);
-
 				const card1 = firstPick.getAttribute("data-card-name");
 				const card2 = secondPick.getAttribute("data-card-name");
 
