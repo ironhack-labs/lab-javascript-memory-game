@@ -46,6 +46,8 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned')
+      card.classlits.toggle('card turned')
     });
   });
 });
