@@ -30,12 +30,17 @@ const memoryGame = new MemoryGame(cards);
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
-    html += `
+    html += 
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
-    `;
+    
+       <div class="card turned" data-card-name="${pic.name}">
+        <div class="back" name="${pic.img}"></div>
+        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+      </div>
+
   });
 
   // Add all the divs to the HTML
@@ -45,6 +50,27 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      if (checkIfPair(card1, card2)) {
+
+
+        let element = document.querySelectorAll(.card)
+
+        element.classList.add("blocked")
+
+
+      }
+
+      if (checkIfFinished()) {
+
+        alert(You won!!!)
+
+
+      }
+
+
+
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
