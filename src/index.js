@@ -42,10 +42,28 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card)
+      if (memoryGame.pickedCards === 2) {
+        const isPair = memoryGame.checkIsPair(
+          memoryGame.pickedCards[0],
+          memoryGame.pickedCards[1]
+        )
+        if (!isPair) {
+          memoryGame.pickedCards.forEach((card) =>
+            card.classList.remove('turned')
+          )
+          memoryGame.pickedCards = []
+        }
+      }
+
+
+
       console.log(`Card clicked: ${card}`);
+
     });
   });
 });
