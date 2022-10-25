@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards()
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -36,6 +37,7 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+
   });
 
   // Add all the divs to the HTML
@@ -45,7 +47,43 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      console.log(`Card clicked: ${card}`)
+      card.classList.add('turned')
+      memoryGame.pickedCards.push(card)
+      console.log(memoryGame.pickedCards)
+
+
+      if (memoryGame.pickedCards.length === 2 && memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]) === false) {
+        memoryGame.pickedCards.forEach(element => {
+          element.classList.remove('turned')
+        })
+      }
+
+      // let picketBoo = 0
+      // if (memoryGame.pickedCards === 2) {
+      //   let picketBoo = 0
+      //   return picketBoo = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+      // }
+
+      // console.log(picketBoo)
+      // if (memoryGame.pickedCards.length === 2) {
+
+
+      //   let card1 = memoryGame.pickedCards[0]
+      //   let card2 = memoryGame.pickedCards[1]
+
+      //   let cardAt1 = card1.getAttribute('data-card-name')
+      //   let cardAt2 = card2.getAttribute('data-card-name')
+
+      //   if (memoryGame.checkIfPair(cardAt1, cardAt2) === true) {
+      //     memoryGame.pickedCards.forEach(element => {
+      //       element.classList.remove('turned')
+      //     })
+      //   }
+
+
+      // };
+
     });
   });
 });
