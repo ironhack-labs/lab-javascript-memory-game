@@ -26,7 +26,7 @@ class MemoryGame {
   checkIfFinished() {
     //console.warn('----',this.cards.length) ===> 16
     // ... write your code here
-    if (this.pairsGuessed === this.cards.length / 2) {
+    if (this.pairsGuessed === 24 / 2) {   //this.cards.length / 2
       return true
     } else {
       return false
