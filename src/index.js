@@ -49,3 +49,7 @@ window.addEventListener('load', (event) => {
     });
   });
 });
+
+card.classList.toggle('abc', someBool)
+
+
