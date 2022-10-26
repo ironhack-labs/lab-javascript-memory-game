@@ -11,9 +11,10 @@ class MemoryGame {
 	shuffleCards() {
 		// ... write your code here
 
-		/* if (!this.cards) {
+		if (!this.cards) {
 			return undefined;
 		}
+		/* 
 		for (let i = this.cards.length; i > 0; i--) {
 			const randomNum = Math.floor(i * Math.random());
 			const tempNum = this.cards[randomNum];
