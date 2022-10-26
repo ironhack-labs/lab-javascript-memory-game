@@ -42,14 +42,18 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  let array=[]
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
     card.classList.add("turned")
-    card.getAttribute("data-card-name"))
+    if (array.length===2) {array.pop();array.pop()}
+    array.push(card.getAttribute("data-card-name"))
     
-    
+    console.log(array)
+    console.log(memoryGame.checkIfPair(...array))
+
+ 
     
 
       
