@@ -36,6 +36,7 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    
   });
 
   // Add all the divs to the HTML
@@ -44,8 +45,12 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      memoryGame.pickedCards
-      memoryGame.checkIfPair
+    card.classList.add("turned")
+  
+      
+    
+
+      
       
       console.log(`Card clicked: ${card}`);
     });
