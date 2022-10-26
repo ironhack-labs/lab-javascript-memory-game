@@ -35,6 +35,7 @@ window.addEventListener('load', (event) => {
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
+
     `;
   });
 
