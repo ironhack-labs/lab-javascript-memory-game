@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -46,8 +47,9 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
     card.classList.add("turned")
-  
-      
+    card.getAttribute("data-card-name"))
+    
+    
     
 
       
