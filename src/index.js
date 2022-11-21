@@ -22,10 +22,12 @@ const cards = [
   { name: 'spiderman', img: 'spiderman.jpg' },
   { name: 'superman', img: 'superman.jpg' },
   { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' }
+  { name: 'thor', img: 'thor.jpg' },
 ];
 
 const memoryGame = new MemoryGame(cards);
+let pairsClicked = document.querySelector('#pairs-clicked');
+let pairsGuessed = document.querySelector('#pairs-guessed');
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -43,9 +45,36 @@ window.addEventListener('load', (event) => {
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (elem) => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (memoryGame.pickedCards.length < 2) {
+        elem.target.parentElement.classList.add('turned');
+        memoryGame.pickedCards.push(elem.target);
+      }
+
+      if (memoryGame.pickedCards.length == 2) {
+        let card1 = memoryGame.pickedCards[0].parentElement;
+        let card2 = memoryGame.pickedCards[1].parentElement;
+
+        if (
+          !memoryGame.checkIfPair(
+            card1.getAttribute('data-card-name'),
+            card2.getAttribute('data-card-name')
+          )
+        ) {
+          setTimeout(() => {
+            card1.classList.remove('turned');
+            card2.classList.remove('turned');
+          }, 1500);
+        }
+
+        pairsClicked.innerHTML = memoryGame.pairsClicked;
+        pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+
+        if (memoryGame.checkIfFinished()) console.log('YOU WOOOOOOON');
+
+        memoryGame.pickedCards = [];
+      }
     });
   });
 });
