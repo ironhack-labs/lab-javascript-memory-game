@@ -48,18 +48,18 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', (elem) => {
       // TODO: write some code here
       if (memoryGame.pickedCards.length < 2) {
-        elem.target.parentElement.classList.add('turned');
-        memoryGame.pickedCards.push(elem.target);
+        card.classList.add('turned');
+        memoryGame.pickedCards.push(card);
       }
 
       if (memoryGame.pickedCards.length == 2) {
-        let card1 = memoryGame.pickedCards[0].parentElement;
-        let card2 = memoryGame.pickedCards[1].parentElement;
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
 
         if (
           !memoryGame.checkIfPair(
-            card1.getAttribute('data-card-name'),
-            card2.getAttribute('data-card-name')
+            card1.dataset.cardName,
+            card2.dataset.cardName
           )
         ) {
           setTimeout(() => {
