@@ -12,9 +12,11 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
+    // console.log(this.pairsClicked)
     if (card1 == card2) {
       this.pairsGuessed += 1;
-      console.log("si");
+      // console.log(this.pairsGuessed);
+      // console.log("si");
       return true;
     } else {
       return false;
@@ -22,6 +24,6 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    return this.pairsGuessed === this.cards.length / 2 ? true : false;
+    return this.pairsGuessed === this.cards.length / 2 ? (alert, true) : false;
   }
 }
