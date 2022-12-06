@@ -1,33 +1,32 @@
 const cards = [
   { name: "aquaman", img: "aquaman.jpg" },
   { name: "batman", img: "batman.jpg" },
-  // { name: "captain america", img: "captain-america.jpg" },
-  // { name: "fantastic four", img: "fantastic-four.jpg" },
-  // { name: "flash", img: "flash.jpg" },
-  // { name: "green arrow", img: "green-arrow.jpg" },
-  // { name: "green lantern", img: "green-lantern.jpg" },
-  // { name: "ironman", img: "ironman.jpg" },
-  // { name: "spiderman", img: "spiderman.jpg" },
-  // { name: "superman", img: "superman.jpg" },
-  // { name: "the avengers", img: "the-avengers.jpg" },
-  // { name: "thor", img: "thor.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
   { name: "aquaman", img: "aquaman.jpg" },
   { name: "batman", img: "batman.jpg" },
-  // { name: "captain america", img: "captain-america.jpg" },
-  // { name: "fantastic four", img: "fantastic-four.jpg" },
-  // { name: "flash", img: "flash.jpg" },
-  // { name: "green arrow", img: "green-arrow.jpg" },
-  // { name: "green lantern", img: "green-lantern.jpg" },
-  // { name: "ironman", img: "ironman.jpg" },
-  // { name: "spiderman", img: "spiderman.jpg" },
-  // { name: "superman", img: "superman.jpg" },
-  // { name: "the avengers", img: "the-avengers.jpg" },
-  // { name: "thor", img: "thor.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
 ];
 
 const memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards();
-// memoryGame.checkIfPair(card, card);
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -48,8 +47,6 @@ window.addEventListener("load", (event) => {
     card.addEventListener("click", () => {
       card.classList.add("turned");
 
-      // cardSelected = card.querySelector("div").parentNode.getAttribute("data-card-name");
-
       memoryGame.pickedCards.push(card);
 
       const clickedCardsPoints = document.querySelector("#pairs-clicked");
@@ -58,24 +55,23 @@ window.addEventListener("load", (event) => {
       if (memoryGame.pickedCards.length === 2) {
         const firstCard = memoryGame.pickedCards[0];
         const secondCard = memoryGame.pickedCards[1];
-        // console.log(firstCard);
-        // console.log(secondCard);
 
         const card1 = firstCard.getAttribute("data-card-name");
         const card2 = secondCard.getAttribute("data-card-name");
-        // console.log(card1);
-        // console.log(card2);
 
         if (memoryGame.checkIfPair(card1, card2)) {
           memoryGame.pickedCards = [];
+
           guessedCardsPoints.innerText = memoryGame.pairsGuessed;
-          if (memoryGame.checkIfFinished()) {
+
+          if (memoryGame.checkIfFinished())
             setTimeout(() => {
-              alert("You Won!");
+              confirm("You Won!");
+              location.reload();
             }, 500);
-          }
         } else {
           memoryGame.pickedCards = [];
+
           clickedCardsPoints.innerText = memoryGame.pairsClicked;
 
           setTimeout(() => {
