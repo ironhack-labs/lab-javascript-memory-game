@@ -47,11 +47,11 @@ window.addEventListener("load", (event) => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
       this.pickedCards.push(card);
-      document.getElementsByClassName('front');
+      document.getElementsByClassName("front");
       if (memoryGame.pickedCards < 2) {
         console.log("Pick another one!");
-      } else if(memoryGame.pickedCards > 2) {
-        console.log('Pick two card only!');
+      } else if (memoryGame.pickedCards > 2) {
+        console.log("Pick two card only!");
         memoryGame.pickedCards.length === 2;
       } else if (memoryGame.pickedCards === 2) {
         const card1 = cards[0];
@@ -61,12 +61,13 @@ window.addEventListener("load", (event) => {
             card1.classList.remove("back");
             card2.classList.remove("back");
           }, 1000);
-      } else if (memoryGame.pairsGuessed) {
-        this.pairsGuessed++;
-        this.pairsGuessed.innerHTML++;
-        document.getElementsByClassName("front");
-      } else if (memoryGame.checkIfFinished) {
-        alert("You won!!!");
+        } else if (memoryGame.pairsGuessed) {
+          this.pairsGuessed++;
+          this.pairsGuessed.innerHTML++;
+          document.getElementsByClassName("front");
+        } else if (memoryGame.checkIfFinished) {
+          alert("You won!!!");
+        }
       }
     });
   });
