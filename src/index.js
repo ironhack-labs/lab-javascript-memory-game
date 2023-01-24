@@ -1,3 +1,5 @@
+import { MemoryGame } from './memory.js'
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -27,8 +29,10 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards();
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -40,12 +44,19 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+  
+  const all = document.querySelectorAll('#memory-board > div').forEach((card) => { 
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned')
+      checkCards()   
     });
   });
+
+  
+  const checkCards = () => {
+    console.log('aaaaaahhh')
+  }
 });
