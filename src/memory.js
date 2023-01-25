@@ -9,14 +9,13 @@ class MemoryGame {
 
   shuffleCards() {
     if (!this.cards) return;
-    let i = this.cards.length, j, temp;
-    while(--i > 0){
-      j = Math.floor(Math.random()*(i+1));
-      temp = this.cards[j];
-      this.cards[j] = this.cards[i];
-      this.cards[i] = temp;
-    }
-    return this.cards;
+      for (let i = this.cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = this.cards[i];
+        this.cards[i] = this.cards[j];
+        this.cards[j] = temp;
+      }
+  return this.cards;
   }
 
   checkIfPair(card1, card2) {
