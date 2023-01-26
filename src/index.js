@@ -1,3 +1,5 @@
+
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -28,6 +30,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -44,7 +47,7 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      
       console.log(`Card clicked: ${card}`);
     });
   });
