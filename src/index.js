@@ -45,7 +45,41 @@ window.addEventListener("load", (event) => {
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle("turned");
+
+      //console.log(`Card clicked: ${card}`);
+
+      memoryGame.pickedCards.push(card);
+      console.log(memoryGame.pickedCards);
+
+      if (memoryGame.pickedCards.length >= 2) {
+        //console.log("yessss");
+
+        if (
+          memoryGame.checkIfPair(
+            memoryGame.pickedCards[0].dataset.cardName,
+            memoryGame.pickedCards[1].dataset.cardName
+          )
+        ) {
+          console.log("same crds");
+
+          memoryGame.pickedCards[0].classList.add("blocked");
+          memoryGame.pickedCards[1].classList.add("blocked");
+
+          memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
+        } else {
+          console.log("not pair");
+
+          setTimeout(() => {
+            console.log("timeout");
+            memoryGame.pickedCards[0].classList.remove("turned");
+            memoryGame.pickedCards[1].classList.remove("turned");
+            memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
+          }, 500);
+        }
+
+        memoryGame.checkIfFinished();
+      }
     });
   });
 });
