@@ -47,16 +47,47 @@ window.addEventListener('load', (event) => {
   
   // Bind the click event of each element to a function
   
-  const all = document.querySelectorAll('#memory-board > div').forEach((card) => { 
+  let card1 = ""
+  let card2 = ""
+  document.querySelectorAll('.card').forEach((card) => { 
     card.addEventListener('click', () => {
       // TODO: write some code here
-      card.classList.toggle('turned')
-      checkCards()   
-    });
-  });
+      if(card1 == "" && card2 == "") {
+        card.classList.toggle('turned')
+        card1 = card.getAttribute('data-card-name')
+      } else {
+        card.classList.toggle('turned')
+        card2 = card.getAttribute('data-card-name')
+        
+        setTimeout(() => {
+          const check = memoryGame.checkIfPair(card1, card2);
+          document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
+          if(check) {
+            document.querySelectorAll('.card.turned').forEach(card => card.classList.add('blocked'));
+            document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+            card1 = "";
+            card2 = "";
+            const finish = memoryGame.checkIfFinished()
+            if (finish) {
+              memoryGame.pairsClicked = 0;
+              memoryGame.pairsGuessed = 0;
+              document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
+              document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+              document.querySelectorAll('.card').forEach((card) => {
+                card.classList.remove('turned', 'blocked')
+              })
+              memoryGame.shuffleCards();
+            }
+          } else {
+            document.querySelectorAll('.card:not(.blocked)').forEach((card) => {
+              card.classList.remove('turned')
+              card1 = "";
+              card2 = "";
+            })
+          }
+        }, 1500)
 
-  
-  const checkCards = () => {
-    console.log('aaaaaahhh')
-  }
+      } 
+    });
+  })
 });

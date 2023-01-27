@@ -28,10 +28,10 @@ export class MemoryGame {
 
   checkIfPair(card1, card2) {
     // ... write your code here
-    this.pairsClicked++
+    this.pairsClicked += 1
     
     if (card1 === card2) {
-      this.pairsGuessed++
+      this.pairsGuessed +=1
       return true;
     } 
     
