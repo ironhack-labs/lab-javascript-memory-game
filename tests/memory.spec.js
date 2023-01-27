@@ -49,7 +49,7 @@ describe('MemoryGame', () => {
     });
   });
 
-  describe('shuffleCards method', () => {
+ describe('shuffleCards method', () => {
     beforeEach(() => {
       memoryGame = new MemoryGame(cardsArray);
     });
