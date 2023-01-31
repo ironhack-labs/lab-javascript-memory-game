@@ -1,3 +1,5 @@
+import MemoryGame from "./memory.js";
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -45,7 +47,24 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add('turned');
+      memoryGame.pickedCards.push(card);
+      if (memoryGame.pickedCards.length === 2) {
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)) {
+          document.querySelector("#pairs-guessed").textContent = memoryGame.pairsGuessed;
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+          if (memoryGame.checkIfFinished()) {
+            alert("You won!");
+          };
+        } else { 
+          setTimeout(() => {
+            document.querySelectorAll(".turned").forEach(el => el.classList.remove('turned'))
+          }, 1000);
+        }
+      document.querySelector("#pairs-clicked").textContent = memoryGame.pairsClicked;
+      memoryGame.pickedCards.splice(0, memoryGame.pickedCards.length);
+      }
     });
   });
 });
