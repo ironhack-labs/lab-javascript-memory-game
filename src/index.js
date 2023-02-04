@@ -61,13 +61,13 @@ document.querySelectorAll('.card').forEach((card) => {
           memoryGame.pickedCards[1].classList.remove("turned")
           document.getElementById("pairs-clicked").textContent = memoryGame.pairsClicked
           memoryGame.pickedCards = []
-          }, 1000)
+          }, 500)
         }
       }
       if (memoryGame.checkIfFinished()) {
         setTimeout(() => {
-          resetGame()
-        }, 1000)
+        location.reload()
+        }, 500)
       }
     })
   })
