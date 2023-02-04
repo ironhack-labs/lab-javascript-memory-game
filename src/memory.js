@@ -1,8 +1,8 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards
-    this.pickedCards = []
-    this.pairsClicked = 0
+    this.pickedCards = [] //to store the cards that user has clicked
+    this.pairsClicked = 0 
     this.pairsGuessed = 0
   }
 

@@ -1,5 +1,3 @@
-
-
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -27,10 +25,12 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
+//Create the cards
 const memoryGame = new MemoryGame(cards);
 
+//Set the cards after loading
 window.addEventListener('load', (event) => {
-  
+  memoryGame.shuffleCards()
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -40,15 +40,35 @@ window.addEventListener('load', (event) => {
       </div>
     `;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+// Bind the click event of each element to a function
+document.querySelectorAll('.card').forEach((card) => {
+  card.addEventListener('click', () => {
+    card.classList.add("turned")  
+    memoryGame.pickedCards.push(card)
+
+    if (memoryGame.pickedCards.length === 2) {
+    //if both cards are same name (dataset.cardName)
+      if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))) {
+        memoryGame.pickedCards = []
+        document.getElementById("pairs-clicked").textContent = memoryGame.pairsClicked
+        document.getElementById("pairs-guessed").textContent = memoryGame.pairsGuessed
+        } else {
+          setTimeout(() => {
+          memoryGame.pickedCards[0].classList.remove("turned")
+          memoryGame.pickedCards[1].classList.remove("turned")
+          document.getElementById("pairs-clicked").textContent = memoryGame.pairsClicked
+          memoryGame.pickedCards = []
+          }, 1000)
+        }
+      }
+      if (memoryGame.checkIfFinished()) {
+        setTimeout(() => {
+          resetGame()
+        }, 1000)
+      }
+    })
+  })
+})
