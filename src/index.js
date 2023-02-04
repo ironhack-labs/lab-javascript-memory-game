@@ -27,6 +27,16 @@ const cards = [
 
 //Create the cards
 const memoryGame = new MemoryGame(cards);
+const modal = document.getElementById('dialog')
+const resetButton = document.querySelector('button')
+modal.show()
+resetButton.addEventListener('click', () => {
+  modal.close()
+  memoryGame.pickedCards = [];
+  memoryGame.pairsClicked = 0;
+  memoryGame.pairsGuessed = 0;
+  startGame()
+})
 
 function startGame() {
   memoryGame.shuffleCards()
@@ -70,9 +80,7 @@ function clickCard(card) {
   }
   if (memoryGame.checkIfFinished()) {
     setTimeout(() => {
-    localStorage.reload()
+      modal.showModal()
     }, 500)
   }
 }
-
-startGame();
