@@ -46,6 +46,7 @@ window.addEventListener('load', (event) => {
 
    let compareCards = [];
 
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
@@ -53,13 +54,14 @@ window.addEventListener('load', (event) => {
       console.log(card);
       compareCards.push(card);
       if(compareCards.length === 2){
-       if(memoryGame.checkIfPair(compareCards[0], compareCards[1]) === true){
+       if(memoryGame.checkIfPair(compareCards[0].getAttribute('data-card-name'), compareCards[1].getAttribute('data-card-name')) === true){
         const firstCard = compareCards[0].getAttribute('id');
         const secondCard = compareCards[1].getAttribute('id');
         const firstCardId = document.getElementById(`${firstCard}`);
         const secondCardId = document.getElementById(`${secondCard}`);
         firstCardId.classList.add('blocked');
         secondCardId.classList.add('blocked');
+        console.log(compareCards[0]);
         if(memoryGame.checkIfFinished() === true){
           alert("The Game is finished");
         }
