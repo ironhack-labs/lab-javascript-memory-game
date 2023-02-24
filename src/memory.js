@@ -7,7 +7,19 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    // ... write your code here
+    if(this.cards === undefined){
+      return undefined;
+    }else{
+      //Loops over the cards array
+      for(let i = 0; i < this.cards.length; i++){
+        //Generates a random number
+        let random = Math.floor(Math.random() * this.cards.length);
+        //Switches current Element with a random element from the array
+        this.cards[i] = this.cards[random];
+        this.cards[random] = this.cards[i];
+      }
+   }
+   console.log(this.cards);
   }
 
   checkIfPair(card1, card2) {
