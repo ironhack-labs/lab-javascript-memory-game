@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+console.log(memoryGame)
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -42,10 +43,38 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+  
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned'); 
+      
+      card.dataset.cardName
+      memoryGame.pickedCards.unshift(card);
+      console.log("ANTES DEL IF", memoryGame.pickedCards)
+     
+     //Este es mi código final 
+      
+    //  if(memoryGame.pickedCards.length === 2 && memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]) ){
+    //   card.classList.toggle('block')
+    //   memoryGame.pickedCards[0].classList.toggle('block')
+    //   memoryGame.pickedCards[1].classList.toggle('block')
+    //  }
+   
+    //Qué majete es Santiago :)
+    let result = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+    if(!result) {
+      setTimeout(() => {
+        memoryGame.pickedCards[0].classList.toggle('turned')
+        memoryGame.pickedCards[1].classList.toggle('turned')
+        memoryGame.pickedCards = []
+      },1000)
+    }
+    
+      
+      
+      
+
+       
     });
   });
 });
