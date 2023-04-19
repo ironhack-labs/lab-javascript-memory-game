@@ -27,7 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', (event) => {
+
+window.addEventListener('load', () => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -38,14 +39,21 @@ window.addEventListener('load', (event) => {
     `;
   });
 
+  memoryGame.shuffleCards();
+
   // Add all the divs to the HTML
+
+
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      memoryGame.checkIfPair(card.dataset.cardName)
       console.log(`Card clicked: ${card}`);
+      memoryGame.checkIfFinished();
+
     });
   });
 });
