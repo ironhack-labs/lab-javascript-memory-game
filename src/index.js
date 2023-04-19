@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -45,6 +45,28 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card)
+      console.log(memoryGame.pickedCards);
+
+
+      console.log(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)
+      if (memoryGame.pickedCards[0].dataset.cardName === memoryGame.pickedCards[1].dataset.cardName) {
+        memoryGame.pickedCards.pop();
+        memoryGame.pickedCards.pop();
+        console.log(memoryGame.pickedCards);
+
+
+
+
+      } else {
+        console.log('no entra');
+
+
+
+      }
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
