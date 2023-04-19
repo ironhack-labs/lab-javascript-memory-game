@@ -73,6 +73,7 @@ window.addEventListener('load', (event) => {
               allCards.forEach(a => {
                 console.log(a)
                 a.classList.remove("turned")
+                memoryGame.shuffleCards()
               })
 
             }, 3000)
