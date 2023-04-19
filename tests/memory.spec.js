@@ -116,7 +116,8 @@ describe('MemoryGame', () => {
     });
 
     it('should return true if all pairs are guessed', () => {
-      memoryGame.pairsGuessed = 8;
+      // memoryGame.pairsGuessed = 8;
+      memoryGame.pairsGuessed = 12;
       expect(memoryGame.checkIfFinished()).toBe(true);
     });
   });
