@@ -45,6 +45,12 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.dataset.cardName
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card)
+      console.log(memoryGame.pickedCards.dataset.cardName)
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
