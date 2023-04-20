@@ -12,12 +12,9 @@ class MemoryGame {
     if (typeof this.cards == "undefined") {
       return undefined
     } else {
-
       return this.cards.sort(() => Math.random() - 0.5);
       console.log(this.pickedCards)
     }
-
-
   }
 
   checkIfPair(card1, card2) {
