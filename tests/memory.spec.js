@@ -15,6 +15,7 @@ const cardsArray = [
   { name: 'green arrow', img: 'green-arrow.jpg' },
   { name: 'green lantern', img: 'green-lantern.jpg' },
   { name: 'ironman', img: 'ironman.jpg' }
+  
 ];
 
 let memoryGame;
@@ -116,7 +117,7 @@ describe('MemoryGame', () => {
     });
 
     it('should return true if all pairs are guessed', () => {
-      memoryGame.pairsGuessed = 8;
+      memoryGame.pairsGuessed = 12;
       expect(memoryGame.checkIfFinished()).toBe(true);
     });
   });

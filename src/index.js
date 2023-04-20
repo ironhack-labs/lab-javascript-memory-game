@@ -27,6 +27,8 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
+
+//creaccion de tablero
 window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -41,11 +43,40 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+
+
+
+  
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    //  console.log(card)
+      if(memoryGame.pickedCards.length < 2){
+        card.classList.add("turned")
+        memoryGame.pickedCards.push(card)
+      }
+
+      if(memoryGame.pickedCards.length === 2){
+
+        let card1 = memoryGame.pickedCards[0]
+        let card2 = memoryGame.pickedCards[1]
+
+      // console.log(memoryGame.checkIfPair(card1,card2)) 
+  
+        console.log(card1.dataset.cardName)
+        
+        console.log("dataset------",card1.dataset)
+        console.log(card2)
+        
+      }
+      
+
+
+
+      
+      
+     // console.log(`Card clicked: ${card}`);
     });
   });
 });
