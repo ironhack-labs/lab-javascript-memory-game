@@ -1,3 +1,5 @@
+console.log("memory.js loaded successfully")
+
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;

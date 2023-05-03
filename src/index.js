@@ -1,3 +1,5 @@
+console.log("index.js loaded successfully")
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -49,3 +51,4 @@ window.addEventListener('load', (event) => {
     });
   });
 });
+
