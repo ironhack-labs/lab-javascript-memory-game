@@ -179,9 +179,12 @@ class MemoryGame {
 
 <br>
 
-#### The layout and the logic files
 
-When the logic is down, you will move forward to `src/index.js` and work on the DOM interactions. What do we consider as interaction is what happens when the user clicks on the card:
+### Iteration 3: DOM & Interactions
+
+Once you have completed the implementation of the memory game logic or functionality, you will move forward to `src/index.js` and work on the DOM interactions. 
+
+What do we consider as interaction is what happens when the user clicks on the card:
 
 - how do we get the movement/flipping sides effect,
 
@@ -189,8 +192,6 @@ When the logic is down, you will move forward to `src/index.js` and work on the 
   -how do we make cards flip back to the blue background if the cards are not the same? All the time, keep in mind, we need to work only with two cards at the same time.
 
 <br>
-
-### HTML/CSS Interactions
 
 Think about the interactions your user and the game will have: basically, the user will click on elements of the page (cards) and receive some result - whether they guessed the pair or not.
 
