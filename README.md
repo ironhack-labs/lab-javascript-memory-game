@@ -4,17 +4,37 @@
 
 <br>
 
+
+![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
+
+<details>
+  <summary>
+   <h2>Learning Goals</h2>
+  </summary>
+  Upon completion of this exercise, you will be able to:
+
+- Select HTML elements using JavaScript DOM methods and properties.
+- Access and modify content of HTML elements using JavaScript DOM properties.
+- Add and remove HTML elements to/from the DOM using JavaScript DOM methods and properties.
+- Add and remove event listeners to respond to user actions, such as button clicks.
+- Iterate over lists of HTML elements and perform actions on each element, (e.g., accessing values, adding or removing events).
+- Manipulate HTML element properties, values and attributes using JavaScript DOM methods and properties: `element.setAttribute()`, `element.getAttribute()`, `element.classList.add()`, `element.classList.remove()`, `element.classList.toggle()`, `classList`, `style`, `value`, and `type`.
+- Use classes and OOP to organize data, functionality, and game elements.
+- Create a simple 2d game using HTML, CSS, JavaScript, and DOM.
+
+  <br>
+
+  <hr>
+
+</details>
+
+<br>
+
 ## Introduction
 
 We just learned how to use JavaScript to manipulate DOM elements. Great! Let's practice a bit more and have fun while developing a game.
 
 <br>
-
-![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
-
-<br>
-
-
 
 ## Requirements
 
