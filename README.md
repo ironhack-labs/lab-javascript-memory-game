@@ -42,7 +42,7 @@ We just learned how to use JavaScript to manipulate DOM elements. Great! Let's p
 
 - Clone this repo.
 
-  
+
 
 ## Submission
 
@@ -161,7 +161,7 @@ class MemoryGame {
 
 1. The `MemoryGame` class: we created a `MemoryGame` class and, as we can see in its constructor, it will receive an array of cards as a parameter and set this array to a `this.cards` property.
 2. We also need a `this.pickedCards` array, where we will be storing the cards the user has clicked so we can compare them.
-3. Finally, a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair. Go ahead and add these to the constructor.
+3. Finally, a `this.pairsClicked` and `this.pairsGuessed` properties where we'll be adding every time a user chooses and guesses a pair. Go ahead and add these to the constructor.
 
 <br>
 
@@ -182,7 +182,7 @@ class MemoryGame {
 
 ### Iteration 3: DOM & Interactions
 
-Once you have completed the implementation of the memory game logic or functionality, you will move forward to `src/index.js` and work on the DOM interactions. 
+Once you have completed the implementation of the memory game logic or functionality, you will move forward to `src/index.js` and work on the DOM interactions.
 
 What do we consider as interaction is what happens when the user clicks on the card:
 
