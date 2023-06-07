@@ -3,7 +3,14 @@ body {
 
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Figtree', sans-serif;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
 }
 
 #memory-board {
@@ -57,21 +64,20 @@ body {
 }
 
 #score {
-  background-color: rgba(215, 44, 44, 0.8);
+  margin-left: 100px;
+  background-color: white;
   border-radius: 8px;
   font-size: 30px;
-  font-family: Arial;
+  font-family: Figtree;
   width: 200px;
   padding: 20px;
-  margin-left: 75%;
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: #424242;
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
-  text-shadow: 0px 0px 20px #969696;
 }
 
 h2 {
@@ -80,7 +86,7 @@ h2 {
   font-weight: bolder;
   font-size: 35px;
   text-align: center;
-  text-shadow: 1px red;
+  text-shadow: 1px grey;
 }
 
 p {
