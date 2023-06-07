@@ -7,16 +7,15 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    if (!this.cards.length) return undefined;
-    function fisherYatesShuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
+    if (!this.cards) return undefined;
+
+    for (let i = this.cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
     }
-    return fisherYatesShuffle(this.cards);
-  }
+    return this.cards;
+    }
+
 
   checkIfPair(card1, card2) {
     this.pairsClicked++;
@@ -29,8 +28,10 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    if (this.pairsGuessed === 12) {
+    if (this.pairsGuessed === this.cards.length / 2) {
       return true;
+    } else {
+      return false;
     }
   }
 }
