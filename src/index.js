@@ -54,29 +54,16 @@ window.addEventListener("load", (event) => {
       // Incrementing "Pairs Clicked" with each click
       const pairsClicked = document.querySelector("#pairs-clicked");
       pairsClicked.innerHTML++;
-      // checkIfPair functionality
+
       const pairsGuessed = document.querySelector("#pairs-guessed");
-      memoryGame.pickedCards.push(card.getAttribute("data-card-name"));
+
+      memoryGame.pickedCards.push(card);
 
       const first = memoryGame.pickedCards[0];
       const second = memoryGame.pickedCards[1];
-      console.log(first, second);
-      if (memoryGame.pickedCards.length === 2) {
-        memoryGame.pickedCards = [];
-        // setTimeout(() => {
-        //   card.classList.add("turned");
-        //   card.classList.add("turned");
-        // }, 1000);
-        if (memoryGame.checkIfPair(first, second)) {
-          pairsGuessed.innerHTML++;
-          setTimeout(() => {
-            card.classList.remove("turned");
-            card.classList.remove("turned");
-          }, 1000);
-        }
-      }
 
-      memoryGame.checkIfFinished(memoryGame.pairsGuessed);
+      const firstData = first.getAttribute("data-card-name");
+      const secontData = second.getAttribute("data-card-name");
     });
   });
 });
