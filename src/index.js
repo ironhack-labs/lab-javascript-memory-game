@@ -61,8 +61,8 @@ window.addEventListener('load', (event) => {
           memoryGame.pickedCards.forEach(turned => {
             setTimeout(() => {
               turned.classList.remove('turned');
+              memoryGame.pickedCards = [];
           }, 2000)});
-          memoryGame.pickedCards = [];
         }
       }
       let cspan = document.querySelector('#pairs-clicked');
