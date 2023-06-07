@@ -38,5 +38,3 @@ class MemoryGame {
     }
   }
 }
-
-const app = new MemoryGame();
