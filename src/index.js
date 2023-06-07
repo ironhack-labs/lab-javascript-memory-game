@@ -44,10 +44,6 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      let cspan = document.querySelector('#pairs-clicked');
-      cspan.innerHTML = `${memoryGame.pairsClicked}`;
-      let gspan = document.querySelector('#pairs-guessed');
-      gspan.innerHTML = `${memoryGame.pairsGuessed}`;
 
       if (memoryGame.pickedCards.length < 2) {
         memoryGame.pickedCards.push(card);
@@ -62,10 +58,17 @@ window.addEventListener('load', (event) => {
             memoryGame.pickedCards = [];
           }
         } else {
-          memoryGame.pickedCards.forEach(turned => turned.classList.remove('turned'));
+          memoryGame.pickedCards.forEach(turned => {
+            setTimeout(() => {
+              turned.classList.remove('turned');
+          }, 2000)});
           memoryGame.pickedCards = [];
         }
       }
+      let cspan = document.querySelector('#pairs-clicked');
+      cspan.innerHTML = `${memoryGame.pairsClicked}`;
+      let gspan = document.querySelector('#pairs-guessed');
+      gspan.innerHTML = `${memoryGame.pairsGuessed}`;
     });
   });
 });
