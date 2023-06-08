@@ -41,8 +41,12 @@ class MemoryGame {
   checkIfFinished() {
     // ... write your code here
     if (this.pairsGuessed == this.cards.length / 2) {
+      console.log("CONGRATULATIONS");
       return true;
     } else {
+      console.log(
+        `ONLY ${this.cards.length / 2 - this.pairsGuessed} PAIRS LEFT TO FIND`
+      );
       return false;
     }
   }
