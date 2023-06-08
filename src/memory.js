@@ -36,12 +36,10 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    // ... write your code here
-
-    if (this.pairsGuessed === this.cards.legth / 2) {
+    const totalPairs = this.cards.length / 2;
+    if (this.pairsGuessed === totalPairs) {
       return true;
-    } else this.pairsGuessed < this.cards.legth / 2;
-    {
+    } else {
       return false;
     }
   }
