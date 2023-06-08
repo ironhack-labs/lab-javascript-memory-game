@@ -83,7 +83,6 @@ window.addEventListener("load", (event) => {
       let chosenCard = event.currentTarget;
 
       console.log("CHOSEN CARD", chosenCard);
-
       chosenCard.classList.toggle("turned");
 
       currentSelection.push(currentDeck[index]);
@@ -108,7 +107,7 @@ window.addEventListener("load", (event) => {
           turnedCards.map((card) => {
             setTimeout(() => {
               card.classList.toggle("turned");
-            }, 700);
+            }, 500);
           });
 
           console.log("turned: ", turnedCards);
