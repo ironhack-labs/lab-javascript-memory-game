@@ -53,7 +53,7 @@ window.addEventListener('load', (event) => {
         if (memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
           memoryGame.pickedCards.forEach(blocked => blocked.classList.add('blocked'));
           if (memoryGame.checkIfFinished()) {
-            console.log('you win');
+            alert('YOU WIN !');
           } else {
             memoryGame.pickedCards = [];
           }
@@ -62,7 +62,7 @@ window.addEventListener('load', (event) => {
             setTimeout(() => {
               turned.classList.remove('turned');
               memoryGame.pickedCards = [];
-          }, 2000)});
+          }, 1500)});
         }
       }
       let cspan = document.querySelector('#pairs-clicked');
