@@ -41,11 +41,65 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  const cardsSelected = memoryGame.pickedCards;
+  let useStateTurned = false;
+  let checkIfPair = false;
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (!useStateTurned) {
+        turnedCards();
+      }
     });
+    function turnedCards() {
+      card.classList.add("turned");
+      if (cardsSelected.length === 0) {
+        memoryGame.pickedCards.push(card);
+      } else {
+        memoryGame.pickedCards.push(card);
+        useStateTurned = true;
+      }
+      // - When click 2 cards
+      if (cardsSelected.length === 2) {
+        checkIfPair = memoryGame.checkIfPair(
+          cardsSelected[0].getAttribute("data-card-name"),
+          cardsSelected[1].getAttribute("data-card-name")
+        );
+        if (!checkIfPair) {
+          setTimeout(() => {
+            cardsSelected[0].classList.remove("turned");
+            cardsSelected[1].classList.remove("turned");
+            cardsSelected[0] = undefined;
+            cardsSelected[1] = undefined;
+            useStateTurned = false;
+            memoryGame.pickedCards.pop([0]);
+            memoryGame.pickedCards.pop([1]);
+          }, 3000);
+        } else {
+          memoryGame.pickedCards.pop([0]);
+          memoryGame.pickedCards.pop([1]);
+          useStateTurned = false;
+        }
+      }
+      // - Add Clicked Pairs
+      const pairsClicked = document.getElementById("pairs-clicked");
+      pairsClicked.textContent = memoryGame.pairsClicked.toString();
+      // - Add Pairs Guessed
+      const pairsGuessed = document.getElementById("pairs-guessed");
+      pairsGuessed.textContent = memoryGame.pairsGuessed.toString();
+      // - When the Game Finished
+      if (memoryGame.checkIfFinished()) {
+        setTimeout(() => {
+          alert("YOU ARE A HERO!!");
+        }, 1000);
+      }
+      // Esto es un intento de usar toggle, hablando con Pool esto es lo mejor que se nos ocurrio pero no nos parecia elegante asi que lo dejo aqui para que me digan como sería la manera correcta de hacerlo con toggle
+      // const isBack = card.children[0].className === "back";
+      // const isBack2 = card.children[1].className === "back";
+      // card.children[0].classList.toggle("front", isBack);
+      // card.children[0].classList.toggle("back", !isBack);
+      // card.children[1].classList.toggle("front", isBack2);
+      // card.children[1].classList.toggle("back", !isBack2);
+    }
   });
 });
