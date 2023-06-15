@@ -1,18 +1,38 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
+    this.shuffleCards();
   }
 
   shuffleCards() {
-    // ... write your code here
+    if (!this.cards || !Array.isArray(this.cards)) {
+      return undefined;
+    }
+
+    for (let i = this.cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+    }
   }
 
-  checkIfPair(card1, card2) {
-    // ... write your code here
+  checkIfPair(card1Name, card2Name) {
+    const card1 = this.cards.find(card => card.name === card1Name);
+    const card2 = this.cards.find(card => card.name === card2Name);
+
+    if (card1.name === card2.name) {
+      this.pairsClicked++;
+      this.pairsGuessed++;
+      return true;
+    } else {
+      this.pairsClicked++;
+      return false;
+    }
   }
 
   checkIfFinished() {
-    // ... write your code here
+    return this.pairsGuessed === this.cards.length / 2;
   }
 }
