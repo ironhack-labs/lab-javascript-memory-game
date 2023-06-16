@@ -27,17 +27,22 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    // ... write your code here
-    let gameStatus = false;
-    let faceDownCards = false;  
-    if(!this.pickedCards.length){
-      return false;
-    } else {
-      if(this.pairsGuessed === this.pickedCard.length/2){
-        return true
-      }
+    // ... write your code here   
+    if ( this.pairsGuessed === 8 ) {  
+
+      return true;
+      
+    } else{
+      
+        return false;
+  
     }
   }
 }
+
+/*Christian, porque esto no funciona? :
+ while( this.pairsGuessed !== 8 ){ return false } 
+ no pasa la ultima linea del test " should return
+ true if all pairs are guessed */
 
 
