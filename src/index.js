@@ -41,11 +41,17 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  let cardTurned = false
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if(!card.classList.contains('turned')) {
+        card.classList.add('turned');
+      } else {
+        card.classList.remove('turned');
+      }  
     });
   });
 });
