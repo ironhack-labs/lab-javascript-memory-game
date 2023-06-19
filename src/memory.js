@@ -13,8 +13,8 @@ class MemoryGame {
     if (!this.cards) {
       return undefined;
     }
-    for(let i = this.cards.length -1; i > 0; i--){
-      let j = Math.floor(Math.random() * (i+1));
+    for (let i = this.cards.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
       let temp = this.cards[i];
       this.cards[i] = this.cards[j];
       this.cards[j] = temp;
@@ -25,25 +25,21 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     // ... write your code here
-    this.pairsClicked += 1
-    if(card1 === card2) {
-      this.pairsGuessed += 1
-      return true
-    } else { 
-      return false
+    this.pairsClicked += 1;
+    if (card1 === card2) {
+      this.pairsGuessed += 1;
+      return true;
+    } else {
+      return false;
     }
   }
 
   checkIfFinished() {
-    // ... write your code here   
-    if ( this.pairsGuessed === 8 ) {  
-
+    // ... write your code here
+    if (this.pairsGuessed === 8) {
       return true;
-      
-    } else{
-      
-        return false;
-  
+    } else {
+      return false;
     }
   }
 }
