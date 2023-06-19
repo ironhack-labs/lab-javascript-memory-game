@@ -7,17 +7,19 @@ class MemoryGame {
    }
    
   shuffleCards() {
-    const shuffledCard = []
+    
     if (!this.cards) {
       return undefined
     }
-    const shuffledCards = cards.map(card) 
+  
     
-    for (let i = shuffledCard.length -1; i > 0; i--) {
+    for (let i = this.cards.length -1; i > 0; i--) {
       const randomShuffleCard = Math.floor(Math.random() * (i + 1))
-      [shuffledCard[i], shuffledCard[randomShuffleCard]] = [shuffledCard[randomShuffleCard], shuffledCard[i]]
+      this.cards[i] = this.cards[randomShuffleCard] 
+      this.cards[randomShuffleCard] = this.cards[i]
+  
     }
-    return shuffledCard
+    return this.cards
   }
 
 
