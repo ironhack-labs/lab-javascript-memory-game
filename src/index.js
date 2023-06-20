@@ -42,10 +42,41 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+    document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+
       console.log(`Card clicked: ${card}`);
+      
+      if (!card.classList.contains('blocked')) {
+        card.classList.toggle('turned');
+
+        
+        const pickedCards = document.querySelectorAll('.turned');
+        
+        if (pickedCards.length === 2) {
+          const [card1, card2] = pickedCards;
+          
+          const isPair = checkIfPair(card1.dataset.cardName, card2.dataset.cardName);
+          if (isPair) {
+            card1.classList.add('blocked');
+            card2.classList.add('blocked');
+            document.getElementById('pairs_guessed').textContent = Number(document.getElementById('pairs_guessed').textContent) + 1;
+          } else {
+            setTimeout(() => {
+              card1.classList.toggle('turned');
+              card2.classList.toggle('turned');
+            }, 1000);
+          }
+          
+          document.getElementById('pairs_clicked').textContent = Number(document.getElementById('pairs_clicked').textContent) + 1;
+          pickedCards.forEach(card => card.classList.remove('turned'));
+          
+          if (checkIfFinished()) {
+            alert('You won!!!');
+          }
+        }
+      }
+  
     });
   });
 });
