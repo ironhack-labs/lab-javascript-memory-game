@@ -27,7 +27,7 @@ const cards = [
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
   let html = "";
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -40,55 +40,59 @@ window.addEventListener("load", (event) => {
 
   // Add all the divs to the HTML
   document.querySelector("#memory-board").innerHTML = html;
-
-  //let cardTurned = false
+  
+  memoryGame.shuffleCards(cards);
+  let pairsGuess = document.getElementById("pairs-guessed");
+  let pairsClick = document.getElementById("pairs-clicked");
+  let pGuess = 0;
+  let pClick = 0;
+  
 
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("click", (event) => {
+    card.addEventListener("click", () => {
       // TODO: write some code here
-      const clickedElement = event.target;
-      let front = card.querySelector('.front');
-      let back = card.querySelector('.back');
-
-      //const childElement = clickedElement.classList('front');
-
-      // Bind the click event of each element to a function
-        document.querySelectorAll(".card").forEach((card) => {
-          card.addEventListener("click", (event) => {
-            // TODO: write some code here
-            if(!card.classList.contains('turned')){
-              card.classList.add('turned')
-              console.log('first click')
-            } else {
-              card.classList.remove('turned')
-              console.log('second click')
-
-            }
-        });
-        });
-
       
+      card.classList.toggle('turned');
 
-      // memoryGame.pickedCards = [];
-      // let card1 = event
-      // let card2 = event
-      // let isTheSame = checkIfPair(card1, cards2);
+     
+      memoryGame.pickedCards.push(card);
+  
+      if ( memoryGame.pickedCards.length === 2 ) {
+        let firstCard = memoryGame.pickedCards[0];
+        let secondCard = memoryGame.pickedCards[1];
+        let firstCardName = firstCard.getAttribute('data-card-name');
+        let secondCardName = secondCard.getAttribute('data-card-name')
+        pClick++
+        pairsClick.innerText = pClick
+        
+        let result = memoryGame.checkIfPair( firstCardName, secondCardName );
+  
+        if( result ) {
+          firstCard.classList.add("blocked");
+          secondCard.classList.add("blocked");
+          pGuess++
+          pairsGuess.innerText = pGuess
 
-      // if(isTheSame){
-      //   checkIfFinished();
-      // } else {
-      //   //turn two cards
-      // }
-      // card.classList.toggle("turned");
-      // console.log(card);
-      // console.log(event);
-      // if(!card.classList.contains('turned')) {
-      //   card.classList.add('turned');
-      // } else if(card.classList.contains('turned')) {
-      //   // let html = '';
-      //   card.classList.remove('turned');
-      // }
-    });
-  });
-});
+          setTimeout(() => {
+          
+          if (memoryGame.checkIfFinished() ) {
+            alert('You win!');
+            
+          }
+        }, 1000);
+
+        } else {
+          
+          setTimeout( () => {
+            firstCard.classList.remove("turned");
+            secondCard.classList.remove("turned");
+          }, 1000);
+        }
+        
+        memoryGame.pickedCards = [];
+        
+      }
+    })
+  })
+})
