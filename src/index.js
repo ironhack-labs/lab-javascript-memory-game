@@ -36,12 +36,13 @@ window.addEventListener("load", () => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
+    memoryGame.shuffleCards();
   });
 
   // Add all the divs to the HTML
   document.querySelector("#memory-board").innerHTML = html;
   
-  memoryGame.shuffleCards(cards);
+  
   let pairsGuess = document.getElementById("pairs-guessed");
   let pairsClick = document.getElementById("pairs-clicked");
   let pGuess = 0;
@@ -54,7 +55,6 @@ window.addEventListener("load", () => {
       // TODO: write some code here
       
       card.classList.toggle('turned');
-
      
       memoryGame.pickedCards.push(card);
   
@@ -91,6 +91,7 @@ window.addEventListener("load", () => {
         }
         
         memoryGame.pickedCards = [];
+        
         
       }
     })
