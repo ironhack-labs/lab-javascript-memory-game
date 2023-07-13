@@ -7,6 +7,10 @@ const cardsArray = [
   { name: 'green arrow', img: 'green-arrow.jpg' },
   { name: 'green lantern', img: 'green-lantern.jpg' },
   { name: 'ironman', img: 'ironman.jpg' },
+  { name: 'spiderman', img: 'spiderman.jpg' },
+  { name: 'superman', img: 'superman.jpg' },
+  { name: 'the avengers', img: 'the-avengers.jpg' },
+  { name: 'thor', img: 'thor.jpg' },
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
   { name: 'captain america', img: 'captain-america.jpg' },
@@ -14,7 +18,11 @@ const cardsArray = [
   { name: 'flash', img: 'flash.jpg' },
   { name: 'green arrow', img: 'green-arrow.jpg' },
   { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' }
+  { name: 'ironman', img: 'ironman.jpg' },
+  { name: 'spiderman', img: 'spiderman.jpg' },
+  { name: 'superman', img: 'superman.jpg' },
+  { name: 'the avengers', img: 'the-avengers.jpg' },
+  { name: 'thor', img: 'thor.jpg' }
 ];
 
 let memoryGame;
@@ -116,7 +124,7 @@ describe('MemoryGame', () => {
     });
 
     it('should return true if all pairs are guessed', () => {
-      memoryGame.pairsGuessed = 8;
+      memoryGame.pairsGuessed = 12;
       expect(memoryGame.checkIfFinished()).toBe(true);
     });
   });
