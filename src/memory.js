@@ -12,15 +12,9 @@ class MemoryGame {
     if (!this.cards) {
         return undefined
     } else {
-        let currentIndex = this.cards.length
-        let randomIndex
-        while (currentIndex != 0) {
-          randomIndex = Math.floor(Math.random() * currentIndex)
-          currentIndex--
-          [this.cards[currentIndex], this.cards[randomIndex]] = [this.cards[randomIndex], this.cards[currentIndex]]
-        }
+        this.cards.sort(() => Math.random() - 0.5)
         return this.cards
-    }
+    }    
   }
 
   checkIfPair(card1, card2) {
@@ -36,10 +30,6 @@ class MemoryGame {
 
   checkIfFinished() {
     // ... write your code here
-    if (this.pairsGuessed === 12) {
-        return true
-    } else {
-        return false
-    }
+    return this.pairsGuessed === this.cards.length / 2
   }
 }
