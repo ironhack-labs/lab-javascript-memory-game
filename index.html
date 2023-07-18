@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Superhero Memory Game</title>
     <!-- LINK THE STYLES HERE -->
+    <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
     <div>
@@ -16,8 +17,18 @@
       <p>Pairs clicked: <span id="pairs-clicked">0</span></p>
       <p>Pairs guessed: <span id="pairs-guessed">0</span></p>
     </div>
-    <div id="memory-board"></div>
+    <figure id="you-win" class="win hiddenwin">
+      <img src="./img/you-win.png" alt="You win">
+    </figure>
+    <div id="memory-board">
+      <div class="card" data-card-name="${pic.name}">
+        <div class="back" name="${pic.img}"></div>
+        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+      </div>
+    </div>
 
     <!-- LINK THE JAVASCRIPT FILES HERE (keep in mind that the order in which you link them MATTERS) -->
+    <script src="src/memory.js"></script>
+    <script src="src/index.js"></script>
   </body>
 </html>
