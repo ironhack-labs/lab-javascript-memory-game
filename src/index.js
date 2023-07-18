@@ -45,7 +45,24 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      let card1 = card.classList.add('turned');
+      let card2 = card.classList.add('blocked');
+      let specificTurned = document.querySelectorAll('.turned');
+
+      let twoCards = Array.from(specificTurned).slice(0, 2);
+      console.log(twoCards);
+
+      if (specificTurned.length > 2) {
+        let card2 = card.classList.add('blocked');
+      } else {
+        console.log(specificTurned);
+      }
+
+
+
+
     });
   });
+
+
 });
