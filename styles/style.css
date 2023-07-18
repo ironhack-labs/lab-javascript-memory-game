@@ -56,6 +56,22 @@ body {
   backface-visibility: hidden;
 }
 
+.win {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.hiddenwin {
+  display: none;
+}
+
+.win img {
+  width: 800px;
+}
+
 #score {
   background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
