@@ -45,7 +45,23 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      card.classList.add('turned');
+
+      const cardName = card.dataset.cardName
+
+      memoryGame.pickedCards.push(cardName)
+
+
+      if (memoryGame.pickedCards.length === 2) {
+        memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+      }
+
+
+
+
+
+
     });
   });
 });
