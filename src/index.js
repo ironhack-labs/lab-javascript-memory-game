@@ -38,6 +38,7 @@ window.addEventListener('load', (event) => {
     `;
   });
 
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
@@ -46,6 +47,18 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
+      card.classList.toggle('turned');
+
+
+      /*const isPair = this.checkIfPair(card1, card2)
+      if (isPair) {
+        card.classList.toggle('blocked')
+      } else if (!ispair) {
+        card.classList.toggle('card')
+      }*/
     });
   });
+
+
 });
