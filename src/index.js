@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
+
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -38,14 +39,60 @@ window.addEventListener('load', (event) => {
     `;
   });
 
+
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      // TO DO: write some code here
+
+
+      memoryGame.pickedCards.push(card)
+
+      card.classList.add('turned');
+
+      if (memoryGame.pickedCards.length === 2) {
+
+        //comprobar si son iguales
+        const ifPair = memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)
+
+        //si son iguales TRUE -> bloquear cartas
+        if (ifPair) {
+
+          memoryGame.pickedCards = []
+
+
+          //si son diferentes FALSE -> girar cartas
+        } else {
+
+          //Con console se comprobó que giraban pero era instantaneo y se optó por buscar un método que
+          //retrasara la continuación. setTimeout
+          setTimeout(() => {
+
+            memoryGame.pickedCards.forEach((eachCard) =>
+              eachCard.classList.remove('turned')
+            );
+
+            memoryGame.pickedCards = []
+          }, 1000);
+
+        }
+
+      }
+
+      document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+      document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+
+      const finishedGame = memoryGame.checkIfFinished()
+
+      if (finishedGame) {
+
+        console.log('Game Over')
+
+      }
     });
   });
 });
