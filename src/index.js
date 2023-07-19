@@ -44,7 +44,23 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+
+      card.classList.add("turned")
+
+      const cardName = card.dataset.cardName
+
+      /* if (cardName1 ==== cardName 1)  --> this.picked cards???... como 
+      traerlo aquí. */
+
+
+
+
+
+
+
+
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
