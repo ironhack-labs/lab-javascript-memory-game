@@ -45,8 +45,14 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
 
-      card.classList.add('turned')
-      //apuntar pasitos
+
+
+
+    }
+
+      }
+
+
 
 
 
@@ -58,6 +64,6 @@ window.addEventListener('load', (event) => {
 
 
       console.log(`Card clicked: ${card}`);
-    });
+});
   });
 });
