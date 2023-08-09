@@ -28,24 +28,37 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
-  let html = '';
+  let banana = '';
+  
   memoryGame.cards.forEach((pic) => {
-    html += `
-      <div class="card" data-card-name="${pic.name}">
+    banana += `
+      <div class= "card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
   });
-
+console.log(banana)
   // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+  document.querySelector('#memory-board').innerHTML = banana;
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (event) => {
+      console.log(card.children[0])
+     card.children[0].className = "front";
+     card.children[1].className = "back";//flip the card DONE
+    
+     
+
+     //add the selected card to the pickedCards arr
+     //once we have 2 cards in pickedCards, we call checkIfPair (inside if)
+     //if checkIfPair returns true, cards stay flipped
+     //make sure to send the correct data 
+     //otherwise if it returns false, flip it back after some time, right Hanna
+      //
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('open');
     });
   });
 });
