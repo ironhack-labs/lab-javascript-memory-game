@@ -7,6 +7,8 @@ body {
 }
 
 #memory-board {
+  display: flex;
+  flex-wrap: wrap;
   background: #dddddd;
   width: 820px;
   height: 540px;
