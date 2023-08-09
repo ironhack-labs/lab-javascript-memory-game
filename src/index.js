@@ -37,15 +37,32 @@ window.addEventListener('load', (event) => {
       </div>
     `;
   });
-
+  let flippedCards = []
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+    card.addEventListener('click', ()) => {
+      if (flippedCards.length < 2) {
+        card.querySelector('.front').style.backfaceVisibility = 'visible';
+        card.querySelector('.back').style.backfaceVisibility = 'hidden';
+        flippedCards.push(card)
+      })
+      else if (flippedCards.length === 2) {
+          
+      const card1 = flippedCards[0].getAttribute('data-card-name');
+      const card2 = flippedCards[1].getAttribute('data-card-name');
+      }
+      else if (memoryGame.checkIfPair(card1, card2)) {
+            flippedCards = [];
+      } else {
+        setTimeout(() => {
+          flippedCards.forEach((flippedCard) => {
+            flippedCard.querySelector('.front').style.backfaceVisibility = 'hidden';
+            flippedCard.querySelector('.back').style.backfaceVisibility = 'visible';
+          })
+              flippedCards = [];
+        }, 1000)
+      }
+    } console.log(`Card clicked: ${card}`);
