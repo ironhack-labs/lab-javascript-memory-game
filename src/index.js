@@ -42,10 +42,75 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+  let pickedCards=[]
+  document.querySelectorAll(".card, .card turned").forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      console.log(card);
       console.log(`Card clicked: ${card}`);
+
+
+
+      if(pickedCards.length<2){
+        card.classList.toggle("turned");
+        pickedCards.push(card.getAttribute("data-card-name"));
+        console.log(pickedCards);
+      }
+
+
+
+
+      if(pickedCards.length===2){
+        let pairCheck = memoryGame.checkIfPair(pickedCards[0],pickedCards[1]);
+        document.getElementById('pairs-clicked').innerText=memoryGame.pairsClicked;
+
+        if(pairCheck) 
+        {
+          console.log(`[data-card-name='${pickedCards[0]}]'`);
+          document.querySelectorAll(`[data-card-name='${pickedCards[0]}']`).forEach(element => {
+            element.classList.add('blocked');
+            document.getElementById('pairs-guessed').innerText=memoryGame.pairsGuessed;
+          })
+        }
+        else {
+          setTimeout(() => document.querySelectorAll(".card:not(.blocked)").forEach(element => element.classList.remove('turned')),1000
+            )
+        };
+      
+        pickedCards=[];
+        
+
+
+
+        if (memoryGame.checkIfFinished()) {
+          console.log("Finished!");
+          let finishedDiv = document.createElement("div");
+          
+          finishedDiv.innerText="FINISHED!";
+
+          finishedDiv.style.backgroundColor = 'red'; 
+          finishedDiv.style.textAlign = 'center'; 
+          finishedDiv.style.color = 'white'; 
+          finishedDiv.style.backgroundColor = 'orange'; 
+          finishedDiv.style.border = '2px solid red'; 
+          finishedDiv.style.fontSize = '10rem'; 
+          finishedDiv.style.position = 'fixed'; 
+          finishedDiv.style.top = '300px'; 
+
+
+
+
+          document.getElementById('memory-board').appendChild(finishedDiv);
+        
+        }
+
+
+        
+      }
+      })
     });
   });
-});
+
+
+
+  
