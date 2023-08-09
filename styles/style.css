@@ -21,6 +21,7 @@ body {
   perspective: 300px;
   transform-style: preserve-3d;
   position: relative;
+  cursor: pointer;
 }
 
 .card.turned {
@@ -54,6 +55,19 @@ body {
   top: 0;
   transform: rotateY(-180deg) translateZ(1px);
   backface-visibility: hidden;
+}
+
+.btn-again{
+  position: absolute;
+  left: 45%;
+  top: 30%;
+  border: 2px solid rgb(121, 14, 14);
+  border-radius: 4px;
+  background-color: #84c7fe;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 30px;
+  display: none;
 }
 
 #score {
