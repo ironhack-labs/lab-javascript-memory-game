@@ -88,3 +88,8 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.flipped {
+  transition:transform 0.5s;
+  transform: rotateY(180deg);
+}
