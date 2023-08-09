@@ -1,34 +1,36 @@
+// import { MemoryGame } from "src/memory.js";
+
 const cards = [
-  { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four', img: 'fantastic-four.jpg' },
-  { name: 'flash', img: 'flash.jpg' },
-  { name: 'green arrow', img: 'green-arrow.jpg' },
-  { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' },
-  { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
-  { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' },
-  { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four', img: 'fantastic-four.jpg' },
-  { name: 'flash', img: 'flash.jpg' },
-  { name: 'green arrow', img: 'green-arrow.jpg' },
-  { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' },
-  { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
-  { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' }
+  { name: "aquaman", img: "aquaman.jpg" },
+  { name: "batman", img: "batman.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
+  { name: "aquaman", img: "aquaman.jpg" },
+  { name: "batman", img: "batman.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
 ];
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', (event) => {
-  let html = '';
+window.addEventListener("load", (event) => {
+  let html = "";
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -39,13 +41,31 @@ window.addEventListener('load', (event) => {
   });
 
   // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+  document.querySelector("#memory-board").innerHTML = html;
+  const elementArray = [];
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const element = event.target.parentElement;
+      elementArray.push(element);
+      // console.log("elementArray", elementArray);
+      // console.log("elementArray[0]", elementArray[0]);
+      // console.log("elementArray[1]", elementArray[1]);
+      element.classList.toggle("turned");
+      if (elementArray.length === 2) {
+        console.log(
+          "elementArray length ",
+          elementArray.length,
+          "ich habe 2 elemente :",
+          "elementArray[0]",
+          elementArray[0],
+          "elementArray[1]",
+          elementArray[1]
+        );
+        // checkIfPair(elementArray[0], elementArray[1]);
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+        elementArray[0].classList.add("blocked");
+        elementArray[1].classList.add("blocked");
+      }
     });
   });
 });
