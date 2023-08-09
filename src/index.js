@@ -31,7 +31,7 @@ window.addEventListener('load', (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
-      <div class="card" data-card-name="${pic.name}">
+      <div class="card " data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
@@ -42,10 +42,56 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+  // function flipCard() {
+  //   this.classList.toggle("turned");
+  // }
+  
+  const card = document.querySelectorAll(".cards");
+
+  function turned() {
+    this.classList.toggle("turned");
+  }
+  cards.forEach((card) => card.addEventListener("click", turned));
+
+
+
+
+  // document.querySelectorAll('.card').forEach((card) => {
+  //   card.addEventListener('click', () => {
+  //     // TODO: write some code here
+  //     console.log(`Card clicked: ${card}`);
+  //   }
+
+      const clickedCard = memoryGame.pickedCards.push(card)
+
+      if(memoryGame.pickedCards.length == 2) {
+        console.log(clickedCard)
+      }
+ 
+      // }
+      card.classList.toggle("turned")
+      // setTimeout(() => {
+      //   card.classList.remove('turned')
+      //   // this.pickedCards = [];
+      // }, 0);
+      if(memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
+
+        card.classList.add('blocked')
+      } else {
+        card.classList.remove('blocked')
+      }
+
+
+
+      // if(card.classList.contains("turned")) {
+      //   card.classList.remove("turned")
+      // } else {
+      //   card.classList.add("turned")
+      // }
+    
+
     });
-  });
-});
+
+
+
+
