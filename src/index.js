@@ -44,7 +44,24 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
+      card.classList.toggle('turned');
+
+      
+
+
+
+
+
+
       // TODO: write some code here
+      // first make the card flip, hide one div, show the other
+      //once flipped, store that card in the pickedCard array
+      // make sure you have 2 cards to checkPair
+      // make sure to empty the div once you checkPair
+      //make sure to turn it back if they are not a pair
+
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
