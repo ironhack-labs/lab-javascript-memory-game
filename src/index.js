@@ -42,10 +42,66 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+
+  //adds event for each card on 'onclick'
+  document.querySelectorAll(".card, .card turned").forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+      //condition if we DO NOT have picked 2 cards yet, add class 'turned' to the card and store the card name in the pickedcards array
+
+      if (memoryGame.pickedCards.length < 2) {
+        card.classList.toggle("turned");
+        memoryGame.pickedCards.push(card.getAttribute("data-card-name"));
+        console.log(memoryGame.pickedCards);
+      }
+
+      //if we do have picked 2 cards
+      if (memoryGame.pickedCards.length === 2) {
+        //check if they are matching pairs
+        let pairCheck = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+        //updates the number of pairs clicked on the top right
+        document.getElementById('pairs-clicked').innerText = memoryGame.pairsClicked;
+
+        if (pairCheck) {
+          // if pairs match, we keep them blocked
+          document.querySelectorAll(`[data-card-name='${memoryGame.pickedCards[0]}']`).forEach(element => {
+            element.classList.add('blocked');
+            document.getElementById('pairs-guessed').innerText = memoryGame.pairsGuessed;
+          })
+        }
+        else {
+          // if pairs don't match, flip them back after some delay
+          setTimeout(() => document.querySelectorAll(".card:not(.blocked)").forEach(element => element.classList.remove('turned')), 1000
+          )
+        };
+
+        //clear the picked cards array to start again
+        memoryGame.pickedCards = [];
+
+        //check if game is finished
+        const isGameFinished = memoryGame.checkIfFinished();
+        if (isGameFinished) {
+          console.log("Finished!");
+
+
+          // OPTIONAL: The following is just adding the finished button - ugly and should be done differently i.e. using classes but for today it's okay... 
+          let finishedDiv = document.createElement("div");
+          finishedDiv.innerText = "FINISHED!";
+          finishedDiv.style.backgroundColor = 'red';
+          finishedDiv.style.textAlign = 'center';
+          finishedDiv.style.color = 'white';
+          finishedDiv.style.backgroundColor = 'orange';
+          finishedDiv.style.border = '2px solid red';
+          finishedDiv.style.fontSize = '10rem';
+          finishedDiv.style.position = 'fixed';
+          finishedDiv.style.top = '300px';
+          document.getElementById('memory-board').appendChild(finishedDiv);
+
+        }
+      }
+    })
   });
 });
+
+
+
+
