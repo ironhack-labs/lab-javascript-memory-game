@@ -1,9 +1,9 @@
 body {
   margin: 0;
 
-  background: url('../img/background.jpg') no-repeat;
+  background: url("../img/background.jpg") no-repeat;
   background-size: cover;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory-board {
@@ -87,4 +87,8 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+.blocked {
+  border: 5px red solid;
 }
