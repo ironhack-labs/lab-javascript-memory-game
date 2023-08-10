@@ -61,7 +61,7 @@ window.addEventListener("load", (event) => {
           "elementArray[1]",
           elementArray[1]
         );
-        // checkIfPair(elementArray[0], elementArray[1]);
+        memoryGame.checkIfPair(elementArray[0], elementArray[1]);
 
         elementArray[0].classList.add("blocked");
         elementArray[1].classList.add("blocked");
