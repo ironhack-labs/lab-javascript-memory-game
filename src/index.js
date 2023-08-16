@@ -45,7 +45,35 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+      if(!card.classList.contains('blocked') && !card.classList.contains('turned')) {
+        card.classList.add("turned");
+        memoryGame.pickedCards.push(card);
+
+        if(memoryGame.pickedCards.length === 2) {
+          const card1 = memoryGame.pickedCards[0].setAttribute('data-card-name');
+          const card2 = memoryGame.pickedCards[1].setAttribute('data-card-name');
+        }
+
+        if(memoryGame.checkIfPair(card1, card2)){
+          memoryGame.pickedCards.forEach((pickedCard) => {
+            pickedCard.classList.add('blocked');
+          });
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards.forEach((pickedCard) =>{
+              pickedCard.classList.remove('turned');
+            });
+          }, 1000);
+        }
+        memoryGame.pickedCards = [];
+      }
+
+      if(memoryGame.checkIfFinished()){
+        alert("Congrats!!! You've won!🎉")
+      }
+      
+    })   
   });
+  console.log(`Card clicked: ${card}`); 
 });
+  
