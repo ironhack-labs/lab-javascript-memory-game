@@ -39,7 +39,13 @@ class MemoryGame {
   
 
   checkIfFinished() {
- 
+    this.begginingGame = false;
+    if (this.pairsGuessed === 0) {
+      return false;
+    }else {
+      return this.pairsGuessed === this.cards.length / 2; //is equal to half the total number of cards // f its equal  means all pairs have been guessed and the function returns true
+    }
+
   }
 }
 
