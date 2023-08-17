@@ -5,8 +5,8 @@ const cards = [
   { name: "fantastic four", img: "fantastic-four.jpg" },
   { name: "flash", img: "flash.jpg" },
   { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
   { name: "ironman", img: "ironman.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
   { name: "spiderman", img: "spiderman.jpg" },
   { name: "superman", img: "superman.jpg" },
   { name: "the avengers", img: "the-avengers.jpg" },
@@ -44,13 +44,42 @@ window.addEventListener("load", (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
-      // TODO: write some code here
-      document.querySelectorAll(".card").forEach((card) => {
-        card.addEventListener("click", () => {
-          card.classList.add("turned");
-          console.log(`Card clicked: ${card}`);
-        });
-      });
+      console.log(memoryGame.pickedCards);
+      if (memoryGame.pickedCards.length > 1) {
+        return;
+      }
+
+      card.classList.toggle("turned");
+      memoryGame.pickCard(card);
+
+      setTimeout(() => {
+        if (memoryGame.pickedCards.length === 2) {
+          const firstCard = memoryGame.pickedCards[0];
+          const secondCard = memoryGame.pickedCards[1];
+
+          const isSame = memoryGame.checkIfPair(
+            firstCard.dataset.cardName,
+            secondCard.dataset.cardName
+          );
+
+          if (isSame) {
+            memoryGame.resetPickCards();
+
+            if (memoryGame.checkIfFinished()) {
+              alert("You won!");
+            }
+          } else {
+            firstCard.classList.toggle("turned");
+            secondCard.classList.toggle("turned");
+            memoryGame.resetPickCards();
+          }
+        }
+
+        document.getElementById("pairs-clicked").textContent =
+          memoryGame.pairsClicked;
+        document.getElementById("pairs-guessed").textContent =
+          memoryGame.pairsGuessed;
+      }, 2000);
     });
   });
 });

@@ -7,8 +7,15 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
+  pickCard(card) {
+    this.pickedCards.push(card);
+  }
+
+  resetPickCards() {
+    this.pickedCards = [];
+  }
+
   shuffleCards() {
-    // ... write your code here
     if (!this.cards) {
       return undefined;
     }
@@ -16,7 +23,6 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
     this.pairsClicked++;
 
     if (card1 === card2) {
@@ -27,7 +33,6 @@ class MemoryGame {
   }
 
   checkIfFinished() {
-    // ... write your code here
     return this.pairsGuessed === this.cards.length / 2;
   }
 }
