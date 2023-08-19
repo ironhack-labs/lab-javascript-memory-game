@@ -64,7 +64,7 @@ window.addEventListener('load', (event) => {
             card.classList.toggle('turned')
             card1 = null;
             clickable = true  
-          },800)
+          },1000)
         }
       } else {
         card1 = card
