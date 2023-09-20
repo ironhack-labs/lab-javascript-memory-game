@@ -18,11 +18,14 @@ body {
 
 #finished{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   top: 316px;
-  left: 140px;
+  left: 0;
+  right: 0;
   position: absolute;
+  background-color: #ddddddad;
   width: 820px;
   height: 540px;
   padding: 70px;
@@ -39,8 +42,12 @@ body {
   color: white;
 }
 
-#finished a :hover {
+#finished a:hover {
   background-color: #ff0000;
+}
+
+#finished h2{
+  color: #c20000;
 }
 
 .card {

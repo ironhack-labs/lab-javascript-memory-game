@@ -89,9 +89,7 @@ window.addEventListener("load", (event) => {
       }
       let isFinished = memoryGame.checkIfFinished();
       if (isFinished) {
-        html += `<div id="finished">
-                    <a href="/">Play again</a>
-                  </div>`;
+        document.querySelector("#finished").removeAttribute("style");
       }
       console.log(`Card clicked: ${card}`);
     });
