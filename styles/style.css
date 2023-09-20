@@ -1,6 +1,6 @@
 body {
+  position: relative;
   margin: 0;
-
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -14,6 +14,40 @@ body {
   margin: 0px auto;
   border-radius: 84px;
   box-shadow: inset 0px 0px 20px -6px #615961;
+}
+
+#finished{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 316px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-color: #ddddddad;
+  width: 820px;
+  height: 540px;
+  padding: 70px;
+  margin: 0px auto;
+  border-radius: 84px;
+  box-shadow: inset 0px 0px 20px -6px #615961;
+}
+
+#finished a {
+  padding: 20px 80px;
+  background-color: #c20000;
+  border-radius: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+#finished a:hover {
+  background-color: #ff0000;
+}
+
+#finished h2{
+  color: #c20000;
 }
 
 .card {
