@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -40,11 +41,40 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.className = 'card turned'
+      const pairsClicked = document.getElementById("pairs-clicked")
+      const pairsGuessed = document.getElementById("pairs-guessed");
+      memoryGame.pickedCards.push(card)
+      if (memoryGame.pickedCards.length === 2){
+        if (memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'))){
+          memoryGame.pickedCards[0].classList.add('blocked');
+          memoryGame.pickedCards[1].classList.add('blocked');
+          pairsClicked.innerHTML = memoryGame.pairsClicked
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed
+          if (memoryGame.checkIfFinished()) {
+            setTimeout(()=>{
+              alert('YOU ARE A WINNER')
+              dispatchEvent(new Event('load'))
+              pairsClicked.innerHTML = 0
+              pairsGuessed.innerHTML = 0
+              memoryGame.pairsClicked = 0
+              memoryGame.pairsGuessed = 0
+            }, 1000)
+          }
+          return memoryGame.pickedCards = []
+        }
+        pairsClicked.innerHTML = memoryGame.pairsClicked
+        setTimeout(() => {
+          memoryGame.pickedCards[0].className = 'card'
+          memoryGame.pickedCards[1].className = 'card'
+          return memoryGame.pickedCards = []
+        }, 1000)
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
