@@ -1,9 +1,9 @@
 body {
   margin: 0;
 
-  background: url('../img/background.jpg') no-repeat;
+  background: url("../img/background.jpg") no-repeat;
   background-size: cover;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 #memory-board {
@@ -23,13 +23,15 @@ body {
   position: relative;
 }
 
-.card.turned {
+.card.turned,
+.blocked {
   pointer-events: none;
 }
 
 .card.turned .front {
   transform: rotateY(0deg);
 }
+
 .card.turned .back {
   transform: rotateY(180deg);
 }
