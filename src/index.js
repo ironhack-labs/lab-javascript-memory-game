@@ -42,10 +42,40 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+  let acertadas = []
+  let giradas = []
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      console.log(card)
+      // Obtiene el valor del atributo data-card-name
+      const cardName = card.dataset.cardName;
+
+      // Agrega la clase turned al div
+      card.classList.add("turned");
+      giradas.push(card)
+
+      let check = memoryGame.checkIfPair(giradas[0].dataset.cardName, giradas[1].dataset.cardName)
+      console.log(cardName)
+
+
+      if (giradas.length === 3) {
+        if (check) {
+          acertadas.push(giradas[0])
+          acertadas.push(giradas[1])
+          giradas[2].classList.remove("turned")
+          giradas = []
+        } else {
+          giradas[0].classList.remove("turned")
+          giradas[1].classList.remove("turned")
+          giradas[2].classList.remove("turned")
+          giradas = []
+        }
+
+      }
+
+
     });
   });
 });
+
