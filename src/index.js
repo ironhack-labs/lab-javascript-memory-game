@@ -29,9 +29,10 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach((pic) => {
     html += `
-      <div class="card" data-card-name="${pic.name}">
+      <div class="card" data-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
@@ -44,8 +45,37 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      let toTurn = true
+      if (toTurn) {
+        card.classList.add("turned");
+      }
+      else {
+        card.classList.remove("turned");
+      }
       console.log(`Card clicked: ${card}`);
-    });
+
+
+      memoryGame.pickedCards.push(card)
+
+      
+      
+      setTimeout(() => {
+        if (memoryGame.pickedCards.length === 2) {
+          console.log(memoryGame.pickedCards)
+          if (memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.name, memoryGame.pickedCards[1].dataset.name)) {
+            console.log("son iguales!!!")
+            document.querySelector('#pairs-guessed').innerHTML++
+            document.querySelector('#pairs-clicked').innerHTML++
+            memoryGame.pickedCards.splice(0)
+          }
+          else {
+            memoryGame.pickedCards[0].classList.remove('turned')
+            memoryGame.pickedCards[1].classList.remove('turned')
+            document.querySelector('#pairs-clicked').innerHTML++
+            memoryGame.pickedCards.splice(0)
+          }
+        }
+      }, 950);
+    })
   });
 });
