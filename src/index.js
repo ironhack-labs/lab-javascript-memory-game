@@ -45,7 +45,10 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.add('turned')
       console.log(`Card clicked: ${card}`);
-    });
+    })
   });
+
 });
+//estoy super saturado y no se avanzar en este estamento , no quiero engañarme a mi mismo y tirarme 3 horas sin descansar :,(
