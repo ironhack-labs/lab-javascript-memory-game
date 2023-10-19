@@ -43,7 +43,7 @@ class MemoryGame {
 
   checkIfFinished() {
     // ... write your code here
-    if (this.pairsGuessed >= 2) {
+    if (this.pairsGuessed >= 12) {
       return true
     } else {
       return false
