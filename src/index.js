@@ -29,6 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-name="${pic.name}">
@@ -74,7 +75,7 @@ window.addEventListener('load', (event) => {
             memoryGame.pickedCards.splice(0)
           }
         }
-      }, 900);
+      }, 950);
     })
   });
 });
