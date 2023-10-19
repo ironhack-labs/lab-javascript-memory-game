@@ -31,6 +31,12 @@ class MemoryGame {
 
   checkIfFinished() {
     // ... write your code here
-    return this.pairsGuessed  === this.cards.length / 2
+  
+      if (this.pairsGuessed != 12) {
+        return false
+      }
+      if (this.pairsGuessed = 12) {
+        return true
   }
+}
 }
