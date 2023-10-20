@@ -17,9 +17,9 @@ class MemoryGame {
 
       index = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
+      let currentCart = this.cards[currentIndex]
       this.cards[currentIndex] = this.cards[index]
-      this.cards[index] = this.cards[currentIndex]
+      this.cards[index] = currentCart
     }
 
     return this.cards;
