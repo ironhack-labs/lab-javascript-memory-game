@@ -45,6 +45,11 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle("turned")
+      memoryGame.pickedCard.push(cards)
+      if(memoryGame.pickedCard.length == 2){
+        checkIfPair(this.pickedCard)
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
