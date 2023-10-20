@@ -48,6 +48,7 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       card.classList.add("turned")
