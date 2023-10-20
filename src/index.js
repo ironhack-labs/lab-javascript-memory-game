@@ -46,6 +46,39 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+
+      if (memoryGame.pickedCards.length < 2) {
+
+        memoryGame.pickedCards.push(card)
+        card.classList.toggle("turned")
+
+      } else {
+
+        if (memoryGame.checkIfPair(memoryGame.pickedCards.map(elm => elm.dataset.name))) {
+
+
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+          memoryGame.checkIfFinished()
+          memoryGame.pickedCards = []
+
+        } else {
+          memoryGame.pickedCards.forEach(elm => {
+
+            elm.classList.toggle("turned")
+
+          })
+
+          document.querySelector('#pairs-clicked').innerHTML = memoryGame.pairsClicked
+          memoryGame.pickedCards = []
+        }
+
+
+
+      }
+
+
+
     });
   });
 });
