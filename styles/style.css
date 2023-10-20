@@ -30,6 +30,7 @@ body {
 .card.turned .front {
   transform: rotateY(0deg);
 }
+
 .card.turned .back {
   transform: rotateY(180deg);
 }
