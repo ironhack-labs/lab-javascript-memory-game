@@ -45,7 +45,16 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      const clicked = document.getElementById("pairs_clicked")
+      const guessed = docuemnt.getElementById("pairs_guessed")
+
       console.log(`Card clicked: ${card}`);
+      toggle(cards.name[0]), ["back", "front"]
+
     });
   });
 });
+
+
+
+
