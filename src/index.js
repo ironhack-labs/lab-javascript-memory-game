@@ -26,12 +26,18 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+let cont = 1
+let value1 = ""
+let value1class = ""
+let value2 = ""
+let value2class = ""
+
 
 window.addEventListener('load', (event) => {
   let html = '';
+  memoryGame.shuffleCards()
   memoryGame.cards.forEach((pic) => {
-    html += `
-      <div class="card" data-card-name="${pic.name}">
+    html += `<div class="card" data-cardname="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
@@ -42,10 +48,27 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
+
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.add("turned")
+      if (cont === 1) {
+        value1 = card.dataset.cardname
+        value1class = card.classList
+        cont++
+      } else if (cont === 2) {
+        value2 = card.dataset.cardname
+        value2class = card.classList
+        setTimeout(() => {
+          if (memoryGame.checkIfPair(value1, value2)) {
+            cont = 1
+          } else {
+            cont = 1
+            value1class.remove("turned")
+            value2class.remove("turned")
+          }
+        }, "500");
+      }
     });
   });
 });
