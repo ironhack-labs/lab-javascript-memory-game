@@ -13,7 +13,7 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' },
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
+  { name: 'captain amemica', img: 'captain-america.jpg' },
   { name: 'fantastic four', img: 'fantastic-four.jpg' },
   { name: 'flash', img: 'flash.jpg' },
   { name: 'green arrow', img: 'green-arrow.jpg' },
@@ -41,10 +41,33 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
+      card.classList.toggle("turned")
       // TODO: write some code here
+      memoryGame.pickedCards.push(card)
+      let isPair = false
+      if (memoryGame.pickedCards.length === 2) {
+        const cardName1 = memoryGame.pickedCards[0].getAttribute("data-card-name")
+        const cardName2 = memoryGame.pickedCards[1].getAttribute("data-card-name")
+
+        isPair = memoryGame.checkIfPair(cardName1, cardName2)
+      }
+      if (!isPair) {
+        setTimeout(() => {
+          memoryGame.pickedCards[0].classList.remove("turned")
+          memoryGame.pickedCards[1].classList.remove("turned")
+          memoryGame.pickedCards = []
+        })
+      } else {
+        memoryGame.pickedCards[0].classList.add("blocked")
+        memoryGame.pickedCards[1].classList.add("blocked")
+        memoryGame.pickedCards = []
+
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
