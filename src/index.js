@@ -25,7 +25,7 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
+const memoryGame = new MemoryGame(cards, 16);
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,8 +44,63 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle("turned");
+
+      memoryGame.pickedCards.push(card.dataset.cardName);
+
+      // 2. Si hay 2 en pickedCards
+
+      const allTurnedCards = document.querySelectorAll(".turned");
+
+      if (memoryGame.pickedCards.length === 2) {
+        const allCards = document.querySelectorAll(".card");
+
+        allCards.forEach((card) => {
+          card.classList.add("blocked");
+        });
+
+        const arePair = memoryGame.checkIfPair(
+          memoryGame.pickedCards[0],
+          memoryGame.pickedCards[1]
+        );
+
+        if (arePair) {
+          allCards.forEach((card) => {
+            card.classList.remove("blocked");
+          });
+
+          allTurnedCards.forEach((card) => {
+            card.classList.add("guessed");
+          });
+
+          const isFinished = memoryGame.checkIfFinished();
+
+          if (isFinished) {
+            document.querySelector(
+              "#memory-board"
+            ).innerHTML = `<h1>Has ganado y tu puntacion es: ${memoryGame.pairsGuessed}</h1>`;
+          }
+        } else {
+          setTimeout(() => {
+            allTurnedCards.forEach((card) => {
+              if (!card.classList.contains("guessed")) {
+                card.classList.remove("turned");
+              }
+            });
+
+            allCards.forEach((card) => {
+              card.classList.remove("blocked");
+            });
+          }, 1000);
+        }
+
+        memoryGame.pickedCards = [];
+
+        document.getElementById("pairs-clicked").textContent =
+          memoryGame.pairsClicked;
+        document.getElementById("pairs-guessed").textContent =
+          memoryGame.pairsGuessed;
+      }
     });
   });
 });
