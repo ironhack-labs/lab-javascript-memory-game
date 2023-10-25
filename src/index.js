@@ -44,8 +44,33 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
+      console.log(memoryGame.pickedCards)
+      if(memoryGame.pickedCards.length < 2){
+        memoryGame.pickedCards.push(card)
+        card.classList.toggle('turned')
+      }
+
+      if(memoryGame.pickedCards.length === 2){
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+        const result = memoryGame.checkIfPair(card1, card2)
+        console.log(result)
+      }
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      // console.log(`Card clicked: ${card}`);
     });
   });
+
+  // Block cards if same
+  console.log(memoryGame)
+  // console.log(memoryGame.checkIfPair())
 });
+
+//if they are pairs, don't flip them back and disable the click && checkIfFinished
+//if they are not pairs, flip them back (setInterval might help)
+
+//empty the pickedCards array
+
+
+
+
