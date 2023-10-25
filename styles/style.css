@@ -24,13 +24,18 @@ body {
 }
 
 .card.turned {
+  /* disable all events binded 
+  https://www.w3schools.com/cssref/css3_pr_pointer-events.php */
   pointer-events: none;
 }
 
 .card.turned .front {
+  /* give 3d rotation effect 
+  https://www.w3schools.com/cssref/css3_pr_transform-origin.php */
   transform: rotateY(0deg);
 }
 .card.turned .back {
+  /* give 3d rotation effect */
   transform: rotateY(180deg);
 }
 

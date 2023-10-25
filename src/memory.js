@@ -6,6 +6,7 @@ class MemoryGame {
 
   shuffleCards() {
     // ... write your code here
+    // 🌟 BONUS
   }
 
   checkIfPair(card1, card2) {
