@@ -54,18 +54,25 @@ window.addEventListener('load', (event) => {
         const card1 = memoryGame.pickedCards [0] 
         const card2 = memoryGame.pickedCards [1]
 
-        const picName1 = card1.getAttribute("pic.name")
-        const picName2 = card2.getAttribute("pic.name")
+        const picName1 = card1.getAttribute("data-card-name")
+        const picName2 = card2.getAttribute("data-card-name")
       
-      if(memoryGame.checkIfPair(card1, card2)){
-        picName1.classList.add("blocked")
-        picName2.classList.add("blocked")
+      if(memoryGame.checkIfPair(picName1, picName2)){
+        card1.classList.add("blocked")
+        card2.classList.add("blocked")
         memoryGame.pairsGuessed++
       }else{
-        memoryGame.pickedCards = [0],[1];
+  
+        setTimeout(() => {
+          card1.classList.remove("turned")
+          card2.classList.remove("turned")
+          memoryGame.pickedCards = [];
+        }, 590)
+            }
       }
-      }
-    
+    const guessPairs = document.getElementById("pairs-guessed")
+    guessPairs.innerHTML = memoryGame.pairsGuessed
+
     });
   });
 });

@@ -15,9 +15,7 @@ class MemoryGame {
 // if stuck came here to create a loop
   checkIfPair(card1, card2) {
     this.pairsClicked++
-    this.card1 = card1;
-    this.card2 = card2;
-    if( this.card1 === this.card2){
+    if( card1 === card2){
       this.pairsGuessed++
       return true
     }else{
