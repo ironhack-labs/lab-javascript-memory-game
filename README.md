@@ -4,7 +4,6 @@
 
 <br>
 
-
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
 <details>
@@ -42,8 +41,6 @@ We just learned how to use JavaScript to manipulate DOM elements. Great! Let's p
 
 - Clone this repo.
 
-  
-
 ## Submission
 
 - Upon completion, run the following commands:
@@ -56,27 +53,19 @@ git push origin master
 
 - Create a Pull Request so that your TAs can check your work.
 
-
-
 <br>
 
 ## Test Your Code
 
 This LAB is equipped with unit tests to provide automated feedback on your lab progress. In case you want to check the tests, they are in the `tests/memory.spec.js` file.
 
-
-
 To run the tests and your JavaScript code, open the `SpecRunner.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
-
-
 
 To see the outputs of the `console.log` in your JavaScript code, open the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console).
 
 <br>
 
 ## Instructions
-
-
 
 ### Iteration 0: The game rules
 
@@ -93,10 +82,6 @@ Do you remember that game called Memory that you used to play with the actual pa
 
 The goal of the game is to get all the cards flipped face-up in the least number of tries. That means that a lower number of attempts scores better.
 
-
-
-
-
 <br>
 
 ### Iteration 1: Initial set up
@@ -112,17 +97,11 @@ After you linking the files in `index.html` page, you should be able to see the 
 
 <br>
 
-
-
 ### Iteration 2: Plan your game
 
 In this iteration, you will work on the game logic. You can see this part, like defining the methods that will take care of the game logic. No visible result will be shown just yet, and we will make sure everything works properly just by printing everything in the console.
 
-
-
 You will be working in the `src/memory.js` file.
-
-
 
 The game logic for this game is pretty simple:
 
@@ -179,10 +158,9 @@ class MemoryGame {
 
 <br>
 
-
 ### Iteration 3: DOM & Interactions
 
-Once you have completed the implementation of the memory game logic or functionality, you will move forward to `src/index.js` and work on the DOM interactions. 
+Once you have completed the implementation of the memory game logic or functionality, you will move forward to `src/index.js` and work on the DOM interactions.
 
 What do we consider as interaction is what happens when the user clicks on the card:
 
@@ -200,7 +178,7 @@ Think about the interactions your user and the game will have: basically, the us
 ```javascript
 // src/index.js
 
-window.addEventListener('load', (event) => {
+window.addEventListener("load", (event) => {
   // some code goes here
 });
 ```
@@ -211,10 +189,10 @@ window.addEventListener('load', (event) => {
 // src/index.js
 
 // Bind the click event of each element to a function
-document.querySelectorAll('.card').forEach((card) => {
-  card.addEventListener('click', () => {
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("click", () => {
     // TODO: write some code here
-    console.log('Card clicked: ', card);
+    console.log("Card clicked: ", card);
   });
 });
 ```
@@ -241,12 +219,12 @@ To flip a card, you can have multiple approaches. We will give you two possible 
 
 ```javascript
 /* one argument */
-el.classList.toggle('foobar');
+el.classList.toggle("foobar");
 // if it doesn't have the class 'foobar' --> add the class 'foobar'
 // if it already has the class 'foobar' --> remove the class 'foobar'
 
 /* two arguments */
-el.classList.toggle('abc', someBool);
+el.classList.toggle("abc", someBool);
 // if someBool evaluates to true -> add the class 'abc'
 // if someBool evaluates to false -> remove the class 'abc'
 ```
