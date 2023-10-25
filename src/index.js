@@ -46,6 +46,22 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned')
     });
   });
 });
+
+// check if the cards are flipped ?
+const turnCards = document.querySelectorAll('.card.turned')
+if (turnCards.length === 2){
+
+const result = checkIfPair(turnCards[0], turnCards[1])
+} 
+
+// check if the cards match ?
+if(memoryGame.checkIfPair(card1, card2)){
+
+  turnCards.forEach((card) => card.classList.toggle('front'))
+} else {
+  turnCards.forEach((card) => card.classList.remove('turned'))
+}
