@@ -42,9 +42,32 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+  document.querySelectorAll('.card') .forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+    
+
+      if (!firstCard)  {
+   
+        firstCard = card;
+        card.classList.add('turned'); 
+        
+        console.log ('First card clicked:',card.getAttribute('data-card-name'));
+     
+      }   else if (!secondCard) {
+        
+        secondCard = card;
+        card.classList.add('turned'); 
+
+        if (firstCard !== secondCard) {
+
+        }
+
+        firstCard = null;
+        secondCard = null;
+
+      }
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
