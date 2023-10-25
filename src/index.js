@@ -26,9 +26,10 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+memoryGame.shuffleCards();
 
 window.addEventListener('load', (event) => {
-  let html = document.getElementById('memory-board');
+  let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
@@ -45,24 +46,31 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      memoryGame.pickedCards.push(card);
-      if (memoryGame.pickedCards.length === 1) {
+      if (memoryGame.pickedCards.length < 2) {
+        memoryGame.pickedCards.push(card);
         card.setAttribute('class', 'card turned');
-      } else if (memoryGame.pickedCards.length === 2) {
-        let result = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
-        if (result === true) {
-          memoryGame.pickedCards[0].setAttribute('class', 'card turned');
-          memoryGame.pickedCards[1].setAttribute('class', 'card turned');
-          memoryGame.pickedCards = [];
-        } else {
-          memoryGame.pickedCards[0].setAttribute('class', 'card');
-          memoryGame.pickedCards[1].setAttribute('class', 'card');
-          //memoryGame.pickedCards = [];
+        if (memoryGame.pickedCards.length === 2) {
+          let arePairs = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'));
+          if (arePairs) {
+            memoryGame.pickedCards = []
+          } else {
+            card.setAttribute('class', 'card turned');
+            setTimeout(() => {
+              memoryGame.pickedCards[0].setAttribute('class', 'card');
+              memoryGame.pickedCards[1].setAttribute('class', 'card');
+              memoryGame.pickedCards = [];
+            }, 750);
+          }
         }
-      } 
-      console.log(`Card clicked: ${card}`);
-      console.log(memoryGame.pickedCards.length);
+      }
+      let isFinish = memoryGame.checkIfFinished();
+      if (isFinish) {
+        console.log("You won!");
+        let memoryBoardBackground = document.getElementById('memory-board');
+        memoryBoardBackground.style.backgroundColor = 'green';
+      }
 
     });
+
   });
 });
