@@ -78,7 +78,10 @@ window.addEventListener("load", (event) => {
           pairsClickedSpan.innerHTML = memoryGame.pairsClicked;
         }
       }
-      if (memoryGame.checkIfFinished()) console.log("GAME FINISHED");
+      if (memoryGame.checkIfFinished()) {
+        alert("GAME FINISHED");
+        console.log("GAME FINISHED");
+      }
     });
   });
 });
