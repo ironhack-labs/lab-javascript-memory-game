@@ -46,8 +46,9 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      
+      if (!card.classList.contains('blocked') && !card.classList.contains('turned')) {
+        card.classList.add('turned');
       console.log(`Card clicked: ${card}`);
-    });
+  }});
   });
 });
