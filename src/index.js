@@ -26,6 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+console.log(memoryGame);
+alert('hello world');
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -36,7 +38,11 @@ window.addEventListener('load', (event) => {
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
-  });
+  }
+  
+  );
+
+  console.log(html);
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
