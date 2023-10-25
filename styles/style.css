@@ -23,7 +23,8 @@ body {
   position: relative;
 }
 
-.card.turned {
+.card.turned, 
+.blocked{
   pointer-events: none;
 }
 
@@ -67,7 +68,7 @@ body {
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: #000;
   font-weight: bolder;
   font-size: 67px;
   text-align: center;
