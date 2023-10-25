@@ -45,7 +45,46 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards.length < 2){
+        memoryGame.pickedCards.push(card)
+        card.classList.toggle('turned');
+      }
+     
+      if(memoryGame.pickedCards.length === 2){
+        const card1 = memoryGame.pickedCards[0].getAttribute('data-card-name')
+        const card2 = memoryGame.pickedCards[1].getAttribute('data-card-name')
+       const result =  memoryGame.checkIfPair(card1, card2)
+       console.log(result);
+      }
+      // const cardOne = card;
+      // const cardTwo = card;
+      
+      // memoryGame.checkIfPair(card, card);
+
+      // if(memoryGame.checkIfFinished()){
+      //   cardOne.classList.remove('turned');
+      //   cardTwo.classList.remove('turned');
+      // };
+      
+      // if (card.classList.contains('turned')) {
+      //     card.classList.remove('turned')
+      // } else {
+      //   card.classList.add('turned');
+      // }
+      
+      
+      
+      
+      console.log(`Card clicked: ` , card);
+      console.log('cardOne' + cardOne);
+      console.log(memoryGame.checkIfFinished())
+      console.log(memoryGame.checkIfPair())
     });
   });
 });
+
+//if they are pairs, don't flip it back, disable the click, checkiffinished
+
+//if they are not pairs, flip them back (setTimeout)
+
+//empty the pickedCards array
