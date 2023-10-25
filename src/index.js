@@ -46,6 +46,41 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      if(memoryGame.pickedCards.length < 2){
+        memoryGame.pickedCards.push(card)
+        card.classList.add("turned")
+      }
+      if(memoryGame.pickedCards.length === 2){
+        const card1 = memoryGame.pickedCards [0] 
+        const card2 = memoryGame.pickedCards [1]
+
+        const picName1 = card1.getAttribute("data-card-name")
+        const picName2 = card2.getAttribute("data-card-name")
+      
+      if(memoryGame.checkIfPair(picName1, picName2)){
+        card1.classList.add("blocked")
+        card2.classList.add("blocked")
+        memoryGame.pairsGuessed++
+      }else{
+  
+        setTimeout(() => {
+          card1.classList.remove("turned")
+          card2.classList.remove("turned")
+          memoryGame.pickedCards = [];
+        }, 590)
+            }
+      }
+    const guessPairs = document.getElementById("pairs-guessed")
+    guessPairs.innerHTML = memoryGame.pairsGuessed
+
     });
   });
 });
+
+
+  // if statement cards selected  =2 
+      // memory. cardarray [0],[1]
+      // get atrributes(pic.name) of cards
+      // check cards are pairs
+      // add property block in case of cards are same
+      // turn the cards back
