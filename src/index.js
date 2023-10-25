@@ -40,12 +40,42 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
+  let pairsClickedSpan = document.getElementById('pairs-clicked');
+  let pairsGuessedSpan = document.getElementById('pairs-guessed');
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      
+      if (memoryGame.pickedCards.length < 2 && card.className.indexOf('card turned') != 1) {
+        memoryGame.pickedCards.push(card);
+        card.className = 'card turned';
+        //console.log(memoryGame.pickedCards);
+        
+       if (memoryGame.pickedCards.length === 2) {
+        let card1 = memoryGame.pickedCards[0];
+        let card2 = memoryGame.pickedCards[1];
+        let card1Name = card1.dataset.cardName;
+        let card2Name = card2.dataset.cardName;
+        
+        //console.log(`${memoryGame.pairsClicked++}`) this also increase counter lol
+
+        //console.log(card1 + " " + card2)
+        if (!memoryGame.checkIfPair(card1Name, card2Name)){
+          card1.className = 'card';
+          card2.className = 'card';
+          memoryGame.pickedCards = [];
+        }
+        else {
+          //console.log(memoryGame.pairsGuessed++)
+          pairsGuessedSpan.innerHTML = memoryGame.pairsGuessed;
+          memoryGame.pickedCards = [];
+        }
+        pairsClickedSpan.innerHTML = memoryGame.pairsClicked;
+
+       }
+      }
+      if (memoryGame.checkIfFinished()) console.log("GAME FINISHED");
     });
   });
 });
