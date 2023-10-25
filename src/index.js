@@ -45,7 +45,27 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.add('turned');
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+
+let flippedCards = [];
+
+function flipCard() {
+  this.classList.toggle('turned');
+
+  // add the flipped card to the array
+  flippedCards.push(this);
+
+  // check if there are more than two flipped cards
+  if (flippedCards.length > 2) {
+    // flip back the previous two cards
+    flippedCards.forEach(card => card.classList.remove('turned'));
+
+    // remove all cards from the array
+    flippedCards = [];
+  }
+}
