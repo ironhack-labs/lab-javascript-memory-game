@@ -46,6 +46,23 @@ window.addEventListener('load', (event) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      card.className = "card turned";
+      let turned = memoryGame.pickedCards;
+      if (turned.length === 2) {
+        let firstCardName = turned[0].getAttribute("data-card-name");
+        let secondCardName = turned[1].getAttribute("data-card-name");
+        if (memoryGame.checkIfPair(firstCardName, secondCardName)) {
+          console.log(memoryGame.checkIfFinished());
+            if (memoryGame.checkIfFinished()) {
+              console.log("You have won!!");
+            }
+        } else {
+          turned[0].className = "card";
+          turned[1].className = "card";
+        }
+        memoryGame.pickedCards = [];
+      }
+      memoryGame.pickedCards.push(card);
     });
   });
 });
