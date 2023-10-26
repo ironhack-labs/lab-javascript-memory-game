@@ -1,51 +1,87 @@
 const cards = [
-  { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four', img: 'fantastic-four.jpg' },
-  { name: 'flash', img: 'flash.jpg' },
-  { name: 'green arrow', img: 'green-arrow.jpg' },
-  { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' },
-  { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
-  { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' },
-  { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four', img: 'fantastic-four.jpg' },
-  { name: 'flash', img: 'flash.jpg' },
-  { name: 'green arrow', img: 'green-arrow.jpg' },
-  { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' },
-  { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
-  { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' }
+  { name: "aquaman", img: "aquaman.jpg" },
+  { name: "batman", img: "batman.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
+  { name: "aquaman", img: "aquaman.jpg" },
+  { name: "batman", img: "batman.jpg" },
+  { name: "captain america", img: "captain-america.jpg" },
+  { name: "fantastic four", img: "fantastic-four.jpg" },
+  { name: "flash", img: "flash.jpg" },
+  { name: "green arrow", img: "green-arrow.jpg" },
+  { name: "green lantern", img: "green-lantern.jpg" },
+  { name: "ironman", img: "ironman.jpg" },
+  { name: "spiderman", img: "spiderman.jpg" },
+  { name: "superman", img: "superman.jpg" },
+  { name: "the avengers", img: "the-avengers.jpg" },
+  { name: "thor", img: "thor.jpg" },
 ];
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', (event) => {
-  let html = '';
-  memoryGame.cards.forEach((pic) => {
-    html += `
+window.addEventListener("load", (event) => {});
+let html = "";
+memoryGame.cards.forEach((pic) => {
+  html += `
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
         <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
       </div>
     `;
-  });
+});
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+// Add all the divs to the HTML
+document.querySelector("#memory-board").innerHTML = html;
+let canPlay = true;
 
-  // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
+// Bind the click event of each element to a function
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("click", () => {
+    // TODO: write some code here
+    if (card.classList.contains("locked") || !canPlay) return;
+    card.classList.toggle("turned");
+
+    if (memoryGame.pickedCards.length < 2) {
+      memoryGame.pickedCards.push(card);
+    }
+
+    if (memoryGame.pickedCards.length < 2) {
+      memoryGame.pickedCards.push(card);
+    }
+
+    if (memoryGame.pickedCards.length === 2) {
+      canPlay = false;
+      const card1 = memoryGame.pickedCards[0];
+      const card2 = memoryGame.pickedCards[1];
+
+      const sameCard = memoryGame.checkIfPair(
+        card1.dataset.cardName,
+        card2.dataset.cardName
+      );
+
+      if (sameCard) {
+        card1.classList.add("locked");
+        card2.classList.add("locked");
+        canPlay = true;
+        
+      } else {
+        setTimeout(() => {
+          card1.classList.togle("turned");
+          card2.classList.togle("turned");
+          canPlay = true;
+        }, 1000);
+      }
+      memoryGame.pickedCards = [];
+    }
+
+    console.log("Card clicked", card);
   });
 });
