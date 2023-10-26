@@ -29,7 +29,7 @@ const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
   let htmlAdd = '';
-  // memoryGame.shuffleCards()
+  memoryGame.shuffleCards()
 
   memoryGame.cards.forEach((pic) => {
     htmlAdd += `
