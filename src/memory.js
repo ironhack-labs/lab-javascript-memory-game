@@ -13,25 +13,39 @@ class MemoryGame {
     }
 
     const shuffledCards = [];
-    const copyOfCards = [...this.cards]
+    
+    // SOLUTION with a copy of the cards array
+    
+    // const copyOfCards = [...this.cards]
 
-    for (let i = 0; i < this.cards.length; i++) {
-      const randomCardIndex = Math.floor(Math.random()*copyOfCards.length)
-      const randomCard= copyOfCards[randomCardIndex];
+    // for (let i = 0; i < this.cards.length; i++) {
+    //   const randomCardIndex = Math.floor(Math.random()*copyOfCards.length)
+    //   const randomCard= copyOfCards[randomCardIndex];
+    //   shuffledCards.push(randomCard);
+    //   copyOfCards.splice(randomCardIndex, 1);
+    // }  
+
+    // SOLUTION without a copy of the cards array
+    for (let i = this.cards.length-1; i >= 0; i--) {
+      const randomCardIndex = Math.floor(Math.random()*cards.length)
+      const randomCard= this.cards[randomCardIndex];
       shuffledCards.push(randomCard);
-      copyOfCards.splice(randomCardIndex, 1);
+      this.cards.splice(randomCardIndex, 1);
     }  
-    this.cards = shuffledCards;
 
+
+    return this.cards = shuffledCards;
+   
+    
 }
 
   checkIfPair(card1, card2) {
+    this.pairsClicked++;
+    
     if(card1 === card2) {
-      this.pairsClicked++;
       this.pairsGuessed++;
       return true;
     } else {
-      this.pairsClicked++;
       return false;
     }
 }
