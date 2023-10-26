@@ -12,23 +12,23 @@ class MemoryGame {
     }
 
     //SOLUTION 01
-    // for (let i = 0; i < this.cards.length; i++) {
-    //   let randomCard = Math.floor(Math.random() * this.cards.length);
+    for (let i = 0; i < this.cards.length; i++) {
+      let randomCard = Math.floor(Math.random() * this.cards.length);
 
-    //   let placeHolder = this.cards[i];
-    //   this.cards[i] = this.cards[randomCard];
-    //   this.cards[randomCard] = placeHolder;
-    // }
+      let placeHolder = this.cards[i];
+      this.cards[i] = this.cards[randomCard];
+      this.cards[randomCard] = placeHolder;
+    }
 
-    // return this.cards;
+    return this.cards;
 
     //SOLUTION WITH MAPS
-    const unschuffled = this.cards;
-    const shuffled = unschuffled
-      .map((value) => ({ oldValue: value, random: Math.random() }))
-      .sort((a, b) => a.random - b.random)
-      .map((element) => element.oldValue);
-    return shuffled;
+    // const unschuffled = this.cards;
+    // const shuffled = unschuffled
+    //   .map((value) => ({ oldValue: value, random: Math.random() }))
+    //   .sort((a, b) => a.random - b.random)
+    //   .map((element) => element.oldValue);
+    // return shuffled;
   }
 
   checkIfPair(card1, card2) {
