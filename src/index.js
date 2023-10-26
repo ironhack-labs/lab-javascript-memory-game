@@ -26,6 +26,7 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+//memoryGame.shuffleCards();
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -37,15 +38,37 @@ window.addEventListener('load', (event) => {
       </div>
     `;
   });
-
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      if (memoryGame.pickedCards.length < 2) {
+        memoryGame.pickedCards.push(card);
+        card.setAttribute('class', 'card turned');
+        if (memoryGame.pickedCards.length === 2) {
+          let arePairs = memoryGame.checkIfPair(memoryGame.pickedCards[0].getAttribute('data-card-name'), memoryGame.pickedCards[1].getAttribute('data-card-name'));
+          if (arePairs) {
+            memoryGame.pickedCards = []
+          } else {
+            card.setAttribute('class', 'card turned');
+            setTimeout(() => {
+              memoryGame.pickedCards[0].setAttribute('class', 'card');
+              memoryGame.pickedCards[1].setAttribute('class', 'card');
+              memoryGame.pickedCards = [];
+            }, 750);
+          }
+        }
+      }
+      let isFinish = memoryGame.checkIfFinished();
+      if (isFinish) {
+        console.log("You won!");
+        let memoryBoardBackground = document.getElementById('memory-board');
+        memoryBoardBackground.style.backgroundColor = 'green';
+      }
+
     });
+
   });
 });
