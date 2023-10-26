@@ -57,8 +57,16 @@ window.addEventListener('load', (event) => {
         memoryGame.checkIfPair(card1, card2);
 
         if (memoryGame.checkIfPair(card1, card2)) {
-          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed / 2;
+          document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed;
           memoryGame.pickedCards = [];
+
+          if (memoryGame.checkIfFinished()) {
+            document.querySelector('#memory-board').innerHTML = '';
+            let h1 = document.createElement('h1');
+            h1.style.color = 'pink';
+            h1.innerHTML = 'YOU WON!!!';
+            document.querySelector('#memory-board').appendChild(h1);
+          }
         } else {
           setTimeout(() => {
             const elements = document.getElementsByClassName('turned');
