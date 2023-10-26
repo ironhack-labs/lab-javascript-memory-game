@@ -50,32 +50,33 @@ window.addEventListener("load", (event) => {
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", (event) => {
       // TODO: write some code here
+      // memoryGame.shuffleCards(card);
       if (counter === 0) {
-        counter += 1;
         console.log(counter);
         card.setAttribute("class", "card turned");
         firstCard = card.getAttribute("data-card-name");
-        console.log(firstCard);
-
         console.log(`Card clicked: ${card}`);
+        counter += 1;
       } else if (counter === 1) {
         card.setAttribute("class", "card turned");
         secondCard = card.getAttribute("data-card-name");
-        counter = 0;
-        console.log(secondCard);
+
         console.log(counter);
         console.log(`Card clicked2: ${card}`);
+        counter = 0;
       }
       console.log(firstCard, secondCard);
-      console.log(!memoryGame.checkIfPair(firstCard, secondCard));
-      if (!memoryGame.checkIfPair(firstCard, secondCard)) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (memoryGame.checkIfPair(firstCard, secondCard)) {
+          document.querySelectorAll(".card.turned").forEach((turnedCard) => {
+            turnedCard.classList.add("blocked");
+          });
+        } else if (!memoryGame.checkIfPair(firstCard, secondCard)) {
           document.querySelectorAll(".card.turned").forEach((turnedCard) => {
             turnedCard.classList.remove("turned");
           });
-        }, 4000);
-      } else {
-      }
+        }
+      }, 2000);
     });
   });
 });
