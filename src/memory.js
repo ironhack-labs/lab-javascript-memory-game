@@ -11,15 +11,15 @@ class MemoryGame {
       return undefined;
     }
 
-    let shuffleArray = [];
     for (let i = 0; i < this.cards.length; i++) {
       let randomCard = Math.floor(Math.random() * this.cards.length);
 
+      let placeHolder = this.cards[i];
       this.cards[i] = this.cards[randomCard];
-      shuffleArray.push(this.cards[i]);
+      this.cards[randomCard] = placeHolder;
     }
 
-    return shuffleArray;
+    return this.cards;
   }
 
   checkIfPair(card1, card2) {

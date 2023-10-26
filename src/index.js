@@ -58,16 +58,15 @@ window.addEventListener('load', (event) => {
 
         if (memoryGame.checkIfPair(card1, card2)) {
           document.querySelector('#pairs-guessed').innerHTML = memoryGame.pairsGuessed / 2;
+          memoryGame.pickedCards = [];
         } else {
           setTimeout(() => {
             const elements = document.getElementsByClassName('turned');
-
-            for (let i = 0; i < 3; i++) {
-              elements[i].classList.remove('turned');
-            }
+            memoryGame.pickedCards[0].classList.remove('turned');
+            memoryGame.pickedCards[1].classList.remove('turned');
+            memoryGame.pickedCards = [];
           }, 1000);
         }
-        memoryGame.pickedCards = [];
       }
 
       console.log(`Card clicked: ${card}`);
