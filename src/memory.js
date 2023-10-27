@@ -1,19 +1,21 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
+    // MEMORY.js Iter 1
   }
 
   shuffleCards() {
-    // ... write your code here
-    // 🌟 BONUS
+    // 🌟 BONUS : you can came back here at any time
+    // ( the game will work even without this method! )
+
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
+    // MEMORY.js Iter 2
   }
 
   checkIfFinished() {
-    // ... write your code here
+    // MEMORY.js Iter 3
   }
 }
+ 
