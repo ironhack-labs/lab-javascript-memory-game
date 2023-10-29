@@ -1,18 +1,21 @@
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
+    // Iter 1.1
   }
 
   shuffleCards() {
-    // ... write your code here
+    // 🌟 BONUS 3: you can came back here at any time
+    // ( the game will work even without this method! )
+
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
+    // Iter 1.2
   }
 
   checkIfFinished() {
-    // ... write your code here
+    // Iter 1.3
   }
 }
+ 

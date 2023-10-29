@@ -1,51 +1,51 @@
-const cards = [
-  { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four', img: 'fantastic-four.jpg' },
-  { name: 'flash', img: 'flash.jpg' },
-  { name: 'green arrow', img: 'green-arrow.jpg' },
-  { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' },
-  { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
-  { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' },
-  { name: 'aquaman', img: 'aquaman.jpg' },
-  { name: 'batman', img: 'batman.jpg' },
-  { name: 'captain america', img: 'captain-america.jpg' },
-  { name: 'fantastic four', img: 'fantastic-four.jpg' },
-  { name: 'flash', img: 'flash.jpg' },
-  { name: 'green arrow', img: 'green-arrow.jpg' },
-  { name: 'green lantern', img: 'green-lantern.jpg' },
-  { name: 'ironman', img: 'ironman.jpg' },
-  { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
-  { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' }
-];
 
-const memoryGame = new MemoryGame(cards);
+// Create an instance of the MemoryGame class, passing the 'cardsData' array (from deck.js) as argument
+const memoryGame = new MemoryGame(cardsData);
 
+// 🌟 BONUS: 👇 Call the shuffleCards method, to shuffle the deck before displaying it
+
+
+// when the page loads, for each card in the memoryGame.cards array, create divs with card's data
 window.addEventListener('load', (event) => {
-  let html = '';
-  memoryGame.cards.forEach((pic) => {
-    html += `
-      <div class="card" data-card-name="${pic.name}">
-        <div class="back" name="${pic.img}"></div>
-        <div class="front" style="background: url(img/${pic.img}) no-repeat"></div>
+  let cardsDomElement = '';
+  memoryGame.cards.forEach((cardObj) => {
+    cardsDomElement += 
+    `
+      <div class="card" data-card-name="${cardObj.name}">
+        <div class="back" name="${cardObj.img}"></div>
+        <div class="front" style="background: url(img/${cardObj.img}) no-repeat"></div>
       </div>
-    `;
+    `
   });
 
-  // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+  // target the div element with id = memory-board
+  let board = document.querySelector('#memory-board');
+  // inject the cards element into the board
+  board.innerHTML = cardsDomElement;
 
-  // Bind the click event of each element to a function
+  // Bind the click event of each (<div class="card" ...>) element to a function
+  // every time a card is clicked your code will be executed 
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+  
+      console.log(`Card clicked: `, card);
+
+      // 👇👇👇 TODO: write your code here 👇👇👇
+
+      // Iter 2.1
+
+
+      // Iter 2.2
+
+      
+      // Iter 2.3 
+
+        
+      // 🌟 BONUS: replace alert with message
+
+      // 🌟 BONUS: display score
+      
+
     });
   });
 });
