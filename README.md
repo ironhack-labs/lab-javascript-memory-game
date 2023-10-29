@@ -7,11 +7,13 @@
 
 ![Memory Game Board](https://i.imgur.com/H6GLZGQ.jpg)
 
-<details>
-  <summary>
-   <h2>Learning Goals</h2>
-  </summary>
-  Upon completion of this exercise, you will be able to:
+
+
+ ## Learning Goals
+
+  <details>
+
+####  Upon completion of this exercise, you will be able to:
 
 - Select HTML elements using JavaScript DOM methods and properties.
 - Access and modify content of HTML elements using JavaScript DOM properties.
@@ -62,30 +64,26 @@ git push origin master
 
 ## Test Your Code
 
-This LAB is equipped with unit tests to provide automated feedback on your lab progress. In case you want to check the tests, they are in the `tests/memory.spec.js` file.
+This LAB is equipped with unit tests to provide automated feedback on the code you'll write in the `src/memory.js` file. In case you want to check the tests, they are in the `tests/memory.spec.js` file.
 
 
-
-To run the tests and your JavaScript code, open the `SpecRunner.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
-
+To run the tests, open the `SpecRunner.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
 
 
 To see the outputs of the `console.log` in your JavaScript code, open the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console).
 
 <br>
 
-## Instructions
-
-
-
-### Iteration 0: The game rules
+## The game rules
 
 Do you remember that game called Memory that you used to play with the actual paper cards? To win, you needed to memorize the position of the paired card. Well, the logic of the game we will be building is the same.
 
-- The game consists of an even number of cards (precisely, **24**) with a specific image on one side and a generic blue background on the other side.
+**The deck:**
+
+- The deck consists of an even number of cards with a specific image on one side and a generic blue background on the other side.
 - Each image appears on two cards.
 
-**The game rules:**
+**The rules:**
 
 - When the game starts, all cards are turned face down.
 - The player then flips over two cards, selecting them by clicking on them.
@@ -93,174 +91,233 @@ Do you remember that game called Memory that you used to play with the actual pa
 
 The goal of the game is to get all the cards flipped face-up in the least number of tries. That means that a lower number of attempts scores better.
 
-
-
-
+_Side note:_ We will make a ***single-player*** version of the game, which will simplify some of the logic.
 
 <br>
 
-### Iteration 1: Initial set up
+## Instructions
+
+
+### Iteration 0: Initial set up
 
 First, you will do some routine work: we need to make sure that all files we need are connected to the file that is rendering cards in the browser.
 
 The file that is rendering the cards is actually `index.html`, so we have to **make sure that the _styles_ and _JS files_ are loading** when we open the game in the browser:
 
-- **styles**: link the provided CSS file `styles/style.css` in the `<head>` of the `index.html` page,
-- **the logic**: take a look at the `src/index.js` and `src/memory.js` files. You already have one file for the logic and one file for the HTML/CSS interactions (DOM manipulation). Link these two file at the bottom of the `index.html` page.
+- **styles**: link the provided CSS file `styles/style.css` in the `<head>` of the `index.html` page.
+- **logic and functionality**: you already have one file for the logic, `src/memory.js` and one file for the HTML/CSS interactions (DOM manipulation), `src/index.js`. Link these two file at the bottom of the `<body>` of the `index.html` page.
+- **data**: `src/deck.js` contains an array of 'card' objects will be using to build the cards of this game. The file's already been linked.
 
-After you linking the files in `index.html` page, you should be able to see the board, the cards, and the score.
+```html
+    <!-- load first the file with the cards array so we can use cardsData in index.js-->
+    <script src="./src/deck.js"></script>
+```
 
-<br>
-
-
-
-### Iteration 2: Plan your game
-
-In this iteration, you will work on the game logic. You can see this part, like defining the methods that will take care of the game logic. No visible result will be shown just yet, and we will make sure everything works properly just by printing everything in the console.
-
-
-
-You will be working in the `src/memory.js` file.
-
-
-
-The game logic for this game is pretty simple:
-
-1. we need a `MemoryGame` class,
-2. we need a _method_ to _shuffle_ cards,
-3. we need a _method_ to _compare cards_, and
-4. we need a _method_ to check if the game is finished.
-
-_Side note:_ We will make a single-player version of the game, which will simplify some of the logic.
-
-Let's do this step by step.
+After linking all the files, open the `index.html` with [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer). If you've linked them in the correct order, you should be able to see the board, the cards, and the score.
 
 <br>
 
-#### Iteration 2.1: The `MemoryGame` class
+### Iteration 1: The game logic
 
-If you open `src/memory.js` file, you will see that it is preset for you:
+You will be working in the `src/memory.js` file, and you will see that it is preset for you.
 
-```js
+In this part you'll define the methods that will take care of the game logic. No visible result will be shown just yet.
+
+As you'll be using OOP, let's briefly list what you'll need in the `MemoryGame` class:
+
+1. _Properties_ to store: the deck used to playing with, the cards' pair picked in a round, the amount of pairs has already been clicked on, and the pairs guessed.
+2. A _method_ to _shuffle_ the deck before start playing ( 🌟BONUS ).
+3. A _method_ to _compare cards_, to see if they match.
+4. And a _method_ to check if the game is finished, and the player has won.
+
+But, let's do this step by step 😉.
+
+#### Iteration 1.1: Initialize propertiest
+
+A `MemoryGame` class has already been created. Its constructor receive an array of cards as a parameter, and set this array to a `this.cards` property.
+
+```javascript
 class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
-  }
-  shuffleCards() {
-    // ...
-  }
-  checkIfPair(card1, card2) {
-    // ...
-  }
-  checkIfFinished() {
-    // ...
-  }
-}
+
 ```
+Go ahead and add the other properties needed to the constructor.
 
-1. The `MemoryGame` class: we created a `MemoryGame` class and, as we can see in its constructor, it will receive an array of cards as a parameter and set this array to a `this.cards` property.
-2. We also need a `this.pickedCards` array, where we will be storing the cards the user has clicked so we can compare them.
-3. Finally, a `this.pairsClicked` and `this.pairsGuessed` properties where will be adding every time a user choose and guess a pair. Go ahead and add these to the constructor.
-
-<br>
-
-#### Iteration 2.2: The class methods
-
-1. Create logic for the method `shuffleCards()` to shuffle the cards - every time you create a new game, the order of the cards should change.
-
-   **Hint:** It would be a good idea to implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). If you struggle with this method, you can skip it for the moment and go back to it later.
-
-2. When a user picks 2 cards, we will need to check if they are the same. Let's create logic for the method `checkIfPair()`, which will receive two parameters, the names of both cards selected by the user (example: `'ironman'` and `'batman'`). The method will add 1 to our `pairsClicked` property, and if the cards are the same also add 1 to `pairsGuessed`. It should return `true` or `false` depending on the result of comparing both cards.
-
-   So, to summarize, we will have to update _pairsClicked_ on every two open cards by a user - it doesn't matter if the cards are the same. If two cards that we are comparing are the same, then _pairsGuessed_ gets updated with +1.
-
-3. Finally, we need to make sure our game ends, and for that, we can add some logic to the `checkIfFinished()` method. Here we need to check if our property `pairsGuessed` has reached _the numbers of pairs the game has_.
-
-<br>
+- `this.pickedCards`: it's an array where you will be storing the cards the player has clicked . 
+- `this.pairsClicked`: where the number of pairs the user choose will be added (equal to say, the number of turn played ). 
+- `this.pairsGuessed`: where the number of pairs guessed will be added. 
 
 
-### Iteration 3: DOM & Interactions
+#### Iteration 1.2: Compare cards 
 
-Once you have completed the implementation of the memory game logic or functionality, you will move forward to `src/index.js` and work on the DOM interactions. 
+When the player picks 2 cards, we will have to update _pairsClicked_ ( it doesn't matter if the cards are the same ), we will need to check if they are the same, and update _pairsGuessed_ if they are.
 
-What do we consider as interaction is what happens when the user clicks on the card:
+So, to summarize, the `checkIfPair()` method should:
 
-- how do we get the movement/flipping sides effect,
+- receive two parameters, `card1` and `card2`.
+- increase `pairsClicked` by 1.
+- if the cards are the same add 1 to `pairsGuessed`.
+- return `true` or `false` depending on the result of comparing cards.
 
-- how we keep the cards showing images if they are found to be the same and
-  -how do we make cards flip back to the blue background if the cards are not the same? All the time, keep in mind, we need to work only with two cards at the same time.
+#### Iteration 1.3: Win check
+
+Finally, we need to make sure our game ends. The the player to win has to guess all the pairs. 
+
+The `checkIfFinished()` method should: 
+
+- check if the property `pairsGuessed` has reached _the numbers of pairs the cards' deck has_.
+- return `true` or `false` depending on the result.
+
+_Hint_ 💡: Make it generic! This means valid despite the number of cards a deck might have.
 
 <br>
 
-Think about the interactions your user and the game will have: basically, the user will click on elements of the page (cards) and receive some result - whether they guessed the pair or not.
 
-- The first thing that is done for us - each card's information is dynamically filled in the tiles, and the board is pre-filled with cards for us. As we want this behavior to be triggered as soon as the page loads, we need to wrap it under a `load` event. This is also already done for us.
+### Iteration 2: DOM & Interactions
+
+Once you have completed the iterations ( without BONUS 😉 ) of the memory game logic, you can move forward to `src/index.js` and work on the DOM interactions. 
+
+_We consider an interaction to be the relationship between a user's action and how our page reacts._
+
+#### Iteration 2.0: Code given
+
+Few things has already been done for us:
+
+1. A new instance of the `MemoryGame` class, passing the `cardsData` array (stored `deck.js`), as argument. Therefore you can access properties and invoke methods of that class.
 
 ```javascript
-// src/index.js
+const memoryGame = new MemoryGame(cardsData);
+```
+
+2. Each card's information is dynamically filled in the tiles, and the board is pre-filled with cards. As we want this behavior to be triggered as soon as the page loads, we need to wrap it under a `load` event.
+
+```javascript
 
 window.addEventListener('load', (event) => {
-  // some code goes here
+    ...
 });
 ```
 
-- The other important interaction is the click event listener. On click on every single card, we can get some information about that specific card. This code snippet, which is also already provided for us, serves for that.
+3. For each element with class 'card' an click event listener is added.
+For now, if you click on every single card, you can get some information about that specific card. Check it out opening the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console) in your browser.
 
 ```javascript
-// src/index.js
 
-// Bind the click event of each element to a function
 document.querySelectorAll('.card').forEach((card) => {
   card.addEventListener('click', () => {
-    // TODO: write some code here
+
     console.log('Card clicked: ', card);
+
   });
 });
 ```
 
-To flip a card, you can have multiple approaches. We will give you two possible ways (but you can find even more than that):
+Think about the interactions the player and the game will have... The player clicks on elements of the page (cards) and  receives some results - whether they guessed the pair or not.
 
-- Option 1: on click, add the class `turned` next to the class `card` to the `div` that represents each card - like in the following example:
+- how do we get the movement/flipping sides effect?
+
+- how we keep the cards showing images if they are found to be the same? 
+
+- how do we make cards flip back to the blue background if the cards are not the same? 
+
+- All working only with two cards at the same time.
+
+_Hint_ 💡: The array of picked cards can't ever hold more than two cards.
+
+Let's make things happen combining the memoryGame logic and DOM manipulation methods!
+
+#### Iteration 2.1: No more then two cards
+
+You'll always working with no more then two cards at the time.
+So, as long as there are less then 2 cards picked, the clicked card will flip.
+
+As long as there are less then 2 cards picked you should:
+
+- store the clicked card into the pickedCars array.
+
+- turn the clicked card 
+
+_Hint_💡: How to get a card flip... take a look at `styles/style.css`.
+
+```css
+.card {
+  display: inline-block;
+  perspective: 300px;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.turned {
+  /* disable all events binded 
+  https://www.w3schools.com/cssref/css3_pr_pointer-events.php */
+  pointer-events: none;
+}
+
+.card.turned .front {
+  /* give 3d rotation effect 
+  https://www.w3schools.com/cssref/css3_pr_transform-origin.php */
+  transform: rotateY(0deg);
+}
+.card.turned .back {
+  /* give 3d rotation effect */
+  transform: rotateY(180deg);
+}
+```
+
+To make the card flip you have to add the class `turned` next to the class `card` of the `div` that represents that card. In this way the rotation back-front will be activated, and the click event will be disabled.
 
 ```html
-<!-- Only display the back that is blue -->
+<!-- Before clicking, only display the back -->
 <div class="card" data-card-name="ironman">
-  <div class="back" name="ironman.jpg"></div>
-  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div>
 
 <!-- After flipping -->
 <div class="card turned" data-card-name="ironman">
-  <div class="back" name="ironman.jpg"></div>
-  <div class="front" style="background: url(img/ironman.jpg) no-repeat"></div>
-</div>
 ```
 
-- Option 2: another alternative is to toggle the classes _back_ and _front_ when the user clicks on a card. For this functionality, the method `element.classList.toggle()` can be very helpful. This method receives a string as the first argument (the class to toggle). [It can also receive a second _optional_ argument with a boolean expression](https://stackoverflow.com/questions/23663151/whats-the-point-of-the-second-argument-in-element-classlist-toggle/23663302#23663302) (in that case, the class is added when the expression is true, and removed when the expression is false):
+Here some options you can use to achieve this result:
 
-```javascript
-/* one argument */
-el.classList.toggle('foobar');
-// if it doesn't have the class 'foobar' --> add the class 'foobar'
-// if it already has the class 'foobar' --> remove the class 'foobar'
+[add, remove, toggle](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
 
-/* two arguments */
-el.classList.toggle('abc', someBool);
-// if someBool evaluates to true -> add the class 'abc'
-// if someBool evaluates to false -> remove the class 'abc'
-```
+#### Iteration 2.2: Two cards
 
-Now when you have cards flipping from back to front and vice versa, you have to make sure you call `.checkIfPair(card1, card2)` method. If the two cards are the same, they should get class _blocked_, which is going to keep them flipped so we can see images.
+If 2 cards have been picked, they will stay 'face up'. Also you want to check if the player got a pair. And to do so, the two picked cards should have the same name! (Example: `ironman`, and `ironman`)
 
-_Hint 1_: The array of picked cards can't ever hold more than two cards.
-_Hint 2_: Make sure you call `checkIfFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, or be more creative and add some text on the canvas - displaying _You won!!!_
+If 2 cards have been picked you should:
+  
+- find where the information we need to compare the cards is stored. (check the console! console.log(card)).
+
+- extract for both cards the info.
+
+- invoke the `.checkIfPair(card1, card2)` passing the cards' info.
+
+  1. It's a pair:
+
+     - class `blocked` should be added to both cards, to keep them flipped (face-up).
+
+     - the picked card array should be cleaned (ready for another turn)
+
+  2. It's not a pair:
+
+      - set a timeout that after 1 second will flip both cards back (remove class `turned`) and clean the picked card array (ready for another turn)
+
+#### Iteration 2.3: Check if finish
+
+
+At the end of every round, make sure you call `checkIfFinished` method to check if the condition for the end of the game is true, and if so, you can just alert the end, for now... or be more creative and add some text on the canvas - displaying _You won!!!_
 
 <br>
 
-## Extra Resources
+## 🌟 Bonus
 
-- [Fisher-Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
+1. Be more creative 🏆! Instead of using an alert, display a nice message of your choice, replacing the completed board.
+
+2. Display the number of pairs clicked and pairs guessed in the browser.
+
+3. Create logic for the method `shuffleCards()` to shuffle the cards - every time you create a new game, the order of the cards should change,
+remember to invoke the method in index.js.
+
+   **Hint:** Do your own research🧐 or you could also implement something like a [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). 
 
 <br>
 
