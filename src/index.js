@@ -22,14 +22,18 @@ const cards = [
   { name: 'spiderman', img: 'spiderman.jpg' },
   { name: 'superman', img: 'superman.jpg' },
   { name: 'the avengers', img: 'the-avengers.jpg' },
-  { name: 'thor', img: 'thor.jpg' }
+  { name: 'thor', img: 'thor.jpg' },
 ];
 
 const memoryGame = new MemoryGame(cards);
 
-window.addEventListener('load', (event) => {
+const pairsClicked = document.getElementById('pairs-clicked');
+const pairsGuessed = document.getElementById('pairs-guessed');
+const pageTitle = document.querySelector('h1');
+
+window.addEventListener('load', event => {
   let html = '';
-  memoryGame.cards.forEach((pic) => {
+  memoryGame.cards.forEach(pic => {
     html += `
       <div class="card" data-card-name="${pic.name}">
         <div class="back" name="${pic.img}"></div>
@@ -42,10 +46,37 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+  document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+      card.classList.toggle('turned');
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2) {
+        firstCard = memoryGame.pickedCards[0].getAttribute('data-card-name');
+        secondCard = memoryGame.pickedCards[1].getAttribute('data-card-name');
+
+        if (memoryGame.checkIfPair(firstCard, secondCard)) {
+          memoryGame.pickedCards.forEach(pickedCard => {
+            pickedCard.classList.toggle('guessed');
+          });
+
+          memoryGame.pickedCards.length = 0;
+          pairsClicked.innerHTML = memoryGame.pairsClicked;
+          pairsGuessed.innerHTML = memoryGame.pairsGuessed;
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards.forEach(pickedCard => {
+              pickedCard.classList.toggle('turned');
+            });
+            memoryGame.pickedCards.length = 0;
+            pairsClicked.innerHTML = memoryGame.pairsClicked;
+          }, 1000);
+        }
+
+        if (memoryGame.checkIfFinished()) {
+          pageTitle.innerText = `Congratulations, you found all ${memoryGame.pairsGuessed} pairs in ${memoryGame.pairsClicked} guesses!`;
+        }
+      }
     });
   });
 });
