@@ -45,7 +45,41 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle("turned");
+      // if(memoryGame.pickedCards.length <3){
+      //   memoryGame.pickedCards.push(card);
+      // } 
+      
+      // if (memoryGame.checkIfPairs(memoryGame.pickedCards[0],memoryGame.pickedCards[1])){
+      //     let temp = card.querySelectorAll(".turned");
+      //     temp.classList.toggle("blocked");
+      // } 
+
+      memoryGame.pickedCards.push(card);
+      if(memoryGame.pickedCards.length === 2){
+        let card1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
+        let card2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
+        let samecards = document.querySelectorAll(".turned");
+        if (memoryGame.checkIfPair(card1, card2)){
+          
+          samecards.forEach(card => card.classList.add("blocked"));
+        } else {
+       
+          samecards.forEach(card => card.classList.remove("turned"));
+        }
+        
+      }  
+    
+
+   
+   
+
+      memoryGame.checkIfFinished();
+
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+
+console.log("JS connected");
