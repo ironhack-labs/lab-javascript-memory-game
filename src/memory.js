@@ -5,6 +5,8 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
+    this.shuffleCards();
+
   }
 
   shuffleCards() {
@@ -35,10 +37,11 @@ class MemoryGame {
 
   checkIfFinished() {
     // ... write your code here
-    if (this.pairsGuessed < this.cards.length/2){
-      return false;
+    // if (this.pairsGuessed < this.cards.length/2){
+    if (this.pairsGuessed === 1){
+      return true;
     } 
 
-    return true;
+    return false;
   }
 }
