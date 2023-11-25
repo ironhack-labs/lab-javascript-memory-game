@@ -47,7 +47,6 @@ window.addEventListener('load', (event) => {
       // TODO: write some code here
       card.classList.toggle("turned");
       memoryGame.pickedCards.push(card);
-      // let samecards = document.querySelectorAll(".turned");
 
       if(memoryGame.pickedCards.length === 2){
         let card1 = memoryGame.pickedCards[0]
@@ -58,14 +57,12 @@ window.addEventListener('load', (event) => {
         if (memoryGame.checkIfPair(card1Name, card2Name)){
           card1.classList.add("blocked");
           card2.classList.add("blocked");
-          // samecards.forEach(card => card.classList.add("blocked"));
 
         } else {
           setTimeout(() => {
             card1.classList.toggle('turned');
             card2.classList.toggle('turned');
           }, 1000);
-          // samecards.forEach(card => card.classList.toggle("turned"));
          
         }
         memoryGame.pickedCards = [];
@@ -74,9 +71,6 @@ window.addEventListener('load', (event) => {
         
       }     
       if (memoryGame.checkIfFinished()){
-        // let scoreTitle = document.getElementById("ScoreTitle");
-       //  scoreTitle.innerHTML = "YOU WON!!!"
-        // console.log("You won!") ;
 
         document.querySelector("#memory-board").innerHTML = "";
         let h1 = document.createElement("h1");
@@ -87,11 +81,6 @@ window.addEventListener('load', (event) => {
 
         document.querySelector("#memory-board").appendChild(h1);
       }
-
-   
-   
-
-      //memoryGame.checkIfFinished();
 
       console.log(`Card clicked: ${card}`);
     });
