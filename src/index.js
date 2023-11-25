@@ -45,7 +45,47 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle("turned");
+      memoryGame.pickedCards.push(card);
+
+      if(memoryGame.pickedCards.length === 2){
+        let card1 = memoryGame.pickedCards[0]
+        let card1Name= card1.getAttribute("data-card-name");
+        let card2 = memoryGame.pickedCards[1]
+        let card2Name = card2.getAttribute("data-card-name");
+        
+        if (memoryGame.checkIfPair(card1Name, card2Name)){
+          card1.classList.add("blocked");
+          card2.classList.add("blocked");
+
+        } else {
+          setTimeout(() => {
+            card1.classList.toggle('turned');
+            card2.classList.toggle('turned');
+          }, 1000);
+         
+        }
+        memoryGame.pickedCards = [];
+        document.getElementById('pairs-clicked').innerHTML = memoryGame.pairsClicked;
+        document.getElementById('pairs-guessed').innerHTML = memoryGame.pairsGuessed;
+        
+      }     
+      if (memoryGame.checkIfFinished()){
+
+        document.querySelector("#memory-board").innerHTML = "";
+        let h1 = document.createElement("h1");
+
+        h1.style.color = "pink";
+        h1.innerText = "YOU WON!!!";
+        h1.style.marginTop = "250px";
+
+        document.querySelector("#memory-board").appendChild(h1);
+      }
+
       console.log(`Card clicked: ${card}`);
     });
   });
 });
+
+
+console.log("JS connected");
