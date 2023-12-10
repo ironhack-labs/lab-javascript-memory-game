@@ -20,9 +20,6 @@ const cards = [
   { name: "green lantern", img: "green-lantern.jpg" },
   { name: "ironman", img: "ironman.jpg" },
   { name: "spiderman", img: "spiderman.jpg" },
-  { name: "superman", img: "superman.jpg" },
-  { name: "the avengers", img: "the-avengers.jpg" },
-  { name: "thor", img: "thor.jpg" },
 ];
 
 const memoryGame = new MemoryGame(cards);
@@ -42,14 +39,12 @@ window.addEventListener("load", (event) => {
     `;
   });
 
-  // Add all the divs to the HTML
   document.querySelector("#memory-board").innerHTML = html;
 
   function toggle(element, classes) {
     classes.forEach((className) => element.classList.toggle(className));
   }
 
-  // Bind the click event of each element to a function
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
       const clicked = document.getElementById("pairs_clicked");
@@ -63,13 +58,12 @@ window.addEventListener("load", (event) => {
       pairsClicked.innerHTML++;
 
       memoryGame.pickedCards.push(card);
-      // console.log(memoryGame.pickedCards);
+
       if (memoryGame.pickedCards.length === 2) {
         const firstInPair = memoryGame.pickedCards[0];
         const secondInPair = memoryGame.pickedCards[1];
         const cardName1 = firstInPair.getAttribute("data-card-name");
         const cardName2 = secondInPair.getAttribute("data-card-name");
-        // console.log(cardName1, cardName2);
 
         if (memoryGame.checkIfPair(cardName1, cardName2)) {
           firstInPair.children[1].classList.add("blocked");
