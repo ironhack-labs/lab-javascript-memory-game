@@ -57,13 +57,16 @@ body {
 }
 
 #score {
+  /* will do some few changes here */
   background-color: rgba(215, 44, 44, 0.8);
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
   width: 200px;
   padding: 20px;
-  margin-left: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 44px;
 }
 
 h1 {
@@ -87,4 +90,23 @@ p {
   font-weight: bolder;
   font-size: 20px;
   text-align: center;
+}
+
+#you-won {
+  position: relative;
+  background-color: #63d363;
+  height: 0px;
+  width: 100%;
+  margin-bottom: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: xx-large;
+  overflow: hidden;
+  transition: all 1s;
+}
+
+#you-won.game-over {
+  height: 100px;
 }
