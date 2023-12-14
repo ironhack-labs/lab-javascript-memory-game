@@ -54,14 +54,14 @@ window.addEventListener('load', (event) => {
         card.classList.toggle("turned")
       }
       if(memoryGame.pickedCards.length===2){
-      document.getElementById('pairs-clicked').innerText= memoryGame.pairsClicked+=1
+      document.getElementById('pairs-clicked').innerText= memoryGame.pairsClicked
       const card1= memoryGame.pickedCards[0]
       const card2= memoryGame.pickedCards[1]
       const card1dataName= card1.getAttribute("data-card-name")
       const card2dataName= card2.getAttribute("data-card-name")
       memoryGame.checkIfPair(card1dataName,card2dataName)
       if(card1dataName===card2dataName){
-        document.getElementById('pairs-guessed').innerText=memoryGame.pairsGuessed+=1
+        document.getElementById('pairs-guessed').innerText=memoryGame.pairsGuessed
         card1.classList.toggle("blocked")
         card2.classList.toggle("blocked")
         
@@ -72,7 +72,9 @@ window.addEventListener('load', (event) => {
           card2.classList.toggle("turned")
         },1000)
       }
+      memoryGame.pickedCards=[]
     }
+    
       memoryGame.checkIfFinished()
 
       console.log(`Card clicked: ${card}`);
