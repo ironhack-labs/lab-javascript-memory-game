@@ -40,12 +40,25 @@ window.addEventListener('load', (event) => {
 
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
-
+   let timesClicked = 0
+   let flippedCards = []
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+    card.classList.add("turned",)
+    timesClicked ++ 
+    
+    let arr = card.classList += []
+    console.log(arr)
+    if (timesClicked === 2){
+      if (flippedCards[0].dataset.cardName !== flippedCards[1].dataset.cardName){
+        setTimeout(() => {
+          memoryGame.pickedCards.forEach((element) => {
+            element.classList.remove("turned",);
+          });
+        }, 750);
+      }
+    }
     });
   });
 });
