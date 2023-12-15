@@ -32,5 +32,15 @@ class MemoryGame {
 
   checkIfFinished() {
     // ... write your code here
+    if(this.pairsGuessed===0){
+      return false
+    }
+    let totalPairs = this.cards.length/2
+   if(this.pairsGuessed<totalPairs){
+    return false
+   }
+   else{
+    return true
+   }
   }
 }
