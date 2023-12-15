@@ -1,5 +1,3 @@
-
-
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -61,10 +59,12 @@ window.addEventListener('load', (event) => {
         memoryGame.pairsGuessed++
         document.querySelector(`#pairs-guessed`).innerHTML =
          memoryGame.pairsGuessed/2
+         document.querySelector(`#pairs-clicked`).innerHTML = memoryGame.pairsClicked/4
       }else{
         memoryGame.pickedCards.forEach((card)=>{
           card.setAttribute(`class`,`card`)
           memoryGame.pickedCards = []
+          document.querySelector(`#pairs-clicked`).innerHTML = memoryGame.pairsClicked/4
         })
       }
     }
@@ -76,11 +76,14 @@ console.log(`You won!`)}
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       if(memoryGame.pickedCards.length<2){
-        memoryGame.pairsClicked++
+       
         memoryGame.pickedCards.push(card)
+
         card.setAttribute(`class`,`card turned`)
-        document.querySelector(`#pairs-clicked`).innerHTML = memoryGame.pairsClicked
+        memoryGame.pairsClicked++
+       
       }
+
     setTimeout(checkMatch,2000)
     setTimeout(gameFinished,1000)
     });
