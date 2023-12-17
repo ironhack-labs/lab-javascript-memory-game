@@ -9,7 +9,16 @@ class MemoryGame {
 
   shuffleCards() {
     // ... write your code here
-    return this.cards
+    if (this.cards === undefined) {
+			return undefined
+		}
+
+		for (let i = this.cards.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1))
+			const temp = this.cards[i]
+			this.cards[i] = this.cards[j]
+			this.cards[j] = temp
+    }
   }
 
   checkIfPair(card1, card2) {
@@ -26,7 +35,9 @@ class MemoryGame {
 
   checkIfFinished() {
     // ... write your code here
-    return false
+    const cardsDeck = this.cards.length /2
+
+    return this.pairsGuessed === cardsDeck
   }
 }
 
