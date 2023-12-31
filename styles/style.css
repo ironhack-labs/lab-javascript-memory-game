@@ -4,6 +4,7 @@ body {
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  
 }
 
 #memory-board {
@@ -75,7 +76,7 @@ h1 {
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px #969696;
-  margin: 0 auto;
+  margin: auto;
 }
 
 h2 {
