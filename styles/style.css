@@ -64,14 +64,14 @@ body {
   border-radius: 8px;
   font-size: 30px;
   font-family: Arial;
-  width: 200px;
+  width: 300px;
   padding: 20px;
   margin-left: 75%;
 }
 
 h1 {
   color: rgba(215, 40, 40, 0.9);
-  font-weight: bolder;
+  font-weight: 800;
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px #969696;
@@ -81,15 +81,15 @@ h1 {
 h2 {
   margin-top: 0;
   color: #456783;
-  font-weight: bolder;
+  font-weight: 800;
   font-size: 35px;
   text-align: center;
   text-shadow: 1px red;
 }
 
 p {
-  font-weight: bolder;
-  font-size: 20px;
+  font-weight: 800;
+  font-size: 30px;
   text-align: center;
 }
 
