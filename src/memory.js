@@ -60,7 +60,7 @@ class MemoryGame {
   /***************************** */
 
   checkIfFinished() {
-    if (this.pairsGuessed === 1){//si hemos averiguado los 12 pares el juego se acaba
+    if (this.pairsGuessed === 12){//si hemos averiguado los 12 pares el juego se acaba
       console.log("true")
       return true
     }else  {

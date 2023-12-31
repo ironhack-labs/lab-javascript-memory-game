@@ -62,7 +62,7 @@ body {
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);
-  border-radius: 8px;
+  border-radius: 20px;
   font-size: 30px;
   font-family: Arial;
   width: 300px;
@@ -71,12 +71,12 @@ body {
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
+  color: rgba(39, 140, 155, 0.9);
   font-weight: 800;
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px #969696;
-  margin: auto;
+  margin:0px auto;
 }
 
 h2 {
@@ -121,3 +121,4 @@ p {
   background-color: #456783;
 
 }
+
