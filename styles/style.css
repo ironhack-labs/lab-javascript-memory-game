@@ -4,6 +4,7 @@ body {
   background: url('../img/background.jpg') no-repeat;
   background-size: cover;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  
 }
 
 #memory-board {
@@ -22,7 +23,10 @@ body {
   transform-style: preserve-3d;
   position: relative;
 }
-
+.card.guessed{
+  border-radius: rgb(245, 239, 239)
+  ;
+}
 .card.turned {
   pointer-events: none;
 }
@@ -58,33 +62,63 @@ body {
 
 #score {
   background-color: rgba(215, 44, 44, 0.8);
-  border-radius: 8px;
+  border-radius: 20px;
   font-size: 30px;
   font-family: Arial;
-  width: 200px;
+  width: 300px;
   padding: 20px;
   margin-left: 75%;
 }
 
 h1 {
-  color: rgba(215, 40, 40, 0.9);
-  font-weight: bolder;
+  color: rgba(39, 140, 155, 0.9);
+  font-weight: 800;
   font-size: 67px;
   text-align: center;
   text-shadow: 0px 0px 20px #969696;
+  margin:0px auto;
 }
 
 h2 {
   margin-top: 0;
   color: #456783;
-  font-weight: bolder;
+  font-weight: 800;
   font-size: 35px;
   text-align: center;
   text-shadow: 1px red;
 }
 
 p {
-  font-weight: bolder;
-  font-size: 20px;
+  font-weight: 800;
+  font-size: 30px;
   text-align: center;
 }
+
+.newGame{
+  border: 3px solid rgb(234, 222, 222);
+  width: 900px;
+  height: 200px;
+  border-radius: 5px;
+  background-color:rgb(245, 239, 239);
+  text-align: center;
+  margin: 0px auto;
+  margin-bottom: 60px;
+  
+  display: none;
+
+}
+
+#newGame p{
+  font-size: 30px;
+}
+#reload{
+  width: 200px;
+  height: 50px;
+  font-size: 30px;
+  font-weight: 600;
+  border: 1px transparent;
+  border-radius: 5px;
+  background-color: #456783;
+
+}
+
