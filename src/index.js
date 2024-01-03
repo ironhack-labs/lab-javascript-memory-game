@@ -63,6 +63,7 @@ window.addEventListener('load', (event) => {
           }, 1000)
         }
 
+        
 
       
         //llamar checkiffinished
