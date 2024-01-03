@@ -10,6 +10,13 @@ class MemoryGame {
     if (this.cards === undefined) {
       return undefined
     }
+
+    for (let i = 0; i < this.cards.length; i++) {
+      const card = this.cards[i]
+      let random = Math.floor(Math.random() * this.cards.length)
+      this.cards[i] = this.cards[random]
+      this.cards[random] = card
+    }
   }
 
   checkIfPair(card1, card2) {

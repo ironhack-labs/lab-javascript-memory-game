@@ -26,6 +26,9 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+//random cards
+memoryGame.shuffleCards(cards)
+
 
 window.addEventListener('load', (event) => {
   let html = '';
@@ -44,7 +47,30 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card)
+
+      if (memoryGame.pickedCards.length === 2) {
+        const card1 = memoryGame.pickedCards
+        const card2 = memoryGame.pickedCards
+
+      //llamar checkifpair
+        const pair = memoryGame.checkIfPair(card1, card2)
+        if (!pair) {
+          setTimeout (() => {
+            card1.classList.toggle('turned')
+            card2.classList.toggle('turned')
+          }, 1000)
+        }
+
+
+      
+        //llamar checkiffinished
+        if (memoryGame.checkIfFinished()) {
+          alert('Congrats! you won the game')
+        }
+
+    }
       console.log(`Card clicked: ${card}`);
     });
   });
