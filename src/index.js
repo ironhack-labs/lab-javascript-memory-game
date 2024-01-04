@@ -47,31 +47,28 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      card.classList.toggle('turned')
-      memoryGame.pickedCards.push(card)
 
       if (memoryGame.pickedCards.length === 2) {
-        const card1 = memoryGame.pickedCards
-        const card2 = memoryGame.pickedCards
+        memoryGame.pickedCards.push(card)
+        card.classList.toggle('turned')
+      }
+      const card1 = memoryGame.pickedCards[0]
+      const card2 = memoryGame.pickedCards[1]
 
-      //llamar checkifpair
-        const pair = memoryGame.checkIfPair(card1, card2)
-        if (!pair) {
-          setTimeout (() => {
-            card1.classList.toggle('turned')
-            card2.classList.toggle('turned')
-          }, 1000)
-        }
 
-        
-
+      memoryGame.checkIfPair(card1, card2)
       
-        //llamar checkiffinished
-        if (memoryGame.checkIfFinished()) {
-          alert('Congrats! you won the game')
-        }
+      if (card1 !== card2) {
+        setTimeout(() => {
+          card1.classList.toggle('turned')
+          card2.classList.toggle('turned')
+        }, 1000)
+      }
 
-    }
+
+      memoryGame.checkIfFinished()
+
+
       console.log(`Card clicked: ${card}`);
     });
   });
