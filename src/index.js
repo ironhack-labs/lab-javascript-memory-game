@@ -48,28 +48,32 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
 
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card)
+
       if (memoryGame.pickedCards.length === 2) {
-        memoryGame.pickedCards.push(card)
-        card.classList.toggle('turned')
+        const card1 = memoryGame.pickedCards[0]
+        const card2 = memoryGame.pickedCards[1]
+
+        const card1Name = card1.getAttribute('data-card-name')
+        const card2Name = card2.getAttribute('data-card-name')
+
+        const pair = memoryGame.checkIfPair(card1Name, card2Name) 
+
+        if (!pair) {
+          setTimeout(() => {
+            card1.classList.toggle('turned')
+            card2.classList.toggle('turned')
+            }, 600)
+          }
+
+
+        if (memoryGame.checkIfFinished()) {
+          alert('you won')
+        }
+
+
       }
-      const card1 = memoryGame.pickedCards[0]
-      const card2 = memoryGame.pickedCards[1]
-
-
-      memoryGame.checkIfPair(card1, card2)
-      
-      if (card1 !== card2) {
-        setTimeout(() => {
-          card1.classList.toggle('turned')
-          card2.classList.toggle('turned')
-        }, 1000)
-      }
-
-
-      memoryGame.checkIfFinished()
-
-
-      console.log(`Card clicked: ${card}`);
     });
   });
 });
