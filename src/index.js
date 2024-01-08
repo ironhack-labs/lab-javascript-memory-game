@@ -39,13 +39,44 @@ window.addEventListener('load', (event) => {
   });
 
   // Add all the divs to the HTML
-  document.querySelector('#memory-board').innerHTML = html;
+  document.querySelector('#memory-board').innerHTML = html
+
+  let click = 0
+  let turnedCards = []
+  const pairsClick = document.querySelector('#pairs-clicked')
+  const pairsGuess = document.querySelector('#pairs-guessed')
+
 
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
-    });
-  });
-});
+      click++
+      pairsClick.innerHTML = click
+
+      if (turnedCards.length < 2) {
+        card.classList.add('turned')
+        turnedCards.push(card)
+      }
+
+      let pair = memoryGame.checkIfPair(turnedCards[0], turnedCards[1])
+      
+      console.log(pair)
+
+      if (pair) {
+        pairsGuess.innerHTML = memoryGame.pairsGuessed
+        turnedCards.forEach((turnedCard) => {
+          turnedCard.classList.add('blocked')
+        })
+        turnedCards = []
+      } else {
+        setTimeout(() => {
+          turnedCards.forEach((turnedCard) => {
+            turnedCard.classList.remove('turned')
+          })
+          turnedCards = []
+        }, 1500)
+      }
+    })
+  })
+})
