@@ -1,3 +1,7 @@
+window.onload = function() {
+  memoryGame.shuffleCards();
+};
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -41,11 +45,51 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
+   
     card.addEventListener('click', () => {
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      console.log(memoryGame.pickedCards);
+      card.classList.toggle("turned");
+
+      memoryGame.pickedCards.push(card);
+
+      if (memoryGame.pickedCards.length === 2) {
+        const card1 = memoryGame.pickedCards.pop();
+        const card2 = memoryGame.pickedCards.pop();
+
+        if (
+          memoryGame.checkIfPair(
+            card1.getAttribute("data-card-name"),
+            card2.getAttribute("data-card-name")
+          )) {
+            card1.classList.toggle("blocked");
+            card2.classList.toggle("blocked");
+
+            if (memoryGame.checkIfFinished()) {
+              setTimeout(() => {
+                alert("YAY. You won!");
+              }, 600);
+            } else {
+              setTimeout(() => {
+                card1.classList.toggle("guessed");
+                card2.classList.toggle("guessed");
+              }, 350);
+            }
+            document.querySelector("#pairs-clicked").innerHTML =
+          memoryGame.pairsClicked;
+        document.querySelector("#pairs-guessed").innerHTML =
+          memoryGame.pairsGuessed;
+        } else{
+          setTimeout(() => {
+            card1.classList.toggle("turned");
+            card2.classList.toggle("turned");
+          }, 350);
+        }
+          }
     });
   });
 });
