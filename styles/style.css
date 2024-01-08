@@ -34,6 +34,13 @@ body {
   transform: rotateY(180deg);
 }
 
+.card.guessed .front{
+  opacity: 0%;
+}
+.card.guessed .back{
+  opacity: 0%;
+}
+
 .card .back,
 .card .front {
   width: 71px;
