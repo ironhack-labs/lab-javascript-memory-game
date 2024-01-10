@@ -20,7 +20,14 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    
+    /* corrections
+    if(card1 === card2) {
+      this.pairsGuessed++
+    } 
+      return card1 === card2
+    }
+    */
+   
     this.pairsClicked++
 
     if (card1 === card2) {
@@ -32,6 +39,8 @@ class MemoryGame {
   }
 
   checkIfFinished() {
+
+    // corrections =>   return this.pairsGuessed === this.cards.length / 2
     
     if (this.pairsGuessed === this.cards.length / 2) {
       return true
