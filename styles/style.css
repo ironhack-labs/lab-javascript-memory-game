@@ -88,3 +88,110 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+/************************* Buttons and animations extras **********************************/
+
+/* Button old style */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.restartButton {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.restartButton:hover {
+  background-color: #ff9900;
+}
+
+.restartButton:active {
+  background-color: #00ff4c;
+}
+
+
+/*Animation at the end*/
+@keyframes scale-up {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 1;
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.win-message {
+  position: fixed;
+  top: 35%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  animation: scale-up 2s forwards;
+  color: white; 
+  text-shadow: 1px 1px 2px black;
+
+
+}
+
+.shining-text {
+  position: relative;
+  display: inline-block;
+  animation: shine 2s infinite, change-color 4s infinite;
+}
+
+@keyframes change-color {
+  0% {
+    color: red;
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: green;
+  }
+}
+
+.shining-text::before {
+  content: "GANASTE!!!";
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: shine 2s infinite;
+}
