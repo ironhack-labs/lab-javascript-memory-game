@@ -7,7 +7,7 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    // ... write your code here
+    this.cards.sort((a,b) => 0.5 - Math.random())
   }
 
   checkIfPair(card1, card2) {
