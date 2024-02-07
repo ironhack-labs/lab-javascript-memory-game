@@ -10,10 +10,11 @@ class MemoryGame {
   shuffleCards() {
     // ... write your code here
     //should return the shuffled (mixed) array of cards-NOT WORKING
+    let cardsArray=[];
     const shuffle = (cards) =>{
       let oldElement;
       for (let i = cards.length - 1; i > 0; i--) {
-        let rand = Math.floor(Math.random() * (i + 1));
+        let rand = Math.floor(Math.random() * (i +1));
         oldElement = cards[i];
         cards[i] = cards[rand];
         cards[rand] = oldElement;
@@ -29,10 +30,10 @@ class MemoryGame {
       return true
     }
     
-  //   else {
+    
       
-      
-  // return false}
+     
+  
      
    }
   
