@@ -16,26 +16,7 @@ We also need a this.pickedCards array, where we will be storing the cards the us
 Finally, a this.pairsClicked and this.pairsGuessed properties where will be adding every time a user choose and guess a pair. Go ahead and add these to the constructor.*/
 
   shuffleCards() {
-    
-    if (this.cards !== undefined) {
-      
-      var length = this.cards.length;
-      let temp;
-      let i;
-      
-      // While there remain elements to shuffle…
-      while (length) {
-        // Pick a remaining element…
-        i = Math.floor(Math.random() * length--);
-
-        // And swap it with the current element.
-        temp = this.cards[length];
-        this.cards[length] = this.cards[i];
-        this.cards[i] = temp;
-      }
-    }
-
-    return this.cards;
+    //fisher yates algo
   }
 
   checkIfPair(card1, card2) {
@@ -56,34 +37,6 @@ So, to summarize, we will have to update pairsClicked on every two open cards by
   }
 
   checkIfFinished() {
-    return this.pairsGuessed === 8;
+    // ... write your code here
   }
 }
-
-// DEBUGGING CODE
-
-const testCards = [
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-  { name: "aquaman", img: "aquaman.jpg" },
-  { name: "batman", img: "batman.jpg" },
-  { name: "captain america", img: "captain-america.jpg" },
-  { name: "fantastic four", img: "fantastic-four.jpg" },
-  { name: "flash", img: "flash.jpg" },
-  { name: "green arrow", img: "green-arrow.jpg" },
-  { name: "green lantern", img: "green-lantern.jpg" },
-  { name: "ironman", img: "ironman.jpg" },
-];
-
-let testGame = new MemoryGame(testCards);
-
-let emptyMemoryGame = new MemoryGame();
-
-testGame.shuffleCards();
-emptyMemoryGame.shuffleCards();
