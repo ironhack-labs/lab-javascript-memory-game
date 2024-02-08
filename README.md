@@ -202,6 +202,7 @@ Think about the interactions your user and the game will have: basically, the us
 
 window.addEventListener('load', (event) => {
   // some code goes here
+  
 });
 ```
 
