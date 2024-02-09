@@ -57,7 +57,7 @@ window.addEventListener("load", (event) => {
         return;
       }
       //we turn the card and push it into the empty pickedCards array
-      Element.classList.add("turned")
+      card.classList.add("turned")
       memoryGame.pickedCards.push(card)
 
       //Adds 1 to the pairsClicked and adds it in the HTML
@@ -68,7 +68,7 @@ window.addEventListener("load", (event) => {
       if (memoryGame.pickedCards.length===2){
         isProcessing=true;
 
-      const check =memoryGame.checkIfPair()(
+      const check =memoryGame.checkIfPair(
         memoryGame.pickedCards[0].getAttribute("data-card-name"),
         memoryGame.pickedCards[1].getAttribute("data-card-name")
       );
@@ -76,6 +76,7 @@ window.addEventListener("load", (event) => {
       if (check){
         const finish=memoryGame.checkIfFinished();
         if (finish){
+          window.alert("Woooo-hoooooo!!!!! You won!👏👏👏👏👏👏👏👏");
           setTimeout(()=>{
             memoryGame.pairsClicked=0;
             pairsClicked.innerHTML=memoryGame.pairsClicked;
