@@ -29,9 +29,10 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+
 let isProcessing= false;
 
-window.addEventListener('load', (event) => {
+window.addEventListener("load", (event) => {
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -55,18 +56,21 @@ window.addEventListener('load', (event) => {
       if (isProcessing){
         return;
       }
+      //we turn the card and push it into the empty pickedCards array
       Element.classList.add("turned")
       memoryGame.pickedCards.push(card)
 
+      //Adds 1 to the pairsClicked and adds it in the HTML
       memoryGame.pairsClicked++;
       pairsClicked.innerHTML=memoryGame.pairsClicked;
 
+      //to check if the person has clicked 2 cards
       if (memoryGame.pickedCards.length===2){
         isProcessing=true;
 
-      const check =memoryGame.checkIfPair(
-        memoryGame.pickedCards[0].getAttribute("data-card-name");
-        memoryGame.pickedCards[1].getAttribute("data-card-name");
+      const check =memoryGame.checkIfPair()(
+        memoryGame.pickedCards[0].getAttribute("data-card-name"),
+        memoryGame.pickedCards[1].getAttribute("data-card-name")
       );
 
       if (check){
