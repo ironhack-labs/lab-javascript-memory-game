@@ -70,7 +70,7 @@ window.addEventListener("load", (event) => {
               memoryGame.pickedCards[1].getAttribute("data-card-name")
             )
           ) {
-            // If so, block them, empty array and clear array
+            // If so, block them and empty array
             card.classList.toggle("blocked");
             memoryGame.pickedCards = [];
           } else {

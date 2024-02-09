@@ -12,12 +12,12 @@ export class MemoryGame {
       let temp;
       let i;
 
-      // While there remain elements to shuffle…
+      // While there are elements to shuffle
       while (length) {
         // Pick a remaining element…
         i = Math.floor(Math.random() * length--);
 
-        // And swap it with the current element.
+        // Swap it with the current element
         temp = this.cards[length];
         this.cards[length] = this.cards[i];
         this.cards[i] = temp;
