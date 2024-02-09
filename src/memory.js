@@ -1,4 +1,4 @@
-export class MemoryGame {
+class MemoryGame {
   constructor(cards) {
     this.cards = cards;
     this.pickedCards = [];
