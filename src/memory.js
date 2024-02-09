@@ -1,4 +1,4 @@
-class MemoryGame {
+export class MemoryGame {
   constructor(cards) {
     this.cards = cards;
     this.pickedCards = [];
@@ -7,13 +7,11 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    
     if (this.cards !== undefined) {
-      
       var length = this.cards.length;
       let temp;
       let i;
-      
+
       // While there remain elements to shuffle…
       while (length) {
         // Pick a remaining element…
