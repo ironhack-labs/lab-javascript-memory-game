@@ -1,18 +1,43 @@
-class MemoryGame {
+export class MemoryGame {
   constructor(cards) {
     this.cards = cards;
-    // add the rest of the class properties here
+    this.pickedCards = [];
+    this.pairsClicked = 0;
+    this.pairsGuessed = 0;
   }
 
   shuffleCards() {
-    // ... write your code here
+    if (this.cards !== undefined) {
+      var length = this.cards.length;
+      let temp;
+      let i;
+
+      // While there are elements to shuffle
+      while (length) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * length--);
+
+        // Swap it with the current element
+        temp = this.cards[length];
+        this.cards[length] = this.cards[i];
+        this.cards[i] = temp;
+      }
+    }
+
+    return this.cards;
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
+    this.pairsClicked++;
+    if (card1.localeCompare(card2) === 0) {
+      this.pairsGuessed++;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkIfFinished() {
-    // ... write your code here
+    return this.pairsGuessed === 8;
   }
 }
