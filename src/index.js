@@ -31,6 +31,7 @@ const Guessed = document.getElementById("pairs-guessed");
 
 window.addEventListener("load", (event) => {
   let html = "";
+  memoryGame.shuffleCards(cards);
   memoryGame.cards.forEach((pic) => {
     html += `
       <div class="card" data-card-name="${pic.name}">
