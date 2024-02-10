@@ -26,9 +26,8 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
-const Clicked = document.getElementById("pairs-clicked")
-const Guessed = document.getElementById("pairs-guessed")
-
+const Clicked = document.getElementById("pairs-clicked");
+const Guessed = document.getElementById("pairs-guessed");
 
 window.addEventListener("load", (event) => {
   let html = "";
@@ -53,8 +52,7 @@ window.addEventListener("load", (event) => {
       if (!selectedCard) {
         // save the card so we can compare it with the second click
         selectedCard = card;
-        console.log(memoryGame.pairsGuessed)
-
+        console.log(memoryGame.pairsGuessed);
       } else {
         // second card flip
         const cardName1 = card.getAttribute("data-card-name");
@@ -63,37 +61,31 @@ window.addEventListener("load", (event) => {
         // if not pairs, flip back after 2 seconds
         if (!memoryGame.checkIfPair(cardName1, cardName2)) {
           console.log(cardName1, cardName2);
-          Clicked.innerHTML = `${memoryGame.pairsClicked}`
+          Clicked.innerHTML = `${memoryGame.pairsClicked}`;
 
           setTimeout(() => {
             card.classList.toggle("turned");
             selectedCard.classList.toggle("turned");
             // clear selection
-            Guessed.innerHTML = `${memoryGame.pairsGuessed}`
+            Guessed.innerHTML = `${memoryGame.pairsGuessed}`;
             selectedCard = null;
           }, 1000);
         } else {
           setTimeout(() => {
             // clear selection
-            Clicked.innerHTML = `${memoryGame.pairsClicked}`
-            Guessed.innerHTML = `${memoryGame.pairsGuessed}`
+            Clicked.innerHTML = `${memoryGame.pairsClicked}`;
+            Guessed.innerHTML = `${memoryGame.pairsGuessed}`;
             selectedCard = null;
           }, 1000);
         }
       }
-
       card.classList.toggle("turned");
+
+      if (memoryGame.checkIfFinished()) {
+        setTimeout(() => {
+          alert("You won!!!");
+        },2000);
+      }
     });
   });
-
-
-  if (memoryGame.checkIfFinished()) {
-    console.log("finished")
-    document.querySelectorAll(".card").forEach((card) => {
-      card.classList.toggle("turned");
-    })
-  }
-  
-
 });
-
