@@ -21,10 +21,10 @@ class MemoryGame {
 
   checkIfPair(card1, card2) {
     
-    this.pairsClicked += 1
+    this.pairsClicked++ 
     if (card1 === card2) {
       // If they are the same, increment pairsGuessed []
-      this.pairsGuessed =+ 1;
+      this.pairsGuessed++;
       return true;
     }
     return false;
@@ -33,7 +33,9 @@ class MemoryGame {
   checkIfFinished() {
     //each pair = 2 cards
     if (this.pairsGuessed === this.cards.length / 2) {
+      console.log("Work")
       return true; // all pairs guessed
+      
     } else {
       return false; // still pairs to guess
     }
