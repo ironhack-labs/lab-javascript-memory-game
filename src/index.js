@@ -25,9 +25,11 @@ const cards = [
   { name: 'thor', img: 'thor.jpg' }
 ];
 
-const memoryGame = new MemoryGame(cards);
-
 window.addEventListener('load', (event) => {
+  function startGame(){
+    const memoryGame = new MemoryGame(cards);
+    memoryGame.shuffleCards()
+  
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -45,7 +47,42 @@ window.addEventListener('load', (event) => {
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       // TODO: write some code here
+      card.classList.toggle('turned')
+      memoryGame.pickedCards.push(card);
+      if (memoryGame.pickedCards.length === 2) {
+        const result = memoryGame.checkIfPair(memoryGame.pickedCards[0].dataset.cardName, memoryGame.pickedCards[1].dataset.cardName)
+       const clicked = document.querySelector("#pairs-clicked")
+       clicked.textContent = memoryGame.pairsClicked
+        if (result) {
+          memoryGame.pickedCards.forEach(item => {
+            item.classList.add('blocked')
+          })
+          const guessed = document.querySelector("#pairs-guessed")
+          guessed.textContent = memoryGame.pairsGuessed
+          memoryGame.pickedCards.length = 0
+          const resultOfGame = memoryGame.checkIfFinished()
+          if (resultOfGame){
+           setTimeout(()=> {
+            alert('you are win')
+            startGame()
+           },500)
+            
+          }
+        } else {
+          setTimeout(() => {
+            memoryGame.pickedCards.forEach(item => {
+            
+              item.classList.remove('turned')
+
+            })
+            memoryGame.pickedCards.length = 0
+          }, 500)
+        }
+
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
+}
+startGame()
 });
