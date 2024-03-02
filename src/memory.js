@@ -19,7 +19,8 @@ class MemoryGame {
       this.cards.pop(this.cards[j]);
       i--;
     }
-    return newOrder;
+    this.cards = newOrder;
+    return this.cards;
   }
 
   checkIfPair(card1, card2) {

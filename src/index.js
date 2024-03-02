@@ -57,7 +57,7 @@ window.addEventListener("load", (event) => {
       }
 
       if (clickedCards.length === 2) {
-        if (checkIfPair(clickedCards[0], clickedCards[1])) {
+        if (memoryGame.checkIfPair(clickedCards[0], clickedCards[1])) {
           //keep them open
           document.querySelectorAll(".flipped").forEach((flippedCard) => {
             flippedCard.classList.remove("flipped");
@@ -66,7 +66,7 @@ window.addEventListener("load", (event) => {
           });
         }
         
-        if (!checkIfPair(clickedCards[0], clickedCards[1])) {
+        if (!memoryGame.checkIfPair(clickedCards[0], clickedCards[1])) {
           //close them
           setTimeout(() => {
             document.querySelectorAll(".flipped").forEach((flippedCard) => {
@@ -76,7 +76,7 @@ window.addEventListener("load", (event) => {
           }, 2000);
         }
 
-        if (checkIfFinished()) {
+        if (memoryGame.checkIfFinished()) {
           console.log("You've won!!");
         }
       }
