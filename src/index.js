@@ -20,7 +20,7 @@ const cards = [
   { name: 'green lantern', img: 'green-lantern.jpg' },
   { name: 'ironman', img: 'ironman.jpg' },
   { name: 'spiderman', img: 'spiderman.jpg' },
-  { name: 'superman', img: 'superman.jpg' },
+  { name : 'superman', img: 'superman.jpg' },
   { name: 'the avengers', img: 'the-avengers.jpg' },
   { name: 'thor', img: 'thor.jpg' }
 ];
@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards();
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -42,9 +43,36 @@ window.addEventListener('load', (event) => {
   document.querySelector('#memory-board').innerHTML = html;
 
   // Bind the click event of each element to a function
-  document.querySelectorAll('.card').forEach((card) => {
+   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.add("turned")
+      memoryGame.pickedCards.push(card);
+      if(memoryGame.pickedCards.length === 2){
+        let card1 = memoryGame.pickedCards[0]
+          .querySelector(".back")
+          .getAttribute("name");
+        let card2 = memoryGame.pickedCards[1]
+          .querySelector(".back")
+          .getAttribute("name");
+        const response = memoryGame.checkIfPair(card1, card2)
+        const clickedPairs = memoryGame.pairsClicked;
+        const clickedCounter = document.querySelector("#pairs-clicked");
+        clickedCounter.innerHTML = clickedPairs;
+        if(response === true){
+          memoryGame.pickedCards.forEach((card) => card.classList.add("blocked"));
+          document.querySelector("#pairs-guessed").innerHTML = memoryGame.pairsGuessed;
+          const isFinished = memoryGame.checkIfFinished();
+          memoryGame.pickedCards = []
+          if (isFinished) alert("Has ganado");
+        }else{
+          setTimeout(() =>{
+              memoryGame.pickedCards.forEach((card) =>{ 
+                card.classList.remove("turned");
+                memoryGame.pickedCards = [];
+              });
+            }, 700);
+        }
+      }
       console.log(`Card clicked: ${card}`);
     });
   });
