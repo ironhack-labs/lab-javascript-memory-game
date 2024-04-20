@@ -88,3 +88,15 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.you-won {
+  padding: 50px;
+  background-color: rgb(255, 99, 99);
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 40%
+
+ 
+
+}
