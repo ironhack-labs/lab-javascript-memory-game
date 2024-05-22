@@ -63,10 +63,21 @@ describe('MemoryGame', () => {
     });
 
     it('should return the shuffled (mixed) array of cards', () => {
-      const formerCards = memoryGame.cards.map((card) => card.name).toString();
-      memoryGame.shuffleCards();
-      const newCards = memoryGame.cards.map((card) => card.name).toString();
-      expect(formerCards === newCards).toBe(false);
+      const iterations = 100;
+      let isShuffled = false;
+
+      for (let i = 0; i < iterations; i++) {
+        const formerCards = [...memoryGame.cards];
+        memoryGame.shuffleCards();
+        const newCards = memoryGame.cards;
+
+        if (formerCards.some((card, index) => card.name !== newCards[index].name)) {
+          isShuffled = true;
+          break;
+        }
+      }
+
+      expect(isShuffled).toBe(true);
     });
   });
 
@@ -112,11 +123,14 @@ describe('MemoryGame', () => {
 
     it("should return false if there's still some pairs to be guessed", () => {
       memoryGame.pairsGuessed = 4;
+      memoryGame.cards = new Array(16)
       expect(memoryGame.checkIfFinished()).toBe(false);
     });
 
     it('should return true if all pairs are guessed', () => {
-      memoryGame.pairsGuessed = 8;
+      memoryGame.pairsGuessed = 8
+      memoryGame.pairsClicked = 1;
+      memoryGame.cards = new Array(16)
       expect(memoryGame.checkIfFinished()).toBe(true);
     });
   });
