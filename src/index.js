@@ -1,3 +1,5 @@
+import MemoryGame from './memory.js'; // Add this line at the top if using modules
+
 const cards = [
   { name: 'aquaman', img: 'aquaman.jpg' },
   { name: 'batman', img: 'batman.jpg' },
@@ -44,7 +46,9 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
+      card.classList.toggle('turned');
+      const cardName = card.getAttribute('data-card-name');
+      memoryGame.flipCard(cardName);
       console.log(`Card clicked: ${card}`);
     });
   });
