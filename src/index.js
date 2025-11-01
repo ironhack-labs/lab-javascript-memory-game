@@ -26,8 +26,18 @@ const cards = [
 ];
 
 const memoryGame = new MemoryGame(cards);
+const pairsClicked = document.getElementById("pairs-clicked");
+const pairsGuessed = document.getElementById("pairs-guessed");
 
 window.addEventListener('load', (event) => {
+  
+  //Shuffle
+  console.log("Cards pre-shuffle:", memoryGame.cards);
+  
+  memoryGame.shuffleCards();
+
+  console.log("Cards post-shuffle:", memoryGame.cards);
+
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -44,8 +54,51 @@ window.addEventListener('load', (event) => {
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
-      // TODO: write some code here
-      console.log(`Card clicked: ${card}`);
+
+      //Toggle styles
+      card.classList.toggle("turned");
+
+      //Add clicked card to array
+      memoryGame.pickedCards.push(card);
+      
+      //Check the array
+      if (memoryGame.pickedCards.length === 2) {
+        const card1 = memoryGame.pickedCards[0];
+        const card2 = memoryGame.pickedCards[1];
+        pairsClicked.textContent = memoryGame.pairsClicked;
+        
+        //Check pair
+        if (memoryGame.checkIfPair(card1.dataset.cardName, card2.dataset.cardName)) {
+          //Update counter
+          pairsGuessed.textContent = memoryGame.pairsGuessed;
+          
+          //Check if finished
+          if (memoryGame.checkIfFinished()) {
+            setTimeout(() => {
+              alert("You've won!");
+              const restart = confirm("Do you want to try again?");
+              if(restart){
+                window.location.reload();
+              }
+            })
+          }
+          
+        } else {
+
+          //Toggle styles after 1s
+          setTimeout(() => {
+            card1.classList.toggle("turned");
+            card2.classList.toggle("turned");
+          }, 1000);
+        }
+
+        //Set array to []
+        memoryGame.pickedCards = [];
+      }
+
     });
   });
 });
+
+
+// document.querySelectorAll(".card").forEach((card) => card.classList.toggle("turned"));
