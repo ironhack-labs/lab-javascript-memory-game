@@ -23,7 +23,7 @@ body {
   position: relative;
 }
 
-.card.turned {
+.blocked {
   pointer-events: none;
 }
 
@@ -34,8 +34,7 @@ body {
   transform: rotateY(180deg);
 }
 
-.card .back,
-.card .front {
+.card .back,.card .front {
   width: 71px;
   height: 71px;
   margin: 10px;
