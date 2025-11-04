@@ -88,3 +88,15 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.win {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.win p {
+  font-size: 3rem;
+  font-weight: bold;
+}
